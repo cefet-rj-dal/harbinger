@@ -1,7 +1,7 @@
 library(tibble)
 library(EventDetectR)
 
-source("harbinger.r")
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/harbinger.R")
 
 #========= Data =========
 # === WATER QUALITY ===
@@ -10,7 +10,7 @@ test <- subset(train, select=c(Time, Redox))
 reference <- subset(train, select=c(Time, EVENT))
 
 # === NONSTATIONARITY ===
-source("nonstationarity_sym.r")
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/nonstationarity_sym.r")
 nonstat_ts <- nonstationarity_sym(ts.len=200,ts.mean=0,ts.var=1)
 #plot(ts(nonstat_ts),type="l",xlab="time",ylab="x")
 
