@@ -6,7 +6,7 @@ source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/harbinge
 #========= Data =========
 # === WATER QUALITY ===
 train <- geccoIC2018Train[16500:18000,]
-test <- subset(train, select=c(Time, Redox))
+test <- subset(train, select=c(Time, Trueb))
 reference <- subset(train, select=c(Time, EVENT))
 
 # === NONSTATIONARITY ===
@@ -38,7 +38,7 @@ evaluate(events_ed, reference, metric="confusion_matrix")
 
 #====== Change point V1 (1999) ======
 #Detect
-events_cp_v1 <- evtdet.changepoints_v1(test, w=100,na.action=na.omit)
+events_cp_v1 <- evtdet.changepoints_v1(test, w=50,na.action=na.omit)
 #Evaluate
 evaluate(events_cp_v1, reference, metric="confusion_matrix")
 #Plot
@@ -98,6 +98,15 @@ events_otsad <- evtdet.otsad(test,method="CpPewma", n.train = 50, alpha0 = 0.9, 
 evaluate(events_otsad, reference, metric="confusion_matrix")
 #Plot
 print(evtplot(test,events_otsad, reference))
+
+
+#====== Outliers ======
+#Detect
+events_out <- evtdet.changepoints_v1(test, alpha=1.5)
+#Evaluate
+evaluate(events_out, reference, metric="confusion_matrix")
+#Plot
+print(evtplot(test,events_out, reference))
 
 
 #====== Model Outliers ======
