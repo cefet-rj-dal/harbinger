@@ -105,7 +105,7 @@ evtdet.eventdetect <- function(data,...){
 }
 
 
-evtdet.changepoints_v1 <- function(data,...){
+evtdet.seminalChangePoint <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
   
   changepoints_v1 <- function(data,w=100,na.action=na.omit,...){
@@ -205,7 +205,7 @@ evtdet.changepoints_v1 <- function(data,...){
   return(events)
 }
 
-optim.evtdet.changepoints_v1 <- function(test,par_options=expand.grid(w=seq(0.01,0.1,0.02)*nrow(test)),...){
+optim.evtdet.seminalChangePoint <- function(test,par_options=expand.grid(w=seq(0.01,0.1,0.02)*nrow(test)),...){
   eval <- data.frame()
   events_list <- NULL
   for(par in 1:nrow(par_options)){
@@ -231,7 +231,7 @@ optim.evtdet.changepoints_v1 <- function(test,par_options=expand.grid(w=seq(0.01
 }
 
 
-evtdet.changepoints_v2 <- function(data,...){
+evtdet.seminalChangePoint2 <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
   
   changepoints_v2 <- function(data,mdl,w=100,na.action=na.omit,...){
@@ -374,7 +374,7 @@ evtdet.changepoints_v2 <- function(data,...){
 }
 
 
-evtdet.changepoints_v3 <- function(data,...){
+evtdet.changeFinder <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
   
   changepoints_v3 <- function(data,mdl_fun,m=5,na.action=na.omit,...){
@@ -490,7 +490,7 @@ evtdet.changepoints_v3 <- function(data,...){
   return(events)
 }
 
-optim.evtdet.changepoints_v3 <- function(test,par_options=expand.grid(mdl_fun=c(ARIMA = function(data) forecast::auto.arima(data),
+optim.evtdet.changeFinder <- function(test,par_options=expand.grid(mdl_fun=c(ARIMA = function(data) forecast::auto.arima(data),
                                                                                 AR = function(data,p) forecast::Arima(data, order = c(p, 0, 0), seasonal = c(0, 0, 0)),
                                                                                 ets = function(data) forecast::ets(ts(data)),
                                                                                 linreg = function(data) {
