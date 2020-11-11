@@ -36,13 +36,13 @@ events_ed <- evtdet.eventdetect(train)
 evaluate(events_ed, reference, metric="confusion_matrix")
 
 
-#====== Change point V1 (1999) ======
+#====== Seminal Change Point (1999) ======
 #Detect
-events_cp_v1 <- evtdet.changepoints_v1(test, w=50,na.action=na.omit)
+events_scp <- evtdet.seminalChangePoint(test, w=50,na.action=na.omit)
 #Evaluate
-evaluate(events_cp_v1, reference, metric="confusion_matrix")
+evaluate(events_scp, reference, metric="confusion_matrix")
 #Plot
-print(evtplot(test,events_cp_v1, reference))
+print(evtplot(test,events_scp, reference))
 
 
 #====== Auxiliary Model definitions ======
@@ -61,19 +61,19 @@ linreg <- function(data) {
 }
 
 
-#====== Change point V2 (1999) ======
-events_cp_v2 <- evtdet.changepoints_v2(test,w=100,mdl=linreg,na.action=na.omit)
-evaluate(events_cp_v2, reference, metric="confusion_matrix")
-print(evtplot(test,events_cp_v2, reference))
+#====== Seminal Change Point V2 (1999) ======
+events_scp_v2 <- evtdet.seminalChangePoint2(test,w=100,mdl=linreg,na.action=na.omit)
+evaluate(events_scp_v2, reference, metric="confusion_matrix")
+print(evtplot(test,events_scp_v2, reference))
 
 
-#====== Change point V3 (2005) ======
+#====== ChangeFinder (2005) ======
 #Detect
-events_cp_v3 <- evtdet.changepoints_v3(test,mdl=ARIMA,m=5,na.action=na.omit)
+events_cf <- evtdet.changeFinder(test,mdl=ARIMA,m=5,na.action=na.omit)
 #Evaluate
-evaluate(events_cp_v3, reference, metric="confusion_matrix")
+evaluate(events_cf, reference, metric="confusion_matrix")
 #Plot
-print(evtplot(test,events_cp_v3, reference, mark.cp=TRUE))
+print(evtplot(test,events_cf, reference, mark.cp=TRUE))
 
 
 #====== Adaptive Normalization Outliers ======
@@ -102,7 +102,7 @@ print(evtplot(test,events_otsad, reference))
 
 #====== Outliers ======
 #Detect
-events_out <- evtdet.changepoints_v1(test, alpha=1.5)
+events_out <- evtdet.outliers(test, alpha=1.5)
 #Evaluate
 evaluate(events_out, reference, metric="confusion_matrix")
 #Plot
