@@ -210,7 +210,7 @@ optim.evtdet.seminalChangePoint <- function(test,par_options=expand.grid(w=seq(0
   events_list <- NULL
   for(par in 1:nrow(par_options)){
     
-    events <- tryCatch(evtdet.changepoints_v1(test,
+    events <- tryCatch(evtdet.seminalChangePoint(test,
                                               w=par_options[par,"w"],...),
                           error = function(e) NULL)
     
@@ -506,7 +506,7 @@ optim.evtdet.changeFinder <- function(test,par_options=expand.grid(mdl_fun=c(ARI
   #browser()
   for(par in 1:nrow(par_options)){
     
-    events <- tryCatch(evtdet.changepoints_v3(test,
+    events <- tryCatch(evtdet.changeFinder(test,
                                               mdl_fun=par_options[[par,"mdl_fun"]],
                                               m=par_options[par,"m"],...),
                           error = function(e) NULL)
