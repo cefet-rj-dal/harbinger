@@ -840,6 +840,7 @@ hard_metrics <- function(detection,events, beta=1){
                                 dimnames = list(c("Detected", "TRUE","FALSE"),
                                                 c("Events", ""))))
   
+  accuracy <- (TP+TN)/(TP+FP+FN+TN)
   sensitivity <- TP/(TP+FN)
   specificity <- TN/(FP+TN)
   prevalence <- (TP+FN)/(TP+FP+FN+TN)
@@ -853,14 +854,14 @@ hard_metrics <- function(detection,events, beta=1){
   
   F1 <- (1+beta^2)*precision*recall/((beta^2 * precision)+recall)
   
-  h_metrics <- list(TP=TP,FP=FP,FN=FN,TN=TN,confMatrix=confMatrix,
+  s_metrics <- list(TP=TP,FP=FP,FN=FN,TN=TN,confMatrix=confMatrix,accuracy=accuracy,
                     sensitivity=sensitivity, specificity=specificity,
                     prevalence=prevalence, PPV=PPV, NPV=NPV,
                     detection_rate=detection_rate, detection_prevalence=detection_prevalence,
                     balanced_accuracy=balanced_accuracy, precision=precision,
                     recall=recall, F1=F1)
   
-  return(h_metrics)
+  return(s_metrics)
 }
 
 #==== evaluate: Function for evaluating quality of event detection ====
@@ -871,8 +872,8 @@ hard_metrics <- function(detection,events, beta=1){
 # output:
 #   calculated metric value.
 evaluate <- function(events, reference, 
-                          metric=c("confusion_matrix","sensitivity","specificity","pos_pred_value","neg_pred_value","precision",
-                                   "recall","F1","prevalence","detection_rate","detection_prevalence","balanced_accuracy"), beta=1){
+                     metric=c("confusion_matrix","accuracy","sensitivity","specificity","pos_pred_value","neg_pred_value","precision",
+                              "recall","F1","prevalence","detection_rate","detection_prevalence","balanced_accuracy"), beta=1){
   #browser()
   if(is.null(events) | is.null(events$time)) stop("No detected events were provided for evaluation",call. = FALSE)
   
@@ -888,6 +889,7 @@ evaluate <- function(events, reference,
   
   metric_value <- switch(metric,
                          "confusion_matrix" = hardMetrics$confMatrix,
+                         "accuracy" = hardMetrics$accuracy,
                          "sensitivity" = hardMetrics$sensitivity,
                          "specificity" = hardMetrics$specificity,
                          "pos_pred_value" = hardMetrics$PPV,
