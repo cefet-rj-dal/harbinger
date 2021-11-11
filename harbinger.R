@@ -746,7 +746,7 @@ evtdet.garch_volatility_outlier <- function(data,...){
     garch <- function(data,spec,...) rugarch::ugarchfit(spec=spec,data=data,solver="hybrid", ...)
     
     #Modeling
-    g <- garch(test[,2],spec)@fit
+    g <- garch(serie,spec)@fit
     
     #Getting instantaneous volatilities
     value <- match.arg(value)
