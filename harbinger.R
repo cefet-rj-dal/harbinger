@@ -230,6 +230,18 @@ optim.evtdet.seminalChangePoint <- function(test,par_options=expand.grid(w=seq(0
   return(list(par=par,events=events,rank=rank))
 }
 
+#====== Auxiliary Model definitions ======
+changeFinder.ARIMA <- function(data) forecast::auto.arima(data)
+changeFinder.AR <- function(data,p) forecast::Arima(data, order = c(p, 0, 0), seasonal = c(0, 0, 0))
+changeFinder.garch <- function(data,spec,...) rugarch::ugarchfit(spec=spec,data=data,solver="hybrid", ...)@fit
+changeFinder.ets <- function(data) forecast::ets(ts(data))
+changeFinder.linreg <- function(data) {
+  data <- as.data.frame(data)
+  colnames(data) <- "x"
+  data$t <- 1:nrow(data)
+  lm(x~t, data)
+}
+
 evtdet.changeFinder <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
   
@@ -346,16 +358,14 @@ evtdet.changeFinder <- function(data,...){
   return(events)
 }
 
-optim.evtdet.changeFinder <- function(test,par_options=expand.grid(mdl_fun=c(ARIMA = function(data) forecast::auto.arima(data),
-                                                                                AR = function(data,p) forecast::Arima(data, order = c(p, 0, 0), seasonal = c(0, 0, 0)),
-                                                                                ets = function(data) forecast::ets(ts(data)),
-                                                                                linreg = function(data) {
-                                                                                  data <- as.data.frame(data)
-                                                                                  colnames(data) <- "x"
-                                                                                  data$t <- 1:nrow(data)
-                                                                                  lm(x~t, data)
-                                                                                }),
-                                                                      m=seq(0.01,0.1,0.02)*nrow(test)),...){
+
+
+
+optim.evtdet.changeFinder <- function(test,par_options=expand.grid(mdl_fun=c(ARIMA = changeFinder.ARIMA,
+                                                                             AR = changeFinder.AR,
+                                                                             ets = changeFinder.ets,
+                                                                             linreg = changeFinder.linreg),
+                                                                   m=seq(0.01,0.1,0.02)*nrow(test)),...){
   eval <- data.frame()
   events_list <- NULL
   
