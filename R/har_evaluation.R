@@ -68,5 +68,6 @@ evaluate.har_evaluation <- function(obj, detection, event) {
                       balanced_accuracy=balanced_accuracy, precision=precision,
                       recall=recall, F1=F1)
     obj <- append(obj, s_metrics)
+    attr(obj, "class") <- "har_evaluation"
     return(obj)
 }
