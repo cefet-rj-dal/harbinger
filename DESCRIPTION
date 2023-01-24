@@ -1,0 +1,48 @@
+Package: harbinger
+Title: harbinger
+Version: 0.0.0.9000
+Authors@R: 
+  c(    person(
+            given = "Antonio",
+            family = "Castro",
+            role = c("ctb"),
+            email = "antonio.castro@eic.cefet-rj.br"
+        ),
+        person(
+            given = "Janio",
+            family = "Lima",
+            role = c("aut"),
+            email = "janio.lima@eic.cefet-rj.br"
+        ),
+        person(
+            given = "Rafaelli",
+            family = "Coutinho",
+            role = c("ctb"),
+            email = "rafaelli.coutinho@cefet-rj.br"
+        ),
+        person(
+            given = "Rebecca",
+            family = "Salles",
+            role = c("aut"),
+            email = "rebecca.salles@eic.cefet-rj.br"
+        ),
+        person(
+            given = "Eduardo",
+            family = "Ogasawara",
+            role = c("aut", "ths", "cre"),
+            email = "eogasawara@ieee.org",
+            comment = c(ORCID = "0000-0002-0466-0626")
+        ),
+        person(
+            given = "Federal Center for Technological Education of Rio de Janeiro (CEFET/RJ)",
+            role = "cph"
+        )
+   )
+Description: Time Series Event Detection Framework.
+License: MIT + file LICENSE
+URL: https://github.com/cefet-rj-dal/harbinger
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    ggplot2
