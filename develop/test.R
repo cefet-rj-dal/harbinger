@@ -31,8 +31,6 @@ if (FALSE) {
   print(evaluation$confMatrix)
 }
 
-
-
 dataset <- har_examples[[4]]
 model <- change_point(sw=30, alpha=1.5)
 detection <- detect(model, dataset$serie)
