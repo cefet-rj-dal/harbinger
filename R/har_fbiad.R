@@ -14,7 +14,7 @@ fbiad <- function(sw = 30, alpha = 1.5) {
 
 #'@export
 detect.fbiad <- function(obj, serie) {
-  if(is.null(data)) stop("No data was provided for computation", call. = FALSE)
+  if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   non_na <- which(!is.na(serie))
 

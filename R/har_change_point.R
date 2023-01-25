@@ -33,7 +33,7 @@ analyze_window <- function(data, offset) {
 #'@export
 detect.change_point <- function(obj, serie) {
 
-  if(is.null(data)) stop("No data was provided for computation", call. = FALSE)
+  if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   non_na <- which(!is.na(serie))
 
