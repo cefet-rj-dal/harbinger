@@ -25,6 +25,7 @@ outliers.boxplot <- function(data, alpha = 1.5){
   return (cond)
 }
 
+#'@export
 detect.fbiad <- function(obj, serie) {
   if(is.null(data)) stop("No data was provided for computation", call. = FALSE)
 
@@ -48,8 +49,8 @@ detect.fbiad <- function(obj, serie) {
   i <- rep(NA, length(serie))
   i[non_na] <- inon_na
 
-  events <- data.frame(idx=1:length(serie), event = i, type="")
-  events$type[i] <- "anomaly"
+  detection <- data.frame(idx=1:length(serie), event = i, type="")
+  detection$type[i] <- "anomaly"
 
-  return(events)
+  return(detection)
 }

@@ -25,9 +25,9 @@ harbinger <- function() {
 #'@param ... optional arguments./ further arguments passed to or from other methods.
 #'@return a harbinger object with model details
 #'@examples data(har_examples)
-#' serie <- har_examples[[1]]
+#' dataset <- har_examples[[1]]
 #' detector <- harbinger()
-#' detector <- fit(detector, serie)
+#' detector <- fit(detector, dataset$serie)
 #'@export
 fit <- function(obj, ...) {
   UseMethod("fit")
@@ -48,9 +48,9 @@ fit.harbinger <- function(obj, serie) {
 #'@param ... optional arguments./ further arguments passed to or from other methods.
 #'@return a harbinger object with model details
 #'@examples data(har_examples)
-#' serie <- har_examples[[1]]
+#' dataset <- har_examples[[1]]
 #' detector <- harbinger()
-#' detector <- fit(detector, serie)
+#' detector <- detect(detector, dataset$serie)
 #'@export
 detect <- function(obj, ...) {
   UseMethod("detect")
@@ -58,12 +58,12 @@ detect <- function(obj, ...) {
 
 #'@export
 detect.harbinger <- function(obj, serie) {
-  return(data.frame(idx = 1:length(serie), detection = rep(FALSE, length(serie)), type = ""))
+  return(data.frame(idx = 1:length(serie), event = rep(FALSE, length(serie)), type = ""))
 }
 
 #'@export
-evaluate.harbinger <- function(obj, detection, event, har_evaluate = har_evaluation()) {
-  return(evaluate(har_evaluate, detection, event))
+evaluate.harbinger <- function(obj, detection, event, evaluation = hard_evaluation()) {
+  return(evaluate(evaluation, detection, event))
 }
 
 

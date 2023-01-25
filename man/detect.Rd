@@ -23,7 +23,7 @@ For some methods, the model is not needed to be build, so the function do nothin
 }
 \examples{
 data(har_examples)
-serie <- har_examples[[1]]
+dataset <- har_examples[[1]]
 detector <- harbinger()
-detector <- fit(detector, serie)
+detector <- detect(detector, dataset$serie)
 }

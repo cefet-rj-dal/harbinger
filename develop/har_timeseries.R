@@ -52,7 +52,24 @@ har_examples <- list()
 { # time series 4
   i <- seq(0, 25, 0.25)
   x <- i
-  x[51:101] <- max(x[51:100]) - x[51:101]
+  event <- rep(FALSE, length(x))
+
+  x[51:101] <- max(x[51:99]) - x[51:101]
+  event[50] <- TRUE
+
+  length(i)
+
+  plot(i, x)
+  lines(i, x)
+
+
+  har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
+}
+
+{ # time series 5
+  i <- seq(0, 25, 0.25)
+  x <- i
+  x[51:101] <- max(x[51:99]) - x[51:101]
   event <- rep(FALSE, length(x))
 
   event[50] <- TRUE
@@ -67,10 +84,10 @@ har_examples <- list()
   har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
 }
 
-{ # time series 5
+{ # time series 6
   i <- seq(0, 25, 0.25)
   x <- i
-  x[51:101] <- max(x[51:100]) - x[51:101]
+  x[51:101] <- max(x[51:99]) - x[51:101]
   event <- rep(FALSE, length(x))
 
   event[50] <- TRUE
@@ -85,11 +102,11 @@ har_examples <- list()
   har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
 }
 
-{ # time series 6
+{ # time series 7
   i <- seq(0, 25, 0.25)
   x <- cos(i)
   xt <- i
-  xt[51:101] <- max(xt[51:100]) - xt[51:101]
+  xt[51:101] <- max(xt[52:100]) - xt[51:101]
   x <- x + xt
 
   event <- rep(FALSE, length(x))
@@ -107,11 +124,11 @@ har_examples <- list()
 }
 
 
-{ # time series 7
+{ # time series 8
   i <- seq(0, 25, 0.25)
   x <- cos(i)
   xt <- i
-  xt[51:101] <- max(xt[51:100]) - xt[51:101]
+  xt[51:101] <- max(xt[52:100]) - xt[51:101]
   x <- x + xt
 
   event <- rep(FALSE, length(x))
