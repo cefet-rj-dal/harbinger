@@ -1,10 +1,60 @@
-evtdet <- function(data,func,...){
+evtdet.anomalize <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
 
-  events <- do.call(func,c(list(data),list(...)))
+  anomalize <- function(data,method_time_decompose="stl",frequency="auto",trend="auto",method_anomalize="iqr",alpha=0.05,max_anoms=0.2,na.action=na.omit,...){
+    require(anomalize)
+    require(magrittr)
+    #browser()
+    serie_name <- names(data)[-1]
+    names(data) <- c("time","serie")
+
+    e <- tryCatch(data$serie <- na.action(data$serie), error = function(e) NULL)
+    if(is.null(e)) data <- na.action(data)
+
+    anomalies <-   tibble::as.tibble(data)
+
+    anomalies <-   anomalize::time_decompose(anomalies,serie, method=method_time_decompose, frequency=frequency, trend=trend)
+    anomalies <-   anomalize::anomalize(anomalies, remainder, method=method_anomalize, alpha=alpha, max_anoms=max_anoms)
+    anomalies <-   anomalize::time_recompose(anomalies)
+
+    anomalies <- cbind.data.frame(time=anomalies[anomalies$anomaly=="Yes","time"],serie=serie_name,type="anomaly")
+    names(anomalies) <- c("time","serie","type")
+
+    return(anomalies)
+  }
+
+  events <- evtdet(data,anomalize,...)
 
   return(events)
 }
+
+optim.evtdet.anomalize <- function(test,par_options=expand.grid(method_time_decompose=c("stl","twitter"),
+                                                                method_anomalize=c("iqr","gesd")),...){
+  eval <- data.frame()
+  events_list <- NULL
+  for(par in 1:nrow(par_options)){
+
+    events <- tryCatch(evtdet.anomalize(test,
+                                        method_time_decompose=par_options[par,"method_time_decompose"],
+                                        method_anomalize=par_options[par,"method_anomalize"],...),
+                       error = function(e) NULL)
+
+    eval_par <- tryCatch(evaluate(events, reference, metric="F1"),
+                         error = function(e) NA)
+
+    if(!is.null(events)) events_list[[par]] <- events
+    else events_list[[par]] <- NA
+
+    eval <- rbind(eval,cbind(par_options[par,],F1=eval_par))
+  }
+
+  events <- events_list[[which.max(eval$F1)]]
+  par <- par_options[which.max(eval$F1),]
+  rank <- eval
+
+  return(list(par=par,events=events,rank=rank))
+}
+
 
 evtdet.eventdetect <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
@@ -137,8 +187,35 @@ evtdet.seminalChangePoint <- function(data,...){
   return(events)
 }
 
+optim.evtdet.seminalChangePoint <- function(test,par_options=expand.grid(w=seq(0.01,0.1,0.02)*nrow(test)),...){
+  eval <- data.frame()
+  events_list <- NULL
+  for(par in 1:nrow(par_options)){
+
+    events <- tryCatch(evtdet.seminalChangePoint(test,
+                                                 w=par_options[par,"w"],...),
+                       error = function(e) NULL)
+
+    eval_par <- tryCatch(evaluate(events, reference, metric="F1"),
+                         error = function(e) NA)
+
+    if(!is.null(events)) events_list[[par]] <- events
+    else events_list[[par]] <- NA
+
+    eval <- rbind(eval,cbind(par_options[par,],F1=eval_par))
+  }
+
+  events <- events_list[[which.max(eval$F1)]]
+  par <- par_options[which.max(eval$F1),]
+  rank <- eval
+
+  return(list(par=par,events=events,rank=rank))
+}
+
 #====== Auxiliary Model definitions ======
 changeFinder.ARIMA <- function(data) forecast::auto.arima(data)
+changeFinder.AR <- function(data,p) forecast::Arima(data, order = c(p, 0, 0), seasonal = c(0, 0, 0))
+changeFinder.garch <- function(data,spec,...) rugarch::ugarchfit(spec=spec,data=data,solver="hybrid", ...)@fit
 changeFinder.ets <- function(data) forecast::ets(ts(data))
 changeFinder.linreg <- function(data) {
   data <- as.data.frame(data)
@@ -263,6 +340,92 @@ evtdet.changeFinder <- function(data,...){
   return(events)
 }
 
+
+
+
+optim.evtdet.changeFinder <- function(test,par_options=expand.grid(mdl_fun=c(ARIMA = changeFinder.ARIMA,
+                                                                             AR = changeFinder.AR,
+                                                                             ets = changeFinder.ets,
+                                                                             linreg = changeFinder.linreg),
+                                                                   m=seq(0.01,0.1,0.02)*nrow(test)),...){
+  eval <- data.frame()
+  events_list <- NULL
+
+  #browser()
+  for(par in 1:nrow(par_options)){
+
+    events <- tryCatch(evtdet.changeFinder(test,
+                                           mdl_fun=par_options[[par,"mdl_fun"]],
+                                           m=par_options[par,"m"],...),
+                       error = function(e) NULL)
+
+    eval_par <- tryCatch(evaluate(events, reference, metric="F1"),
+                         error = function(e) NA)
+
+    if(!is.null(events)) events_list[[par]] <- events
+    else events_list[[par]] <- NA
+
+    eval <- rbind(eval,cbind(par_options[par,],F1=eval_par))
+  }
+
+  events <- events_list[[which.max(eval$F1)]]
+  par <- par_options[which.max(eval$F1),]
+  rank <- eval
+
+  return(list(par=par,events=events,rank=rank))
+}
+
+
+evtdet.otsad <- function(data,...){
+  if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
+
+  otsad <- function(data,method=c("CpPewma","ContextualAnomalyDetector","CpKnnCad",
+                                  "CpSdEwma","CpTsSdEwma","IpPewma","IpKnnCad"),na.action=na.omit,...){
+    #browser()
+    serie_name <- names(data)[-1]
+    names(data) <- c("time","serie")
+
+    serie <- data$serie
+    len_data <- length(data$serie)
+
+    serie <- na.action(serie)
+
+    omit <- FALSE
+    if(length(serie)<len_data){
+      non_nas <- which(!is.na(data$serie))
+      omit <- TRUE
+    }
+
+    method <- match.arg(method)
+    require(otsad)
+
+    func <-
+      switch(method,
+             "CpPewma" = function(data, ...) otsad::CpPewma(data,...)$is.anomaly,
+             "ContextualAnomalyDetector" = function(data, reference, ...) otsad::ContextualAnomalyDetector(data,...)$is.anomaly,
+             "CpKnnCad" = function(data, ...) otsad::CpKnnCad(data,...)$is.anomaly,
+             "CpSdEwma" = function(data, ...) otsad::CpSdEwma(data,...)$is.anomaly,
+             "CpTsSdEwma" = function(data, ...) otsad::CpTsSdEwma(data,...)$is.anomaly,
+             "IpPewma" = function(data, ...) otsad::IpPewma(data,...)$is.anomaly,
+             "IpKnnCad" = function(data, ...) otsad::IpKnnCad(data,...)$is.anomaly
+      )
+
+    index.outlier <- which(as.logical(func(data=serie,...)))
+
+    if(omit) index.outlier <- non_nas[index.outlier]
+
+    anomalies <- cbind.data.frame(time=data[index.outlier,"time"],serie=serie_name,type="anomaly")
+    names(anomalies) <- c("time","serie","type")
+
+    return(anomalies)
+  }
+
+  events <- evtdet(data,otsad,...)
+
+  return(events)
+}
+
+
 evtdet.mdl_outlier <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
 
@@ -386,74 +549,3 @@ evtdet.garch_volatility_outlier <- function(data,...){
   return(events)
 }
 
-
-
-evaluate <- function(events, reference,
-                     metric=c("confusion_matrix","accuracy","sensitivity","specificity","pos_pred_value","neg_pred_value","precision",
-                              "recall","F1","prevalence","detection_rate","detection_prevalence","balanced_accuracy"), beta=1){
-  #browser()
-  if(is.null(events) | is.null(events$time)) stop("No detected events were provided for evaluation",call. = FALSE)
-
-  names(reference) <- c("time","event")
-  detected <- cbind.data.frame(time=reference$time,event=0)
-  detected[detected$time %in% events$time, "event"] <- 1
-  reference_vec <- as.logical(reference$event)
-  detected_vec <- as.logical(detected$event)
-
-  hardMetrics <- hard_metrics(detected_vec, reference_vec, beta=beta)
-
-  metric <- match.arg(metric)
-
-  metric_value <- switch(metric,
-                         "confusion_matrix" = hardMetrics$confMatrix,
-                         "accuracy" = hardMetrics$accuracy,
-                         "sensitivity" = hardMetrics$sensitivity,
-                         "specificity" = hardMetrics$specificity,
-                         "pos_pred_value" = hardMetrics$PPV,
-                         "neg_pred_value" = hardMetrics$NPV,
-                         "precision" = hardMetrics$precision,
-                         "recall" = hardMetrics$recall,
-                         "F1" = hardMetrics$F1,
-                         "prevalence" = hardMetrics$prevalence,
-                         "detection_rate" = hardMetrics$detection_rate,
-                         "detection_prevalence" = hardMetrics$detection_prevalence,
-                         "balanced_accuracy" = hardMetrics$balanced_accuracy)
-
-  return(metric_value)
-}
-
-hard_metrics <- function(detection,events, beta=1){
-  TP <- sum(detection & events)
-  FP <- sum(detection & !events)
-  FN <- sum(!detection & events)
-  TN <- sum(!detection & !events)
-
-  confMatrix <- as.table(matrix(c(as.character(TRUE),as.character(FALSE),
-                                  round(TP,2),round(FP,2),
-                                  round(FN,2),round(TN,2)), nrow = 3, ncol = 2, byrow = TRUE,
-                                dimnames = list(c("Detected", "TRUE","FALSE"),
-                                                c("Events", ""))))
-
-  accuracy <- (TP+TN)/(TP+FP+FN+TN)
-  sensitivity <- TP/(TP+FN)
-  specificity <- TN/(FP+TN)
-  prevalence <- (TP+FN)/(TP+FP+FN+TN)
-  PPV <- (sensitivity * prevalence)/((sensitivity*prevalence) + ((1-specificity)*(1-prevalence)))
-  NPV <- (specificity * (1-prevalence))/(((1-sensitivity)*prevalence) + ((specificity)*(1-prevalence)))
-  detection_rate <- TP/(TP+FP+FN+TN)
-  detection_prevalence <- (TP+FP)/(TP+FP+FN+TN)
-  balanced_accuracy <- (sensitivity+specificity)/2
-  precision <- TP/(TP+FP)
-  recall <- TP/(TP+FN)
-
-  F1 <- (1+beta^2)*precision*recall/((beta^2 * precision)+recall)
-
-  s_metrics <- list(TP=TP,FP=FP,FN=FN,TN=TN,confMatrix=confMatrix,accuracy=accuracy,
-                    sensitivity=sensitivity, specificity=specificity,
-                    prevalence=prevalence, PPV=PPV, NPV=NPV,
-                    detection_rate=detection_rate, detection_prevalence=detection_prevalence,
-                    balanced_accuracy=balanced_accuracy, precision=precision,
-                    recall=recall, F1=F1)
-
-  return(s_metrics)
-}

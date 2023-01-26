@@ -1,48 +1,17 @@
 library(tibble)
 library(EventDetectR)
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/harbinger.R")
-
-#========= Data =========
-# === WATER QUALITY ===
-train <- geccoIC2018Train[16500:18000,]
-test <- subset(train, select=c(Time, Trueb))
-reference <- subset(train, select=c(Time, EVENT))
-
-# === NONSTATIONARITY ===
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/nonstationarity_sym.r")
 nonstat_ts <- nonstationarity_sym(ts.len=200,ts.mean=0,ts.var=1)
-#plot(ts(nonstat_ts),type="l",xlab="time",ylab="x")
 
 test <- data.frame(time=1:length(nonstat_ts),x=nonstat_ts)
 reference <- data.frame(time=1:length(nonstat_ts),event=0)
 reference[c(200,400,500,600,700,800), "event"] <- 1
 
-#test[runif(200, 1, 1501), "pH"] <- NA
-
-#====== Anomalize ======
-#Detect
-events_a <- evtdet.anomalize(test,max_anoms=0.2,na.action=na.omit)
-#Evaluate
-evaluate(events_a, reference, metric="confusion_matrix")
-#Plot
-print(evtplot(test,events_a, reference))
-
-
 #====== EventDetect ======
 #Detect
-events_ed <- evtdet.eventdetect(train)
+events_ed <- evtdet.eventdetect(test)
 #Evaluate
 evaluate(events_ed, reference, metric="confusion_matrix")
-
-
-#====== Seminal Change Point (1999) ======
-#Detect
-events_scp <- evtdet.seminalChangePoint(test, w=50,na.action=na.omit)
-#Evaluate
-evaluate(events_scp, reference, metric="confusion_matrix")
-#Plot
-print(evtplot(test,events_scp, reference))
 
 
 #====== Auxiliary Model definitions ======
@@ -55,16 +24,10 @@ linreg <- function(data) {
   data <- as.data.frame(data)
   colnames(data) <- "x"
   data$t <- 1:nrow(data)
-  
+
   #Adjusting a linear regression to the whole window
   lm(x~t, data)
 }
-
-
-#====== Seminal Change Point V2 (1999) ======
-events_scp_v2 <- evtdet.seminalChangePoint2(test,w=100,mdl=linreg,na.action=na.omit)
-evaluate(events_scp_v2, reference, metric="confusion_matrix")
-print(evtplot(test,events_scp_v2, reference))
 
 
 #====== ChangeFinder (2005) ======
@@ -120,8 +83,8 @@ print(evtplot(test,events_mdl_outlier, reference))
 
 #====== Model Outliers - GARCH ======
 #Garch specs
-garch11 <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), 
-                      mean.model = list(armaOrder = c(1, 1), include.mean = TRUE), 
+garch11 <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
+                      mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
                       distribution.model = "norm")
 #Detect
 events_mdl_outlier <- evtdet.mdl_outlier(test,mdl=garch,na.action=na.omit,spec=garch11)
@@ -133,8 +96,8 @@ print(evtplot(test,events_mdl_outlier, reference))
 
 #====== Garch Volatility Outliers ======
 #Garch specs
-garch11 <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), 
-                               mean.model = list(armaOrder = c(1, 1), include.mean = TRUE), 
+garch11 <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
+                               mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
                                distribution.model = "norm")
 #Detect
 events_garch_volatility_outlier <- evtdet.garch_volatility_outlier(test,spec=garch11,alpha=1.5,na.action=na.omit)
@@ -142,3 +105,4 @@ events_garch_volatility_outlier <- evtdet.garch_volatility_outlier(test,spec=gar
 evaluate(events_garch_volatility_outlier, reference, metric="confusion_matrix")
 #Plot
 print(evtplot(test,events_garch_volatility_outlier, reference))
+
