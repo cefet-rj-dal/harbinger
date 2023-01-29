@@ -1,4 +1,4 @@
-evtdet <- function(data,func,...){
+har_old_evtdet <- function(data,func,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
 
   events <- do.call(func,c(list(data),list(...)))
@@ -6,148 +6,17 @@ evtdet <- function(data,func,...){
   return(events)
 }
 
-evtdet.eventdetect <- function(data,...){
-  if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
-
-  eventdetect <- function(data,windowSize=200,nIterationsRefit=150,
-                          dataPrepators="ImputeTSInterpolation",buildModelAlgo="ForecastBats",
-                          postProcessors="bedAlgo",postProcessorControl = list(nStandardDeviationsEventThreshhold = 5),...){
-
-    require(EventDetectR)
-
-    #browser()
-    names(data) <- c("time",names(data)[-1])
-    series_names <- ifelse(length(names(data)[-1])>1,"all",names(data)[-1])
-
-    anomalies <-
-      detectEvents(subset(data, select=-c(time)),windowSize=windowSize,nIterationsRefit=nIterationsRefit,
-                   dataPrepators=dataPrepators,buildModelAlgo=buildModelAlgo,
-                   postProcessors=postProcessors,postProcessorControl=postProcessorControl,...)$classification
-
-    anomalies <- cbind.data.frame(time=data[anomalies$Event==TRUE,"time"],serie=series_names,type="anomaly")
-    #anomalies$time <- as.POSIXct(as.numeric(anomalies$time),origin="1960-01-01")
-    names(anomalies) <- c("time","serie","type")
-
-    return(anomalies)
-  }
-
-  events <- evtdet(data,eventdetect,...)
-
-  return(events)
-}
-
-
-evtdet.seminalChangePoint <- function(data,...){
-  if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
-
-  changepoints_v1 <- function(data,w=100,na.action=na.omit,...){
-    #browser()
-    serie_name <- names(data)[-1]
-    names(data) <- c("time","serie")
-
-    serie <- data$serie
-    len_data <- length(data$serie)
-
-    serie <- na.action(serie)
-
-    omit <- FALSE
-    if(length(serie)<len_data){
-      non_nas <- which(!is.na(data$serie))
-      omit <- TRUE
-    }
-
-    #===== Creating sliding windows ======
-    ts.sw <- function(x,k)
-    {
-      ts.lagPad <- function(x, k)
-      {
-        c(rep(NA, k), x)[1 : length(x)]
-      }
-
-      n <- length(x)-k+1
-      sw <- NULL
-      for(c in (k-1):0){
-        t  <- ts.lagPad(x,c)
-        sw <- cbind(sw,t,deparse.level = 0)
-      }
-      col <- paste("t",c((k-1):0), sep="")
-      rownames(sw) <- NULL
-      colnames(sw) <- col
-      return (sw)
-    }
-
-    serie <- data.frame(ts.sw(serie, w))
-    serie <- serie[complete.cases(serie), ]
-
-    #===== Function to analyze each data window ======
-    analyze_window <- function(data) {
-      #browser()
-      n <- length(data)
-      y <- as.data.frame(data)#t(data)
-      colnames(y) <- "y"
-      y$t <- 1:n
-
-      mdl <- lm(y~t, y)
-      err <- mean(mdl$residuals^2)
-
-      y_a <- y[1:floor(n/2),]
-      mdl_a <- lm(y~t, y_a)
-      y_d <- y[ceiling(n/2+1):n,]
-      mdl_d <- lm(y~t, y_d)
-
-      err_ad <- mean(c(mdl_a$residuals,mdl_d$residuals)^2)
-
-      #return 1-error on whole window; 2-error on window halves; 3-error difference
-      return(data.frame(mdl=err, mdl_ad=err_ad, mdl_dif=err-err_ad))
-    }
-
-    #===== Analyzing all data windows ======
-    errors <- do.call(rbind,apply(serie,1,analyze_window))
-
-    #===== Boxplot analysis of results ======
-    outliers.index <- function(data, alpha = 1.5){
-      org = length(data)
-
-      if (org >= 30) {
-        q = quantile(data)
-
-        IQR = q[4] - q[2]
-        lq1 = q[2] - alpha*IQR
-        hq3 = q[4] + alpha*IQR
-        cond = data < lq1 | data > hq3
-        index.cp = which(cond)#data[cond,]
-      }
-      return (index.cp)
-    }
-
-    #Returns index of windows with outlier error differences
-    index.cp <- outliers.index(errors$mdl_dif)
-    index.cp <- index.cp+floor(w/2)
-
-    if(omit) index.cp <- non_nas[index.cp]
-
-    anomalies <- cbind.data.frame(time=data[index.cp,"time"],serie=serie_name,type="change point")
-    names(anomalies) <- c("time","serie","type")
-
-    return(anomalies)
-  }
-
-  events <- evtdet(data,changepoints_v1,...)
-
-  return(events)
-}
-
 #====== Auxiliary Model definitions ======
-changeFinder.ARIMA <- function(data) forecast::auto.arima(data)
-changeFinder.ets <- function(data) forecast::ets(ts(data))
-changeFinder.linreg <- function(data) {
+har_old_changeFinder.ARIMA <- function(data) forecast::auto.arima(data)
+har_old_changeFinder.ets <- function(data) forecast::ets(ts(data))
+har_old_changeFinder.linreg <- function(data) {
   data <- as.data.frame(data)
   colnames(data) <- "x"
   data$t <- 1:nrow(data)
   lm(x~t, data)
 }
 
-evtdet.changeFinder <- function(data,...){
+har_old_evtdet.changeFinder <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
 
   changepoints_v3 <- function(data,mdl_fun,m=5,na.action=na.omit,...){
@@ -258,12 +127,12 @@ evtdet.changeFinder <- function(data,...){
     return(anomalies)
   }
 
-  events <- evtdet(data,changepoints_v3,...)
+  events <- har_old_evtdet(data,changepoints_v3,...)
 
   return(events)
 }
 
-evtdet.mdl_outlier <- function(data,...){
+har_old_evtdet.mdl_outlier <- function(data,...){
   if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
 
   mdl_outlier <- function(data,mdl,alpha=1.5,na.action=na.omit,...){
@@ -317,78 +186,13 @@ evtdet.mdl_outlier <- function(data,...){
     return(anomalies)
   }
 
-  events <- evtdet(data,mdl_outlier,...)
+  events <- har_old_evtdet(data,mdl_outlier,...)
 
   return(events)
 }
 
 
-evtdet.garch_volatility_outlier <- function(data,...){
-  if(is.null(data)) stop("No data was provided for computation",call. = FALSE)
-
-  garch_volatility_outlier <- function(data,spec,value=c("var","sigma"),alpha=1.5,na.action=na.omit,...){
-    #browser()
-    serie_name <- names(data)[-1]
-    names(data) <- c("time","serie")
-
-    serie <- data$serie
-    len_data <- length(data$serie)
-
-    serie <- na.action(serie)
-
-    omit <- FALSE
-    if(length(serie)<len_data){
-      non_nas <- which(!is.na(data$serie))
-      omit <- TRUE
-    }
-
-    #====== GARCH - volatility ======
-    #GARCH fit function
-    garch <- function(data,spec,...) rugarch::ugarchfit(spec=spec,data=data,solver="hybrid", ...)
-
-    #Modeling
-    g <- garch(serie,spec)@fit
-
-    #Getting instantaneous volatilities
-    value <- match.arg(value)
-    volatilities <- g[[value]]
-
-    #===== Boxplot analysis of results ======
-    outliers.index <- function(data, alpha = 1.5){
-      org = length(data)
-
-      index.cp <- NULL
-      if (org >= 30) {
-        q = quantile(data)
-
-        IQR = q[4] - q[2]
-        lq1 = q[2] - alpha*IQR
-        hq3 = q[4] + alpha*IQR
-        cond = data < lq1 | data > hq3
-        index.cp = which(cond)#data[cond,]
-      }
-      return (index.cp)
-    }
-
-    #Returns index of windows with outlier error differences
-    index.cp <- outliers.index(volatilities,alpha)
-
-    if(omit) index.cp <- non_nas[index.cp]
-
-    anomalies <- cbind.data.frame(time=data[index.cp,"time"],serie=serie_name,type="volatility anomaly")
-    names(anomalies) <- c("time","serie","type")
-
-    return(anomalies)
-  }
-
-  events <- evtdet(data,garch_volatility_outlier,...)
-
-  return(events)
-}
-
-
-
-evaluate <- function(events, reference,
+har_old_evaluate <- function(events, reference,
                      metric=c("confusion_matrix","accuracy","sensitivity","specificity","pos_pred_value","neg_pred_value","precision",
                               "recall","F1","prevalence","detection_rate","detection_prevalence","balanced_accuracy"), beta=1){
   #browser()
