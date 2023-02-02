@@ -1,14 +1,4 @@
-#====== Auxiliary Model definitions ======
-har_changeFinder.ARIMA <- function(data) forecast::auto.arima(data)
-har_changeFinder.ets <- function(data) forecast::ets(ts(data))
-har_changeFinder.linreg <- function(data) {
-  data <- as.data.frame(data)
-  colnames(data) <- "x"
-  data$t <- 1:nrow(data)
-  lm(x~t, data)
-}
-
-
+cfARIMA <- function(data) forecast::auto.arima(data)
 
 #'@description Ancestor class for time series event detection
 #'@details The Harbinger class establishes the basic interface for time series event detection.
@@ -19,14 +9,37 @@ har_changeFinder.linreg <- function(data) {
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-change_finder <- function(sw = 30, alpha = 1.5) {
+change_finder_arima <- function(sw = 30, alpha = 1.5, m = 5) {
   obj <- harbinger()
   obj$sw <- sw
   obj$alpha <- alpha
-  obj$method <- har_changeFinder.ARIMA
-  class(obj) <- append("change_finder", class(obj))
+  obj$m <- m
+  obj$method <- cfARIMA
+  class(obj) <- append("change_finder_arima", class(obj))
   return(obj)
 }
+
+cfETS <- function(data) forecast::ets(ts(data))
+
+change_finder_ets <- function(sw = 30, alpha = 1.5, m = 5) {
+  obj <- change_finder_arima(sw, alpha, m)
+  obj$method <- cfETS
+  class(obj) <- append("change_finder_ets", class(obj))
+  return(obj)
+}
+
+cfLR <- function(data) {
+  data <- data.frame(t = 1:length(data), x = data)
+  lm(x~t, data)
+}
+
+change_finder_lr <- function(sw = 30, alpha = 1.5, m = 5) {
+  obj <- change_finder_arima(sw, alpha, m)
+  obj$method <- cfLR
+  class(obj) <- append("change_finder_lr", class(obj))
+  return(obj)
+}
+
 
 #===== Boxplot analysis of results ======
 outliers.index <- function(data, alpha = 3){
@@ -49,29 +62,20 @@ outliers.index <- function(data, alpha = 3){
   return (index.cp)
 }
 
+#'@export
+detect.change_finder_arima <- function(obj, serie) {
+  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
+  data <- data.frame(time = 1:length(serie), serie = serie)
 
-changepoints_v3 <- function(data, mdl_fun, m=5){
-  #browser()
-  serie_name <- names(data)[-1]
-  names(data) <- c("time","serie")
+  non_nas <- which(!is.na(data$serie))
+  serie <- na.omit(data$serie)
+  omit <- length(serie) < length(data$serie)
 
-  serie <- data$serie
-  len_data <- length(data$serie)
+  #Adjusting a model to the entire series
+  M1 <- obj$method(serie)
 
-  serie <- na.omit(serie)
-
-  omit <- FALSE
-  if(length(serie)<len_data){
-    non_nas <- which(!is.na(data$serie))
-    omit <- TRUE
-  }
-
-  #Adjusting a model to the whole window W
-  M1 <- tryCatch(mdl_fun(serie), error = function(e) NULL)
-  if(is.null(M1)) return(NULL)
-
-  #Adjustment error on the whole window
+  #Adjustment error on the entire series
   s <- residuals(M1)^2
 
   P1 <- tryCatch(TSPred::arimaparameters(M1)$AR, error = function(e) 0)
@@ -89,16 +93,13 @@ changepoints_v3 <- function(data, mdl_fun, m=5){
   )
   outliers <- na.omit(outliers)
 
-  #s[outliers.index(s)] <- NA
-
   y <- TSPred::mas(s,m1)
 
   #Creating dataframe with y
-  Y <- as.data.frame(y)
-  colnames(Y) <- "y"
+  Y <- data.frame(Y=y)
 
   #Adjusting an AR(P) model to the whole window W
-  M2 <- tryCatch(mdl_fun(Y), error = function(e) NULL)
+  M2 <- tryCatch(obj$method(Y), error = function(e) NULL)
   if(is.null(M2)) return(NULL)
 
   #Adjustment error on the whole window
@@ -126,35 +127,21 @@ changepoints_v3 <- function(data, mdl_fun, m=5){
     cp <- non_nas[cp]
   }
 
-  events <- c(outliers,cp)
-  events <- events[order(events)]
-  anomalies <- cbind.data.frame(time=data[events,"time"],serie=serie_name,type="anomaly")
-  anomalies$type <- as.character(anomalies$type)
-  anomalies[anomalies$time %in% data[cp,"time"], "type"] <- "change point"
-  names(anomalies) <- c("time","serie","type")
+  detection <- data.frame(idx=1:length(serie), event = FALSE, type="")
+  detection$event[outliers] <- TRUE
+  detection$type[outliers] <- "anomaly"
+  detection$event[cp] <- TRUE
+  detection$type[cp] <- "change_point"
 
-  return(anomalies)
-}
-
-
-#'@export
-detect.change_finder <- function(obj, serie) {
-  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
-
-  data <- data.frame(time = 1:length(serie), serie = serie)
-
-  events <- changepoints_v3(data, har_changeFinder.ARIMA)
-
-  return(events)
-  #recolocar o tratamento de na ao final
+  return(detection)
 }
 
 
 library(dplyr)
 data(har_examples)
 
-dataset <- har_examples[[1]]
-model <- change_finder(sw=30, alpha=0.5)
+dataset <- har_examples[[10]]
+model <- change_finder_arima(sw=30, alpha=0.5)
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 print(detection |> dplyr::filter(event==TRUE))
