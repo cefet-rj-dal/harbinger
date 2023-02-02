@@ -56,4 +56,24 @@ if (FALSE) {
   print(evaluation$confMatrix)
 }
 
+if (TRUE) {
+
+
+  library(dplyr)
+  data(har_examples)
+
+  dataset <- har_examples[[5]]
+  model <- change_finder_arima(sw=30, alpha=0.5)
+  model <- fit(model, dataset$serie)
+  detection <- detect(model, dataset$serie)
+  print(detection |> dplyr::filter(event==TRUE))
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+  library(ggplot2)
+  grf <- plot(model, dataset$serie, detection)
+  plot(grf)
+  grf <- plot(model, dataset$serie, detection, dataset$event)
+  plot(grf)
+}
+
 
