@@ -45,4 +45,4 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    ggplot2
+    ggplot2, TSPred, forecast, rugarch, randomForest, e1071, elmNNRcpp, nnet
