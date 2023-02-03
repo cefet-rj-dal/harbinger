@@ -23,7 +23,6 @@ fit.har_tsreg_sw <- function(obj, serie) {
   io <- ts_projection(ts)
 
   obj$model <- fit(obj$model, x=io$input, y=io$output)
-  print(describe(obj$model))
 
   return(obj)
 }
