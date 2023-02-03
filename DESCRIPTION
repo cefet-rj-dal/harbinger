@@ -21,6 +21,18 @@ Authors@R:
             email = "rafaelli.coutinho@cefet-rj.br"
         ),
         person(
+            given = "Eduardo",
+            family = "Bezerra",
+            role = c("ctb"),
+            email = "ebezerra@cefet-rj.br"
+        ),
+        person(
+            given = "Fabio",
+            family = "Porto",
+            role = c("ctb"),
+            email = "fporto@lncc.br"
+        ),
+        person(
             given = "Rebecca",
             family = "Salles",
             role = c("aut"),
