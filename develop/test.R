@@ -3,7 +3,7 @@ data(har_examples)
 
 if (FALSE) {
   dataset <- har_examples[[1]]
-  model <- fbiad(sw=30, alpha=0.5)
+  model <- fbiad(sw=30)
   model <- fit(model, dataset$serie)
   detection <- detect(model, dataset$serie)
   print(detection |> dplyr::filter(event==TRUE))
@@ -18,7 +18,7 @@ if (FALSE) {
 
 if (FALSE) {
   dataset <- har_examples[[1]]
-  model <- fbiad(sw=30, alpha=0.5)
+  model <- fbiad(sw=30)
   model <- fit(model, dataset$serie)
   detection <- detect(model, dataset$serie)
   print(detection |> dplyr::filter(event==TRUE))
@@ -41,7 +41,7 @@ if (FALSE) {
 
 if (FALSE) {
   dataset <- har_examples[[4]]
-  model <- change_point(sw=30, alpha=1.5)
+  model <- change_point(sw=30)
   detection <- detect(model, dataset$serie)
   print(detection |> dplyr::filter(event==TRUE))
   evaluation <- evaluate(model, detection$event, dataset$event)
