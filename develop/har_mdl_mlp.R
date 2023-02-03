@@ -7,30 +7,38 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_arima <- function(alpha = 1.5) {
+har_tsreg_sw <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   obj <- harbinger()
-  obj$sw <- sw
+  obj$model <- model
+  obj$sw_size <- sw_size
   obj$alpha <- alpha
-  class(obj) <- append("har_arima", class(obj))
+  obj$tune <- tune
+  class(obj) <- append("har_tsreg_sw", class(obj))
   return(obj)
 }
 
 #'@export
-detect.har_arima <- function(obj, serie) {
-  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
+fit.har_tsreg_sw <- function(obj, serie) {
+  ts <- ts_data(serie, obj$sw_size)
+  io <- ts_projection(ts)
 
+  obj$model <- fit(obj$model, x=io$input, y=io$output)
+  print(describe(obj$model))
+
+  return(obj)
+}
+
+#'@export
+detect.har_tsreg_sw <- function(obj, serie) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
-
   serie <- na.omit(serie)
 
-  #Adjusting a model to the entire series
-  model <- forecast::auto.arima(serie)
-  order <- model$arma[c(1, 6, 2, 3, 7, 4, 5)]
-  pq <- max(order[1], order[2]+1, order[3])
+  ts <- ts_data(serie, obj$sw_size)
+  io <- ts_projection(ts)
 
-  #Adjustment error on the entire series
-  s <- residuals(model)^2
+  adjust <- predict(model, io$input)
+  s <- (io$output-adjust)^2
   outliers <- outliers.boxplot.index(s)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
@@ -40,7 +48,7 @@ detect.har_arima <- function(obj, serie) {
       outliers[i] <- TRUE
     }
   }
-  outliers[1:pq] <- FALSE
+  outliers <- c(rep(NA, obj$sw_size - 1), outliers)
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 
@@ -51,5 +59,26 @@ detect.har_arima <- function(obj, serie) {
 }
 
 
+loadlibrary("nnet")
 
+
+if (FALSE) {
+  library(dplyr)
+  library(harbinger)
+  data(har_examples)
+
+  dataset <- har_examples[[1]]
+
+  model <- har_tsreg_sw(ts_mlp(ts_gminmax(), input_size=3, size=3, decay=0))
+  model <- fit(model, dataset$serie)
+  detection <- detect(model, dataset$serie)
+  print(detection |> dplyr::filter(event==TRUE))
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+  library(ggplot2)
+  grf <- plot.harbinger(model, dataset$serie, detection)
+  plot(grf)
+  grf <- plot.harbinger(model, dataset$serie, detection, dataset$event)
+  plot(grf)
+}
 
