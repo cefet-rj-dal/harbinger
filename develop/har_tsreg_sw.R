@@ -59,10 +59,10 @@ detect.har_tsreg_sw <- function(obj, serie) {
 }
 
 
-loadlibrary("nnet")
 
 
-if (FALSE) {
+if (TRUE) {
+  library(nnet)
   library(dplyr)
   library(harbinger)
   data(har_examples)

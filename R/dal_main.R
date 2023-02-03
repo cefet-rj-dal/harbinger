@@ -34,7 +34,7 @@ fit <- function(obj, ...) {
 }
 
 #'@export
-fit.default <- function(obj) {
+fit.default <- function(obj, ...) {
   return(obj)
 }
 
@@ -53,7 +53,7 @@ transform <- function(obj, ...) {
 }
 
 #'@export
-transform.default <- function(obj) {
+transform.default <- function(obj, ...) {
   return(NULL)
 }
 
@@ -72,7 +72,7 @@ inverse_transform <- function(obj, ...) {
 }
 
 #'@export
-inverse_transform.default <- function(obj) {
+inverse_transform.default <- function(obj, ...) {
   return(NULL)
 }
 
@@ -93,6 +93,25 @@ optimize <- function(obj, ...) {
 #'@export
 optimize.default <- function(obj) {
   return(obj)
+}
+
+#head
+#'@title
+#'@description
+#'@details
+#'
+#'@param obj object: .
+#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@return
+#'@examples
+#'@export
+head <- function(obj, ...) {
+  UseMethod("head")
+}
+
+#'@export
+head.default <- function(obj, ...) {
+  utils::head(obj, ...)
 }
 
 #'@title
@@ -120,7 +139,7 @@ describe.default <- function(obj) {
 
 # general functions
 #'@export
-adjust.matrix <- function(data) {
+adjust_matrix <- function(data) {
   if(!is.matrix(data)) {
     return(as.matrix(data))
   }
@@ -129,7 +148,7 @@ adjust.matrix <- function(data) {
 }
 
 #'@export
-adjust.data.frame <- function(data) {
+adjust_data.frame <- function(data) {
   if(!is.data.frame(data)) {
     return(as.data.frame(data))
   }
