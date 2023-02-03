@@ -10,6 +10,7 @@ if (FALSE) {
 if (FALSE) {
   library(devtools)
   document()
+  load_all()
 }
 
 if (FALSE) {

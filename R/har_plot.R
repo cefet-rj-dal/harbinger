@@ -12,6 +12,7 @@ plot.harbinger <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim
   idx <- 1:length(serie)
   if (!is.null(names(serie)))
     idx <- names(serie)
+  detection$event[is.na(detection$event)] <- FALSE
 
   data <- data.frame(time = idx, serie = serie, FP = detection$event, TP = FALSE, FN = FALSE, color="darkgray")
   if (!is.null(event)) {
