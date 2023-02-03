@@ -37,8 +37,8 @@ detect.har_tsreg_sw <- function(obj, serie) {
   ts <- ts_data(serie, obj$sw_size)
   io <- ts_projection(ts)
 
-  adjust <- predict(model, io$input)
-  s <- (io$output-adjust)^2
+  adjust <- predict(obj$model, io$input)
+  s <- abs(io$output-adjust)
   outliers <- outliers.boxplot.index(s)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
@@ -57,28 +57,3 @@ detect.har_tsreg_sw <- function(obj, serie) {
 
   return(detection)
 }
-
-
-
-
-if (TRUE) {
-  library(nnet)
-  library(dplyr)
-  library(harbinger)
-  data(har_examples)
-
-  dataset <- har_examples[[1]]
-
-  model <- har_tsreg_sw(ts_mlp(ts_gminmax(), input_size=3, size=3, decay=0))
-  model <- fit(model, dataset$serie)
-  detection <- detect(model, dataset$serie)
-  print(detection |> dplyr::filter(event==TRUE))
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
-  library(ggplot2)
-  grf <- plot.harbinger(model, dataset$serie, detection)
-  plot(grf)
-  grf <- plot.harbinger(model, dataset$serie, detection, dataset$event)
-  plot(grf)
-}
-

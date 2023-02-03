@@ -34,6 +34,7 @@ evaluate.default <- function(obj, detection, event) {
 
 #'@export
 evaluate.hard_evaluation <- function(obj, detection, event) {
+  detection[is.na(detection)] <- FALSE
   TP <- sum(detection & event)
   FP <- sum(detection & !event)
   FN <- sum(!detection & event)

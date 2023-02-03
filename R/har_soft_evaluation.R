@@ -52,6 +52,7 @@ soft_scores <- function(detection, event, k){
 
 #'@export
 evaluate.soft_evaluation <- function(obj, detection, event) {
+  detection[is.na(detection)] <- FALSE
   scores <- soft_scores(detection, event, obj$sw)
 
   m <- length(which(event))
