@@ -7,9 +7,9 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_arima <- function(alpha = 1.5) {
+har_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
-  obj$sw <- sw
+  obj$w <- w
   obj$alpha <- alpha
   class(obj) <- append("har_arima", class(obj))
   return(obj)
@@ -27,11 +27,13 @@ detect.har_arima <- function(obj, serie) {
   #Adjusting a model to the entire series
   model <- forecast::auto.arima(serie)
   order <- model$arma[c(1, 6, 2, 3, 7, 4, 5)]
-  pq <- max(order[1], order[2]+1, order[3])
+  w <- obj$w
+  if (is.null(w))
+    w <- max(order[1], order[2]+1, order[3])
 
   #Adjustment error on the entire series
   s <- residuals(model)^2
-  outliers <- outliers.boxplot.index(s)
+  outliers <- outliers.boxplot.index(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {
@@ -40,7 +42,7 @@ detect.har_arima <- function(obj, serie) {
       outliers[i] <- TRUE
     }
   }
-  outliers[1:pq] <- FALSE
+  outliers[1:w] <- FALSE
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 

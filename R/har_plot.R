@@ -8,10 +8,9 @@
 #'@import ggplot2
 #'@export
 #use_package('ggplot2')
-plot.harbinger <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL){
-  idx <- 1:length(serie)
-  if (!is.null(names(serie)))
-    idx <- names(serie)
+plot.harbinger <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){
+  if (is.null(idx))
+    idx <- 1:length(serie)
   detection$event[is.na(detection$event)] <- FALSE
 
   data <- data.frame(time = idx, serie = serie, FP = detection$event, TP = FALSE, FN = FALSE, color="darkgray")
