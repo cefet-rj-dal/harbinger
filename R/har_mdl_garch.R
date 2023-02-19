@@ -7,10 +7,10 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_garch <- function(alpha = 1.5, m = 5) {
+har_garch <- function(w = 5, alpha = 1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
-  obj$m <- m
+  obj$w <- w
 
   class(obj) <- append("har_garch", class(obj))
   return(obj)
@@ -40,7 +40,7 @@ detect.har_garch <- function(obj, serie) {
       outliers[i] <- TRUE
     }
   }
-  outliers[1:obj$m] <- FALSE
+  outliers[1:obj$w] <- FALSE
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 
