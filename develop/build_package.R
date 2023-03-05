@@ -27,3 +27,9 @@ if (FALSE) {
   library(devtools)
   devtools::build_readme()
 }
+
+if (FALSE) {
+  devtools::install(dependencies = TRUE, build_vignettes = TRUE)
+  utils::browseVignettes()
+}
+
