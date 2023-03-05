@@ -19,11 +19,14 @@ dal_base <- function() {
   return(obj)
 }
 
-#'@title Generates a dal_transform object
-#'@description
+### basic transformation functions
+
+#'@title DAL Transform
+#'@description A transformation function can be applied to a time series dataset
+#' to alter its properties.
 #'@details
 #'
-#'@return
+#'@return a dal_transform object
 #'@examples
 #'@export
 dal_transform <- function() {
@@ -33,12 +36,14 @@ dal_transform <- function() {
 }
 
 #fit
-#'@title
-#'@description
+#'@title Fit
+#'@description Models a time series dataset by estimating the underlying trend
+#' and seasonality components. Used to make predictions and forecast future
+#' values of the time series based on the historical data.
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export
@@ -53,11 +58,11 @@ fit.default <- function(obj, ...) {
 
 #transform
 #'@title Transform
-#'@description
+#'@description Defines the kind of transformation to be set over a time series.
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export
@@ -76,7 +81,7 @@ transform.default <- function(obj, ...) {
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export
@@ -95,7 +100,7 @@ inverse_transform.default <- function(obj, ...) {
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export
@@ -114,7 +119,7 @@ optimize.default <- function(obj) {
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export
@@ -132,7 +137,7 @@ head.default <- function(obj, ...) {
 #'@details
 #'
 #'@param obj object: .
-#'@param ... optional arguments./ further arguments passed to or from other methods.
+#'@param ... further arguments passed to or from other methods.
 #'@return
 #'@examples
 #'@export

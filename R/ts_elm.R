@@ -10,15 +10,18 @@
 # loadlibrary("elmNNRcpp")
 
 ### ts_augment
-#'@title
-#'@description
+#'@title Time Series Extreme Learning Machine (ELM)
+#'@description Machine learning technique used for time series forecasting.
+#' ELM is a type of feedforward neural network that uses a single hidden layer
+#' of randomly generated neurons.
 #'@details
 #'
 #'@param preprocess
 #'@param input_size
 #'@param nhid
-#'@param actfun
-#'@return
+#'@param actfun string: defines the type to use, possible values: 'sig',
+#' 'radbas', 'tribas', 'relu', 'purelin' (default).
+#'@return a `ts_elm` object.
 #'@examples
 #'@export
 ts_elm <- function(preprocess=NA, input_size=NA, nhid=NA, actfun='purelin') {

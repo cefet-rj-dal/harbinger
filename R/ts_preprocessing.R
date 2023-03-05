@@ -7,12 +7,13 @@
 
 # ts_normalize
 
-#'@title
-#'@description
+#'@title Time Series Normalize
+#'@description Transform data to a common scale, facilitating comparisons and
+#' analysis.
 #'@details
 #'
-#'@param remove_outliers logical: if TRUE outliers will be removed.
-#'@return
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@return a `ts_normalize` object.
 #'@examples
 #'@export
 ts_normalize <- function(remove_outliers = TRUE) {
@@ -23,12 +24,13 @@ ts_normalize <- function(remove_outliers = TRUE) {
 }
 
 # ts_gminmax
-#'@title
-#'@description
+#'@title Time Series Global Min-Max
+#'@description Rescales data, so the minimum value is mapped to 0 and the
+#' maximum value is mapped to 1.
 #'@details
 #'
-#'@param remove_outliers logical: if TRUE outliers will be removed.
-#'@return
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@return a `ts_gminmax` object.
 #'@examples
 #'@export
 ts_gminmax <- function(remove_outliers = TRUE) {
@@ -76,12 +78,12 @@ inverse_transform.ts_gminmax <- function(obj, data, x=NULL) {
 }
 
 #ts_diff
-#'@title
+#'@title Time Series Diff
 #'@description
 #'@details
 #'
-#'@param remove_outliers logical: if TRUE outliers will be removed.
-#'@return
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@return a `ts_diff` object.
 #'@examples
 #'@export
 ts_diff <- function(remove_outliers = TRUE) {
@@ -144,12 +146,12 @@ inverse_transform.ts_diff <- function(obj, data, x=NULL) {
 }
 
 #ts_swminmax
-#'@title
+#'@title Time Series Sliding Window Min-Max
 #'@description
 #'@details
 #'
-#'@param remove_outliers logical: if TRUE outliers will be removed.
-#'@return
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@return a `ts_swminmax` object.
 #'@examples
 #'@export
 ts_swminmax <- function(remove_outliers = TRUE) {
@@ -203,13 +205,14 @@ inverse_transform.ts_swminmax <- function(obj, data, x=NULL) {
 }
 
 #ts_an
-#'@title
-#'@description
+#'@title Time Series Adaptive Normalization
+#'@description Transform data to a common scale while taking into account the
+#' changes in the statistical properties of the data over time.
 #'@details
 #'
-#'@param remove_outliers logical: if TRUE outliers will be removed.
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
 #'@param nw integer: .
-#'@return
+#'@return a `ts_an` object.
 #'@examples
 #'@export
 ts_an <- function(remove_outliers = TRUE, nw = 0) {
@@ -281,13 +284,13 @@ inverse_transform.ts_an <- function(obj, data, x=NULL) {
   }
 }
 
-#'@title
+#'@title Time Series Adaptive Normalization (Exponential Moving Average - EMA)
 #'@description
 #'@details
 #'
-#'@param remove_outliers
+#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
 #'@param nw
-#'@return
+#'@return a `ts_ean` object.
 #'@examples
 #'@export
 ts_ean <- function(remove_outliers = TRUE, nw = 0) {

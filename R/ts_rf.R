@@ -9,7 +9,7 @@
 # class ts_rf
 # loadlibrary("randomForest")
 
-#'@title
+#'@title Time Series Random Forest
 #'@description
 #'@details
 #'
@@ -17,7 +17,7 @@
 #'@param input_size
 #'@param nodesize
 #'@param ntree
-#'@return
+#'@return a `ts_rf` object.
 #'@examples
 #'@export
 ts_rf <- function(preprocess=NA, input_size=NA, nodesize = 5, ntree = 20) {
