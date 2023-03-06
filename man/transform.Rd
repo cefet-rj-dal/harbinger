@@ -9,8 +9,8 @@ transform(obj, ...)
 \arguments{
 \item{obj}{object: .}
 
-\item{...}{optional arguments./ further arguments passed to or from other methods.}
+\item{...}{further arguments passed to or from other methods.}
 }
 \description{
-Transform
+Defines the kind of transformation to be set over a time series.
 }

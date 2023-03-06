@@ -113,25 +113,6 @@ optimize.default <- function(obj) {
   return(obj)
 }
 
-#head
-#'@title
-#'@description
-#'@details
-#'
-#'@param obj object: .
-#'@param ... further arguments passed to or from other methods.
-#'@return
-#'@examples
-#'@export
-head <- function(obj, ...) {
-  UseMethod("head")
-}
-
-#'@export
-head.default <- function(obj, ...) {
-  utils::head(obj, ...)
-}
-
 #'@title
 #'@description
 #'@details

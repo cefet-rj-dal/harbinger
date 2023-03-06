@@ -2,7 +2,7 @@
 % Please edit documentation in R/dal_main.R, R/harbinger.R
 \name{fit}
 \alias{fit}
-\title{Fit a model for event detection}
+\title{Fit}
 \usage{
 fit(obj, ...)
 
@@ -17,6 +17,10 @@ fit(obj, ...)
 a harbinger object with model details
 }
 \description{
+Models a time series dataset by estimating the underlying trend
+and seasonality components. Used to make predictions and forecast future
+values of the time series based on the historical data.
+
 Basic ancestor function for build model for event detection
 }
 \details{

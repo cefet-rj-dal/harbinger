@@ -2,10 +2,14 @@
 % Please edit documentation in R/dal_main.R
 \name{dal_transform}
 \alias{dal_transform}
-\title{Generates a dal_transform object}
+\title{DAL Transform}
 \usage{
 dal_transform()
 }
+\value{
+a dal_transform object
+}
 \description{
-Generates a dal_transform object
+A transformation function can be applied to a time series dataset
+to alter its properties.
 }
