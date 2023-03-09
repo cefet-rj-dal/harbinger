@@ -26,7 +26,7 @@ You can install the development version of harbinger from [GitHub](https://githu
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("cefet-rj-dal/harbinger")
+devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, dependencies = TRUE, build_vignettes = TRUE)
 ```
 
 ## Example
@@ -44,7 +44,7 @@ What is special about using `README.Rmd` instead of just `README.md`? You can in
 summary(cars)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
 
 You can also embed plots, for example:
 
