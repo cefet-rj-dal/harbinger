@@ -104,7 +104,7 @@ detect.nexus <- function(obj) {
     idxref <- 0
     if (!is.null(obj$stable_detection))
       idxref <- nrow(obj$stable_detection)
-
+    
     detection <- detect(obj$detector, obj$serie)
     detection$idx <- detection$idx + idxref
     detection$event <- as.integer(detection$event)
@@ -112,34 +112,3 @@ detect.nexus <- function(obj) {
   }
   return(obj)
 }
-
-data(har_examples)
-
-#primeiro caso # memória completa
-
-datasource <- nex_simulated_datasource("data", har_examples[[1]]$serie)
-
-online_detector_full <- nexus(datasource, har_arima())
-
-online_detector_full <- warmup(online_detector_full)
-
-while (!is.null(online_detector_full$datasource)) {
-  online_detector_full <- detect(online_detector_full)
-  print(table(online_detector_full$detection$event))
-}
-
-print(sum(har_examples[[1]]$serie-c(online_detector_full$stable_serie, online_detector_full$serie)))
-
-
-#segundo caso # memória por batch
-
-online_detector <- nexus(datasource, har_arima())
-
-online_detector <- warmup(online_detector)
-
-while (!is.null(online_detector$datasource)) {
-  online_detector <- detect(online_detector)
-  print(table(online_detector$detection$event))
-}
-
-print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detector$serie)))
