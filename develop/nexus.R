@@ -104,7 +104,7 @@ detect.nexus <- function(obj) {
     idxref <- 0
     if (!is.null(obj$stable_detection))
       idxref <- nrow(obj$stable_detection)
-    
+
     detection <- detect(obj$detector, obj$serie)
     detection$idx <- detection$idx + idxref
     detection$event <- as.integer(detection$event)

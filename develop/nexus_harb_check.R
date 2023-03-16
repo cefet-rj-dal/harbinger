@@ -1,3 +1,7 @@
+
+# Loading Harbinger -------------------------------------------------------
+
+
 # install.packages("devtools")
 devtools::install_github("cefet-rj-dal/harbinger")
 
@@ -6,7 +10,12 @@ library(harbinger)
 #loading the example database
 data(har_examples)
 
-#Using the time series 1 
+# Harbinger without Nexus -------------------------------------------------
+
+
+
+
+#Using the time series 1
 dataset <- har_examples[[1]]
 head(dataset)
 
@@ -15,7 +24,7 @@ head(dataset)
 plot(x = 1:length(dataset$serie), y = dataset$serie)
 lines(x = 1:length(dataset$serie), y = dataset$serie)
 
-# establishing fbiad method 
+# establishing fbiad method
 model <- fbiad()
 
 
@@ -44,15 +53,13 @@ plot(grf)
 
 # Nexus -------------------------------------------------------------------
 
-#source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/develop/nexus.R")
-source("~/nexus/nexus.R")
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/develop/nexus.R")
 
-
-#primeiro caso # memória completa
+## primeiro caso # memória completa ----
 
 datasource <- nex_simulated_datasource("data", har_examples[[1]]$serie)
 
-online_detector_full <- nexus(datasource, har_arima(), 
+online_detector_full <- nexus(datasource, har_arima(),
                               batch_size = 15)
 
 online_detector_full <- warmup(online_detector_full)
@@ -65,7 +72,7 @@ while (!is.null(online_detector_full$datasource)) {
 print(sum(har_examples[[1]]$serie-c(online_detector_full$stable_serie, online_detector_full$serie)))
 
 
-#segundo caso # memória por batch
+## segundo caso - memória por batch ----
 
 online_detector <- nexus(datasource, har_arima())
 
@@ -79,8 +86,7 @@ while (!is.null(online_detector$datasource)) {
 print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detector$serie)))
 
 
-#terceiro caso
-# memória por batch fbiad
+## terceiro caso - memória por batch fbiad ----
 
 online_detector <- nexus(datasource, fbiad())
 
@@ -95,8 +101,7 @@ print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detecto
 
 
 
-#quarto caso
-# memória por batch fbiad - gecco ph
+# #quarto caso - memória por batch fbiad - gecco ph ----
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/event_datasets/main/gecco/carrega.R")
 #install.packages("strucchange")
@@ -110,10 +115,11 @@ library(mFilter)
 
 
 data <- carrega()
-data <- subset(data$gecco, select = c(ph))
-data <- data$ph[16500:18000]
+data <- subset(data$gecco, select = c(ph, event))
 
-datasource <- nex_simulated_datasource("data", data)
+data <- data[16500:18000,]
+
+datasource <- nex_simulated_datasource("data", data$ph)
 
 
 
@@ -130,5 +136,23 @@ print(sum(data-c(online_detector$stable_serie, online_detector$serie)))
 
 #Sum of events
 sum(online_detector$detection$event)
+
 #Head of detections
 head(online_detector$detection, 30)
+
+
+
+# evaluating the detections
+evaluation <- evaluate(online_detector$detector,
+                       online_detector$detection$event,
+                       data$event)
+
+print(evaluation$confMatrix)
+
+
+
+# ploting the results
+grf <- plot.harbinger(online_detector$detector, data$ph,
+                      online_detector$detection, data$event)
+plot(grf)
+
