@@ -106,8 +106,21 @@ detect.nexus <- function(obj) {
       idxref <- nrow(obj$stable_detection)
 
     detection <- detect(obj$detector, obj$serie)
+
     detection$idx <- detection$idx + idxref
     detection$event <- as.integer(detection$event)
+
+    ##Under development
+    #Probability of the observation being an event
+    detection$ef <- 0
+    detection$bf <- 0
+    detection$oes <- detection$ef / detection$bf
+
+    ##Under development
+    #Detection temporal lag
+    detection$first_batch <- 0 #First batch where the event was detected
+    detection$last_batch <- 0 #Last batch where the event was detected
+
     obj$detection <- rbind(obj$stable_detection, detection)
   }
   return(obj)

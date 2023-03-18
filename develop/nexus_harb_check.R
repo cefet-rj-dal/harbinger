@@ -3,7 +3,7 @@
 
 
 # install.packages("devtools")
-devtools::install_github("cefet-rj-dal/harbinger")
+#devtools::install_github("cefet-rj-dal/harbinger")
 
 library(harbinger)
 
@@ -54,6 +54,7 @@ plot(grf)
 # Nexus -------------------------------------------------------------------
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/develop/nexus.R")
+source("~/harbinger/develop/nexus.R")
 
 ## primeiro caso # memória completa ----
 
@@ -104,15 +105,6 @@ print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detecto
 # #quarto caso - memória por batch fbiad - gecco ph ----
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/event_datasets/main/gecco/carrega.R")
-#install.packages("strucchange")
-library(strucchange)
-#install.packages("TSA")
-library(TSA)
-#install.packages("urca")
-library(urca)
-#install.packages("mFilter")
-library(mFilter)
-
 
 data <- carrega()
 data <- subset(data$gecco, select = c(ph, event))
@@ -138,7 +130,7 @@ print(sum(data-c(online_detector$stable_serie, online_detector$serie)))
 sum(online_detector$detection$event)
 
 #Head of detections
-head(online_detector$detection, 30)
+head(online_detector$detection, 10)
 
 
 
