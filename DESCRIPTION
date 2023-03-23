@@ -1,6 +1,6 @@
 Package: harbinger
 Title: harbinger
-Version: 0.1.0.008
+Version: 1.0.9
 Authors@R: 
   c(    person(
             given = "Antonio",

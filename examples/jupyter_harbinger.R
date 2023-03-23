@@ -5,7 +5,7 @@ setrepos <- function(repos=repos) {
   repos_name <<- repos
 }
 
-load_library <- function(packagename)
+loadlibrary <- function(packagename)
 {
   if (!require(packagename, character.only = TRUE))
   {
@@ -20,7 +20,7 @@ load_harbinger <- function()
   {
     library(devtools)
 
-    devtools::install_github("cefet-rj-dal/harbinger", force=TRUE)
+    devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, dep=FALSE, upgrade="never")
 
     library(harbinger)
   }
