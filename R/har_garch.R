@@ -30,7 +30,7 @@ detect.har_garch <- function(obj, serie) {
   model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  s <- residuals(model)^2
+  s <- model$sigma
   outliers <- outliers.boxplot.index(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
