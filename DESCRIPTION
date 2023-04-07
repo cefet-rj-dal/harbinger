@@ -5,7 +5,7 @@ Authors@R:
   c(    person(
             given = "Antonio",
             family = "Castro",
-            role = c("ctb"),
+            role = c("aut"),
             email = "antonio.castro@eic.cefet-rj.br"
         ),
         person(
@@ -17,19 +17,19 @@ Authors@R:
         person(
             given = "Rafaelli",
             family = "Coutinho",
-            role = c("ctb"),
+            role = c("aut"),
             email = "rafaelli.coutinho@cefet-rj.br"
         ),
         person(
             given = "Eduardo",
             family = "Bezerra",
-            role = c("ctb"),
+            role = c("aut"),
             email = "ebezerra@cefet-rj.br"
         ),
         person(
             given = "Fabio",
             family = "Porto",
-            role = c("ctb"),
+            role = c("aut"),
             email = "fporto@lncc.br"
         ),
         person(
@@ -55,6 +55,6 @@ License: MIT + file LICENSE
 URL: https://github.com/cefet-rj-dal/harbinger, https://cefet-rj-dal.github.io/harbinger/
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Imports: 
     ggplot2, TSPred, forecast, rugarch, randomForest, e1071, elmNNRcpp, nnet

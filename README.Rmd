@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of harbinger is to ...
+Habinger is a framework for event detection in time series. 
 
 ## Installation
 
@@ -26,30 +26,16 @@ You can install the development version of harbinger from [GitHub](https://githu
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, dependencies = TRUE, build_vignettes = TRUE)
+library(devtools)
+devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, dependencies=FALSE, upgrade="never", build_vignettes = TRUE)
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example loads the Harbinger package:
 
 ```{r example}
 library(harbinger)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

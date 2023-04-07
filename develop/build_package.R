@@ -29,6 +29,11 @@ if (FALSE) {
 }
 
 if (FALSE) {
+  pkgdown::build_site()  ## para ver o resultado, o site fica muito legal
+  #usethis::use_pkgdown_github_pages()
+}
+
+if (FALSE) {
   devtools::install(dependencies = TRUE, build_vignettes = TRUE)
   utils::browseVignettes()
 }
