@@ -168,10 +168,8 @@ def train_torch_conv1d(model, df_train, n_epochs = 3000, lr = 0.001, deep_debug=
   train_loader = torch.utils.data.DataLoader(train_ds, batch_size = BATCH_SIZE, shuffle = False)
   
   model = model.float()
-  model, train_loss = torch_fit_conv1d(n_epochs, 1e-5, model, train_loader, opt_func=torch.optim.Adam)
   model, train_loss = torch_fit_conv1d(n_epochs, lr, model, train_loader, opt_func=torch.optim.Adam, debug = deep_debug)
-  
-  
+
   return model
 
 
