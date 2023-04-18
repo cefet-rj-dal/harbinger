@@ -61,6 +61,7 @@ norm_sax <- function (vector, slices)
 }
 
 #'@export
+#'@import dplyr
 detect.har_motif_sax <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
@@ -73,24 +74,24 @@ detect.har_motif_sax <- function(obj, serie) {
   tsw <- ts_data(tss, obj$w)
   seq <- apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
   data <- data.frame(i = 1:nrow(tsw), seq)
-  result <- data |> group_by(seq) |> summarise(total_count=n()) |> filter(total_count >= obj$qtd) |> arrange(desc(total_count)) |> select(seq)
+  result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=n()) |> dplyr::filter(total_count >= obj$qtd) |> dplyr::arrange(desc(total_count)) |> dplyr::select(seq)
   result <- result$seq
-  data <- data |> filter(seq %in% result)
+  data <- data |> dplyr::filter(seq %in% result)
 
   motifs <- NULL
   for (j in 1:length(result)) {
-    motif <- data |> filter(seq == result[j])
+    motif <- data |> dplyr::filter(seq == result[j])
     pos <- NULL
     for (k in 1:obj$w) {
       pos <- c(pos, motif$i + (k - 1))
     }
-    data <- data |> filter(!(i %in% pos))
+    data <- data |> dplyr::filter(!(i %in% pos))
 
     vec <- motif$i
     svec <- split(vec, cumsum(c(1, diff(vec) != 1)))
     vec <- sapply(svec, min)
 
-    motif <- motif |> filter((i %in% vec))
+    motif <- motif |> dplyr::filter((i %in% vec))
 
     if (length(vec) >= obj$qtd) {
       motifs <- rbind(motifs, motif)
