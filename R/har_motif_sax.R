@@ -25,18 +25,40 @@ binning <- function(v, a) {
   return (list(binning=m, bins_factor=vp, q=q, qf=qf, bins=vm, mse=mse))
 }
 
+convert_to_base <- function(num, nbase) {
+  chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  if(nbase < 2 || nbase > str_length(chars))
+    return("")
+  newNumber <- ""
+  r <- 0
+  while(num >= nbase)
+  {
+    r <- num %% nbase
+    newNumber <- sprintf("%s%s", substr(chars, r+1, r+1), newNumber)
+    num <- as.integer(num / nbase)
+  }
+  newNumber = sprintf("%s%s", substr(chars, num+1, num+1), newNumber)
+  return (newNumber)
+}
+
+convert_to_base_vec <- function(num, nbase) {
+  n <- length(num)
+  result <- rep("", n)
+  for (i in 1:n) {
+    result[i] <- convert_to_base(num[i], nbase)
+  }
+  return(result)
+}
 
 norm_sax <- function (vector, slices)
 {
   vectorNorm <- (vector - mean(vector, na.rm = T))/stats::sd(vector, na.rm = T)
   mybin <- binning(vectorNorm, slices)
-  i <- ceiling(log(slices, 35))
-  mycode <- str_pad(strtoi(0:(slices-1), 35), i, pad="0")
+  i <- ceiling(log(slices, 36))
+  mycode <- str_pad(convert_to_base_vec(0:(slices-1), 36), i, pad="0")
   saxvector <- mycode[mybin$bins_factor]
   return(saxvector)
 }
-
-
 
 #'@export
 detect.har_motif_sax <- function(obj, serie) {

@@ -1,29 +1,21 @@
-source("examples/header.R")
+#source("examples/header.R")
 options(scipen=999)
 library(ggpmisc)
 library(dplyr)
 library(stringr)
 
-load("examples/temp_yearly.RData")
+#load("examples/temp_yearly.RData")
 
-#data <- identify(temp_yearly$temperature, 10, 3)
+data <- har_examples[[15]]
 
-model <- har_motif_sax(16, 3, 3)
+model <- har_motif_sax(25, 3, 3)
 
-model <- fit(model, temp_yearly$temperature)
-event <- rep(FALSE, nrow(temp_yearly))
+model <- fit(model, data$serie)
+event <- rep(FALSE, nrow(data))
 
-detection <- detect(model, temp_yearly$temperature)
-
-i <- detection$seq == "393939"
-
-detection$event[i] <- FALSE
-detection$type[i] <- NA
-detection$seq[i] <- NA
-detection$seqlen[i] <- NA
-
+detection <- detect(model, data$serie)
 
 print(detection |> dplyr::filter(event==TRUE))
 
-grf <- plot.harbinger(model, temp_yearly$temperature, detection, event)
+grf <- plot.harbinger(model, data$serie, detection, data$event)
 plot(grf)
