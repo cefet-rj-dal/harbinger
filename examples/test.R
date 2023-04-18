@@ -1,4 +1,4 @@
-#source("examples/header.R")
+source("examples/header.R")
 options(scipen=999)
 library(ggpmisc)
 library(dplyr)

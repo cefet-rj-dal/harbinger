@@ -4,7 +4,7 @@
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
-
+#'@import stringr
 har_motif_sax <- function(a, w, qtd) {
   obj <- harbinger()
   obj$a <- a
