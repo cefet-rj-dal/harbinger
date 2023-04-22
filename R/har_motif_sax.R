@@ -104,7 +104,7 @@ detect.har_motif_sax <- function(obj, serie) {
     outliers$seq[motifs$i] <- motifs$seq
   }
 
-  detection <- data.frame(idx=1:n, event = FALSE, type=NA, seq=NA, seqlen = NA)
+  detection <- data.frame(idx=1:n, event = FALSE, type="", seq=NA, seqlen = NA)
   detection$event[non_na] <- outliers$event
   detection$type[detection$event[non_na]] <- "motif"
   detection$seq[non_na] <- outliers$seq

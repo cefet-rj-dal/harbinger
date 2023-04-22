@@ -274,6 +274,39 @@ gen_data <- function() {
     har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
   }
 
+  { # time series 16
+    i <- seq(0, 25, 0.25)
+    x <- cos(i)
+    event <- rep(FALSE, length(x))
+
+    event[50] <- TRUE
+    desv <- 3*sd(x[1:(length(x)-1)]-x[2:length(x)])
+    x[50:52] <- x[50:52] + desv
+
+    har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
+  }
+
+  { # time series 16
+    i <- seq(0, 25, 0.25)
+    x <- cos(i)
+    event <- rep(FALSE, length(x))
+
+    desv <- 3*sd(x[1:(length(x)-1)]-x[2:length(x)])
+    x[12] <- x[12] - desv
+    x[24] <- x[24] + desv
+    x[38] <- x[38] - desv
+    x[50] <- x[50] + desv
+    x[64] <- x[64] - desv
+    x[76] <- x[76] + desv
+    x[85] <- x[85] - desv
+    x[97] <- x[97] + desv
+    event[c(12,24,38,50,64,76,85,97)] <- TRUE
+
+    har_examples[[length(har_examples)+1]] <- data.frame(serie = x, event = event)
+  }
+
+
+
   return(har_examples)
 }
 
