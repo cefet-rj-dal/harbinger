@@ -21,14 +21,14 @@ lines(x = 1:length(dataset$serie), y = dataset$serie)
 # establishing mlp method
 library(ROCR)
 library(RSNNS)
-library(nnet)
 library(MLmetrics)
 library(nnet)
 
-dataset$event <- as.character(dataset$event)
-dataset$event[dataset$event == "FALSE"] <- "c0"
-dataset$event[dataset$event == "TRUE"] <- "c1"
-dataset$event <- factor(dataset$event, labels=c("c0", "c1"))
+#dataset$event <- as.character(dataset$event)
+#dataset$event[dataset$event == "FALSE"] <- "c0"
+#dataset$event[dataset$event == "TRUE"] <- "c1"
+#dataset$event <- factor(dataset$event, labels=c("c0", "c1"))
+dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
 
 slevels <- levels(dataset$event)
 
@@ -56,7 +56,7 @@ if (FALSE) {
 }
 
 if (TRUE) {
-  model <- har_cla(cla_majority("event", slevels))
+  model <- har_cla(cla_rf("event", slevels, mtry=3, ntree=5))
   # fitting the model
   model <- fit(model, train_n)
 
@@ -67,11 +67,11 @@ if (TRUE) {
   print(detection |> dplyr::filter(event==TRUE))
 
   # evaluating the detections
-  evaluation <- evaluate(model, detection$event, train_n$event == "c1")
+  evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
   print(evaluation$confMatrix)
 
   # ploting the results
-  grf <- plot.harbinger(model, train_n$serie, detection, train_n$event == "c1")
+  grf <- plot.harbinger(model, train_n$serie, detection, as.logical(train_n$event))
   plot(grf)
 
 
@@ -84,11 +84,11 @@ if (TRUE) {
   print(detection |> dplyr::filter(event==TRUE))
 
   # evaluating the detections
-  evaluation <- evaluate(model, detection$event, test_n$event == "c1")
+  evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
   print(evaluation$confMatrix)
 
   # ploting the results
-  grf <- plot.harbinger(model, test_n$serie, detection, test_n$event == "c1")
+  grf <- plot.harbinger(model, test_n$serie, detection, as.logical(test_n$event))
   plot(grf)
 
 }
