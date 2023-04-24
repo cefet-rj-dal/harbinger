@@ -1,6 +1,6 @@
 Package: harbinger
 Title: harbinger
-Version: 1.0.16
+Version: 1.0.20
 Authors@R: 
   c(    person(
             given = "Antonio",
@@ -57,4 +57,4 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    ggplot2, TSPred, forecast, rugarch, randomForest, e1071, elmNNRcpp, nnet, dplyr, stringr
+    ggplot2, TSPred, forecast, rugarch, randomForest, e1071, elmNNRcpp, nnet, dplyr, stringr, RSNNS, Matrix, tree, MLmetrics, ROCR, class
