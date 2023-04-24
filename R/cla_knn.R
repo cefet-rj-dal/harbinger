@@ -44,7 +44,7 @@ fit.cla_knn <- function(obj, data) {
   data[,obj$attribute] <- adjust.factor(data[,obj$attribute], obj$ilevels, obj$slevels)
   obj <- fit.classification(obj, data)
 
-  x <- data[,obj$x]
+  x <- data[,obj$x, drop = FALSE]
   y <- data[,obj$attribute]
 
   ranges <- list(k = obj$k, stub = 0)
@@ -60,7 +60,7 @@ fit.cla_knn <- function(obj, data) {
 #'@export
 predict.cla_knn  <- function(obj, x) {
   x <- adjust_data.frame(x)
-  x <- x[,obj$x]
+  x <- x[,obj$x, drop=FALSE]
 
   prediction <- class::knn(train=obj$model$x, test=x, cl=obj$model$y, prob=TRUE)
   prediction <- RSNNS::decodeClassLabels(prediction)

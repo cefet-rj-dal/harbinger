@@ -40,7 +40,7 @@ fit.cla_dtree <- function(obj, data) {
 #'@export
 predict.cla_dtree <- function(obj, x) {
   x <- adjust_data.frame(x)
-  x <- x[,obj$x]
+  x <- x[,obj$x, drop=FALSE]
 
   prediction <- predict(obj$model, x, type="vector")
 
