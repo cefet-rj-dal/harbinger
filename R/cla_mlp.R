@@ -47,7 +47,7 @@ fit.cla_mlp <- function(obj, data) {
   if (is.null(obj$size))
     obj$size <- ceiling(sqrt(ncol(data)))
 
-  x <- data[,obj$x]
+  x <- data[,obj$x, drop = FALSE]
   y <- data[,obj$attribute]
 
   ranges <- list(maxit=obj$maxit, decay = obj$decay, size=obj$size)
@@ -62,7 +62,7 @@ fit.cla_mlp <- function(obj, data) {
 #'@export
 predict.cla_mlp  <- function(obj, x) {
   x <- adjust_data.frame(x)
-  x <- x[,obj$x]
+  x <- x[,obj$x, drop = FALSE]
 
   prediction <- predict(obj$model, x, type="raw")
 
