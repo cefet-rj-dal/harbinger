@@ -45,7 +45,7 @@ fit.cla_rf <- function(obj, data) {
   if (is.null(obj$mtry))
     obj$mtry <- ceiling(c(1,1.5,2)*sqrt(ncol(data)))
 
-  x <- data[,obj$x]
+  x <- data[,obj$x, drop=FALSE]
   y <- data[,obj$attribute]
 
   ranges <- list(mtry=obj$mtry, ntree=obj$ntree)
@@ -60,7 +60,7 @@ fit.cla_rf <- function(obj, data) {
 #'@export
 predict.cla_rf  <- function(obj, x) {
   x <- adjust_data.frame(x)
-  x <- x[,obj$x]
+  x <- x[,obj$x, drop = FALSE]
 
   prediction <- predict(obj$model, x, type="prob")
   return(prediction)

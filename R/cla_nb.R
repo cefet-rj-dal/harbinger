@@ -40,7 +40,7 @@ fit.cla_nb <- function(obj, data) {
 #'@export
 predict.cla_nb  <- function(obj, x) {
   x <- adjust_data.frame(x)
-  x <- x[,obj$x]
+  x <- x[,obj$x, drop=FALSE]
 
   prediction <- predict(obj$model, x, type="raw")
 
