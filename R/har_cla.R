@@ -25,20 +25,19 @@ fit.har_cla <- function(obj, data) {
 #'@export
 detect.har_cla <- function(obj, data) {
   n <- nrow(data)
-  non_na <- which(!is.na(data))
+  non_na <- which(!is.na(apply(data, 1, max)))
   data <- na.omit(data)
 
   adjust <- predict(obj$model, data)
-  outliers <- which(adjust > 0)
+  outliers <- which(adjust[,1] < adjust[,2])
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
+  outliers <- rep(FALSE, nrow(data))
   for (g in group_outliers) {
     if (length(g) > 0) {
       i <- min(g)
       outliers[i] <- TRUE
     }
   }
-  outliers <- c(rep(NA, obj$sw_size - 1), outliers)
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 
