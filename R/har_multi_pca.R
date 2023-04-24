@@ -18,8 +18,8 @@ har_multi_pca <- function(alpha=1.5) {
 detect.har_multi_pca <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
+  n <- nrow(serie)
+  non_na <- which(!is.na(apply(serie, 1, max)))
   serie <- na.omit(serie)
 
   pca_res <- prcomp(serie, center=TRUE, scale.=TRUE)
@@ -33,7 +33,9 @@ detect.har_multi_pca <- function(obj, serie) {
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- detection$event
 
-  detection <- data.frame(idx=1:length(serie), event = i_outliers, type="")
+  detection <- data.frame(idx=1:nrow(serie), event = i_outliers, type="")
   detection$type[i_outliers] <- "anomaly"
+  attr(detection, "serie") <- data_x$V1
+
   return(detection)
 }
