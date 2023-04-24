@@ -16,6 +16,18 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/index.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/balance_dataset.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/balance_oversampling.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/balance_subsampling.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/categ_mapping.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/cla_dtree.html</loc>
   </url>
   <url>
@@ -67,6 +79,12 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/minmax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/normalize.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/register_log.html</loc>
   </url>
   <url>
@@ -116,5 +134,8 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_transform.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/zscore.html</loc>
   </url>
 </urlset>
