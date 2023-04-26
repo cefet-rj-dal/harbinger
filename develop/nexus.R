@@ -112,8 +112,8 @@ detect.nexus <- function(obj) {
 
     ##Under development
     #Probability of the observation being an event
-    detection$ef <- 0
-    detection$bf <- 0
+    detection$ef <- 0 #Events frequency of a series point
+    detection$bf <- 0 #Batch frequency of a series point
     detection$pe <- detection$ef / detection$bf
 
     ##Under development
