@@ -160,7 +160,7 @@ def train_torch_conv1d(model, df_train, n_epochs = 3000, lr = 0.001, deep_debug=
   
   train_x = torch.permute(train_x, (0, 2, 1))
   
-  print(train_x.shape)
+  #print(train_x.shape)
   
   train_ds = TensorDataset(train_x, train_y)
   
