@@ -7,40 +7,37 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_garch <- function(w = 5, alpha = 1.5) {
+har_cla <- function(model, tune = NULL, alpha = 1.5) {
   obj <- harbinger()
+  obj$model <- model
   obj$alpha <- alpha
-  obj$w <- w
-
-  class(obj) <- append("har_garch", class(obj))
+  obj$tune <- tune
+  class(obj) <- append("har_cla", class(obj))
   return(obj)
 }
 
 #'@export
-detect.har_garch <- function(obj, serie) {
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- na.omit(serie)
+fit.har_cla <- function(obj, data) {
+  obj$model <- fit(obj$model, data)
+  return(obj)
+}
 
-  spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
-                                 mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
-                                 distribution.model = "norm")
+#'@export
+detect.har_cla <- function(obj, data) {
+  n <- nrow(data)
+  non_na <- which(!is.na(apply(data, 1, max)))
+  data <- na.omit(data)
 
-  #Adjusting a model to the entire series
-  model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
-
-  #Adjustment error on the entire series
-  s <- residuals(model)^2
-  outliers <- outliers.boxplot.index(s, obj$alpha)
+  adjust <- predict(obj$model, data)
+  outliers <- which(adjust[,1] < adjust[,2])
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
+  outliers <- rep(FALSE, nrow(data))
   for (g in group_outliers) {
     if (length(g) > 0) {
       i <- min(g)
       outliers[i] <- TRUE
     }
   }
-  outliers[1:obj$w] <- FALSE
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 
@@ -49,4 +46,3 @@ detect.har_garch <- function(obj, serie) {
 
   return(detection)
 }
-

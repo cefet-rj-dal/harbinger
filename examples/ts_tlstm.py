@@ -17,11 +17,29 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
 from torch.utils.data import TensorDataset
 import torch.nn.functional as F
-import sys
 import random
 
+class LSTMNet(nn.Module):
+  def __init__(self, n_neurons, input_shape):
+    super(LSTMNet, self).__init__()
+    self.lstm = nn.LSTM(input_size=input_shape, hidden_size=n_neurons)
+    self.fc = nn.Linear(n_neurons, 1)
+  
+  def forward(self, x):
+    out, _ = self.lstm(x)
+    out = self.fc(out)
+    return out
+
+def seed_everything(seed=1):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
 
 def savemodel(model, filename):
   torch.save(model, filename)
@@ -36,17 +54,12 @@ def loadmodel(filename):
 def savedf(data, filename):      
   data.to_csv(filename, index=False)
     
-
-class LSTMNet(nn.Module):
-  def __init__(self, n_neurons, input_shape):
-    super(LSTMNet, self).__init__()
-    self.lstm = nn.LSTM(input_size=input_shape, hidden_size=n_neurons)
-    self.fc = nn.Linear(n_neurons, 1)
-  
-  def forward(self, x):
-    out, _ = self.lstm(x)
-    out = self.fc(out)
-    return out
+def create_torch_lstm(n_neurons, look_back):
+  n_neurons = int(n_neurons)
+  look_back = int(look_back)
+  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+  model = LSTMNet(n_neurons, look_back).to(device)
+  return model    
 
 
 def torch_fit_lstm(epochs, lr, model, train_loader, opt_func=torch.optim.SGD, debug=False):
@@ -121,20 +134,12 @@ def torch_fit_lstm(epochs, lr, model, train_loader, opt_func=torch.optim.SGD, de
   return model, avg_train_losses
 
 
-def create_torch_lstm(n_neurons, look_back):
-  n_neurons = int(n_neurons)
-  look_back = int(look_back)
-  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-  model = LSTMNet(n_neurons, look_back).to(device)
-  return model    
-	
-
 def train_torch_lstm(model, df_train, n_epochs = 10000, lr = 0.001, deep_debug=False, reproduce=True):
+  n_epochs = int(n_epochs)
+  
   if (reproduce):
-    torch.manual_seed(0)    
-    np.random.seed(0)
-    random.seed(0)
-
+    seed_everything()
+    
   X_train = df_train.drop('t0', axis=1).to_numpy()
   y_train = df_train.t0.to_numpy()
   X_train = X_train[:, :, np.newaxis]
@@ -150,7 +155,6 @@ def train_torch_lstm(model, df_train, n_epochs = 10000, lr = 0.001, deep_debug=F
   train_loader = torch.utils.data.DataLoader(train_ds, batch_size = BATCH_SIZE, shuffle = False)
   
   model = model.float()
-  n_epochs = int(n_epochs)
   model, train_loss = torch_fit_lstm(n_epochs, lr, model, train_loader, opt_func=torch.optim.Adam, debug = deep_debug)
   
   return model
