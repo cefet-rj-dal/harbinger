@@ -114,7 +114,7 @@ detect.nexus <- function(obj) {
     #Probability of the observation being an event
     detection$ef <- 0
     detection$bf <- 0
-    detection$oes <- detection$ef / detection$bf
+    detection$pe <- detection$ef / detection$bf
 
     ##Under development
     #Detection temporal lag
