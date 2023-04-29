@@ -102,7 +102,7 @@ print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detecto
 
 
 
-##quarto caso - memória por batch fbiad - gecco ph ----
+## quarto caso - memória por batch fbiad - gecco ph ----
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/event_datasets/main/gecco/carrega.R")
 
@@ -149,28 +149,36 @@ grf <- plot.harbinger(online_detector$detector, data$ph,
 plot(grf)
 
 
-## Try dalevents package
-# install.packages("devtools")
-#devtools::install_github("cefet-rj-dal/event_datasets")
+## Try dalevents package ----
+#install.packages("devtools")
+devtools::install_github("cefet-rj-dal/event_datasets")
 library(dalevents)
 
-data(yahoo_all_series)
-?yahoo_all_series
+data(yahoo_a1)
+?yahoo_a1
 
-series <- yahoo_all_series$A1$real_1
+series <- yahoo_a1$real_13
+summary(series)
+
+plot(series$series, type = "l")
+
+
 datasource <- nex_simulated_datasource("data", series$series)
 
 
-online_detector <- nexus(datasource, fbiad())
+online_detector <- nexus(datasource, fbiad(),
+                         warm_size = 100, batch_size = 50, mem_batches = 3)
 
 online_detector <- warmup(online_detector)
+
+bt <- 1
 
 while (!is.null(online_detector$datasource)) {
   online_detector <- detect(online_detector)
   print(table(online_detector$detection$event))
+  bt <- bt + 1
+  print(paste('Batch:', bt))
 }
-
-print(sum(data-c(online_detector$stable_serie, online_detector$serie)))
 
 #Sum of events
 sum(online_detector$detection$event)
