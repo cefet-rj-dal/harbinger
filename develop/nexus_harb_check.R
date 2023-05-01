@@ -151,9 +151,10 @@ plot(grf)
 
 ## Try dalevents package ----
 #install.packages("devtools")
-devtools::install_github("cefet-rj-dal/event_datasets")
+devtools::install_github("cefet-rj-dal/event_datasets", force = TRUE)
 library(dalevents)
 
+?dalevents
 data(yahoo_a1)
 ?yahoo_a1
 
