@@ -16,10 +16,11 @@ head(dataset)
 #lines(x = 1:length(dataset$serie), y = dataset$serie)
 
 # establishing change finder arima method
-model <- change_point_garch()
+#model <- change_point_garch()
+#model <- har_garch()
+model <- change_finder_lr()
 #model <- change_finder_arima()
 #model <- change_finder_ets()
-#model <- har_garch()
 
 # fitting the model
 model <- fit(model, dataset$serie)
