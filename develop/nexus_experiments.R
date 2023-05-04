@@ -1,4 +1,6 @@
-
+#############################################################################
+## Integration between Nexus + Harbinger + DALEvents
+#############################################################################
 
 # Install and load Harbinger and Nexus ------------------------------------
 # install.packages("devtools")
