@@ -7,27 +7,42 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-change_finder_ets <- function(w = 7, alpha = 1.5) {
+change_point_garch <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
-  obj$alpha <- alpha
   obj$w <- w
-  class(obj) <- append("change_finder_ets", class(obj))
+  obj$alpha <- alpha
+  class(obj) <- append("change_point_garch", class(obj))
   return(obj)
 }
 
 #'@export
-detect.change_finder_ets <- function(obj, serie) {
+detect.change_point_garch <- function(obj, serie) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
   serie <- na.omit(serie)
 
+  spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
+                              mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
+                              distribution.model = "norm")
+
   #Adjusting a model to the entire series
-  M1 <- forecast::ets(ts(serie))
+  model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
+
+  #Adjustment error on the entire series
+  serie <- model$sigma
+
+
+  #Adjusting a model to the entire series
+  M1 <- forecast::auto.arima(serie)
+  order <- M1$arma[c(1, 6, 2, 3, 7, 4, 5)]
+  w <- obj$w
+  if (is.null(w))
+    w <- max(order[1], order[2]+1, order[3])
 
   #Adjustment error on the entire series
   s <- residuals(M1)^2
-  outliers <- outliers.boxplot.index(s, obj$alpha)
+  outliers <- outliers.boxplot.index(s, alpha = obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {
@@ -36,17 +51,17 @@ detect.change_finder_ets <- function(obj, serie) {
       outliers[i] <- TRUE
     }
   }
-  outliers[1:obj$w] <- FALSE
+  outliers[1:w] <- FALSE
 
-  y <- TSPred::mas(s, obj$w)
+  y <- TSPred::mas(s, w)
 
   #Adjusting to the entire series
-  M2 <- forecast::ets(ts(y))
+  M2 <- forecast::auto.arima(y)
 
   #Adjustment error on the whole window
   u <- residuals(M2)^2
 
-  u <- TSPred::mas(u, obj$w)
+  u <- TSPred::mas(u, w)
   cp <- outliers.boxplot.index(u)
   group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
   cp <- rep(FALSE, length(u))
@@ -56,7 +71,7 @@ detect.change_finder_ets <- function(obj, serie) {
       cp[i] <- TRUE
     }
   }
-  cp[1:obj$w] <- FALSE
+  cp[1:w] <- FALSE
   cp <- c(rep(FALSE, length(s)-length(u)), cp)
 
   i_outliers <- rep(NA, n)
