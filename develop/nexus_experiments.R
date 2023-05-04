@@ -13,14 +13,18 @@ devtools::install_github("cefet-rj-dal/event_datasets", force = TRUE)
 library(dalevents)
 data(gecco)
 
-#Select a series and the desired time interval
+#Selectdesired series and time interval
 #ph variable
 #Interval of a day with anomalies
 data <- subset(gecco$gecco[16500:18000,], select = c(ph, event))
-names(data) <- c("series", "event")
-
 data <- data[1:200,] #Use it only for fast test
 
+#Finance - Oil bren prices
+data(fi_br)
+data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
+
+#Adjust variabels names
+names(data) <- c("series", "event")
 # Run Nexus ---------------------------------------------------------------
 #Prepare data to experiment
 datasource <- nex_simulated_datasource("data", data$series)
