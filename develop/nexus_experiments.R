@@ -49,16 +49,19 @@ online_detector <- warmup(online_detector)
 
 #Sliding batches through series
 while (!is.null(online_detector$datasource)) {
+  #Create merge results
+  if (sld_bt > 1) {
+    x <- online_detector$detection
+  }
 
   #Online detection
   online_detector <- detect(online_detector)
 
   #Create merge results
   if (sld_bt > 1) {
-    x <- online_detector$detection
     online_detector_merged <- merge(x, online_detector$detection,
                                     by.x = "idx", by.y = "idx",
-                                    all.x = TRUE)
+                                    all = TRUE)
   }
 
   print(paste("Current position:", online_detector$detection$idx[sld_bt]))
