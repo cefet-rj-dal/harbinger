@@ -7,8 +7,9 @@ library(devtools)
 # Install and load Harbinger, Nexus and DalEvents -----------------------------
 devtools::install_github("cefet-rj-dal/harbinger",
                          force = TRUE, dep=FALSE, upgrade="never")
+
 devtools::install_github("cefet-rj-dal/event_datasets",
-                         force = TRUE)
+                         force = TRUE, dep=FALSE, upgrade="never")
 
 # Load packages
 library(harbinger)
@@ -22,9 +23,9 @@ library(dalevents)
 #Interval of a day with anomalies
 data(gecco)
 data <- subset(gecco$gecco[16500:18000,], select = c(ph, event))
-data <- data[1:200,] #Use it only for fast test
+data <- data[1:250,] #Use it only for fast test
 
-#Finance - Oil bren prices
+#Finance - Oil brent prices
 data(fi_br)
 data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
 
@@ -32,66 +33,73 @@ data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
 names(data) <- c("series", "event")
 
 # Run Nexus ---------------------------------------------------------------
-#Prepare data to experiment
-datasource <- nex_simulated_datasource("data", data$series)
+run_nexus <- function(model, data, warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="dev/plots/"){
 
-#Create and setup objects
-bt_size <- 30
-online_detector <- nexus(datasource, fbiad(), batch_size = bt_size)
-ef <- 0
-bt_num <- 1
-sld_bt <- 1
+  datasource <- nex_simulated_datasource("data", data$serie)
 
+  online_detector <- nexus(datasource, model, warm_size = warm_size, batch_size = batch_size, mem_batches = mem_batches)
 
-#Warmup nexus
-online_detector <- warmup(online_detector)
+  online_detector <- warmup(online_detector)
 
+  bt <- 1
+  event_happened <- FALSE
+  bt_event_happened <- 0
+  event_idx <- 0
 
-#Sliding batches through series
-while (!is.null(online_detector$datasource)) {
-  #Create merge results
-  if (sld_bt > 1) {
-    x <- online_detector$detection
+  while (!is.null(online_detector$datasource)) {
+
+    online_detector <- detect(online_detector)
+    #print(table(online_detector$detection$event))
+
+    #for plotting
+    if(any(data$event[online_detector$detection$idx]) & !event_happened){
+      event_happened <- TRUE
+      event_idx <- which(data$event[online_detector$detection$idx])
+      bt_event_happened <- bt
+    }
+
+    png(file=paste0(png_folder,"batch_",bt,".png"),
+        width=600, height=350)
+    grf <- plot.harbinger(online_detector$detector, data$serie[online_detector$detection$idx], online_detector$detection, data$event[online_detector$detection$idx])
+    plot(grf)
+    dev.off()
+
+    bt <- bt + 1
+
+    if(any(which(as.logical(online_detector$detection$event))>event_idx) & event_happened) {
+      break
+    }#comment this line for full result
+    #end
   }
 
-  #Online detection
-  online_detector <- detect(online_detector)
-
-  #Create merge results
-  if (sld_bt > 1) {
-    online_detector_merged <- merge(x, online_detector$detection,
-                                    by.x = "idx", by.y = "idx",
-                                    all = TRUE)
-  }
-
-  print(paste("Current position:", online_detector$detection$idx[sld_bt]))
-  print("Results:")
-  print(table(online_detector$detection$event))
-  print("--------------------------")
-
-  #Batch information
-  sld_bt <- sld_bt + 1
-  if (sld_bt %% bt_size == 0) {
-    bt_num <- bt_num + 1
-  }
-  print(paste("Batch:", bt_num))
-  print("==========================")
-
-  #Batch assign
-  logic_res <- online_detector$detection$event == 1
-  online_detector$detection$last_batch[logic_res] <- bt_num
-  online_detector$detection$ef[logic_res] <- online_detector$detection$ef[logic_res] + 1
+  return(list(detector=online_detector$detector,detection=online_detector$detection))
 }
 
+#Example of usage
+
+# establishing method
+model <- har_herald(lag_pred=lag_pred, online_step=online_step,
+                    decomp_fun, decomp_par,
+                    pred_fun, pred_par,
+                    detect_fun, detect_par)
+
+
+model <- fbiad()
+
+#FULL MEMORY
+result <- run_nexus(model,data[100:250,], warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="develop/plots")
+
+
+
 #Sum of events
-sum(online_detector$detection$event)
+sum(result$detection$event)
 
 #Head of detections
-head(online_detector$detection, 10)
+head(result$detection, 10)
 
 # evaluating the detections
-evaluation <- evaluate(online_detector$detector,
-                       online_detector$detection$event,
+evaluation <- evaluate(result$detector,
+                       result$detection$event,
                        data$event)
 
 print(evaluation$confMatrix)
@@ -99,9 +107,8 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(online_detector$detector, data$series,
-                      online_detector$detection, data$event)
+grf <- plot.harbinger(result$detector, data$series,
+                      result$detection, data$event)
 plot(grf)
 
-View(online_detector$detection)
-View(online_detector_merged)
+View(result$detection)
