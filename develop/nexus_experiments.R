@@ -5,11 +5,8 @@
 library(devtools)
 
 # Install and load Harbinger, Nexus and DalEvents -----------------------------
-devtools::install_github("cefet-rj-dal/harbinger",
-                         force = TRUE, dep=FALSE, upgrade="never")
-
-devtools::install_github("cefet-rj-dal/event_datasets",
-                         force = TRUE, dep=FALSE, upgrade="never")
+devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, dep=FALSE, upgrade="never")
+devtools::install_github("cefet-rj-dal/event_datasets", force = TRUE, dep=FALSE, upgrade="never")
 
 # Load packages
 library(harbinger)
@@ -17,13 +14,14 @@ source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/develop/
 #library(nexus)
 library(dalevents)
 
+
 # Load dataset ------------------------------------------------------------
 #Selectdesired series and time interval
 #ph variable
 #Interval of a day with anomalies
 data(gecco)
 data <- subset(gecco$gecco[16500:18000,], select = c(ph, event))
-data <- data[1:250,] #Use it only for fast test
+data <- data[1:100,] #Use it only for fast test
 
 #Finance - Oil brent prices
 data(fi_br)
@@ -32,13 +30,12 @@ data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
 #Adjust variabels names
 names(data) <- c("series", "event")
 
+
 # Run Nexus ---------------------------------------------------------------
 run_nexus <- function(model, data, warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="dev/plots/"){
 
   datasource <- nex_simulated_datasource("data", data$serie)
-
   online_detector <- nexus(datasource, model, warm_size = warm_size, batch_size = batch_size, mem_batches = mem_batches)
-
   online_detector <- warmup(online_detector)
 
   bt <- 1
@@ -87,7 +84,7 @@ model <- har_herald(lag_pred=lag_pred, online_step=online_step,
 model <- fbiad()
 
 #FULL MEMORY
-result <- run_nexus(model,data[100:250,], warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="develop/plots")
+result <- run_nexus(model, data, warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="develop/plots/")
 
 
 
