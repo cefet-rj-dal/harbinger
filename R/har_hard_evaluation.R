@@ -27,11 +27,30 @@ evaluate <- function(obj, ...) {
   UseMethod("evaluate")
 }
 
+#'@param obj
+#'@param detection
+#'@param event
+
+#'@return Simply returns the input object without modification
+#'
 #'@export
 evaluate.default <- function(obj, detection, event) {
   return(obj)
 }
 
+#'@title Evaluates the model based on a confusion matrix
+#'
+#'@description It takes three arguments: obj: an object to store the evaluation results; detection: a boolean vector that indicates whether or not the model detected an event; event: a boolean vector that indicates whether the event occurred or not
+#'
+#'@details The function calculates various detection model benchmark metrics based on the information provided in the detection and event vectors
+#'
+#'@param obj
+#'@param detection
+#'@param event
+#'
+#'@return An object of the "hard evaluation" class updated with the calculated metrics
+#'
+#'@examples
 #'@export
 evaluate.hard_evaluation <- function(obj, detection, event) {
   detection[is.na(detection)] <- FALSE
@@ -71,3 +90,4 @@ evaluate.hard_evaluation <- function(obj, detection, event) {
   attr(obj, "class") <- "hard_evaluation"
   return(obj)
 }
+

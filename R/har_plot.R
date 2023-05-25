@@ -27,6 +27,24 @@ motifs_seqs <- function(detection) {
 # output:
 #   plot.
 #'@import ggplot2
+#'
+#'@title Plot event detection on a time series
+#'
+#'@description It accepts as input an object, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
+#'
+#'@details The function creates a data.frame that contains the time series, the event detection results (true positives, false positives, false negatives) and colors for each of the detected events. Then, a line graph is created for the time series, with colored dots for each detected event
+#'
+#'@param obj
+#'@param serie
+#'@param detection
+#'@param event
+#'@param mark.cp
+#'@param ylim
+#'@param idx
+#'
+#'@return A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis
+#'
+#'@examples
 #'@export
 #use_package('ggplot2')
 plot.harbinger <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){

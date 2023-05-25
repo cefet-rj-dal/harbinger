@@ -33,6 +33,17 @@ fit <- function(obj, ...) {
   UseMethod("fit")
 }
 
+#'@title Fit a general outline of a fit function
+#'
+#'@description Takes as input a "Harbinger" object and a time series
+#'
+#'@details This function is a default implementation of the fit() function for the "Harbinger" class, which can be overridden by a specific subclass to perform proper model fit
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return The "Harbinger" object without doing any processing or tuning of the model
+#'@examples
 #'@export
 fit.harbinger <- function(obj, serie) {
   return(obj)
@@ -56,11 +67,37 @@ detect <- function(obj, ...) {
   UseMethod("detect")
 }
 
+#'@title Generic outline for a time series event detection function
+#'
+#'@description Takes as input a "Harbinger" object and a time series
+#'
+#'@details The "idx" column represents the index of the observation in the time series, the "event" column indicates whether or not the event occurred in the observation (it is filled with "TRUE" or "FALSE") and the "type" column indicates the type of event detected (if any)
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A table with information about detecting events in the time series
+#'@example
 #'@export
 detect.harbinger <- function(obj, serie) {
   return(data.frame(idx = 1:length(serie), event = rep(FALSE, length(serie)), type = ""))
 }
 
+#'@title Evaluate the performance of the event detection model against true events
+#'
+#'@description Takes as input a "Harbinger" object, a set of event detection (stored as a data frame) and a set of true events (also stored as a data frame)
+#'
+#'@details This function calls the evaluate() function with the given arguments. The evaluate() function is responsible for calculating the appropriate evaluation metrics to compare event detections with true events
+#'
+#'@param obj
+#'@param detection
+#'@param event
+#'@param evaluation
+#'
+#'@return The result of the evaluation
+#'
+#'@example
+#'
 #'@export
 evaluate.harbinger <- function(obj, detection, event, evaluation = hard_evaluation()) {
   return(evaluate(evaluation, detection, event))

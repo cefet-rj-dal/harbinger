@@ -12,6 +12,18 @@ fbiad <- function(sw = 30, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Implements a time series anomaly detection method
+#'
+#'@description Takes as input an object and a time series. It uses the FBIAD method to detect anomalies in the time series.
+#'
+#'@details First, the function checks if there is data available in the time series. Then, the series is divided into windows of size 'obj$sw', and the average in each window is calculated. The quadratic difference between the original series and the mean of the window is then calculated and subjected to a boxplot-based anomaly detection test with threshold defined by 'obj$alpha'
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A detection table is returned with the index of each data point, its anomaly state (TRUE or FALSE) and an event type (defined as "anomaly" in this function)
+#'
+#'@examples
 #'@export
 detect.fbiad <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)

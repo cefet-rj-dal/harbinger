@@ -17,6 +17,18 @@ har_tsreg_sw <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Implements the fit method of the har_tsreg_sw class to fit a regression model on the time series passed as series argument
+#'
+#'@description The function receives as parameter an object and a time series
+#'
+#'@details The function starts by creating a time series object with the ts_data function, which divides the series into sliding windows of size obj$sw_size and returns a list with two columns: input and output
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return The 'obj' object updated with the adjusted model
+#'
+#'@examples
 #'@export
 fit.har_tsreg_sw <- function(obj, serie) {
   ts <- ts_data(serie, obj$sw_size)
@@ -27,6 +39,17 @@ fit.har_tsreg_sw <- function(obj, serie) {
   return(obj)
 }
 
+#'@title Implements the detect method of the har_tsreg_sw class for detecting anomalies in time series
+#'
+#'@description The function receives as parameter an object and a time series
+#'
+#'@details The function starts by defining the length of the time series n and the index of non-missing observations non_na. The function then calls the ts_data function to create a time series object with sliding windows of size obj$sw_size and stores in io the array of input values and vector of output values for the model
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return The i_outliers array that is included in the detection data structure
+#'@examples
 #'@export
 detect.har_tsreg_sw <- function(obj, serie) {
   n <- length(serie)

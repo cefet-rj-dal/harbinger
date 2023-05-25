@@ -15,6 +15,17 @@ har_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Detect anomalies in time series using ARIMA models
+#'
+#'@description Implements a specific method for detecting anomalies in time series using an ARIMA model fitted to the data provided as input
+#'
+#'@details It uses the "forecast" R package to fit the ARIMA model and the "rugaarch" package to calculate model residuals. It then uses the "TSPred" package to identify outliers using a boxplot and marks the anomalous points in the resulting time series
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A dataframe with information about the detected anomalous points
+#'@examples
 #'@export
 detect.har_arima <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
@@ -51,7 +62,6 @@ detect.har_arima <- function(obj, serie) {
 
   return(detection)
 }
-
 
 
 

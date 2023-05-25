@@ -16,6 +16,18 @@ har_garch <- function(w = 5, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Performs anomaly event detection in the time series using the GARCH model
+#'
+#'@description This function takes a har_garch object and a time series series as input
+#'
+#'@details First, the function fits a GARCH model to the series, calculates the squared residuals and applies a boxplot test to detect outliers. Detected outliers are classified as "anomalies"
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A data frame with information about the events detected, including the index of the data point, whether it is an event or not, and the type of event
+#'@examples
+
 #'@export
 detect.har_garch <- function(obj, serie) {
   n <- length(serie)

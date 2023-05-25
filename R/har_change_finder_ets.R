@@ -15,6 +15,19 @@ change_finder_ets <- function(w = 7, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Detect changes in a time series
+#'
+#'@description The function takes an object of the Harbinger class and a time series as parameters
+#'
+#'@details Detection is done using the ETS model to fit the time series and statistical methods to detect change points and outliers
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A data frame with information about the events detected in the time series, including the index of the event, whether it is an outlier or change point and the type of event
+#'
+#'@examples
+
 #'@export
 detect.change_finder_ets <- function(obj, serie) {
   n <- length(serie)
