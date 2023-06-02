@@ -81,7 +81,7 @@ data <- data[1:100,] #Use it only for fast test
 data(fi_br)
 data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
 
-#Adjust variabels names
+#Adjust variables names
 names(data) <- c("series", "event")
 
 # Run Nexus ---------------------------------------------------------------

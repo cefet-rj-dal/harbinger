@@ -26,7 +26,7 @@ data <- subset(gecco$gecco[16500:18000,], select = c(ph, event))
 data(fi_br)
 data <- subset(fi_br$Commodity, select = c(`Oil Brent`, Event))
 
-#Adjust variabels names
+#Adjust variables names
 names(data) <- c("series", "event")
 
 
@@ -117,6 +117,7 @@ plot(grf)
 View(result$detection)
 View(result$res)
 
+#View results across batches (example using Gecco Challenge complete ph series)
 View(result$res[[100]])
 View(result$res[[150]])
 View(result$res[[300]])
