@@ -38,6 +38,16 @@ ts_mlp <- function(preprocess=NA, input_size=NA, size=NA, decay=0.01, maxit=1000
   return(obj)
 }
 
+
+#'@title Update ts_mlp object parameters
+#'
+#'@description It takes two arguments: the ts_mlp object to be updated (obj) and a list object containing the new parameter values to be updated (params)
+#'
+#'@details The function checks whether each parameter is present in the params list using the is.null function. If the parameter is present, the corresponding value is assigned to the parameter in the ts_mlp object. Otherwise, the parameter is not changed
+#'
+#'@param obj
+#'@param params
+#'@return ts_mlp object updated with new parameter values
 #'@export
 set_params.ts_mlp <- function(obj, params) {
   if (!is.null(params$size))
@@ -51,6 +61,17 @@ set_params.ts_mlp <- function(obj, params) {
 }
 
 #'@import nnet
+#'@title Train the ts_mlp model
+#'
+#'@description It takes three arguments: the ts_mlp object to be trained (obj), the input matrix (x) and the output vector (y)
+#'
+#'@details Inside the function, the nnet function is used to train the ts_mlp model
+#'
+#'@param obj
+#'@param x
+#'@param y
+#'
+#'@return The ts_mlp object updated with the trained model
 #'@export
 do_fit.ts_mlp <- function(obj, x, y) {
   obj$model <- nnet::nnet(x = x, y = y, size = obj$size, decay=obj$decay, maxit = obj$maxit, linout=TRUE, trace = FALSE)

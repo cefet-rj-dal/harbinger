@@ -30,6 +30,20 @@ analyze_window <- function(data, offset) {
   return(data.frame(mdl=err, mdl_ad=err_ad, mdl_dif=err-err_ad))
 }
 
+
+#'@title Detect change points in time series
+#'
+#'@description The function takes an object object and a serial time series as input
+#'
+#'@details Detection is done by applying the analyze_window function to each sliding window of data and identifying points with significantly different fit error between the two halves of the window. These points are marked as change points
+#'
+#'@param obj
+#'@param serie
+#'
+#'@examples
+#'
+#'@return The function returns a dataframe indicating the occurrence of change points at each point in the series
+#'
 #'@export
 detect.change_point <- function(obj, serie) {
 

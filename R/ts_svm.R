@@ -35,6 +35,12 @@ ts_svm <- function(preprocess=NA, input_size=NA, kernel="radial", epsilon=0, cos
   return(obj)
 }
 
+#'@title Updates the parameters of an SVM model object for time series (ts_svm)
+#'@description It takes as input the obj model object and a set of params parameters to update.
+#'@details The function checks that each parameter specified in params is not null and, if not null, updates the corresponding parameter in the object obj
+#'@param obj
+#'@param params
+#'@return The obj template object updated with the new parameters
 #'@export
 set_params.ts_svm <- function(obj, params) {
   if (!is.null(params$kernel))
@@ -47,6 +53,17 @@ set_params.ts_svm <- function(obj, params) {
 }
 
 #'@import e1071
+#'@title Fits an SVM model to time series
+#'
+#'@description It takes as input the model object obj, the input data x and the expected outputs y
+#'
+#'@details The function uses the e1071 library implementation to tune the SVM model, specifying the following parameters: x: a matrix or a data frame with the explanatory variables; y: a vector with the response variable; epsilon: The SVM smoothing parameter; cost: the SVM cost parameter; kernel: the kernel type to be used by the SVM model
+#'
+#'@param obj
+#'@param x
+#'@param y
+#'
+#'@return The obj model object with the adjusted model
 #'@export
 do_fit.ts_svm <- function(obj, x, y) {
   obj$model <- e1071::svm(x = as.data.frame(x), y = y, epsilon=obj$epsilon, cost=obj$cost, kernel=obj$kernel)
@@ -54,6 +71,12 @@ do_fit.ts_svm <- function(obj, x, y) {
 }
 
 #'@export
+#'@title Uses an adjusted SVM model for time series to make predictions
+#'@description It takes as input the model object obj and the input data x
+#'@details The function uses the SVM model stored in the model attribute of the obj object to make predictions using the predict function from the e1071 library
+#'@param obj
+#'@param x
+#'@return The prediction variable
 do_predict.ts_svm <- function(obj, x) {
   prediction <- predict(obj$model, as.data.frame(x))
   return(prediction)

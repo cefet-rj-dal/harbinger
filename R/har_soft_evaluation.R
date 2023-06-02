@@ -12,6 +12,19 @@ soft_evaluation <- function(sw = 15) {
   return(obj)
 }
 
+#'@title Calculate soft scores for a detection of events in a time series
+#'
+#'@description The input includes both the detection and the event, as well as a k parameter that defines the tolerance window for event detection.
+#'
+#'@details The function starts by finding the indices of events and detections, and creates an anonymous "mu" function to calculate the contributions of each detection to each event. The "Mu" matrix is then filled with these values. The function goes on to find, for each detection, the event it contributes the most to, and for each event, the detections that contribute the most to it. Then, the detection that most contributes to each event is chosen and its "soft scores" are calculated
+#'
+#'@param detection
+#'@param event
+#'@param k
+#'@return A list of smooth scores for the detection, which can be used to evaluate the performance of the event detection algorithm
+#'@examples
+#'@export
+
 soft_scores <- function(detection, event, k){
   E <- which(event)
   m <- length(E)
@@ -49,6 +62,17 @@ soft_scores <- function(detection, event, k){
   return(S_d)
 }
 
+#'@title Evaluate the quality of an event detection model against a reference dataset
+#'@description It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
+#'
+#'@details The function converts the NA values of the "detection" array to FALSE. It then calls the "soft_scores" function to calculate soft scores (between 0 and 1) of correspondence between detections and true events
+#'
+#'@param obj
+#'@param detection
+#'@param event
+#'
+#'@return A list of performance measures for detection
+#'@examples
 
 #'@export
 evaluate.soft_evaluation <- function(obj, detection, event) {

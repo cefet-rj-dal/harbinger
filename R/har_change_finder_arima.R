@@ -15,6 +15,19 @@ change_finder_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Detection of changes in time series using ARIMA models
+#'
+#'@description The function takes as parameters an object and a vector 'serie' containing the time series values that will be analized
+#'
+#'@details First of all, the function adjusts an Arima model for all time series using the 'auto.arima' function from 'forecast' package. After of this, the function calculates the residuals of this model and uses 'outliers.boxplot.index' function from 'rugarch' package to identify outliers in this vector of residuals. Then, the function applies a sliding window of w size in the residuals, using the function 'TSPred::mas' to smooth the values
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A table indicating the positions where the outliers occur and changes in the time series
+#'
+#'@examples
+
 #'@export
 detect.change_finder_arima <- function(obj, serie) {
   n <- length(serie)
@@ -76,4 +89,5 @@ detect.change_finder_arima <- function(obj, serie) {
 
   return(detection)
 }
+
 
