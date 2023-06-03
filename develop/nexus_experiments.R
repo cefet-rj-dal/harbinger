@@ -39,6 +39,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
 
   #Empty list to store results across batches
   res <- list()
+  hist <- list()
 
   #Create auxiliary batch and slide counters
   bt_num <- 1
@@ -61,12 +62,20 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
     print(table(online_detector$detection$event))
     print("--------------------------")
 
-    #Store result metrics parameters across batches
+    #Store result metrics parameters across batches - Marked events
     res_sld <- tibble(batch = bt_num,
                       slide = sld_bt,
                       ev_idx = which(online_detector$detection$event == 1))
 
     res[[sld_bt]] <- res_sld
+
+    #Store result metrics parameters across batches - Historic
+    hist_sld <- tibble(bath = bt_num,
+                       slide = sld_bt,
+                       ev = online_detector$detection$event)
+
+    hist[[sld_bt]] <- hist_sld
+
 
     #Update batch and slide counters
     sld_bt <- sld_bt + 1
@@ -80,6 +89,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
   }
 
   online_detector$res <- res
+  online_detector$hist <- hist
   return(online_detector)
 }
 
@@ -124,3 +134,9 @@ View(result$res[[300]])
 View(result$res[[600]])
 View(result$res[[length(result$res)]])
 
+
+View(result$hist[[1]])
+View(result$hist[[10]])
+View(result$hist[[20]])
+View(result$hist[[40]])
+View(result$hist[[length(result$hist)]])
