@@ -20,7 +20,7 @@ library(dalevents)
 #Interval of a day with anomalies
 data(gecco)
 data <- subset(gecco$gecco[16500:18000,], select = c(ph, event))
-#data <- data[1:100,] #Use it only for fast test
+data <- data[1:250,] #Use it only for fast test
 
 #Finance - Oil brent prices
 data(fi_br)
@@ -34,12 +34,12 @@ names(data) <- c("series", "event")
 # Nexus -------------------------------------------------------------------
 # Run Nexus ---------------------------------------------------------------
 run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches = 0, png_folder="dev/plots/") {
-  require(magrittr)
-  require(tidyverse)
+  require(tibble)
 
   #Empty list to store results across batches
   res <- list()
   hist <- list()
+  #tempo <- list()
 
   #Create auxiliary batch and slide counters
   bt_num <- 1
@@ -50,13 +50,13 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
   online_detector <- nexus(datasource, model, warm_size = warm_size, batch_size = batch_size, mem_batches = mem_batches)
   online_detector <- warmup(online_detector)
 
-
+  ##TEMPO START
   #Sliding batches through series
   while (!is.null(online_detector$datasource)) {
     #Online detection
     online_detector <- detect(online_detector)
 
-    #Parcial results
+    #Partial results
     print(paste("Current position:", online_detector$detection$idx[sld_bt]))
     print("Results:")
     print(table(online_detector$detection$event))
@@ -64,14 +64,12 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
 
     #Store result metrics parameters across batches - Marked events
     res_sld <- tibble(batch = bt_num,
-                      slide = sld_bt,
                       ev_idx = which(online_detector$detection$event == 1))
 
     res[[sld_bt]] <- res_sld
 
     #Store result metrics parameters across batches - Historic
-    hist_sld <- tibble(bath = bt_num,
-                       slide = sld_bt,
+    hist_sld <- tibble(batch = bt_num,
                        ev = online_detector$detection$event)
 
     hist[[sld_bt]] <- hist_sld
@@ -81,6 +79,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
     sld_bt <- sld_bt + 1
     if (sld_bt %% batch_size == 0) {
       bt_num <- bt_num + 1
+      ##TEMPO DO SISTEMA
     }
 
     print(paste("Batch:", bt_num))
@@ -95,9 +94,16 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
 
 
 #Create and setup objects
-bt_size <- 10
+bt_size <- 30
 wm_size <- 30
 model <- fbiad()
+
+
+# establishing method
+model <- har_herald(lag_pred=lag_pred, online_step=online_step,
+                    decomp_fun, decomp_par,
+                    pred_fun, pred_par,
+                    detect_fun, detect_par)
 
 result <- run_nexus(model=model, data=data, warm_size=wm_size, batch_size=bt_size, mem_batches=0, png_folder="dev/plots/")
 
