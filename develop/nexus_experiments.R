@@ -34,7 +34,7 @@ names(data) <- c("series", "event")
 # Nexus -------------------------------------------------------------------
 # Run Nexus ---------------------------------------------------------------
 run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches = 0, png_folder="dev/plots/") {
-  require(tibble)
+  #require(tibble)
 
   #Empty list to store results across batches
   res <- list()
@@ -62,30 +62,45 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
     print(table(online_detector$detection$event))
     print("--------------------------")
 
-    #Store result metrics parameters across batches - Marked events
-    res_sld <- tibble(batch = bt_num,
-                      ev_idx = which(online_detector$detection$event == 1))
 
-    res[[sld_bt]] <- res_sld
-
-    #Store result metrics parameters across batches - Historic
-    hist_sld <- tibble(batch = bt_num,
-                       ev = online_detector$detection$event)
-
-    hist[[sld_bt]] <- hist_sld
-
-
-    #Update batch and slide counters
+    #Update batch and slide counters and historical results
     sld_bt <- sld_bt + 1
     if (sld_bt %% batch_size == 0) {
+      #Store result metrics parameters across batches - Idx of marked events
+      res_sld <- tibble::tibble(batch = bt_num,
+                                ev_idx = which(online_detector$detection$event == 1))
+
+      res[[bt_num]] <- res_sld
+
+      #Store result metrics parameters across batches - Complete historic events column
+      hist_sld <- tibble::tibble(batch = bt_num,
+                                 idx = online_detector$detection$idx,
+                                 ev = online_detector$detection$event)
+
+      hist[[bt_num]] <- hist_sld
+
       bt_num <- bt_num + 1
       ##TEMPO DO SISTEMA
+
     }
 
     print(paste("Batch:", bt_num))
     print("==========================")
 
   }
+
+  #Adding last batch results
+  res_sld <- tibble::tibble(batch = bt_num,
+                            ev_idx = which(online_detector$detection$event == 1))
+
+  res[[bt_num]] <- res_sld
+
+  hist_sld <- tibble::tibble(batch = bt_num,
+                             idx = online_detector$detection$idx,
+                             ev = online_detector$detection$event)
+
+  hist[[bt_num]] <- hist_sld
+
 
   online_detector$res <- res
   online_detector$hist <- hist
@@ -96,7 +111,6 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
 #Create and setup objects
 bt_size <- 30
 wm_size <- 30
-model <- fbiad()
 
 
 # establishing method
@@ -104,6 +118,8 @@ model <- har_herald(lag_pred=lag_pred, online_step=online_step,
                     decomp_fun, decomp_par,
                     pred_fun, pred_par,
                     detect_fun, detect_par)
+
+model <- fbiad()
 
 result <- run_nexus(model=model, data=data, warm_size=wm_size, batch_size=bt_size, mem_batches=0, png_folder="dev/plots/")
 
@@ -134,15 +150,12 @@ View(result$detection)
 View(result$res)
 
 #View results across batches (example using Gecco Challenge complete ph series)
-View(result$res[[100]])
-View(result$res[[150]])
-View(result$res[[300]])
-View(result$res[[600]])
+View(result$res[[1]])
+View(result$res[[length(result$res)/3]])
+View(result$res[[length(result$res)/2]])
 View(result$res[[length(result$res)]])
 
-
 View(result$hist[[1]])
-View(result$hist[[10]])
-View(result$hist[[20]])
-View(result$hist[[40]])
+View(result$hist[[length(result$hist)/3]])
+View(result$hist[[length(result$hist)/2]])
 View(result$hist[[length(result$hist)]])

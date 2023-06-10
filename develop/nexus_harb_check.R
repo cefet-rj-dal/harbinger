@@ -10,9 +10,6 @@ data(har_examples)
 
 # Harbinger without Nexus -------------------------------------------------
 
-
-
-
 #Using the time series 1
 dataset <- har_examples[[1]]
 head(dataset)
@@ -86,9 +83,6 @@ names(data) <- c("series", "event")
 
 # Run Nexus ---------------------------------------------------------------
 run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches = 0, png_folder="dev/plots/") {
-  require(magrittr)
-  require(tidyverse)
-
   #Empty list to store results across batches
   res <- list()
 
@@ -114,7 +108,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
     print("--------------------------")
 
     #Store result metrics parameters across batches
-    res_sld <- tibble(batch = bt_num,
+    res_sld <- tibble::tibble(batch = bt_num,
                       slide = sld_bt,
                       ev_idx = which(online_detector$detection$event == 1))
 
@@ -248,11 +242,13 @@ data <- subset(data$gecco, select = c(ph, event))
 
 data <- data[16500:18000,]
 
-datasource <- nex_simulated_datasource("data", data$ph)
+#Adjust variables names
+names(data) <- c("series", "event")
+
+datasource <- nex_simulated_datasource("data", data$series)
 
 
-
-online_detector <- nexus(datasource, fbiad())
+online_detector <- nexus(datasource, har_fbiad())
 
 online_detector <- warmup(online_detector)
 
