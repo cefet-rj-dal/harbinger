@@ -7,14 +7,15 @@
 # decision_tree
 # loadlibrary("tree")
 
-#'@title Decision Tree Classification
-#'@description Classification using Decision Tree algorithm
-#'@details
+#' @title Decision Tree Classification
+#' @description Creates a classification object that uses the Decision Tree algorithm for classification.
+#' @details This function trains a Decision Tree model on the given dataset and creates a classification object that can be used to predict the target attribute values for new data points.
 #'
-#'@param attribute - name of the attribute used as target classification
-#'@param slevels - possible values for the target classification
-#'@return classification object
-#'@examples
+#' @param attribute The name of the attribute used as the target classification.
+#' @param slevels The possible values for the target classification.
+#'
+#' @return A classification object that uses the Decision Tree algorithm for classification.
+#' @examples
 #'@export
 cla_dtree <- function(attribute, slevels=NULL) {
   obj <- classification(attribute, slevels)
@@ -46,3 +47,8 @@ predict.cla_dtree <- function(obj, x) {
 
   return(prediction)
 }
+
+
+
+
+

@@ -19,6 +19,7 @@
 #'@examples
 #'data(iris)
 #'template_model <- classification("Species", levels(iris$Species))
+#'print(template_model)
 #'@export
 classification <- function(attribute, slevels=NULL) {
   obj <- dal_transform()
@@ -47,7 +48,7 @@ fit.classification <- function(obj, data) {
   obj$x <- setdiff(colnames(data), obj$attribute)
   return(obj)
 }
-
+ 
 #'@import RSNNS
 #'@export
 tune.classification <- function (obj, x, y, ranges, folds=3, fit.func, pred.fun = predict) {
@@ -117,6 +118,7 @@ roc_curve <- function(data, prediction) {
   rocr <- ROCR::performance(pred, "tpr", "fpr")
   return (rocr)
 }
+
 
 
 

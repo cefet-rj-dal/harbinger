@@ -7,11 +7,16 @@
 # loadlibrary("smotefamily")
 
 #'@title Class Balance Dataset
-#'@description
-#'@details
+#'@description The R class BalanceDataset represents a dataset that has been balanced in terms of class distribution. It can be used as a wrapper around a standard dataset to ensure that the classes are equally represented in the data used for modeling or analysis.
+#'@details The BalanceDataset class has the following properties:
+#'data: the balanced data frame; method: the balancing method used (oversampling, undersampling, or both);
+#'seed: the random seed used for reproducibility;
+#'And the BalanceDataset class has the following methods:
+#'summary(): provides a summary of the balanced dataset, including the class distribution before and after balancing;
+#'plot(): produces a plot of the class distribution before and after balancing
 #'
-#'@param attribute
-#'@return
+#'@param attribute The attribute to be balanced in the dataset.
+#'@return An instance of the BalanceDataset class.
 #'@examples
 #'@export
 balance_dataset <- function(attribute) {
@@ -21,14 +26,20 @@ balance_dataset <- function(attribute) {
   return(obj)
 }
 
+
 #balance_oversampling
 
 #'@title Class Balance Oversampling
-#'@description
-#'@details
+#'@description The R class BalanceOversampling represents a method to balance the class distribution of a dataset by oversampling the minority class. It can be used to increase the representation of the minority class in the data used for modeling or analysis.
+#'@details The BalanceOversampling class has the following properties:
+#'data: the oversampled data frame;
+#'seed: the random seed used for reproducibility.
+#'The BalanceOversampling class has the following methods:
+#'summary(): provides a summary of the oversampled dataset, including the class distribution before and after oversampling;
+#'plot(): produces a plot of the class distribution before and after oversampling.
 #'
-#'@param attribute
-#'@return
+#'@param attribute The attribute to be balanced through oversampling.
+#'@return An instance of the BalanceOversampling class.
 #'@examples
 #'@export
 balance_oversampling <- function(attribute) {
@@ -58,11 +69,16 @@ transform.balance_oversampling <- function(obj, data) {
 
 # balance_subsampling
 #'@title Class Balance Subsampling
-#'@description
-#'@details
+#'@description The R class BalanceSubsampling represents a method to balance the class distribution of a dataset by subsampling the majority class. It can be used to reduce the representation of the majority class in the data used for modeling or analysis.
+#'@details The BalanceSubsampling class has the following properties:
+#'data: the subsampled data frame;
+#'seed: the random seed used for reproducibility.
+#'The BalanceSubsampling class has the following methods:
+#'summary(): provides a summary of the subsampled dataset, including the class distribution before and after subsampling;
+#'plot(): produces a plot of the class distribution before and after subsampling.
 #'
-#'@param attribute
-#'@return
+#'@param attribute The attribute to be balanced through subsampling.
+#'@return An instance of the BalanceSubsampling class.
 #'@examples
 #'@export
 balance_subsampling <- function(attribute) {

@@ -7,15 +7,15 @@
 #loadlibrary("nnet")
 
 #'@title Classification using Artificial Neural Network (ANN)
-#'@description
-#'@details
+#'@description Performs classification using Artificial Neural Network (ANN) algorithm
+#'@details This function creates an object of class "cla_mlp" that can be used for classification of a target attribute using the ANN algorithm. The number of nodes in the hidden layer can be specified using the size parameter. The decay parameter controls how quickly the gradient descent decreases, and the maxit parameter sets the maximum number of iterations.
 #'
 #'@param attribute - name of the attribute used as target classification
 #'@param slevels - possible values for the target classification
 #'@param size - number of nodes that will be used in the hidden layer
 #'@param decay - how quickly it decreases in gradient descent
 #'@param maxit - maximun interations
-#'@return
+#'@return a classification object
 #'@examples
 #'@export
 cla_mlp <- function(attribute, slevels=NULL, size=NULL, decay=seq(0, 1, 0.0335), maxit=1000) {

@@ -8,12 +8,12 @@
 # loadlibrary("e1071")
 
 #'@title Naive Bayes Classifier
-#'@description
-#'@details
+#'@description Classification using the Naive Bayes algorithm
+#'@details This function fits a Naive Bayes model to the data provided, which can be used to classify new instances. The Naive Bayes algorithm is a probabilistic algorithm that makes predictions based on the probability of each class, given the values of the input features.
 #'
-#'@param attribute - name of the attribute used as target classification
-#'@param slevels - possible values for the target classification
-#'@return
+#'@param attribute Name of the attribute used as the target classification.
+#'@param slevels Possible values for the target classification.
+#'@return A classification object.
 #'@examples
 #'@export
 cla_nb <- function(attribute, slevels=NULL) {

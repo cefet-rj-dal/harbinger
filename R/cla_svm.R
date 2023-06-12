@@ -7,15 +7,17 @@
 # loadlibrary("e1071")
 
 #'@title Support Vector Machine Classification
-#'@description
-#'@details
+#'@description Classification using Support Vector Machine (SVM) algorithm
+#'@details This function creates a classification object using the Support Vector Machine (SVM) algorithm.
+#'The SVM is a popular machine learning algorithm used in classification tasks.
+#'It works by finding the optimal hyperplane that separates data points belonging to different classes.
 #'
 #'@param attribute - name of the attribute used as target classification
 #'@param slevels - possible values for the target classification
-#'@param epsilon
-#'@param cost
-#'@param kernel
-#'@return
+#'@param epsilon - parameter that controls the width of the margin around the separating hyperplane
+#'@param cost - parameter that controls the trade-off between having a wide margin and correctly classifying training data points
+#'@param kernel - the type of kernel function to be used in the SVM algorithm (linear, radial, polynomial, sigmoid)
+#'@return classification object
 #'@examples
 #'@export
 cla_svm <- function(attribute, slevels=NULL, epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel="radial") {

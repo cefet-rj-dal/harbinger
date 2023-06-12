@@ -9,13 +9,12 @@
 
 # cla_knn
 #'@title K Nearest Neighbor Classification
-#'@description Classification using KNN algorithm
-#'@details
-#'
-#'@param attribute - name of the attribute used as target classification
-#'@param slevels - possible values for the target classification
-#'@param k - number od classes
-#'@return classification object
+#'@description Classifies using the K-Nearest Neighbor algorithm.
+#'@details This function implements the K-Nearest Neighbor algorithm for classification. It computes the K nearest neighbors of each data point in the training set, and then determines the class label of each point by taking the majority vote of the K neighbors.
+#'@param attribute Name of the attribute used as target classification.
+#'@param slevels Possible values for the target classification.
+#'@param k A vector of integers indicating the number of neighbors to be considered.
+#'@return A classification object.
 #'@examples
 #'@export
 cla_knn <- function(attribute, slevels=NULL, k=1:30) {
@@ -67,3 +66,5 @@ predict.cla_knn  <- function(obj, x) {
 
   return(prediction)
 }
+
+

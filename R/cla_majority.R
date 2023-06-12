@@ -9,12 +9,11 @@
 
 # majority
 #'@title Majority Classification
-#'@description
-#'@details
-#'
-#'@param attribute - name of the attribute used as target classification
-#'@param slevels - possible values for the target classification
-#'@return classification object
+#'@description This function creates a classification object that uses the majority vote strategy to predict the target attribute. Given a target attribute, the function counts the number of occurrences of each value in the dataset and selects the one that appears most often.
+#'@details The function takes two arguments: the name of the attribute used as target classification and the possible values for the target classification. The second argument is optional and should be provided only if the dataset does not contain all possible values for the target attribute.
+#'@param attribute Name of the attribute used as target classification.
+#'@param slevels Possible values for the target classification.
+#'@return Returns a classification object.
 #'@examples
 #'@export
 cla_majority <- function(attribute, slevels=NULL) {
@@ -51,3 +50,5 @@ predict.cla_majority <- function(obj, x) {
   prediction <- as.matrix(prediction)
   return(prediction)
 }
+
+
