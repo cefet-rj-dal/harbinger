@@ -1,14 +1,16 @@
 # DAL Library
 # version 2.1
-
+ 
 # depends dal_transform.R
 
 ### outliers
-#'@title Identify outliers in a data base
-#'
-#'@description A function that takes a floating point variable as parameter
-#'
-#'@details Create an object that stores the alpha value that is used as a bound to identify outliers
+#'@title Outliers
+#'@description This R function defines an object of class "outliers" that can be used for outlier detection in a dataset.
+#'@details The outliers function has an optional parameter alpha that sets the threshold for identifying outliers.
+#'The default value for alpha is 1.5, which is a common value used in many outlier detection methods.
+#'The function creates an object using the dal_transform function, which must be defined elsewhere in the code or in an R package.
+#'The object created by the dal_transform function can be a base class object "dal_transform",
+#'which may include additional properties and methods for data transformation.
 #'
 #'@param alpha
 #'
@@ -104,4 +106,3 @@ transform.outliers <- function(obj, data) {
   attr(data, "idx") <- idx
   return(data)
 }
-
