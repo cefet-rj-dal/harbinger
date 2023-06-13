@@ -55,6 +55,6 @@ License: MIT + file LICENSE
 URL: https://github.com/cefet-rj-dal/harbinger, https://cefet-rj-dal.github.io/harbinger/
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Imports: 
-    ggplot2, TSPred, forecast, rugarch, randomForest, e1071, elmNNRcpp, nnet, dplyr, stringr, RSNNS, Matrix, tree, MLmetrics, ROCR, class
+RoxygenNote: 7.2.2
+Imports: ggplot2
+    
