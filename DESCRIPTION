@@ -1,6 +1,6 @@
 Package: harbinger
 Title: harbinger
-Version: 1.0.28
+Version: 1.0.50
 Authors@R: 
   c(    person(
             given = "Antonio",
@@ -56,5 +56,13 @@ URL: https://github.com/cefet-rj-dal/harbinger, https://cefet-rj-dal.github.io/h
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
-Imports: ggplot2
+Imports: 
+  ggplot2, 
+  TSPred,
+  dplyr, 
+  forecast, 
+  rugarch, 
+  stringr
+Remotes:  
+    cefet-rj-dal/daltoolbox
     

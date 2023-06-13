@@ -9,6 +9,12 @@ if (FALSE) {
 
 if (FALSE) {
   library(devtools)
+  suppressWarnings(check(vignettes = FALSE))
+  load_all()
+}
+
+if (FALSE) {
+  library(devtools)
   document()
   load_all()
 }

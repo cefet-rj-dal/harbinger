@@ -6,7 +6,6 @@
 #'@export
 #'@import forecast
 #'@import rugarch
-#'@import TSPred
 change_finder_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
