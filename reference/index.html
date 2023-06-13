@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.28</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.50</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,79 +53,49 @@
 
       <dl><dt>
           
-          <code><a href="balance_dataset.html">balance_dataset()</a></code> 
-        </dt>
-        <dd>Class Balance Dataset</dd>
-      </dl><dl><dt>
-          
-          <code><a href="balance_oversampling.html">balance_oversampling()</a></code> 
-        </dt>
-        <dd>Class Balance Oversampling</dd>
-      </dl><dl><dt>
-          
-          <code><a href="balance_subsampling.html">balance_subsampling()</a></code> 
-        </dt>
-        <dd>Class Balance Subsampling</dd>
-      </dl><dl><dt>
-          
-          <code><a href="categ_mapping.html">categ_mapping()</a></code> 
-        </dt>
-        <dd>Categorical Mapping</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_dtree.html">cla_dtree()</a></code> 
-        </dt>
-        <dd>Decision Tree Classification</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_knn.html">cla_knn()</a></code> 
-        </dt>
-        <dd>K Nearest Neighbor Classification</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_majority.html">cla_majority()</a></code> 
-        </dt>
-        <dd>Majority Classification</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_mlp.html">cla_mlp()</a></code> 
-        </dt>
-        <dd>Classification using Artificial Neural Network (ANN)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_nb.html">cla_nb()</a></code> 
-        </dt>
-        <dd>Naive Bayes Classifier</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_rf.html">cla_rf()</a></code> 
-        </dt>
-        <dd>Random Forest Classifier</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cla_svm.html">cla_svm()</a></code> 
-        </dt>
-        <dd>Support Vector Machine Classification</dd>
-      </dl><dl><dt>
-          
-          <code><a href="classification.html">classification()</a></code> 
-        </dt>
-        <dd>classification class</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dal_base.html">dal_base()</a></code> 
-        </dt>
-        <dd>dal_base object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dal_transform.html">dal_transform()</a></code> 
-        </dt>
-        <dd>DAL Transform</dd>
-      </dl><dl><dt>
-          
           <code><a href="detect.html">detect()</a></code> 
         </dt>
         <dd>Detect events in time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.change_finder_arima.html">detect(<i>&lt;change_finder_arima&gt;</i>)</a></code> 
+        </dt>
+        <dd>Detection of changes in time series using ARIMA models</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.change_finder_ets.html">detect(<i>&lt;change_finder_ets&gt;</i>)</a></code> 
+        </dt>
+        <dd>Detect changes in a time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.change_point.html">detect(<i>&lt;change_point&gt;</i>)</a></code> 
+        </dt>
+        <dd>Detect change points in time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.fbiad.html">detect(<i>&lt;fbiad&gt;</i>)</a></code> 
+        </dt>
+        <dd>Implements a time series anomaly detection method</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.har_arima.html">detect(<i>&lt;har_arima&gt;</i>)</a></code> 
+        </dt>
+        <dd>Detect anomalies in time series using ARIMA models</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.har_garch.html">detect(<i>&lt;har_garch&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs anomaly event detection in the time series using the GARCH model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.har_tsreg_sw.html">detect(<i>&lt;har_tsreg_sw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Implements the detect method of the har_tsreg_sw class for detecting anomalies in time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.harbinger.html">detect(<i>&lt;harbinger&gt;</i>)</a></code> 
+        </dt>
+        <dd>Generic outline for a time series event detection function</dd>
       </dl><dl><dt>
           
           <code><a href="evaluate.html">evaluate()</a></code> 
@@ -133,9 +103,34 @@
         <dd>Fit a model for event detection</dd>
       </dl><dl><dt>
           
-          <code><a href="fit.html">fit()</a></code> <code><a href="fit.html">fit()</a></code> 
+          <code><a href="evaluate.harbinger.html">evaluate(<i>&lt;harbinger&gt;</i>)</a></code> 
         </dt>
-        <dd>Fit</dd>
+        <dd>Evaluate the performance of the event detection model against true events</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evaluate.hard_evaluation.html">evaluate(<i>&lt;hard_evaluation&gt;</i>)</a></code> 
+        </dt>
+        <dd>Evaluates the model based on a confusion matrix</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evaluate.soft_evaluation.html">evaluate(<i>&lt;soft_evaluation&gt;</i>)</a></code> 
+        </dt>
+        <dd>Evaluate the quality of an event detection model against a reference dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.html">fit()</a></code> 
+        </dt>
+        <dd>Fit a model for event detection</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.har_tsreg_sw.html">fit(<i>&lt;har_tsreg_sw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Implements the fit method of the har_tsreg_sw class to fit a regression model on the time series passed as series argument</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.harbinger.html">fit(<i>&lt;harbinger&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fit a general outline of a fit function</dd>
       </dl><dl><dt>
           
           <code><a href="har_examples.html">har_examples</a></code> 
@@ -153,19 +148,19 @@
         <dd>Harbinger</dd>
       </dl><dl><dt>
           
-          <code><a href="minmax.html">minmax()</a></code> 
+          <code><a href="outliers.boxplot.html">outliers.boxplot()</a></code> 
         </dt>
-        <dd>Min-Max Normalization</dd>
+        <dd>Detect outliers in a dataset using the boxplot method</dd>
       </dl><dl><dt>
           
-          <code><a href="normalize.html">normalize()</a></code> 
+          <code><a href="outliers.boxplot.index.html">outliers.boxplot.index()</a></code> 
         </dt>
-        <dd>Normalization</dd>
+        <dd>Detect and return the indices of outliers in a dataset using the boxplot method</dd>
       </dl><dl><dt>
           
-          <code><a href="register_log.html">register_log()</a></code> 
+          <code><a href="plot.harbinger.html">plot(<i>&lt;harbinger&gt;</i>)</a></code> 
         </dt>
-        <dd>Register log details</dd>
+        <dd>Plot event detection on a time series</dd>
       </dl><dl><dt>
           
           <code><a href="soft_evaluation.html">soft_evaluation()</a></code> 
@@ -173,84 +168,9 @@
         <dd>Harbinger</dd>
       </dl><dl><dt>
           
-          <code><a href="transform.html">transform()</a></code> 
+          <code><a href="soft_scores.html">soft_scores()</a></code> 
         </dt>
-        <dd>Transform</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_an.html">ts_an()</a></code> 
-        </dt>
-        <dd>Time Series Adaptive Normalization</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_data.html">ts_data()</a></code> 
-        </dt>
-        <dd>Time Series Data</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_diff.html">ts_diff()</a></code> 
-        </dt>
-        <dd>Time Series Diff</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_ean.html">ts_ean()</a></code> 
-        </dt>
-        <dd>Time Series Adaptive Normalization (Exponential Moving Average - EMA)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_elm.html">ts_elm()</a></code> 
-        </dt>
-        <dd>Time Series Extreme Learning Machine (ELM)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_gminmax.html">ts_gminmax()</a></code> 
-        </dt>
-        <dd>Time Series Global Min-Max</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_mlp.html">ts_mlp()</a></code> 
-        </dt>
-        <dd>Time Series Multilayer Perceptron (MLP)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_normalize.html">ts_normalize()</a></code> 
-        </dt>
-        <dd>Time Series Normalize</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_projection.html">ts_projection()</a></code> 
-        </dt>
-        <dd>Time Series Projection</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_rf.html">ts_rf()</a></code> 
-        </dt>
-        <dd>Time Series Random Forest</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_sample.html">ts_sample()</a></code> 
-        </dt>
-        <dd>Time Series Sample</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_svm.html">ts_svm()</a></code> 
-        </dt>
-        <dd>Time Series Support Vector Machine</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_swminmax.html">ts_swminmax()</a></code> 
-        </dt>
-        <dd>Time Series Sliding Window Min-Max</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_transform.html">ts_transform()</a></code> 
-        </dt>
-        <dd>Time Series Transformation</dd>
-      </dl><dl><dt>
-          
-          <code><a href="zscore.html">zscore()</a></code> 
-        </dt>
-        <dd>Z-score Normalization</dd>
+        <dd>Calculate soft scores for a detection of events in a time series</dd>
       </dl></div>
   </main></div>
 
