@@ -16,6 +16,8 @@ loadlibrary <- function(packagename)
 
 load_harbinger <- function()
 {
+  library(daltoolbox)
+
   if (!require("harbinger", character.only = TRUE))
   {
     library(devtools)
@@ -23,6 +25,5 @@ load_harbinger <- function()
     devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, dependencies=FALSE, upgrade="never", build_vignettes = TRUE)
 
     library(harbinger)
-    library(daltoolbox)
   }
 }
