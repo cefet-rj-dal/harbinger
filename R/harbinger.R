@@ -24,6 +24,7 @@ harbinger <- function() {
 #'
 #'@return The "Harbinger" object without doing any processing or tuning of the model
 #'@examples
+#'@import daltoolbox
 #'@export
 fit.harbinger <- function(obj, serie) {
   return(obj)
