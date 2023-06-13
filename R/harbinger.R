@@ -5,32 +5,12 @@
 #'  Each method should be implemented in a descendant class of Harbinger
 #'@return Harbinger object
 #'@examples detector <- harbinger()
+#'@import daltoolbox
 #'@export
 harbinger <- function() {
-  obj <- list()
-  obj$log <- FALSE
-  obj$debug <- FALSE
-  obj$reproduce <- FALSE
-  attr(obj, "class") <- "harbinger"
+  obj <- dal_base()
+  class(obj) <- append("harbinger", class(obj))
   return(obj)
-}
-
-#fit
-#'@title Fit a model for event detection
-#'@description Basic ancestor function for build model for event detection
-#'@details The fit function builds a model for time series event detection.
-#'For some methods, the model is not needed to be build, so the function do nothing.
-#'
-#'@param obj harbinger object
-#'@param ... optional arguments./ further arguments passed to or from other methods.
-#'@return a harbinger object with model details
-#'@examples data(har_examples)
-#' dataset <- har_examples[[1]]
-#' detector <- harbinger()
-#' detector <- fit(detector, dataset$serie)
-#'@export
-fit <- function(obj, ...) {
-  UseMethod("fit")
 }
 
 #'@title Fit a general outline of a fit function

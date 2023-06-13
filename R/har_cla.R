@@ -16,9 +16,10 @@ har_cla <- function(model, tune = NULL, alpha = 1.5) {
   return(obj)
 }
 
+#'@import daltoolbox
 #'@export
 fit.har_cla <- function(obj, data) {
-  obj$model <- fit(obj$model, data)
+  obj$model <- daltoolbox::fit(obj$model, data)
   return(obj)
 }
 
