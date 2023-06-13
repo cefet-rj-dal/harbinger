@@ -24,13 +24,14 @@ fbiad <- function(sw = 30, alpha = 1.5) {
 #'@return A detection table is returned with the index of each data point, its anomaly state (TRUE or FALSE) and an event type (defined as "anomaly" in this function)
 #'
 #'@examples
+#'@import daltoolbox
 #'@export
 detect.fbiad <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   non_na <- which(!is.na(serie))
 
-  sx <- ts_data(na.omit(serie), obj$sw)
+  sx <- daltoolbox::ts_data(na.omit(serie), obj$sw)
   ma <- apply(sx, 1, mean)
   sxd <- (sx - ma)^2
   iF <- as.vector(outliers.boxplot(sxd[,ncol(sx)], obj$alpha))

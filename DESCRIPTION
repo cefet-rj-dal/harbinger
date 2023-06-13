@@ -57,12 +57,14 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
+  stats,
   ggplot2, 
   TSPred,
   dplyr, 
   forecast, 
   rugarch, 
-  stringr
+  stringr,
+  daltoolbox
 Remotes:  
     cefet-rj-dal/daltoolbox
     

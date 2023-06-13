@@ -4,7 +4,7 @@
 \alias{plot.harbinger}
 \title{Plot event detection on a time series}
 \usage{
-\method{plot}{harbinger}(
+plot.harbinger(
   obj,
   serie,
   detection,
