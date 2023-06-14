@@ -5,7 +5,7 @@ setrepos <- function(repos=repos) {
   repos_name <<- repos
 }
 
-loadlibrary <- function(packagename)
+internal_loadlibrary <- function(packagename)
 {
   if (!require(packagename, character.only = TRUE))
   {
@@ -14,7 +14,13 @@ loadlibrary <- function(packagename)
   }
 }
 
-load_harbinger <- function()
+
+loadlibrary <- function(packagename)
+{
+  suppressPackageStartupMessages(internal_loadlibrary(packagename))
+}
+
+internal_load_harbinger <- function()
 {
   library(daltoolbox)
 
@@ -27,3 +33,59 @@ load_harbinger <- function()
     library(harbinger)
   }
 }
+
+load_harbinger <- function()
+{
+  suppressPackageStartupMessages(internal_load_harbinger(internal_load_harbinger()))
+}
+
+####
+
+if (FALSE) {
+  library(devtools)
+  load_all()
+}
+
+if (FALSE) {
+  library(devtools)
+  check()
+  load_all()
+}
+
+if (FALSE) {
+  library(devtools)
+  suppressWarnings(check(vignettes = FALSE))
+  load_all()
+}
+
+if (FALSE) {
+  library(devtools)
+  document()
+  load_all()
+}
+
+if (FALSE) {
+  library(devtools)
+  devtools::build_manual()
+}
+
+if (FALSE) {
+  library(devtools)
+  usethis::use_readme_rmd()
+}
+
+if (FALSE) {
+  library(devtools)
+  devtools::build_readme()
+}
+
+if (FALSE) {
+  pkgdown::build_site()  ## para ver o resultado, o site fica muito legal
+  #usethis::use_pkgdown_github_pages()
+}
+
+if (FALSE) {
+  devtools::install(dependencies = TRUE, build_vignettes = TRUE)
+  utils::browseVignettes()
+}
+
