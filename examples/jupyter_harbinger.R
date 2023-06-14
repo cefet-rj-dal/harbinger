@@ -36,7 +36,7 @@ internal_load_harbinger <- function()
 
 load_harbinger <- function()
 {
-  suppressPackageStartupMessages(internal_load_harbinger(internal_load_harbinger()))
+  suppressPackageStartupMessages(internal_load_harbinger())
 }
 
 ####
