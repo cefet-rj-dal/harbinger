@@ -4,16 +4,16 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/404.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/index.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/LICENSE-text.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/index.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_base.html</loc>
@@ -22,22 +22,76 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_transform.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_arima.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_fbiad.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_garch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_ml.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.harbinger.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_arima.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_ets.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_scp.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval_soft.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.harbinger.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.html</loc>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanr_ml.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.harbinger.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_examples.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers_idx.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hard_evaluation.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/index.html</loc>
@@ -46,7 +100,10 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/register_log.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.html</loc>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_evaluation.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_scores.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/transform.html</loc>
