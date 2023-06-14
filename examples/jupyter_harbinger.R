@@ -80,8 +80,8 @@ if (FALSE) {
 }
 
 if (FALSE) {
-  pkgdown::build_site()  ## para ver o resultado, o site fica muito legal
-  #usethis::use_pkgdown_github_pages()
+  pkgdown::build_site()
+  usethis::use_pkgdown_github_pages()
 }
 
 if (FALSE) {
