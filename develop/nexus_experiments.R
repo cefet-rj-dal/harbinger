@@ -119,7 +119,7 @@ model <- har_herald(lag_pred=lag_pred, online_step=online_step,
                     pred_fun, pred_par,
                     detect_fun, detect_par)
 
-model <- fbiad()
+model <- hanr_fbiad()
 
 result <- run_nexus(model=model, data=data, warm_size=wm_size, batch_size=bt_size, mem_batches=0, png_folder="dev/plots/")
 
@@ -142,7 +142,7 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(result$detector, data$series,
+grf <- har_plot(result$detector, data$series,
                       result$detection, data$event)
 plot(grf)
 

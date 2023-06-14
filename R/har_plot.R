@@ -47,13 +47,13 @@ motifs_seqs <- function(detection) {
 #'@examples
 #'@export
 #use_package('ggplot2')
-plot.harbinger <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){
+har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){
   if (is.null(idx))
     idx <- 1:length(serie)
   detection$event[is.na(detection$event)] <- FALSE
 
   data <- data.frame(time = idx, serie = serie, FP = detection$event, TP = FALSE, FN = FALSE, color="darkgray")
-  data$CP <- detection$type == "change_point"
+  data$CP <- detection$type == "hcp_scp"
 
   if (!is.null(event)) {
     data$TP <- detection$event & (event == detection$event)

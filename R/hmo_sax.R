@@ -5,12 +5,12 @@
 #'@examples detector <- harbinger()
 #'@export
 #'@import stringr
-har_motif_sax <- function(a, w, qtd) {
+hmo_sax <- function(a, w, qtd) {
   obj <- harbinger()
   obj$a <- a
   obj$w <- w
   obj$qtd <- qtd
-  class(obj) <- append("har_motif_sax", class(obj))
+  class(obj) <- append("hmo_sax", class(obj))
   return(obj)
 }
 
@@ -62,7 +62,7 @@ norm_sax <- function (vector, slices)
 
 #'@export
 #'@import dplyr
-detect.har_motif_sax <- function(obj, serie) {
+detect.hmo_sax <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)

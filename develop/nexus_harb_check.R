@@ -19,8 +19,8 @@ head(dataset)
 plot(x = 1:length(dataset$serie), y = dataset$serie)
 lines(x = 1:length(dataset$serie), y = dataset$serie)
 
-# establishing fbiad method
-model <- fbiad()
+# establishing hanr_fbiad method
+model <- hanr_fbiad()
 
 
 
@@ -28,7 +28,7 @@ model <- fbiad()
 model <- fit(model, dataset$serie)
 
 
-# making detections using fbiad
+# making detections using hanr_fbiad
 detection <- detect(model, dataset$serie)
 
 # filtering detected events
@@ -41,7 +41,7 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(model, dataset$serie, detection, dataset$event)
+grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 
 
@@ -133,7 +133,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 30, mem_batches 
 #Create and setup objects
 bt_size <- 10
 wm_size <- 30
-model <- fbiad()
+model <- hanr_fbiad()
 
 result <- run_nexus(model=model, data=data, warm_size=wm_size, batch_size=bt_size, mem_batches=0, png_folder="dev/plots/")
 
@@ -156,7 +156,7 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(result$detector, data$series,
+grf <- har_plot(result$detector, data$series,
                       result$detection, data$event)
 plot(grf)
 
@@ -191,7 +191,7 @@ source("~/harbinger/develop/nexus.R")
 
 datasource <- nex_simulated_datasource("data", har_examples[[1]]$serie)
 
-online_detector_full <- nexus(datasource, har_arima(),
+online_detector_full <- nexus(datasource, hanr_arima(),
                               batch_size = 15)
 
 online_detector_full <- warmup(online_detector_full)
@@ -206,7 +206,7 @@ print(sum(har_examples[[1]]$serie-c(online_detector_full$stable_serie, online_de
 
 ## segundo caso - memória por batch ----
 
-online_detector <- nexus(datasource, har_arima())
+online_detector <- nexus(datasource, hanr_arima())
 
 online_detector <- warmup(online_detector)
 
@@ -218,9 +218,9 @@ while (!is.null(online_detector$datasource)) {
 print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detector$serie)))
 
 
-## terceiro caso - memória por batch fbiad ----
+## terceiro caso - memória por batch hanr_fbiad ----
 
-online_detector <- nexus(datasource, fbiad())
+online_detector <- nexus(datasource, hanr_fbiad())
 
 online_detector <- warmup(online_detector)
 
@@ -233,7 +233,7 @@ print(sum(har_examples[[1]]$serie-c(online_detector$stable_serie, online_detecto
 
 
 
-## quarto caso - memória por batch fbiad - gecco ph ----
+## quarto caso - memória por batch hanr_fbiad - gecco ph ----
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/event_datasets/main/gecco/carrega.R")
 
@@ -248,7 +248,7 @@ names(data) <- c("series", "event")
 datasource <- nex_simulated_datasource("data", data$series)
 
 
-online_detector <- nexus(datasource, har_fbiad())
+online_detector <- nexus(datasource, har_hanr_fbiad())
 
 online_detector <- warmup(online_detector)
 
@@ -277,7 +277,7 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(online_detector$detector, data$ph,
+grf <- har_plot(online_detector$detector, data$ph,
                       online_detector$detection, data$event)
 plot(grf)
 
@@ -311,7 +311,7 @@ run_nexus <- function(model, data, warm_size = 30, batch_size = 15, mem_batches 
 
     png(file=paste0(png_folder,"batch_",bt,".png"),
         width=600, height=350)
-    grf <- plot.harbinger(online_detector$detector, data$serie[online_detector$detection$idx], online_detector$detection, data$event[online_detector$detection$idx])
+    grf <- har_plot(online_detector$detector, data$serie[online_detector$detection$idx], online_detector$detection, data$event[online_detector$detection$idx])
     plot(grf)
     dev.off()
 
@@ -335,7 +335,7 @@ model <- har_herald(lag_pred=lag_pred, online_step=online_step,
                     detect_fun, detect_par)
 
 
-model <- fbiad()
+model <- hanr_fbiad()
 
 #FULL MEMORY
 result <- run_nexus(model, data, warm_size = 30, batch_size = 15, mem_batches = 0, png_folder="develop/plots/")
@@ -358,7 +358,7 @@ print(evaluation$confMatrix)
 
 
 # ploting the results
-grf <- plot.harbinger(result$detector, data$series,
+grf <- har_plot(result$detector, data$series,
                       result$detection, data$event)
 plot(grf)
 

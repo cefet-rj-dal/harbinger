@@ -7,32 +7,40 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-change_finder_lr <- function(w = 30, alpha = 1.5) {
+hcp_cf_ets <- function(w = 7, alpha = 1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
   obj$w <- w
-  class(obj) <- append("change_finder_lr", class(obj))
+  class(obj) <- append("hcp_cf_ets", class(obj))
   return(obj)
 }
 
-#'@export
-detect.change_finder_lr <- function(obj, serie) {
-  linreg <- function(serie) {
-    data <- data.frame(t = 1:length(serie), x = serie)
-    return(lm(x~t, data))
-  }
+#'@title Detect changes in a time series
+#'
+#'@description The function takes an object of the Harbinger class and a time series as parameters
+#'
+#'@details Detection is done using the ETS model to fit the time series and statistical methods to detect change points and outliers
+#'
+#'@param obj
+#'@param serie
+#'
+#'@return A data frame with information about the events detected in the time series, including the index of the event, whether it is an outlier or change point and the type of event
+#'
+#'@examples
 
+#'@export
+detect.hcp_cf_ets <- function(obj, serie) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
   serie <- na.omit(serie)
 
   #Adjusting a model to the entire series
-  M1 <- linreg(serie)
+  M1 <- forecast::ets(ts(serie))
 
   #Adjustment error on the entire series
   s <- residuals(M1)^2
-  outliers <- outliers.boxplot.index(s, obj$alpha)
+  outliers <- har_outliers_idx(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {
@@ -46,13 +54,13 @@ detect.change_finder_lr <- function(obj, serie) {
   y <- TSPred::mas(s, obj$w)
 
   #Adjusting to the entire series
-  M2 <- linreg(y)
+  M2 <- forecast::ets(ts(y))
 
   #Adjustment error on the whole window
   u <- residuals(M2)^2
 
   u <- TSPred::mas(u, obj$w)
-  cp <- outliers.boxplot.index(u)
+  cp <- har_outliers_idx(u)
   group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
   cp <- rep(FALSE, length(u))
   for (g in group_cp) {
@@ -73,7 +81,7 @@ detect.change_finder_lr <- function(obj, serie) {
   detection <- data.frame(idx=1:n, event = i_outliers, type="")
   detection$type[i_outliers] <- "anomaly"
   detection$event[cp] <- TRUE
-  detection$type[cp] <- "change_point"
+  detection$type[cp] <- "hcp_scp"
 
   return(detection)
 }

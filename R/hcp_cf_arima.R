@@ -6,11 +6,11 @@
 #'@export
 #'@import forecast
 #'@import rugarch
-change_finder_arima <- function(w = NULL, alpha = 1.5) {
+hcp_cf_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
   obj$alpha <- alpha
-  class(obj) <- append("change_finder_arima", class(obj))
+  class(obj) <- append("hcp_cf_arima", class(obj))
   return(obj)
 }
 
@@ -18,7 +18,7 @@ change_finder_arima <- function(w = NULL, alpha = 1.5) {
 #'
 #'@description The function takes as parameters an object and a vector 'serie' containing the time series values that will be analized
 #'
-#'@details First of all, the function adjusts an Arima model for all time series using the 'auto.arima' function from 'forecast' package. After of this, the function calculates the residuals of this model and uses 'outliers.boxplot.index' function from 'rugarch' package to identify outliers in this vector of residuals. Then, the function applies a sliding window of w size in the residuals, using the function 'TSPred::mas' to smooth the values
+#'@details First of all, the function adjusts an Arima model for all time series using the 'auto.arima' function from 'forecast' package. After of this, the function calculates the residuals of this model and uses 'har_outliers_idx' function from 'rugarch' package to identify outliers in this vector of residuals. Then, the function applies a sliding window of w size in the residuals, using the function 'TSPred::mas' to smooth the values
 #'
 #'@param obj
 #'@param serie
@@ -28,7 +28,7 @@ change_finder_arima <- function(w = NULL, alpha = 1.5) {
 #'@examples
 
 #'@export
-detect.change_finder_arima <- function(obj, serie) {
+detect.hcp_cf_arima <- function(obj, serie) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
@@ -43,7 +43,7 @@ detect.change_finder_arima <- function(obj, serie) {
 
   #Adjustment error on the entire series
   s <- residuals(M1)^2
-  outliers <- outliers.boxplot.index(s, alpha = obj$alpha)
+  outliers <- har_outliers_idx(s, alpha = obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {
@@ -63,7 +63,7 @@ detect.change_finder_arima <- function(obj, serie) {
   u <- residuals(M2)^2
 
   u <- TSPred::mas(u, w)
-  cp <- outliers.boxplot.index(u)
+  cp <- har_outliers_idx(u)
   group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
   cp <- rep(FALSE, length(u))
   for (g in group_cp) {
@@ -84,7 +84,7 @@ detect.change_finder_arima <- function(obj, serie) {
   detection <- data.frame(idx=1:n, event = i_outliers, type="")
   detection$type[i_outliers] <- "anomaly"
   detection$event[cp] <- TRUE
-  detection$type[cp] <- "change_point"
+  detection$type[cp] <- "hcp_scp"
 
   return(detection)
 }

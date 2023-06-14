@@ -4,7 +4,7 @@
 \alias{evaluate.harbinger}
 \title{Evaluate the performance of the event detection model against true events}
 \usage{
-\method{evaluate}{harbinger}(obj, detection, event, evaluation = hard_evaluation())
+\method{evaluate}{harbinger}(obj, detection, event, evaluation = har_eval())
 }
 \arguments{
 \item{evaluation}{}

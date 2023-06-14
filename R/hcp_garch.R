@@ -7,43 +7,43 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_garch <- function(w = 5, alpha = 1.5) {
+hcp_garch <- function(w = 30, alpha = 1.5) {
   obj <- harbinger()
-  obj$alpha <- alpha
   obj$w <- w
-
-  class(obj) <- append("har_garch", class(obj))
+  obj$alpha <- alpha
+  class(obj) <- append("hcp_garch", class(obj))
   return(obj)
 }
 
-#'@title Performs anomaly event detection in the time series using the GARCH model
-#'
-#'@description This function takes a har_garch object and a time series series as input
-#'
-#'@details First, the function fits a GARCH model to the series, calculates the squared residuals and applies a boxplot test to detect outliers. Detected outliers are classified as "anomalies"
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return A data frame with information about the events detected, including the index of the data point, whether it is an event or not, and the type of event
-#'@examples
-
 #'@export
-detect.har_garch <- function(obj, serie) {
+detect.hcp_garch <- function(obj, serie) {
+  linreg <- function(serie) {
+    data <- data.frame(t = 1:length(serie), x = serie)
+    return(lm(x~t, data))
+  }
+
   n <- length(serie)
   non_na <- which(!is.na(serie))
+
   serie <- na.omit(serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
-                                 mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
-                                 distribution.model = "norm")
+                              mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
+                              distribution.model = "norm")
 
   #Adjusting a model to the entire series
   model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  s <- model$sigma
-  outliers <- outliers.boxplot.index(s, obj$alpha)
+  serie <- model$sigma
+
+
+  #Adjusting a model to the entire series
+  M1 <- linreg(serie)
+
+  #Adjustment error on the entire series
+  s <- residuals(M1)^2
+  outliers <- har_outliers_idx(s, alpha = obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {
@@ -53,11 +53,13 @@ detect.har_garch <- function(obj, serie) {
     }
   }
   outliers[1:obj$w] <- FALSE
+
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 
   detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
+  detection$type[i_outliers] <- "hcp_scp"
+  detection$event[i_outliers] <- TRUE
 
   return(detection)
 }

@@ -7,17 +7,17 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_tsreg_sw <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
+hanr_ml <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   obj <- harbinger()
   obj$model <- model
   obj$sw_size <- sw_size
   obj$alpha <- alpha
   obj$tune <- tune
-  class(obj) <- append("har_tsreg_sw", class(obj))
+  class(obj) <- append("hanr_ml", class(obj))
   return(obj)
 }
 
-#'@title Implements the fit method of the har_tsreg_sw class to fit a regression model on the time series passed as series argument
+#'@title Implements the fit method of the hanr_ml class to fit a regression model on the time series passed as series argument
 #'
 #'@description The function receives as parameter an object and a time series
 #'
@@ -30,7 +30,7 @@ har_tsreg_sw <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
 #'
 #'@examples
 #'@export
-fit.har_tsreg_sw <- function(obj, serie) {
+fit.hanr_ml <- function(obj, serie) {
   ts <- ts_data(serie, obj$sw_size)
   io <- ts_projection(ts)
 
@@ -39,7 +39,7 @@ fit.har_tsreg_sw <- function(obj, serie) {
   return(obj)
 }
 
-#'@title Implements the detect method of the har_tsreg_sw class for detecting anomalies in time series
+#'@title Implements the detect method of the hanr_ml class for detecting anomalies in time series
 #'
 #'@description The function receives as parameter an object and a time series
 #'
@@ -51,7 +51,7 @@ fit.har_tsreg_sw <- function(obj, serie) {
 #'@return The i_outliers array that is included in the detection data structure
 #'@examples
 #'@export
-detect.har_tsreg_sw <- function(obj, serie) {
+detect.hanr_ml <- function(obj, serie) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
   serie <- na.omit(serie)
@@ -61,7 +61,7 @@ detect.har_tsreg_sw <- function(obj, serie) {
 
   adjust <- predict(obj$model, io$input)
   s <- abs(io$output-adjust)
-  outliers <- outliers.boxplot.index(s)
+  outliers <- har_outliers_idx(s)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {

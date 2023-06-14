@@ -6,11 +6,11 @@
 #'@export
 #'@import forecast
 #'@import rugarch
-har_arima <- function(w = NULL, alpha = 1.5) {
+hanr_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
   obj$alpha <- alpha
-  class(obj) <- append("har_arima", class(obj))
+  class(obj) <- append("hanr_arima", class(obj))
   return(obj)
 }
 
@@ -26,7 +26,7 @@ har_arima <- function(w = NULL, alpha = 1.5) {
 #'@return A dataframe with information about the detected anomalous points
 #'@examples
 #'@export
-detect.har_arima <- function(obj, serie) {
+detect.hanr_arima <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
   n <- length(serie)
@@ -43,7 +43,7 @@ detect.har_arima <- function(obj, serie) {
 
   #Adjustment error on the entire series
   s <- residuals(model)^2
-  outliers <- outliers.boxplot.index(s, obj$alpha)
+  outliers <- har_outliers_idx(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
   for (g in group_outliers) {

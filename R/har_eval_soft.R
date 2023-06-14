@@ -5,10 +5,10 @@
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
-soft_evaluation <- function(sw = 15) {
-  obj <- hard_evaluation()
+har_eval_soft <- function(sw = 15) {
+  obj <- har_eval()
   obj$sw <- sw
-  class(obj) <- append("soft_evaluation", class(obj))
+  class(obj) <- append("har_eval_soft", class(obj))
   return(obj)
 }
 
@@ -75,7 +75,7 @@ soft_scores <- function(detection, event, k){
 #'@examples
 
 #'@export
-evaluate.soft_evaluation <- function(obj, detection, event) {
+evaluate.har_eval_soft <- function(obj, detection, event) {
   detection[is.na(detection)] <- FALSE
   scores <- soft_scores(detection, event, obj$sw)
 
@@ -117,7 +117,7 @@ evaluate.soft_evaluation <- function(obj, detection, event) {
 
 
   obj <- append(obj, s_metrics)
-  attr(obj, "class") <- "soft_evaluation"
+  attr(obj, "class") <- "har_eval_soft"
   return(obj)
 }
 

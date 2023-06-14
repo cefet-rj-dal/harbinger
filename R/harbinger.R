@@ -80,7 +80,7 @@ detect.harbinger <- function(obj, serie) {
 #'@example
 #'
 #'@export
-evaluate.harbinger <- function(obj, detection, event, evaluation = hard_evaluation()) {
+evaluate.harbinger <- function(obj, detection, event, evaluation = har_eval()) {
   return(evaluate(evaluation, detection, event))
 }
 

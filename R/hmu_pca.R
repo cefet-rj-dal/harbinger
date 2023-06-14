@@ -2,12 +2,12 @@
 #'@details The Harbinger class establishes the basic interface for time series event detection.
 #'  Each method should be implemented in a descendant class of Harbinger
 #'@return Multivariate PCA Detector object
-#'@examples detector <- har_multi_pca()
+#'@examples detector <- hmu_pca()
 #'@export
-har_multi_pca <- function(alpha=1.5) {
+hmu_pca <- function(alpha=1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
-  class(obj) <- append("har_multi_pca", class(obj))
+  class(obj) <- append("hmu_pca", class(obj))
   return(obj)
 }
 
@@ -15,7 +15,7 @@ har_multi_pca <- function(alpha=1.5) {
 
 
 #'@export
-detect.har_multi_pca <- function(obj, serie) {
+detect.hmu_pca <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- nrow(serie)
@@ -26,7 +26,7 @@ detect.har_multi_pca <- function(obj, serie) {
   pca.transf <- as.matrix(pca_res$rotation[, 1])
   data_x <- as.data.frame(as.matrix(serie) %*% pca.transf)
 
-  model <- har_arima()
+  model <- hanr_arima()
   model <- fit(model, data_x$V1)
   detection <- detect(model, data_x$V1)
 

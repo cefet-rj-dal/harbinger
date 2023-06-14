@@ -5,9 +5,9 @@
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
-hard_evaluation <- function() {
+har_eval <- function() {
   obj <- list()
-  attr(obj, "class") <- "hard_evaluation"
+  attr(obj, "class") <- "har_eval"
   return(obj)
 }
 
@@ -20,7 +20,7 @@ hard_evaluation <- function() {
 #'@param obj harbinger object
 #'@param ... optional arguments./ further arguments passed to or from other methods.
 #'@return a harbinger object with model details
-#'@examples evaluation <- hard_evaluation()
+#'@examples evaluation <- har_eval()
 #' evaluation <- evaluate(evaluation, c(1, 0, 1, 0), c(0, 0, 1, 0))
 #'@export
 evaluate <- function(obj, ...) {
@@ -52,7 +52,7 @@ evaluate.default <- function(obj, detection, event) {
 #'
 #'@examples
 #'@export
-evaluate.hard_evaluation <- function(obj, detection, event) {
+evaluate.har_eval <- function(obj, detection, event) {
   detection[is.na(detection)] <- FALSE
   TP <- sum(detection & event)
   FP <- sum(detection & !event)
@@ -87,7 +87,7 @@ evaluate.hard_evaluation <- function(obj, detection, event) {
                     balanced_accuracy=balanced_accuracy, precision=precision,
                     recall=recall, F1=F1)
   obj <- append(obj, s_metrics)
-  attr(obj, "class") <- "hard_evaluation"
+  attr(obj, "class") <- "har_eval"
   return(obj)
 }
 

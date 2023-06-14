@@ -4,11 +4,11 @@
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
-change_point <- function(sw = 30, alpha = 1.5) {
+hcp_scp <- function(sw = 30, alpha = 1.5) {
   obj <- harbinger()
   obj$sw <- sw
   obj$alpha <- alpha
-  class(obj) <- append("change_point", class(obj))
+  class(obj) <- append("hcp_scp", class(obj))
   return(obj)
 }
 
@@ -45,7 +45,7 @@ analyze_window <- function(data, offset) {
 #'@return The function returns a dataframe indicating the occurrence of change points at each point in the series
 #'
 #'@export
-detect.change_point <- function(obj, serie) {
+detect.hcp_scp <- function(obj, serie) {
 
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
@@ -58,7 +58,7 @@ detect.change_point <- function(obj, serie) {
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
 
   #Returns index of windows with outlier error differences
-  index.cp <- outliers.boxplot(errors$mdl_dif, obj$alpha)
+  index.cp <- har_outliers(errors$mdl_dif, obj$alpha)
   index.cp <- c(rep(FALSE, obj$offset-1), index.cp, rep(FALSE, obj$sw-obj$offset))
 
   inon_na <- index.cp
@@ -67,7 +67,7 @@ detect.change_point <- function(obj, serie) {
   i[non_na] <- inon_na
 
   detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "change_point"
+  detection$type[i] <- "hcp_scp"
 
   return(detection)
 }

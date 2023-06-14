@@ -4,17 +4,17 @@
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
-har_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
+hanr_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
   obj <- harbinger()
   obj$seq <- seq
   obj$centers <- centers
   obj$alpha <- alpha
-  class(obj) <- append("har_kmeans", class(obj))
+  class(obj) <- append("hanr_kmeans", class(obj))
   return(obj)
 }
 
 #'@export
-fit.har_kmeans <- function(obj, serie) {
+fit.hanr_kmeans <- function(obj, serie) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
@@ -27,7 +27,7 @@ fit.har_kmeans <- function(obj, serie) {
 }
 
 #'@export
-detect.har_kmeans <- function(obj, serie) {
+detect.hanr_kmeans <- function(obj, serie) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
@@ -38,7 +38,7 @@ detect.har_kmeans <- function(obj, serie) {
   data <- as.data.frame(sx)
 
   distances <- apply(data, 1, function(x) min((rowSums(t(obj$clusters$centers - x)^2))))
-  outliers <- outliers.boxplot.index(distances, obj$alpha)
+  outliers <- har_outliers_idx(distances, obj$alpha)
 
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(serie))

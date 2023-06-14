@@ -7,24 +7,24 @@
 #'@import forecast
 #'@import rugarch
 #'@import TSPred
-har_cla <- function(model, tune = NULL, alpha = 1.5) {
+hanc_ml <- function(model, tune = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$model <- model
   obj$alpha <- alpha
   obj$tune <- tune
-  class(obj) <- append("har_cla", class(obj))
+  class(obj) <- append("hanc_ml", class(obj))
   return(obj)
 }
 
 #'@import daltoolbox
 #'@export
-fit.har_cla <- function(obj, data) {
+fit.hanc_ml <- function(obj, data) {
   obj$model <- daltoolbox::fit(obj$model, data)
   return(obj)
 }
 
 #'@export
-detect.har_cla <- function(obj, data) {
+detect.hanc_ml <- function(obj, data) {
   n <- nrow(data)
   non_na <- which(!is.na(apply(data, 1, max)))
   data <- na.omit(data)
