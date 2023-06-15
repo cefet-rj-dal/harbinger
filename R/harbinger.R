@@ -79,6 +79,7 @@ detect.harbinger <- function(obj, serie) {
 #'
 #'@example
 #'
+#'@import daltoolbox
 #'@export
 evaluate.harbinger <- function(obj, detection, event, evaluation = har_eval()) {
   return(evaluate(evaluation, detection, event))

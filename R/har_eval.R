@@ -6,35 +6,8 @@
 #'@examples detector <- harbinger()
 #'@export
 har_eval <- function() {
-  obj <- list()
-  attr(obj, "class") <- "har_eval"
-  return(obj)
-}
-
-#evaluation
-#'@title Fit a model for event detection
-#'@description Basic ancestor function for build model for event detection
-#'@details The fit function builds a model for time series event detection.
-#'For some methods, the model is not needed to be build, so the function do nothing.
-#'
-#'@param obj harbinger object
-#'@param ... optional arguments./ further arguments passed to or from other methods.
-#'@return a harbinger object with model details
-#'@examples evaluation <- har_eval()
-#' evaluation <- evaluate(evaluation, c(1, 0, 1, 0), c(0, 0, 1, 0))
-#'@export
-evaluate <- function(obj, ...) {
-  UseMethod("evaluate")
-}
-
-#'@param obj
-#'@param detection
-#'@param event
-
-#'@return Simply returns the input object without modification
-#'
-#'@export
-evaluate.default <- function(obj, detection, event) {
+  obj <- dal_base()
+  class(obj) <- append("har_eval", class(obj))
   return(obj)
 }
 
