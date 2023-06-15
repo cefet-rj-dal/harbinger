@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.50</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.55</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +58,11 @@
         <dd>Detect events in time series</dd>
       </dl><dl><dt>
           
+          <code><a href="detect.hanc_ml.html">detect(<i>&lt;hanc_ml&gt;</i>)</a></code> 
+        </dt>
+        <dd>Anomaly detector based on machine learning classification</dd>
+      </dl><dl><dt>
+          
           <code><a href="detect.hanr_arima.html">detect(<i>&lt;hanr_arima&gt;</i>)</a></code> 
         </dt>
         <dd>Detect anomalies in time series using ARIMA models</dd>
@@ -65,7 +70,7 @@
           
           <code><a href="detect.hanr_fbiad.html">detect(<i>&lt;hanr_fbiad&gt;</i>)</a></code> 
         </dt>
-        <dd>Implements a time series anomaly detection method</dd>
+        <dd>Anomaly detector using Forward-Backward Inertia Anomaly Detection</dd>
       </dl><dl><dt>
           
           <code><a href="detect.hanr_garch.html">detect(<i>&lt;hanr_garch&gt;</i>)</a></code> 
@@ -73,34 +78,54 @@
         <dd>Performs anomaly event detection in the time series using the GARCH model</dd>
       </dl><dl><dt>
           
+          <code><a href="detect.hanr_kmeans.html">detect(<i>&lt;hanr_kmeans&gt;</i>)</a></code> 
+        </dt>
+        <dd>Anomaly detector using kmeans</dd>
+      </dl><dl><dt>
+          
           <code><a href="detect.hanr_ml.html">detect(<i>&lt;hanr_ml&gt;</i>)</a></code> 
         </dt>
-        <dd>Implements the detect method of the hanr_ml class for detecting anomalies in time series</dd>
+        <dd>Implements the detection method using a fitted regression model</dd>
       </dl><dl><dt>
           
           <code><a href="detect.harbinger.html">detect(<i>&lt;harbinger&gt;</i>)</a></code> 
         </dt>
-        <dd>Generic outline for a time series event detection function</dd>
+        <dd>Generic detector</dd>
       </dl><dl><dt>
           
           <code><a href="detect.hcp_cf_arima.html">detect(<i>&lt;hcp_cf_arima&gt;</i>)</a></code> 
         </dt>
-        <dd>Detection of changes in time series using ARIMA models</dd>
+        <dd>Change Finder Using ARIMA</dd>
       </dl><dl><dt>
           
           <code><a href="detect.hcp_cf_ets.html">detect(<i>&lt;hcp_cf_ets&gt;</i>)</a></code> 
         </dt>
-        <dd>Detect changes in a time series</dd>
+        <dd>Change Finder Using ETS</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.hcp_cf_lr.html">detect(<i>&lt;hcp_cf_lr&gt;</i>)</a></code> 
+        </dt>
+        <dd>Change Finder using Linear Regression</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.hcp_garch.html">detect(<i>&lt;hcp_garch&gt;</i>)</a></code> 
+        </dt>
+        <dd>Change Finder using GARCH</dd>
       </dl><dl><dt>
           
           <code><a href="detect.hcp_scp.html">detect(<i>&lt;hcp_scp&gt;</i>)</a></code> 
         </dt>
-        <dd>Detect change points in time series</dd>
+        <dd>Seminal change Point Detector</dd>
       </dl><dl><dt>
           
-          <code><a href="evaluate.html">evaluate()</a></code> 
+          <code><a href="detect.hmo_sax.html">detect(<i>&lt;hmo_sax&gt;</i>)</a></code> 
         </dt>
-        <dd>Fit a model for event detection</dd>
+        <dd>Motif discovery using SAX</dd>
+      </dl><dl><dt>
+          
+          <code><a href="detect.hmu_pca.html">detect(<i>&lt;hmu_pca&gt;</i>)</a></code> 
+        </dt>
+        <dd>Multivariate anomaly detector using PCA</dd>
       </dl><dl><dt>
           
           <code><a href="evaluate.har_eval.html">evaluate(<i>&lt;har_eval&gt;</i>)</a></code> 
@@ -118,14 +143,54 @@
         <dd>Evaluate the performance of the event detection model against true events</dd>
       </dl><dl><dt>
           
+          <code><a href="fit.hanc_ml.html">fit(<i>&lt;hanc_ml&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fit Anomaly Detector Classifier using Machine Learning</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.hanr_kmeans.html">fit(<i>&lt;hanr_kmeans&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fits a kmeans model for anomaly detector</dd>
+      </dl><dl><dt>
+          
           <code><a href="fit.hanr_ml.html">fit(<i>&lt;hanr_ml&gt;</i>)</a></code> 
         </dt>
-        <dd>Implements the fit method of the hanr_ml class to fit a regression model on the time series passed as series argument</dd>
+        <dd>Fits a detection method using a regression model</dd>
       </dl><dl><dt>
           
           <code><a href="fit.harbinger.html">fit(<i>&lt;harbinger&gt;</i>)</a></code> 
         </dt>
-        <dd>Fit a general outline of a fit function</dd>
+        <dd>Fit a general detector</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanc_ml.html">hanc_ml()</a></code> 
+        </dt>
+        <dd>Anomaly detector based on machine learning classification</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanr_arima.html">hanr_arima()</a></code> 
+        </dt>
+        <dd>Anomaly detector using ARIMA</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanr_fbiad.html">hanr_fbiad()</a></code> 
+        </dt>
+        <dd>Anomaly detector using FBIAD</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanr_garch.html">hanr_garch()</a></code> 
+        </dt>
+        <dd>Anomaly detector using Garch</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanr_kmeans.html">hanr_kmeans()</a></code> 
+        </dt>
+        <dd>Anomaly detector using kmeans</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hanr_ml.html">hanr_ml()</a></code> 
+        </dt>
+        <dd>Anomaly detector using machine learning regression</dd>
       </dl><dl><dt>
           
           <code><a href="har_eval.html">har_eval()</a></code> 
@@ -140,7 +205,14 @@
           
           <code><a href="har_examples.html">har_examples</a></code> 
         </dt>
-        <dd>Synthetic data set for time series analysis</dd>
+        <dd>Synthetic data set for time series analysis
+Each time series has 101 observations with a single event on it.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="har_examples_multi.html">har_examples_multi</a></code> 
+        </dt>
+        <dd>Synthetic multivariate data set for time series analysis
+Each time series has 101 observations with a single event on it.</dd>
       </dl><dl><dt>
           
           <code><a href="har_outliers.html">har_outliers()</a></code> 
@@ -163,9 +235,39 @@
         <dd>Harbinger</dd>
       </dl><dl><dt>
           
-          <code><a href="soft_scores.html">soft_scores()</a></code> 
+          <code><a href="hcp_cf_arima.html">hcp_cf_arima()</a></code> 
         </dt>
-        <dd>Calculate soft scores for a detection of events in a time series</dd>
+        <dd>Change Finder using ARIMA</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hcp_cf_ets.html">hcp_cf_ets()</a></code> 
+        </dt>
+        <dd>Change Finder using ETS</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hcp_cf_lr.html">hcp_cf_lr()</a></code> 
+        </dt>
+        <dd>Change Finder using linear regression</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hcp_garch.html">hcp_garch()</a></code> 
+        </dt>
+        <dd>Change Finder using GARCH</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hcp_scp.html">hcp_scp()</a></code> 
+        </dt>
+        <dd>Seminal change point</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hmo_sax.html">hmo_sax()</a></code> 
+        </dt>
+        <dd>Motif discovery using SAX</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hmu_pca.html">hmu_pca()</a></code> 
+        </dt>
+        <dd>Multivariate anomaly detector using PCA</dd>
       </dl></div>
   </main></div>
 
