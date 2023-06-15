@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.50</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.55</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,13 +49,25 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for har_eval_soft</span></span>
-<span><span class="fu"><a href="evaluate.html">evaluate</a></span><span class="op">(</span><span class="va">obj</span>, <span class="va">detection</span>, <span class="va">event</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">evaluate</span><span class="op">(</span><span class="va">obj</span>, <span class="va">detection</span>, <span class="va">event</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>event</dt>
-<dd></dd>
+    <dl><dt>obj</dt>
+<dd><p>detector</p></dd>
+
+
+<dt>detection</dt>
+<dd><p>detected observations</p></dd>
+
+
+<dt>event</dt>
+<dd><p>labeled events</p></dd>
+
+
+<dt>...</dt>
+<dd><p>optional arguments.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -64,11 +76,12 @@
 
 <p>A list of performance measures for detection</p>
     </div>
-    <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The function converts the NA values of the "detection" array to FALSE. It then calls the "soft_scores" function to calculate soft scores (between 0 and 1) of correspondence between detections and true events</p>
-    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">detector</span> <span class="op">&lt;-</span> <span class="fu"><a href="harbinger.html">harbinger</a></span><span class="op">(</span><span class="op">)</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

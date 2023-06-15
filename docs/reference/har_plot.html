@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.50</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.55</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,8 +61,32 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>idx</dt>
-<dd></dd>
+    <dl><dt>obj</dt>
+<dd><p>detector</p></dd>
+
+
+<dt>serie</dt>
+<dd><p>time series</p></dd>
+
+
+<dt>detection</dt>
+<dd><p>detections</p></dd>
+
+
+<dt>event</dt>
+<dd><p>events</p></dd>
+
+
+<dt>mark.cp</dt>
+<dd><p>mark change point</p></dd>
+
+
+<dt>ylim</dt>
+<dd><p>limits for y-axis</p></dd>
+
+
+<dt>idx</dt>
+<dd><p>labels for x observations</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -71,11 +95,12 @@
 
 <p>A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis</p>
     </div>
-    <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The function creates a data.frame that contains the time series, the event detection results (true positives, false positives, false negatives) and colors for each of the detected events. Then, a line graph is created for the time series, with colored dots for each detected event</p>
-    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">detector</span> <span class="op">&lt;-</span> <span class="fu"><a href="harbinger.html">harbinger</a></span><span class="op">(</span><span class="op">)</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
