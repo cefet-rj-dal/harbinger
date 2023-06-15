@@ -1,12 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Change Finder using ETS
+#'@description Change Finder using ETS
+#'@param w Sliding window size
+#'@param alpha Threshold for outliers
+#'@return hcp_cf_arima object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hcp_cf_ets <- function(w = 7, alpha = 1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
@@ -15,31 +13,30 @@ hcp_cf_ets <- function(w = 7, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Detect changes in a time series
-#'
-#'@description The function takes an object of the Harbinger class and a time series as parameters
-#'
-#'@details Detection is done using the ETS model to fit the time series and statistical methods to detect change points and outliers
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return A data frame with information about the events detected in the time series, including the index of the event, whether it is an outlier or change point and the type of event
-#'
-#'@examples
-
+#'@title Change Finder Using ETS
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats na.omit
+#'@importFrom stats ts
+#'@importFrom stats residuals
+#'@importFrom forecast ets
+#'@importFrom TSPred mas
 #'@export
-detect.hcp_cf_ets <- function(obj, serie) {
+detect.hcp_cf_ets <- function(obj, serie, ...) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   #Adjusting a model to the entire series
-  M1 <- forecast::ets(ts(serie))
+  M1 <- forecast::ets(stats::ts(serie))
 
   #Adjustment error on the entire series
-  s <- residuals(M1)^2
+  s <- stats::residuals(M1)^2
   outliers <- har_outliers_idx(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
@@ -57,7 +54,7 @@ detect.hcp_cf_ets <- function(obj, serie) {
   M2 <- forecast::ets(ts(y))
 
   #Adjustment error on the whole window
-  u <- residuals(M2)^2
+  u <- stats::residuals(M2)^2
 
   u <- TSPred::mas(u, obj$w)
   cp <- har_outliers_idx(u)

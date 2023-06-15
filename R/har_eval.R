@@ -1,7 +1,5 @@
 #'@title Harbinger
 #'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
 #'@return Harbinger object
 #'@examples detector <- harbinger()
 #'@export
@@ -12,20 +10,15 @@ har_eval <- function() {
 }
 
 #'@title Evaluates the model based on a confusion matrix
-#'
 #'@description It takes three arguments: obj: an object to store the evaluation results; detection: a boolean vector that indicates whether or not the model detected an event; event: a boolean vector that indicates whether the event occurred or not
-#'
-#'@details The function calculates various detection model benchmark metrics based on the information provided in the detection and event vectors
-#'
-#'@param obj
-#'@param detection
-#'@param event
-#'
+#'@param obj detector
+#'@param detection detected observations
+#'@param event labeled events
+#'@param ... optional arguments.
 #'@return An object of the "hard evaluation" class updated with the calculated metrics
-#'
-#'@examples
+#'@examples detector <- harbinger()
 #'@export
-evaluate.har_eval <- function(obj, detection, event) {
+evaluate.har_eval <- function(obj, detection, event, ...) {
   detection[is.na(detection)] <- FALSE
   TP <- sum(detection & event)
   FP <- sum(detection & !event)

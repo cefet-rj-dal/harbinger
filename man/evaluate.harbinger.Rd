@@ -4,10 +4,18 @@
 \alias{evaluate.harbinger}
 \title{Evaluate the performance of the event detection model against true events}
 \usage{
-\method{evaluate}{harbinger}(obj, detection, event, evaluation = har_eval())
+\method{evaluate}{harbinger}(obj, detection, event, evaluation = har_eval(), ...)
 }
 \arguments{
-\item{evaluation}{}
+\item{obj}{detector}
+
+\item{detection}{detected observations}
+
+\item{event}{labeled events}
+
+\item{evaluation}{evaluation object}
+
+\item{...}{optional arguments.}
 }
 \value{
 The result of the evaluation
@@ -15,6 +23,6 @@ The result of the evaluation
 \description{
 Takes as input a "Harbinger" object, a set of event detection (stored as a data frame) and a set of true events (also stored as a data frame)
 }
-\details{
-This function calls the evaluate() function with the given arguments. The evaluate() function is responsible for calculating the appropriate evaluation metrics to compare event detections with true events
+\examples{
+detector <- harbinger()
 }

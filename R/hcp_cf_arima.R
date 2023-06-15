@@ -1,11 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Change Finder using ARIMA
+#'@description Change Finder using ARIMA
+#'@param w Sliding window size
+#'@param alpha Threshold for outliers
+#'@return hcp_cf_arima object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
 hcp_cf_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
@@ -14,25 +13,23 @@ hcp_cf_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Detection of changes in time series using ARIMA models
-#'
-#'@description The function takes as parameters an object and a vector 'serie' containing the time series values that will be analized
-#'
-#'@details First of all, the function adjusts an Arima model for all time series using the 'auto.arima' function from 'forecast' package. After of this, the function calculates the residuals of this model and uses 'har_outliers_idx' function from 'rugarch' package to identify outliers in this vector of residuals. Then, the function applies a sliding window of w size in the residuals, using the function 'TSPred::mas' to smooth the values
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return A table indicating the positions where the outliers occur and changes in the time series
-#'
-#'@examples
-
+#'@title Change Finder Using ARIMA
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats na.omit
+#'@importFrom stats residuals
+#'@importFrom TSPred mas
+#'@importFrom forecast auto.arima
 #'@export
-detect.hcp_cf_arima <- function(obj, serie) {
+detect.hcp_cf_arima <- function(obj, serie, ...) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   #Adjusting a model to the entire series
   M1 <- forecast::auto.arima(serie)
@@ -42,7 +39,7 @@ detect.hcp_cf_arima <- function(obj, serie) {
     w <- max(order[1], order[2]+1, order[3])
 
   #Adjustment error on the entire series
-  s <- residuals(M1)^2
+  s <- stats::residuals(M1)^2
   outliers <- har_outliers_idx(s, alpha = obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
@@ -60,7 +57,7 @@ detect.hcp_cf_arima <- function(obj, serie) {
   M2 <- forecast::auto.arima(y)
 
   #Adjustment error on the whole window
-  u <- residuals(M2)^2
+  u <- stats::residuals(M2)^2
 
   u <- TSPred::mas(u, w)
   cp <- har_outliers_idx(u)

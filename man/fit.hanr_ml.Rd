@@ -2,19 +2,23 @@
 % Please edit documentation in R/hanr_ml.R
 \name{fit.hanr_ml}
 \alias{fit.hanr_ml}
-\title{Implements the fit method of the hanr_ml class to fit a regression model on the time series passed as series argument}
+\title{Fits a detection method using a regression model}
 \usage{
-\method{fit}{hanr_ml}(obj, serie)
+\method{fit}{hanr_ml}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-The 'obj' object updated with the adjusted model
+Adjusted model
 }
 \description{
-The function receives as parameter an object and a time series
+Takes as input a "Harbinger" object and a time series
 }
-\details{
-The function starts by creating a time series object with the ts_data function, which divides the series into sliding windows of size obj$sw_size and returns a list with two columns: input and output
+\examples{
+detector <- harbinger()
 }

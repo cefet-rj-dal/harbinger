@@ -1,7 +1,7 @@
-#'@description Class for time series multivariate using PCA event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Multivariate PCA Detector object
+#'@title Multivariate anomaly detector using PCA
+#'@description Multivariate anomaly detector using PCA
+#'@param alpha Threshold for outliers
+#'@return hmu_pca object
 #'@examples detector <- hmu_pca()
 #'@export
 hmu_pca <- function(alpha=1.5) {
@@ -11,18 +11,24 @@ hmu_pca <- function(alpha=1.5) {
   return(obj)
 }
 
-#depois tem que implementar o fit para coletar o pca e normalização
-
-
+#'@title Multivariate anomaly detector using PCA
+#'@description Multivariate anomaly detector using PCA
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats na.omit
+#'@importFrom stats prcomp
 #'@export
-detect.hmu_pca <- function(obj, serie) {
+detect.hmu_pca <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- nrow(serie)
   non_na <- which(!is.na(apply(serie, 1, max)))
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
-  pca_res <- prcomp(serie, center=TRUE, scale.=TRUE)
+  pca_res <- stats::prcomp(serie, center=TRUE, scale.=TRUE)
   pca.transf <- as.matrix(pca_res$rotation[, 1])
   data_x <- as.data.frame(as.matrix(serie) %*% pca.transf)
 

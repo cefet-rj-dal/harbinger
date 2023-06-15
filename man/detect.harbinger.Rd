@@ -2,19 +2,23 @@
 % Please edit documentation in R/harbinger.R
 \name{detect.harbinger}
 \alias{detect.harbinger}
-\title{Generic outline for a time series event detection function}
+\title{Generic detector}
 \usage{
-\method{detect}{harbinger}(obj, serie)
+\method{detect}{harbinger}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-A table with information about detecting events in the time series
+A dataframe with information about the detected anomalous points
 }
 \description{
 Takes as input a "Harbinger" object and a time series
 }
-\details{
-The "idx" column represents the index of the observation in the time series, the "event" column indicates whether or not the event occurred in the observation (it is filled with "TRUE" or "FALSE") and the "type" column indicates the type of event detected (if any)
+\examples{
+detector <- harbinger()
 }

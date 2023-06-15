@@ -1,12 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector using Garch
+#'@description Anomaly detector using Garch
+#'@param w Window size for warm-up garch
+#'@param alpha Threshold for outliers
+#'@return hanr_garch object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hanr_garch <- function(w = 5, alpha = 1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
@@ -17,22 +15,19 @@ hanr_garch <- function(w = 5, alpha = 1.5) {
 }
 
 #'@title Performs anomaly event detection in the time series using the GARCH model
-#'
-#'@description This function takes a hanr_garch object and a time series series as input
-#'
-#'@details First, the function fits a GARCH model to the series, calculates the squared residuals and applies a boxplot test to detect outliers. Detected outliers are classified as "anomalies"
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return A data frame with information about the events detected, including the index of the data point, whether it is an event or not, and the type of event
-#'@examples
-
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@importFrom stats na.omit
+#'@importFrom rugarch ugarchspec
+#'@importFrom rugarch ugarchfit
 #'@export
-detect.hanr_garch <- function(obj, serie) {
+detect.hanr_garch <- function(obj, serie, ...) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
                                  mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),

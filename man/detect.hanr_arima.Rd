@@ -4,17 +4,21 @@
 \alias{detect.hanr_arima}
 \title{Detect anomalies in time series using ARIMA models}
 \usage{
-\method{detect}{hanr_arima}(obj, serie)
+\method{detect}{hanr_arima}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
 A dataframe with information about the detected anomalous points
 }
 \description{
-Implements a specific method for detecting anomalies in time series using an ARIMA model fitted to the data provided as input
+Takes as input a "Harbinger" object and a time series
 }
-\details{
-It uses the "forecast" R package to fit the ARIMA model and the "rugaarch" package to calculate model residuals. It then uses the "TSPred" package to identify outliers using a boxplot and marks the anomalous points in the resulting time series
+\examples{
+detector <- harbinger()
 }

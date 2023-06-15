@@ -1,12 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Change Finder using linear regression
+#'@description Change Finder using linear regression
+#'@param w Sliding window size
+#'@param alpha Threshold for outliers
+#'@return hcp_cf_lr object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hcp_cf_lr <- function(w = 30, alpha = 1.5) {
   obj <- harbinger()
   obj$alpha <- alpha
@@ -15,23 +13,34 @@ hcp_cf_lr <- function(w = 30, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Change Finder using Linear Regression
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats lm
+#'@importFrom stats na.omit
+#'@importFrom stats residuals
+#'@importFrom TSPred mas
 #'@export
-detect.hcp_cf_lr <- function(obj, serie) {
+detect.hcp_cf_lr <- function(obj, serie, ...) {
   linreg <- function(serie) {
     data <- data.frame(t = 1:length(serie), x = serie)
-    return(lm(x~t, data))
+    return(stats::lm(x~t, data))
   }
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   #Adjusting a model to the entire series
   M1 <- linreg(serie)
 
   #Adjustment error on the entire series
-  s <- residuals(M1)^2
+  s <- stats::residuals(M1)^2
   outliers <- har_outliers_idx(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
@@ -49,7 +58,7 @@ detect.hcp_cf_lr <- function(obj, serie) {
   M2 <- linreg(y)
 
   #Adjustment error on the whole window
-  u <- residuals(M2)^2
+  u <- stats::residuals(M2)^2
 
   u <- TSPred::mas(u, obj$w)
   cp <- har_outliers_idx(u)

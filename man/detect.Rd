@@ -17,10 +17,6 @@ a harbinger object with model details
 \description{
 Detect event using a Harbinger model for event detection
 }
-\details{
-The fit function builds a model for time series event detection.
-For some methods, the model is not needed to be build, so the function do nothing.
-}
 \examples{
 data(har_examples)
 dataset <- har_examples[[1]]

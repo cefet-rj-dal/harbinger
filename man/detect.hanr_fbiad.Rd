@@ -2,19 +2,20 @@
 % Please edit documentation in R/hanr_fbiad.R
 \name{detect.hanr_fbiad}
 \alias{detect.hanr_fbiad}
-\title{Implements a time series anomaly detection method}
+\title{Anomaly detector using Forward-Backward Inertia Anomaly Detection}
 \usage{
-\method{detect}{hanr_fbiad}(obj, serie)
+\method{detect}{hanr_fbiad}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-A detection table is returned with the index of each data point, its anomaly state (TRUE or FALSE) and an event type (defined as "anomaly" in this function)
+A dataframe with information about the detected anomalous points
 }
 \description{
-Takes as input an object and a time series. It uses the hanr_fbiad method to detect anomalies in the time series.
-}
-\details{
-First, the function checks if there is data available in the time series. Then, the series is divided into windows of size 'obj$sw', and the average in each window is calculated. The quadratic difference between the original series and the mean of the window is then calculated and subjected to a boxplot-based anomaly detection test with threshold defined by 'obj$alpha'
+Takes as input a "Harbinger" object and a time series
 }

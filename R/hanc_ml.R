@@ -1,12 +1,11 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector based on machine learning classification
+#'@description Anomaly detector based on machine learning classification
+#'@param model DAL Classification Model
+#'@param tune DAL Tune Model
+#'@param alpha Outliers threshold
+#'@return hanc_ml object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hanc_ml <- function(model, tune = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$model <- model
@@ -16,23 +15,39 @@ hanc_ml <- function(model, tune = NULL, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Fit Anomaly Detector Classifier using Machine Learning
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
 #'@import daltoolbox
 #'@export
-fit.hanc_ml <- function(obj, data) {
-  obj$model <- daltoolbox::fit(obj$model, data)
+fit.hanc_ml <- function(obj, serie, ...) {
+  obj$model <- daltoolbox::fit(obj$model, serie)
   return(obj)
 }
 
+#'@title Anomaly detector based on machine learning classification
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats na.omit
+#'@importFrom stats predict
 #'@export
-detect.hanc_ml <- function(obj, data) {
-  n <- nrow(data)
-  non_na <- which(!is.na(apply(data, 1, max)))
-  data <- na.omit(data)
+detect.hanc_ml <- function(obj, serie, ...) {
+  n <- nrow(serie)
+  non_na <- which(!is.na(apply(serie, 1, max)))
+  serie <- stats::na.omit(serie)
 
-  adjust <- predict(obj$model, data)
+  adjust <- stats::predict(obj$model, serie)
   outliers <- which(adjust[,1] < adjust[,2])
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, nrow(data))
+  outliers <- rep(FALSE, nrow(serie))
   for (g in group_outliers) {
     if (length(g) > 0) {
       i <- min(g)

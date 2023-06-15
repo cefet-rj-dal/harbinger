@@ -1,12 +1,12 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector using machine learning regression
+#'@description Anomaly detector using machine learning regression
+#'@param model DAL Toolbox regression model
+#'@param tune DAL Toolbox tunel
+#'@param sw_size Sliding window size
+#'@param alpha Threshold for outliers
+#'@return hanr_ml object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hanr_ml <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   obj <- harbinger()
   obj$model <- model
@@ -17,20 +17,15 @@ hanr_ml <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Implements the fit method of the hanr_ml class to fit a regression model on the time series passed as series argument
-#'
-#'@description The function receives as parameter an object and a time series
-#'
-#'@details The function starts by creating a time series object with the ts_data function, which divides the series into sliding windows of size obj$sw_size and returns a list with two columns: input and output
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return The 'obj' object updated with the adjusted model
-#'
-#'@examples
+#'@title Fits a detection method using a regression model
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return Adjusted model
+#'@examples detector <- harbinger()
 #'@export
-fit.hanr_ml <- function(obj, serie) {
+fit.hanr_ml <- function(obj, serie, ...) {
   ts <- ts_data(serie, obj$sw_size)
   io <- ts_projection(ts)
 
@@ -39,27 +34,24 @@ fit.hanr_ml <- function(obj, serie) {
   return(obj)
 }
 
-#'@title Implements the detect method of the hanr_ml class for detecting anomalies in time series
-#'
-#'@description The function receives as parameter an object and a time series
-#'
-#'@details The function starts by defining the length of the time series n and the index of non-missing observations non_na. The function then calls the ts_data function to create a time series object with sliding windows of size obj$sw_size and stores in io the array of input values and vector of output values for the model
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return The i_outliers array that is included in the detection data structure
-#'@examples
+#'@title Implements the detection method using a fitted regression model
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@importFrom stats na.omit
+#'@importFrom stats predict
 #'@export
-detect.hanr_ml <- function(obj, serie) {
+detect.hanr_ml <- function(obj, serie, ...) {
   n <- length(serie)
   non_na <- which(!is.na(serie))
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   ts <- ts_data(serie, obj$sw_size)
   io <- ts_projection(ts)
 
-  adjust <- predict(obj$model, io$input)
+  adjust <- stats::predict(obj$model, io$input)
   s <- abs(io$output-adjust)
   outliers <- har_outliers_idx(s)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))

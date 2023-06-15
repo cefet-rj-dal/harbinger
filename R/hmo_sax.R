@@ -1,7 +1,9 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Motif discovery using SAX
+#'@description Motif discovery using SAX
+#'@param a alphabet size
+#'@param w word size
+#'@param qtd number of occurrences to be classified as motifs
+#'@return hmo_sax object
 #'@examples detector <- harbinger()
 #'@export
 #'@import stringr
@@ -60,15 +62,24 @@ norm_sax <- function (vector, slices)
   return(saxvector)
 }
 
+#'@title Motif discovery using SAX
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
 #'@export
+#'@importFrom stats na.omit
 #'@import dplyr
-detect.hmo_sax <- function(obj, serie) {
+detect.hmo_sax <- function(obj, serie, ...) {
+  i <- 0
+  total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   tss <- norm_sax(serie, obj$a)
   tsw <- ts_data(tss, obj$w)

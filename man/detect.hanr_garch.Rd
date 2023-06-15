@@ -4,17 +4,18 @@
 \alias{detect.hanr_garch}
 \title{Performs anomaly event detection in the time series using the GARCH model}
 \usage{
-\method{detect}{hanr_garch}(obj, serie)
+\method{detect}{hanr_garch}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-A data frame with information about the events detected, including the index of the data point, whether it is an event or not, and the type of event
+A dataframe with information about the detected anomalous points
 }
 \description{
-This function takes a hanr_garch object and a time series series as input
-}
-\details{
-First, the function fits a GARCH model to the series, calculates the squared residuals and applies a boxplot test to detect outliers. Detected outliers are classified as "anomalies"
+Takes as input a "Harbinger" object and a time series
 }

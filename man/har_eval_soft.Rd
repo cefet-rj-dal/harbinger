@@ -6,15 +6,14 @@
 \usage{
 har_eval_soft(sw = 15)
 }
+\arguments{
+\item{sw}{tolerance window size}
+}
 \value{
 Harbinger object
 }
 \description{
 Ancestor class for time series event detection
-}
-\details{
-The Harbinger class establishes the basic interface for time series event detection.
-Each method should be implemented in a descendant class of Harbinger
 }
 \examples{
 detector <- harbinger()

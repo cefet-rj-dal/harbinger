@@ -12,10 +12,6 @@ Harbinger object
 \description{
 Ancestor class for time series event detection
 }
-\details{
-The Harbinger class establishes the basic interface for time series event detection.
-Each method should be implemented in a descendant class of Harbinger
-}
 \examples{
 detector <- harbinger()
 }

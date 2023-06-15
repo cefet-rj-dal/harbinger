@@ -2,19 +2,23 @@
 % Please edit documentation in R/hcp_cf_ets.R
 \name{detect.hcp_cf_ets}
 \alias{detect.hcp_cf_ets}
-\title{Detect changes in a time series}
+\title{Change Finder Using ETS}
 \usage{
-\method{detect}{hcp_cf_ets}(obj, serie)
+\method{detect}{hcp_cf_ets}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-A data frame with information about the events detected in the time series, including the index of the event, whether it is an outlier or change point and the type of event
+A dataframe with information about the detected anomalous points
 }
 \description{
-The function takes an object of the Harbinger class and a time series as parameters
+Takes as input a "Harbinger" object and a time series
 }
-\details{
-Detection is done using the ETS model to fit the time series and statistical methods to detect change points and outliers
+\examples{
+detector <- harbinger()
 }

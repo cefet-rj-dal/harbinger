@@ -7,7 +7,9 @@
 har_outliers(data, alpha = 1.5)
 }
 \arguments{
-\item{alpha}{}
+\item{data}{dataset}
+
+\item{alpha}{Threshold for outliers}
 }
 \value{
 The function returns a boolean array with true values for values considered to be outliers
@@ -15,6 +17,6 @@ The function returns a boolean array with true values for values considered to b
 \description{
 The function receives a dataset "data" and an "alpha" parameter (default 1.5), which controls the upper limit of the boxplot
 }
-\details{
-The function calculates the quartiles of the dataset, and then calculates the upper and lower bounds of the boxplot using the alpha parameter
+\examples{
+detector <- harbinger()
 }

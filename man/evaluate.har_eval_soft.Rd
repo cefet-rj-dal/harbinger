@@ -4,10 +4,16 @@
 \alias{evaluate.har_eval_soft}
 \title{Evaluate the quality of an event detection model against a reference dataset}
 \usage{
-\method{evaluate}{har_eval_soft}(obj, detection, event)
+\method{evaluate}{har_eval_soft}(obj, detection, event, ...)
 }
 \arguments{
-\item{event}{}
+\item{obj}{detector}
+
+\item{detection}{detected observations}
+
+\item{event}{labeled events}
+
+\item{...}{optional arguments.}
 }
 \value{
 A list of performance measures for detection
@@ -15,6 +21,6 @@ A list of performance measures for detection
 \description{
 It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
 }
-\details{
-The function converts the NA values of the "detection" array to FALSE. It then calls the "soft_scores" function to calculate soft scores (between 0 and 1) of correspondence between detections and true events
+\examples{
+detector <- harbinger()
 }

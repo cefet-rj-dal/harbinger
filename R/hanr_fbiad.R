@@ -1,7 +1,8 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector using FBIAD
+#'@description Anomaly detector using FBIAD
+#'@param sw Window size for FBIAD
+#'@param alpha Threshold for outliers
+#'@return hanr_fbiad object
 #'@examples detector <- harbinger()
 #'@export
 hanr_fbiad <- function(sw = 30, alpha = 1.5) {
@@ -12,32 +13,27 @@ hanr_fbiad <- function(sw = 30, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Implements a time series anomaly detection method
-#'
-#'@description Takes as input an object and a time series. It uses the hanr_fbiad method to detect anomalies in the time series.
-#'
-#'@details First, the function checks if there is data available in the time series. Then, the series is divided into windows of size 'obj$sw', and the average in each window is calculated. The quadratic difference between the original series and the mean of the window is then calculated and subjected to a boxplot-based anomaly detection test with threshold defined by 'obj$alpha'
-#'
-#'@param obj
-#'@param serie
-#'
-#'@return A detection table is returned with the index of each data point, its anomaly state (TRUE or FALSE) and an event type (defined as "anomaly" in this function)
-#'
-#'@examples
+#'@title Anomaly detector using Forward-Backward Inertia Anomaly Detection
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
 #'@import daltoolbox
+#'@importFrom stats na.omit
 #'@export
-detect.hanr_fbiad <- function(obj, serie) {
+detect.hanr_fbiad <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   non_na <- which(!is.na(serie))
 
-  sx <- daltoolbox::ts_data(na.omit(serie), obj$sw)
+  sx <- daltoolbox::ts_data(stats::na.omit(serie), obj$sw)
   ma <- apply(sx, 1, mean)
   sxd <- (sx - ma)^2
   iF <- as.vector(har_outliers(sxd[,ncol(sx)], obj$alpha))
   iF <- c(rep(FALSE, obj$sw-1), iF)
 
-  sx <- ts_data(rev(na.omit(serie)), obj$sw)
+  sx <- ts_data(rev(stats::na.omit(serie)), obj$sw)
   ma <- apply(sx, 1, mean)
   sxd <- (sx - ma)^2
   iB <- as.vector(har_outliers(sxd[,ncol(sx)], obj$alpha))

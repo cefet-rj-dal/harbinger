@@ -4,10 +4,16 @@
 \alias{evaluate.har_eval}
 \title{Evaluates the model based on a confusion matrix}
 \usage{
-\method{evaluate}{har_eval}(obj, detection, event)
+\method{evaluate}{har_eval}(obj, detection, event, ...)
 }
 \arguments{
-\item{event}{}
+\item{obj}{detector}
+
+\item{detection}{detected observations}
+
+\item{event}{labeled events}
+
+\item{...}{optional arguments.}
 }
 \value{
 An object of the "hard evaluation" class updated with the calculated metrics
@@ -15,6 +21,6 @@ An object of the "hard evaluation" class updated with the calculated metrics
 \description{
 It takes three arguments: obj: an object to store the evaluation results; detection: a boolean vector that indicates whether or not the model detected an event; event: a boolean vector that indicates whether the event occurred or not
 }
-\details{
-The function calculates various detection model benchmark metrics based on the information provided in the detection and event vectors
+\examples{
+detector <- harbinger()
 }

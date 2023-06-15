@@ -1,7 +1,9 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector using kmeans
+#'@description Anomaly detector using kmeans
+#'@param seq Sequence size
+#'@param centers Number of centroids
+#'@param alpha Threshold for outliers
+#'@return hanr_kmeans object
 #'@examples detector <- harbinger()
 #'@export
 hanr_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
@@ -13,26 +15,41 @@ hanr_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
   return(obj)
 }
 
+#'@title Fits a kmeans model for anomaly detector
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@importFrom stats kmeans
+#'@importFrom stats na.omit
 #'@export
-fit.hanr_kmeans <- function(obj, serie) {
+fit.hanr_kmeans <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
-  data <- ts_data(na.omit(serie), obj$seq)
+  data <- ts_data(stats::na.omit(serie), obj$seq)
   data <- as.data.frame(data)
 
   # Apply k-means
-  obj$clusters <- kmeans(data, centers=obj$centers, nstart=1)
+  obj$clusters <- stats::kmeans(data, centers=obj$centers, nstart=1)
   return(obj)
 }
 
+#'@title Anomaly detector using kmeans
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@importFrom stats na.omit
 #'@export
-detect.hanr_kmeans <- function(obj, serie) {
+detect.hanr_kmeans <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   sx <- ts_data(serie, obj$seq)
   data <- as.data.frame(sx)

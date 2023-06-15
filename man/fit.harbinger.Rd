@@ -2,12 +2,16 @@
 % Please edit documentation in R/harbinger.R
 \name{fit.harbinger}
 \alias{fit.harbinger}
-\title{Fit a general outline of a fit function}
+\title{Fit a general detector}
 \usage{
-\method{fit}{harbinger}(obj, serie)
+\method{fit}{harbinger}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
 The "Harbinger" object without doing any processing or tuning of the model
@@ -15,6 +19,6 @@ The "Harbinger" object without doing any processing or tuning of the model
 \description{
 Takes as input a "Harbinger" object and a time series
 }
-\details{
-This function is a default implementation of the fit() function for the "Harbinger" class, which can be overridden by a specific subclass to perform proper model fit
+\examples{
+detector <- harbinger()
 }

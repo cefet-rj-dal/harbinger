@@ -2,19 +2,20 @@
 % Please edit documentation in R/hcp_scp.R
 \name{detect.hcp_scp}
 \alias{detect.hcp_scp}
-\title{Detect change points in time series}
+\title{Seminal change Point Detector}
 \usage{
-\method{detect}{hcp_scp}(obj, serie)
+\method{detect}{hcp_scp}(obj, serie, ...)
 }
 \arguments{
-\item{serie}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{...}{optional arguments.}
 }
 \value{
-The function returns a dataframe indicating the occurrence of change points at each point in the series
+A dataframe with information about the detected anomalous points
 }
 \description{
-The function takes an object object and a serial time series as input
-}
-\details{
-Detection is done by applying the analyze_window function to each sliding window of data and identifying points with significantly different fit error between the two halves of the window. These points are marked as change points
+Takes as input a "Harbinger" object and a time series
 }

@@ -7,7 +7,9 @@
 har_outliers_idx(data, alpha = 1.5)
 }
 \arguments{
-\item{alpha}{}
+\item{data}{dataset}
+
+\item{alpha}{Threshold for outliers}
 }
 \value{
 A boolean vector indicating whether each value in the data set is an outlier or not and a vector of indices of the values considered to be outliers
@@ -15,6 +17,6 @@ A boolean vector indicating whether each value in the data set is an outlier or 
 \description{
 The function receives a dataset "data" and an "alpha" parameter (default 1.5), which controls the upper limit of the boxplot
 }
-\details{
-The function calls the "har_outliers" function internally to obtain a boolean vector "cond" with TRUE values for the values considered as outliers and FALSE for the others
+\examples{
+detector <- harbinger()
 }

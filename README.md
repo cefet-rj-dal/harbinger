@@ -37,9 +37,5 @@ library(harbinger)
 #> when loading 'daltoolbox'
 #> Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
 #> loading 'daltoolbox'
-#> Warning: replacing previous import 'TSPred::minmax' by 'daltoolbox::minmax'
-#> when loading 'harbinger'
-#> Warning: replacing previous import 'TSPred::evaluate' by 'daltoolbox::evaluate'
-#> when loading 'harbinger'
 ## basic example code
 ```

@@ -1,11 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Anomaly detector using ARIMA
+#'@description Anomaly detector using ARIMA
+#'@param w Window size for warm-up ARIMA
+#'@param alpha Threshold for outliers
+#'@return hanr_arima object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
 hanr_arima <- function(w = NULL, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
@@ -15,24 +14,23 @@ hanr_arima <- function(w = NULL, alpha = 1.5) {
 }
 
 #'@title Detect anomalies in time series using ARIMA models
-#'
-#'@description Implements a specific method for detecting anomalies in time series using an ARIMA model fitted to the data provided as input
-#'
-#'@details It uses the "forecast" R package to fit the ARIMA model and the "rugaarch" package to calculate model residuals. It then uses the "TSPred" package to identify outliers using a boxplot and marks the anomalous points in the resulting time series
-#'
-#'@param obj
-#'@param serie
-#'
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
 #'@return A dataframe with information about the detected anomalous points
-#'@examples
+#'@examples detector <- harbinger()
+#'@importFrom forecast auto.arima
+#'@importFrom stats residuals
+#'@importFrom stats na.omit
 #'@export
-detect.hanr_arima <- function(obj, serie) {
+detect.hanr_arima <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   #Adjusting a model to the entire series
   model <- forecast::auto.arima(serie)
@@ -42,7 +40,7 @@ detect.hanr_arima <- function(obj, serie) {
     w <- max(order[1], order[2]+1, order[3])
 
   #Adjustment error on the entire series
-  s <- residuals(model)^2
+  s <- stats::residuals(model)^2
   outliers <- har_outliers_idx(s, obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))

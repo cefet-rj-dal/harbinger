@@ -15,7 +15,19 @@ har_plot(
 )
 }
 \arguments{
-\item{idx}{}
+\item{obj}{detector}
+
+\item{serie}{time series}
+
+\item{detection}{detections}
+
+\item{event}{events}
+
+\item{mark.cp}{mark change point}
+
+\item{ylim}{limits for y-axis}
+
+\item{idx}{labels for x observations}
 }
 \value{
 A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis
@@ -23,6 +35,6 @@ A line graph with dots, where the time series is plotted on the y-axis and the t
 \description{
 It accepts as input an object, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
 }
-\details{
-The function creates a data.frame that contains the time series, the event detection results (true positives, false positives, false negatives) and colors for each of the detected events. Then, a line graph is created for the time series, with colored dots for each detected event
+\examples{
+detector <- harbinger()
 }

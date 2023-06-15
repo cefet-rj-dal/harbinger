@@ -19,35 +19,21 @@ motifs_seqs <- function(detection) {
 }
 
 
-#==== plot: Function for plotting detection detection ====
-# input:
-#   data: data.frame with one or more variables (time series) where the first variable refers to time.
-#   detection: output from 'evtdet' function regarding a particular times series.
-#   event: data.frame of the same length as the time series with two variables: time, detection (boolean indicating true detection)
-# output:
-#   plot.
-#'@import ggplot2
-#'
 #'@title Plot event detection on a time series
-#'
 #'@description It accepts as input an object, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
-#'
-#'@details The function creates a data.frame that contains the time series, the event detection results (true positives, false positives, false negatives) and colors for each of the detected events. Then, a line graph is created for the time series, with colored dots for each detected event
-#'
-#'@param obj
-#'@param serie
-#'@param detection
-#'@param event
-#'@param mark.cp
-#'@param ylim
-#'@param idx
-#'
+#'@param obj detector
+#'@param serie time series
+#'@param detection detections
+#'@param event events
+#'@param mark.cp mark change point
+#'@param ylim limits for y-axis
+#'@param idx labels for x observations
 #'@return A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis
-#'
-#'@examples
+#'@examples detector <- harbinger()
+#'@import ggplot2
 #'@export
-#use_package('ggplot2')
 har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){
+  time <- 0
   if (is.null(idx))
     idx <- 1:length(serie)
   detection$event[is.na(detection$event)] <- FALSE
@@ -82,7 +68,6 @@ har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL,
   bottom_1 <- min_data-(max_data-min_data)*0.02
   bottom_2 <- min_data-(max_data-min_data)*0.05
 
-  #Plotting time series
   plot <- ggplot(data, aes(x=time, y=serie)) + geom_point(colour=data$color) + geom_line() +
     xlab("") +
     ylab("") +

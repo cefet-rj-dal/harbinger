@@ -1,12 +1,10 @@
-#'@description Ancestor class for time series event detection
-#'@details The Harbinger class establishes the basic interface for time series event detection.
-#'  Each method should be implemented in a descendant class of Harbinger
-#'@return Harbinger object
+#'@title Change Finder using GARCH
+#'@description Change Finder using GARCH
+#'@param w Sliding window size
+#'@param alpha Threshold for outliers
+#'@return hcp_garch object
 #'@examples detector <- harbinger()
 #'@export
-#'@import forecast
-#'@import rugarch
-#'@import TSPred
 hcp_garch <- function(w = 30, alpha = 1.5) {
   obj <- harbinger()
   obj$w <- w
@@ -15,17 +13,29 @@ hcp_garch <- function(w = 30, alpha = 1.5) {
   return(obj)
 }
 
+#'@title Change Finder using GARCH
+#'@description Takes as input a "Harbinger" object and a time series
+#'@param obj detector
+#'@param serie time series
+#'@param ... optional arguments.
+#'@return A dataframe with information about the detected anomalous points
+#'@examples detector <- harbinger()
+#'@importFrom stats lm
+#'@importFrom stats na.omit
+#'@importFrom stats residuals
+#'@importFrom rugarch ugarchspec
+#'@importFrom rugarch ugarchfit
 #'@export
-detect.hcp_garch <- function(obj, serie) {
+detect.hcp_garch <- function(obj, serie, ...) {
   linreg <- function(serie) {
     data <- data.frame(t = 1:length(serie), x = serie)
-    return(lm(x~t, data))
+    return(stats::lm(x~t, data))
   }
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
-  serie <- na.omit(serie)
+  serie <- stats::na.omit(serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
                               mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
@@ -42,7 +52,7 @@ detect.hcp_garch <- function(obj, serie) {
   M1 <- linreg(serie)
 
   #Adjustment error on the entire series
-  s <- residuals(M1)^2
+  s <- stats::residuals(M1)^2
   outliers <- har_outliers_idx(s, alpha = obj$alpha)
   group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
   outliers <- rep(FALSE, length(s))
