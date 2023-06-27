@@ -1,5 +1,5 @@
-#'@title Harbinger
-#'@description Ancestor class for time series event detection
+#'@title Evaluate the quality of an event detection model against a reference dataset
+#'@description It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
 #'@param sw tolerance window size
 #'@return Harbinger object
 #'@examples detector <- harbinger()
@@ -48,14 +48,6 @@ soft_scores <- function(detection, event, k){
   return(S_d)
 }
 
-#'@title Evaluate the quality of an event detection model against a reference dataset
-#'@description It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
-#'@param obj detector
-#'@param detection detected observations
-#'@param event labeled events
-#'@param ... optional arguments.
-#'@return A list of performance measures for detection
-#'@examples detector <- harbinger()
 #'@export
 evaluate.har_eval_soft <- function(obj, detection, event, ...) {
   detection[is.na(detection)] <- FALSE

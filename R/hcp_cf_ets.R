@@ -13,13 +13,6 @@ hcp_cf_ets <- function(w = 7, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Change Finder Using ETS
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@examples detector <- harbinger()
 #'@importFrom stats na.omit
 #'@importFrom stats ts
 #'@importFrom stats residuals

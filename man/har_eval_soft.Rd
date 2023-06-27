@@ -2,7 +2,7 @@
 % Please edit documentation in R/har_eval_soft.R
 \name{har_eval_soft}
 \alias{har_eval_soft}
-\title{Harbinger}
+\title{Evaluate the quality of an event detection model against a reference dataset}
 \usage{
 har_eval_soft(sw = 15)
 }
@@ -13,7 +13,7 @@ har_eval_soft(sw = 15)
 Harbinger object
 }
 \description{
-Ancestor class for time series event detection
+It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
 }
 \examples{
 detector <- harbinger()

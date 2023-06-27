@@ -11,13 +11,6 @@ hmu_pca <- function(alpha=1.5) {
   return(obj)
 }
 
-#'@title Multivariate anomaly detector using PCA
-#'@description Multivariate anomaly detector using PCA
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@examples detector <- harbinger()
 #'@importFrom stats na.omit
 #'@importFrom stats prcomp
 #'@export

@@ -1,5 +1,3 @@
-#===== Boxplot analysis of results ======
-
 #'@title Detect outliers in a dataset using the boxplot method
 #'@description The function receives a dataset "data" and an "alpha" parameter (default 1.5), which controls the upper limit of the boxplot
 #'@param data dataset

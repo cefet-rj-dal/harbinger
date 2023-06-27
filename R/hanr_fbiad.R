@@ -13,12 +13,6 @@ hanr_fbiad <- function(sw = 30, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Anomaly detector using Forward-Backward Inertia Anomaly Detection
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
 #'@import daltoolbox
 #'@importFrom stats na.omit
 #'@export

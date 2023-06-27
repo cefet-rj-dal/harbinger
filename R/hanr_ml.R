@@ -17,13 +17,6 @@ hanr_ml <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Fits a detection method using a regression model
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return Adjusted model
-#'@examples detector <- harbinger()
 #'@export
 fit.hanr_ml <- function(obj, serie, ...) {
   ts <- ts_data(serie, obj$sw_size)
@@ -34,12 +27,6 @@ fit.hanr_ml <- function(obj, serie, ...) {
   return(obj)
 }
 
-#'@title Implements the detection method using a fitted regression model
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
 #'@importFrom stats na.omit
 #'@importFrom stats predict
 #'@export

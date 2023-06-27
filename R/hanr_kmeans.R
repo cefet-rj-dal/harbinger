@@ -15,12 +15,6 @@ hanr_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
   return(obj)
 }
 
-#'@title Fits a kmeans model for anomaly detector
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
 #'@importFrom stats kmeans
 #'@importFrom stats na.omit
 #'@export
@@ -36,12 +30,6 @@ fit.hanr_kmeans <- function(obj, serie, ...) {
   return(obj)
 }
 
-#'@title Anomaly detector using kmeans
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
 #'@importFrom stats na.omit
 #'@export
 detect.hanr_kmeans <- function(obj, serie, ...) {

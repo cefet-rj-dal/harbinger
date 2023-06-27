@@ -13,13 +13,6 @@ hanr_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Detect anomalies in time series using ARIMA models
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@examples detector <- harbinger()
 #'@importFrom forecast auto.arima
 #'@importFrom stats residuals
 #'@importFrom stats na.omit

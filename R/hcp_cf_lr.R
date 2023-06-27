@@ -13,13 +13,6 @@ hcp_cf_lr <- function(w = 30, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Change Finder using Linear Regression
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@examples detector <- harbinger()
 #'@importFrom stats lm
 #'@importFrom stats na.omit
 #'@importFrom stats residuals

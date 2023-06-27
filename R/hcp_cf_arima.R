@@ -13,13 +13,6 @@ hcp_cf_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
-#'@title Change Finder Using ARIMA
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@examples detector <- harbinger()
 #'@importFrom stats na.omit
 #'@importFrom stats residuals
 #'@importFrom TSPred mas

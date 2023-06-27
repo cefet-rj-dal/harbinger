@@ -62,15 +62,9 @@ norm_sax <- function (vector, slices)
   return(saxvector)
 }
 
-#'@title Motif discovery using SAX
-#'@description Takes as input a "Harbinger" object and a time series
-#'@param obj detector
-#'@param serie time series
-#'@param ... optional arguments.
-#'@return A dataframe with information about the detected anomalous points
-#'@export
 #'@importFrom stats na.omit
 #'@import dplyr
+#'@export
 detect.hmo_sax <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
