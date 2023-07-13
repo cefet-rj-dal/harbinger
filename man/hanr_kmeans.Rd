@@ -7,16 +7,39 @@
 hanr_kmeans(seq = 1, centers = NA)
 }
 \arguments{
-\item{seq}{Sequence size}
+\item{seq}{sequence size}
 
-\item{centers}{Number of centroids}
+\item{centers}{number of centroids}
 }
 \value{
-hanr_kmeans object
+\code{hanr_kmeans} object
 }
 \description{
-Anomaly detector using kmeans
+Anomaly detection using kmeans
+The kmeans is applied to the time series.
+When seq equals one, observations distant from the closest centroids are labeled as anomalies.
+When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
+It wraps the kmeans presented in the stats library.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time series regression model
+model <- hanr_kmeans()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }
