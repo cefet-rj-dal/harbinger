@@ -4,17 +4,37 @@
 \alias{hanr_fbiad}
 \title{Anomaly detector using FBIAD}
 \usage{
-hanr_fbiad(sw = 30)
+hanr_fbiad(sw_size = 30)
 }
 \arguments{
-\item{sw}{Window size for FBIAD}
+\item{sw_size}{Window size for FBIAD}
 }
 \value{
 hanr_fbiad object
+Forward and Backward Inertial Anomaly Detector (FBIAD) detects anomalies in time series. Anomalies are observations that differ from both forward and backward time series inertia \url{doi:10.1109/IJCNN55064.2022.9892088}.
 }
 \description{
 Anomaly detector using FBIAD
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time series regression model
+model <- hanr_fbiad()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }

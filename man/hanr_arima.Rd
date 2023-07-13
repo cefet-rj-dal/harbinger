@@ -11,7 +11,8 @@ hanr_arima()
 }
 \description{
 Anomaly detection using ARIMA
-The ARIMA model adjusts to the time series. Observations distant from model are labeled as anomalies.
+The ARIMA model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+It wraps the ARIMA model presented in the forecast library.
 }
 \examples{
 library(daltoolbox)

@@ -1,13 +1,33 @@
-#'@title Anomaly detector using Garch
-#'@description Anomaly detector using Garch
-#'@param w Window size for warm-up garch
-#'@return hanr_garch object
-#'@examples detector <- harbinger()
+#'@title Anomaly detector using GARCH
+#'@description Anomaly detection using GARCH
+#'The GARCH model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+#'It wraps the ugarch model presented in the rugarch library.
+#'@return `hanr_garch` object
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 1
+#'dataset <- har_examples$example1
+#'head(dataset)
+#'
+#'# setting up time series regression model
+#'model <- hanr_garch()
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+# making detection using hanr_ml
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hanr_garch <- function(w = 5) {
+hanr_garch <- function() {
   obj <- harbinger()
-
-  obj$w <- w
 
   class(obj) <- append("hanr_garch", class(obj))
   return(obj)
@@ -34,7 +54,6 @@ detect.hanr_garch <- function(obj, serie, ...) {
   outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
-  outliers[1:obj$w] <- FALSE
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 

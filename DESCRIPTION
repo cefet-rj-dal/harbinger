@@ -75,7 +75,7 @@ Authors@R:
             role = "cph"
         )
    )
-Description: By analyzing time series, it is possible to observe significant changes in the behavior of observations that frequently characterize events. Events present themselves as anomalies, change points, or motifs. In the literature, there are several methods for detecting events. However, searching for a suitable time series method is a complex task, especially considering that the nature of events is often unknown. This work presents Harbinger, a framework for integrating and analyzing event detection methods. Harbinger contains several state-of-the-art methods <10.5753/sbbd.2020.13626>.
+Description: By analyzing time series, it is possible to observe significant changes in the behavior of observations that frequently characterize events. Events present themselves as anomalies, change points, or motifs. In the literature, there are several methods for detecting events. However, searching for a suitable time series method is a complex task, especially considering that the nature of events is often unknown. This work presents Harbinger, a framework for integrating and analyzing event detection methods. Harbinger contains several state-of-the-art methods <doi:10.5753/sbbd.2020.13626>.
 License: MIT + file LICENSE
 URL: https://github.com/cefet-rj-dal/harbinger, https://cefet-rj-dal.github.io/harbinger/
 Encoding: UTF-8

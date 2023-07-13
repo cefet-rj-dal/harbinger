@@ -2,19 +2,37 @@
 % Please edit documentation in R/hanr_garch.R
 \name{hanr_garch}
 \alias{hanr_garch}
-\title{Anomaly detector using Garch}
+\title{Anomaly detector using GARCH}
 \usage{
-hanr_garch(w = 5)
-}
-\arguments{
-\item{w}{Window size for warm-up garch}
+hanr_garch()
 }
 \value{
-hanr_garch object
+\code{hanr_garch} object
 }
 \description{
-Anomaly detector using Garch
+Anomaly detection using GARCH
+The GARCH model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+It wraps the ugarch model presented in the rugarch library.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time series regression model
+model <- hanr_garch()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }
