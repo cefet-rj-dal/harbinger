@@ -40,6 +40,9 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_ml.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_conv1d.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_examples_multi.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_lstm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers.html</loc>
