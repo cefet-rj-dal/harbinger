@@ -14,8 +14,8 @@ hanc_ml object
 }
 \description{
 Anomaly detection using daltoolbox classification.
-A training and test set should be used.
-A set of preconfigured machine learning methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
+A training and test set should be used. The training set must contain labeled events.
+A set of preconfigured of classification methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
 }
 \examples{
 library(daltoolbox)

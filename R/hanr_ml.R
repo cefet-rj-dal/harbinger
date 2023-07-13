@@ -1,17 +1,38 @@
-#'@title Anomaly detector using machine learning regression
-#'@description Anomaly detector using machine learning regression
-#'@param model DAL Toolbox regression model
-#'@param tune DAL Toolbox tunel
-#'@param sw_size Sliding window size
+#'@title Anomaly detector based on machine learning regression.
+#'@description Anomaly detection using daltoolbox regression
+#'The model adjust to the time series. Observations distant from model are labeled as anomalies.
+#'A set of preconfigured of regression methods are described in <https://cefet-rj-dal.github.io/daltoolbox>.
+#'@param model DALToolbox regression model
+#'@param sw_size sliding window size
 #'@return hanr_ml object
-#'@examples detector <- harbinger()
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 1
+#'dataset <- har_examples$example1
+#'head(dataset)
+#'
+#'# setting up time series regression model
+#'model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+# making detection using hanr_ml
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hanr_ml <- function(model, tune = NULL, sw_size = 15) {
+hanr_ml <- function(model, sw_size = 15) {
   obj <- harbinger()
   obj$model <- model
   obj$sw_size <- sw_size
 
-  obj$tune <- tune
   class(obj) <- append("hanr_ml", class(obj))
   return(obj)
 }

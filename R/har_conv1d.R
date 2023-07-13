@@ -39,7 +39,7 @@ har_conv1d <- function(preprocess = NA, input_size = NA, epochs = 10000L) {
 
 #'@export
 do_fit.har_conv1d <- function(obj, x, y) {
-  reticulate::source_python(system.file("python", "har_conv1d.py", package = "tspredit"))
+  reticulate::source_python(system.file("python", "har_conv1d.py"))
 
   if (is.null(obj$model))
     obj$model <- create_torch_conv1d(obj$channels, obj$input_size)
@@ -54,7 +54,7 @@ do_fit.har_conv1d <- function(obj, x, y) {
 
 #'@export
 do_predict.har_conv1d <- function(obj, x) {
-  reticulate::source_python(system.file("python", "har_conv1d.py", package = "tspredit"))
+  reticulate::source_python(system.file("python", "har_conv1d.py"))
 
   X_values <- as.data.frame(x)
   X_values$t0 <- 0

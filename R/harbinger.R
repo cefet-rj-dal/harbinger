@@ -38,7 +38,7 @@ harbinger <- function() {
   }
 
   har_outliers_idx <- function(data){
-    cond <- obj$har_outliers(data, 1.5)
+    cond <- obj$har_outliers(data)
     index.cp = which(cond)
     return (index.cp)
   }

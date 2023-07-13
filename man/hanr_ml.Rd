@@ -2,23 +2,42 @@
 % Please edit documentation in R/hanr_ml.R
 \name{hanr_ml}
 \alias{hanr_ml}
-\title{Anomaly detector using machine learning regression}
+\title{Anomaly detector based on machine learning regression.}
 \usage{
-hanr_ml(model, tune = NULL, sw_size = 15)
+hanr_ml(model, sw_size = 15)
 }
 \arguments{
-\item{model}{DAL Toolbox regression model}
+\item{model}{DALToolbox regression model}
 
-\item{tune}{DAL Toolbox tunel}
-
-\item{sw_size}{Sliding window size}
+\item{sw_size}{sliding window size}
 }
 \value{
 hanr_ml object
 }
 \description{
-Anomaly detector using machine learning regression
+Anomaly detection using daltoolbox regression
+The model adjust to the time series. Observations distant from model are labeled as anomalies.
+A set of preconfigured of regression methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time series regression model
+model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }
