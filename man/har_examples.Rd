@@ -23,7 +23,6 @@ data(har_examples)
 serie <- har_examples[[1]]
 }
 \references{
-Salles et al. (2020) SBBD p. 73-84
-(\href{https://doi.org/10.5753/sbbd.2020.13626}{Harbinger Framework})
+\href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
 }
 \keyword{datasets}
