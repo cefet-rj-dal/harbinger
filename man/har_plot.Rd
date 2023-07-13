@@ -15,26 +15,53 @@ har_plot(
 )
 }
 \arguments{
-\item{obj}{detector}
+\item{obj}{harbinger detector}
 
 \item{serie}{time series}
 
-\item{detection}{detections}
+\item{detection}{detection}
 
 \item{event}{events}
 
-\item{mark.cp}{mark change point}
+\item{mark.cp}{show change points}
 
 \item{ylim}{limits for y-axis}
 
 \item{idx}{labels for x observations}
 }
 \value{
-A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis
+A time series plot with marked events
 }
 \description{
-It accepts as input an object, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
+It accepts as harbinger, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using the time series 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time change point using GARCH
+model <- hanr_arima()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+# making detections
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
+# evaluating the detections
+evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
+print(evaluation$confMatrix)
+
+# ploting the results
+grf <- har_plot(model, dataset$serie, detection, dataset$event)
+plot(grf)
 }

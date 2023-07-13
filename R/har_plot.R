@@ -20,16 +20,44 @@ motifs_seqs <- function(detection) {
 
 
 #'@title Plot event detection on a time series
-#'@description It accepts as input an object, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
-#'@param obj detector
+#'@description It accepts as harbinger, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
+#'@param obj harbinger detector
 #'@param serie time series
-#'@param detection detections
+#'@param detection detection
 #'@param event events
-#'@param mark.cp mark change point
+#'@param mark.cp show change points
 #'@param ylim limits for y-axis
 #'@param idx labels for x observations
-#'@return A line graph with dots, where the time series is plotted on the y-axis and the time index is plotted on the x-axis
-#'@examples detector <- harbinger()
+#'@return A time series plot with marked events
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using the time series 1
+#'dataset <- har_examples$example1
+#'head(dataset)
+#'
+#'# setting up time change point using GARCH
+#'model <- hanr_arima()
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+#'# making detections
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
+#'# evaluating the detections
+#'evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
+#'print(evaluation$confMatrix)
+#'
+#'# ploting the results
+#'grf <- har_plot(model, dataset$serie, detection, dataset$event)
+#'plot(grf)
 #'@import ggplot2
 #'@export
 har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){

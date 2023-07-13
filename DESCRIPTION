@@ -40,6 +40,12 @@ Authors@R:
             email = "heraldo.borges@cefet-rj.br"
         ),
         person(
+            given = "Diego",
+            family = "Carvalho",
+            role = c("aut"),
+            email = "d.carvalho@ieee.org"
+        ),
+        person(
             given = "Rafaelli",
             family = "Coutinho",
             role = c("aut"),
