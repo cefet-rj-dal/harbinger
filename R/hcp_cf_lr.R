@@ -33,16 +33,10 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
   M1 <- linreg(serie)
 
   #Adjustment error on the entire series
-  s <- stats::residuals(M1)^2
-  outliers <- har_outliers_idx(s, obj$alpha)
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+  s <- obj$har_residuals(stats::residuals(M1))
+  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_group(outliers, length(s))
+
   outliers[1:obj$w] <- FALSE
 
   y <- TSPred::mas(s, obj$w)
@@ -51,10 +45,10 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
   M2 <- linreg(y)
 
   #Adjustment error on the whole window
-  u <- stats::residuals(M2)^2
+  u <- obj$har_residuals(stats::residuals(M2))
 
   u <- TSPred::mas(u, obj$w)
-  cp <- har_outliers_idx(u)
+  cp <- obj$har_outliers_idx(u)
   group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
   cp <- rep(FALSE, length(u))
   for (g in group_cp) {

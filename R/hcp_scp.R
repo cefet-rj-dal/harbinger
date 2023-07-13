@@ -29,7 +29,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
     y_d <- y[(offset+1):n,]
     mdl_d <- stats::lm(y~t, y_d)
 
-    err_ad <- mean(c(mdl_a$residuals,mdl_d$residuals)^2)
+    err_ad <- mean(obj$har_residuals(c(mdl_a$residuals,mdl_d$residuals)))
 
     #return 1-error on whole window; 2-error on window halves; 3-error difference
     return(data.frame(mdl=err, mdl_ad=err_ad, mdl_dif=err-err_ad))
@@ -46,7 +46,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
 
   #Returns index of windows with outlier error differences
-  index.cp <- har_outliers(errors$mdl_dif, obj$alpha)
+  index.cp <- obj$har_outliers(errors$mdl_dif, obj$alpha)
   index.cp <- c(rep(FALSE, obj$offset-1), index.cp, rep(FALSE, obj$sw-obj$offset))
 
   inon_na <- index.cp

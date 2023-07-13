@@ -31,16 +31,10 @@ detect.hanr_garch <- function(obj, serie, ...) {
   model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  s <- model$sigma
-  outliers <- har_outliers_idx(s, obj$alpha)
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+  s <- obj$har_residuals(model$sigma)
+  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_group(outliers, length(s))
+
   outliers[1:obj$w] <- FALSE
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers

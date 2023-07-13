@@ -39,17 +39,13 @@ detect.hanr_ml <- function(obj, serie, ...) {
   io <- ts_projection(ts)
 
   adjust <- stats::predict(obj$model, io$input)
-  s <- abs(io$output-adjust)
-  outliers <- har_outliers_idx(s)
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+
+  s <- obj$har_residuals(io$output-adjust)
+  outliers <- obj$har_outliers_idx(s)
+  outliers <- obj$har_outliers_group(outliers, length(s))
+
   outliers <- c(rep(NA, obj$sw_size - 1), outliers)
+
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 

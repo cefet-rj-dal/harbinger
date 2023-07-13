@@ -13,6 +13,32 @@ hanr_arima <- function(w = NULL, alpha = 1.5) {
   return(obj)
 }
 
+
+#'@importFrom forecast auto.arima
+#'@importFrom stats residuals
+#'@importFrom stats na.omit
+#'@export
+fit.hanr_arima <- function(obj, serie, ...) {
+  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
+
+  serie <- stats::na.omit(serie)
+
+  obj$model <- forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
+  order <- obj$model$arma[c(1, 6, 2, 3, 7, 4, 5)]
+  obj$p <- order[1]
+  obj$d <- order[2]
+  obj$q <- order[3]
+  obj$drift <- (NCOL(obj$model$xreg) == 1) && is.element("drift", names(obj$model$coef))
+  params <- list(p = obj$p, d = obj$d, q = obj$q, drift = obj$drift)
+  attr(obj, "params") <- params
+
+  if (is.null(obj$w))
+    obj$w <- max(obj$p, obj$d+1, obj$q)
+
+  return(obj)
+}
+
+
 #'@importFrom forecast auto.arima
 #'@importFrom stats residuals
 #'@importFrom stats na.omit
@@ -22,28 +48,25 @@ detect.hanr_arima <- function(obj, serie, ...) {
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
-
   serie <- stats::na.omit(serie)
 
   #Adjusting a model to the entire series
-  model <- forecast::auto.arima(serie)
-  order <- model$arma[c(1, 6, 2, 3, 7, 4, 5)]
-  w <- obj$w
-  if (is.null(w))
-    w <- max(order[1], order[2]+1, order[3])
+  model <- tryCatch(
+    {
+      forecast::Arima(serie, order=c(object$p, object$d, object$q), include.drift = object$drift)
+    },
+    error = function(cond) {
+      forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
+    }
+  )
 
   #Adjustment error on the entire series
-  s <- stats::residuals(model)^2
-  outliers <- har_outliers_idx(s, obj$alpha)
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+  s <- obj$har_residuals(stats::residuals(model))
+  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_group(outliers, length(s))
+
   outliers[1:w] <- FALSE
+
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 

@@ -23,7 +23,7 @@ binning <- function(v, a) {
   vp <- cut(v, unique(q), FALSE, include.lowest=TRUE)
   m <- tapply(v, vp, mean)
   vm <- m[vp]
-  mse <- mean( (v - vm)^2, na.rm = TRUE)
+  mse <- mean((v - vm)^2, na.rm = TRUE)
   return (list(binning=m, bins_factor=vp, q=q, qf=qf, bins=vm, mse=mse))
 }
 

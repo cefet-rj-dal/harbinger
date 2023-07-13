@@ -42,17 +42,9 @@ detect.hanr_kmeans <- function(obj, serie, ...) {
   sx <- ts_data(serie, obj$seq)
   data <- as.data.frame(sx)
 
-  distances <- apply(data, 1, function(x) min((rowSums(t(obj$clusters$centers - x)^2))))
-  outliers <- har_outliers_idx(distances, obj$alpha)
-
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(serie))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+  distances <- obj$har_residuals(apply(data, 1, function(x) sqrt(min((rowSums(t(obj$clusters$centers - x)^2))))))
+  outliers <- obj$har_outliers_idx(distances, obj$alpha)
+  outliers <- obj$har_outliers_group(outliers, length(serie))
 
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers

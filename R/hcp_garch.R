@@ -45,16 +45,10 @@ detect.hcp_garch <- function(obj, serie, ...) {
   M1 <- linreg(serie)
 
   #Adjustment error on the entire series
-  s <- stats::residuals(M1)^2
-  outliers <- har_outliers_idx(s, alpha = obj$alpha)
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, length(s))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+  s <- obj$har_residuals(stats::residuals(M1))
+  outliers <- obj$har_outliers_idx(s, alpha = obj$alpha)
+  outliers <- obj$har_outliers_group(outliers, length(s))
+
   outliers[1:obj$w] <- FALSE
 
   i_outliers <- rep(NA, n)

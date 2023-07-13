@@ -32,14 +32,9 @@ detect.hanc_ml <- function(obj, serie, ...) {
 
   adjust <- stats::predict(obj$model, serie)
   outliers <- which(adjust[,1] < adjust[,2])
-  group_outliers <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, nrow(serie))
-  for (g in group_outliers) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
-  }
+
+  outliers <- obj$har_outliers_group(outliers, nrow(serie))
+
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
 

@@ -23,14 +23,14 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
 
   sx <- daltoolbox::ts_data(stats::na.omit(serie), obj$sw)
   ma <- apply(sx, 1, mean)
-  sxd <- (sx - ma)^2
-  iF <- as.vector(har_outliers(sxd[,ncol(sx)], obj$alpha))
+  sxd <- obj$har_residuals(sx - ma)
+  iF <- as.vector(obj$har_outliers(sxd[,ncol(sx)], obj$alpha))
   iF <- c(rep(FALSE, obj$sw-1), iF)
 
   sx <- ts_data(rev(stats::na.omit(serie)), obj$sw)
   ma <- apply(sx, 1, mean)
-  sxd <- (sx - ma)^2
-  iB <- as.vector(har_outliers(sxd[,ncol(sx)], obj$alpha))
+  sxd <- obj$har_residuals(sx - ma)
+  iB <- as.vector(obj$har_outliers(sxd[,ncol(sx)], obj$alpha))
   iB <- rev(iB)
   iB <- c(iB, rep(FALSE, obj$sw-1))
 
