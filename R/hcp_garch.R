@@ -1,14 +1,13 @@
 #'@title Change Finder using GARCH
 #'@description Change Finder using GARCH
 #'@param w Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hcp_garch object
 #'@examples detector <- harbinger()
 #'@export
-hcp_garch <- function(w = 30, alpha = 1.5) {
+hcp_garch <- function(w = 30) {
   obj <- harbinger()
   obj$w <- w
-  obj$alpha <- alpha
+
   class(obj) <- append("hcp_garch", class(obj))
   return(obj)
 }
@@ -46,7 +45,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s, alpha = obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:obj$w] <- FALSE

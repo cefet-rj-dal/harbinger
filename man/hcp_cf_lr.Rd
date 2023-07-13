@@ -4,12 +4,10 @@
 \alias{hcp_cf_lr}
 \title{Change Finder using linear regression}
 \usage{
-hcp_cf_lr(w = 30, alpha = 1.5)
+hcp_cf_lr(w = 30)
 }
 \arguments{
 \item{w}{Sliding window size}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hcp_cf_lr object

@@ -4,21 +4,49 @@
 \alias{hanc_ml}
 \title{Anomaly detector based on machine learning classification}
 \usage{
-hanc_ml(model, tune = NULL, alpha = 1.5)
+hanc_ml(model)
 }
 \arguments{
-\item{model}{DAL Classification Model}
-
-\item{tune}{DAL Tune Model}
-
-\item{alpha}{Outliers threshold}
+\item{model}{DALToolbox classification model}
 }
 \value{
 hanc_ml object
 }
 \description{
-Anomaly detector based on machine learning classification
+Anomaly detection using daltoolbox classification.
+A training and test set should be used.
+A set of preconfigured machine learning methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 17
+dataset <- har_examples$example17
+dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+slevels <- levels(dataset$event)
+
+# separating into training and test
+train <- dataset[1:80,]
+test <- dataset[-(1:80),]
+
+# normalizing the data
+norm <- minmax()
+norm <- fit(norm, train)
+train_n <- transform(norm, train)
+
+# establishing decision tree method
+model <- hanc_ml(cla_dtree("event", slevels))
+
+# fitting the model
+model <- fit(model, train_n)
+
+# evaluating the detections during testing
+test_n <- transform(norm, test)
+
+detection <- detect(model, test_n)
+print(detection |> dplyr::filter(event==TRUE))
+
 }

@@ -1,14 +1,13 @@
 #'@title Anomaly detector using ARIMA
 #'@description Anomaly detector using ARIMA
 #'@param w Window size for warm-up ARIMA
-#'@param alpha Threshold for outliers
 #'@return hanr_arima object
 #'@examples detector <- harbinger()
 #'@export
-hanr_arima <- function(w = NULL, alpha = 1.5) {
+hanr_arima <- function(w = NULL) {
   obj <- harbinger()
   obj$w <- w
-  obj$alpha <- alpha
+
   class(obj) <- append("hanr_arima", class(obj))
   return(obj)
 }
@@ -62,7 +61,7 @@ detect.hanr_arima <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(stats::residuals(model))
-  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:obj$w] <- FALSE

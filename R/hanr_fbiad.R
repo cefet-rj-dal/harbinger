@@ -1,14 +1,13 @@
 #'@title Anomaly detector using FBIAD
 #'@description Anomaly detector using FBIAD
 #'@param sw Window size for FBIAD
-#'@param alpha Threshold for outliers
 #'@return hanr_fbiad object
 #'@examples detector <- harbinger()
 #'@export
-hanr_fbiad <- function(sw = 30, alpha = 1.5) {
+hanr_fbiad <- function(sw = 30) {
   obj <- harbinger()
   obj$sw <- sw
-  obj$alpha <- alpha
+
   class(obj) <- append("hanr_fbiad", class(obj))
   return(obj)
 }
@@ -24,13 +23,13 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
   sx <- daltoolbox::ts_data(stats::na.omit(serie), obj$sw)
   ma <- apply(sx, 1, mean)
   sxd <- obj$har_residuals(sx - ma)
-  iF <- as.vector(obj$har_outliers(sxd[,ncol(sx)], obj$alpha))
+  iF <- as.vector(obj$har_outliers(sxd[,ncol(sx)]))
   iF <- c(rep(FALSE, obj$sw-1), iF)
 
   sx <- ts_data(rev(stats::na.omit(serie)), obj$sw)
   ma <- apply(sx, 1, mean)
   sxd <- obj$har_residuals(sx - ma)
-  iB <- as.vector(obj$har_outliers(sxd[,ncol(sx)], obj$alpha))
+  iB <- as.vector(obj$har_outliers(sxd[,ncol(sx)]))
   iB <- rev(iB)
   iB <- c(iB, rep(FALSE, obj$sw-1))
 

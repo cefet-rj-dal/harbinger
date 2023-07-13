@@ -4,12 +4,10 @@
 \alias{hanr_fbiad}
 \title{Anomaly detector using FBIAD}
 \usage{
-hanr_fbiad(sw = 30, alpha = 1.5)
+hanr_fbiad(sw = 30)
 }
 \arguments{
 \item{sw}{Window size for FBIAD}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hanr_fbiad object

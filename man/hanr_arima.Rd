@@ -4,12 +4,10 @@
 \alias{hanr_arima}
 \title{Anomaly detector using ARIMA}
 \usage{
-hanr_arima(w = NULL, alpha = 1.5)
+hanr_arima(w = NULL)
 }
 \arguments{
 \item{w}{Window size for warm-up ARIMA}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hanr_arima object

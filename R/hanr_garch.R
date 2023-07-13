@@ -1,13 +1,12 @@
 #'@title Anomaly detector using Garch
 #'@description Anomaly detector using Garch
 #'@param w Window size for warm-up garch
-#'@param alpha Threshold for outliers
 #'@return hanr_garch object
 #'@examples detector <- harbinger()
 #'@export
-hanr_garch <- function(w = 5, alpha = 1.5) {
+hanr_garch <- function(w = 5) {
   obj <- harbinger()
-  obj$alpha <- alpha
+
   obj$w <- w
 
   class(obj) <- append("hanr_garch", class(obj))
@@ -32,7 +31,7 @@ detect.hanr_garch <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(model$sigma)
-  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:obj$w] <- FALSE

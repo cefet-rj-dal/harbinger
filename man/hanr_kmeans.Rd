@@ -4,14 +4,12 @@
 \alias{hanr_kmeans}
 \title{Anomaly detector using kmeans}
 \usage{
-hanr_kmeans(seq = 1, centers = NA, alpha = 1.5)
+hanr_kmeans(seq = 1, centers = NA)
 }
 \arguments{
 \item{seq}{Sequence size}
 
 \item{centers}{Number of centroids}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hanr_kmeans object

@@ -1,13 +1,12 @@
 #'@title Change Finder using linear regression
 #'@description Change Finder using linear regression
 #'@param w Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hcp_cf_lr object
 #'@examples detector <- harbinger()
 #'@export
-hcp_cf_lr <- function(w = 30, alpha = 1.5) {
+hcp_cf_lr <- function(w = 30) {
   obj <- harbinger()
-  obj$alpha <- alpha
+
   obj$w <- w
   class(obj) <- append("hcp_cf_lr", class(obj))
   return(obj)
@@ -34,7 +33,7 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:obj$w] <- FALSE

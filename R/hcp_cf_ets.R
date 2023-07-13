@@ -1,13 +1,12 @@
 #'@title Change Finder using ETS
 #'@description Change Finder using ETS
 #'@param w Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hcp_cf_arima object
 #'@examples detector <- harbinger()
 #'@export
-hcp_cf_ets <- function(w = 7, alpha = 1.5) {
+hcp_cf_ets <- function(w = 7) {
   obj <- harbinger()
-  obj$alpha <- alpha
+
   obj$w <- w
   class(obj) <- append("hcp_cf_ets", class(obj))
   return(obj)
@@ -30,7 +29,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s, obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:obj$w] <- FALSE

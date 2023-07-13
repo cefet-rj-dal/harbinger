@@ -4,12 +4,10 @@
 \alias{hcp_scp}
 \title{Seminal change point}
 \usage{
-hcp_scp(sw = 30, alpha = 1.5)
+hcp_scp(sw = 30)
 }
 \arguments{
 \item{sw}{Sliding window size}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hcp_scp object

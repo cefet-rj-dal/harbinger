@@ -4,12 +4,10 @@
 \alias{hanr_garch}
 \title{Anomaly detector using Garch}
 \usage{
-hanr_garch(w = 5, alpha = 1.5)
+hanr_garch(w = 5)
 }
 \arguments{
 \item{w}{Window size for warm-up garch}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hanr_garch object

@@ -26,19 +26,19 @@ harbinger <- function() {
     return(value^2)
   }
 
-  har_outliers <- function(data, alpha = 1.5){
+  har_outliers <- function(data){
     org = length(data)
     cond <- rep(FALSE, org)
     q = stats::quantile(data, na.rm=TRUE)
     IQR = q[4] - q[2]
-    lq1 = as.double(q[2] - alpha*IQR)
-    hq3 = as.double(q[4] + alpha*IQR)
+    lq1 = as.double(q[2] - 1.5*IQR)
+    hq3 = as.double(q[4] + 1.5*IQR)
     cond = data > hq3
     return (cond)
   }
 
-  har_outliers_idx <- function(data, alpha = 1.5){
-    cond <- obj$har_outliers(data, alpha)
+  har_outliers_idx <- function(data){
+    cond <- obj$har_outliers(data, 1.5)
     index.cp = which(cond)
     return (index.cp)
   }

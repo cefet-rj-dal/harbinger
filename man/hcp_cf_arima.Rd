@@ -4,12 +4,10 @@
 \alias{hcp_cf_arima}
 \title{Change Finder using ARIMA}
 \usage{
-hcp_cf_arima(w = NULL, alpha = 1.5)
+hcp_cf_arima(w = NULL)
 }
 \arguments{
 \item{w}{Sliding window size}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hcp_cf_arima object

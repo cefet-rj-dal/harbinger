@@ -4,7 +4,7 @@
 \alias{hanr_ml}
 \title{Anomaly detector using machine learning regression}
 \usage{
-hanr_ml(model, tune = NULL, sw_size = 15, alpha = 1.5)
+hanr_ml(model, tune = NULL, sw_size = 15)
 }
 \arguments{
 \item{model}{DAL Toolbox regression model}
@@ -12,8 +12,6 @@ hanr_ml(model, tune = NULL, sw_size = 15, alpha = 1.5)
 \item{tune}{DAL Toolbox tunel}
 
 \item{sw_size}{Sliding window size}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hanr_ml object

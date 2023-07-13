@@ -1,16 +1,46 @@
 #'@title Anomaly detector based on machine learning classification
-#'@description Anomaly detector based on machine learning classification
-#'@param model DAL Classification Model
-#'@param tune DAL Tune Model
-#'@param alpha Outliers threshold
+#'@description Anomaly detection using daltoolbox classification.
+#'A training and test set should be used.
+#'A set of preconfigured machine learning methods are described in <https://cefet-rj-dal.github.io/daltoolbox>.
+#'@param model DALToolbox classification model
 #'@return hanc_ml object
-#'@examples detector <- harbinger()
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 17
+#'dataset <- har_examples$example17
+#'dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+#'slevels <- levels(dataset$event)
+#'
+#'# separating into training and test
+#'train <- dataset[1:80,]
+#'test <- dataset[-(1:80),]
+#'
+#'# normalizing the data
+#'norm <- minmax()
+#'norm <- fit(norm, train)
+#'train_n <- transform(norm, train)
+#'
+#'# establishing decision tree method
+#'model <- hanc_ml(cla_dtree("event", slevels))
+#'
+#'# fitting the model
+#'model <- fit(model, train_n)
+#'
+#'# evaluating the detections during testing
+#'test_n <- transform(norm, test)
+#'
+#'detection <- detect(model, test_n)
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hanc_ml <- function(model, tune = NULL, alpha = 1.5) {
+hanc_ml <- function(model) {
   obj <- harbinger()
   obj$model <- model
-  obj$alpha <- alpha
-  obj$tune <- tune
+
   class(obj) <- append("hanc_ml", class(obj))
   return(obj)
 }

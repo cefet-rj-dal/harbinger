@@ -2,15 +2,14 @@
 #'@description Anomaly detector using kmeans
 #'@param seq Sequence size
 #'@param centers Number of centroids
-#'@param alpha Threshold for outliers
 #'@return hanr_kmeans object
 #'@examples detector <- harbinger()
 #'@export
-hanr_kmeans <- function(seq = 1, centers=NA, alpha=1.5) {
+hanr_kmeans <- function(seq = 1, centers=NA) {
   obj <- harbinger()
   obj$seq <- seq
   obj$centers <- centers
-  obj$alpha <- alpha
+
   class(obj) <- append("hanr_kmeans", class(obj))
   return(obj)
 }
@@ -43,7 +42,7 @@ detect.hanr_kmeans <- function(obj, serie, ...) {
   data <- as.data.frame(sx)
 
   distances <- obj$har_residuals(apply(data, 1, function(x) sqrt(min((rowSums(t(obj$clusters$centers - x)^2))))))
-  outliers <- obj$har_outliers_idx(distances, obj$alpha)
+  outliers <- obj$har_outliers_idx(distances)
   outliers <- obj$har_outliers_group(outliers, length(serie))
 
   i_outliers <- rep(NA, n)

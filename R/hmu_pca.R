@@ -1,12 +1,10 @@
 #'@title Multivariate anomaly detector using PCA
 #'@description Multivariate anomaly detector using PCA
-#'@param alpha Threshold for outliers
 #'@return hmu_pca object
 #'@examples detector <- hmu_pca()
 #'@export
-hmu_pca <- function(alpha=1.5) {
+hmu_pca <- function() {
   obj <- harbinger()
-  obj$alpha <- alpha
   class(obj) <- append("hmu_pca", class(obj))
   return(obj)
 }

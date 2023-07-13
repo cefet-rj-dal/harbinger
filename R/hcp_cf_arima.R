@@ -1,14 +1,13 @@
 #'@title Change Finder using ARIMA
 #'@description Change Finder using ARIMA
 #'@param w Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hcp_cf_arima object
 #'@examples detector <- harbinger()
 #'@export
-hcp_cf_arima <- function(w = NULL, alpha = 1.5) {
+hcp_cf_arima <- function(w = NULL) {
   obj <- harbinger()
   obj$w <- w
-  obj$alpha <- alpha
+
   class(obj) <- append("hcp_cf_arima", class(obj))
   return(obj)
 }
@@ -33,7 +32,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
 
   #Adjustment error on the entire series
   s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s, alpha = obj$alpha)
+  outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
   outliers[1:w] <- FALSE

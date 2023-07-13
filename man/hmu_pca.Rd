@@ -4,10 +4,7 @@
 \alias{hmu_pca}
 \title{Multivariate anomaly detector using PCA}
 \usage{
-hmu_pca(alpha = 1.5)
-}
-\arguments{
-\item{alpha}{Threshold for outliers}
+hmu_pca()
 }
 \value{
 hmu_pca object

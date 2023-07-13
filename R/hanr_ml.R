@@ -3,15 +3,14 @@
 #'@param model DAL Toolbox regression model
 #'@param tune DAL Toolbox tunel
 #'@param sw_size Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hanr_ml object
 #'@examples detector <- harbinger()
 #'@export
-hanr_ml <- function(model, tune = NULL, sw_size = 15, alpha = 1.5) {
+hanr_ml <- function(model, tune = NULL, sw_size = 15) {
   obj <- harbinger()
   obj$model <- model
   obj$sw_size <- sw_size
-  obj$alpha <- alpha
+
   obj$tune <- tune
   class(obj) <- append("hanr_ml", class(obj))
   return(obj)

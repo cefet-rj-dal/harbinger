@@ -1,14 +1,13 @@
 #'@title Seminal change point
 #'@description Seminal change point
 #'@param sw Sliding window size
-#'@param alpha Threshold for outliers
 #'@return hcp_scp object
 #'@examples detector <- harbinger()
 #'@export
-hcp_scp <- function(sw = 30, alpha = 1.5) {
+hcp_scp <- function(sw = 30) {
   obj <- harbinger()
   obj$sw <- sw
-  obj$alpha <- alpha
+
   class(obj) <- append("changepoint", class(obj))
   return(obj)
 }
@@ -46,7 +45,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
 
   #Returns index of windows with outlier error differences
-  index.cp <- obj$har_outliers(errors$mdl_dif, obj$alpha)
+  index.cp <- obj$har_outliers(errors$mdl_dif)
   index.cp <- c(rep(FALSE, obj$offset-1), index.cp, rep(FALSE, obj$sw-obj$offset))
 
   inon_na <- index.cp

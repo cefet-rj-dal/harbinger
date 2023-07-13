@@ -4,12 +4,10 @@
 \alias{hcp_garch}
 \title{Change Finder using GARCH}
 \usage{
-hcp_garch(w = 30, alpha = 1.5)
+hcp_garch(w = 30)
 }
 \arguments{
 \item{w}{Sliding window size}
-
-\item{alpha}{Threshold for outliers}
 }
 \value{
 hcp_garch object
