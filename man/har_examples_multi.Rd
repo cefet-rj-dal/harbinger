@@ -3,8 +3,7 @@
 \docType{data}
 \name{har_examples_multi}
 \alias{har_examples_multi}
-\title{Synthetic multivariate data set for time series analysis
-Each time series has 101 observations with a single event on it.}
+\title{Synthetic time series for event detection}
 \format{
 A list of multivariate time series.
 }
@@ -15,12 +14,15 @@ A list of multivariate time series.
 data(har_examples_multi)
 }
 \description{
-Synthetic multivariate data set for time series analysis
-Each time series has 101 observations with a single event on it.
+A list of multivariate time series for event detection
+\itemize{
+\item example1: an single multivariate anomaly
+}
+#'
 }
 \examples{
 data(har_examples_multi)
-serie <- har_examples_multi[[1]]
+serie <- har_examples_multi$example1
 }
 \references{
 \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
