@@ -42,7 +42,7 @@ har_lstm <- function(preprocess = NA, input_size = NA, epochs = 10000L) {
 #'@export
 do_fit.har_lstm <- function(obj, x, y) {
   if (!exists("create_torch_lstm"))
-    reticulate::source_python(system.file("python", "har_lstm.py"))
+    reticulate::source_python(system.file("python", "har_lstm.py", package = "harbinger"))
 
   if (is.null(obj$model))
     obj$model <- create_torch_lstm(obj$input_size, obj$input_size)
@@ -58,7 +58,7 @@ do_fit.har_lstm <- function(obj, x, y) {
 #'@export
 do_predict.har_lstm <- function(obj, x) {
   if (!exists("predict_torch_lstm"))
-    reticulate::source_python(system.file("python", "har_lstm.py"))
+    reticulate::source_python(system.file("python", "har_lstm.py", package = "harbinger"))
 
   X_values <- as.data.frame(x)
   X_values$t0 <- 0
