@@ -1,7 +1,20 @@
 #'@title Harbinger
 #'@description Ancestor class for time series event detection
 #'@return Harbinger object
-#'@examples detector <- harbinger()
+#'@examples
+#'# See ?hanc_ml for an example of anomaly detection using machine learning classification
+#'# See ?hanr_arima for an example of anomaly detection using ARIMA
+#'# See ?hanr_fbiad for an example of anomaly detection using FBIAD
+#'# See ?hanr_garch for an example of anomaly detection using GARCH
+#'# See ?hanr_kmeans for an example of anomaly detection using kmeans clustering
+#'# See ?hanr_ml for an example of anomaly detection using machine learning regression
+#'# See ?hanr_cf_arima for an example of change point detection using ARIMA
+#'# See ?hanr_cf_ets for an example of change point detection using ETS
+#'# See ?hanr_cf_lr for an example of change point detection using linear regression
+#'# See ?hanr_cf_garch for an example of change point detection using GARCH
+#'# See ?hanr_cf_scp for an example of change point detection using the seminal algorithm
+#'# See ?hmo_sax for an example of motif discovery using SAX
+#'# See ?hmu_pca for an example of anomaly detection in multivariate time series using PCA
 #'@import daltoolbox
 #'@importFrom stats quantile
 #'@export
@@ -51,14 +64,24 @@ harbinger <- function() {
 }
 
 #'@title Detect events in time series
-#'@description Detect event using a Harbinger model for event detection
+#'@description Event detection using a fitted Harbinger model
 #'@param obj harbinger object
-#'@param ... optional arguments./ further arguments passed to or from other methods.
-#'@return a harbinger object with model details
-#'@examples data(har_examples)
-#' dataset <- har_examples[[1]]
-#' detector <- harbinger()
-#' detector <- detect(detector, dataset$serie)
+#'@param ... optional arguments.
+#'@return a data frame with the index of observations and if they are identified or not as an event, and their type
+#'@examples
+#'# See ?hanc_ml for an example of anomaly detection using machine learning classification
+#'# See ?hanr_arima for an example of anomaly detection using ARIMA
+#'# See ?hanr_fbiad for an example of anomaly detection using FBIAD
+#'# See ?hanr_garch for an example of anomaly detection using GARCH
+#'# See ?hanr_kmeans for an example of anomaly detection using kmeans clustering
+#'# See ?hanr_ml for an example of anomaly detection using machine learning regression
+#'# See ?hanr_cf_arima for an example of change point detection using ARIMA
+#'# See ?hanr_cf_ets for an example of change point detection using ETS
+#'# See ?hanr_cf_lr for an example of change point detection using linear regression
+#'# See ?hanr_cf_garch for an example of change point detection using GARCH
+#'# See ?hanr_cf_scp for an example of change point detection using the seminal algorithm
+#'# See ?hmo_sax for an example of motif discovery using SAX
+#'# See ?hmu_pca for an example of anomaly detection in multivariate time series using PCA
 #'@export
 detect <- function(obj, ...) {
   UseMethod("detect")
