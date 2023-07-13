@@ -13,7 +13,7 @@ harbinger <- function() {
     return(value^2)
   }
 
-  obj$har_outliers <- function(data, alpha = 1.5){
+  har_outliers <- function(data, alpha = 1.5){
     org = length(data)
     cond <- rep(FALSE, org)
     q = stats::quantile(data, na.rm=TRUE)
@@ -24,7 +24,7 @@ harbinger <- function() {
     return (cond)
   }
 
-  obj$har_outliers_idx <- function(data, alpha = 1.5){
+  har_outliers_idx <- function(data, alpha = 1.5){
     cond <- obj$har_outliers(data, alpha)
     index.cp = which(cond)
     return (index.cp)

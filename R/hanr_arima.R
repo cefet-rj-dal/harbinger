@@ -53,7 +53,7 @@ detect.hanr_arima <- function(obj, serie, ...) {
   #Adjusting a model to the entire series
   model <- tryCatch(
     {
-      forecast::Arima(serie, order=c(object$p, object$d, object$q), include.drift = object$drift)
+      forecast::Arima(serie, order=c(obj$p, obj$d, obj$q), include.drift = obj$drift)
     },
     error = function(cond) {
       forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
@@ -65,7 +65,7 @@ detect.hanr_arima <- function(obj, serie, ...) {
   outliers <- obj$har_outliers_idx(s, obj$alpha)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
-  outliers[1:w] <- FALSE
+  outliers[1:obj$w] <- FALSE
 
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
