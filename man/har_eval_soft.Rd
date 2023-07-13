@@ -2,19 +2,20 @@
 % Please edit documentation in R/har_eval_soft.R
 \name{har_eval_soft}
 \alias{har_eval_soft}
-\title{Evaluate the quality of an event detection model against a reference dataset}
+\title{Evaluation of event detection}
 \usage{
-har_eval_soft(sw = 15)
+har_eval_soft(sw_size = 15)
 }
 \arguments{
-\item{sw}{tolerance window size}
+\item{sw_size}{tolerance window size}
 }
 \value{
-Harbinger object
+\code{har_eval_soft} object
 }
 \description{
-It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
+Evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}
 }
 \examples{
-detector <- harbinger()
+#loading the example database
+data(har_examples)
 }

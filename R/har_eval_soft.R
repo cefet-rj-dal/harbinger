@@ -1,12 +1,14 @@
-#'@title Evaluate the quality of an event detection model against a reference dataset
-#'@description It receives as input an object, a "detection" matrix with the detections made by the model and an "event" matrix with the true events
-#'@param sw tolerance window size
-#'@return Harbinger object
-#'@examples detector <- harbinger()
+#'@title Evaluation of event detection
+#'@description Evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>
+#'@param sw_size tolerance window size
+#'@return `har_eval_soft` object
+#'@examples
+#'#loading the example database
+#'data(har_examples)
 #'@export
-har_eval_soft <- function(sw = 15) {
+har_eval_soft <- function(sw_size = 15) {
   obj <- har_eval()
-  obj$sw <- sw
+  obj$sw_size <- sw_size
   class(obj) <- append("har_eval_soft", class(obj))
   return(obj)
 }
@@ -48,10 +50,11 @@ soft_scores <- function(detection, event, k){
   return(S_d)
 }
 
+#'@importFrom daltoolbox evaluate
 #'@export
 evaluate.har_eval_soft <- function(obj, detection, event, ...) {
   detection[is.na(detection)] <- FALSE
-  scores <- soft_scores(detection, event, obj$sw)
+  scores <- soft_scores(detection, event, obj$sw_size)
 
   m <- length(which(event))
   t <- length(event)
@@ -89,8 +92,5 @@ evaluate.har_eval_soft <- function(obj, detection, event, ...) {
                     balanced_accuracy=balanced_accuracy, precision=precision,
                     recall=recall, F1=F1)
 
-
-  obj <- append(obj, s_metrics)
-  attr(obj, "class") <- "har_eval_soft"
-  return(obj)
+  return(s_metrics)
 }

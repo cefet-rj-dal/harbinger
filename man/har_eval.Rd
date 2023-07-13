@@ -2,16 +2,17 @@
 % Please edit documentation in R/har_eval.R
 \name{har_eval}
 \alias{har_eval}
-\title{Harbinger}
+\title{Evaluation of event detection}
 \usage{
 har_eval()
 }
 \value{
-Harbinger object
+\code{har_eval} object
 }
 \description{
-Ancestor class for time series event detection
+Evaluation of event detection (traditional hard evaluation)
 }
 \examples{
-detector <- harbinger()
+#loading the example database
+data(har_examples)
 }

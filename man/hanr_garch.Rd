@@ -20,8 +20,8 @@ library(daltoolbox)
 #loading the example database
 data(har_examples)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using example 14
+dataset <- har_examples$example14
 head(dataset)
 
 # setting up time series regression model

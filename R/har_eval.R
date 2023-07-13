@@ -1,7 +1,9 @@
-#'@title Harbinger
-#'@description Ancestor class for time series event detection
-#'@return Harbinger object
-#'@examples detector <- harbinger()
+#'@title Evaluation of event detection
+#'@description Evaluation of event detection (traditional hard evaluation)
+#'@return `har_eval` object
+#'@examples
+#'#loading the example database
+#'data(har_examples)
 #'@export
 har_eval <- function() {
   obj <- dal_base()
@@ -9,14 +11,7 @@ har_eval <- function() {
   return(obj)
 }
 
-#'@title Evaluates the model based on a confusion matrix
-#'@description It takes three arguments: obj: an object to store the evaluation results; detection: a boolean vector that indicates whether or not the model detected an event; event: a boolean vector that indicates whether the event occurred or not
-#'@param obj detector
-#'@param detection detected observations
-#'@param event labeled events
-#'@param ... optional arguments.
-#'@return An object of the "hard evaluation" class updated with the calculated metrics
-#'@examples detector <- harbinger()
+#'@importFrom daltoolbox evaluate
 #'@export
 evaluate.har_eval <- function(obj, detection, event, ...) {
   detection[is.na(detection)] <- FALSE
@@ -52,8 +47,13 @@ evaluate.har_eval <- function(obj, detection, event, ...) {
                     detection_rate=detection_rate, detection_prevalence=detection_prevalence,
                     balanced_accuracy=balanced_accuracy, precision=precision,
                     recall=recall, F1=F1)
-  obj <- append(obj, s_metrics)
-  attr(obj, "class") <- "har_eval"
-  return(obj)
+  return(s_metrics)
 }
 
+
+
+#'@importFrom daltoolbox evaluate
+#'@export
+evaluate.harbinger <- function(obj, detection, event, ...) {
+  return(har_eval(), detection, event)
+}
