@@ -39,7 +39,7 @@ har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL,
   detection$event[is.na(detection$event)] <- FALSE
 
   data <- data.frame(time = idx, serie = serie, FP = detection$event, TP = FALSE, FN = FALSE, color="darkgray")
-  data$CP <- detection$type == "hcp_scp"
+  data$CP <- detection$type == "changepoint"
 
   if (!is.null(event)) {
     data$TP <- detection$event & (event == detection$event)

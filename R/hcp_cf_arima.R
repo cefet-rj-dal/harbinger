@@ -74,7 +74,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   detection <- data.frame(idx=1:n, event = i_outliers, type="")
   detection$type[i_outliers] <- "anomaly"
   detection$event[cp] <- TRUE
-  detection$type[cp] <- "hcp_scp"
+  detection$type[cp] <- "changepoint"
 
   return(detection)
 }

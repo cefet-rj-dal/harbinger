@@ -9,7 +9,7 @@ hcp_scp <- function(sw = 30, alpha = 1.5) {
   obj <- harbinger()
   obj$sw <- sw
   obj$alpha <- alpha
-  class(obj) <- append("hcp_scp", class(obj))
+  class(obj) <- append("changepoint", class(obj))
   return(obj)
 }
 
@@ -55,7 +55,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
   i[non_na] <- inon_na
 
   detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "hcp_scp"
+  detection$type[i] <- "changepoint"
 
   return(detection)
 }

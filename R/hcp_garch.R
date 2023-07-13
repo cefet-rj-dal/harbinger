@@ -61,7 +61,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   i_outliers[non_na] <- outliers
 
   detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "hcp_scp"
+  detection$type[i_outliers] <- "changepoint"
   detection$event[i_outliers] <- TRUE
 
   return(detection)
