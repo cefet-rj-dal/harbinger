@@ -16,6 +16,32 @@ har_eval_soft(sw_size = 15)
 Evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}
 }
 \examples{
+library(daltoolbox)
+
 #loading the example database
 data(har_examples)
+
+#Using the time series 14
+dataset <- har_examples$example14
+head(dataset)
+
+# setting up time change point using GARCH
+model <- hcp_garch()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+# making detections
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
+# evaluating the detections
+evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
+print(evaluation$confMatrix)
+
+# ploting the results
+grf <- har_plot(model, dataset$serie, detection, dataset$event)
+plot(grf)
 }
