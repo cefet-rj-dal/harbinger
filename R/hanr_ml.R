@@ -1,10 +1,10 @@
 #'@title Anomaly detector based on machine learning regression.
 #'@description Anomaly detection using daltoolbox regression
-#'The model adjust to the time series. Observations distant from model are labeled as anomalies.
-#'A set of preconfigured of regression methods are described in <https://cefet-rj-dal.github.io/daltoolbox>.
+#'The regression model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+#'A set of preconfigured regression methods are described in <https://cefet-rj-dal.github.io/daltoolbox>.
 #'@param model DALToolbox regression model
 #'@param sw_size sliding window size
-#'@return hanr_ml object
+#'@return `hanr_ml` object
 #'@examples
 #'library(daltoolbox)
 #'

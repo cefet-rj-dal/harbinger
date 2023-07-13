@@ -3,7 +3,7 @@
 #'A training and test set should be used. The training set must contain labeled events.
 #'A set of preconfigured of classification methods are described in <https://cefet-rj-dal.github.io/daltoolbox>.
 #'@param model DALToolbox classification model
-#'@return hanc_ml object
+#'@return `hanc_ml` object
 #'@examples
 #'library(daltoolbox)
 #'

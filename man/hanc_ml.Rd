@@ -10,7 +10,7 @@ hanc_ml(model)
 \item{model}{DALToolbox classification model}
 }
 \value{
-hanc_ml object
+\code{hanc_ml} object
 }
 \description{
 Anomaly detection using daltoolbox classification.

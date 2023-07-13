@@ -12,12 +12,12 @@ hanr_ml(model, sw_size = 15)
 \item{sw_size}{sliding window size}
 }
 \value{
-hanr_ml object
+\code{hanr_ml} object
 }
 \description{
 Anomaly detection using daltoolbox regression
-The model adjust to the time series. Observations distant from model are labeled as anomalies.
-A set of preconfigured of regression methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
+The regression model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+A set of preconfigured regression methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
 }
 \examples{
 library(daltoolbox)

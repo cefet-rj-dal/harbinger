@@ -2,19 +2,36 @@
 % Please edit documentation in R/hanr_arima.R
 \name{hanr_arima}
 \alias{hanr_arima}
-\title{Anomaly detector using ARIMA}
+\title{Anomaly detector using ARIMA.}
 \usage{
-hanr_arima(w = NULL)
-}
-\arguments{
-\item{w}{Window size for warm-up ARIMA}
+hanr_arima()
 }
 \value{
-hanr_arima object
+\code{hanr_arima} object
 }
 \description{
-Anomaly detector using ARIMA
+Anomaly detection using ARIMA
+The ARIMA model adjusts to the time series. Observations distant from model are labeled as anomalies.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 1
+dataset <- har_examples$example1
+head(dataset)
+
+# setting up time series regression model
+model <- hanr_arima()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }

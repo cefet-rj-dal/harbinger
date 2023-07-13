@@ -1,12 +1,33 @@
-#'@title Anomaly detector using ARIMA
-#'@description Anomaly detector using ARIMA
-#'@param w Window size for warm-up ARIMA
-#'@return hanr_arima object
-#'@examples detector <- harbinger()
+#'@title Anomaly detector using ARIMA.
+#'@description Anomaly detection using ARIMA
+#'The ARIMA model adjusts to the time series. Observations distant from model are labeled as anomalies.
+#'@return `hanr_arima` object
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 1
+#'dataset <- har_examples$example1
+#'head(dataset)
+#'
+#'# setting up time series regression model
+#'model <- hanr_arima()
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+# making detection using hanr_ml
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hanr_arima <- function(w = NULL) {
+hanr_arima <- function() {
   obj <- harbinger()
-  obj$w <- w
+  obj$sw_size <- NULL
 
   class(obj) <- append("hanr_arima", class(obj))
   return(obj)
@@ -31,8 +52,8 @@ fit.hanr_arima <- function(obj, serie, ...) {
   params <- list(p = obj$p, d = obj$d, q = obj$q, drift = obj$drift)
   attr(obj, "params") <- params
 
-  if (is.null(obj$w))
-    obj$w <- max(obj$p, obj$d+1, obj$q)
+  if (is.null(obj$sw_size))
+    obj$sw_size <- max(obj$p, obj$d+1, obj$q)
 
   return(obj)
 }
@@ -64,7 +85,7 @@ detect.hanr_arima <- function(obj, serie, ...) {
   outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
-  outliers[1:obj$w] <- FALSE
+  outliers[1:obj$sw_size] <- FALSE
 
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers
@@ -74,6 +95,3 @@ detect.hanr_arima <- function(obj, serie, ...) {
 
   return(detection)
 }
-
-
-
