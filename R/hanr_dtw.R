@@ -50,7 +50,7 @@ fit.hanr_dtw <- function(obj, serie, ...) {
   data <- as.data.frame(data)
 
   # Apply k-means
-  clusters <- dtwclust::tsclust(series = data, type = "partitional", k = 2, distance = "dtw_basic")
+  clusters <- dtwclust::tsclust(series = data, type = "partitional", k = obj$centers, distance = "dtw_basic")
   centroids <- NULL
   for (i in 1:length(clusters@centroids))
     centroids <- rbind(centroids, clusters@centroids[[i]])
