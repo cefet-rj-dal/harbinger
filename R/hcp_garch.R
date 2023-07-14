@@ -1,12 +1,34 @@
 #'@title Change Finder using GARCH
-#'@description Change Finder using GARCH
-#'@param w Sliding window size
-#'@return hcp_garch object
-#'@examples detector <- harbinger()
+#'@description Change-point detection is related to event/trend change detection. Change Finder GARCH detects change points based on deviations relative to linear regression model <doi:10.1109/TKDE.2006.1599387>.
+#'It wraps the GARCH model presented in the rugarch library.
+#'@param sw_size Sliding window size
+#'@return `hcp_garch` object
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 14
+#'dataset <- har_examples$example14
+#'head(dataset)
+#'
+#'# setting up time series regression model
+#'model <- hcp_garch()
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+# making detection using hanr_ml
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hcp_garch <- function(w = 30) {
+hcp_garch <- function(sw_size = 30) {
   obj <- harbinger()
-  obj$w <- w
+  obj$sw_size <- sw_size
 
   class(obj) <- append("hcp_garch", class(obj))
   return(obj)
@@ -48,7 +70,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
-  outliers[1:obj$w] <- FALSE
+  outliers[1:obj$sw_size] <- FALSE
 
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers

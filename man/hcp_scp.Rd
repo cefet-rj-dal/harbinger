@@ -4,17 +4,36 @@
 \alias{hcp_scp}
 \title{Seminal change point}
 \usage{
-hcp_scp(sw = 30)
+hcp_scp(sw_size = 30)
 }
 \arguments{
-\item{sw}{Sliding window size}
+\item{sw_size}{Sliding window size}
 }
 \value{
-hcp_scp object
+\code{hcp_scp} object
 }
 \description{
-Seminal change point
+Change-point detection is related to event/trend change detection. Seminal change point detects change points based on deviations of linear regression models adjusted with and without a central observation in each sliding window <10.1145/312129.312190>.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 6
+dataset <- har_examples$example6
+head(dataset)
+
+# setting up time series regression model
+model <- hcp_scp()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }

@@ -4,17 +4,37 @@
 \alias{hcp_cf_ets}
 \title{Change Finder using ETS}
 \usage{
-hcp_cf_ets(w = 7)
+hcp_cf_ets(sw_size = 7)
 }
 \arguments{
-\item{w}{Sliding window size}
+\item{sw_size}{Sliding window size}
 }
 \value{
-hcp_cf_arima object
+\code{hcp_cf_ets} object
 }
 \description{
-Change Finder using ETS
+Change-point detection is related to event/trend change detection. Change Finder ETS detects change points based on deviations relative to trend component (T), a seasonal component (S), and an error term (E) model \url{doi:10.1109/TKDE.2006.1599387}.
+It wraps the ETS model presented in the forecast library.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 6
+dataset <- har_examples$example6
+head(dataset)
+
+# setting up time series regression model
+model <- hcp_cf_ets()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }

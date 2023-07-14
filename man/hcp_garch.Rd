@@ -4,17 +4,37 @@
 \alias{hcp_garch}
 \title{Change Finder using GARCH}
 \usage{
-hcp_garch(w = 30)
+hcp_garch(sw_size = 30)
 }
 \arguments{
-\item{w}{Sliding window size}
+\item{sw_size}{Sliding window size}
 }
 \value{
-hcp_garch object
+\code{hcp_garch} object
 }
 \description{
-Change Finder using GARCH
+Change-point detection is related to event/trend change detection. Change Finder GARCH detects change points based on deviations relative to linear regression model \url{doi:10.1109/TKDE.2006.1599387}.
+It wraps the GARCH model presented in the rugarch library.
 }
 \examples{
-detector <- harbinger()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples)
+
+#Using example 14
+dataset <- har_examples$example14
+head(dataset)
+
+# setting up time series regression model
+model <- hcp_garch()
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+detection <- detect(model, dataset$serie)
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
 }

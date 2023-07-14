@@ -1,13 +1,35 @@
 #'@title Change Finder using ETS
-#'@description Change Finder using ETS
-#'@param w Sliding window size
-#'@return hcp_cf_arima object
-#'@examples detector <- harbinger()
+#'@description Change-point detection is related to event/trend change detection. Change Finder ETS detects change points based on deviations relative to trend component (T), a seasonal component (S), and an error term (E) model <doi:10.1109/TKDE.2006.1599387>.
+#'It wraps the ETS model presented in the forecast library.
+#'@param sw_size Sliding window size
+#'@return `hcp_cf_ets` object
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples)
+#'
+#'#Using example 6
+#'dataset <- har_examples$example6
+#'head(dataset)
+#'
+#'# setting up time series regression model
+#'model <- hcp_cf_ets()
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+# making detection using hanr_ml
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
 #'@export
-hcp_cf_ets <- function(w = 7) {
+hcp_cf_ets <- function(sw_size = 7) {
   obj <- harbinger()
 
-  obj$w <- w
+  obj$sw_size <- sw_size
   class(obj) <- append("hcp_cf_ets", class(obj))
   return(obj)
 }
@@ -32,9 +54,9 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   outliers <- obj$har_outliers_idx(s)
   outliers <- obj$har_outliers_group(outliers, length(s))
 
-  outliers[1:obj$w] <- FALSE
+  outliers[1:obj$sw_size] <- FALSE
 
-  y <- TSPred::mas(s, obj$w)
+  y <- TSPred::mas(s, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- forecast::ets(ts(y))
@@ -42,7 +64,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
 
-  u <- TSPred::mas(u, obj$w)
+  u <- TSPred::mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
   group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
   cp <- rep(FALSE, length(u))
@@ -52,7 +74,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
       cp[i] <- TRUE
     }
   }
-  cp[1:obj$w] <- FALSE
+  cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(s)-length(u)), cp)
 
   i_outliers <- rep(NA, n)
