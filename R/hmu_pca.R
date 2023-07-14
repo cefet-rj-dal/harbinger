@@ -1,7 +1,31 @@
 #'@title Multivariate anomaly detector using PCA
-#'@description Multivariate anomaly detector using PCA
-#'@return hmu_pca object
-#'@examples detector <- hmu_pca()
+#'@description Multivariate anomaly detector using PCA <doi:10.1016/0098-3004(93)90090-R>
+#'@return `hmu_pca` object
+#'@examples
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(har_examples_multi)
+#'
+#'#Using the time series 9
+#'dataset <- har_examples_multi$example1
+#'head(dataset)
+#'
+#'# establishing hmu_pca method
+#'model <- hmu_pca()
+#'
+#'# fitting the model using the two columns of the dataset
+#'model <- fit(model, dataset[,1:2])
+#'
+#'# making detections using hmu_pca
+#'detection <- detect(model, dataset[,1:2])
+#'
+#'# filtering detected events
+#'print(detection |> dplyr::filter(event==TRUE))
+#'
+#'# evaluating the detections
+#'evaluation <- evaluate(model, detection$event, dataset$event)
+#'print(evaluation$confMatrix)
 #'@export
 hmu_pca <- function() {
   obj <- harbinger()

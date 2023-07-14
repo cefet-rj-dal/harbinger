@@ -7,11 +7,34 @@
 hmu_pca()
 }
 \value{
-hmu_pca object
+\code{hmu_pca} object
 }
 \description{
-Multivariate anomaly detector using PCA
+Multivariate anomaly detector using PCA \url{doi:10.1016/0098-3004(93)90090-R}
 }
 \examples{
-detector <- hmu_pca()
+library(daltoolbox)
+
+#loading the example database
+data(har_examples_multi)
+
+#Using the time series 9
+dataset <- har_examples_multi$example1
+head(dataset)
+
+# establishing hmu_pca method
+model <- hmu_pca()
+
+# fitting the model using the two columns of the dataset
+model <- fit(model, dataset[,1:2])
+
+# making detections using hmu_pca
+detection <- detect(model, dataset[,1:2])
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
+# evaluating the detections
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 }
