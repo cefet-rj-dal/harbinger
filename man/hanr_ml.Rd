@@ -17,7 +17,7 @@ hanr_ml(model, sw_size = 15)
 \description{
 Anomaly detection using daltoolbox regression
 The regression model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-A set of preconfigured regression methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox}.
+A set of preconfigured regression methods are described in \url{https://cefet-rj-dal.github.io/daltoolbox/}.
 They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm
 }
 \examples{
