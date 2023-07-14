@@ -72,7 +72,7 @@ Authors@R:
         person(
             given = "Eduardo",
             family = "Ogasawara",
-            role = c("aut", "cre"),
+            role = c("aut", "ths", "cre"),
             email = "eogasawara@ieee.org",
             comment = c(ORCID = "0000-0002-0466-0626")
         ),
