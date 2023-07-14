@@ -88,14 +88,15 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
-  dplyr, 
+  daltoolbox,
+  TSPred, 
+  dtwclust,
+  rugarch,
   forecast, 
   ggplot2, 
-  rugarch,
   stringr,
-  reticulate,
-  TSPred, 
-  daltoolbox 
+  dplyr, 
+  reticulate
 Config/reticulate:
   list(
     packages = list(

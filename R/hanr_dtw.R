@@ -1,12 +1,12 @@
-#'@title Anomaly detector using kmeans
-#'@description Anomaly detection using kmeans
-#'The kmeans is applied to the time series.
+#'@title Anomaly detector using DTW
+#'@description Anomaly detection using DTW
+#'The DTW is applied to the time series.
 #'When seq equals one, observations distant from the closest centroids are labeled as anomalies.
 #'When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
-#'It wraps the kmeans presented in the stats library.
+#'It wraps the tsclust presented in the dtwclust library.
 #'@param seq sequence size
 #'@param centers number of centroids
-#'@return `hanr_kmeans` object
+#'@return `hanr_dtw` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -18,7 +18,7 @@
 #'head(dataset)
 #'
 #'# setting up time series regression model
-#'model <- hanr_kmeans()
+#'model <- hanr_dtw()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -30,19 +30,19 @@
 #'print(detection |> dplyr::filter(event==TRUE))
 #'
 #'@export
-hanr_kmeans <- function(seq = 1, centers=NA) {
+hanr_dtw <- function(seq = 1, centers=NA) {
   obj <- harbinger()
   obj$seq <- seq
   obj$centers <- centers
 
-  class(obj) <- append("hanr_kmeans", class(obj))
+  class(obj) <- append("hanr_dtw", class(obj))
   return(obj)
 }
 
-#'@importFrom stats kmeans
+#'@importFrom dtwclust tsclust
 #'@importFrom stats na.omit
 #'@export
-fit.hanr_kmeans <- function(obj, serie, ...) {
+fit.hanr_dtw <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
@@ -50,14 +50,17 @@ fit.hanr_kmeans <- function(obj, serie, ...) {
   data <- as.data.frame(data)
 
   # Apply k-means
-  clusters <- stats::kmeans(data, centers=obj$centers, nstart=1)
-  obj$centroids <- clusters$centers
+  clusters <- dtwclust::tsclust(series = data, type = "partitional", k = 2, distance = "dtw_basic")
+  centroids <- NULL
+  for (i in 1:length(clusters@centroids))
+    centroids <- rbind(centroids, clusters@centroids[[i]])
+  obj$centroids <- centroids
   return(obj)
 }
 
 #'@importFrom stats na.omit
 #'@export
-detect.hanr_kmeans <- function(obj, serie, ...) {
+detect.hanr_dtw <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
