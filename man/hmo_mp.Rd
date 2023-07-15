@@ -7,7 +7,7 @@
 hmo_mp(mode = "stamp", w, qtd)
 }
 \arguments{
-\item{mode}{mode of computing distance between sequences. Available options include: "stamp", "stomp", "scrimp"}
+\item{mode}{mode of computing distance between sequences. Available options include: "stomp", "stamp", "simple", "mstomp", "scrimp", "valmod", "pmp"}
 
 \item{w}{word size}
 

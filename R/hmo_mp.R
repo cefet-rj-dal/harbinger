@@ -1,6 +1,6 @@
 #'@title Motif discovery using Matrix Profile
 #'@description Motif discovery using Matrix Profile <doi:10.32614/RJ-2020-021>
-#'@param mode mode of computing distance between sequences. Available options include: "stamp", "stomp", "scrimp"
+#'@param mode mode of computing distance between sequences. Available options include: "stomp", "stamp", "simple", "mstomp", "scrimp", "valmod", "pmp"
 #'@param w word size
 #'@param qtd number of occurrences to be classified as motifs
 #'@return `hmo_mp` object

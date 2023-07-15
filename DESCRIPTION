@@ -1,6 +1,6 @@
 Package: harbinger
 Title: An Unified Time Series Event Detection Framework
-Version: 1.0.57
+Version: 1.0.707
 Authors@R: 
   c(
         person(
