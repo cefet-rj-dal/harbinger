@@ -3,6 +3,8 @@
 
 # Harbinger
 
+<img src='https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png' align='centre' height='150' width='129'/>
+
 <!-- badges: start -->
 <!-- badges: end -->
 

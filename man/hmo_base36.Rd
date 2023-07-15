@@ -30,7 +30,7 @@ dataset <- har_examples$example15
 head(dataset)
 
 # setting up time series regression model
-model <- hmo_base36(25, 3, 3)
+model <- hmo_base36(37, 3, 3)
 
 # fitting the model
 model <- fit(model, dataset$serie)
