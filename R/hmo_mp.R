@@ -50,7 +50,6 @@ detect.hmo_mp <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
   if(!(is.numeric(obj$w)&&(obj$w >=4))) stop("Window size must be at least 4", call. = FALSE)
   if(!(is.numeric(obj$qtd)&&(obj$qtd >=3))) stop("the number of selected motifs must be greater than 3", call. = FALSE)
-  if (!obj$mode %in% list("stamp", "stomp", "scrimp")) stop("The chosen method must be STAMP, STOMP or SCRIMP", call. = FALSE)
 
   motifs <- tsmp::tsmp(serie, window_size = obj$w, mode = obj$mode)
   motifs <- tsmp::find_motif(motifs, qtd = obj$qtd)
