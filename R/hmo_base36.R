@@ -1,9 +1,9 @@
-#'@title Motif discovery using SAX
-#'@description Motif discovery using SAX <doi:10.1007/s10618-007-0064-z>
+#'@title Motif discovery using base36
+#'@description Motif discovery using base36 <doi:10.1007/s10618-007-0064-z>
 #'@param a alphabet size
 #'@param w word size
 #'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_sax` object
+#'@return `hmo_base36` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -15,7 +15,7 @@
 #'head(dataset)
 #'
 #'# setting up time series regression model
-#'model <- hmo_sax(26, 3, 3)
+#'model <- hmo_base36(25, 3, 3)
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -27,17 +27,16 @@
 #'print(detection |> dplyr::filter(event==TRUE))
 #'
 #'@export
-hmo_sax <- function(a, w, qtd) {
+hmo_base36 <- function(a, w, qtd) {
   obj <- harbinger()
-  if(!(is.numeric(a)&&(a>=1)&&(a<=26))) stop("alphabet must be between 1 and 26", call. = FALSE)
   obj$a <- a
   obj$w <- w
   obj$qtd <- qtd
-  class(obj) <- append("hmo_sax", class(obj))
+  class(obj) <- append("hmo_base36", class(obj))
   return(obj)
 }
 
-binning_sax <- function(v, a) {
+binning_base36 <- function(v, a) {
   p <- seq(from = 0, to = 1, by = 1/a)
   q <- stats::quantile(v, p)
   qf <- matrix(c(q[1:(length(q)-1)],q[2:(length(q))]), ncol=2)
@@ -48,8 +47,8 @@ binning_sax <- function(v, a) {
   return (list(binning=m, bins_factor=vp, q=q, qf=qf, bins=vm, mse=mse))
 }
 
-convert_to_sax <- function(num, nbase) {
-  chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+convert_to_base36 <- function(num, nbase) {
+  chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   if(nbase < 2 || nbase > str_length(chars))
     return("")
   newNumber <- ""
@@ -64,30 +63,30 @@ convert_to_sax <- function(num, nbase) {
   return (newNumber)
 }
 
-convert_to_sax_vec <- function(num, nbase) {
+convert_to_base36_vec <- function(num, nbase) {
   n <- length(num)
   result <- rep("", n)
   for (i in 1:n) {
-    result[i] <- convert_to_sax(num[i], nbase)
+    result[i] <- convert_to_base36(num[i], nbase)
   }
   return(result)
 }
 
-norm_sax <- function (vector, slices)
+norm_base36 <- function (vector, slices)
 {
   vectorNorm <- (vector - mean(vector, na.rm = T))/stats::sd(vector, na.rm = T)
-  mybin <- binning_sax(vectorNorm, slices)
-  i <- ceiling(log(slices, 26))
-  mycode <- str_pad(convert_to_sax_vec(0:(slices-1), 26), i, pad="0")
-  saxvector <- mycode[mybin$bins_factor]
-  return(saxvector)
+  mybin <- binning_base36(vectorNorm, slices)
+  i <- ceiling(log(slices, 36))
+  mycode <- str_pad(convert_to_base36_vec(0:(slices-1), 36), i, pad="0")
+  base36vector <- mycode[mybin$bins_factor]
+  return(base36vector)
 }
 
 #'@importFrom stats na.omit
 #'@import stringr
 #'@import dplyr
 #'@export
-detect.hmo_sax <- function(obj, serie, ...) {
+detect.hmo_base36 <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
@@ -97,7 +96,7 @@ detect.hmo_sax <- function(obj, serie, ...) {
 
   serie <- stats::na.omit(serie)
 
-  tss <- norm_sax(serie, obj$a)
+  tss <- norm_base36(serie, obj$a)
   tsw <- ts_data(tss, obj$w)
   seq <- apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
   data <- data.frame(i = 1:nrow(tsw), seq)
