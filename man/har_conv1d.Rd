@@ -21,7 +21,7 @@ Creates a time series prediction object that uses the Conv1D.
 It wraps the pytorch library.
 }
 \examples{
-\dontrun{
+\donttest{
 library(daltoolbox)
 data(sin_data)
 ts <- ts_data(sin_data$y, 10)

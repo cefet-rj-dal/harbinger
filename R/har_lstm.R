@@ -6,7 +6,7 @@
 #'@param epochs maximum number of epochs
 #'@return a `har_lstm` object.
 #'@examples
-#'\dontrun{
+#'\donttest{
 #'library(daltoolbox)
 #'data(sin_data)
 #'ts <- ts_data(sin_data$y, 10)
