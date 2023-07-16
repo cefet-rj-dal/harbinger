@@ -4,6 +4,9 @@
 # <img src='https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png' align='centre' height='150' width='129'/> Harbinger
 
 <!-- badges: start -->
+
+![GitHub Repo
+stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)
 <!-- badges: end -->
 
 Harbinger is a framework for event detection in time series. It provides
