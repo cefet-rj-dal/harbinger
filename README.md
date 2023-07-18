@@ -32,8 +32,17 @@ add novel methods to the framework.
 
 ## Installation
 
-You can install the development version of harbinger from
-[GitHub](https://github.com) with:
+The latest version of Harbinger at CRAN is available at:
+<https://CRAN.R-project.org/package=harbinger>
+
+You can install the stable version of Harbinger from CRAN with:
+
+``` r
+install.packages("harbinger")
+```
+
+You can install the development version of Harbinger from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
