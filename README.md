@@ -43,7 +43,7 @@ install.packages("harbinger")
 ```
 
 You can install the development version of Harbinger from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/cefet-rj-dal/harbinger) with:
 
 ``` r
 # install.packages("devtools")
