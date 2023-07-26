@@ -7,6 +7,7 @@
 
 ![GitHub Repo
 stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)
+![GitHub Repo stars](https://cranlogs.r-pkg.org/badges/harbinger)
 <!-- badges: end -->
 
 Harbinger is a framework for event detection in time series. It provides
