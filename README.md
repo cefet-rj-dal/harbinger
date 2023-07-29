@@ -42,8 +42,8 @@ You can install the stable version of Harbinger from CRAN with:
 install.packages("harbinger")
 ```
 
-You can install the development version of Harbinger from
-[GitHub](https://github.com/cefet-rj-dal/harbinger) with:
+You can install the development version of Harbinger from GitHub
+<https://github.com/cefet-rj-dal/harbinger> with:
 
 ``` r
 # install.packages("devtools")
@@ -65,3 +65,7 @@ library(harbinger)
 #>   as.zoo.data.frame zoo
 ## basic example code
 ```
+
+## Bugs and new features request
+
+<https://github.com/cefet-rj-dal/harbinger/issues>
