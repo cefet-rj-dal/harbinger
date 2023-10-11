@@ -29,7 +29,7 @@ hcp_scp <- function(sw_size = 30) {
   obj <- harbinger()
   obj$sw_size <- sw_size
 
-  class(obj) <- append("changepoint", class(obj))
+  class(obj) <- append("hcp_scp", class(obj))
   return(obj)
 }
 
