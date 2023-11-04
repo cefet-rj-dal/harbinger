@@ -19,6 +19,9 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/han_autoencoder.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanc_ml.html</loc>
   </url>
   <url>
@@ -32,6 +35,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_garch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_histogram.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_kmeans.html</loc>
