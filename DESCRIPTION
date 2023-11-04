@@ -1,6 +1,6 @@
 Package: harbinger
 Title: An Unified Time Series Event Detection Framework
-Version: 1.0.707
+Version: 1.0.727
 Authors@R: 
   c(
         person(
@@ -86,7 +86,7 @@ License: MIT + file LICENSE
 URL: https://github.com/cefet-rj-dal/harbinger, https://cefet-rj-dal.github.io/harbinger/
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Imports: 
   daltoolbox,
   TSPred, 
