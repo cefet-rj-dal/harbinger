@@ -24,13 +24,13 @@ harbinger <- function() {
 
   har_store_refs <- function(obj, serie) {
     n <- length(serie)
-    if (is.vector(serie)) {
-      obj$non_na <- which(!is.na(serie))
+    if (is.data.frame(serie)) {
+      n <- nrow(serie)
+      obj$non_na <- which(!is.na(apply(serie, 1, max)))
       obj$serie <- stats::na.omit(serie)
     }
     else {
-      n <- nrow(serie)
-      obj$non_na <- which(!is.na(apply(serie, 1, max)))
+      obj$non_na <- which(!is.na(serie))
       obj$serie <- stats::na.omit(serie)
     }
     obj$anomalies <- rep(NA, n)

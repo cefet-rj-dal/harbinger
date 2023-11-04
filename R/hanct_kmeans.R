@@ -6,7 +6,7 @@
 #'It wraps the kmeans presented in the stats library.
 #'@param seq sequence size
 #'@param centers number of centroids
-#'@return `hanr_kmeans` object
+#'@return `hanct_kmeans` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -18,7 +18,7 @@
 #'head(dataset)
 #'
 #'# setting up time series regression model
-#'model <- hanr_kmeans()
+#'model <- hanct_kmeans()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -30,19 +30,19 @@
 #'print(detection |> dplyr::filter(event==TRUE))
 #'
 #'@export
-hanr_kmeans <- function(seq = 1, centers=NA) {
+hanct_kmeans <- function(seq = 1, centers=NA) {
   obj <- harbinger()
   obj$seq <- seq
   obj$centers <- centers
 
-  class(obj) <- append("hanr_kmeans", class(obj))
+  class(obj) <- append("hanct_kmeans", class(obj))
   return(obj)
 }
 
 #'@importFrom stats kmeans
 #'@importFrom stats na.omit
 #'@export
-fit.hanr_kmeans <- function(obj, serie, ...) {
+fit.hanct_kmeans <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
@@ -57,32 +57,26 @@ fit.hanr_kmeans <- function(obj, serie, ...) {
 
 #'@importFrom stats na.omit
 #'@export
-detect.hanr_kmeans <- function(obj, serie, ...) {
+detect.hanct_kmeans <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
-  sx <- ts_data(serie, obj$seq)
+  sx <- ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
 
-  distances <- obj$har_residuals(apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2))))))
-  outliers <- obj$har_outliers_idx(distances)
-  outliers <- obj$har_outliers_group(as.integer(outliers + obj$seq/2), length(serie))
+  res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(as.integer(anomalies + obj$seq/2), length(obj$serie))
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
-  if (obj$seq == 1) {
-    detection <- data.frame(idx=1:length(serie), event = i_outliers, type="")
-    detection$type[i_outliers] <- "anomaly"
-  }
-  else {
-    detection <- data.frame(idx=1:length(serie), event = i_outliers, type="", seq=NA, seqlen = NA)
-    detection$type[i_outliers] <- "discord"
-    detection$seq[i_outliers] <- obj$seq
-    detection$seqlen[i_outliers] <- obj$seq
+  if (obj$seq != 1) {
+    i <- detection$type=="anomaly"
+    detection$type[i] <- "discord"
+    detection$seq[i] <- obj$seq
+    detection$seqlen[i] <- obj$seq
   }
 
   return(detection)

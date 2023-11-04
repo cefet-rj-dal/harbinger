@@ -52,26 +52,22 @@ fit.hanr_ml <- function(obj, serie, ...) {
 #'@importFrom stats predict
 #'@export
 detect.hanr_ml <- function(obj, serie, ...) {
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
-  ts <- ts_data(serie, obj$sw_size)
+  ts <- ts_data(obj$serie, obj$sw_size)
   io <- ts_projection(ts)
 
   adjust <- stats::predict(obj$model, io$input)
 
-  s <- obj$har_residuals(io$output-adjust)
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  res <- io$output-adjust
 
-  outliers <- c(rep(NA, obj$sw_size - 1), outliers)
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
+  anomalies <- c(rep(NA, obj$sw_size - 1), anomalies)
 
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

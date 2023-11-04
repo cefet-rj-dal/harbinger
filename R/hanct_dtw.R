@@ -6,7 +6,7 @@
 #'It wraps the tsclust presented in the dtwclust library.
 #'@param seq sequence size
 #'@param centers number of centroids
-#'@return `hanr_dtw` object
+#'@return `hanct_dtw` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -18,7 +18,7 @@
 #'head(dataset)
 #'
 #'# setting up time series regression model
-#'model <- hanr_dtw()
+#'model <- hanct_dtw()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -30,19 +30,19 @@
 #'print(detection |> dplyr::filter(event==TRUE))
 #'
 #'@export
-hanr_dtw <- function(seq = 1, centers=NA) {
+hanct_dtw <- function(seq = 1, centers=NA) {
   obj <- harbinger()
   obj$seq <- seq
   obj$centers <- centers
 
-  class(obj) <- append("hanr_dtw", class(obj))
+  class(obj) <- append("hanct_dtw", class(obj))
   return(obj)
 }
 
 #'@importFrom dtwclust tsclust
 #'@importFrom stats na.omit
 #'@export
-fit.hanr_dtw <- function(obj, serie, ...) {
+fit.hanct_dtw <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
@@ -60,7 +60,7 @@ fit.hanr_dtw <- function(obj, serie, ...) {
 
 #'@importFrom stats na.omit
 #'@export
-detect.hanr_dtw <- function(obj, serie, ...) {
+detect.hanct_dtw <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   obj <- obj$har_store_refs(obj, serie)

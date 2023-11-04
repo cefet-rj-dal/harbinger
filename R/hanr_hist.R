@@ -41,20 +41,18 @@ hanr_histogram <- function(density_threshold = 0.05) {
 detect.hanr_histogram <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  non_na <- which(!is.na(serie))
+  obj <- obj$har_store_refs(obj, serie)
 
-  ts_data <- stats::na.omit(serie)
-
-  hist_data <- graphics::hist(ts_data, plot = FALSE)
+  hist_data <- graphics::hist(obj$serie, plot = FALSE)
 
   # Calculate bin edges and midpoints
   bin_edges <- hist_data$breaks
 
   # Detect anomalies based on the histogram
-  anomalies <- rep(FALSE, length(ts_data))
-  for (i in 1:length(ts_data)) {
+  anomalies <- rep(FALSE, length(obj$serie))
+  for (i in 1:length(obj$serie)) {
     # Find the bin to which the data point belongs
-    bin_index <- findInterval(ts_data[i], bin_edges)
+    bin_index <- findInterval(obj$serie[i], bin_edges)
 
     # Calculate the expected range (bin boundaries)
     if (bin_index < 1)
@@ -66,19 +64,12 @@ detect.hanr_histogram <- function(obj, serie, ...) {
       upper_bound <- bin_edges[bin_index]
 
     # Check if the data point is outside the expected range
-    if (ts_data[i] < lower_bound || ts_data[i] > upper_bound || hist_data$density[bin_index] < obj$density_threshold) {
+    if (obj$serie[i] < lower_bound || obj$serie[i] > upper_bound || hist_data$density[bin_index] < obj$density_threshold) {
       anomalies[i] <- TRUE
     }
   }
 
-
-  inon_na <- anomalies
-
-  i <- rep(NA, length(serie))
-  i[non_na] <- inon_na
-
-  detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

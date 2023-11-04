@@ -40,28 +40,26 @@ hanr_fbiad <- function(sw_size = 30) {
 detect.hanr_fbiad <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  non_na <- which(!is.na(serie))
+  obj <- obj$har_store_refs(obj, serie)
 
-  sx <- daltoolbox::ts_data(stats::na.omit(serie), obj$sw_size)
+  sx <- daltoolbox::ts_data(obj$serie, obj$sw_size)
   ma <- apply(sx, 1, mean)
-  sxd <- obj$har_residuals(sx - ma)
-  iF <- as.vector(obj$har_outliers(sxd[,ncol(sx)]))
+  sxd <- obj$har_residuals(sx[,ncol(sx)] - ma)
+  iF <- obj$har_outliers_idx(sxd)
+  iF <- obj$har_outliers_group(iF, length(sxd))
   iF <- c(rep(FALSE, obj$sw_size-1), iF)
 
-  sx <- ts_data(rev(stats::na.omit(serie)), obj$sw_size)
+  sx <- ts_data(rev(obj$serie), obj$sw_size)
   ma <- apply(sx, 1, mean)
-  sxd <- obj$har_residuals(sx - ma)
-  iB <- as.vector(obj$har_outliers(sxd[,ncol(sx)]))
+  sxd <- obj$har_residuals(sx[,ncol(sx)] - ma)
+  iB <- obj$har_outliers_idx(sxd)
+  iB <- obj$har_outliers_group(iB, length(sxd))
   iB <- rev(iB)
   iB <- c(iB, rep(FALSE, obj$sw_size-1))
 
-  inon_na <- iF | iB
+  anomalies <- iF | iB
 
-  i <- rep(NA, length(serie))
-  i[non_na] <- inon_na
-
-  detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

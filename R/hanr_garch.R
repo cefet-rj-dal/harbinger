@@ -38,27 +38,23 @@ hanr_garch <- function() {
 #'@importFrom rugarch ugarchfit
 #'@export
 detect.hanr_garch <- function(obj, serie, ...) {
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
                                  mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
                                  distribution.model = "norm")
 
   #Adjusting a model to the entire series
-  model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
+  model <- rugarch::ugarchfit(spec=spec, data=obj$serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  s <- obj$har_residuals(model$sigma)
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  res <- model$sigma
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
 
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

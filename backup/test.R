@@ -8,7 +8,7 @@ dataset <- har_examples$example1
 head(dataset)
 
 # setting up time series regression model
-model <- hanr_arima()
+model <- hanr_histogram()
 
 # fitting the model
 model <- fit(model, dataset$serie)
