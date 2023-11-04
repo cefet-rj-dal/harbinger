@@ -51,7 +51,7 @@ It wraps the GARCH model presented in the rugarch library.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hcp_garch</span><span class="op">(</span>sw_size <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hcp_garch</span><span class="op">(</span>sw_size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -96,9 +96,8 @@ It wraps the GARCH model presented in the rugarch library.</p>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 101  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 169  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 172  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 102  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 172  TRUE changepoint</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
