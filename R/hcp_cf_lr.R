@@ -44,22 +44,21 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
     return(stats::lm(x~t, data))
   }
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   #Adjusting a model to the entire series
-  M1 <- linreg(serie)
+  model <- linreg(obj$serie)
 
   #Adjustment error on the entire series
-  s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  res <- stats::residuals(model)
 
-  outliers[1:obj$sw_size] <- FALSE
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
 
-  y <- TSPred::mas(s, obj$sw_size)
+  anomalies[1:obj$sw_size] <- FALSE
+
+  y <- TSPred::mas(res, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- linreg(y)
@@ -69,27 +68,11 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
 
   u <- TSPred::mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
-  group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
-  cp <- rep(FALSE, length(u))
-  for (g in group_cp) {
-    if (length(g) > 0) {
-      i <- min(g)
-      cp[i] <- TRUE
-    }
-  }
+  cp <- obj$har_outliers_group(cp, length(u))
   cp[1:obj$sw_size] <- FALSE
-  cp <- c(rep(FALSE, length(s)-length(u)), cp)
+  cp <- c(rep(FALSE, length(res)-length(u)), cp)
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
-
-  i_cp <- rep(NA, n)
-  i_cp[non_na] <- cp
-
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
-  detection$event[cp] <- TRUE
-  detection$type[cp] <- "changepoint"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp)
 
   return(detection)
 }

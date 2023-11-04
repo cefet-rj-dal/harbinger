@@ -44,7 +44,7 @@ harbinger <- function() {
     if (!is.null(change_points))
       obj$change_points[obj$non_na] <- change_points
 
-    detection <- data.frame(idx=1:length(anomalies), event = obj$anomalies, type="")
+    detection <- data.frame(idx=1:length(obj$anomalies), event = obj$anomalies, type="")
     detection$type[obj$anomalies] <- "anomaly"
     detection$event[obj$change_points] <- TRUE
     detection$type[obj$change_points] <- "changepoint"

@@ -42,7 +42,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
     y <- data.frame(t = 1:n, y = data)
 
     mdl <- stats::lm(y~t, y)
-    err <- mean(mdl$residuals^2)
+    err <- mean(obj$har_residuals(mdl$residuals))
 
     y_a <- y[1:(offset-1),]
     mdl_a <- stats::lm(y~t, y_a)
@@ -57,25 +57,22 @@ detect.hcp_scp <- function(obj, serie, ...) {
 
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  non_na <- which(!is.na(serie))
+  obj <- obj$har_store_refs(obj, serie)
 
-  sx <- ts_data(stats::na.omit(serie), obj$sw_size)
+  sx <- ts_data(obj$serie, obj$sw_size)
   obj$offset <- round(obj$sw_size/2)
 
   #===== Analyzing all data windows ======
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
 
-  #Returns index of windows with outlier error differences
-  index.cp <- obj$har_outliers(errors$mdl_dif)
-  index.cp <- c(rep(FALSE, obj$offset-1), index.cp, rep(FALSE, obj$sw_size-obj$offset))
+  res <- errors$mdl_dif
 
-  inon_na <- index.cp
+  change_point <- obj$har_outliers_idx(res)
+  change_point <- obj$har_outliers_group(change_point, length(res), res)
 
-  i <- rep(NA, length(serie))
-  i[non_na] <- inon_na
+  change_point <- c(rep(FALSE, obj$offset-1), change_point, rep(FALSE, obj$sw_size-obj$offset))
 
-  detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "changepoint"
+  detection <- obj$har_restore_refs(obj, change_point = change_point)
 
   return(detection)
 }

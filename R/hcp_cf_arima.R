@@ -34,32 +34,59 @@ hcp_cf_arima <- function(sw_size = NULL) {
   return(obj)
 }
 
+#'@importFrom forecast auto.arima
+#'@importFrom stats residuals
+#'@importFrom stats na.omit
+#'@export
+fit.hcp_cf_arima <- function(obj, serie, ...) {
+  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
+
+  serie <- stats::na.omit(serie)
+
+  obj$model <- forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
+  order <- obj$model$arma[c(1, 6, 2, 3, 7, 4, 5)]
+  obj$p <- order[1]
+  obj$d <- order[2]
+  obj$q <- order[3]
+  obj$drift <- (NCOL(obj$model$xreg) == 1) && is.element("drift", names(obj$model$coef))
+  params <- list(p = obj$p, d = obj$d, q = obj$q, drift = obj$drift)
+  attr(obj, "params") <- params
+
+  if (is.null(obj$sw_size))
+    obj$sw_size <- max(obj$p, obj$d+1, obj$q)
+
+  return(obj)
+}
+
+
 #'@importFrom stats na.omit
 #'@importFrom stats residuals
 #'@importFrom TSPred mas
 #'@importFrom forecast auto.arima
 #'@export
 detect.hcp_cf_arima <- function(obj, serie, ...) {
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   #Adjusting a model to the entire series
-  M1 <- forecast::auto.arima(serie)
-  order <- M1$arma[c(1, 6, 2, 3, 7, 4, 5)]
-  sw_size <- obj$sw_size
-  if (is.null(sw_size))
-    sw_size <- max(order[1], order[2]+1, order[3])
+  model <- tryCatch(
+    {
+      forecast::Arima(obj$serie, order=c(obj$p, obj$d, obj$q), include.drift = obj$drift)
+    },
+    error = function(cond) {
+      forecast::auto.arima(obj$serie, allowdrift = TRUE, allowmean = TRUE)
+    }
+  )
 
   #Adjustment error on the entire series
-  s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  res <- stats::residuals(model)
 
-  outliers[1:sw_size] <- FALSE
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
 
-  y <- TSPred::mas(s, sw_size)
+  anomalies[1:obj$sw_size] <- FALSE
+
+  y <- TSPred::mas(res, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- forecast::auto.arima(y)
@@ -67,29 +94,13 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
 
-  u <- TSPred::mas(u, sw_size)
+  u <- TSPred::mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
-  group_cp <- split(cp, cumsum(c(1, diff(cp) != 1)))
-  cp <- rep(FALSE, length(u))
-  for (g in group_cp) {
-    if (length(g) > 0) {
-      i <- min(g)
-      cp[i] <- TRUE
-    }
-  }
-  cp[1:sw_size] <- FALSE
-  cp <- c(rep(FALSE, length(s)-length(u)), cp)
+  cp <- obj$har_outliers_group(cp, length(u))
+  cp[1:obj$sw_size] <- FALSE
+  cp <- c(rep(FALSE, length(res)-length(u)), cp)
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
-
-  i_cp <- rep(NA, n)
-  i_cp[non_na] <- cp
-
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
-  detection$event[cp] <- TRUE
-  detection$type[cp] <- "changepoint"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp)
 
   return(detection)
 }

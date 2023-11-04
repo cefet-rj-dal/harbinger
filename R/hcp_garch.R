@@ -26,7 +26,7 @@
 #'print(detection |> dplyr::filter(event==TRUE))
 #'
 #'@export
-hcp_garch <- function(sw_size = 30) {
+hcp_garch <- function(sw_size = 5) {
   obj <- harbinger()
   obj$sw_size <- sw_size
 
@@ -46,38 +46,32 @@ detect.hcp_garch <- function(obj, serie, ...) {
     return(stats::lm(x~t, data))
   }
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
                               mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
                               distribution.model = "norm")
 
   #Adjusting a model to the entire series
-  model <- rugarch::ugarchfit(spec=spec, data=serie, solver="hybrid")@fit
+  model <- rugarch::ugarchfit(spec=spec, data=obj$serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  serie <- model$sigma
-
+  y <- model$sigma
 
   #Adjusting a model to the entire series
-  M1 <- linreg(serie)
+  #Adjusting to the entire series
+  M2 <- linreg(y)
 
-  #Adjustment error on the entire series
-  s <- obj$har_residuals(stats::residuals(M1))
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  #Adjustment error on the whole window
+  u <- obj$har_residuals(stats::residuals(M2))
+  u <- TSPred::mas(u, obj$sw_size)
 
-  outliers[1:obj$sw_size] <- FALSE
+  cp <- obj$har_outliers_idx(u)
+  cp <- obj$har_outliers_group(cp, length(u))
+  cp[1:obj$sw_size] <- FALSE
+  cp <- c(rep(FALSE, length(y)-length(u)), cp)
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
-
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "changepoint"
-  detection$event[i_outliers] <- TRUE
+  detection <- obj$har_restore_refs(obj, change_points = cp)
 
   return(detection)
 }

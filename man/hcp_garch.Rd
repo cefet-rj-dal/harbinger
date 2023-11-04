@@ -4,7 +4,7 @@
 \alias{hcp_garch}
 \title{Change Finder using GARCH}
 \usage{
-hcp_garch(sw_size = 30)
+hcp_garch(sw_size = 5)
 }
 \arguments{
 \item{sw_size}{Sliding window size}
