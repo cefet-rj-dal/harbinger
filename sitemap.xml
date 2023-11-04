@@ -25,10 +25,13 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanc_ml.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.html</loc>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanct_dtw.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_dtw.html</loc>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanct_kmeans.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fbiad.html</loc>
@@ -38,9 +41,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_histogram.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_kmeans.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_ml.html</loc>
