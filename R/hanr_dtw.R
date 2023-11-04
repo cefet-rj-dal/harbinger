@@ -63,29 +63,23 @@ fit.hanr_dtw <- function(obj, serie, ...) {
 detect.hanr_dtw <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
-  sx <- ts_data(serie, obj$seq)
+  sx <- ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
 
-  distances <- obj$har_residuals(apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2))))))
-  outliers <- obj$har_outliers_idx(distances)
-  outliers <- obj$har_outliers_group(as.integer(outliers + obj$seq/2), length(serie))
+  res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(as.integer(anomalies + obj$seq/2), length(obj$serie))
 
-  if (obj$seq == 1) {
-    detection <- data.frame(idx=1:length(serie), event = i_outliers, type="")
-    detection$type[i_outliers] <- "anomaly"
-  }
-  else {
-    detection <- data.frame(idx=1:length(serie), event = i_outliers, type="", seq=NA, seqlen = NA)
-    detection$type[i_outliers] <- "discord"
-    detection$seq[i_outliers] <- obj$seq
-    detection$seqlen[i_outliers] <- obj$seq
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  if (obj$seq != 1) {
+    i <- detection$type=="anomaly"
+    detection$type[i] <- "discord"
+    detection$seq[i] <- obj$seq
+    detection$seqlen[i] <- obj$seq
   }
 
   return(detection)
