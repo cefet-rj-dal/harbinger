@@ -11,7 +11,9 @@ har_plot(
   event = NULL,
   mark.cp = TRUE,
   ylim = NULL,
-  idx = NULL
+  idx = NULL,
+  pointsize = 0.5,
+  colors = c("green", "blue", "red", "purple")
 )
 }
 \arguments{
@@ -28,6 +30,10 @@ har_plot(
 \item{ylim}{limits for y-axis}
 
 \item{idx}{labels for x observations}
+
+\item{pointsize}{default point size}
+
+\item{colors}{default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.}
 }
 \value{
 A time series plot with marked events

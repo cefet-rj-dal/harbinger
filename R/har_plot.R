@@ -28,6 +28,8 @@ motifs_seqs <- function(detection) {
 #'@param mark.cp show change points
 #'@param ylim limits for y-axis
 #'@param idx labels for x observations
+#'@param pointsize default point size
+#'@param colors default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.
 #'@return A time series plot with marked events
 #'@examples
 #'library(daltoolbox)
@@ -60,71 +62,49 @@ motifs_seqs <- function(detection) {
 #'plot(grf)
 #'@import ggplot2
 #'@export
-har_plot <- function(obj, serie, detection, event=NULL, mark.cp=TRUE, ylim=NULL, idx = NULL){
+har_plot <- function (obj, serie, detection, event = NULL, mark.cp = TRUE, ylim = NULL, idx = NULL, pointsize=0.5, colors=c("green", "blue", "red", "purple"))
+{
   time <- 0
   if (is.null(idx))
     idx <- 1:length(serie)
   detection$event[is.na(detection$event)] <- FALSE
-
-  data <- data.frame(time = idx, serie = serie, FP = detection$event, TP = FALSE, FN = FALSE, color="darkgray")
+  data <- data.frame(time = idx, serie = serie, FP = detection$event,
+                     TP = FALSE, FN = FALSE, color = "black", size=pointsize)
   data$CP <- detection$type == "changepoint"
-
   if (!is.null(event)) {
     data$TP <- detection$event & (event == detection$event)
     data$FP <- detection$event & (event != detection$event)
     data$FN <- event & (event != detection$event)
   }
-
   motifs_seqs <- motifs_seqs(detection)
-  if (!is.null(motifs_seqs))
-    data$color[motifs_seqs] <- "purple"
-
-  data$color[data$FN] <- "blue"
-  data$color[data$TP] <- "green"
-  data$color[data$FP] <- "red"
-
+  if (!is.null(motifs_seqs)) {
+    data$size[motifs_seqs] <- 1.5
+    data$color[motifs_seqs] <- colors[4] #purple
+  }
+  data$color[data$TP] <- colors[1] #green
+  data$color[data$FN] <- colors[2] #blue
+  data$color[data$FP] <- colors[3] #red
+  data$size[data$FN | data$TP | data$FP] <- 1.5
 
   min_data <- min(serie)
   max_data <- max(serie)
-  if(!is.null(ylim)){
+  if (!is.null(ylim)) {
     min_data <- ifelse(!is.na(ylim[1]), ylim[1], min(serie))
     max_data <- ifelse(!is.na(ylim[2]), ylim[2], max(serie))
   }
+  top_1 <- max_data + (max_data - min_data) * 0.02
+  top_2 <- max_data + (max_data - min_data) * 0.05
+  bottom_1 <- min_data - (max_data - min_data) * 0.02
+  bottom_2 <- min_data - (max_data - min_data) * 0.05
+  plot <- ggplot(data, aes(x = time, y = serie)) + geom_point(colour = data$color, size=data$size) +
+    geom_line() + xlab("") + ylab("") + theme_bw()
+  plot <- plot + theme(panel.grid.major = element_blank()) + theme(panel.grid.minor = element_blank())
 
-  top_1 <- max_data+(max_data-min_data)*0.02
-  top_2 <- max_data+(max_data-min_data)*0.05
-  bottom_1 <- min_data-(max_data-min_data)*0.02
-  bottom_2 <- min_data-(max_data-min_data)*0.05
-
-  plot <- ggplot(data, aes(x=time, y=serie)) + geom_point(colour=data$color) + geom_line() +
-    xlab("") +
-    ylab("") +
-    theme_bw()
-
-  if(!is.null(ylim))
-    plot <- plot + ggplot2::ylim(bottom_2,top_2)
-
-  if (sum(data$FN) > 0){
-    plot <- plot + geom_segment(aes(x=time, y=top_1, xend=time, yend=top_2),data = data[data$FN,], col="blue")
-    plot <- plot + geom_segment(aes(x=time, y=bottom_1, xend=time, yend=bottom_2),data = data[data$FN,], col="blue")
+  if (!is.null(ylim))
+    plot <- plot + ggplot2::ylim(bottom_2, top_2)
+  if (mark.cp && (sum(data$CP, na.rm = TRUE) > 0)) {
+    plot <- plot + geom_segment(aes(x = time, y = top_1, xend = time, yend = bottom_1),
+                                data = data[data$CP, ], col = "grey", size = 1, linetype = "dashed")
   }
-  if (sum(data$TP) > 0) {
-    plot <- plot + geom_segment(aes(x=time, y=top_1, xend=time, yend=top_2),data = data[data$TP,], col="green")
-    plot <- plot + geom_segment(aes(x=time, y=bottom_1, xend=time, yend=bottom_2),data = data[data$TP,], col="green")
-  }
-  if (sum(data$FP) > 0) {
-    plot <- plot + geom_segment(aes(x=time, y=top_1, xend=time, yend=top_2),data = data[data$FP,], col="red")
-    plot <- plot + geom_segment(aes(x=time, y=bottom_1, xend=time, yend=bottom_2),data = data[data$FP,], col="red")
-  }
-  if (mark.cp && (sum(data$CP, na.rm=TRUE) > 0)) {
-    plot <- plot + geom_segment(aes(x=time, y=top_1, xend=time, yend=bottom_1),data = data[data$CP,], col="grey", size = 1, linetype="dashed")
-  }
-
-  plot <- plot + geom_hline(yintercept = top_1, col="black", size = 0.5)
-  plot <- plot + geom_hline(yintercept = top_2, col="black", size = 0.5)
-
-  plot <- plot + geom_hline(yintercept = bottom_1, col="black", size = 0.5)
-  plot <- plot + geom_hline(yintercept = bottom_2, col="black", size = 0.5)
   return(plot)
 }
-
