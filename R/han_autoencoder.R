@@ -7,7 +7,7 @@
 #'@examples
 #'# setting up time series regression model
 #'#Use the same example of hanr_fbiad changing the constructor to:
-#'model <- han_autoencoder(5,3)
+#'model <- han_autoencoder(3,1)
 #'@importFrom stats na.omit
 #'@importFrom daltoolbox ts_norm_gminmax
 #'@export
@@ -15,7 +15,7 @@ han_autoencoder <- function(input_size, encode_size) {
   obj <- harbinger()
   obj$input_size <- input_size
   obj$encode_size <- encode_size
-  obj$auto <- autoenc_encode_decode(obj$input_size, obj$encode_size)
+  obj$model <- autoenc_encode_decode(obj$input_size, obj$encode_size)
   obj$preproc <- daltoolbox::ts_norm_gminmax()
   class(obj) <- append("han_autoencoder", class(obj))
   return(obj)
@@ -34,7 +34,7 @@ fit.han_autoencoder <- function(obj, serie, ...) {
   ts <- transform(obj$preproc, ts)
   ts <- as.data.frame(ts)
 
-  obj$auto <- fit(obj$auto, ts)
+  obj$model <- fit(obj$model, ts)
 
   return(obj)
 }
@@ -47,32 +47,22 @@ fit.han_autoencoder <- function(obj, serie, ...) {
 detect.han_autoencoder <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  non_na <- which(!is.na(serie))
+  obj <- obj$har_store_refs(obj, serie)
 
-  ts_data <- stats::na.omit(serie)
-
-  anomalies <- rep(FALSE, length(ts_data))
-
-
-  ts <- ts_data(ts_data, obj$input_size)
+  ts <- ts_data(obj$serie, obj$input_size)
   ts <- transform(obj$preproc, ts)
   ts <- as.data.frame(ts)
 
-  result <- as.data.frame(transform(obj$auto, ts))
+  result <- as.data.frame(transform(obj$model, ts))
 
   ts <- c(as.double(ts[1,1:(ncol(ts)-1)]),as.double(ts[,ncol(ts)]))
   ts_ae <- c(as.double(result[1,1:(ncol(result)-1)]),as.double(result[,ncol(result)]))
 
-  sxd <- obj$har_residuals(ts - ts_ae)
-  anomalies <- as.vector(obj$har_outliers(sxd))
+  res <- obj$har_residuals(ts - ts_ae)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res), res)
 
-  inon_na <- anomalies
-
-  i <- rep(NA, length(serie))
-  i[non_na] <- inon_na
-
-  detection <- data.frame(idx=1:length(serie), event = i, type="")
-  detection$type[i] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

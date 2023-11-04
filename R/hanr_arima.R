@@ -67,32 +67,27 @@ fit.hanr_arima <- function(obj, serie, ...) {
 detect.hanr_arima <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   #Adjusting a model to the entire series
   model <- tryCatch(
     {
-      forecast::Arima(serie, order=c(obj$p, obj$d, obj$q), include.drift = obj$drift)
+      forecast::Arima(obj$serie, order=c(obj$p, obj$d, obj$q), include.drift = obj$drift)
     },
     error = function(cond) {
-      forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
+      forecast::auto.arima(obj$serie, allowdrift = TRUE, allowmean = TRUE)
     }
   )
 
-  #Adjustment error on the entire series
-  s <- obj$har_residuals(stats::residuals(model))
-  outliers <- obj$har_outliers_idx(s)
-  outliers <- obj$har_outliers_group(outliers, length(s))
+  res <- stats::residuals(model)
 
-  outliers[1:obj$sw_size] <- FALSE
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
+  anomalies[1:obj$sw_size] <- FALSE
 
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)
 }

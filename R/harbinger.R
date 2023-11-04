@@ -22,6 +22,37 @@ harbinger <- function() {
   obj <- dal_base()
   class(obj) <- append("harbinger", class(obj))
 
+  har_store_refs <- function(obj, serie) {
+    n <- length(serie)
+    if (is.vector(serie)) {
+      obj$non_na <- which(!is.na(serie))
+      obj$serie <- stats::na.omit(serie)
+    }
+    else {
+      n <- nrow(serie)
+      obj$non_na <- which(!is.na(apply(serie, 1, max)))
+      obj$serie <- stats::na.omit(serie)
+    }
+    obj$anomalies <- rep(NA, n)
+    obj$change_points <- rep(NA, n)
+    return(obj)
+  }
+
+  har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL) {
+    if (!is.null(anomalies))
+      obj$anomalies[obj$non_na] <- anomalies
+    if (!is.null(change_points))
+      obj$change_points[obj$non_na] <- change_points
+
+    detection <- data.frame(idx=1:length(anomalies), event = obj$anomalies, type="")
+    detection$type[obj$anomalies] <- "anomaly"
+    detection$event[obj$change_points] <- TRUE
+    detection$type[obj$change_points] <- "changepoint"
+
+    return(detection)
+  }
+
+
   har_residuals <- function(value) {
     return(value^2)
   }
@@ -43,22 +74,32 @@ harbinger <- function() {
     return (index.cp)
   }
 
-  har_outliers_group <- function(outliers, size) {
+  har_outliers_group <- function(outliers, size, values = NULL) {
     group <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
     outliers <- rep(FALSE, size)
     for (g in group) {
       if (length(g) > 0) {
-        i <- min(g)
-        outliers[i] <- TRUE
+        if (is.null(values)) {
+          i <- min(g)
+          outliers[i] <- TRUE
+        }
+        else {
+          i <- which.max(values[g])
+          i <- g[i]
+          outliers[i] <- TRUE
+        }
       }
     }
     return(outliers)
   }
 
+  obj$har_store_refs <- har_store_refs
   obj$har_residuals <- har_residuals
   obj$har_outliers <- har_outliers
   obj$har_outliers_idx <- har_outliers_idx
   obj$har_outliers_group <- har_outliers_group
+  obj$har_restore_refs <- har_restore_refs
+
 
   return(obj)
 }
