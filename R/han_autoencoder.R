@@ -9,13 +9,14 @@
 #'#Use the same example of hanr_fbiad changing the constructor to:
 #'model <- han_autoencoder(5,3)
 #'@importFrom stats na.omit
+#'@importFrom daltoolbox ts_norm_gminmax
 #'@export
 han_autoencoder <- function(input_size, encode_size) {
   obj <- harbinger()
   obj$input_size <- input_size
   obj$encode_size <- encode_size
   obj$auto <- autoenc_encode_decode(obj$input_size, obj$encode_size)
-  obj$preproc <- ts_norm_gminmax()
+  obj$preproc <- daltoolbox::ts_norm_gminmax()
   class(obj) <- append("han_autoencoder", class(obj))
   return(obj)
 }
