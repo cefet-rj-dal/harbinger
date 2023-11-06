@@ -70,6 +70,12 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_amoc.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_binseg.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_arima.html</loc>
   </url>
   <url>
@@ -79,7 +85,13 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_lr.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_chow.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_garch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_pelt.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_scp.html</loc>

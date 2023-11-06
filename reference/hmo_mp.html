@@ -100,14 +100,14 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finished in 0.03 secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   idx event  type seq seqlen</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  25  TRUE motif   1      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  31  TRUE motif   3      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  56  TRUE motif   3      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  69  TRUE motif   2      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  75  TRUE motif   1      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  94  TRUE motif   2      4</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    idx event  type seq seqlen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  25  TRUE motif   1      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  31  TRUE motif   3      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56  56  TRUE motif   3      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69  69  TRUE motif   2      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75  75  TRUE motif   1      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94  94  TRUE motif   2      4</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

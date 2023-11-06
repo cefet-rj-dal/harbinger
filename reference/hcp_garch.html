@@ -94,10 +94,10 @@ It wraps the GARCH model presented in the rugarch library.</p>
 <span class="r-in"><span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 102  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 172  TRUE changepoint</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     idx event        type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102 102  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172 172  TRUE changepoint</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
