@@ -22,7 +22,7 @@
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'@export
 hcp_cf_lr <- function(sw_size = 30) {

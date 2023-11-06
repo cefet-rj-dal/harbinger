@@ -22,7 +22,7 @@
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'# evaluating the detections
 #'evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)

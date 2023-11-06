@@ -39,12 +39,17 @@ harbinger <- function() {
   }
 
   har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL) {
-    if (!is.null(anomalies))
-      obj$anomalies[obj$non_na] <- anomalies
-    if (!is.null(change_points))
+    startup <- obj$anomalies
+    if (!is.null(change_points)) {
       obj$change_points[obj$non_na] <- change_points
+      startup <- obj$change_points
+    }
+    if (!is.null(anomalies)) {
+      obj$anomalies[obj$non_na] <- anomalies
+      startup <- obj$anomalies
+    }
 
-    detection <- data.frame(idx=1:length(obj$anomalies), event = obj$anomalies, type="")
+    detection <- data.frame(idx=1:length(obj$anomalies), event = startup, type="")
     detection$type[obj$anomalies] <- "anomaly"
     detection$event[obj$change_points] <- TRUE
     detection$type[obj$change_points] <- "changepoint"

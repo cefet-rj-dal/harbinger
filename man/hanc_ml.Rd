@@ -48,6 +48,6 @@ model <- fit(model, train_n)
 test_n <- transform(norm, test)
 
 detection <- detect(model, test_n)
-print(detection |> dplyr::filter(event==TRUE))
+print(detection[(detection$event),])
 
 }

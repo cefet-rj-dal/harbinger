@@ -32,7 +32,7 @@ model <- fit(model, dataset[,1:2])
 detection <- detect(model, dataset[,1:2])
 
 # filtering detected events
-print(detection |> dplyr::filter(event==TRUE))
+print(detection[(detection$event),])
 
 # evaluating the detections
 evaluation <- evaluate(model, detection$event, dataset$event)

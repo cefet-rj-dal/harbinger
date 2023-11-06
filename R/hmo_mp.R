@@ -24,7 +24,7 @@
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'@export
 hmo_mp <- function(mode = "stamp", w, qtd) {

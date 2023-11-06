@@ -35,7 +35,7 @@
 #'test_n <- transform(norm, test)
 #'
 #'detection <- detect(model, test_n)
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'@export
 hanc_ml <- function(model) {

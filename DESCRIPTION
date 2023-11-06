@@ -96,6 +96,8 @@ Imports:
   rugarch,
   forecast, 
   ggplot2, 
+  changepoint,
+  strucchange,
   stringr,
   dplyr, 
   reticulate

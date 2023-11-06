@@ -24,7 +24,7 @@
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'@export
 hmo_base36 <- function(a, w, qtd) {
@@ -84,19 +84,17 @@ norm_base36 <- function (vector, slices)
 
 #'@importFrom stats na.omit
 #'@import stringr
-#'@import dplyr
+#'@importFrom dplyr group_by
 #'@export
 detect.hmo_base36 <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
 
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
-  tss <- norm_base36(serie, obj$a)
+  tss <- norm_base36(obj$serie, obj$a)
   tsw <- ts_data(tss, obj$w)
   seq <- apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
   data <- data.frame(i = 1:nrow(tsw), seq)
@@ -115,28 +113,29 @@ detect.hmo_base36 <- function(obj, serie, ...) {
 
     if (nrow(motif) > 0) {
       vec <- motif$i
-      svec <- split(vec, cumsum(c(1, diff(vec) != 1)))
-      vec <- sapply(svec, min)
+      svec <- base::split(vec, base::cumsum(c(1, diff(vec) != 1)))
+      vec <- base::sapply(svec, min)
 
       motif <- motif |> dplyr::filter((i %in% vec))
 
       if (length(vec) >= obj$qtd) {
-        motifs <- rbind(motifs, motif)
+        motifs <- base::rbind(motifs, motif)
       }
     }
   }
 
-  outliers <- data.frame(event = rep(FALSE, length(serie)), seq = rep(NA, length(serie)))
-  if (!is.null(motifs)) {
-    outliers$event[motifs$i] <- TRUE
-    outliers$seq[motifs$i] <- motifs$seq
-  }
+  mots <- rep(FALSE, length(obj$serie))
+  seqs <- rep(NA, length(obj$serie))
+  mots[motifs$i] <- TRUE
+  seqs[motifs$i] <- motifs$seq
 
-  detection <- data.frame(idx=1:n, event = FALSE, type="", seq=NA, seqlen = NA)
-  detection$event[non_na] <- outliers$event
-  detection$type[detection$event[non_na]] <- "motif"
-  detection$seq[non_na] <- outliers$seq
-  detection$seqlen[detection$event] <- obj$w
+  detection <- obj$har_restore_refs(obj, anomalies = mots)
+  detection$seq <- NA
+  detection$seqlen <- NA
+  detection$type[detection$type=="anomaly"] <- "motif"
+  detection$seq[obj$non_na] <- seqs
+  detection$seqlen[obj$non_na] <- obj$w
+
   return(detection)
 }
 

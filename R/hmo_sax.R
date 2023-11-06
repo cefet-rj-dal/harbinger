@@ -24,7 +24,7 @@
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
-#'print(detection |> dplyr::filter(event==TRUE))
+#'print(detection[(detection$event),])
 #'
 #'@export
 hmo_sax <- function(a, w, qtd) {
@@ -38,29 +38,29 @@ hmo_sax <- function(a, w, qtd) {
 }
 
 binning_sax <- function(v, a) {
-  p <- seq(from = 0, to = 1, by = 1/a)
+  p <- base::seq(from = 0, to = 1, by = 1/a)
   q <- stats::quantile(v, p)
-  qf <- matrix(c(q[1:(length(q)-1)],q[2:(length(q))]), ncol=2)
-  vp <- cut(v, unique(q), FALSE, include.lowest=TRUE)
-  m <- tapply(v, vp, mean)
+  qf <- base::matrix(c(q[1:(length(q)-1)],q[2:(length(q))]), ncol=2)
+  vp <- base::cut(v, unique(q), FALSE, include.lowest=TRUE)
+  m <- base::tapply(v, vp, mean)
   vm <- m[vp]
-  mse <- mean((v - vm)^2, na.rm = TRUE)
+  mse <- base::mean((v - vm)^2, na.rm = TRUE)
   return (list(binning=m, bins_factor=vp, q=q, qf=qf, bins=vm, mse=mse))
 }
 
 convert_to_sax <- function(num, nbase) {
   chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  if(nbase < 2 || nbase > str_length(chars))
+  if(nbase < 2 || nbase > stringr::str_length(chars))
     return("")
   newNumber <- ""
   r <- 0
   while(num >= nbase)
   {
     r <- num %% nbase
-    newNumber <- sprintf("%s%s", substr(chars, r+1, r+1), newNumber)
+    newNumber <- base::sprintf("%s%s", substr(chars, r+1, r+1), newNumber)
     num <- as.integer(num / nbase)
   }
-  newNumber = sprintf("%s%s", substr(chars, num+1, num+1), newNumber)
+  newNumber = base::sprintf("%s%s", substr(chars, num+1, num+1), newNumber)
   return (newNumber)
 }
 
@@ -75,10 +75,10 @@ convert_to_sax_vec <- function(num, nbase) {
 
 norm_sax <- function (vector, slices)
 {
-  vectorNorm <- (vector - mean(vector, na.rm = T))/stats::sd(vector, na.rm = T)
+  vectorNorm <- (vector - base::mean(vector, na.rm = T))/stats::sd(vector, na.rm = T)
   mybin <- binning_sax(vectorNorm, slices)
-  i <- ceiling(log(slices, 26))
-  mycode <- str_pad(convert_to_sax_vec(0:(slices-1), 26), i, pad="0")
+  i <- base::ceiling(log(slices, 26))
+  mycode <- stringr::str_pad(convert_to_sax_vec(0:(slices-1), 26), i, pad="0")
   saxvector <- mycode[mybin$bins_factor]
   return(saxvector)
 }
@@ -92,16 +92,14 @@ detect.hmo_sax <- function(obj, serie, ...) {
   total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- length(serie)
-  non_na <- which(!is.na(serie))
+  obj <- obj$har_store_refs(obj, serie)
 
-  serie <- stats::na.omit(serie)
-
-  tss <- norm_sax(serie, obj$a)
-  tsw <- ts_data(tss, obj$w)
-  seq <- apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
+  tss <- norm_sax(obj$serie, obj$a)
+  tsw <- daltoolbox::ts_data(tss, obj$w)
+  seq <- base::apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
   data <- data.frame(i = 1:nrow(tsw), seq)
-  result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=n()) |> dplyr::filter(total_count >= obj$qtd) |> dplyr::arrange(desc(total_count)) |> dplyr::select(seq)
+  result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=n()) |>
+    dplyr::filter(total_count >= obj$qtd) |> dplyr::arrange(desc(total_count)) |> dplyr::select(seq)
   result <- result$seq
   data <- data |> dplyr::filter(seq %in% result)
 
@@ -116,28 +114,29 @@ detect.hmo_sax <- function(obj, serie, ...) {
 
     if (nrow(motif) > 0) {
       vec <- motif$i
-      svec <- split(vec, cumsum(c(1, diff(vec) != 1)))
-      vec <- sapply(svec, min)
+      svec <- base::split(vec, base::cumsum(c(1, diff(vec) != 1)))
+      vec <- base::sapply(svec, min)
 
       motif <- motif |> dplyr::filter((i %in% vec))
 
       if (length(vec) >= obj$qtd) {
-        motifs <- rbind(motifs, motif)
+        motifs <- base::rbind(motifs, motif)
       }
     }
   }
 
-  outliers <- data.frame(event = rep(FALSE, length(serie)), seq = rep(NA, length(serie)))
-  if (!is.null(motifs)) {
-    outliers$event[motifs$i] <- TRUE
-    outliers$seq[motifs$i] <- motifs$seq
-  }
+  mots <- rep(FALSE, length(obj$serie))
+  seqs <- rep(NA, length(obj$serie))
+  mots[motifs$i] <- TRUE
+  seqs[motifs$i] <- motifs$seq
 
-  detection <- data.frame(idx=1:n, event = FALSE, type="", seq=NA, seqlen = NA)
-  detection$event[non_na] <- outliers$event
-  detection$type[detection$event[non_na]] <- "motif"
-  detection$seq[non_na] <- outliers$seq
-  detection$seqlen[detection$event] <- obj$w
+  detection <- obj$har_restore_refs(obj, anomalies = mots)
+  detection$seq <- NA
+  detection$seqlen <- NA
+  detection$type[detection$type=="anomaly"] <- "motif"
+  detection$seq[obj$non_na] <- seqs
+  detection$seqlen[obj$non_na] <- obj$w
+
   return(detection)
 }
 
