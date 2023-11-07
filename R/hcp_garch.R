@@ -13,7 +13,7 @@
 #'dataset <- har_examples$example14
 #'head(dataset)
 #'
-#'# setting up time series regression model
+#'# setting up change point method
 #'model <- hcp_garch()
 #'
 #'# fitting the model

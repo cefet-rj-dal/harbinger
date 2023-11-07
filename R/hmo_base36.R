@@ -14,7 +14,7 @@
 #'dataset <- har_examples$example15
 #'head(dataset)
 #'
-#'# setting up time series regression model
+#'# setting up motif discovery method
 #'model <- hmo_base36(37, 3, 3)
 #'
 #'# fitting the model
