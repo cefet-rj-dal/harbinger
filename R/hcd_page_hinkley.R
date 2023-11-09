@@ -10,24 +10,17 @@
 #'@examples
 #'library("daltoolbox")
 #'
-#'n <- 100  # Number of time points
-#'example_type='multivariate'
-#'# Multivariate Example
-#'data <- as.data.frame(c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2))
-#'names(data) <- c('serie1')
-#'data['serie2'] <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2) + runif(length(data), 0, 1)
+#'n <- 100  # size of each segment
+#'serie1 <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+#'            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+#'serie2 <- 2*c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+#'            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+#'data <- data.frame(serie1, serie2)#'
+#'event <- rep(FALSE, nrow(data))
 #'
-#'event <- rep(FALSE, n)
-#'
-#'model <- fit(hcd_page_hinkley(threshold=3), data[c('serie1', 'serie2')])
+#'model <- fit(hcd_page_hinkley(threshold=3), data)
 #'detection <- detect(model, data)
-#'
-#'grf <- har_plot(model, data$serie1, detection)
-#'grf <- grf + ylab("value")
-#'grf <- grf
-#'
-#'plot(grf)
-#'
+#'print(detection[(detection$event),])
 #'
 #'@export
 hcd_page_hinkley <- function(min_instances=30, delta=0.005, threshold=50, alpha=1-0.0001) {
@@ -43,6 +36,8 @@ hcd_page_hinkley <- function(min_instances=30, delta=0.005, threshold=50, alpha=
   return(obj)
 }
 
+#'@importFrom stats ecdf
+#'@importFrom stats complete.cases
 #'@export
 detect.hcd_page_hinkley <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
@@ -50,15 +45,15 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
 
   update <- function(obj, x){
     obj$x_mean <- obj$x_mean + (x - obj$x_mean)/obj$sample_count
-    obj$sum <- max(0., obj$alpha * obj$sum + (x - obj$x_mean - obj$delta))
+    obj$sum <- max(0, obj$alpha * obj$sum + (x - obj$x_mean - obj$delta))
     obj$sample_count <- obj$sample_count + 1
-    
+
     if(obj$sample_count < obj$min_instances){
       return(list(obj=obj, pred=FALSE))
     }
     else if(obj$sum > obj$threshold){
-      obj$x_mean <- 0.
-      obj$sum <- 0.
+      obj$x_mean <- 0
+      obj$sum <- 0
       obj$sample_count <- 1
       return(list(obj=obj, pred=TRUE))
     }
@@ -67,12 +62,12 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
     }
   }
 
-  non_na <- which(complete.cases(serie))
-  data[colnames(serie)] <- serie[non_na, ]
-  
+  non_na <- base::which(stats::complete.cases(serie))
+  data <- serie[non_na, ]
+
   # Transform to percentile (0 to 1) if data has more than one column
   for(column_index in 1:ncol(data)){
-    data[, column_index] <- ecdf(data[, column_index])(data[, column_index])
+    data[, column_index] <- stats::ecdf(data[, column_index])(data[, column_index])
   }
   data <- rowSums(data)/ncol(data)
   data <- data[which(!is.na(data))]
@@ -82,13 +77,14 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
   output <- update(obj, data[1])
   for (x in data[1:length(data)]){
     output <- update(output$obj, x)
-    ph_result <- rbind(ph_result, output$pred)
+    ph_result <- base::rbind(ph_result, output$pred)
   }
+
   inon_na <- rep(FALSE, length(non_na))
   n <- length(ph_result)
   if (n > 1)
     inon_na[ph_result[1:(n-1)]] <- TRUE
-  
+
   i <- rep(NA, nrow(serie))
   i[non_na] <- inon_na
   detection <- data.frame(idx=1:length(i), event = i, type="")
