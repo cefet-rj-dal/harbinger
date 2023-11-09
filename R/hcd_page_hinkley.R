@@ -66,18 +66,15 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
   data <- serie[non_na, ]
 
   # Transform to percentile (0 to 1) if data has more than one column
-  for(column_index in 1:ncol(data)){
-    data[, column_index] <- stats::ecdf(data[, column_index])(data[, column_index])
-  }
-  data <- rowSums(data)/ncol(data)
-  data <- data[which(!is.na(data))]
+  data <- base::sapply(data, function(c) stats::ecdf(c)(c))
+  data <- base::apply(data, 1, mean)
 
   # Perform change point detection using Page Hinkley
-  ph_result <- c()
+  ph_result <- rep(FALSE, length(data))
   output <- update(obj, data[1])
-  for (x in data[1:length(data)]){
-    output <- update(output$obj, x)
-    ph_result <- base::rbind(ph_result, output$pred)
+  for (i in 1:length(data)){
+    output <- update(output$obj, data[i])
+    ph_result[i] <- output$pred
   }
 
   inon_na <- rep(FALSE, length(non_na))
