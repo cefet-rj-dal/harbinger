@@ -12,26 +12,17 @@
 #'
 #'n <- 100  # Number of time points
 #'example_type='multivariate'
-#'if(example_type == 'univariate'){
-#'  # Univariate example
-#'  data <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
-#'  threshold = 20
-#'  plot_data <- data
-#'}else if(example_type == 'multivariate'){
-#'  # Multivariate Example
-#'  data <- as.data.frame(c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2))
-#'  names(data) <- c('serie1')
-#'  data['serie2'] <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2) + runif(length(data), 0, 1)
-#'  threshold <- 3
-#'  plot_data <- data$serie1
-#'}
+#'# Multivariate Example
+#'data <- as.data.frame(c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2))
+#'names(data) <- c('serie1')
+#'data['serie2'] <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2) + runif(length(data), 0, 1)
 #'
 #'event <- rep(FALSE, n)
 #'
-#'model <- fit(hcd_page_hinkley(threshold=threshold), data[c('serie1', 'serie2')])
+#'model <- fit(hcd_page_hinkley(threshold=3), data[c('serie1', 'serie2')])
 #'detection <- detect(model, data)
 #'
-#'grf <- har_plot(model, plot_data, detection)
+#'grf <- har_plot(model, data$serie1, detection)
 #'grf <- grf + ylab("value")
 #'grf <- grf
 #'
@@ -55,6 +46,7 @@ hcd_page_hinkley <- function(min_instances=30, delta=0.005, threshold=50, alpha=
 #'@export
 detect.hcd_page_hinkley <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+  if(!is.data.frame(serie)) stop("serie is not a data frame", call. = FALSE)
 
   update <- function(obj, x){
     obj$x_mean <- obj$x_mean + (x - obj$x_mean)/obj$sample_count
@@ -75,19 +67,15 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
     }
   }
 
-  non_na <- which(!is.na(serie))
+  non_na <- which(complete.cases(serie))
+  data[colnames(serie)] <- serie[non_na, ]
   
   # Transform to percentile (0 to 1) if data has more than one column
-  if((class(data) != 'numeric')){
-    data <- serie[non_na, ]
-    for(column_index in 1:ncol(data)){
-      data[, column_index] <- ecdf(data[, column_index])(data[, column_index])
-    }
-    data <- rowSums(data)/ncol(data)
-    data <- data[which(!is.na(data))]
-  }else{
-      data <- serie[non_na]
-    }
+  for(column_index in 1:ncol(data)){
+    data[, column_index] <- ecdf(data[, column_index])(data[, column_index])
+  }
+  data <- rowSums(data)/ncol(data)
+  data <- data[which(!is.na(data))]
 
   # Perform change point detection using Page Hinkley
   ph_result <- c()
@@ -96,15 +84,13 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
     output <- update(output$obj, x)
     ph_result <- rbind(ph_result, output$pred)
   }
-
   inon_na <- rep(FALSE, length(non_na))
   n <- length(ph_result)
   if (n > 1)
     inon_na[ph_result[1:(n-1)]] <- TRUE
-
-  i <- rep(NA, length(serie))
+  
+  i <- rep(NA, nrow(serie))
   i[non_na] <- inon_na
-
   detection <- data.frame(idx=1:length(i), event = i, type="")
   detection$type[i] <- "changepoint"
 
