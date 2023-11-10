@@ -106,7 +106,7 @@ detect.hmo_sax <- function(obj, serie, ...) {
   data <- data.frame(i = 1:nrow(tsw), seq)
   result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=dplyr::n())
   result <- result[result$total_count >= obj$qtd,]
-  result <- data |> dplyr::arrange(dplyr::desc(total_count)) |> dplyr::select(seq)
+  result <- result |> dplyr::arrange(dplyr::desc(total_count)) |> dplyr::select(seq)
   result <- result$seq
   data <- data[data$seq %in% result,]
 
