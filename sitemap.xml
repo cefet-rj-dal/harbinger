@@ -46,6 +46,9 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_ml.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_wavelet.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_conv1d.html</loc>
   </url>
   <url>
@@ -68,6 +71,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_ddm.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_eddm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_page_hinkley.html</loc>
