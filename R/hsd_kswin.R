@@ -23,7 +23,7 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hcd_kswin <- function(window_size=100, stat_size=30, alpha=1-0.0001, data=NULL) {
+hcd_kswin <- function(window_size=100, stat_size=30, alpha=0.005, data=NULL) {
     obj <- harbinger()
     obj$window_size <- window_size
     obj$stat_size <- stat_size
