@@ -53,10 +53,23 @@ devtools::install_github("cefet-rj-dal/harbinger", force=TRUE, upgrade="never")
 
 ## Examples
 
-Examples of Harbinger are available at:
-<https://nbviewer.org/github/cefet-rj-dal/harbinger-examples/tree/main/>
-They are organized according to general functions, anomalies, change
-points, motifs, and multivariate anomaly detection.
+Examples of Harbinger are organized according to general functions,
+anomalies, change points, motifs, and multivariate anomaly detection.
+
+General:
+<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/general/>
+
+Anomalies:
+<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/anomalies/>
+
+Change points:
+<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/change_point/>
+
+Motifs:
+<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/motifs/>
+
+Multivariate:
+<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/multivariate/>
 
 ``` r
 library(harbinger)
