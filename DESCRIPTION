@@ -91,7 +91,6 @@ Imports:
   stats,
   daltoolbox,
   TSPred, 
-  tspredit, 
   tsmp,
   dtwclust,
   rugarch,
@@ -101,7 +100,6 @@ Imports:
   strucchange,
   stringr,
   dplyr, 
-  hht,
   reticulate
 Config/reticulate:
   list(

@@ -6,4 +6,12 @@
 ^docs$
 ^pkgdown$
 ^\.github$
-^backup$
+^anomalies$
+^change_point$
+^general$
+^develop$
+^motifs$
+^multivariate$
+package.R
+jupyter.R
+
