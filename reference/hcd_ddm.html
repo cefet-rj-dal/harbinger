@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.737</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.747</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">"daltoolbox"</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">daltoolbox</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Loading the example database</span></span></span>
@@ -83,8 +84,9 @@
 <span class="r-in"><span><span class="co">#Using example 1</span></span></span>
 <span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">har_examples</span><span class="op">$</span><span class="va">example1</span></span></span>
 <span class="r-in"><span><span class="va">cut_index</span> <span class="op">&lt;-</span> <span class="fl">60</span></span></span>
-<span class="r-in"><span><span class="va">drift_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">[</span><span class="va">cut_index</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">]</span>,<span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dataset</span><span class="op">[</span><span class="va">cut_index</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">]</span>, <span class="st">'serie'</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">dataset</span><span class="op">[</span><span class="va">cut_index</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">]</span>, <span class="st">'serie'</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">drift_size</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">srange</span> <span class="op">&lt;-</span> <span class="va">cut_index</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">drift_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">[</span><span class="va">srange</span>,<span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dataset</span><span class="op">[</span><span class="va">srange</span>, <span class="st">'serie'</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">dataset</span><span class="op">[</span><span class="va">srange</span>, <span class="st">'serie'</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">drift_size</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       serie event</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.0000000 FALSE</span>
@@ -117,20 +119,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 92  92  TRUE anomaly</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Drift test</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"lucas/Drift/header.R"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'lucas/Drift/header.R': No such file or directory</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(filename, "r", encoding = encoding):</span> cannot open the connection</span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"lucas/Drift/hcd_ddm.R"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'lucas/Drift/hcd_ddm.R': No such file or directory</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(filename, "r", encoding = encoding):</span> cannot open the connection</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">drift_evaluation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span> <span class="op">==</span> <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="fu">hcd_ddm</span><span class="op">(</span>min_instances<span class="op">=</span><span class="fl">10</span>, out_control_level <span class="op">=</span> <span class="fl">2</span>, warning_level<span class="op">=</span><span class="fl">0</span><span class="op">)</span>, <span class="va">drift_evaluation</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">detection_drift</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">drift_evaluation</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="fu"><a href="har_plot.html">har_plot</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span>, <span class="va">detection_drift</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="va">grf</span> <span class="op">+</span> <span class="fu">ylab</span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ylab("value"):</span> could not find function "ylab"</span>
+<span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="va">grf</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="va">grf</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grf</span><span class="op">)</span></span></span>
@@ -142,7 +137,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Rebecca Salles, Janio Lima, Lais Baroni, Antonio Castro, Leonardo Carvalho, Heraldo Borges, Diego Carvalho, Rafaelli Coutinho, Eduardo Bezerra, Esther Pacitti, Fabio Porto, Eduardo Ogasawara.</p>
+  <p></p><p>Developed by Eduardo Ogasawara, Antonio Castro, Antonio Mello, Ellen Paixão, Fernando Fraga, Heraldo Borges, Janio Lima, Jessica Souza, Lais Baroni, Lucas Tavares, Rebecca Salles, Diego Carvalho, Eduardo Bezerra, Rafaelli Coutinho, Esther Pacitti, Fabio Porto.</p>
 </div>
 
 <div class="pkgdown-footer-right">
