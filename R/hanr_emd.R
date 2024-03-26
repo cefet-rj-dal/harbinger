@@ -17,13 +17,13 @@
 #'dataset <- har_examples$example1
 #'head(dataset)
 #'
-#'# setting up time series regression model
-#'model <- hanr_arima()
+#'# setting up time series emd detector
+#'model <- hanr_emd()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
 #'
-# making detection using hanr_ml
+# making detection
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
@@ -65,29 +65,10 @@ fit.hanr_emd <- function(obj, serie,  ...) {
 #'@importFrom stats median
 #'@importFrom stats sd
 detect.hanr_emd <- function(obj, serie, ...) {
-  ## Roughness Function
-  fc_roughness <- function(x){
-    firstD = base::diff(x)
-    normFirstD = (firstD - base::mean(firstD)) / stats::sd(firstD)
-    roughness = (base::diff(normFirstD) ** 2) / 4
-    return(base::mean(roughness))
-  }
 
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
-  ## calculate roughness for each imf
-  vec <- vector()
-  for (n in 1:obj$model$nimf){
-    vec[n] <- fc_roughness(obj$model[["imf"]][,n])
-  }
-
-  ## Maximum curvature
-  res <- transform(fit_curvature_max(), vec)
-  div <- res$x
   sum_high_freq <- obj$model[["imf"]][,1]
-
-  for (k in 2:div){
-    sum_high_freq <- sum_high_freq + obj$model[["imf"]][,k]}
 
   ## identification of anomaly points
   diff_high_freq <- c(NA, diff(sum_high_freq))

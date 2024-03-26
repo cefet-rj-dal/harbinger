@@ -14,7 +14,7 @@ hanr_emd(noise = 0.1, w = 30, trials = 5)
 \item{trials}{trials}
 }
 \value{
-\code{hanr_arima} object
+\code{hanr_emd} object
 }
 \description{
 Anomaly detection using EMD
@@ -31,8 +31,8 @@ data(har_examples)
 dataset <- har_examples$example1
 head(dataset)
 
-# setting up time series regression model
-model <- hanr_arima()
+# setting up time series emd detector
+model <- hanr_emd()
 
 # fitting the model
 model <- fit(model, dataset$serie)
