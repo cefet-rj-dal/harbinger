@@ -56,8 +56,8 @@ if (FALSE) { #build package for cran
   pkgbuild::build(manual = TRUE)
 
   #run in terminal
-  #R CMD check harbinger_1.0.727.tar.gz
-  #R CMD check harbinger_1.0.727.tar.gz --as-cran
+  #R CMD check harbinger_1.0.747.tar.gz
+  #R CMD check harbinger_1.0.747.tar.gz --as-cran
 
   #upload package
   #https://cran.r-project.org/submit.html
