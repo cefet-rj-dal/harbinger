@@ -7,7 +7,8 @@
 #DDM implementation: Scikit-Multiflow, https://github.com/scikit-multiflow/scikit-multiflow/blob/a7e316d/src/skmultiflow/drift_detection/ddm.py
 #'@return `hcp_ddm` object
 #'@examples
-#'library("daltoolbox")
+#'library(daltoolbox)
+#'library(ggplot2)
 #'set.seed(6)
 #'
 #'# Loading the example database
@@ -16,8 +17,9 @@
 #'#Using example 1
 #'dataset <- har_examples$example1
 #'cut_index <- 60
-#'drift_size <- nrow(dataset[cut_index:row.names(dataset)[nrow(dataset)],])
-#'dataset[cut_index:row.names(dataset)[nrow(dataset)], 'serie'] <- dataset[cut_index:row.names(dataset)[nrow(dataset)], 'serie'] + rnorm(drift_size, mean=0, sd=0.5)
+#'srange <- cut_index:row.names(dataset)[nrow(dataset)]
+#'drift_size <- nrow(dataset[srange,])
+#'dataset[srange, 'serie'] <- dataset[srange, 'serie'] + rnorm(drift_size, mean=0, sd=0.5)
 #'head(dataset)
 #'
 #'plot(x=row.names(dataset), y=dataset$serie, type='l')
@@ -35,15 +37,13 @@
 #'print(detection[(detection$event),])
 #'
 #'# Drift test
-#'source("lucas/Drift/header.R")
-#'source("lucas/Drift/hcd_ddm.R")
 #'
 #'drift_evaluation <- data.frame(!(detection$event == dataset$event)) * 1
 #'model <- fit(hcd_ddm(min_instances=10, out_control_level = 2, warning_level=0), drift_evaluation)
 #'detection_drift <- detect(model, drift_evaluation)
 #'
 #'grf <- har_plot(model, dataset$serie, detection_drift)
-#'grf <- grf + ylab("value")
+#'grf <- grf + ggplot2::ylab("value")
 #'grf <- grf
 #'
 #'plot(grf)
@@ -53,14 +53,14 @@ hcd_ddm <- function(min_instances=30, warning_level=2.0, out_control_level=3.0) 
   obj$min_instances <- min_instances
   obj$warning_level <- warning_level
   obj$out_control_level <- out_control_level
-  
+
   obj$sample_count <- 1
   obj$miss_prob <- 1.0
   obj$miss_std <- 0.0
   obj$miss_prob_sd_min <- Inf
   obj$miss_prob_min <- Inf
   obj$miss_sd_min <- Inf
-  
+
   class(obj) <- append("hcd_ddm", class(obj))
   return(obj)
 }
@@ -71,12 +71,12 @@ hcd_ddm <- function(min_instances=30, warning_level=2.0, out_control_level=3.0) 
 detect.hcd_ddm <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
   if(!is.data.frame(serie)) stop("serie is not a data frame", call. = FALSE)
-  
+
   update <- function(obj, x){
     obj$miss_prob <- obj$miss_prob + (x - obj$miss_prob) / obj$sample_count
     obj$miss_std <- sqrt(obj$miss_prob * (1 - obj$miss_prob)) / obj$sample_count
     obj$sample_count <- obj$sample_count + 1
-    
+
     obj$estimation <- obj$miss_prob
     obj$in_concept_change <- FALSE
     obj$in_warning_zone <- FALSE
@@ -85,7 +85,7 @@ detect.hcd_ddm <- function(obj, serie, ...) {
     if(obj$sample_count < obj$min_instances){
       return(list(obj=obj, pred=FALSE))
     }
-    
+
     if((obj$miss_prob + obj$miss_std) <= obj$miss_prob_sd_min){
       obj$miss_prob_min <- obj$miss_prob
       obj$miss_sd_min <- obj$miss_std
@@ -108,14 +108,14 @@ detect.hcd_ddm <- function(obj, serie, ...) {
       return(list(obj=obj, pred=FALSE))
     }
   }
-  
+
   non_na <- base::which(stats::complete.cases(serie))
   data <- serie[non_na, ]
-  
+
   # Transform to percentile (0 to 1) if data has more than one column
   #data <- base::sapply(data, function(c) stats::ecdf(c)(c))
   #data <- base::apply(data, 1, mean)
-  
+
   # Perform change point detection using DDM
   ph_result <- rep(FALSE, length(data))
   output <- update(obj, data[1])
@@ -123,16 +123,16 @@ detect.hcd_ddm <- function(obj, serie, ...) {
     output <- update(output$obj, data[i])
     ph_result[i] <- output$pred
   }
-  
+
   inon_na <- rep(FALSE, length(non_na))
   n <- length(ph_result)
   if (n > 1)
     inon_na[ph_result[1:(n-1)]] <- TRUE
-  
+
   i <- rep(NA, nrow(serie))
   i[non_na] <- inon_na
   detection <- data.frame(idx=1:length(i), event = i, type="")
   detection$type[i] <- "changepoint"
-  
+
   return(detection)
 }
