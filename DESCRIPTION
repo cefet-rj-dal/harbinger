@@ -39,6 +39,7 @@ Imports:
   changepoint,
   strucchange,
   stringr,
+  hht,
   dplyr
 
     

@@ -1,8 +1,12 @@
-#'@title Anomaly detector using ARIMA.
-#'@description Anomaly detection using ARIMA
-#'The ARIMA model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the ARIMA model presented in the forecast library.
-#'@return `hanr_arima` object
+#'@title Anomaly detector using EMD
+#'@description Anomaly detection using EMD
+#'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+#'It wraps the EMD model presented in the forecast library.
+#'@param noise nosie
+#'@param w window size
+#'@param trials trials
+#'@return `hanr_emd` object
+#'
 #'@examples
 #'library(daltoolbox)
 #'
@@ -26,26 +30,30 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_emd <- function() {
+hanr_emd <- function(noise = 0.1, w = 30, trials = 5) {
   obj <- harbinger()
+  obj$noise <- noise
+  obj$w <- w
+  obj$trials <- trials
+
   obj$sw_size <- NULL
 
   class(obj) <- append("hanr_emd", class(obj))
   return(obj)
 }
 
-fit.hanr_emd <- function(obj, serie, noise = 0.1, ...) {
+#'@importFrom hht CEEMD
+#'@export
+fit.hanr_emd <- function(obj, serie,  ...) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
   serie <- stats::na.omit(serie)
-  w=30
-  noise.amp = noise
-  trials=5
+
   serie <- stats::ts(serie)
 
   id <- 1:length(serie)
   obj$sw_size <-  length(serie)
-  ceemd.result <- hht::CEEMD(serie, id, noise, trials)
+  ceemd.result <- hht::CEEMD(serie, id, obj$noise, obj$trials)
 
   obj$model <- ceemd.result
 
@@ -53,13 +61,16 @@ fit.hanr_emd <- function(obj, serie, noise = 0.1, ...) {
 }
 
 
+#'@export
+#'@importFrom stats median
+#'@importFrom stats sd
 detect.hanr_emd <- function(obj, serie, ...) {
   ## Roughness Function
   fc_roughness <- function(x){
-    firstD = diff(x)
-    normFirstD = (firstD - mean(firstD)) / sd(firstD)
-    roughness = (diff(normFirstD) ** 2) / 4
-    return(mean(roughness))
+    firstD = base::diff(x)
+    normFirstD = (firstD - base::mean(firstD)) / stats::sd(firstD)
+    roughness = (base::diff(normFirstD) ** 2) / 4
+    return(base::mean(roughness))
   }
 
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
@@ -80,10 +91,10 @@ detect.hanr_emd <- function(obj, serie, ...) {
 
   ## identification of anomaly points
   diff_high_freq <- c(NA, diff(sum_high_freq))
-  median_high_freq <- median(abs(diff_high_freq), na.rm= TRUE)
+  median_high_freq <- stats::median(abs(diff_high_freq), na.rm= TRUE)
   distance <- abs(diff_high_freq) -  median_high_freq
 
-  outliers_dist <- which(abs(distance)>2.698*sd(distance, na.rm=TRUE))
+  outliers_dist <- which(abs(distance) > 2.698*stats::sd(distance, na.rm=TRUE))
 
   obj$anomalies[1:obj$sw_size] <- FALSE
   if (!is.null(outliers_dist) & length(outliers_dist) > 0) {
