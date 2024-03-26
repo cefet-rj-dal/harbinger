@@ -31,7 +31,6 @@ RoxygenNote: 7.3.1
 Imports: 
   stats,
   daltoolbox,
-  TSPred, 
   tsmp,
   dtwclust,
   rugarch,
@@ -40,18 +39,6 @@ Imports:
   changepoint,
   strucchange,
   stringr,
-  dplyr, 
-  reticulate
-Config/reticulate:
-  list(
-    packages = list(
-      list(package = "scipy"),
-      list(package = "torch"),
-      list(package = "pandas"),
-      list(package = "numpy"),
-      list(package = "matplotlib"),
-      list(package = "scikit-learn")
-    )
-  )
+  dplyr
 
     

@@ -61,7 +61,6 @@ fit.hcp_cf_arima <- function(obj, serie, ...) {
 
 #'@importFrom stats na.omit
 #'@importFrom stats residuals
-#'@importFrom TSPred mas
 #'@importFrom forecast auto.arima
 #'@export
 detect.hcp_cf_arima <- function(obj, serie, ...) {
@@ -86,7 +85,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
 
   anomalies[1:obj$sw_size] <- FALSE
 
-  y <- TSPred::mas(res, obj$sw_size)
+  y <- mas(res, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- forecast::auto.arima(y)
@@ -94,7 +93,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
 
-  u <- TSPred::mas(u, obj$sw_size)
+  u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
   cp <- obj$har_outliers_group(cp, length(u))
   cp[1:obj$sw_size] <- FALSE

@@ -38,7 +38,6 @@ hcp_cf_ets <- function(sw_size = 7) {
 #'@importFrom stats ts
 #'@importFrom stats residuals
 #'@importFrom forecast ets
-#'@importFrom TSPred mas
 #'@export
 detect.hcp_cf_ets <- function(obj, serie, ...) {
   obj <- obj$har_store_refs(obj, serie)
@@ -54,7 +53,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
 
   anomalies[1:obj$sw_size] <- FALSE
 
-  y <- TSPred::mas(res, obj$sw_size)
+  y <- mas(res, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- forecast::ets(ts(y))
@@ -62,7 +61,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
 
-  u <- TSPred::mas(u, obj$sw_size)
+  u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
   cp <- obj$har_outliers_group(cp, length(u))
   cp[1:obj$sw_size] <- FALSE

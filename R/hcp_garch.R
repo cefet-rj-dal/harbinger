@@ -64,7 +64,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
 
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
-  u <- TSPred::mas(u, obj$sw_size)
+  u <- mas(u, obj$sw_size)
 
   cp <- obj$har_outliers_idx(u)
   cp <- obj$har_outliers_group(cp, length(u))

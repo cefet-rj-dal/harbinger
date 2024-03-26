@@ -36,7 +36,6 @@ hcp_cf_lr <- function(sw_size = 30) {
 #'@importFrom stats lm
 #'@importFrom stats na.omit
 #'@importFrom stats residuals
-#'@importFrom TSPred mas
 #'@export
 detect.hcp_cf_lr <- function(obj, serie, ...) {
   linreg <- function(serie) {
@@ -58,7 +57,7 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
 
   anomalies[1:obj$sw_size] <- FALSE
 
-  y <- TSPred::mas(res, obj$sw_size)
+  y <- mas(res, obj$sw_size)
 
   #Adjusting to the entire series
   M2 <- linreg(y)
@@ -66,7 +65,7 @@ detect.hcp_cf_lr <- function(obj, serie, ...) {
   #Adjustment error on the whole window
   u <- obj$har_residuals(stats::residuals(M2))
 
-  u <- TSPred::mas(u, obj$sw_size)
+  u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers_idx(u)
   cp <- obj$har_outliers_group(cp, length(u))
   cp[1:obj$sw_size] <- FALSE
