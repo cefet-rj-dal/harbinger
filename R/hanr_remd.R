@@ -1,11 +1,11 @@
-#'@title Anomaly detector using EMD
-#'@description Anomaly detection using EMD
+#'@title Anomaly detector using REMD
+#'@description Anomaly detection using REMD
 #'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the EMD model presented in the hht library.
+#'It wraps the EMD model presented in the forecast library.
 #'@param noise nosie
 #'@param w window size
 #'@param trials trials
-#'@return `hanr_emd` object
+#'@return `hanr_remd` object
 #'
 #'@examples
 #'library(daltoolbox)
@@ -30,7 +30,7 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_emd <- function(noise = 0.1, w = 30, trials = 5) {
+hanr_remd <- function(noise = 0.1, w = 30, trials = 5) {
   obj <- harbinger()
   obj$noise <- noise
   obj$w <- w
@@ -38,7 +38,7 @@ hanr_emd <- function(noise = 0.1, w = 30, trials = 5) {
 
   obj$sw_size <- NULL
 
-  class(obj) <- append("hanr_emd", class(obj))
+  class(obj) <- append("hanr_remd", class(obj))
   return(obj)
 }
 
@@ -46,7 +46,13 @@ hanr_emd <- function(noise = 0.1, w = 30, trials = 5) {
 #'@importFrom stats sd
 #'@importFrom hht CEEMD
 #'@export
-detect.hanr_emd <- function(obj, serie, ...) {
+detect.hanr_remd <- function(obj, serie, ...) {
+  fc_roughness <- function(x){
+    firstD = diff(x)
+    normFirstD = (firstD - mean(firstD)) / sd(firstD)
+    roughness = (diff(normFirstD) ** 2) / 4
+    return(mean(roughness))
+  }
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   obj <- obj$har_store_refs(obj, serie)
@@ -56,9 +62,22 @@ detect.hanr_emd <- function(obj, serie, ...) {
   ceemd.result <- hht::CEEMD(obj$serie, id, obj$noise, obj$trials)
 
   obj$model <- ceemd.result
+  ## calculate roughness for each imf
+  vec <- vector()
+  for (n in 1:obj$model$nimf){
+    vec[n] <- fc_roughness(obj$model[["imf"]][,n])
+  }
 
+  vec <- cumsum(vec)
 
+  ## Maximum curvature
+  res <- transform(fit_curvature_min(), vec)
+  div <- res$x
   sum_high_freq <- obj$model[["imf"]][,1]
+
+  for (k in 2:div){
+    sum_high_freq <- sum_high_freq + obj$model[["imf"]][,k]
+  }
 
   anomalies <- obj$har_outliers_idx(sum_high_freq)
   anomalies <- obj$har_outliers_group(anomalies, length(sum_high_freq))
@@ -67,6 +86,3 @@ detect.hanr_emd <- function(obj, serie, ...) {
 
   return(detection)
 }
-
-
-
