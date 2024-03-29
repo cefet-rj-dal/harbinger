@@ -4,12 +4,10 @@
 \alias{hanr_remd}
 \title{Anomaly detector using REMD}
 \usage{
-hanr_remd(noise = 0.1, w = 30, trials = 5)
+hanr_remd(noise = 0.1, trials = 5)
 }
 \arguments{
 \item{noise}{nosie}
-
-\item{w}{window size}
 
 \item{trials}{trials}
 }
@@ -32,7 +30,7 @@ dataset <- har_examples$example1
 head(dataset)
 
 # setting up time series emd detector
-model <- hanr_emd()
+model <- hanr_remd()
 
 # fitting the model
 model <- fit(model, dataset$serie)

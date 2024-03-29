@@ -17,3 +17,6 @@ detection <- detect(model, dataset$serie)
 
 # filtering detected events
 print(detection[(detection$event),])
+
+
+

@@ -3,7 +3,6 @@
 #'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
 #'It wraps the EMD model presented in the hht library.
 #'@param noise nosie
-#'@param w window size
 #'@param trials trials
 #'@return `hanr_emd` object
 #'
@@ -30,10 +29,9 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_emd <- function(noise = 0.1, w = 30, trials = 5) {
+hanr_emd <- function(noise = 0.1, trials = 5) {
   obj <- harbinger()
   obj$noise <- noise
-  obj$w <- w
   obj$trials <- trials
 
   obj$sw_size <- NULL

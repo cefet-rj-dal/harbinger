@@ -4,12 +4,10 @@
 \alias{hanr_emd}
 \title{Anomaly detector using EMD}
 \usage{
-hanr_emd(noise = 0.1, w = 30, trials = 5)
+hanr_emd(noise = 0.1, trials = 5)
 }
 \arguments{
 \item{noise}{nosie}
-
-\item{w}{window size}
 
 \item{trials}{trials}
 }

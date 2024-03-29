@@ -3,7 +3,6 @@
 #'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
 #'It wraps the EMD model presented in the forecast library.
 #'@param noise nosie
-#'@param w window size
 #'@param trials trials
 #'@return `hanr_remd` object
 #'
@@ -18,7 +17,7 @@
 #'head(dataset)
 #'
 #'# setting up time series emd detector
-#'model <- hanr_emd()
+#'model <- hanr_remd()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -30,10 +29,9 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_remd <- function(noise = 0.1, w = 30, trials = 5) {
+hanr_remd <- function(noise = 0.1, trials = 5) {
   obj <- harbinger()
   obj$noise <- noise
-  obj$w <- w
   obj$trials <- trials
 
   obj$sw_size <- NULL
@@ -75,12 +73,26 @@ detect.hanr_remd <- function(obj, serie, ...) {
   div <- res$x
   sum_high_freq <- obj$model[["imf"]][,1]
 
-  for (k in 2:div){
-    sum_high_freq <- sum_high_freq + obj$model[["imf"]][,k]
+  if (div > 1) {
+    for (k in 2:div){
+      sum_high_freq <- sum_high_freq + obj$model[["imf"]][,k]
+    }
   }
 
-  anomalies <- obj$har_outliers_idx(sum_high_freq)
-  anomalies <- obj$har_outliers_group(anomalies, length(sum_high_freq))
+  ts <- ts_data(sum_high_freq, 0)
+  io <- ts_projection(ts)
+  model <- ts_arima()
+  model <- fit(model, x=io$input, y=io$output)
+  adjust <- predict(model, io$input)
+  adjust <- as.vector(adjust)
+
+  # Calculation of inverse probability
+  delta <- abs(adjust - sum_high_freq)
+
+  anomalies <- obj$har_outliers_idx(delta)
+  anomalies <- obj$har_outliers_group(anomalies, length(delta))
+
+  anomalies[1:max(c(model$p, model$q, model$d))] <- FALSE
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
