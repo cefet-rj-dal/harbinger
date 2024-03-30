@@ -8,7 +8,7 @@ dataset <- har_examples$example1
 head(dataset)
 
 # setting up time series emd detector
-model <- hanr_remd()
+model <- hanr_fft()
 
 # fitting the model
 model <- fit(model, dataset$serie)
