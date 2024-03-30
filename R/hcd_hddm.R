@@ -9,6 +9,7 @@
 #'@examples
 #'library(daltoolbox)
 #'library(harbinger)
+#'library(ggplot2)
 #'
 #'set.seed(6)
 #'
