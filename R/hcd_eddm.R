@@ -9,6 +9,7 @@
 #'@return `hcp_eddm` object
 #'@examples
 #'library("daltoolbox")
+#'library("ggplot2")
 #'set.seed(6)
 #'
 #'# Loading the example database
@@ -17,8 +18,9 @@
 #'#Using example 1
 #'dataset <- har_examples$example1
 #'cut_index <- 60
-#'drift_size <- nrow(dataset[cut_index:row.names(dataset)[nrow(dataset)],])
-#'dataset[cut_index:row.names(dataset)[nrow(dataset)], 'serie'] <- dataset[cut_index:row.names(dataset)[nrow(dataset)], 'serie'] + rnorm(drift_size, mean=0, sd=0.5)
+#'srange <- cut_index:row.names(dataset)[nrow(dataset)]
+#'drift_size <- nrow(dataset[srange,])
+#'dataset[srange, 'serie'] <- dataset[srange, 'serie'] + rnorm(drift_size, mean=0, sd=0.5)
 #'head(dataset)
 #'
 #'plot(x=row.names(dataset), y=dataset$serie, type='l')
@@ -38,7 +40,7 @@
 #'# Drift test
 #'
 #'drift_evaluation <- data.frame(!(detection$event == dataset$event)) * 1
-#'model <- fit(hcd_eddm(min_instances=10, out_control_level = 0.9, warning_level = 0.95), drift_evaluation)
+#'model <- fit(hcd_eddm(min_instances=10), drift_evaluation)
 #'detection_drift <- detect(model, drift_evaluation)
 #'
 #'grf <- har_plot(model, dataset$serie, detection_drift)

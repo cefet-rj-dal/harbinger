@@ -8,15 +8,15 @@
 #KSWIN detection implementation: Scikit-Multiflow, https://github.com/scikit-multiflow/scikit-multiflow/blob/a7e316d/src/skmultiflow/drift_detection/kswin.py#L5
 #'@return `hcd_kswin` object
 #'@examples
-#'library('daltoolbox')
+#'library("daltoolbox")
 #'
-#'n <- 100  # Number of time points
-#'# Multivariate Example
-#'data <- as.data.frame(c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2))
-#'names(data) <- c('serie1')
-#'data['serie2'] <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2) + runif(length(data), 0, 1)
-#'
-#'event <- rep(FALSE, n)
+#'n <- 100  # size of each segment
+#'serie1 <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+#'            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+#'serie2 <- 2*c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+#'            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+#'data <- data.frame(serie1, serie2)#'
+#'event <- rep(FALSE, nrow(data))
 #'
 #'model <- fit(hcd_kswin(), data)
 #'detection <- detect(model, data)
@@ -48,6 +48,7 @@ hcd_kswin <- function(window_size=100, stat_size=30, alpha=0.005, data=NULL) {
 
 #'@importFrom stats ecdf
 #'@importFrom stats complete.cases
+#'@importFrom stats ks.test
 #'@export
 detect.hcd_kswin <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
@@ -63,7 +64,7 @@ detect.hcd_kswin <- function(obj, serie, ...) {
         obj$window <- obj$window[-1, drop=FALSE]
         rnd_window <- sample(x=obj$window[1:(length(obj$window)-obj$stat_size)], size=obj$stat_size)
 
-        ks_res <- ks.test(rnd_window, obj$window[(length(obj$window)-obj$stat_size):length(obj$window)], exact=TRUE)
+        ks_res <- stats::ks.test(rnd_window, obj$window[(length(obj$window)-obj$stat_size):length(obj$window)], exact=TRUE)
         st <- unlist(ks_res[1])
         obj$p_value <- unlist(ks_res[2])
 
