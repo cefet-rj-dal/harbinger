@@ -55,6 +55,9 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_remd.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_wavelet.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval.html</loc>
   </url>
   <url>
@@ -74,6 +77,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_ddm.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_eddm.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_hddm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcd_page_hinkley.html</loc>
@@ -109,13 +118,13 @@
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_scp.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_base36.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_mp.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_sax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_xsax.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmu_pca.html</loc>
@@ -125,5 +134,11 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/harbinger/reference/mas.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/trans_sax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/harbinger/reference/trans_xsax.html</loc>
   </url>
 </urlset>

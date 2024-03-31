@@ -14,7 +14,7 @@ It wraps the EMD model presented in the forecast library."><!-- mathjax --><scri
     
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.747</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.767</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,57 +99,6 @@ It wraps the EMD model presented in the forecast library.</p>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Extracting IMF 1 from each noise/signal realization..."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trial 1 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trial 2 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trial 3 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trial 4 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trial 5 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 1 extracted."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Decomposing noise series..."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Noise trial 1 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Noise trial 2 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Noise trial 3 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Noise trial 4 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Noise trial 5 complete."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 2 TRIAL 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 2 TRIAL 2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 2 TRIAL 3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 2 TRIAL 4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 2 TRIAL 5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 3 TRIAL 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 3 TRIAL 2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 3 TRIAL 3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 3 TRIAL 4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 3 TRIAL 5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 4 TRIAL 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 4 TRIAL 2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 4 TRIAL 3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 4 TRIAL 4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 4 TRIAL 5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 5 TRIAL 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 5 TRIAL 2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 5 TRIAL 3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 5 TRIAL 4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 5 TRIAL 5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 6 TRIAL 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 6 TRIAL 2"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 3.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 6 TRIAL 3"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 4.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 6 TRIAL 4"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 5.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 6 TRIAL 5"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 1.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 7 TRIAL 1"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 2.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 7 TRIAL 2"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 3.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 7 TRIAL 3"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 4.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 7 TRIAL 4"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Attempted to extract more IMFs from the signal than are present in the noise series for trial 5.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "IMF 7 TRIAL 5"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
