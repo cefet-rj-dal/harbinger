@@ -29,34 +29,34 @@
 #'@export
 hanr_fft <- function() {
   obj <- harbinger()
-  obj$sw_size <- NULL
 
   class(obj) <- append("hanr_fft", class(obj))
   return(obj)
+}
+
+compute_cut_index <- function(freqs) {
+  cutindex <- which.max(freqs)
+  if (min(freqs) != max(freqs)) {
+    threshold <- mean(freqs) + 2.968 * sd(freqs)
+    freqs[freqs < threshold] <- min(freqs) + max(freqs)
+    cutindex <- which.min(freqs)
+  }
+  return(cutindex)
 }
 
 #'@importFrom stats fft
 #'@importFrom stats sd
 #'@export
 detect.hanr_fft <- function(obj, serie, ...) {
-  compute_cut_index <- function(freqs) {
-    cutindex <- which.max(freqs)
-    if (min(freqs) != max(freqs)) {
-      threshold <- mean(freqs) + 2.968*sd(freqs)
-      freqs[freqs < threshold] <- min(freqs) + max(freqs)
-      cutindex <- which.min(freqs)
-    }
-    return(cutindex)
-  }
-
-  if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+  if (is.null(serie))
+    stop("No data was provided for computation", call. = FALSE)
 
   obj <- obj$har_store_refs(obj, serie)
 
   fft_signal <- stats::fft(obj$serie)
 
-  spectrum <- base::Mod(fft_signal)^2
-  half_spectrum <- spectrum[1:(length(obj$serie)/2 + 1)]
+  spectrum <- base::Mod(fft_signal) ^ 2
+  half_spectrum <- spectrum[1:(length(obj$serie) / 2 + 1)]
 
   cutindex <- compute_cut_index(half_spectrum)
   n <- length(fft_signal)
@@ -64,10 +64,13 @@ detect.hanr_fft <- function(obj, serie, ...) {
   fft_signal[1:cutindex] <- 0
   fft_signal[(n - cutindex):n] <- 0
 
-  filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE) / n)
+  filtered_series <-
+    base::Re(stats::fft(fft_signal, inverse = TRUE) / n)
 
-  anomalies <- obj$har_outliers_idx(filtered_series)
-  anomalies <- obj$har_outliers_group(anomalies, length(filtered_series))
+  noise <- filtered_series # obj$har_residuals(filtered_series)
+
+  anomalies <- obj$har_outliers_idx(noise)
+  anomalies <- obj$har_outliers_group(anomalies, length(noise))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

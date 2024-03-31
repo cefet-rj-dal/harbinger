@@ -1,6 +1,6 @@
 Package: harbinger
 Title: A Unified Time Series Event Detection Framework
-Version: 1.0.747
+Version: 1.0.767
 Authors@R: 
   c(
         person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
@@ -39,6 +39,7 @@ Imports:
   changepoint,
   strucchange,
   stringr,
+  wavelets,
   hht,
   dplyr
 

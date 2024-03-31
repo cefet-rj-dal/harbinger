@@ -10,7 +10,7 @@
 #'@examples
 #'library("daltoolbox")
 #'
-#'n <- 100  # size of each segment
+#'n <- 30  # size of each segment
 #'serie1 <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
 #'            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
 #'serie2 <- 2*c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),

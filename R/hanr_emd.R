@@ -34,8 +34,6 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
   obj$noise <- noise
   obj$trials <- trials
 
-  obj$sw_size <- NULL
-
   class(obj) <- append("hanr_emd", class(obj))
   return(obj)
 }
@@ -50,16 +48,18 @@ detect.hanr_emd <- function(obj, serie, ...) {
   obj <- obj$har_store_refs(obj, serie)
 
   id <- 1:length(obj$serie)
-  obj$sw_size <-  length(obj$serie)
-  ceemd.result <- hht::CEEMD(obj$serie, id, obj$noise, obj$trials)
+
+  suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model <- ceemd.result
 
 
   sum_high_freq <- obj$model[["imf"]][,1]
 
-  anomalies <- obj$har_outliers_idx(sum_high_freq)
-  anomalies <- obj$har_outliers_group(anomalies, length(sum_high_freq))
+  noise <- sum_high_freq # obj$har_residuals(sum_high_freq)
+
+  anomalies <- obj$har_outliers_idx(noise)
+  anomalies <- obj$har_outliers_group(anomalies, length(noise))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
