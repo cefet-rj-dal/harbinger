@@ -17,7 +17,7 @@
 #'# fitting the model using the two columns of the dataset
 #'model <- fit(model, dataset[,1:2])
 #'
-#'# making detections using hmu_pca
+#'# making detections
 #'detection <- detect(model, dataset[,1:2])
 #'
 #'# filtering detected events
