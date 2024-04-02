@@ -8,6 +8,7 @@
 ^\.github$
 ^anomalies$
 ^change_point$
+^data-gen$
 ^drift$
 ^general$
 ^develop$
