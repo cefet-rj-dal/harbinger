@@ -21,7 +21,7 @@ gen_data_multi <- function() {
 
 if (FALSE) {
   save_examples_multi <- function(har_examples_multi) {
-    save(har_examples_multi, file="./data/har_examples_multi.RData", compress = TRUE)
+    save(har_examples_multi, file="../data/har_examples_multi.RData", compress = TRUE)
   }
 
   plot_examples_multi <- function(har_examples_multi) {

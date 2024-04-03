@@ -342,7 +342,7 @@ if (FALSE) {
 
 
   save_examples <- function(har_examples) {
-    save(har_examples, file="./develop/har_examples.RData", compress = TRUE)
+    save(har_examples, file="../data/har_examples.RData", compress = TRUE)
   }
 
   har_examples <- gen_data()
