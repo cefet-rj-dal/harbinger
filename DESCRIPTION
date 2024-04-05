@@ -1,6 +1,6 @@
 Package: harbinger
 Title: A Unified Time Series Event Detection Framework
-Version: 1.0.767
+Version: 1.0.777
 Authors@R: 
   c(
         person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 

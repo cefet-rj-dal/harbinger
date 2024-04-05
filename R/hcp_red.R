@@ -5,7 +5,10 @@
 #'@param sw_size sliding window size (default 30)
 #'@param noise noise
 #'@param trials trials
-#'@return `hanr_red` object
+#'@param red_cp red change point
+#'@param volatility_cp volatility change point
+#'@param trend_cp trend change point
+#'@return `hcp_red` object
 #'@examples
 #'library(daltoolbox)
 #'library(zoo)
@@ -15,30 +18,33 @@
 #'#loading the example database
 #'data(har_examples)
 #'
-#'#Using example 1
-#'dataset <- har_examples$example1
+#'#Using example 6
+#'dataset <- har_examples$example6
 #'head(dataset)
 #'
-#'# setting up time series emd detector
-#'model <- hanr_red()
+#'# setting up change point method
+#'model <- hcp_red(red_cp = FALSE, volatility_cp = FALSE, trend_cp = FALSE)
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
 #'
-# making detection
+#'# execute the detection method
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_red <- function(sw_size = 30, noise = 0.001, trials = 5) {
+hcp_red <- function(sw_size = 30, noise = 0.001, trials = 5, red_cp = TRUE, volatility_cp = TRUE, trend_cp = TRUE) {
   obj <- harbinger()
   obj$sw_size <- sw_size
   obj$noise <- noise
   obj$trials <- trials
+  obj$red_cp <- red_cp
+  obj$volatility_cp <- volatility_cp
+  obj$trend_cp <- trend_cp
 
-  class(obj) <- append("hanr_red", class(obj))
+  class(obj) <- append("hcp_red", class(obj))
   return(obj)
 }
 
@@ -84,7 +90,7 @@ median_point <- function(cp){
 #'@importFrom hht CEEMD
 #'@importFrom zoo rollapply
 #'@export
-detect.hanr_red <- function(obj, serie, ...) {
+detect.hcp_red <- function(obj, serie, ...) {
   if (is.null(serie))
     stop("No data was provided for computation", call. = FALSE)
 
@@ -150,7 +156,65 @@ detect.hanr_red <- function(obj, serie, ...) {
     anomalies[i_an] <- TRUE
   }
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+
+  ## CHANGE POINT ##
+  serie_cp <- obj$serie
+  id <- 1:length(serie_cp)
+
+  ## calculate IMFs
+  suppressWarnings(ceemd.result <- hht::CEEMD(serie_cp, id, verbose = FALSE, obj$noise, obj$trials))
+
+  obj$model_cp <- ceemd.result
+
+  ## CP do hcp_red
+  cp_hcp_red <- vector()
+  if(obj$red_cp){
+    sum_cp <- vector()
+
+    if(div < obj$model_cp$nimf){ # Checks if there is an IMF larger than the division
+      #adding the IMFs of low variance
+      sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
+    }
+
+    #change points according to criterion 2.698 x standard deviation
+    cp_hcp_red <- which(abs(sum_cp) > 2.698*sd(sum_cp, na.rm=TRUE))
+    cp_hcp_red <- median_point(cp_hcp_red)
+  }
+
+  ## Volatility CP (Change Points)
+  cp_volatility <- vector()
+  if(obj$volatility_cp){
+
+    sd2 <- zoo::rollapply(serie_cp, obj$sw_size, sd, by = 1)
+    sd2 <- c(rep(NA,14), sd2, rep(NA,15))
+
+    sd3 <- zoo::rollapply(sd2, obj$sw_size, sd, by = 1)
+    sd3 <- c(rep(NA,14), sd3, rep(NA,15))
+
+    ## resuming the positions of the original series
+    cp_volatility <- which(abs(sd3) > 2.698*sd(sd3, na.rm=TRUE))
+    cp_volatility <- median_point(cp_volatility)
+  }
+
+  ## Trend CP (Change Points)
+  cp_trend <- vector()
+  if(obj$trend_cp){
+    i <- obj$model_an$residue
+
+    gft_model <- fit(hcp_gft(), i)
+    cp_trend <- detect(gft_model, i)
+    cp_trend <- which(cp_trend$event)
+  }
+
+  ## merging the Change Points
+  cps <- c(cp_hcp_red, cp_volatility, cp_trend)
+
+  change_points <- rep(FALSE, length(obj$serie))
+  if (!is.null(cps) & length(cps) > 0) {
+    change_points[cps] <- TRUE
+  }
+
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = change_points)
 
   return(detection)
 }
