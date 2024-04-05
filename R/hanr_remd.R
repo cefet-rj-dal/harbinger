@@ -38,6 +38,8 @@ hanr_remd <- function(noise = 0.1, trials = 5) {
   return(obj)
 }
 
+#'@importFrom stats median
+#'@importFrom stats sd
 fc_roughness <- function(x) {
   firstD = diff(x)
   normFirstD = (firstD - mean(firstD)) / sd(firstD)

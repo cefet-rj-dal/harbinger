@@ -37,7 +37,7 @@ hanr_fft <- function() {
 compute_cut_index <- function(freqs) {
   cutindex <- which.max(freqs)
   if (min(freqs) != max(freqs)) {
-    threshold <- mean(freqs) + 2.968 * sd(freqs)
+    threshold <- mean(freqs) + 2.698 * sd(freqs)
     freqs[freqs < threshold] <- min(freqs) + max(freqs)
     cutindex <- which.min(freqs)
   }
