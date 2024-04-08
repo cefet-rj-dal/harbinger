@@ -117,7 +117,7 @@ It wraps the EMD model presented in the hht library.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6  1.25 FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># setting up change point method</span></span></span>
-<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcp_pelt.html">hcp_pelt</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">hcp_red</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># fitting the model</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
@@ -128,14 +128,12 @@ It wraps the EMD model presented in the hht library.</p>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  10  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  20  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  30  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40  40  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59  59  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69  69  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80  80  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91  91  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  15  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  34  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  49  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  50  TRUE     anomaly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64  64  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86  86  TRUE changepoint</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
