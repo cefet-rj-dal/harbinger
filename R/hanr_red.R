@@ -81,6 +81,8 @@ median_point <- function(cp){
 #'@importFrom stats sd
 #'@importFrom hht CEEMD
 #'@importFrom zoo rollapply
+#'@importFrom daltoolbox transform
+#'@importFrom daltoolbox fit_curvature_max
 #'@export
 detect.hanr_red <- function(obj, serie, ...) {
   if (is.null(serie))
@@ -107,9 +109,13 @@ detect.hanr_red <- function(obj, serie, ...) {
   for (n in 1:length(cum.vec)){
     vec[n] <- fc(cum.vec[[n]])
   }
-  ## Maximum curvature
-  res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
-  div <- res$x
+
+  div <- 1
+  if (length(cum.vec) > 1) {
+    ## Maximum curvature
+    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
+    div <- res$x
+  }
 
   ## ANOMALY ##
   ## adding the IMFs with the highest variance

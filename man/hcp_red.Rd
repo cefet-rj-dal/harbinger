@@ -38,8 +38,6 @@ It wraps the EMD model presented in the hht library.
 library(daltoolbox)
 library(zoo)
 
-set.seed(1)
-
 #loading the example database
 data(har_examples)
 

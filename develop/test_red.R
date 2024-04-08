@@ -1,19 +1,22 @@
 library(daltoolbox)
 library(zoo)
 
+set.seed(1)
+
 #loading the example database
 data(har_examples)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using example 6
+dataset <- har_examples$example6
 head(dataset)
 
-# setting up time series emd detector
-model <- hanr_red()
+# setting up change point method
+model <- hcp_red()
 
 # fitting the model
 model <- fit(model, dataset$serie)
 
+# execute the detection method
 detection <- detect(model, dataset$serie)
 
 # filtering detected events

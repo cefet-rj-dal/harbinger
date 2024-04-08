@@ -13,8 +13,6 @@
 #'library(daltoolbox)
 #'library(zoo)
 #'
-#'set.seed(1)
-#'
 #'#loading the example database
 #'data(har_examples)
 #'
@@ -89,6 +87,8 @@ median_point <- function(cp){
 #'@importFrom stats sd
 #'@importFrom hht CEEMD
 #'@importFrom zoo rollapply
+#'@importFrom daltoolbox transform
+#'@importFrom daltoolbox fit_curvature_max
 #'@export
 detect.hcp_red <- function(obj, serie, ...) {
   if (is.null(serie))
@@ -115,9 +115,13 @@ detect.hcp_red <- function(obj, serie, ...) {
   for (n in 1:length(cum.vec)){
     vec[n] <- fc(cum.vec[[n]])
   }
-  ## Maximum curvature
-  res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
-  div <- res$x
+
+  div <- 1
+  if (length(cum.vec) > 1) {
+    ## Maximum curvature
+    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
+    div <- res$x
+  }
 
   ## ANOMALY ##
   ## adding the IMFs with the highest variance
@@ -177,7 +181,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     }
 
     #change points according to criterion 2.698 x standard deviation
-    cp_hcp_red <- which(abs(sum_cp) > 2.698*sd(sum_cp, na.rm=TRUE))
+    cp_hcp_red <- which(abs(sum_cp) > 2.698 * sd(sum_cp, na.rm=TRUE))
     cp_hcp_red <- median_point(cp_hcp_red)
   }
 
@@ -192,7 +196,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     sd3 <- c(rep(NA,14), sd3, rep(NA,15))
 
     ## resuming the positions of the original series
-    cp_volatility <- which(abs(sd3) > 2.698*sd(sd3, na.rm=TRUE))
+    cp_volatility <- which(abs(sd3) > 2.698 * sd(sd3, na.rm=TRUE))
     cp_volatility <- median_point(cp_volatility)
   }
 
