@@ -48,7 +48,7 @@ dataset <- har_examples$example6
 head(dataset)
 
 # setting up change point method
-model <- hcp_red(red_cp = FALSE, volatility_cp = FALSE, trend_cp = FALSE)
+model <- hcp_pelt()
 
 # fitting the model
 model <- fit(model, dataset$serie)
