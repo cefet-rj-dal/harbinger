@@ -124,16 +124,11 @@ It wraps the EMD model presented in the hht library.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># execute the detection method</span></span></span>
 <span class="r-in"><span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in detect.hcp_red(model, dataset$serie):</span> object 'soma_cp' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  15  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  34  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49  49  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50  50  TRUE     anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64  64  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86  86  TRUE changepoint</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'detection' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
