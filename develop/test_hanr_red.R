@@ -1,5 +1,6 @@
 library(daltoolbox)
 library(zoo)
+library(harbinger)
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/R/hanr_red.R")
 

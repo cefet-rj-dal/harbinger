@@ -160,9 +160,11 @@ detect.hcp_red <- function(obj, serie, ...) {
     anomalies[i_an] <- TRUE
   }
 
-
   ## CHANGE POINT ##
-  serie_cp <- obj$serie
+  serie2 <- serie
+  serie2[i_an] <- NA
+  no_na <- which(!is.na(serie2))
+  serie_cp <- serie2[!is.na(serie2)]
   id <- 1:length(serie_cp)
 
   ## calculate IMFs
@@ -180,8 +182,12 @@ detect.hcp_red <- function(obj, serie, ...) {
       sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
     }
 
+    ## retomando as posições da série original
+    i <- rep(NA, san_size)
+    i[no_na] <- soma_cp
+
     #change points according to criterion 2.698 x standard deviation
-    cp_hcp_red <- which(abs(sum_cp) > 2.698 * sd(sum_cp, na.rm=TRUE))
+    cp_hcp_red <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
     cp_hcp_red <- median_point(cp_hcp_red)
   }
 
@@ -195,8 +201,11 @@ detect.hcp_red <- function(obj, serie, ...) {
     sd3 <- zoo::rollapply(sd2, obj$sw_size, sd, by = 1)
     sd3 <- c(rep(NA,14), sd3, rep(NA,15))
 
+    i <- rep(NA, san_size)
+    i[no_na] <- sd3
+
     ## resuming the positions of the original series
-    cp_volatility <- which(abs(sd3) > 2.698 * sd(sd3, na.rm=TRUE))
+    cp_volatility <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
     cp_volatility <- median_point(cp_volatility)
   }
 
