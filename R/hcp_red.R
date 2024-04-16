@@ -16,17 +16,17 @@
 #'#loading the example database
 #'data(har_examples)
 #'
-#'#Using example 6
-#'dataset <- har_examples$example6
+#'#Using example 1
+#'dataset <- har_examples$example1
 #'head(dataset)
 #'
-#'# setting up change point method
-#'model <- hcp_red()
+#'# setting up time series emd detector
+#'model <- hanr_red()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
 #'
-#'# execute the detection method
+# making detection
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
@@ -184,7 +184,7 @@ detect.hcp_red <- function(obj, serie, ...) {
 
     ## retomando as posições da série original
     i <- rep(NA, san_size)
-    i[no_na] <- soma_cp
+    i[no_na] <- sum_cp
 
     #change points according to criterion 2.698 x standard deviation
     cp_hcp_red <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))

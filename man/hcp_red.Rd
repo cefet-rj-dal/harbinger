@@ -41,17 +41,16 @@ library(zoo)
 #loading the example database
 data(har_examples)
 
-#Using example 6
-dataset <- har_examples$example6
+#Using example 1
+dataset <- har_examples$example1
 head(dataset)
 
-# setting up change point method
-model <- hcp_red()
+# setting up time series emd detector
+model <- hanr_red()
 
 # fitting the model
 model <- fit(model, dataset$serie)
 
-# execute the detection method
 detection <- detect(model, dataset$serie)
 
 # filtering detected events
