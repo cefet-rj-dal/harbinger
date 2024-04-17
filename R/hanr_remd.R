@@ -30,10 +30,7 @@
 #'
 #'@export
 hanr_remd <- function(noise = 0.1, trials = 5) {
-  obj <- harbinger()
-  obj$noise <- noise
-  obj$trials <- trials
-
+  obj <- hanr_emd(noise, trials)
   class(obj) <- append("hanr_remd", class(obj))
   return(obj)
 }
@@ -90,18 +87,13 @@ detect.hanr_remd <- function(obj, serie, ...) {
   adjust <- as.vector(adjust)
 
   # Calculation of inverse probability
-  delta <- abs(adjust - sum_high_freq)
-  probabilidades <-(1 - delta / max(delta))
-  
-  outliers_arima <- which(abs(probabilidades)<2.698*sd(probabilidades, na.rm=TRUE))
-  
-  anomalies[1:obj$sw_size] <- FALSE
-  
-  if (!is.null(outliers_arima) & length(outliers_arima) > 0) {
-    anomalies[outliers_arima] <- TRUE
-  }
-  
+  res <- abs(adjust - sum_high_freq)
+
+  res <- obj$har_residuals(res)
+  anomalies <- obj$har_outliers_idx(res)
+  anomalies <- obj$har_outliers_group(anomalies, length(res))
+
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
-  
+
   return(detection)
 }

@@ -23,7 +23,7 @@ data(har_examples)
 dataset <- har_examples$example6
 head(dataset)
 
-# setting up time series regression model
+# setting up change point method
 model <- hcp_amoc()
 
 # fitting the model
