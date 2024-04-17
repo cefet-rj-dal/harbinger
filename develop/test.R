@@ -3,16 +3,17 @@ library(daltoolbox)
 #loading the example database
 data(har_examples)
 
-#Using example 15
-dataset <- har_examples$example15
+#Using example 6
+dataset <- har_examples$example6
 head(dataset)
 
-# setting up motif discovery method
-model <- hmo_sax(26, 3, 3)
+# setting up time series regression model
+model <- hcp_red()
 
 # fitting the model
 model <- fit(model, dataset$serie)
 
+# execute the detection method
 detection <- detect(model, dataset$serie)
 
 # filtering detected events

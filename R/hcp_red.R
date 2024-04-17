@@ -11,22 +11,21 @@
 #'@return `hcp_red` object
 #'@examples
 #'library(daltoolbox)
-#'library(zoo)
 #'
 #'#loading the example database
 #'data(har_examples)
 #'
-#'#Using example 1
-#'dataset <- har_examples$example1
+#'#Using example 6
+#'dataset <- har_examples$example6
 #'head(dataset)
 #'
-#'# setting up time series emd detector
-#'model <- hanr_red()
+#'# setting up change point method
+#'model <- hcp_red()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
 #'
-# making detection
+#'# execute the detection method
 #'detection <- detect(model, dataset$serie)
 #'
 #'# filtering detected events
@@ -180,7 +179,6 @@ detect.hcp_red <- function(obj, serie, ...) {
     if(div < obj$model_cp$nimf){ # Checks if there is an IMF larger than the division
       #adding the IMFs of low variance
       sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
-    }
 
     ## retomando as posições da série original
     i <- rep(NA, san_size)
@@ -189,6 +187,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     #change points according to criterion 2.698 x standard deviation
     cp_hcp_red <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
     cp_hcp_red <- median_point(cp_hcp_red)
+    }
   }
 
   ## Volatility CP (Change Points)
