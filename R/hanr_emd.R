@@ -57,12 +57,19 @@ detect.hanr_emd <- function(obj, serie, ...) {
   sum_high_freq <- obj$model[["imf"]][,1]
 
   noise <- sum_high_freq # obj$har_residuals(sum_high_freq)
-
-  anomalies <- obj$har_outliers_idx(noise)
-  anomalies <- obj$har_outliers_group(anomalies, length(noise))
-
+  
+  probabilidades <-(1 - (noise / max(noise)))
+  
+  outliers_arima <- which(abs(probabilidades)<2.698*sd(probabilidades, na.rm=TRUE))
+  
+  anomalies[1:length(noise)] <- FALSE
+  
+  if (!is.null(outliers_arima) & length(outliers_arima) > 0) {
+    anomalies[outliers_arima] <- TRUE
+  }
+  
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
-
+  
   return(detection)
 }
 
