@@ -11,7 +11,7 @@
 #'library(harbinger)
 #'library(ggplot2)
 #'
-#'set.seed(6)
+#'set.seed(1)
 #'
 #'#loading the example database
 #'data(har_examples)

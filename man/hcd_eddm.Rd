@@ -29,7 +29,7 @@ EDDM (Early Drift Detection Method) aims to improve the detection rate of gradua
 \examples{
 library("daltoolbox")
 library("ggplot2")
-set.seed(6)
+set.seed(1)
 
 # Loading the example database
 data(har_examples)

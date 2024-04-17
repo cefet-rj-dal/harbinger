@@ -22,7 +22,7 @@ DDM is a concept change detection method based on the PAC learning model premise
 \examples{
 library(daltoolbox)
 library(ggplot2)
-set.seed(6)
+set.seed(1)
 
 # Loading the example database
 data(har_examples)

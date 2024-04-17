@@ -109,7 +109,7 @@ gen_data <- function() {
       t <- c(1:ts.len)
 
       #stationary time series
-      set.seed(1234)
+      set.seed(1)
       sta <- arima.sim(model=list(ar=0.5), n=ts.len, mean=ts.mean, sd=sqrt(ts.var)) #AR(1)
 
       #trend-stationary time series
@@ -127,7 +127,7 @@ gen_data <- function() {
       hsta <- sta * var.level
 
       #difference-stationarity (unit root) (stationary around a stochastic trend)
-      set.seed(123)
+      set.seed(1)
       dsta <- cumsum(rnorm(ts.len, mean=ts.mean, sd=sqrt(ts.var)))
 
       return(c(sta,tsta,lsta,hsta,dsta))
@@ -163,7 +163,7 @@ gen_data <- function() {
     t <- c(1:ts.len)
 
     #stationary time series
-    set.seed(1234)
+    set.seed(1)
     sta <- arima.sim(model=list(ar=0.5), n=ts.len, mean=ts.mean, sd=sqrt(ts.var)) #AR(1)
 
     return(sta)
@@ -182,7 +182,7 @@ gen_data <- function() {
     t <- c(1:ts.len)
 
     #stationary time series
-    set.seed(1234)
+    set.seed(1)
     sta <- arima.sim(model=list(ar=0.5), n=ts.len, mean=ts.mean, sd=sqrt(ts.var)) #AR(1)
 
     #trend-stationary time series
@@ -204,7 +204,7 @@ gen_data <- function() {
     t <- c(1:ts.len)
 
     #stationary time series
-    set.seed(1234)
+    set.seed(1)
     sta <- arima.sim(model=list(ar=0.5), n=ts.len, mean=ts.mean, sd=sqrt(ts.var)) #AR(1)
 
     #level-stationary time series
@@ -229,7 +229,7 @@ gen_data <- function() {
       t <- c(1:ts.len)
 
       #stationary time series
-      set.seed(1234)
+      set.seed(1)
       sta <- arima.sim(model=list(ar=0.5), n=ts.len, mean=ts.mean, sd=sqrt(ts.var)) #AR(1)
 
       #heteroscedastic time series (nonstationary in variance)
