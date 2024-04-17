@@ -28,17 +28,25 @@ Change-point detection method works by computing the observed values and their m
 }
 \examples{
 library("daltoolbox")
+library("ggplot2")
 
 n <- 100  # size of each segment
 serie1 <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
            10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
 serie2 <- 2*c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
-           10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+             10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
 data <- data.frame(serie1, serie2)#'
 event <- rep(FALSE, nrow(data))
 
 model <- fit(hcd_page_hinkley(threshold=3), data)
 detection <- detect(model, data)
 print(detection[(detection$event),])
+
+grf <- har_plot(model, data$serie1, detection)
+grf <- grf + ylab("value")
+grf <- grf
+
+plot(grf)
+
 
 }
