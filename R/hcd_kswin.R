@@ -1,7 +1,7 @@
 #'@title KSWIN method
 #'@description Kolmogorov-Smirnov Windowing method for concept drift detection <doi:10.1016/j.neucom.2019.11.111>.
 #'@param alpha Probability for the test statistic of the Kolmogorov-Smirnov-Test The alpha parameter is very sensitive, therefore should be set below 0.01.
-#'@param window_size Size of the sliding window
+#'@param window_size Size of the sliding window (must be > 2*stat_size)
 #'@param stat_size Size of the statistic window
 #'@param data Already collected data to avoid cold start.
 #KSWIN detection: Christoph Raab, Moritz Heusinger, Frank-Michael Schleif, Reactive Soft Prototype Computing for Concept Drift Streams, Neurocomputing, 2020.
@@ -19,7 +19,7 @@
 #'data <- data.frame(serie1, serie2)#'
 #'event <- rep(FALSE, nrow(data))
 #'
-#'model <- fit(hcd_kswin(window_size=100), data)
+#'model <- fit(hcd_kswin(), data)
 #'detection <- detect(model, data)
 #'print(detection[(detection$event),])
 #'
