@@ -88,9 +88,8 @@ detect.hanr_remd <- function(obj, serie, ...) {
 
   # Calculation of inverse probability
   res <- abs(adjust - sum_high_freq)
-
-  res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
+  probabilidades <-(1 - res / max(res))
+  anomalies <- which(abs(probabilidades)<2.698*sd(probabilidades, na.rm=TRUE))
   anomalies <- obj$har_outliers_group(anomalies, length(res))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
