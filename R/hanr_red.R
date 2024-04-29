@@ -97,25 +97,25 @@ detect.hanr_red <- function(obj, serie, ...) {
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model_an <- ceemd.result
+  
+  if (ceemd.result$nimf > 3) {
+	  
+	  ## create accumulate IMFs vector
+	  cum.vec <- list()
+	  for (n in 1:obj$model_an$nimf){
+		cum.vec[[n]] <- fc_sumIMF(obj$model_an, 1, n)
+	  }
 
-  ## create accumulate IMFs vector
-  cum.vec <- list()
-  for (n in 1:obj$model_an$nimf){
-    cum.vec[[n]] <- fc_sumIMF(obj$model_an, 1, n)
-  }
+	  ## calculate roughness for each imf
+	  vec <- vector()
+	  for (n in 1:length(cum.vec)){
+		vec[n] <- fc(cum.vec[[n]])
+	  }
 
-  ## calculate roughness for each imf
-  vec <- vector()
-  for (n in 1:length(cum.vec)){
-    vec[n] <- fc(cum.vec[[n]])
-  }
-
-  div <- 1
-  if (length(cum.vec) > 1) {
-    ## Maximum curvature
-    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
-    div <- res$x
-  }
+	  ## Maximum curvature
+	  res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
+	  div <- res$x
+  } else {div=1}
 
   ## ANOMALY ##
   ## adding the IMFs with the highest variance
