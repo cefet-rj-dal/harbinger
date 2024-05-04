@@ -69,18 +69,18 @@ It wraps the ugarch model presented in the rugarch library.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">daltoolbox</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#loading the example database</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">har_examples</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_anomalies</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Using example 14</span></span></span>
-<span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">har_examples</span><span class="op">$</span><span class="va">example14</span></span></span>
+<span class="r-in"><span><span class="co">#Using simple example</span></span></span>
+<span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">examples_anomalies</span><span class="op">$</span><span class="va">simple</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        serie event</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -1.1597821 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -1.5782775 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.5653926 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.7182375 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.6003753 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.1899022 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       serie event</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.0000000 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.9689124 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8775826 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.7316889 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.5403023 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.3153224 FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># setting up time series regression model</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">hanr_garch</span><span class="op">(</span><span class="op">)</span></span></span>
@@ -92,11 +92,9 @@ It wraps the ugarch model presented in the rugarch library.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     idx event    type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 169 169  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 172 172  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 183 183  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 186 186  TRUE anomaly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    idx event    type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  51  TRUE anomaly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58  58  TRUE anomaly</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

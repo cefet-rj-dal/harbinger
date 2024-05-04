@@ -69,18 +69,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">daltoolbox</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#loading the example database</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">har_examples</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_anomalies</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Using the time series 14</span></span></span>
-<span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">har_examples</span><span class="op">$</span><span class="va">example14</span></span></span>
+<span class="r-in"><span><span class="co">#Using the simple</span></span></span>
+<span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">examples_anomalies</span><span class="op">$</span><span class="va">simple</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        serie event</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -1.1597821 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -1.5782775 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.5653926 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.7182375 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.6003753 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.1899022 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       serie event</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.0000000 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.9689124 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8775826 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.7316889 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.5403023 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.3153224 FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># setting up time change point using GARCH</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcp_garch.html">hcp_garch</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -93,23 +93,20 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 102  TRUE changepoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 172 172  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    idx event        type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  51  TRUE changepoint</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># evaluating the detections</span></span></span>
 <span class="r-in"><span><span class="va">evaluation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/evaluate.html" class="external-link">evaluate</a></span><span class="op">(</span><span class="fu">har_eval_soft</span><span class="op">(</span><span class="op">)</span>, <span class="va">detection</span><span class="op">$</span><span class="va">event</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">evaluation</span><span class="op">$</span><span class="va">confMatrix</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           event       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> detection TRUE  FALSE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      0.87  1.13  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     0.13  197.87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           event      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> detection TRUE  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      0.93  0.07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     0.07  99.93</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ploting the results</span></span></span>
 <span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="fu"><a href="har_plot.html">har_plot</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span>, <span class="va">detection</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Don't know how to automatically pick scale for object of type <span style="color: #0000BB;">&lt;ts&gt;</span>. Defaulting</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> to continuous.</span>
 <span class="r-plt img"><img src="har_eval_soft-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
