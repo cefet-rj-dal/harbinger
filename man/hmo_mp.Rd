@@ -23,10 +23,10 @@ Motif discovery using Matrix Profile \url{doi:10.32614/RJ-2020-021}
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 15
-dataset <- har_examples$example15
+#Using sequence example
+dataset <- examples_anomalies$sequence
 head(dataset)
 
 # setting up motif discovery method

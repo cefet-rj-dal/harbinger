@@ -23,10 +23,10 @@ It wraps the EMD model presented in the forecast library.
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using simple example
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series emd detector

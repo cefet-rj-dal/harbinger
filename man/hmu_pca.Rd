@@ -16,10 +16,10 @@ Multivariate anomaly detector using PCA \url{doi:10.1016/0098-3004(93)90090-R}
 library(daltoolbox)
 
 #loading the example database
-data(har_examples_multi)
+data(examples_harbinger)
 
 #Using the time series 9
-dataset <- har_examples_multi$example1
+dataset <- examples_harbinger$multidimensional
 head(dataset)
 
 # establishing hmu_pca method

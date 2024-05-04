@@ -24,10 +24,10 @@ They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using simple example
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series regression model

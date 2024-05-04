@@ -13,14 +13,14 @@
 #'library(daltoolbox)
 #'
 #'#loading the example database
-#'data(har_examples)
+#'data(examples_changepoints)
 #'
-#'#Using example 6
-#'dataset <- har_examples$example6
+#'#Using simple example
+#'dataset <- examples_changepoints$simple
 #'head(dataset)
 #'
 #'# setting up change point method
-#'model <- hcp_red()
+#'model <- harbinger()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -104,23 +104,23 @@ detect.hcp_red <- function(obj, serie, ...) {
   obj$model_an <- ceemd.result
 
   if (ceemd.result$nimf > 3) {
-	  
-	  ## create accumulate IMFs vector
-	  cum.vec <- list()
-	  for (n in 1:obj$model_an$nimf){
-		cum.vec[[n]] <- fc_sumIMF(obj$model_an, 1, n)
-	  }
 
-	  ## calculate roughness for each imf
-	  vec <- vector()
-	  for (n in 1:length(cum.vec)){
-		vec[n] <- fc(cum.vec[[n]])
-	  }
+    ## create accumulate IMFs vector
+    cum.vec <- list()
+    for (n in 1:obj$model_an$nimf){
+      cum.vec[[n]] <- fc_sumIMF(obj$model_an, 1, n)
+    }
 
-	  ## Maximum curvature
-	  res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
-	  div <- res$x
-  } else {div=1}  
+    ## calculate roughness for each imf
+    vec <- vector()
+    for (n in 1:length(cum.vec)){
+      vec[n] <- fc(cum.vec[[n]])
+    }
+
+    ## Maximum curvature
+    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
+    div <- res$x
+  } else {div=1}
 
   ## ANOMALY ##
   ## adding the IMFs with the highest variance
@@ -180,13 +180,13 @@ detect.hcp_red <- function(obj, serie, ...) {
       #adding the IMFs of low variance
       sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
 
-    ## retomando as posições da série original
-    i <- rep(NA, san_size)
-    i[no_na] <- sum_cp
+      ## retomando as posições da série original
+      i <- rep(NA, san_size)
+      i[no_na] <- sum_cp
 
-    #change points according to criterion 2.698 x standard deviation
-    cp_hcp_red <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
-    cp_hcp_red <- median_point(cp_hcp_red)
+      #change points according to criterion 2.698 x standard deviation
+      cp_hcp_red <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
+      cp_hcp_red <- median_point(cp_hcp_red)
     }
   }
 
@@ -211,7 +211,7 @@ detect.hcp_red <- function(obj, serie, ...) {
   ## Trend CP (Change Points)
   cp_trend <- vector()
   if(obj$trend_cp){
-    i <- obj$model_an$residue
+    i <- obj$model_cp$residue
 
     gft_model <- fit(hcp_gft(), i)
     cp_trend <- detect(gft_model, i)
@@ -230,4 +230,3 @@ detect.hcp_red <- function(obj, serie, ...) {
 
   return(detection)
 }
-

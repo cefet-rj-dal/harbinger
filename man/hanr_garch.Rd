@@ -18,10 +18,10 @@ It wraps the ugarch model presented in the rugarch library.
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 14
-dataset <- har_examples$example14
+#Using simple example
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series regression model

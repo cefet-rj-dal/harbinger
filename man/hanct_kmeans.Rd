@@ -25,10 +25,10 @@ It wraps the kmeans presented in the stats library.
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using simple example
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series regression model

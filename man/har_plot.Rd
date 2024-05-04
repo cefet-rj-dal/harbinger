@@ -45,10 +45,10 @@ It accepts as harbinger, a time series, a data.frame of events, a parameter to m
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
 #Using the time series 1
-dataset <- har_examples$example1
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time change point using GARCH

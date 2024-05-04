@@ -20,10 +20,10 @@ It wraps the GARCH model presented in the rugarch library.
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_changepoints)
 
-#Using example 14
-dataset <- har_examples$example14
+#Using volatility example
+dataset <- examples_changepoints$volatility
 head(dataset)
 
 # setting up change point method

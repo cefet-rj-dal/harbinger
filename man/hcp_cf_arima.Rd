@@ -20,10 +20,10 @@ It wraps the ARIMA model presented in the forecast library.
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_changepoints)
 
-#Using example 6
-dataset <- har_examples$example6
+#Using simple example
+dataset <- examples_changepoints$simple
 head(dataset)
 
 # setting up change point method

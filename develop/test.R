@@ -5,10 +5,10 @@ library(ggplot2)
 set.seed(1)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 1
-dataset <- har_examples$example1
+#Using simple example
+dataset <- examples_anomalies$simple
 cut_index <- 60
 srange <- cut_index:row.names(dataset)[nrow(dataset)]
 drift_size <- nrow(dataset[srange,])

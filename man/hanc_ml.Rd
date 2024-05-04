@@ -22,10 +22,10 @@ They include: cla_majority, cla_dtree, cla_knn, cla_mlp, cla_nb, cla_rf, cla_svm
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using example 17
-dataset <- har_examples$example17
+#Using example tt
+dataset <- examples_anomalies$tt
 dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
 slevels <- levels(dataset$event)
 

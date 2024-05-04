@@ -16,10 +16,9 @@ Evaluation of event detection (traditional hard evaluation)
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using the time series 14
-dataset <- har_examples$example14
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time change point using GARCH

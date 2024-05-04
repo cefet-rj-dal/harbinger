@@ -19,10 +19,10 @@ Evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}
 library(daltoolbox)
 
 #loading the example database
-data(har_examples)
+data(examples_anomalies)
 
-#Using the time series 14
-dataset <- har_examples$example14
+#Using the simple
+dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time change point using GARCH
