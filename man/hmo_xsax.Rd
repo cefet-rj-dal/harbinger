@@ -23,10 +23,10 @@ Motif discovery using xsax \url{doi:10.1007/s10618-007-0064-z}
 library(daltoolbox)
 
 #loading the example database
-data(examples_anomalies)
+data(examples_motifs)
 
 #Using sequence example
-dataset <- examples_anomalies$sequence
+dataset <- examples_motifs$simple
 head(dataset)
 
 # setting up motif discovery method
