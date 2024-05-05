@@ -64,3 +64,22 @@
 #' data(examples_changepoints)
 #' serie <- examples_changepoints$simple
 "examples_changepoints"
+
+#' Time series for change point detection
+#' @description A list of time series for change point
+#' \itemize{
+#' \item simple: a simple synthetic time series
+#' \item mitdb100: sample of mitdb 100 time series
+#' \item mitdb102: sample of mitdb 102 time series
+#' }
+#'#'
+#' @docType data
+#' @usage data(examples_motifs)
+#' @format A list of time series for motif discovery.
+#' @keywords datasets
+#' @references \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+#' @source \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+#' @examples
+#' data(examples_motifs)
+#' serie <- examples_motifs$simple
+"examples_motifs"
