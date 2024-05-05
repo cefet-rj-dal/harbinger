@@ -102,10 +102,20 @@ gen_data <- function() {
     examples_changepoints$volatility <- data.frame(serie = x, event = event)
   }
 
+  {
+    set.seed(1)
+    n <- 100
+    x <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+    event <- rep(FALSE, length(x))
+    event[c(100,200,300,400)] <- TRUE
+    examples_changepoints$complex <- data.frame(serie = x, event = event)
+  }
+
   return(examples_changepoints)
 }
 
 plot_examples <- function(examples_changepoints) {
+  require(ggplot2)
   font <- theme(text = element_text(size=16))
   for (i in 1:length(examples_changepoints)) {
     data <- examples_changepoints[[i]]
