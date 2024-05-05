@@ -45,7 +45,7 @@ dataset <- examples_changepoints$simple
 head(dataset)
 
 # setting up change point method
-model <- harbinger()
+model <- hcp_red()
 
 # fitting the model
 model <- fit(model, dataset$serie)

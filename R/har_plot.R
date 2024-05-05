@@ -37,7 +37,7 @@ motifs_seqs <- function(detection) {
 #'#loading the example database
 #'data(examples_anomalies)
 #'
-#'#Using the time series 1
+#'#Using the simple time series
 #'dataset <- examples_anomalies$simple
 #'head(dataset)
 #'

@@ -20,7 +20,7 @@
 #'head(dataset)
 #'
 #'# setting up change point method
-#'model <- harbinger()
+#'model <- hcp_red()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -210,7 +210,7 @@ detect.hcp_red <- function(obj, serie, ...) {
 
   ## Trend CP (Change Points)
   cp_trend <- vector()
-  if(obj$trend_cp){
+  if(obj$trend_cp && length(obj$model_cp$residue) > 0){
     i <- obj$model_cp$residue
 
     gft_model <- fit(hcp_gft(), i)
