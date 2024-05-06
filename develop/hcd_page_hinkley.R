@@ -71,10 +71,10 @@ detect.hcd_page_hinkley <- function(obj, serie, ...) {
   }
 
   non_na <- base::which(stats::complete.cases(serie))
-  data <- serie[non_na, ]
+  data <- serie[non_na, , drop=FALSE]
 
   # Transform to percentile (0 to 1) if data has more than one column
-  data <- as.data.frame(base::sapply(data, function(c) stats::ecdf(c)(c)))
+  data <- base::sapply(data, function(c) stats::ecdf(c)(c))
   data <- base::apply(data, 1, mean)
 
   # Perform change point detection using Page Hinkley
