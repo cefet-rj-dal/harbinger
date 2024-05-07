@@ -3,7 +3,7 @@
 #'@param mode mode of computing distance between sequences. Available options include: "stomp", "stamp", "simple", "mstomp", "scrimp", "valmod", "pmp"
 #'@param w word size
 #'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_mp` object
+#'@return `hmo_discord` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -15,7 +15,7 @@
 #'head(dataset)
 #'
 #'# setting up motif discovery method
-#'model <- hmo_mp("stamp", 4, 3)
+#'model <- hmo_discord("stamp", 4, 3)
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -27,19 +27,19 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hmo_mp <- function(mode = "stamp", w, qtd) {
+hmo_discord <- function(mode = "stamp", w, qtd) {
   obj <- harbinger()
   obj$mode <- mode #"stamp", "stomp", "scrimp"
   obj$w <- w
   obj$qtd <- qtd
-  class(obj) <- append("hmo_mp", class(obj))
+  class(obj) <- append("hmo_discord", class(obj))
   return(obj)
 }
 
 #'@importFrom tsmp tsmp
 #'@importFrom tsmp find_motif
 #'@export
-detect.hmo_mp <- function(obj, serie, ...) {
+detect.hmo_discord <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
@@ -52,12 +52,12 @@ detect.hmo_mp <- function(obj, serie, ...) {
   if(!(is.numeric(obj$qtd)&&(obj$qtd >=3))) stop("the number of selected motifs must be greater than 3", call. = FALSE)
 
   motifs <- tsmp::tsmp(serie, window_size = obj$w, mode = obj$mode)
-  motifs <- tsmp::find_motif(motifs, qtd = obj$qtd)
+  motifs <- tsmp::find_discord(motifs, qtd = obj$qtd)
 
   outliers <- data.frame(event = rep(FALSE, length(serie)), seq = rep(NA, length(serie)))
-  for (i in 1:length(motifs$motif$motif_idx)) {
-    mot <- motifs$motif$motif_idx[[i]]
-    mot <- c(mot, motifs$motif$motif_neighbor[[i]])
+  for (i in 1:length(motifs$discord$discord_idx)) {
+    mot <- motifs$discord$discord_idx[[i]]
+    mot <- c(mot, motifs$discord$discord_neighbor[[i]])
     outliers$event[mot] <- TRUE
     outliers$seq[mot] <- as.character(i)
   }

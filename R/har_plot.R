@@ -78,7 +78,7 @@ har_plot <- function (obj, serie, detection, event = NULL, mark.cp = TRUE, ylim 
   }
   motifs_seqs <- motifs_seqs(detection)
   if (!is.null(motifs_seqs)) {
-    data$size[motifs_seqs] <- 1.5
+    data$size[motifs_seqs] <- 0.75
     data$color[motifs_seqs] <- colors[4] #purple
   }
   data$color[data$TP] <- colors[1] #green
