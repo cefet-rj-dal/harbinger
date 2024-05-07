@@ -103,6 +103,38 @@ gen_data <- function() {
   }
 
   {
+    i <- seq(0, 100, 0.1)
+    x <- cos(i)*rev(i)
+
+    event <- rep(FALSE, length(x))
+
+    event[200] <- TRUE
+    event[500] <- TRUE
+    event[700] <- TRUE
+
+    x[200] <- x[200] + 1.5*sd(x[(200-25):(200+25)])
+    x[500] <- x[500] + 1.5*sd(x[(500-25):(500+25)])
+    x[700] <- x[700] + 1.5*sd(x[(700-25):(700+25)])
+    dataset <- data.frame(serie = x, event = event)
+
+    plot(dataset$serie, t="l")
+
+    #Série 3: amplitude varia (CP) e anomalias proporcionais (fora)  -- AN eCP
+    i <- seq(0, 50, 0.1)
+    x <- c(sin(i), sin(i)*3)
+
+    event <- rep(FALSE, length(x))
+
+    event[200] <- TRUE
+    event[500] <- TRUE
+    event[700] <- TRUE
+
+    x[200] <- x[200] + 1.5*sd(x[(200-25):(200+25)])
+    x[700] <- x[700] + 1.5*sd(x[(700-25):(700+25)])
+    examples_changepoints$increasing_amplitude <- data.frame(serie = x, event = event)
+  }
+
+  {
     set.seed(1)
     n <- 100
     x <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi), 10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
