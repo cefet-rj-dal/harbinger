@@ -1,9 +1,9 @@
-#'@title Motif discovery using SAX
-#'@description Motif discovery using SAX <doi:10.1007/s10618-007-0064-z>
+#'@title Discord discovery using SAX
+#'@description Discord discovery using SAX <doi:10.1007/s10618-007-0064-z>
 #'@param a alphabet size
 #'@param w word size
-#'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_sax` object
+#'@param qtd number of occurrences to be classified as discords
+#'@return `hdis_sax` object
 #'@examples
 #'library(daltoolbox)
 #'
@@ -14,8 +14,8 @@
 #'dataset <- examples_motifs$simple
 #'head(dataset)
 #'
-#'# setting up motif discovery method
-#'model <- hmo_sax(26, 3, 3)
+#'# setting up discord discovery method
+#'model <- hdis_sax(26, 3, 3)
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -27,13 +27,13 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hmo_sax <- function(a, w, qtd=2) {
+hdis_sax <- function(a, w, qtd=2) {
   obj <- harbinger()
   if(!(is.numeric(a)&&(a>=1)&&(a<=26))) stop("alphabet must be between 1 and 26", call. = FALSE)
   obj$a <- a
   obj$w <- w
   obj$qtd <- qtd
-  class(obj) <- append("hmo_sax", class(obj))
+  class(obj) <- append("hdis_sax", class(obj))
   return(obj)
 }
 
@@ -61,11 +61,10 @@ comp_word_entropy <- function(str) {
 #'@importFrom dplyr n
 #'@importFrom dplyr desc
 #'@export
-detect.hmo_sax <- function(obj, serie, ...) {
+detect.hdis_sax <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
-  falsemotifs <- round(obj$w/2)
   
   obj <- obj$har_store_refs(obj, serie)
   
@@ -80,35 +79,41 @@ detect.hmo_sax <- function(obj, serie, ...) {
   data <- data.frame(i = 1:nrow(tsw), seq, entropy)
   
   result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=dplyr::n(), entropy=mean(entropy))
-  result <- result[result$total_count >= obj$qtd,]
+  discords_seq <- result[result$total_count == 1,]
+  discords_seq <- discords_seq |> dplyr::arrange(dplyr::desc(entropy)) 
+  result <- result[result$total_count > 1,]
   result <- result |> dplyr::arrange(dplyr::desc(total_count), dplyr::desc(entropy)) 
   data <- data[data$seq %in% result$seq,]
   
-  motifs <- NULL
-  for (j in 1:nrow(result)) {
-    motif <- data[data$seq == result$seq[j],]
-    if (nrow(motif) > 0) {
-      refs <- motif$i
-      svec <- base::split(refs, base::cumsum(c(1, diff(refs) != 1)))
-      vec <- base::sapply(svec, min)
+  motifs <- data
+  pos <- NULL
+  for (k in -obj$w:obj$w) {
+    pos <- c(pos, motifs$i + k)
+  }
+  pos <- pos[pos > 0]
+  
+  data <- data.frame(i = 1:nrow(tsw), seq, entropy)  
+  data  <- data[-pos,]
+  
+  discords <- NULL
+  for (j in 1:nrow(discords_seq)) {
+    discord <- data[data$seq == discords_seq$seq[j],]
+    if (nrow(discord) > 0) {
+      refs <- discord$i
+      discords <- base::rbind(discords, discord)
       
-      motif <- motif[(motif$i %in% vec),]
-      if (length(vec) >= obj$qtd) {
-        motifs <- base::rbind(motifs, motif)
-        
-        pos <- NULL
-        for (k in (-falsemotifs):falsemotifs) {
-          pos <- c(pos, refs + k)
-        }
-        data <- data[!(data$i %in% pos),]
+      pos <- NULL
+      for (k in -obj$w:obj$w) {
+        pos <- c(pos, refs + k)
       }
+      data <- data[!(data$i %in% pos),]
     }
   }
   
   mots <- rep(FALSE, length(obj$serie))
   seqs <- rep(NA, length(obj$serie))
-  mots[motifs$i] <- TRUE
-  seqs[motifs$i] <- motifs$seq
+  mots[discords$i] <- TRUE
+  seqs[discords$i] <- discords$seq
   
   detection <- obj$har_restore_refs(obj, anomalies = mots)
   detection$seq <- NA
