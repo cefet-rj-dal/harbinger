@@ -130,8 +130,8 @@ detect.hcp_red <- function(obj, serie, ...) {
   sum_diff <- c(NA, diff(sum_an)) #NA in the first value to maintain the length of the series
 
   ## Calculates the standard deviation of the central point.
-  sd <- zoo::rollapply(obj$serie, obj$sw_size, sd, by = 1)
-  sd <- c(rep(NA,14), sd, rep(NA,15)) #filling the borders with NA.
+  sd <- zoo::rollapply(serie, sd, by = 1,  width = list(c(c(-15:-1), c(1:15))))
+  sd <- c(rep(NA,15),sd,rep(NA,15)) #filling the borders with NA.
 
   ## Creating anomaly vector.
   anoms <- sum_diff/sd
@@ -180,7 +180,7 @@ detect.hcp_red <- function(obj, serie, ...) {
       #adding the IMFs of low variance
       sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
 
-      ## retomando as posições da série original
+      ## resuming the positions of the original series
       i <- rep(NA, san_size)
       i[no_na] <- sum_cp
 
@@ -194,16 +194,17 @@ detect.hcp_red <- function(obj, serie, ...) {
   cp_volatility <- vector()
   if(obj$volatility_cp){
 
-    sd2 <- zoo::rollapply(serie_cp, obj$sw_size, sd, by = 1)
-    sd2 <- c(rep(NA,14), sd2, rep(NA,15))
+	sd2 <- zoo::rollapply(serie_cp, width = list(c(c(-15:-1), c(1:15))), sd, by = 1)
+	sd2 <- c(rep(NA,15),sd2,rep(NA,15))
 
-    sd3 <- zoo::rollapply(sd2, obj$sw_size, sd, by = 1)
-    sd3 <- c(rep(NA,14), sd3, rep(NA,15))
-
+	sd3 <- zoo::rollapply(sd2, width = list(c(c(-15:-1), c(1:15))), sd, by = 1)
+	sd3 <- c(rep(NA,15),sd3,rep(NA,15))
+ 
+    ## resuming the positions of the original series
     i <- rep(NA, san_size)
     i[no_na] <- sd3
 
-    ## resuming the positions of the original series
+	#volatility change points according to criterion 2.698 x standard deviation
     cp_volatility <- which(abs(i) > 2.698 * sd(i, na.rm=TRUE))
     cp_volatility <- median_point(cp_volatility)
   }
@@ -211,8 +212,11 @@ detect.hcp_red <- function(obj, serie, ...) {
   ## Trend CP (Change Points)
   cp_trend <- vector()
   if(obj$trend_cp && length(obj$model_cp$residue) > 0){
-    i <- obj$model_cp$residue
 
+    i <- rep(NA, san_size)
+    i[no_na] <- obj$model_cp$residue
+	
+	#trend change points according to generalized fluctuation test
     gft_model <- fit(hcp_gft(), i)
     cp_trend <- detect(gft_model, i)
     cp_trend <- which(cp_trend$event)

@@ -125,8 +125,8 @@ detect.hanr_red <- function(obj, serie, ...) {
   sum_diff <- c(NA, diff(sum_an)) #NA in the first value to maintain the length of the series
 
   ## Calculates the standard deviation of the central point.
-  sd <- zoo::rollapply(obj$serie, obj$sw_size, sd, by = 1)
-  sd <- c(rep(NA,14), sd, rep(NA,15)) #filling the borders with NA.
+  sd <- zoo::rollapply(serie, sd, by = 1,  width = list(c(c(-15:-1), c(1:15))))
+  sd <- c(rep(NA,15),sd,rep(NA,15)) #filling the borders with NA.
 
   ## Creating anomaly vector.
   anoms <- sum_diff/sd
