@@ -37,6 +37,20 @@ hmo_xsax <- function(a, w, qtd) {
   return(obj)
 }
 
+comp_word_entropy <- function(str) {
+  x <- strsplit(str, "^")
+  x <- x[[1]]
+  n <- length(x)
+  x <- table(x)
+  x <- x / n
+  y <- 0
+  for (i in 1:length(x)) {
+    y <- y - x[i]*log(x[i],2)
+
+  }
+  return(y)
+}
+
 #'@importFrom stats na.omit
 #'@importFrom stringr str_length
 #'@importFrom stringr str_pad
@@ -51,6 +65,7 @@ detect.hmo_xsax <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+  falsemotifs <- round(obj$w/2)
 
   obj <- obj$har_store_refs(obj, serie)
 
@@ -58,33 +73,34 @@ detect.hmo_xsax <- function(obj, serie, ...) {
   tsax <- fit(tsax, obj$serie)
   tss <- transform(tsax, obj$serie)
 
-  tsw <- ts_data(tss, obj$w)
-  seq <- apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
-  data <- data.frame(i = 1:nrow(tsw), seq)
-  result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=dplyr::n())
+  tsw <- daltoolbox::ts_data(tss, obj$w)
+  seq <- base::apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
+  entropy <- base::apply(as.matrix(seq), MARGIN = 1, comp_word_entropy)
+
+  data <- data.frame(i = 1:nrow(tsw), seq, entropy)
+
+  result <- data |> dplyr::group_by(seq) |> dplyr::summarise(total_count=dplyr::n(), entropy=mean(entropy))
   result <- result[result$total_count >= obj$qtd,]
-  result <- result |> dplyr::arrange(dplyr::desc(total_count)) |> dplyr::select(seq)
-  result <- result$seq
-  data <- data[data$seq %in% result,]
+  result <- result |> dplyr::arrange(dplyr::desc(total_count), dplyr::desc(entropy))
+  data <- data[data$seq %in% result$seq,]
 
   motifs <- NULL
-  for (j in 1:length(result)) {
-    motif <- data[data$seq == result[j],]
-    pos <- NULL
-    for (k in 1:obj$w) {
-      pos <- c(pos, motif$i + (k - 1))
-    }
-    data <- data[!(data$i %in% pos),]
-
+  for (j in 1:nrow(result)) {
+    motif <- data[data$seq == result$seq[j],]
     if (nrow(motif) > 0) {
-      vec <- motif$i
-      svec <- base::split(vec, base::cumsum(c(1, diff(vec) != 1)))
+      refs <- motif$i
+      svec <- base::split(refs, base::cumsum(c(1, diff(refs) != 1)))
       vec <- base::sapply(svec, min)
 
       motif <- motif[(motif$i %in% vec),]
-
       if (length(vec) >= obj$qtd) {
         motifs <- base::rbind(motifs, motif)
+
+        pos <- NULL
+        for (k in (-falsemotifs):falsemotifs) {
+          pos <- c(pos, refs + k)
+        }
+        data <- data[!(data$i %in% pos),]
       }
     }
   }
