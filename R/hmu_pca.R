@@ -60,8 +60,8 @@ detect.hmu_pca <- function(obj, serie, ...) {
   # Calculate the squared reconstruction error (anomaly score)
   anomaly_scores <- rowSums(residuals^2)
 
-  outliers <- obj$har_outliers_idx(anomaly_scores)
-  outliers <- obj$har_outliers_group(outliers, length(anomaly_scores))
+  outliers <- obj$har_outliers(anomaly_scores)
+  outliers <- obj$har_outliers_check(outliers, length(anomaly_scores))
 
   i_outliers <- rep(NA, n)
   i_outliers[non_na] <- outliers

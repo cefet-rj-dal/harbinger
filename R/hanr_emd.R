@@ -35,7 +35,7 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
     return(value)
   }
 
-  har_outliers_idx <- function(data){
+  har_outliers <- function(data){
     # EMD computes the probability of residual being an anomaly
     probabilities <- (1 - (data / max(abs(data))))
     index.cp <- which(abs(probabilities)<2.698*sd(probabilities, na.rm=TRUE))
@@ -47,7 +47,7 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
   obj$trials <- trials
 
   obj$har_residuals <- har_residuals
-  obj$har_outliers_idx <- har_outliers_idx
+  obj$har_outliers <- har_outliers
 
   class(obj) <- append("hanr_emd", class(obj))
   return(obj)
@@ -75,8 +75,8 @@ detect.hanr_emd <- function(obj, serie, ...) {
   res <- sum_high_freq
 
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, length(res))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

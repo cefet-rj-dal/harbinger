@@ -19,9 +19,6 @@
 #'@importFrom stats quantile
 #'@export
 harbinger <- function() {
-  obj <- dal_base()
-  class(obj) <- append("harbinger", class(obj))
-
   har_store_refs <- function(obj, serie) {
     n <- length(serie)
     if (is.data.frame(serie)) {
@@ -56,54 +53,15 @@ harbinger <- function() {
 
     return(detection)
   }
-
-
-  har_residuals <- function(value) {
-    return(value^2)
-  }
-
-  har_outliers <- function(data){
-    org = length(data)
-    cond <- rep(FALSE, org)
-    q = stats::quantile(data, na.rm=TRUE)
-    IQR = q[4] - q[2]
-    lq1 = as.double(q[2] - 1.5*IQR)
-    hq3 = as.double(q[4] + 1.5*IQR)
-    cond = data > hq3
-    return (cond)
-  }
-
-  har_outliers_idx <- function(data){
-    cond <- obj$har_outliers(data)
-    index.cp = which(cond)
-    return (index.cp)
-  }
-
-  har_outliers_group <- function(outliers, size, values = NULL) {
-    group <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-    outliers <- rep(FALSE, size)
-    for (g in group) {
-      if (length(g) > 0) {
-        if (is.null(values)) {
-          i <- min(g)
-          outliers[i] <- TRUE
-        }
-        else {
-          i <- which.max(values[g])
-          i <- g[i]
-          outliers[i] <- TRUE
-        }
-      }
-    }
-    return(outliers)
-  }
-
+  obj <- dal_base()
+  class(obj) <- append("harbinger", class(obj))
   obj$har_store_refs <- har_store_refs
-  obj$har_residuals <- har_residuals
-  obj$har_outliers <- har_outliers
-  obj$har_outliers_idx <- har_outliers_idx
-  obj$har_outliers_group <- har_outliers_group
   obj$har_restore_refs <- har_restore_refs
+
+  hutils <- harutils()
+  obj$har_residuals <- hutils$har_residuals_l2
+  obj$har_outliers <- hutils$har_outliers_boxplot
+  obj$har_outliers_check <- hutils$har_outliers_checks_mingroup
 
 
   return(obj)

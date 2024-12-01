@@ -59,8 +59,8 @@ detect.han_autoencoder <- function(obj, serie, ...) {
   ts_ae <- c(as.double(result[1,1:(ncol(result)-1)]),as.double(result[,ncol(result)]))
 
   res <- obj$har_residuals(ts - ts_ae)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res), res)
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, length(res), res)
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

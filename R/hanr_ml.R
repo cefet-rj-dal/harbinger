@@ -62,8 +62,8 @@ detect.hanr_ml <- function(obj, serie, ...) {
   res <- io$output-adjust
 
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, length(res))
 
   anomalies <- c(rep(NA, obj$sw_size - 1), anomalies)
 

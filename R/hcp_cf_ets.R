@@ -48,8 +48,9 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   res <- stats::residuals(model)
 
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res))
+  anomalies <- obj$har_outliers(res)
+
+  anomalies <- obj$har_outliers_check(anomalies, length(res))
 
   anomalies[1:obj$sw_size] <- FALSE
 
@@ -62,8 +63,8 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   u <- obj$har_residuals(stats::residuals(M2))
 
   u <- mas(u, obj$sw_size)
-  cp <- obj$har_outliers_idx(u)
-  cp <- obj$har_outliers_group(cp, length(u))
+  cp <- obj$har_outliers(u)
+  cp <- obj$har_outliers_check(cp, length(u))
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(res)-length(u)), cp)
 

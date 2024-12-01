@@ -51,8 +51,8 @@ detect.hanr_garch <- function(obj, serie, ...) {
   res <- model$sigma
 
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, length(res))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

@@ -63,7 +63,7 @@ detect.hanc_ml <- function(obj, serie, ...) {
 
   anomalies <- which(adjust[,1] < adjust[,2])
 
-  anomalies <- obj$har_outliers_group(anomalies, nrow(obj$serie))
+  anomalies <- obj$har_outliers_check(anomalies, nrow(obj$serie))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

@@ -67,8 +67,8 @@ detect.hanct_kmeans <- function(obj, serie, ...) {
 
   res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(as.integer(anomalies + obj$seq/2), length(obj$serie))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(as.integer(anomalies + obj$seq/2), length(obj$serie))
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 

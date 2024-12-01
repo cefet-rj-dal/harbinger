@@ -82,8 +82,8 @@ detect.hanr_arima <- function(obj, serie, ...) {
   res <- stats::residuals(model)
 
   res <- obj$har_residuals(res)
-  anomalies <- obj$har_outliers_idx(res)
-  anomalies <- obj$har_outliers_group(anomalies, length(res))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, length(res))
 
   anomalies[1:obj$sw_size] <- FALSE
 
