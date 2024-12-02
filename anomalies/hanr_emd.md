@@ -46,7 +46,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](hanr_emd/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -77,42 +77,35 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'detection' not found
+##   idx event    type
+## 1   2  TRUE anomaly
+## 2  18  TRUE anomaly
+## 3  43  TRUE anomaly
+## 4  51  TRUE anomaly
+## 5  70  TRUE anomaly
+## 6  95  TRUE anomaly
 ```
 
 
 ```r
 # evaluating the detections
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'detection' not found
-```
-
-```r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     6    
+## FALSE     1     94
 ```
 
 
 ```r
 # ploting the results
   grf <- har_plot(model, dataset$serie, detection, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'detection' not found
-```
-
-```r
   plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-10](hanr_emd/unnamed-chunk-10-1.png)
 

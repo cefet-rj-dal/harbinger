@@ -11,11 +11,28 @@ convert_ipynb_to_rmarkdown <- function(input) {
 
   rmdfile = xfun::with_ext(input, "Rmd")
   mdfile = xfun::with_ext(input, "md")
-  htmlfile = xfun::with_ext(input, "html")
+  figdir = xfun::with_ext(input, "")
 
-  #knit(rmdfile, mdfile) # creates md file
+  dir <- dirname(rmdfile)
 
-  file.remove(htmlfile)
+  unlink("figure", recursive=TRUE)
+  unlink(figdir, recursive=TRUE)
+
+  knit(rmdfile, mdfile) # creates md file
+  #file.copy(bibs, diroutput, overwrite = TRUE)
+
+  file.rename("figure", figdir)
+
+  data <- readLines(con <- file(mdfile, encoding = "UTF-8"))
+  close(con)
+
+  data <- gsub("figure/", sprintf("%s/", basename(figdir)), data)
+
+  writeLines(data, con <- file(mdfile, encoding = "UTF-8"))
+  close(con)
+
+  #htmlfile = xfun::with_ext(input, "html")
+  #file.remove(htmlfile)
 }
 
 dir <- "."

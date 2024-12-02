@@ -44,7 +44,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](hanct_kmeans_discord/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -72,7 +72,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  50  TRUE discord   3      3
+## 1  51  TRUE discord   3      3
 ```
 
 
@@ -85,8 +85,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
@@ -96,5 +96,5 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](hanct_kmeans_discord/unnamed-chunk-10-1.png)
 

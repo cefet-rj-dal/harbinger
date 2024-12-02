@@ -49,7 +49,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](hmu_pca/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -57,7 +57,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 plot_ts(x = 1:length(dataset$x), y = dataset$x)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](hmu_pca/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -72,7 +72,7 @@ grf <- grf + ylab("serie")
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](hmu_pca/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -81,5 +81,5 @@ grf <- grf + ylab("x")
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](hmu_pca/unnamed-chunk-8-1.png)
 

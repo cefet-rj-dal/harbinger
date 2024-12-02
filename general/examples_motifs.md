@@ -32,7 +32,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](examples_motifs/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -44,7 +44,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](examples_motifs/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -56,5 +56,5 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](examples_motifs/unnamed-chunk-5-1.png)
 

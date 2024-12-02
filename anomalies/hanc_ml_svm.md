@@ -53,7 +53,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ## Warning: Removed 1 row containing missing values (`geom_line()`).
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](hanc_ml_svm/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -120,7 +120,7 @@ print(evaluation$confMatrix)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](hanc_ml_svm/unnamed-chunk-8-1.png)
 
 
 ```r
@@ -168,5 +168,5 @@ print(evaluation$confMatrix)
 ## Warning: Removed 1 row containing missing values (`geom_line()`).
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](hanc_ml_svm/unnamed-chunk-11-1.png)
 

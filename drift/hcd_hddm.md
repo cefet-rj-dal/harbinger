@@ -34,7 +34,7 @@ dataset <- data.frame(serie1, serie2, event)
 plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](hcd_hddm/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -42,7 +42,7 @@ plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 plot_ts(x = 1:length(dataset$serie2), y = dataset$serie2)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](hcd_hddm/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -60,10 +60,6 @@ model <- hcd_hddm()
 model <- fit(model, dataset)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'model' not found
-```
-
 
 ```r
 # making detections
@@ -71,7 +67,7 @@ detection <- detect(model, dataset)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'model' not found
+## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
 ```
 
 
@@ -81,42 +77,38 @@ print(detection[(detection$event),])
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'detection' not found
+##     idx event    type
+## 201 201  TRUE anomaly
+## 211 211  TRUE anomaly
+## 230 230  TRUE anomaly
+## 250 250  TRUE anomaly
+## 270 270  TRUE anomaly
+## 290 290  TRUE anomaly
+## 301 301  TRUE anomaly
+## 311 311  TRUE anomaly
+## 329 329  TRUE anomaly
 ```
 
 
 ```r
 # evaluating the detections
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'model' not found
-```
-
-```r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     9    
+## FALSE     4     487
 ```
 
 
 ```r
 # ploting the results
   grf <- har_plot(model, dataset$serie1, detection, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'detection' not found
-```
-
-```r
   plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-10](hcd_hddm/unnamed-chunk-10-1.png)
 

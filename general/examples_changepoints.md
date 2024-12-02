@@ -32,7 +32,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](examples_changepoints/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -44,7 +44,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](examples_changepoints/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -56,7 +56,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](examples_changepoints/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -72,7 +72,7 @@ plot(grf)
 ## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](examples_changepoints/unnamed-chunk-6-1.png)
 
 
 ```r
@@ -88,7 +88,7 @@ plot(grf)
 ## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](examples_changepoints/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -100,7 +100,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](examples_changepoints/unnamed-chunk-8-1.png)
 
 
 ```r
@@ -112,5 +112,5 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](examples_changepoints/unnamed-chunk-9-1.png)
 
