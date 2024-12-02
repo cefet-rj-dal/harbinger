@@ -13,10 +13,6 @@ if (FALSE) {
 }
 
 if (FALSE) {
-  #analisar o hmu_pca
-
-  #incluir a série no resultado: attr(detection, "serie") <- base::scale(res)
-
   library(devtools)
   check()
   load_all()
