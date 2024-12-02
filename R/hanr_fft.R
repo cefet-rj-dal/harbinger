@@ -66,12 +66,12 @@ detect.hanr_fft <- function(obj, serie, ...) {
 
   filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE) / n)
 
-  noise <- obj$har_residuals(filtered_series)
+  res <- obj$har_distance(filtered_series)
 
-  anomalies <- obj$har_outliers(noise)
-  anomalies <- obj$har_outliers_check(anomalies, length(noise))
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
 }

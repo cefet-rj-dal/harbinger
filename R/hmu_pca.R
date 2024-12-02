@@ -39,12 +39,10 @@ hmu_pca <- function() {
 detect.hmu_pca <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  n <- nrow(serie)
-  non_na <- which(!is.na(apply(serie, 1, max)))
-  serie <- stats::na.omit(serie)
+  obj <- obj$har_store_refs(obj, serie)
 
   # Standardize the data (mean-centered and scaled to unit variance)
-  scaled_data <- base::scale(serie)
+  scaled_data <- base::scale(obj$serie)
 
   # Perform PCA
   pca_result <- stats::princomp(scaled_data)
@@ -55,21 +53,13 @@ detect.hmu_pca <- function(obj, serie, ...) {
 
   # Calculate the residuals
   reconstructed_data <- pcs %*% t(loadings)
-  residuals <- scaled_data - reconstructed_data
 
-  # Calculate the squared reconstruction error (anomaly score)
-  anomaly_scores <- rowSums(residuals^2)
+  res <- obj$har_distance(scaled_data - reconstructed_data)
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
-  outliers <- obj$har_outliers(anomaly_scores)
-  outliers <- obj$har_outliers_check(outliers, length(anomaly_scores))
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
-  i_outliers <- rep(NA, n)
-  i_outliers[non_na] <- outliers
-
-  detection <- data.frame(idx=1:n, event = i_outliers, type="")
-  detection$type[i_outliers] <- "anomaly"
-
-  attr(detection, "serie") <- base::scale(anomaly_scores)
 
   return(detection)
 }

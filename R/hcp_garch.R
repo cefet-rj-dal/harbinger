@@ -63,11 +63,11 @@ detect.hcp_garch <- function(obj, serie, ...) {
   M2 <- linreg(y)
 
   #Adjustment error on the whole window
-  u <- obj$har_residuals(stats::residuals(M2))
+  u <- obj$har_distance(stats::residuals(M2))
   u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers(u)
+  cp <- obj$har_outliers_check(cp, u)
 
-  cp <- obj$har_outliers_check(cp, length(u))
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(y)-length(u)), cp)
 

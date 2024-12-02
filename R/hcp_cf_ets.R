@@ -47,10 +47,10 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
 
   res <- stats::residuals(model)
 
-  res <- obj$har_residuals(res)
+  res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
 
-  anomalies <- obj$har_outliers_check(anomalies, length(res))
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
   anomalies[1:obj$sw_size] <- FALSE
 
@@ -60,15 +60,15 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   M2 <- forecast::ets(ts(y))
 
   #Adjustment error on the whole window
-  u <- obj$har_residuals(stats::residuals(M2))
+  u <- obj$har_distance(stats::residuals(M2))
 
   u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers(u)
-  cp <- obj$har_outliers_check(cp, length(u))
+  cp <- obj$har_outliers_check(cp, u)
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(res)-length(u)), cp)
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp, res = res)
 
   return(detection)
 }

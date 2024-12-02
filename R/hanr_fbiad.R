@@ -44,22 +44,27 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
 
   sx <- daltoolbox::ts_data(obj$serie, obj$sw_size)
   ma <- apply(sx, 1, mean)
-  sxd <- obj$har_residuals(sx[,ncol(sx)] - ma)
-  iF <- obj$har_outliers(sxd)
-  iF <- obj$har_outliers_check(iF, length(sxd))
+  resF <- obj$har_distance(sx[,ncol(sx)] - ma)
+  iF <- obj$har_outliers(resF)
+  iF <- obj$har_outliers_check(iF, resF)
   iF <- c(rep(FALSE, obj$sw_size-1), iF)
+  resF <- c(rep(0, obj$sw_size-1), resF)
 
   sx <- ts_data(rev(obj$serie), obj$sw_size)
   ma <- apply(sx, 1, mean)
-  sxd <- obj$har_residuals(sx[,ncol(sx)] - ma)
-  iB <- obj$har_outliers(sxd)
-  iB <- obj$har_outliers_check(iB, length(sxd))
+  resB <- obj$har_distance(sx[,ncol(sx)] - ma)
+  iB <- obj$har_outliers(resB)
+  iB <- obj$har_outliers_check(iB, resB)
   iB <- rev(iB)
   iB <- c(iB, rep(FALSE, obj$sw_size-1))
+  resB <- rev(resB)
+  resB <- c(resB, rep(0, obj$sw_size-1))
+
+  res <- (resB + resF)/2
 
   anomalies <- iF | iB
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
 }

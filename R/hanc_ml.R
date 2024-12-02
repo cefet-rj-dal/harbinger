@@ -42,6 +42,9 @@ hanc_ml <- function(model) {
   obj <- harbinger()
   obj$model <- model
 
+  hutils <- harutils()
+  obj$har_outliers <- hutils$har_outliers_classification
+
   class(obj) <- append("hanc_ml", class(obj))
   return(obj)
 }
@@ -53,19 +56,21 @@ fit.hanc_ml <- function(obj, serie, ...) {
   return(obj)
 }
 
+
 #'@importFrom stats na.omit
 #'@importFrom stats predict
 #'@export
 detect.hanc_ml <- function(obj, serie, ...) {
   obj <- obj$har_store_refs(obj, serie)
+  obj$serie <- adjust_data.frame(obj$serie)
+  obj$serie <- obj$serie[,obj$model$x, drop = FALSE]
 
   adjust <- stats::predict(obj$model, obj$serie)
+  res <- adjust[,2]
+  anomalies <- obj$har_outliers(res)
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
-  anomalies <- which(adjust[,1] < adjust[,2])
-
-  anomalies <- obj$har_outliers_check(anomalies, nrow(obj$serie))
-
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
 }

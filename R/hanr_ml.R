@@ -61,13 +61,13 @@ detect.hanr_ml <- function(obj, serie, ...) {
 
   res <- io$output-adjust
 
-  res <- obj$har_residuals(res)
+  res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, length(res))
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
   anomalies <- c(rep(NA, obj$sw_size - 1), anomalies)
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
 }

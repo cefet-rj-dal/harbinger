@@ -51,12 +51,12 @@ detect.hanr_wavelet <- function(obj, serie, ...) {
 
   w_component <- apply(W, 1, sum)
 
-  noise <- obj$har_residuals(w_component)
-  anomalies <- obj$har_outliers(noise)
+  res <- obj$har_distance(w_component)
+  anomalies <- obj$har_outliers(res)
 
-  anomalies <- obj$har_outliers_check(anomalies, length(noise))
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
   return(detection)
 }
 

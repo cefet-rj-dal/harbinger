@@ -13,6 +13,10 @@ if (FALSE) {
 }
 
 if (FALSE) {
+  #analisar o hmu_pca
+
+  #incluir a série no resultado: attr(detection, "serie") <- base::scale(res)
+
   library(devtools)
   check()
   load_all()
@@ -56,8 +60,8 @@ if (FALSE) { #build package for cran
   pkgbuild::build(manual = TRUE)
 
   #run in terminal
-  #R CMD check harbinger_1.0.787.tar.gz
-  #R CMD check harbinger_1.0.787.tar.gz --as-cran
+  #R CMD check harbinger_1.1.707.tar.gz
+  #R CMD check harbinger_1.1.707.tar.gz --as-cran
 
   #upload package
   #https://cran.r-project.org/submit.html

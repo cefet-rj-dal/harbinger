@@ -32,10 +32,11 @@ harbinger <- function() {
     }
     obj$anomalies <- rep(NA, n)
     obj$change_points <- rep(NA, n)
+    obj$res <- rep(NA, n)
     return(obj)
   }
 
-  har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL) {
+  har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL, res = NULL) {
     startup <- obj$anomalies
     if (!is.null(change_points)) {
       obj$change_points[obj$non_na] <- change_points
@@ -45,11 +46,16 @@ harbinger <- function() {
       obj$anomalies[obj$non_na] <- anomalies
       startup <- obj$anomalies
     }
+    if (!is.null(res)) {
+      obj$res[obj$non_na] <- res
+    }
 
     detection <- data.frame(idx=1:length(obj$anomalies), event = startup, type="")
     detection$type[obj$anomalies] <- "anomaly"
     detection$event[obj$change_points] <- TRUE
     detection$type[obj$change_points] <- "changepoint"
+
+    attr(detection, "res") <- obj$res
 
     return(detection)
   }
@@ -59,9 +65,9 @@ harbinger <- function() {
   obj$har_restore_refs <- har_restore_refs
 
   hutils <- harutils()
-  obj$har_residuals <- hutils$har_residuals_l2
+  obj$har_distance <- hutils$har_distance_l2
   obj$har_outliers <- hutils$har_outliers_boxplot
-  obj$har_outliers_check <- hutils$har_outliers_checks_mingroup
+  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
 
   return(obj)

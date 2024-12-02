@@ -4,12 +4,21 @@
 \alias{han_autoencoder}
 \title{Anomaly detector using autoencoder}
 \usage{
-han_autoencoder(input_size, encode_size)
+han_autoencoder(
+  input_size,
+  encode_size,
+  encoderclass = autoenc_encode_decode,
+  ...
+)
 }
 \arguments{
 \item{input_size}{Establish the input size for the autoencoder anomaly detector. It is the size of the output also.}
 
 \item{encode_size}{The encode size for the autoencoder.}
+
+\item{encoderclass}{The class of daltoolbox encoder-decoder.}
+
+\item{...}{optional arguments for encoder-decoder class.}
 }
 \value{
 han_autoencoder object

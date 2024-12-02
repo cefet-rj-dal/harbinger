@@ -29,6 +29,9 @@ hcp_scp <- function(sw_size = 30) {
   obj <- harbinger()
   obj$sw_size <- sw_size
 
+  hutils <- harutils()
+  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+
   class(obj) <- append("hcp_scp", class(obj))
   return(obj)
 }
@@ -42,7 +45,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
     y <- data.frame(t = 1:n, y = data)
 
     mdl <- stats::lm(y~t, y)
-    res <- obj$har_residuals(mdl$residuals)
+    res <- obj$har_distance(mdl$residuals)
     err <- mean(res)
 
     y_a <- y[1:(offset-1),]
@@ -50,7 +53,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
     y_d <- y[(offset+1):n,]
     mdl_d <- stats::lm(y~t, y_d)
 
-    res_ad <- obj$har_residuals(c(mdl_a$residuals,mdl_d$residuals))
+    res_ad <- obj$har_distance(c(mdl_a$residuals,mdl_d$residuals))
     err_ad <- mean(res_ad)
 
     #return 1-error on whole window; 2-error on window halves; 3-error difference
@@ -70,7 +73,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
   res <- errors$mdl_dif
 
   change_point <- obj$har_outliers(res)
-  change_point <- obj$har_outliers_check(change_point, length(res), res)
+  change_point <- obj$har_outliers_check(change_point, res)
 
   change_point <- c(rep(FALSE, obj$offset-1), change_point, rep(FALSE, obj$sw_size-obj$offset))
 

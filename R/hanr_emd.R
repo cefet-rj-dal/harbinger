@@ -30,24 +30,9 @@
 #'
 #'@export
 hanr_emd <- function(noise = 0.1, trials = 5) {
-  har_residuals <- function(value) {
-    # EMD does not square residual
-    return(value)
-  }
-
-  har_outliers <- function(data){
-    # EMD computes the probability of residual being an anomaly
-    probabilities <- (1 - (data / max(abs(data))))
-    index.cp <- which(abs(probabilities)<2.698*sd(probabilities, na.rm=TRUE))
-    return (index.cp)
-  }
-
   obj <- harbinger()
   obj$noise <- noise
   obj$trials <- trials
-
-  obj$har_residuals <- har_residuals
-  obj$har_outliers <- har_outliers
 
   class(obj) <- append("hanr_emd", class(obj))
   return(obj)
@@ -72,13 +57,11 @@ detect.hanr_emd <- function(obj, serie, ...) {
 
   sum_high_freq <- obj$model[["imf"]][,1]
 
-  res <- sum_high_freq
-
-  res <- obj$har_residuals(res)
+  res <- obj$har_distance(sum_high_freq)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, length(res))
+  anomalies <- obj$har_outliers_check(anomalies, res)
 
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
 }
