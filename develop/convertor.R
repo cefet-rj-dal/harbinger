@@ -7,14 +7,15 @@ convert_ipynb_to_rmarkdown <- function(input) {
     return( "Error: Invalid file format" )
   }
 
-  rmarkdown::convert_ipynb(input)
+  #rmarkdown::convert_ipynb(input)
 
   rmdfile = xfun::with_ext(input, "Rmd")
   mdfile = xfun::with_ext(input, "md")
   htmlfile = xfun::with_ext(input, "html")
 
-  knit(rmdfile, mdfile) # creates md file
-  markdownToHTML(mdfile, htmlfile)
+  #knit(rmdfile, mdfile) # creates md file
+
+  file.remove(htmlfile)
 }
 
 dir <- "."
