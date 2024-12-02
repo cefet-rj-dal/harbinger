@@ -92,6 +92,7 @@ They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm</p>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>number of items to replace is not a multiple of replacement length</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
@@ -110,7 +111,7 @@ They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA.11  NA    NA    &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA.12  NA    NA    &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA.13  NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50     50  TRUE anomaly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52     52  TRUE anomaly</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
