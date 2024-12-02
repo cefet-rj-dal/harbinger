@@ -1,0 +1,55 @@
+---
+title: An R Markdown document converted from "./anomalies/hmu_pca.ipynb"
+output: html_document
+---
+
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
+#loading Harbinger
+load_library("daltoolbox") 
+load_library("harbinger") 
+load_library("ggplot2")
+```
+
+```{r}
+data("examples_harbinger")
+dataset <- examples_harbinger$multidimensional
+dataset$event <- FALSE
+dataset$event[c(101,128,167)] <- TRUE
+```
+
+```{r}
+head(dataset)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+```
+
+```{r}
+#ploting the time x
+plot_ts(x = 1:length(dataset$x), y = dataset$x)
+```
+
+```{r}
+model <- fit(hmu_pca(), dataset[,1:2])
+pca_detection <- detect(model, dataset[,1:2])
+```
+
+```{r}
+grf <- har_plot(model, dataset$serie, pca_detection, dataset$event)
+grf <- grf + ylab("serie")
+plot(grf)
+```
+
+```{r}
+grf <- har_plot(model, dataset$x, pca_detection, dataset$event)
+grf <- grf + ylab("x")
+plot(grf)
+```
+

@@ -1,0 +1,87 @@
+---
+title: An R Markdown document converted from "./anomalies/hanc_ml_rf.ipynb"
+output: html_document
+---
+
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
+#loading Harbinger
+load_library("daltoolbox") 
+load_library("harbinger") 
+```
+
+```{r}
+#loading the example database
+data(examples_anomalies)
+```
+
+```{r}
+#Using the tt time series
+dataset <- examples_anomalies$tt
+dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+head(dataset)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+```
+
+```{r}
+# data preprocessing
+slevels <- levels(dataset$event)
+
+train <- dataset[1:80,]
+test <- dataset[-(1:80),]
+
+norm <- minmax()
+norm <- fit(norm, train)
+train_n <- transform(norm, train)
+summary(train_n)
+```
+
+```{r}
+model <- hanc_ml(cla_rf("event", slevels, mtry = 1, ntree=5))
+```
+
+```{r}
+# fitting the model
+model <- fit(model, train_n)
+detection <- detect(model, train_n)
+print(detection |> dplyr::filter(event==TRUE))
+# evaluating the training
+evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+print(evaluation$confMatrix)
+```
+
+```{r}
+# ploting training results
+  grf <- har_plot(model, train_n$serie, detection, as.logical(train_n$event))
+  plot(grf)
+```
+
+```{r}
+# preparing for testing
+  test_n <- transform(norm, test)
+```
+
+```{r}
+# evaluating the detections during testing
+  detection <- detect(model, test_n)
+
+  print(detection |> dplyr::filter(event==TRUE))
+
+  evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# ploting the results during testing
+  grf <- har_plot(model, test_n$serie, detection, as.logical(test_n$event))
+  plot(grf)
+```
+

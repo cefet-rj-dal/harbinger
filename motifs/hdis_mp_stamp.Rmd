@@ -1,0 +1,64 @@
+---
+title: An R Markdown document converted from "./motifs/hdis_mp_stamp.ipynb"
+output: html_document
+---
+
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
+#loading Harbinger
+load_library("daltoolbox") 
+load_library("harbinger") 
+```
+
+```{r}
+#loading the example database
+data(examples_motifs)
+```
+
+```{r}
+#Using the simple time series
+dataset <- examples_motifs$mitdb102
+head(dataset)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+```
+
+```{r}
+# establishing the method  
+model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
+```
+
+```{r}
+# fitting the model
+  model <- fit(model, dataset$serie)
+```
+
+```{r}
+# making detections
+  suppressMessages(detection <- detect(model, dataset$serie))
+```
+
+```{r}
+# filtering detected events
+  print(detection |> dplyr::filter(event==TRUE))
+```
+
+```{r}
+# evaluating the detections
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# ploting the results
+  grf <- har_plot(model, dataset$serie, detection, dataset$event)
+  plot(grf)
+```
+
