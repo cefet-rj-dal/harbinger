@@ -44,7 +44,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](hdis_mp_stamp/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/hdis_mp_stamp/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -99,5 +99,5 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](hdis_mp_stamp/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](fig/hdis_mp_stamp/unnamed-chunk-10-1.png)
 

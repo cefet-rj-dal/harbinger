@@ -46,7 +46,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](hanr_remd/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/hanr_remd/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -77,15 +77,17 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1   2  TRUE anomaly
-## 2   5  TRUE anomaly
-## 3  27  TRUE anomaly
-## 4  30  TRUE anomaly
-## 5  51  TRUE anomaly
-## 6  55  TRUE anomaly
-## 7  77  TRUE anomaly
-## 8  81  TRUE anomaly
+##    idx event    type
+## 1    9  TRUE anomaly
+## 2   21  TRUE anomaly
+## 3   26  TRUE anomaly
+## 4   34  TRUE anomaly
+## 5   45  TRUE anomaly
+## 6   51  TRUE anomaly
+## 7   59  TRUE anomaly
+## 8   70  TRUE anomaly
+## 9   77  TRUE anomaly
+## 10  85  TRUE anomaly
 ```
 
 
@@ -98,8 +100,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     8    
-## FALSE     1     92
+## TRUE      0     10   
+## FALSE     1     90
 ```
 
 
@@ -109,5 +111,5 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](hanr_remd/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](fig/hanr_remd/unnamed-chunk-10-1.png)
 

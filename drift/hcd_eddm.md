@@ -34,7 +34,7 @@ dataset <- data.frame(serie1, serie2, event)
 plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 ```
 
-![plot of chunk unnamed-chunk-3](hcd_eddm/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](fig/hcd_eddm/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -42,7 +42,7 @@ plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 plot_ts(x = 1:length(dataset$serie2), y = dataset$serie2)
 ```
 
-![plot of chunk unnamed-chunk-4](hcd_eddm/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/hcd_eddm/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -78,14 +78,9 @@ print(detection[(detection$event),])
 
 ```
 ##     idx event    type
-## 208 208  TRUE anomaly
-## 228 228  TRUE anomaly
-## 248 248  TRUE anomaly
-## 268 268  TRUE anomaly
-## 287 287  TRUE anomaly
-## 301 301  TRUE anomaly
-## 327 327  TRUE anomaly
-## 347 347  TRUE anomaly
+## 201 201  TRUE anomaly
+## 302 302  TRUE anomaly
+## 336 336  TRUE anomaly
 ```
 
 
@@ -98,8 +93,8 @@ print(detection[(detection$event),])
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     8    
-## FALSE     4     488
+## TRUE      0     3    
+## FALSE     4     493
 ```
 
 
@@ -109,5 +104,5 @@ print(detection[(detection$event),])
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](hcd_eddm/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](fig/hcd_eddm/unnamed-chunk-10-1.png)
 

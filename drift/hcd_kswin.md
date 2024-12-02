@@ -35,7 +35,7 @@ dataset <- data.frame(serie1, serie2, event)
 plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 ```
 
-![plot of chunk unnamed-chunk-3](hcd_kswin/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](fig/hcd_kswin/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -43,7 +43,7 @@ plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
 plot_ts(x = 1:length(dataset$serie2), y = dataset$serie2)
 ```
 
-![plot of chunk unnamed-chunk-4](hcd_kswin/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/hcd_kswin/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -95,5 +95,5 @@ print(detection[(detection$event),])
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](hcd_kswin/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](fig/hcd_kswin/unnamed-chunk-10-1.png)
 

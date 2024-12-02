@@ -44,7 +44,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](hcp_chow/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/hcp_chow/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -96,5 +96,5 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](hcp_chow/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](fig/hcp_chow/unnamed-chunk-10-1.png)
 

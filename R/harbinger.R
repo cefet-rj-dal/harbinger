@@ -69,7 +69,6 @@ harbinger <- function() {
   obj$har_outliers <- hutils$har_outliers_boxplot
   obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
-
   return(obj)
 }
 

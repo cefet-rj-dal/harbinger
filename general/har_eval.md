@@ -44,7 +44,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](har_eval/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/har_eval/unnamed-chunk-4-1.png)
 
 
 ```r

@@ -32,7 +32,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-3](examples_harbinger/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](fig/examples_harbinger/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -44,7 +44,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](examples_harbinger/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/examples_harbinger/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -56,7 +56,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-5](examples_harbinger/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/examples_harbinger/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -68,7 +68,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](examples_harbinger/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](fig/examples_harbinger/unnamed-chunk-6-1.png)
 
 ```r
 model <- fit(model, dataset$x)
@@ -77,7 +77,7 @@ grf <- har_plot(model, dataset$x, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](examples_harbinger/unnamed-chunk-6-2.png)
+![plot of chunk unnamed-chunk-6](fig/examples_harbinger/unnamed-chunk-6-2.png)
 
 
 ```r
@@ -89,7 +89,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-7](examples_harbinger/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](fig/examples_harbinger/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -101,5 +101,5 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-8](examples_harbinger/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](fig/examples_harbinger/unnamed-chunk-8-1.png)
 
