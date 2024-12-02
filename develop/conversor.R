@@ -1,3 +1,7 @@
+delete_ipynb <- function(input) {
+  file.remove(input)
+}
+
 convert_ipynb_to_rmarkdown <- function(input) {
   if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
   if (!require("markdown")) return("Missing necessary package: 'markdown'")
@@ -35,10 +39,20 @@ convert_ipynb_to_rmarkdown <- function(input) {
   #file.remove(htmlfile)
 }
 
+
 dir <- "."
 
 texs <- list.files(path = dir, pattern = ".ipynb$", full.names = TRUE, recursive = TRUE)
-for (tex in texs) {
-  print(tex)
-  convert_ipynb_to_rmarkdown(tex)
+if (FALSE) {
+  for (tex in texs) {
+    print(tex)
+    convert_ipynb_to_rmarkdown(tex)
+  }
 }
+if (TRUE) {
+  for (tex in texs) {
+    print(tex)
+    delete_ipynb(tex)
+  }
+}
+
