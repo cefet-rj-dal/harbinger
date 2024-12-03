@@ -59,17 +59,15 @@ Examples of Harbinger are organized according to general functions
 (example datasets and metrics), anomalies, change points, motifs, and
 multivariate anomaly detection.
 
-General:
-<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/general/>
+General: <https://github.com/cefet-rj-dal/harbinger/tree/master/general>
 
 Anomalies:
-<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/anomalies/>
+<https://github.com/cefet-rj-dal/harbinger/tree/master/anomalies>
 
 Change points:
-<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/change_point/>
+<https://github.com/cefet-rj-dal/harbinger/tree/master/change_point>
 
-Motifs:
-<https://nbviewer.org/github/cefet-rj-dal/harbinger/tree/master/motifs/>
+Motifs: <https://github.com/cefet-rj-dal/harbinger/tree/master/motifs>
 
 ``` r
 library(harbinger)
