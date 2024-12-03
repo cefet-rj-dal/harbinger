@@ -1,28 +1,89 @@
 #'@title Harbinger Ensemble
 #'@description Ensemble detector
+#'@param ... list of detectors
 #'@return Harbinger object
 #'@examples
-#'# See ?hanc_ml for an example of anomaly detection using machine learning classification
-#'# See ?hanr_arima for an example of anomaly detection using ARIMA
-#'# See ?hanr_fbiad for an example of anomaly detection using FBIAD
-#'# See ?hanr_garch for an example of anomaly detection using GARCH
-#'# See ?hanr_kmeans for an example of anomaly detection using kmeans clustering
-#'# See ?hanr_ml for an example of anomaly detection using machine learning regression
-#'# See ?hanr_cf_arima for an example of change point detection using ARIMA
-#'# See ?hanr_cf_ets for an example of change point detection using ETS
-#'# See ?hanr_cf_lr for an example of change point detection using linear regression
-#'# See ?hanr_cf_garch for an example of change point detection using GARCH
-#'# See ?hanr_cf_scp for an example of change point detection using the seminal algorithm
-#'# See ?hmo_sax for an example of motif discovery using SAX
-#'# See ?hmu_pca for an example of anomaly detection in multivariate time series using PCA
+#'library(daltoolbox)
+#'
+#'#loading the example database
+#'data(examples_anomalies)
+#'
+#'#Using simple example
+#'dataset <- examples_anomalies$simple
+#'head(dataset)
+#'
+#'# setting up time series emd detector
+#'model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+#'
+#'# fitting the model
+#'model <- fit(model, dataset$serie)
+#'
+#'detection <- detect(model, dataset$serie)
+#'
+#'# filtering detected events
+#'print(detection[(detection$event),])
 #'@import daltoolbox
 #'@importFrom stats quantile
 #'@export
-har_ensemble <- function() {
+har_ensemble <- function(...) {
   obj <- harbinger()
+  obj$time_tolerance <- 0
+  obj$models <- c(list(...))
+
   class(obj) <- append("har_ensemble", class(obj))
+  return(obj)
+}
+
+#'@importFrom stats na.omit
+#'@export
+fit.har_ensemble <- function(obj, serie, ...) {
+  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
+
+  serie <- stats::na.omit(serie)
+
+  for (i in 1:length(obj$models)) {
+    model <- obj$models[[i]]
+    model <- fit(model, serie)
+    obj$models[[i]] <- model
+  }
 
   return(obj)
+}
+
+#'@importFrom stats na.omit
+#'@export
+detect.har_ensemble <- function(obj, serie, ...) {
+  if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+
+  obj <- obj$har_store_refs(obj, serie)
+
+  values <- NULL
+  types <- NULL
+  for (i in 1:length(obj$models)) {
+    model <- obj$models[[i]]
+    detection <- detect(model, obj$serie)
+
+    varname <- sprintf("v%d", i)
+    if (is.null(values)) {
+      values <- as.data.frame(as.double(detection$event))
+      types <- as.data.frame(detection$type)
+    }
+    else {
+      values <- cbind(values, as.double(detection$event))
+      types <- cbind(types, detection$type)
+    }
+  }
+  res <- rowSums(values) # Every method has 1 vote
+  event <- res >= length(obj$models)/2
+  type <- apply(types, 1, max)
+  type[!event] <- ""
+
+  anomalies <- type == "anomaly"
+  change_point <- type == "changepoint"
+
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_point = change_point, res = res)
+
+  return(detection)
 }
 
 

@@ -10,9 +10,7 @@ dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series emd detector
-model <- hanr_fbiad()
-
-utils <- harutils()
+model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
 
 # fitting the model
 model <- fit(model, dataset$serie)
@@ -22,13 +20,15 @@ detection <- detect(model, dataset$serie)
 # filtering detected events
 print(detection[(detection$event),])
 
-
 res <-  attr(detection, "res")
 
-data <- res
+if (!is.null(res)) {
+  data <- res
 
-index <- which(data > mean(data) + 3*sd(data))
+  index <- which(data > mean(data) + 3*sd(data))
 
-plot(res)
+  plot(res)
 
-boxplot(res)
+  boxplot(res)
+}
+

@@ -3,7 +3,7 @@
 #'@return Harbinger object
 #'@examples
 #'#See examples of detectors for anomalies, change points, and motifs
-#'#[link](https://cefet-rj-dal.github.io/harbinger)
+#'#at https://cefet-rj-dal.github.io/harbinger
 #'@import daltoolbox
 #'@importFrom stats quantile
 #'@export
@@ -68,7 +68,7 @@ harbinger <- function() {
 #'@return a data frame with the index of observations and if they are identified or not as an event, and their type
 #'@examples
 #'#See examples of detectors for anomalies, change points, and motifs
-#'#[link](https://cefet-rj-dal.github.io/harbinger)
+#'#at https://cefet-rj-dal.github.io/harbinger
 #'@export
 detect <- function(obj, ...) {
   UseMethod("detect")

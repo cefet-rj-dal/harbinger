@@ -14,5 +14,5 @@ Ancestor class for time series event detection
 }
 \examples{
 #See examples of detectors for anomalies, change points, and motifs
-#[link](https://cefet-rj-dal.github.io/harbinger)
+#at https://cefet-rj-dal.github.io/harbinger
 }
