@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hmu_pca.ipynb"
+title: /anomalies/hmu_pca.Rmd
 output: html_document
 ---
 
@@ -8,12 +8,16 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 load_library("ggplot2")
+```
+
+```
+## Error in load_library("ggplot2"): could not find function "load_library"
 ```
 
 

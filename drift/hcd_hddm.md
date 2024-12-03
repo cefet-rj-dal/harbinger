@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./drift/hcd_hddm.ipynb"
+title: /drift/hcd_hddm.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -60,6 +60,10 @@ model <- hcd_hddm()
 model <- fit(model, dataset)
 ```
 
+```
+## Error in eval(expr, envir, enclos): object 'model' not found
+```
+
 
 ```r
 # making detections
@@ -67,7 +71,7 @@ detection <- detect(model, dataset)
 ```
 
 ```
-## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
+## Error in eval(expr, envir, enclos): object 'model' not found
 ```
 
 
@@ -77,38 +81,42 @@ print(detection[(detection$event),])
 ```
 
 ```
-##     idx event    type
-## 204 204  TRUE anomaly
-## 244 244  TRUE anomaly
-## 273 273  TRUE anomaly
-## 283 283  TRUE anomaly
-## 296 296  TRUE anomaly
-## 302 302  TRUE anomaly
-## 307 307  TRUE anomaly
-## 320 320  TRUE anomaly
-## 326 326  TRUE anomaly
+## Error in eval(expr, envir, enclos): object 'detection' not found
 ```
 
 
 ```r
 # evaluating the detections
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'model' not found
+```
+
+```r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     9    
-## FALSE     4     487
+## Error in eval(expr, envir, enclos): object 'evaluation' not found
 ```
 
 
 ```r
 # ploting the results
   grf <- har_plot(model, dataset$serie1, detection, dataset$event)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'detection' not found
+```
+
+```r
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/hcd_hddm/unnamed-chunk-10-1.png)
+```
+## Error in eval(expr, envir, enclos): object 'grf' not found
+```
 

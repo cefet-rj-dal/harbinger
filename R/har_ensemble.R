@@ -30,6 +30,9 @@ har_ensemble <- function(...) {
   obj$time_tolerance <- 0
   obj$models <- c(list(...))
 
+  hutils <- harutils()
+  obj$har_fuzzify_detections <- hutils$har_fuzzify_detections_triangle
+
   class(obj) <- append("har_ensemble", class(obj))
   return(obj)
 }
@@ -64,22 +67,31 @@ detect.har_ensemble <- function(obj, serie, ...) {
     detection <- detect(model, obj$serie)
 
     varname <- sprintf("v%d", i)
+    evt <- detection$event
+    attr(evt, "type") <- detection$type
     if (is.null(values)) {
-      values <- as.data.frame(as.double(detection$event))
-      types <- as.data.frame(detection$type)
+      evt <- obj$har_fuzzify_detections(evt, obj$time_tolerance)
+      values <- as.double(evt)
+      types <- as.data.frame(attr(evt, "type"))
     }
     else {
-      values <- cbind(values, as.double(detection$event))
-      types <- cbind(types, detection$type)
+      evt <- obj$har_fuzzify_detections(evt, obj$time_tolerance)
+      values <- cbind(values, as.double(evt))
+      types <- cbind(types, attr(evt, "type"))
     }
   }
   res <- rowSums(values) # Every method has 1 vote
   event <- res >= length(obj$models)/2
   type <- apply(types, 1, max)
-  type[!event] <- ""
 
+
+  type[!event] <- ""
   anomalies <- type == "anomaly"
   change_point <- type == "changepoint"
+  anomalies <- har_outliers_boxplot(anomalies)
+  anomalies <- obj$har_outliers_check(anomalies, res)
+  change_point <- har_outliers_boxplot(change_point)
+  change_point <- obj$har_outliers_check(change_point, res)
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_point = change_point, res = res)
 

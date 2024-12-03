@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./change_point/hcp_cf_lr.ipynb"
+title: /change_point/hcp_cf_lr.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -72,7 +72,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event        type
-## 1  55  TRUE changepoint
+## 1  59  TRUE changepoint
 ```
 
 

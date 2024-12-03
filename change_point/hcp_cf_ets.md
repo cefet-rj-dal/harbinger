@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./change_point/hcp_cf_ets.ipynb"
+title: /change_point/hcp_cf_ets.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -73,8 +73,9 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##   idx event        type
 ## 1  35  TRUE     anomaly
-## 2  51  TRUE changepoint
-## 3  58  TRUE     anomaly
+## 2  51  TRUE     anomaly
+## 3  53  TRUE changepoint
+## 4  58  TRUE     anomaly
 ```
 
 
@@ -87,8 +88,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     3    
-## FALSE     1     97
+## TRUE      0     4    
+## FALSE     1     96
 ```
 
 

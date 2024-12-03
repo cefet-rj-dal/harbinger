@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_garch.ipynb"
+title: /anomalies/hanr_garch.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -72,7 +72,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  51  TRUE anomaly
+## 1  52  TRUE anomaly
 ## 2  58  TRUE anomaly
 ```
 

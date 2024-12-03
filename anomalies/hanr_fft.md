@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_fft.ipynb"
+title: /anomalies/hanr_fft.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -72,7 +72,9 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  50  TRUE anomaly
+## 1   1  TRUE anomaly
+## 2  50  TRUE anomaly
+## 3 101  TRUE anomaly
 ```
 
 
@@ -85,8 +87,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      1     2    
+## FALSE     0     98
 ```
 
 

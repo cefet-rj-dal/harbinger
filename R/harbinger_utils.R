@@ -78,6 +78,37 @@ har_outliers_checks_highgroup <- function(outliers, values) {
   return(outliers)
 }
 
+
+har_fuzzify_detections_triangle <- function(value, tolerance) {
+  type <- attr(value, "type")
+  value <- as.double(value)
+  if (!tolerance) {
+    attr(value, "type") <- type
+    return(value)
+  }
+  idx <- which(value >= 1)
+  n <- length(value)
+  ratio <- 1/tolerance
+  range <- tolerance-1
+  for (i in idx) {
+    curtype <- ""
+    if (!is.null(type))
+      curtype <- type[i]
+    for (j in 1:range) {
+      if (i + j < n) {
+        value[i+j] <- value[i+j] + (tolerance - j)*ratio
+        type[i+j] <- curtype
+      }
+      if (i - j > 0) {
+        value[i-j] <- value[i-j] + (tolerance - j)*ratio
+        type[i-j] <- curtype
+      }
+    }
+  }
+  attr(value, "type") <- type
+  return(value)
+}
+
 #'@title Harbinger Utils
 #'@description Utility class that contains major distance measures,
 #'threshold limits, and outliers grouping functions
@@ -100,6 +131,9 @@ harutils <- function() {
 
   obj$har_outliers_checks_firstgroup <- har_outliers_checks_firstgroup
   obj$har_outliers_checks_highgroup <- har_outliers_checks_highgroup
+
+  obj$har_fuzzify_detections_triangle <- har_fuzzify_detections_triangle
+
   return(obj)
 }
 

@@ -11,6 +11,8 @@ head(dataset)
 
 # setting up time series emd detector
 model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+model$time_tolerance <- 10
+#model <- hanr_fbiad()
 
 # fitting the model
 model <- fit(model, dataset$serie)
@@ -31,4 +33,6 @@ if (!is.null(res)) {
 
   boxplot(res)
 }
+
+
 

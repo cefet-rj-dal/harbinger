@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./general/har_eval_soft.ipynb"
+title: /general/har_eval_soft.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -64,6 +64,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+```
+
 
 ```r
 # filtering detected events
@@ -72,10 +76,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  23  TRUE anomaly
-## 2  49  TRUE anomaly
-## 3  74  TRUE anomaly
-## 4  99  TRUE anomaly
+## 1  30  TRUE anomaly
+## 2  50  TRUE anomaly
+## 3  55  TRUE anomaly
+## 4  81  TRUE anomaly
 ```
 
 
@@ -88,8 +92,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     4    
-## FALSE     1     96
+## TRUE      1     3    
+## FALSE     0     97
 ```
 
 
@@ -102,8 +106,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0.8   3.2  
-## FALSE     0.2   96.8
+## TRUE      1     3    
+## FALSE     0     97
 ```
 
 
@@ -116,7 +120,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0.8   3.2  
-## FALSE     0.2   96.8
+## TRUE      1     3    
+## FALSE     0     97
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_remd.ipynb"
+title: /anomalies/hanr_remd.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/R/hanr_remd.R")
 ```
@@ -54,10 +54,6 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   model <- hanr_remd()
 ```
 
-```
-## Error in harutils(): could not find function "harutils"
-```
-
 
 ```r
 # fitting the model
@@ -77,17 +73,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-##    idx event    type
-## 1    9  TRUE anomaly
-## 2   21  TRUE anomaly
-## 3   26  TRUE anomaly
-## 4   34  TRUE anomaly
-## 5   45  TRUE anomaly
-## 6   51  TRUE anomaly
-## 7   59  TRUE anomaly
-## 8   70  TRUE anomaly
-## 9   77  TRUE anomaly
-## 10  85  TRUE anomaly
+##   idx event    type
+## 1  51  TRUE anomaly
 ```
 
 
@@ -100,8 +87,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     10   
-## FALSE     1     90
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 

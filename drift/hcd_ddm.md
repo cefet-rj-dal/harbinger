@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./drift/hcd_ddm.ipynb"
+title: /drift/hcd_ddm.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -60,6 +60,10 @@ model <- hcd_ddm()
 model <- fit(model, dataset)
 ```
 
+```
+## Error in eval(expr, envir, enclos): object 'model' not found
+```
+
 
 ```r
 # making detections
@@ -67,7 +71,7 @@ detection <- detect(model, dataset)
 ```
 
 ```
-## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
+## Error in eval(expr, envir, enclos): object 'model' not found
 ```
 
 
@@ -77,35 +81,42 @@ print(detection[(detection$event),])
 ```
 
 ```
-##     idx event    type
-## 211 211  TRUE anomaly
-## 231 231  TRUE anomaly
-## 250 250  TRUE anomaly
-## 270 270  TRUE anomaly
-## 290 290  TRUE anomaly
-## 301 301  TRUE anomaly
+## Error in eval(expr, envir, enclos): object 'detection' not found
 ```
 
 
 ```r
 # evaluating the detections
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'model' not found
+```
+
+```r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     6    
-## FALSE     4     490
+## Error in eval(expr, envir, enclos): object 'evaluation' not found
 ```
 
 
 ```r
 # ploting the results
   grf <- har_plot(model, dataset$serie1, detection, dataset$event)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'detection' not found
+```
+
+```r
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/hcd_ddm/unnamed-chunk-10-1.png)
+```
+## Error in eval(expr, envir, enclos): object 'grf' not found
+```
 

@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_ml_mlp.ipynb"
+title: /anomalies/hanr_ml_mlp.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -64,6 +64,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+```
+
 
 ```r
 # filtering detected events
@@ -72,10 +76,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  23  TRUE anomaly
-## 2  48  TRUE anomaly
-## 3  73  TRUE anomaly
-## 4  98  TRUE anomaly
+## 1  25  TRUE anomaly
+## 2  50  TRUE anomaly
+## 3  75  TRUE anomaly
+## 4 101  TRUE anomaly
 ```
 
 
@@ -88,8 +92,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     4    
-## FALSE     1     96
+## TRUE      1     3    
+## FALSE     0     97
 ```
 
 

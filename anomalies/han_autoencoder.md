@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/han_autoencoder.ipynb"
+title: /anomalies/han_autoencoder.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -72,9 +72,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1   1  TRUE anomaly
-## 2  17  TRUE anomaly
+## 1   2  TRUE anomaly
+## 2  19  TRUE anomaly
 ## 3  51  TRUE anomaly
+## 4  73  TRUE anomaly
+## 5  98  TRUE anomaly
 ```
 
 
@@ -87,8 +89,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     3    
-## FALSE     1     97
+## TRUE      0     5    
+## FALSE     1     95
 ```
 
 

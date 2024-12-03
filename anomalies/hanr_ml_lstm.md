@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_ml_lstm.ipynb"
+title: /anomalies/hanr_ml_lstm.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -62,6 +62,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```r
 # making detections
   detection <- detect(model, dataset$serie)
+```
+
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
 ```
 
 

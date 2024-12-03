@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanr_emd.ipynb"
+title: /anomalies/hanr_emd.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/R/hanr_emd.R")
 ```
@@ -66,10 +66,6 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error in obj$har_distance(sum_high_freq): attempt to apply non-function
-```
-
 
 ```r
 # filtering detected events
@@ -78,12 +74,12 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1   2  TRUE anomaly
-## 2  18  TRUE anomaly
-## 3  43  TRUE anomaly
-## 4  51  TRUE anomaly
-## 5  70  TRUE anomaly
-## 6  95  TRUE anomaly
+## 1  14  TRUE anomaly
+## 2  28  TRUE anomaly
+## 3  50  TRUE anomaly
+## 4  64  TRUE anomaly
+## 5  74  TRUE anomaly
+## 6  88  TRUE anomaly
 ```
 
 
@@ -96,8 +92,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     6    
-## FALSE     1     94
+## TRUE      1     5    
+## FALSE     0     95
 ```
 
 

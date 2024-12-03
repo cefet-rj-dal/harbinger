@@ -1,5 +1,5 @@
 ---
-title: An R Markdown document converted from "./anomalies/hanct_dtw_discord.ipynb"
+title: /anomalies/hanct_dtw_discord.Rmd
 output: html_document
 ---
 
@@ -8,11 +8,11 @@ output: html_document
 # Harbinger Package
 # version 1.1.707
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/jupyter.R")
+
 
 #loading Harbinger
-load_library("daltoolbox") 
-load_library("harbinger") 
+library(daltoolbox)
+library(harbinger) 
 ```
 
 
@@ -64,6 +64,14 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
+```
+
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+```
+
 
 ```r
 # filtering detected events
@@ -72,7 +80,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  50  TRUE discord   3      3
+## 1  51  TRUE discord   3      3
 ```
 
 
@@ -85,8 +93,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
