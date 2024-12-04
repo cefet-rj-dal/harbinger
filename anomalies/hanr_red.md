@@ -1,8 +1,3 @@
----
-title: /anomalies/hanr_red.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

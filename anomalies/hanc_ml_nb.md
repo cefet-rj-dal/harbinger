@@ -1,8 +1,3 @@
----
-title: /anomalies/hanc_ml_nb.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

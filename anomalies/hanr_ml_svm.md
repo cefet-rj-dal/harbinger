@@ -1,8 +1,3 @@
----
-title: /anomalies/hanr_ml_svm.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -121,3 +116,12 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanr_ml_svm/unnamed-chunk-11-1.png)
+
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-12](fig/hanr_ml_svm/unnamed-chunk-12-1.png)

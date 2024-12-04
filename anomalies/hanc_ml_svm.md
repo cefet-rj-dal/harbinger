@@ -1,8 +1,3 @@
----
-title: /anomalies/hanc_ml_svm.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -170,3 +165,11 @@ print(evaluation$confMatrix)
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_svm/unnamed-chunk-11-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-12](fig/hanc_ml_svm/unnamed-chunk-12-1.png)

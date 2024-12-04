@@ -1,8 +1,3 @@
----
-title: /anomalies/han_autoencoder.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -72,11 +67,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1   6  TRUE anomaly
-## 2  31  TRUE anomaly
-## 3  59  TRUE anomaly
-## 4  82  TRUE anomaly
-## 5  85  TRUE anomaly
+## 1   5  TRUE anomaly
 ```
 
 
@@ -89,8 +80,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     5    
-## FALSE     1     95
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 

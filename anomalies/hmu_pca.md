@@ -1,8 +1,3 @@
----
-title: /anomalies/hmu_pca.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

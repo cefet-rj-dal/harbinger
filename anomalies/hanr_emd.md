@@ -1,8 +1,3 @@
----
-title: /anomalies/hanr_emd.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -73,17 +68,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-##    idx event    type
-## 1   10  TRUE anomaly
-## 2   12  TRUE anomaly
-## 3   34  TRUE anomaly
-## 4   40  TRUE anomaly
-## 5   50  TRUE anomaly
-## 6   79  TRUE anomaly
-## 7   83  TRUE anomaly
-## 8   91  TRUE anomaly
-## 9   96  TRUE anomaly
-## 10 101  TRUE anomaly
+##   idx event    type
+## 1  24  TRUE anomaly
+## 2  36  TRUE anomaly
+## 3  50  TRUE anomaly
+## 4  77  TRUE anomaly
 ```
 
 
@@ -96,8 +85,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     9    
-## FALSE     0     91
+## TRUE      1     3    
+## FALSE     0     97
 ```
 
 
@@ -109,3 +98,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ![plot of chunk unnamed-chunk-10](fig/hanr_emd/unnamed-chunk-10-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-11](fig/hanr_emd/unnamed-chunk-11-1.png)

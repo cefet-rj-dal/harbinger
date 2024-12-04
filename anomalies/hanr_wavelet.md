@@ -1,8 +1,3 @@
----
-title: /anomalies/hanr_wavelet.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

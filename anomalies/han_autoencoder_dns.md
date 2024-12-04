@@ -1,8 +1,3 @@
----
-title: /anomalies/han_autoencoder.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
