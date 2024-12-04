@@ -1,8 +1,3 @@
----
-title: /drift/hcd_page_hinkley.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -60,10 +55,6 @@ model <- hcd_page_hinkley(threshold=3)
 model <- fit(model, dataset)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'model' not found
-```
-
 
 ```r
 # making detections
@@ -71,7 +62,11 @@ detection <- detect(model, dataset)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'model' not found
+## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
+```
+
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
 ```
 
 
@@ -81,42 +76,31 @@ print(detection[(detection$event),])
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'detection' not found
+##     idx event    type
+## 201 201  TRUE anomaly
+## 332 332  TRUE anomaly
 ```
 
 
 ```r
 # evaluating the detections
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'model' not found
-```
-
-```r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     2    
+## FALSE     4     494
 ```
 
 
 ```r
 # ploting the results
   grf <- har_plot(model, dataset$serie1, detection, dataset$event)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'detection' not found
-```
-
-```r
   plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-10](fig/hcd_page_hinkley/unnamed-chunk-10-1.png)
 

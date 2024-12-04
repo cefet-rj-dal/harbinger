@@ -1,8 +1,3 @@
----
-title: /general/examples_motifs.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

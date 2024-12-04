@@ -1,8 +1,3 @@
----
-title: /general/examples_harutils_outliers.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

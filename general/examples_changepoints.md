@@ -1,8 +1,3 @@
----
-title: /general/examples_changepoints.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

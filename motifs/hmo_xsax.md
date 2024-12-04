@@ -1,8 +1,3 @@
----
-title: /motifs/hmo_xsax.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

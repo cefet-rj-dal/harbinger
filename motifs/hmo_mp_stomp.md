@@ -1,8 +1,3 @@
----
-title: /motifs/hmo_mp_stomp.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -65,7 +60,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## Finished in 0.01 secs
+## Finished in 0.07 secs
 ```
 
 

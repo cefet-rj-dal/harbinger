@@ -1,8 +1,3 @@
----
-title: /motifs/hdis_sax.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

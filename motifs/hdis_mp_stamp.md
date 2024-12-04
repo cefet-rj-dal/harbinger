@@ -1,8 +1,3 @@
----
-title: /motifs/hdis_mp_stamp.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

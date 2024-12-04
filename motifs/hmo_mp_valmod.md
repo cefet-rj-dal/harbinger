@@ -1,8 +1,3 @@
----
-title: /motifs/hmo_mp_valmod.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

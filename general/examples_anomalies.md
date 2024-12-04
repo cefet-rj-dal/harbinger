@@ -1,8 +1,3 @@
----
-title: /general/examples_anomalies.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -32,7 +27,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-13](fig/examples_anomalies/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-3](fig/examples_anomalies/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -44,7 +39,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-14](fig/examples_anomalies/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-4](fig/examples_anomalies/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -56,7 +51,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-15](fig/examples_anomalies/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-5](fig/examples_anomalies/unnamed-chunk-5-1.png)
 
 
 ```r
@@ -68,7 +63,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-16](fig/examples_anomalies/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-6](fig/examples_anomalies/unnamed-chunk-6-1.png)
 
 
 ```r
@@ -80,7 +75,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-17](fig/examples_anomalies/unnamed-chunk-17-1.png)
+![plot of chunk unnamed-chunk-7](fig/examples_anomalies/unnamed-chunk-7-1.png)
 
 
 ```r
@@ -100,7 +95,7 @@ plot(grf)
 ## Warning: Removed 1 row containing missing values (`geom_line()`).
 ```
 
-![plot of chunk unnamed-chunk-18](fig/examples_anomalies/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-8](fig/examples_anomalies/unnamed-chunk-8-1.png)
 
 
 ```r
@@ -112,7 +107,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-19](fig/examples_anomalies/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-9](fig/examples_anomalies/unnamed-chunk-9-1.png)
 
 
 ```r
@@ -124,7 +119,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-20](fig/examples_anomalies/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-10](fig/examples_anomalies/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -136,7 +131,7 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-21](fig/examples_anomalies/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-11](fig/examples_anomalies/unnamed-chunk-11-1.png)
 
 
 ```r
@@ -148,5 +143,5 @@ grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-22](fig/examples_anomalies/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-12](fig/examples_anomalies/unnamed-chunk-12-1.png)
 

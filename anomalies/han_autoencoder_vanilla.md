@@ -70,9 +70,9 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ## 1   2  TRUE anomaly
 ## 2  27  TRUE anomaly
 ## 3  51  TRUE anomaly
-## 4  56  TRUE anomaly
+## 4  53  TRUE anomaly
 ## 5  77  TRUE anomaly
-## 6 101  TRUE anomaly
+## 6  80  TRUE anomaly
 ```
 
 

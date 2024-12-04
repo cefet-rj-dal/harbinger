@@ -1,8 +1,3 @@
----
-title: /general/examples_harbinger.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package

@@ -1,8 +1,3 @@
----
-title: /general/har_eval_soft.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -76,12 +71,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  25  TRUE anomaly
-## 2  30  TRUE anomaly
-## 3  50  TRUE anomaly
+## 1  26  TRUE anomaly
+## 2  50  TRUE anomaly
+## 3  55  TRUE anomaly
 ## 4  76  TRUE anomaly
-## 5  80  TRUE anomaly
-## 6 101  TRUE anomaly
+## 5 101  TRUE anomaly
 ```
 
 
@@ -94,8 +88,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     5    
-## FALSE     0     95
+## TRUE      1     4    
+## FALSE     0     96
 ```
 
 
@@ -108,8 +102,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     5    
-## FALSE     0     95
+## TRUE      1     4    
+## FALSE     0     96
 ```
 
 
@@ -122,7 +116,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     5    
-## FALSE     0     95
+## TRUE      1     4    
+## FALSE     0     96
 ```
 

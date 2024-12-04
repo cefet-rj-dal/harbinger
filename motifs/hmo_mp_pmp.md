@@ -1,8 +1,3 @@
----
-title: /motifs/hmo_mp_pmp.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
