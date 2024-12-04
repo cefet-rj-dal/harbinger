@@ -94,8 +94,10 @@ print(detection |> dplyr::filter(event==TRUE))
 
 ```
 ##   idx event    type
-## 1  24  TRUE anomaly
-## 2  50  TRUE anomaly
+## 1  12  TRUE anomaly
+## 2  24  TRUE anomaly
+## 3  38  TRUE anomaly
+## 4  50  TRUE anomaly
 ```
 
 ```r
@@ -107,8 +109,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      2     0    
-## FALSE     2     76
+## TRUE      4     0    
+## FALSE     0     76
 ```
 
 
@@ -135,8 +137,8 @@ print(evaluation$confMatrix)
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event    type
+## 1  10  TRUE anomaly
 ```
 
 ```r
@@ -147,8 +149,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     2     20
+## TRUE      1     0    
+## FALSE     1     20
 ```
 
 
@@ -168,3 +170,11 @@ print(evaluation$confMatrix)
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_rf/unnamed-chunk-11-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-12](fig/hanc_ml_rf/unnamed-chunk-12-1.png)

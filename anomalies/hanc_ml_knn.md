@@ -170,3 +170,11 @@ print(evaluation$confMatrix)
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_knn/unnamed-chunk-11-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-12](fig/hanc_ml_knn/unnamed-chunk-12-1.png)

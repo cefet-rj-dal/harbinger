@@ -53,3 +53,8 @@ grf <- grf + ylab("x")
 plot(grf)
 ```
 
+```{r}
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```

@@ -71,8 +71,9 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event    type
+## 1   2  TRUE anomaly
+## 2  51  TRUE anomaly
 ```
 
 
@@ -85,8 +86,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      0     2    
+## FALSE     1     98
 ```
 
 
@@ -98,3 +99,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ![plot of chunk unnamed-chunk-10](fig/han_autoencoder_dns/unnamed-chunk-10-1.png)
 
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-11](fig/han_autoencoder_dns/unnamed-chunk-11-1.png)

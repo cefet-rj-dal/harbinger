@@ -72,15 +72,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1   1  TRUE anomaly
-## 2  20  TRUE anomaly
-## 3  25  TRUE anomaly
-## 4  35  TRUE anomaly
-## 5  45  TRUE anomaly
-## 6  50  TRUE anomaly
-## 7  70  TRUE anomaly
-## 8  75  TRUE anomaly
-## 9  95  TRUE anomaly
+## 1   6  TRUE anomaly
+## 2  31  TRUE anomaly
+## 3  59  TRUE anomaly
+## 4  82  TRUE anomaly
+## 5  85  TRUE anomaly
 ```
 
 
@@ -93,8 +89,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     8    
-## FALSE     0     92
+## TRUE      0     5    
+## FALSE     1     95
 ```
 
 
@@ -106,3 +102,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ![plot of chunk unnamed-chunk-10](fig/han_autoencoder_sae/unnamed-chunk-10-1.png)
 
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-11](fig/han_autoencoder_sae/unnamed-chunk-11-1.png)

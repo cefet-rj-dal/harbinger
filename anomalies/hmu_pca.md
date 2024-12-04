@@ -97,3 +97,11 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-8](fig/hmu_pca/unnamed-chunk-8-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-9](fig/hmu_pca/unnamed-chunk-9-1.png)

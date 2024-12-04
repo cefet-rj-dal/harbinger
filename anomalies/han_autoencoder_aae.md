@@ -44,12 +44,12 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/han_autoencoder_aae/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-15](fig/han_autoencoder_aae/unnamed-chunk-15-1.png)
 
 
 ```r
 # establishing han_autoencoder method 
-  model <- han_autoencoder(3, 2, aae_encode_decode, num_epochs = 2000)
+  model <- han_autoencoder(3, 2, aae_encode_decode, num_epochs = 1500)
 ```
 
 
@@ -72,15 +72,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1   8  TRUE anomaly
-## 2  19  TRUE anomaly
-## 3  33  TRUE anomaly
-## 4  44  TRUE anomaly
-## 5  50  TRUE anomaly
-## 6  58  TRUE anomaly
-## 7  69  TRUE anomaly
-## 8  83  TRUE anomaly
-## 9  94  TRUE anomaly
+## 1  19  TRUE anomaly
+## 2  44  TRUE anomaly
+## 3  50  TRUE anomaly
+## 4  69  TRUE anomaly
+## 5  94  TRUE anomaly
 ```
 
 
@@ -93,8 +89,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     8    
-## FALSE     0     92
+## TRUE      1     4    
+## FALSE     0     96
 ```
 
 
@@ -104,5 +100,12 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/han_autoencoder_aae/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-21](fig/han_autoencoder_aae/unnamed-chunk-21-1.png)
 
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-22](fig/han_autoencoder_aae/unnamed-chunk-22-1.png)

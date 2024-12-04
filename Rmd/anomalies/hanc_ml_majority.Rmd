@@ -86,3 +86,8 @@ print(evaluation$confMatrix)
   plot(grf)
 ```
 
+```{r}
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```

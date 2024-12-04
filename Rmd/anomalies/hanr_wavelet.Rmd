@@ -62,3 +62,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
+```{r}
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
