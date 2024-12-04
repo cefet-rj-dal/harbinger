@@ -69,6 +69,13 @@ pca_detection <- detect(model, dataset[,1:2])
 ```r
 grf <- har_plot(model, dataset$serie, pca_detection, dataset$event)
 grf <- grf + ylab("serie")
+```
+
+```
+## Error in ylab("serie"): could not find function "ylab"
+```
+
+```r
 plot(grf)
 ```
 
@@ -78,6 +85,13 @@ plot(grf)
 ```r
 grf <- har_plot(model, dataset$x, pca_detection, dataset$event)
 grf <- grf + ylab("x")
+```
+
+```
+## Error in ylab("x"): could not find function "ylab"
+```
+
+```r
 plot(grf)
 ```
 

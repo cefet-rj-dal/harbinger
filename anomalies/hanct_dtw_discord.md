@@ -80,7 +80,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  51  TRUE discord   3      3
+## 1  50  TRUE discord   3      3
 ```
 
 
@@ -93,8 +93,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
