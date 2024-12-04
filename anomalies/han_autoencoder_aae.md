@@ -1,8 +1,3 @@
----
-title: /anomalies/han_autoencoder.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -44,7 +39,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-15](fig/han_autoencoder_aae/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-4](fig/han_autoencoder_aae/unnamed-chunk-4-1.png)
 
 
 ```r
@@ -100,7 +95,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-21](fig/han_autoencoder_aae/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-10](fig/han_autoencoder_aae/unnamed-chunk-10-1.png)
 
 ```r
 # ploting the results
@@ -108,4 +103,4 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(res)
 ```
 
-![plot of chunk unnamed-chunk-22](fig/han_autoencoder_aae/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-11](fig/han_autoencoder_aae/unnamed-chunk-11-1.png)
