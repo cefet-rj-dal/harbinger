@@ -11,7 +11,7 @@ library(harbinger)
 
 ```{r}
 #loading the example database
-load(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/data/examples_motifs.RData"))
+data(examples_motifs)
 ```
 
 ```{r}

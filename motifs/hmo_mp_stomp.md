@@ -13,7 +13,7 @@ library(harbinger)
 
 ```r
 #loading the example database
-load(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/data/examples_motifs.RData"))
+data(examples_motifs)
 ```
 
 
@@ -60,7 +60,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## Finished in 0.07 secs
+## Finished in 0.01 secs
 ```
 
 

@@ -7,6 +7,26 @@
 
 #loading Harbinger
 library(daltoolbox)
+```
+
+```
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
+```r
 library(harbinger) 
 ```
 
