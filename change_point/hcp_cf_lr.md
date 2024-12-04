@@ -1,8 +1,3 @@
----
-title: /change_point/hcp_cf_lr.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
@@ -98,3 +93,11 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ![plot of chunk unnamed-chunk-10](fig/hcp_cf_lr/unnamed-chunk-10-1.png)
 
+
+```r
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```
+
+![plot of chunk unnamed-chunk-11](fig/hcp_cf_lr/unnamed-chunk-11-1.png)

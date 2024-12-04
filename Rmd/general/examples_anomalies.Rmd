@@ -1,8 +1,3 @@
----
-title: /general/examples_anomalies.Rmd
-output: html_document
----
-
 ```{r}
 # Harbinger Package
 # version 1.0.787

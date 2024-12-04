@@ -1,8 +1,3 @@
----
-title: /change_point/hcp_gft.Rmd
-output: html_document
----
-
 
 ```r
 # Harbinger Package
