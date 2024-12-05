@@ -96,7 +96,16 @@ plot(grf)
 ```r
 # ploting the results
   res <-  attr(detection, "res")
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'detection' not found
+```
+
+```r
   plot(res)
 ```
 
-![plot of chunk unnamed-chunk-9](fig/hmu_pca/unnamed-chunk-9-1.png)
+```
+## Error in eval(expr, envir, enclos): object 'res' not found
+```

@@ -71,7 +71,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(y)-length(u)), cp)
 
-  detection <- obj$har_restore_refs(obj, change_points = cp)
+  detection <- obj$har_restore_refs(obj, change_points = cp, res = u)
 
   return(detection)
 }
