@@ -59,6 +59,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+```
+
 
 ```r
 # filtering detected events
@@ -98,18 +102,6 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # ploting the results
   res <-  attr(detection, "res")
   plot(res)
-```
-
-```
-## Warning in min(x): no non-missing arguments to min; returning Inf
-```
-
-```
-## Warning in max(x): no non-missing arguments to max; returning -Inf
-```
-
-```
-## Error in plot.window(...): need finite 'ylim' values
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hcp_garch/unnamed-chunk-11-1.png)
