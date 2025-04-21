@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.707</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.717</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,12 +38,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">han_autoencoder</span><span class="op">(</span></span>
-<span>  <span class="va">input_size</span>,</span>
-<span>  <span class="va">encode_size</span>,</span>
-<span>  encoderclass <span class="op">=</span> <span class="va">autoenc_encode_decode</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">han_autoencoder</span><span class="op">(</span><span class="va">input_size</span>, <span class="va">encode_size</span>, encoderclass <span class="op">=</span> <span class="va">autoenc_ed</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,9 +69,8 @@ histogram based method to detect anomalies in time series. Bins with smaller amo
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># setting up time series regression model</span></span></span>
-<span class="r-in"><span><span class="co">#Use the same example of hanr_fbiad changing the constructor to:</span></span></span>
-<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">han_autoencoder</span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#See an example of using `autoenc_ed` at this</span></span></span>
+<span class="r-in"><span><span class="co">#https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
