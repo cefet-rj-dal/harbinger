@@ -47,46 +47,68 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="id_-harbinger">
-<img src="https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png" align="centre" height="150" width="129"> Harbinger<a class="anchor" aria-label="anchor" href="#id_-harbinger"></a>
+<img src="https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png" alt="Logo do pacote Harbinger" align="centre" height="150" width="129"> Harbinger<a class="anchor" aria-label="anchor" href="#id_-harbinger"></a>
 </h1></div>
 <!-- badges: start -->
-<p><img src="https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github" alt="GitHub Repo stars"><img src="https://cranlogs.r-pkg.org/badges/harbinger" alt="GitHub Repo stars"><!-- badges: end --></p>
-<p>Harbinger is a framework for event detection in time series. It provides an integrated environment for time series anomaly detection, change points, and motif discovery. It provides a broad range of event detection methods and functions for plotting and evaluating event detections.</p>
-<p>In the anomaly classes, methods are based on machine learning model deviation (Conv1D, ELM, MLP, LSTM, Random Regression Forest, SVM), machine learning classification model (Decision Tree, KNN, MLP, Naive Bayes, Random Forest, SVM), clustering (kmeans and DTW) and statistical methods (ARIMA, FBIAD, GARCH).</p>
-<p>In the change points classes, methods are based on linear regression, ARIMA, ETS, GARCH, AMOC, ChowTest, BinSeg, GFT, PELT.</p>
-<p>In the motifs classes, methods are based on Hash and Matrix Profile. There are specific methods for multivariate series. The evaluation of detections includes both traditional and soft computing.</p>
-<p>Harbinger architecture is based on Experiment Lines and is built on top of the DAL Toolbox. Such an organization makes it easy to customize and add novel methods to the framework.</p>
+<p><img src="https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github" alt="GitHub Stars"><img src="https://cranlogs.r-pkg.org/badges/harbinger" alt="CRAN Downloads"><!-- badges: end --></p>
+<p><strong>Harbinger</strong> is a framework for event detection in time series. It provides an integrated environment for anomaly detection, change point detection, and motif discovery. Harbinger offers a broad range of methods and functions for plotting and evaluating detected events.</p>
+<p>For anomaly detection, methods are based on: - Machine learning model deviation: Conv1D, ELM, MLP, LSTM, Random Regression Forest, and SVM - Classification models: Decision Tree, KNN, MLP, Naive Bayes, Random Forest, and SVM - Clustering: k-means and DTW - Statistical techniques: ARIMA, FBIAD, GARCH</p>
+<p>For change point detection, Harbinger includes: - Linear regression, ARIMA, ETS, and GARCH-based approaches - Classic methods such as AMOC, ChowTest, Binary Segmentation (BinSeg), GFT, and PELT</p>
+<p>For motif discovery, it provides: - Methods based on Hashing and Matrix Profile</p>
+<p>Harbinger also supports <strong>multivariate time series analysis</strong> and <strong>event evaluation</strong> using both traditional and soft computing metrics.</p>
+<p>The architecture of Harbinger is based on <strong>Experiment Lines</strong> and is built on top of the <a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">DAL Toolbox</a>. This design makes it easy to extend and integrate new methods into the framework.</p>
+<hr>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The latest version of Harbinger at CRAN is available at: <a href="https://CRAN.R-project.org/package=harbinger" class="external-link uri">https://CRAN.R-project.org/package=harbinger</a></p>
-<p>You can install the stable version of Harbinger from CRAN with:</p>
+<p>The latest version of Harbinger is available on CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"harbinger"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the development version of Harbinger from GitHub <a href="https://github.com/cefet-rj-dal/harbinger" class="external-link uri">https://github.com/cefet-rj-dal/harbinger</a> with:</p>
+<p>You can install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/harbinger"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, upgrade<span class="op">=</span><span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/harbinger"</span>, force <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>Examples of Harbinger are organized according to general functions (example datasets and metrics), anomalies, change points, motifs, and multivariate anomaly detection.</p>
-<p>General: <a href="https://github.com/cefet-rj-dal/harbinger/tree/master/general" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/tree/master/general</a></p>
-<p>Anomalies: <a href="https://github.com/cefet-rj-dal/harbinger/tree/master/anomalies" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/tree/master/anomalies</a></p>
-<p>Change points: <a href="https://github.com/cefet-rj-dal/harbinger/tree/master/change_point" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/tree/master/change_point</a></p>
-<p>Motifs: <a href="https://github.com/cefet-rj-dal/harbinger/tree/master/motifs" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/tree/master/motifs</a></p>
+<p>Examples of Harbinger are organized by application area:</p>
+<ul>
+<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/general" class="external-link">General</a></li>
+<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/anomalies" class="external-link">Anomalies</a></li>
+<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/change_point" class="external-link">Change points</a></li>
+<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/motifs" class="external-link">Motifs</a></li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cefet-rj-dal/harbinger" class="external-link">harbinger</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cefet-rj-dal.github.io/harbinger/">harbinger</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span></span>
 <span><span class="co">#&gt;   method            from</span></span>
 <span><span class="co">#&gt;   as.zoo.data.frame zoo</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<span><span class="co">#&gt; Registered S3 methods overwritten by 'forecast':</span></span>
+<span><span class="co">#&gt;   method  from </span></span>
+<span><span class="co">#&gt;   head.ts stats</span></span>
+<span><span class="co">#&gt;   tail.ts stats</span></span>
+<span></span>
+<span><span class="co">#loading the example database</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_anomalies</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#model</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/harbinger.html">harbinger</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#stub detector</span></span>
+<span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">examples_anomalies</span><span class="op">$</span><span class="va">simple</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#plot anomalies</span></span>
+<span><span class="fu"><a href="reference/har_plot.html">har_plot</a></span><span class="op">(</span><span class="va">detection</span>, <span class="va">examples_anomalies</span><span class="op">$</span><span class="va">simple</span><span class="op">$</span><span class="va">serie</span>, <span class="va">detection</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<hr>
 </div>
 <div class="section level2">
-<h2 id="bugs-and-new-features-request">Bugs and new features request<a class="anchor" aria-label="anchor" href="#bugs-and-new-features-request"></a>
+<h2 id="bug-reports-and-feature-requests">Bug reports and feature requests<a class="anchor" aria-label="anchor" href="#bug-reports-and-feature-requests"></a>
 </h2>
+<p>If you find any bugs or would like to suggest new features, please submit an issue here:</p>
 <p><a href="https://github.com/cefet-rj-dal/harbinger/issues" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/issues</a></p>
 </div>
 </div>
@@ -95,6 +117,7 @@
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=harbinger" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/cefet-rj-dal/harbinger/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/cefet-rj-dal/harbinger/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
