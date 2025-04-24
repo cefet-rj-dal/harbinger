@@ -1,0 +1,65 @@
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+
+
+#loading Harbinger
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+#Creating dataset
+n <- 100  # size of each segment
+serie1 <- c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+           10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+serie2 <- 2*c(sin((1:n)/pi), 2*sin((1:n)/pi), 10 + sin((1:n)/pi),
+           10-10/n*(1:n)+sin((1:n)/pi)/2, sin((1:n)/pi)/2)
+event <- rep(FALSE, length(serie1))
+event[c(100, 200, 300, 400)] <- TRUE
+dataset <- data.frame(serie1, serie2, event)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie1), y = dataset$serie1)
+```
+
+```{r}
+#ploting serie #2
+plot_ts(x = 1:length(dataset$serie2), y = dataset$serie2)
+```
+
+```{r}
+# establishing drift method 
+model <- hcd_ddm()
+```
+
+```{r}
+# fitting the model
+model <- fit(model, dataset)
+```
+
+```{r}
+# making detections
+detection <- detect(model, dataset)
+```
+
+```{r}
+# filtering detected events
+print(detection[(detection$event),])
+```
+
+```{r}
+# evaluating the detections
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# ploting the results
+  grf <- har_plot(model, dataset$serie1, detection, dataset$event)
+  plot(grf)
+```
+

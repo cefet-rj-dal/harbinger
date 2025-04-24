@@ -1,0 +1,64 @@
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+
+
+#loading Harbinger
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+#loading the example database
+data(examples_anomalies)
+```
+
+```{r}
+#Using the simple time series 
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+```
+
+```{r}
+# establishing han_autoencoder method using autoenc_ed
+model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
+```
+
+```{r}
+# fitting the model
+  model <- fit(model, dataset$serie)
+```
+
+```{r}
+# making detections
+  detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# filtering detected events
+  print(detection |> dplyr::filter(event==TRUE))
+```
+
+```{r}
+# evaluating the detections
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# ploting the results
+  grf <- har_plot(model, dataset$serie, detection, dataset$event)
+  plot(grf)
+```
+
+```{r}
+# ploting the results
+  res <-  attr(detection, "res")
+  plot(res)
+```

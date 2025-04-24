@@ -1,0 +1,65 @@
+```{r}
+# Harbinger Package
+# version 1.1.707
+
+
+
+#loading Harbinger
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+#loading the example database
+data(examples_anomalies)
+```
+
+```{r}
+#Using the simple time series 
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+#ploting the time series
+plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+```
+
+```{r}
+# establishing mlp method 
+  model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size=5, size=3, decay=0))
+```
+
+```{r}
+# fitting the model
+  model <- fit(model, dataset$serie)
+```
+
+```{r}
+# making detections 
+  detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# filtering detected events
+  print(detection |> dplyr::filter(event==TRUE))
+```
+
+```{r}
+# evaluating the detections using hard evaluation
+  evaluation <- evaluate(model, detection$event, dataset$event, evaluation=har_eval())
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# evaluating the detections using soft evaluation
+  result <- evaluate(model, detection$event, dataset$event, evaluation=har_eval_soft(sw_size=5))
+  print(result$confMatrix)
+```
+
+```{r}
+# evaluation can be done directly without a model 
+  result <- evaluate(har_eval_soft(sw_size=5), detection$event, dataset$event)
+  print(result$confMatrix)
+```
+
