@@ -2,9 +2,8 @@ Package: harbinger
 Title: A Unified Time Series Event Detection Framework
 Version: 1.1.717
 Authors@R: 
-  c(
-        person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
-          email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
+  c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
+               email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
         person(given = "Antonio", family = "Castro", role = c("aut"), email = "antonio.castro@eic.cefet-rj.br"),
         person(given = "Antonio", family = "Mello", role = c("aut"), email = "antonio.mello@eic.cefet-rj.br"),
         person(given = "Ellen", family = "Paixão", role = c("aut"), email = "ellen.paixao@eic.cefet-rj.br"),
@@ -20,7 +19,7 @@ Authors@R:
         person(given = "Rafaelli", family = "Coutinho", role = c("aut"), email = "rafaelli.coutinho@cefet-rj.br"),
         person(given = "Esther", family = "Pacitti", role = c("aut"), email = "Esther.Pacitti@lirmm.fr"),
         person(given = "Fabio", family = "Porto", role = c("aut"), email = "fporto@lncc.br"),
-        person(given = "CEFET/RJ", role = "cph", comment = c(organization = "Federal Center for Technological Education of Rio de Janeiro"))
+        person(given = "Federal Center for Technological Education of Rio de Janeiro (CEFET/RJ)", role = "cph", comment = c(organization = "CEFET/RJ"))
    )
 Description: By analyzing time series, it is possible to observe significant changes in the behavior of observations that frequently characterize events. Events present themselves as anomalies, change points, or motifs. In the literature, there are several methods for detecting events. However, searching for a suitable time series method is a complex task, especially considering that the nature of events is often unknown. This work presents Harbinger, a framework for integrating and analyzing event detection methods. Harbinger contains several state-of-the-art methods described in Salles et al. (2020) <doi:10.5753/sbbd.2020.13626>.
 License: MIT + file LICENSE
