@@ -30,6 +30,9 @@ hcp_garch <- function(sw_size = 5) {
   obj <- harbinger()
   obj$sw_size <- sw_size
 
+  hutils <- harutils()
+  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+
   class(obj) <- append("hcp_garch", class(obj))
   return(obj)
 }

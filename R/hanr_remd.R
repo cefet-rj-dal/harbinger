@@ -36,6 +36,7 @@ hanr_remd <- function(noise = 0.1, trials = 5) {
   hutils <- harutils()
   obj$har_distance <- hutils$har_distance_l1
   obj$har_outliers <- hutils$har_outliers_ratio
+  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
   return(obj)
 }

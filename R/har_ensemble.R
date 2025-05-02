@@ -31,6 +31,7 @@ har_ensemble <- function(...) {
   obj$models <- c(list(...))
 
   hutils <- harutils()
+  obj$har_outliers_check <- NULL
   obj$har_fuzzify_detections <- hutils$har_fuzzify_detections_triangle
 
   class(obj) <- append("har_ensemble", class(obj))
@@ -41,6 +42,11 @@ har_ensemble <- function(...) {
 #'@exportS3Method fit har_ensemble
 fit.har_ensemble <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
+
+  if (is.null(obj$har_outliers_check)) {
+    hutils <- harutils()
+    obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+  }
 
   serie <- stats::na.omit(serie)
 
