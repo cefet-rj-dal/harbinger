@@ -39,88 +39,89 @@ har_eval_soft <- function(sw_size = 15) {
   return(obj)
 }
 
-#'@importFrom RcppHungarian HungarianSolver
-soft_scores <- function(detection, event, k){
-  # detection and event are boolean arrays
-  D <- which(detection)
-  n <- length(D)
-  E <- which(event)
-  m <- length(E)
-
-  # Create the initial segments and sort them
-  segments <- t(vapply(E, function(x) c(inf = x - k, sup = x + k), numeric(2)))
-
-  # Function to merge overlapping intervals
-  merge_intervals <- function(intervals) {
-    merged <- list()
-    current <- intervals[1, ]
-    if (nrow(intervals) > 1) {
-      for (i in 2:nrow(intervals)) {
-        interval <- intervals[i, ]
-        if (interval["inf"] <= current["sup"]) {
-          current["sup"] <- max(current["sup"], interval["sup"])
-        } else {
-          merged[[length(merged) + 1]] <- current
-          current <- interval
-        }
-      }
-    }
-    merged[[length(merged) + 1]] <- current
-    merged_matrix <- do.call(rbind, merged)  # check if this is really necessary
-    return(merged_matrix)
-  }
-
-  merged_segments <- merge_intervals(segments)
-
-  # For each merged segment, create a group with 2 vectors: D_mini and E_mini
-  groups <- lapply(1:nrow(merged_segments), function(i) {
-    seg <- merged_segments[i, ]
-
-    D_mini <- D[D >= seg["inf"] & D <= seg["sup"]]
-    E_mini <- E[E >= seg["inf"] & E <= seg["sup"]]
-
-    list(D_mini = D_mini, E_mini = E_mini)
-  })
-
-  S_d <- rep(0, length(D))
-  S_d_counter <- 1
-  mu <- function(j,i,E,D,k) max(min( (D[i]-(E[j]-k))/k, ((E[j]+k)-D[i])/k ), 0)
-  mu_simples <- function(d,e,k) max(min( (d-(e-k))/k, ((e+k)-d)/k ), 0)
-
-  for (idx in seq_along(groups)) {
-    D_mini <- groups[[idx]]$D_mini
-    E_mini <- groups[[idx]]$E_mini
-
-    n <- length(D_mini)
-    m <- length(E_mini)
-
-    # if n = 0, nothing to do
-    # if m = 0, this will never happen
-    if (n==1 && m==1) # Direct association
-    {
-      S_d[S_d_counter] <- mu_simples(D_mini[1],E_mini[1],k)
-      S_d_counter <- S_d_counter+1
-    }
-    else if (n >= 1 && m >= 1) # covers n=1 m>1, n>1 m=1, n>1 m>1
-    {
-      Mu <- matrix(NA, nrow = n, ncol = m)
-      for (j in 1:m) {
-        for (i in 1:n) {
-          Mu[i, j] <- mu(j, i, E_mini, D_mini, k)
-        }
-      }
-      associationMatrix <- RcppHungarian::HungarianSolver(-1*Mu);
-      scores <- Mu[associationMatrix$pairs]
-      S_d[S_d_counter:(S_d_counter + length(scores) - 1)] <- scores
-      S_d_counter <- S_d_counter + length(scores)
-    }
-  }
-  return(S_d)
-}
 
 #'@importFrom daltoolbox evaluate
+#'@importFrom RcppHungarian HungarianSolver
 #'@exportS3Method evaluate har_eval_soft
 evaluate.har_eval_soft <- function(obj, detection, event, ...) {
+  soft_scores <- function(detection, event, k){
+    # detection and event are boolean arrays
+    D <- which(detection)
+    n <- length(D)
+    E <- which(event)
+    m <- length(E)
+
+    # Create the initial segments and sort them
+    segments <- t(vapply(E, function(x) c(inf = x - k, sup = x + k), numeric(2)))
+
+    # Function to merge overlapping intervals
+    merge_intervals <- function(intervals) {
+      merged <- list()
+      current <- intervals[1, ]
+      if (nrow(intervals) > 1) {
+        for (i in 2:nrow(intervals)) {
+          interval <- intervals[i, ]
+          if (interval["inf"] <= current["sup"]) {
+            current["sup"] <- max(current["sup"], interval["sup"])
+          } else {
+            merged[[length(merged) + 1]] <- current
+            current <- interval
+          }
+        }
+      }
+      merged[[length(merged) + 1]] <- current
+      merged_matrix <- do.call(rbind, merged)  # check if this is really necessary
+      return(merged_matrix)
+    }
+
+    merged_segments <- merge_intervals(segments)
+
+    # For each merged segment, create a group with 2 vectors: D_mini and E_mini
+    groups <- lapply(1:nrow(merged_segments), function(i) {
+      seg <- merged_segments[i, ]
+
+      D_mini <- D[D >= seg["inf"] & D <= seg["sup"]]
+      E_mini <- E[E >= seg["inf"] & E <= seg["sup"]]
+
+      list(D_mini = D_mini, E_mini = E_mini)
+    })
+
+    S_d <- rep(0, length(D))
+    S_d_counter <- 1
+    mu <- function(j,i,E,D,k) max(min( (D[i]-(E[j]-k))/k, ((E[j]+k)-D[i])/k ), 0)
+    mu_simples <- function(d,e,k) max(min( (d-(e-k))/k, ((e+k)-d)/k ), 0)
+
+    for (idx in seq_along(groups)) {
+      D_mini <- groups[[idx]]$D_mini
+      E_mini <- groups[[idx]]$E_mini
+
+      n <- length(D_mini)
+      m <- length(E_mini)
+
+      # if n = 0, nothing to do
+      # if m = 0, this will never happen
+      if (n==1 && m==1) # Direct association
+      {
+        S_d[S_d_counter] <- mu_simples(D_mini[1],E_mini[1],k)
+        S_d_counter <- S_d_counter+1
+      }
+      else if (n >= 1 && m >= 1) # covers n=1 m>1, n>1 m=1, n>1 m>1
+      {
+        Mu <- matrix(NA, nrow = n, ncol = m)
+        for (j in 1:m) {
+          for (i in 1:n) {
+            Mu[i, j] <- mu(j, i, E_mini, D_mini, k)
+          }
+        }
+        associationMatrix <- RcppHungarian::HungarianSolver(-1*Mu);
+        scores <- Mu[associationMatrix$pairs]
+        S_d[S_d_counter:(S_d_counter + length(scores) - 1)] <- scores
+        S_d_counter <- S_d_counter + length(scores)
+      }
+    }
+    return(S_d)
+  }
+
   detection[is.na(detection)] <- FALSE
 
   if((sum(detection)==0) || (sum(event)==0)){
