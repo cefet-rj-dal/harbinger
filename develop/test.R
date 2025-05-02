@@ -3,19 +3,20 @@
 # version 1.1.707
 
 
+
 #loading Harbinger
 library(daltoolbox)
-library(harbinger)
+#library(harbinger)
 ###
 
 ###{r}
 #loading the example database
-data(examples_anomalies)
+data(examples_changepoints)
 ###
 
 ###{r}
 #Using the simple time series
-dataset <- examples_anomalies$simple
+dataset <- examples_changepoints$simple
 head(dataset)
 ###
 
@@ -25,9 +26,8 @@ har_plot(harbinger(), dataset$serie)
 ###
 
 ###{r}
-# establishing arima method
-model <- model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
-model$time_tolerance <- 10
+# establishing change point method
+model <- hcp_scp(sw=30)
 ###
 
 ###{r}
@@ -56,8 +56,8 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 
 ###
+
 ###{r}
 # plotting the residuals
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
-
 ###

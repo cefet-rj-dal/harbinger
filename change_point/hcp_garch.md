@@ -59,10 +59,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
-```
-
 
 ``` r
 # filtering detected events
@@ -71,7 +67,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event        type
-## 1  51  TRUE changepoint
+## 1  50  TRUE changepoint
 ```
 
 
@@ -84,8 +80,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 

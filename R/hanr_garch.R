@@ -30,7 +30,6 @@ hanr_garch <- function() {
   obj <- harbinger()
 
   hutils <- harutils()
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
   class(obj) <- append("hanr_garch", class(obj))
   return(obj)

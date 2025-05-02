@@ -31,7 +31,6 @@ hcp_garch <- function(sw_size = 5) {
   obj$sw_size <- sw_size
 
   hutils <- harutils()
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
   class(obj) <- append("hcp_garch", class(obj))
   return(obj)
@@ -59,7 +58,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   model <- rugarch::ugarchfit(spec=spec, data=obj$serie, solver="hybrid")@fit
 
   #Adjustment error on the entire series
-  y <- model$sigma
+  y <- residuals(model, standardize = TRUE)
 
   #Adjusting a model to the entire series
   #Adjusting to the entire series
@@ -71,8 +70,10 @@ detect.hcp_garch <- function(obj, serie, ...) {
   cp <- obj$har_outliers(u)
   cp <- obj$har_outliers_check(cp, u)
 
-  cp[1:obj$sw_size] <- FALSE
-  cp <- c(rep(FALSE, length(y)-length(u)), cp)
+  threshold <- attr(cp, "threshold")
+  u <- c(rep(0, obj$sw_size - 1), u)
+  cp <- c(rep(FALSE, obj$sw_size - 1), cp)
+  attr(cp, "threshold") <- threshold
 
   detection <- obj$har_restore_refs(obj, change_points = cp, res = u)
 

@@ -21,7 +21,6 @@ han_autoencoder <- function(input_size, encode_size, encoderclass = autoenc_ed, 
   obj$preproc <- daltoolbox::ts_norm_gminmax()
 
   hutils <- harutils()
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
   class(obj) <- append("han_autoencoder", class(obj))
   return(obj)

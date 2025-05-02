@@ -30,7 +30,7 @@ har_plot(harbinger(), dataset$serie)
 ``` r
 # establishing arima method 
   model <- hanr_arima()
-  #using default hutils$har_outliers_boxplot
+  #using default hutils$har_outliers_gaussian
   #using default hutils$har_distance_l2
   # fitting the model
   model <- fit(model, dataset$serie)
@@ -46,7 +46,7 @@ har_plot(harbinger(), dataset$serie)
 
 ``` r
   model <- hanr_arima()
-  model$har_outliers <- hutils$har_outliers_gaussian
+  model$har_outliers <- hutils$har_outliers_boxplot
 # fitting the model
   model <- fit(model, dataset$serie)
 # making detections
@@ -92,7 +92,7 @@ har_plot(harbinger(), dataset$serie)
 ``` r
   model <- hanr_arima()
   model$har_distance <- hutils$har_distance_l1
-  model$har_outliers <- hutils$har_outliers_gaussian
+  model$har_outliers <- hutils$har_outliers_boxplot
 # fitting the model
   model <- fit(model, dataset$serie)
 # making detections
@@ -123,8 +123,8 @@ har_plot(harbinger(), dataset$serie)
 ``` r
   model <- hanr_arima()
   model$har_distance <- hutils$har_distance_l1
-  model$har_outliers <- hutils$har_outliers_gaussian
-  model$har_outliers_checks <- hutils$har_outliers_checks_firstgroup  
+  model$har_outliers <- hutils$har_outliers_boxplot
+  model$har_outliers_checks <- hutils$har_outliers_checks_highgroup  
 # fitting the model
   model <- fit(model, dataset$serie)
 # making detections

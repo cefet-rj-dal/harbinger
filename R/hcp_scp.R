@@ -75,7 +75,10 @@ detect.hcp_scp <- function(obj, serie, ...) {
   change_point <- obj$har_outliers(res)
   change_point <- obj$har_outliers_check(change_point, res)
 
-  change_point <- c(rep(FALSE, obj$offset-1), change_point, rep(FALSE, obj$sw_size-obj$offset))
+  threshold <- attr(change_point, "threshold")
+  res <- c(rep(0, obj$sw_size - 1), res)
+  change_point <- c(rep(FALSE, obj$sw_size - 1), change_point)
+  attr(change_point, "threshold") <- threshold
 
   detection <- obj$har_restore_refs(obj, change_point = change_point, res = res)
 

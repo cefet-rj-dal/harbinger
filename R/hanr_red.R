@@ -116,9 +116,9 @@ detect.hanr_red <- function(obj, serie, ...) {
   sd <-  rollapply(d_serie, 30, sd, by = 1, partial=TRUE)
 
   ## Criando vetor de anomalias
-  res <- diff_soma/sd
+  RED_transform <- diff_soma/sd
 
-  res <- obj$har_distance(res)
+  res <- obj$har_distance(RED_transform)
 
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)

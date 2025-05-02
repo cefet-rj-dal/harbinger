@@ -68,7 +68,6 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  52  TRUE anomaly
 ```
 
 
@@ -81,8 +80,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     1    
-## FALSE     0     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
