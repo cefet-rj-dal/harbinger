@@ -64,8 +64,11 @@ detect.hanr_ml <- function(obj, serie, ...) {
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
+  threshold <- attr(anomalies, "threshold")
 
+  res <- c(rep(NA, obj$sw_size - 1), res)
   anomalies <- c(rep(NA, obj$sw_size - 1), anomalies)
+  attr(anomalies, "threshold") <- threshold
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 

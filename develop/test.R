@@ -9,56 +9,52 @@ library(harbinger)
 
 #loading the example database
 data(examples_anomalies)
+#
 
-#Using the tt time series
-dataset <- examples_anomalies$tt
-dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+#{r}
+#Using the simple time series
+dataset <- examples_anomalies$simple
 head(dataset)
+#
 
+#{r}
 #ploting the time series
 har_plot(harbinger(), dataset$serie)
+#
 
-# data preprocessing
-slevels <- levels(dataset$event)
+#{r}
+model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+#
 
-train <- dataset[1:80,]
-test <- dataset[-(1:80),]
-
-norm <- minmax()
-norm <- fit(norm, train)
-train_n <- transform(norm, train)
-summary(train_n)
-
-# establishing decision tree method
-model <- hanc_ml(cla_dtree("event", slevels))
-
+#{r}
 # fitting the model
-model <- fit(model, train_n)
-detection <- detect(model, train_n)
+model <- fit(model, dataset$serie)
+#
+
+#{r}
+# making detections
+detection <- detect(model, dataset$serie)
+#
+
+#{r}
+# filtering detected events
 print(detection |> dplyr::filter(event==TRUE))
-# evaluating the training
-evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+#
+
+#{r}
+# evaluating the detections
+evaluation <- evaluate(model, detection$event, dataset$event)
 print(evaluation$confMatrix)
+#
 
-# ploting training results
-har_plot(model, train_n$serie, detection, as.logical(train_n$event))
-#plot(grf)
+#{r}
+# plotting the results
+har_plot(model, dataset$serie, detection, dataset$event)
 
-# preparing for testing
-test_n <- transform(norm, test)
+#
 
-# evaluating the detections during testing
-detection <- detect(model, test_n)
+#{r}
+# plotting the residuals
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-print(detection |> dplyr::filter(event==TRUE))
-
-evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
-print(evaluation$confMatrix)
-
-# ploting the results during testing
-har_plot(model, test_n$serie, detection, as.logical(test_n$event))
-#plot(grf)
-
-# ploting the results
-har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
-#plot(res)
+#

@@ -59,7 +59,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+## Called from: eval(expr, p)
+## debug at /home/gpca/harbinger/R/hanr_ml.R#67: threshold <- attr(anomalies, "threshold")
 ```
 
 

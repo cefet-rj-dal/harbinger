@@ -43,8 +43,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing hanr_fft method 
-  model <- hanr_fft()
+# establishing hanr_fft_binseg_cusum method 
+  model <- hanr_fft_binseg_cusum()
 ```
 
 
@@ -59,11 +59,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Called from: eval(expr, p)
-## debug at /home/gpca/harbinger/R/hanr_fft.R#67: filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE)/n)
-```
-
 
 ``` r
 # filtering detected events
@@ -72,7 +67,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type
-## 1  50  TRUE anomaly
+## 1  49  TRUE anomaly
 ```
 
 
@@ -85,8 +80,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
