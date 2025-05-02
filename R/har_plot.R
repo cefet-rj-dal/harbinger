@@ -1,18 +1,20 @@
 motifs_seqs <- function(detection) {
   iMotif <- NULL
-  n <- nrow(detection)
-  hasMotif <- !is.null(detection$seq)
-  if (hasMotif) {
-    iMotif <- rep(FALSE, n)
-    posMotif <- !is.na(detection$seq)
-    dMotif <- data.frame(start = (1:n)[posMotif], length = detection$seqlen[posMotif])
-    repeat {
-      if (nrow(dMotif) == 0)
-        break
-      iMotif[dMotif$start] <- TRUE
-      dMotif$start <- dMotif$start + 1
-      dMotif$length <- dMotif$length - 1
-      dMotif <- dMotif[dMotif$length > 0,]
+  if (!is.null(detection)) {
+    n <- nrow(detection)
+    hasMotif <- !is.null(detection$seq)
+    if (hasMotif) {
+      iMotif <- rep(FALSE, n)
+      posMotif <- !is.na(detection$seq)
+      dMotif <- data.frame(start = (1:n)[posMotif], length = detection$seqlen[posMotif])
+      repeat {
+        if (nrow(dMotif) == 0)
+          break
+        iMotif[dMotif$start] <- TRUE
+        dMotif$start <- dMotif$start + 1
+        dMotif$length <- dMotif$length - 1
+        dMotif <- dMotif[dMotif$length > 0,]
+      }
     }
   }
   return(iMotif)
@@ -30,6 +32,7 @@ motifs_seqs <- function(detection) {
 #'@param idx labels for x observations
 #'@param pointsize default point size
 #'@param colors default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.
+#'@param yline values for plotting horizontal dashed lines
 #'@return A time series plot with marked events
 #'@examples
 #'library(daltoolbox)
@@ -62,19 +65,27 @@ motifs_seqs <- function(detection) {
 #'plot(grf)
 #'@import ggplot2
 #'@export
-har_plot <- function (obj, serie, detection, event = NULL, mark.cp = TRUE, ylim = NULL, idx = NULL, pointsize=0.5, colors=c("green", "blue", "red", "purple"))
+har_plot <- function (obj, serie, detection = NULL, event = NULL, mark.cp = TRUE, ylim = NULL, idx = NULL, pointsize=0.5, colors=c("green", "blue", "red", "purple"), yline = NULL)
 {
   time <- 0
   if (is.null(idx))
     idx <- 1:length(serie)
-  detection$event[is.na(detection$event)] <- FALSE
-  data <- data.frame(time = idx, serie = serie, FP = detection$event,
-                     TP = FALSE, FN = FALSE, color = "black", size=pointsize)
-  data$CP <- detection$type == "changepoint"
+  if (!is.null(detection)) {
+    detection_event <- detection$event
+    detection_event[is.na(detection_event)] <- FALSE
+    CP <- detection$type == "changepoint"
+  }
+  else {
+    detection_event <- FALSE
+    CP <- FALSE
+  }
+
+  data <- data.frame(time = idx, serie = serie, FP = detection_event,
+                     TP = FALSE, FN = FALSE, CP = CP, color = "black", size=pointsize)
   if (!is.null(event)) {
-    data$TP <- detection$event & (event == detection$event)
-    data$FP <- detection$event & (event != detection$event)
-    data$FN <- event & (event != detection$event)
+    data$TP <- detection_event & (event == detection_event)
+    data$FP <- detection_event & (event != detection_event)
+    data$FN <- event & (event != detection_event)
   }
   motifs_seqs <- motifs_seqs(detection)
   if (!is.null(motifs_seqs)) {
@@ -106,5 +117,9 @@ har_plot <- function (obj, serie, detection, event = NULL, mark.cp = TRUE, ylim 
     plot <- plot + geom_segment(aes(x = time, y = top_1, xend = time, yend = bottom_1),
                                 data = data[data$CP, ], col = "grey", size = 1, linetype = "dashed")
   }
+
+  if (!is.null(yline))
+    plot <- plot + geom_hline(yintercept = yline, col = "lightgrey", size = 1, linetype = "dotted")
+
   return(plot)
 }

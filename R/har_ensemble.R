@@ -84,13 +84,12 @@ detect.har_ensemble <- function(obj, serie, ...) {
   event <- res >= length(obj$models)/2
   type <- apply(types, 1, max)
 
-
   type[!event] <- ""
   anomalies <- type == "anomaly"
   change_point <- type == "changepoint"
-  anomalies <- har_outliers_boxplot(anomalies)
+  anomalies <- obj$har_outliers(anomalies)
   anomalies <- obj$har_outliers_check(anomalies, res)
-  change_point <- har_outliers_boxplot(change_point)
+  change_point <- obj$har_outliers(change_point)
   change_point <- obj$har_outliers_check(change_point, res)
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_point = change_point, res = res)

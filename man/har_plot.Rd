@@ -7,13 +7,14 @@
 har_plot(
   obj,
   serie,
-  detection,
+  detection = NULL,
   event = NULL,
   mark.cp = TRUE,
   ylim = NULL,
   idx = NULL,
   pointsize = 0.5,
-  colors = c("green", "blue", "red", "purple")
+  colors = c("green", "blue", "red", "purple"),
+  yline = NULL
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ har_plot(
 \item{pointsize}{default point size}
 
 \item{colors}{default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.}
+
+\item{yline}{values for plotting horizontal dashed lines}
 }
 \value{
 A time series plot with marked events

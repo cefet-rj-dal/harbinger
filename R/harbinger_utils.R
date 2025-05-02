@@ -38,9 +38,9 @@ har_outliers_gaussian <- function(res){
 }
 
 har_outliers_ratio <- function(res){
-  ratio <- res / max(res)
+  ratio <- 1 - res / max(res)
   threshold <- mean(ratio) + 3*sd(ratio)
-  threshold <- threshold * max(res)
+  threshold <- (threshold - 1) * max(res)
   index <- which(res > threshold)
 
   attr(index, "threshold") <- threshold
