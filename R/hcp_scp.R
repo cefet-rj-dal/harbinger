@@ -30,6 +30,7 @@ hcp_scp <- function(sw_size = 30) {
   obj$sw_size <- sw_size
 
   hutils <- harutils()
+  obj$har_outliers <- hutils$har_outliers_boxplot
   obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
 
   class(obj) <- append("hcp_scp", class(obj))
@@ -76,8 +77,8 @@ detect.hcp_scp <- function(obj, serie, ...) {
   change_point <- obj$har_outliers_check(change_point, res)
 
   threshold <- attr(change_point, "threshold")
-  res <- c(rep(0, obj$sw_size - 1), res)
-  change_point <- c(rep(FALSE, obj$sw_size - 1), change_point)
+  res <- c(rep(0, obj$offset), res, rep(0, obj$sw_size - obj$offset - 1))
+  change_point <- c(rep(FALSE, obj$offset), change_point, rep(FALSE, obj$sw_size - obj$offset - 1))
   attr(change_point, "threshold") <- threshold
 
   detection <- obj$har_restore_refs(obj, change_point = change_point, res = res)

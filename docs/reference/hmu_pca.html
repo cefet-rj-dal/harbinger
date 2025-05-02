@@ -76,49 +76,17 @@
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     idx event    type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     8  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   15  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   17  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   30  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39   39  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51   51  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53   53  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61   61  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63   63  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75   75  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79   79  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83   83  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86   86  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89   89  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92   92  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97   97  TRUE anomaly</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 101 101  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108 108  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114 114  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116 116  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122 122  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 126 126  TRUE anomaly</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 128 128  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134 134  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142 142  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 152 152  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 154 154  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 158 158  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 166 166  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 175 175  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 181 181  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 183 183  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 190 190  TRUE anomaly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 194 194  TRUE anomaly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167 167  TRUE anomaly</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># evaluating the detections</span></span></span>
 <span class="r-in"><span><span class="va">evaluation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/evaluate.html" class="external-link">evaluate</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">detection</span><span class="op">$</span><span class="va">event</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">evaluation</span><span class="op">$</span><span class="va">confMatrix</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           event      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> detection TRUE  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      1     34   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     0     165  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      0     3    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     1     196  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

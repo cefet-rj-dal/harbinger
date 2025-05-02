@@ -53,6 +53,14 @@ har_plot(harbinger(), dataset$serie)
   model <- fit(model, dataset$serie)
 ```
 
+```
+## Found more than one class "dist" in cache; using the first, from namespace 'dtwclust'
+```
+
+```
+## Also defined by 'spam'
+```
+
 
 ``` r
 # making detections of discords using kmeans
@@ -66,8 +74,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type seq seqlen
-## 1  52  TRUE discord   3      3
+## [1] idx    event  type   seq    seqlen
+## <0 rows> (or 0-length row.names)
 ```
 
 
@@ -80,8 +88,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      0     0    
+## FALSE     1     100
 ```
 
 
