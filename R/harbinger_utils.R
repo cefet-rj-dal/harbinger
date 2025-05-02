@@ -23,20 +23,20 @@ har_outliers_boxplot <- function(data){
   IQR = q[4] - q[2]
   lq1 = as.double(q[2] - 1.5*IQR)
   hq3 = as.double(q[4] + 1.5*IQR)
-  cond = data > hq3
-  index = which(cond)
+  index <- which(data < lq1 | data > hq3)
   return (index)
 }
 
 har_outliers_gaussian <- function(data){
-  index <- which(data > mean(data) + 3*sd(data))
+  index <- which(data > mean(data) + 3*sd(data) | data < mean(data) - 3*sd(data))
   return (index)
 }
 
 har_outliers_ratio <- function(data){
   ratio <- 1 - data / max(data)
-  index <- which(ratio < 3*sd(ratio))
-  return (index)
+  z <- (ratio - mean(ratio)) / sd(ratio)
+  index <- which(abs(z) > 3)
+  return(index)
 }
 
 
@@ -136,6 +136,3 @@ harutils <- function() {
 
   return(obj)
 }
-
-
-

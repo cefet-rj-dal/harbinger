@@ -89,7 +89,7 @@ detection <- detect(model, examples_anomalies$simple$serie)
 har_plot(detection, examples_anomalies$simple$serie, detection)
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" alt="Harbinger example figure" width="100%" />
 
 ------------------------------------------------------------------------
 

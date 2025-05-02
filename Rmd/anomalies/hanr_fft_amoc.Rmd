@@ -26,8 +26,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```{r}
-# establishing hanr_fft method 
-  model <- hanr_fft()
+# establishing hanr_fft_amoc method 
+  model <- hanr_fft_amoc()
 ```
 
 ```{r}

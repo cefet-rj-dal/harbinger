@@ -1,219 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/404.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_base.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_transform.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanc_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_arima.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_fbiad.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_garch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_kmeans.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.harbinger.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_arima.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_ets.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_lr.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_garch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_scp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hmo_sax.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hmu_pca.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval_soft.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.harbinger.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanc_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanr_kmeans.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanr_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.harbinger.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanc_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fbiad.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_garch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_kmeans.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_ml.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies_multi.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers_idx.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/har_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hard_evaluation.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_arima.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_ets.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_lr.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_garch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_scp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_sax.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/hmu_pca.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/register_log.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_evaluation.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_scores.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/transform.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_an.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_data.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_diff.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_ean.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_elm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_gminmax.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_mlp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_normalize.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_projection.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_rf.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_sample.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_svm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_swminmax.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_transform.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/404.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/LICENSE-text.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/LICENSE.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/authors.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/index.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_base.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/dal_transform.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanc_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_arima.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_fbiad.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_garch.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_kmeans.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hanr_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.harbinger.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_arima.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_ets.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_cf_lr.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_garch.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hcp_scp.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hmo_sax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.hmu_pca.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/detect.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_eval_soft.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.harbinger.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/evaluate.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_changepoints.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_harbinger.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/examples_motifs.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanc_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanr_kmeans.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.hanr_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.harbinger.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/fit.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/han_autoencoder.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanc_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanct_dtw.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanct_kmeans.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_emd.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fbiad.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft_amoc.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft_amoc_cusum.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft_binseg.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft_binseg_cusum.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_fft_sma.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_garch.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_histogram.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_kmeans.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_ml.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_red.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_remd.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hanr_wavelet.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_ensemble.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_examples.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_examples_multi.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_outliers_idx.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_plot.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hard_evaluation.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/harutils.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_amoc.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_binseg.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_arima.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_ets.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_lr.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_chow.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_garch.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_gft.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_pelt.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_red.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hcp_scp.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hdis_mp.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hdis_sax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_mp.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_sax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hmo_xsax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/hmu_pca.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/index.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/mas.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/register_log.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_evaluation.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/soft_scores.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/trans_sax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/trans_xsax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/transform.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_an.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_data.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_diff.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_ean.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_elm.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_gminmax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_mlp.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_normalize.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_projection.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_rf.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_sample.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_svm.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_swminmax.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/ts_transform.html</loc></url>
 </urlset>
+
