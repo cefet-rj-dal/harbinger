@@ -59,11 +59,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Called from: eval(expr, p)
-## debug at /home/gpca/harbinger/R/hanr_fft.R#67: filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE)/n)
-```
-
 
 ``` r
 # filtering detected events

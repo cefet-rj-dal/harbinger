@@ -58,11 +58,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Called from: eval(expr, p)
-## debug at /home/gpca/harbinger/R/hanct_kmeans.R#70: anomalies <- obj$har_outliers(res)
-```
-
 
 ``` r
 # filtering detected events
