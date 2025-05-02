@@ -49,6 +49,9 @@ hanr_fft_binseg_cusum <- function() {
   obj <- harbinger()
   obj$sw_size <- NULL
 
+  hutils <- harutils()
+  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+
   class(obj) <- append("hanr_fft_binseg_cusum", class(obj))
   return(obj)
 }
