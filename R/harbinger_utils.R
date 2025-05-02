@@ -16,29 +16,36 @@ har_distance_l2 <- function(values) {
   return(values)
 }
 
-har_outliers_boxplot <- function(data){
-  org = length(data)
+har_outliers_boxplot <- function(res){
+  org = length(res)
   cond <- rep(FALSE, org)
-  q = stats::quantile(data, na.rm=TRUE)
+  q = stats::quantile(res, na.rm=TRUE)
   IQR = q[4] - q[2]
-  lq1 = as.double(q[2] - 1.5*IQR)
   hq3 = as.double(q[4] + 1.5*IQR)
-  index <- which(data < lq1 | data > hq3)
+  threshold <- hq3
+  index = which(res > threshold)
+
+  attr(index, "threshold") <- threshold
   return (index)
 }
 
-har_outliers_gaussian <- function(data){
-  index <- which(data > mean(data) + 3*sd(data) | data < mean(data) - 3*sd(data))
+har_outliers_gaussian <- function(res){
+  threshold <- mean(res) + 3*sd(res)
+  index <- which(res > threshold)
+
+  attr(index, "threshold") <- threshold
   return (index)
 }
 
-har_outliers_ratio <- function(data){
-  ratio <- 1 - data / max(data)
-  z <- (ratio - mean(ratio)) / sd(ratio)
-  index <- which(abs(z) > 3)
-  return(index)
-}
+har_outliers_ratio <- function(res){
+  ratio <- res / max(res)
+  threshold <- mean(ratio) + 3*sd(ratio)
+  threshold <- threshold * max(res)
+  index <- which(res > threshold)
 
+  attr(index, "threshold") <- threshold
+  return (index)
+}
 
 har_outliers_classification <- function(data) {
   index <- which(data >= 0.5) # non-event versus anomaly
@@ -46,6 +53,7 @@ har_outliers_classification <- function(data) {
 }
 
 har_outliers_checks_firstgroup <- function(outliers, values) {
+  threshold <- attr(outliers, "threshold")
   values <- abs(values)
   if (is_matrix_or_df(values))
     values <-rowSums(values)
@@ -58,10 +66,12 @@ har_outliers_checks_firstgroup <- function(outliers, values) {
       outliers[i] <- TRUE
     }
   }
+  attr(outliers, "threshold") <- threshold
   return(outliers)
 }
 
 har_outliers_checks_highgroup <- function(outliers, values) {
+  threshold <- attr(outliers, "threshold")
   values <- abs(values)
   if (is_matrix_or_df(values))
     values <-rowSums(values)
@@ -75,6 +85,7 @@ har_outliers_checks_highgroup <- function(outliers, values) {
       outliers[i] <- TRUE
     }
   }
+  attr(outliers, "threshold") <- threshold
   return(outliers)
 }
 

@@ -34,10 +34,14 @@ harbinger <- function() {
     if (!is.null(anomalies)) {
       obj$anomalies[obj$non_na] <- anomalies
       startup <- obj$anomalies
+      obj$threshold <- attr(anomalies, "threshold")
     }
     if (!is.null(res)) {
       obj$res[obj$non_na] <- res
     }
+
+    if (is.null(obj$threshold))
+      obj$threshold <- 0
 
     detection <- data.frame(idx=1:length(obj$anomalies), event = startup, type="")
     detection$type[obj$anomalies] <- "anomaly"
@@ -45,7 +49,6 @@ harbinger <- function() {
     detection$type[obj$change_points] <- "changepoint"
 
     attr(detection, "res") <- obj$res
-
     return(detection)
   }
   obj <- dal_base()

@@ -60,7 +60,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## Finished in 0.02 secs
+## Finished in 0.04 secs
 ```
 
 

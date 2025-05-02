@@ -53,6 +53,14 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   model <- fit(model, dataset$serie)
 ```
 
+```
+## Found more than one class "dist" in cache; using the first, from namespace 'dtwclust'
+```
+
+```
+## Also defined by 'spam'
+```
+
 
 ``` r
 # making detections of discords using kmeans

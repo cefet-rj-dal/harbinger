@@ -7,20 +7,6 @@
 
 #loading Harbinger
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger) 
 ```
 
@@ -83,10 +69,12 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ##   idx event    type
 ## 1   8  TRUE anomaly
 ## 2  19  TRUE anomaly
-## 3  44  TRUE anomaly
-## 4  50  TRUE anomaly
-## 5  69  TRUE anomaly
-## 6  95  TRUE anomaly
+## 3  33  TRUE anomaly
+## 4  44  TRUE anomaly
+## 5  50  TRUE anomaly
+## 6  58  TRUE anomaly
+## 7  69  TRUE anomaly
+## 8  94  TRUE anomaly
 ```
 
 
@@ -99,8 +87,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     5    
-## FALSE     0     95
+## TRUE      1     7    
+## FALSE     0     93
 ```
 
 
