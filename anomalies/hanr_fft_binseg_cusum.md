@@ -59,6 +59,17 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Called from: eval(expr, p)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#67: filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE)/n)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#69: res <- obj$har_distance(filtered_series)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#71: anomalies <- obj$har_outliers(res)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#72: anomalies <- obj$har_outliers_check(anomalies, res)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#74: detection <- obj$har_restore_refs(obj, anomalies = anomalies, 
+##     res = res)
+## debug at /home/gpca/harbinger/R/hanr_fft.R#76: return(detection)
+```
+
 
 ``` r
 # filtering detected events

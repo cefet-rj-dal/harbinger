@@ -39,7 +39,7 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/han_autoenc_adv_ed/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-39](fig/han_autoenc_adv_ed/unnamed-chunk-39-1.png)
 
 
 ``` r
@@ -90,7 +90,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-45](fig/han_autoenc_adv_ed/unnamed-chunk-45-1.png)
 
 ``` r
   #plot(grf)
@@ -101,7 +101,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-13](fig/han_autoenc_adv_ed/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-46](fig/han_autoenc_adv_ed/unnamed-chunk-46-1.png)
 
 ``` r
   #plot(res)

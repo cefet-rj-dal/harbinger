@@ -79,8 +79,8 @@ gen_data <- function() {
     x[38] <- x[38] - desv
     x[50] <- x[50] + desv
     x[90] <- x[90] - desv
-    x[102] <- x[102] + desv
-    event[c(12,24,38,50,90,102)] <- TRUE
+    x[101] <- x[101] + desv
+    event[c(12,24,38,50,90,101)] <- TRUE
 
     examples_anomalies$tt <- data.frame(serie = x, event = event)
   }

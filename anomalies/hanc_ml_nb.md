@@ -40,14 +40,6 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 ```
 
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).
-```
-
 ![plot of chunk unnamed-chunk-4](fig/hanc_ml_nb/unnamed-chunk-4-1.png)
 
 
@@ -145,21 +137,13 @@ print(evaluation$confMatrix)
 ##           event      
 ## detection TRUE  FALSE
 ## TRUE      0     0    
-## FALSE     2     20
+## FALSE     2     19
 ```
 
 
 ``` r
 # ploting the results during testing
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_nb/unnamed-chunk-11-1.png)
@@ -176,14 +160,6 @@ print(evaluation$confMatrix)
 
 ```
 ## Warning in Ops.factor(event, (event != detection_event)): '&' not meaningful for factors
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanc_ml_nb/unnamed-chunk-12-1.png)

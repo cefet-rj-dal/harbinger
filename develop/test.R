@@ -2,104 +2,63 @@
 # version 1.1.707
 
 
+
 #loading Harbinger
 library(daltoolbox)
-
-#class harutils
-hutils <- harutils()
+library(harbinger)
 
 #loading the example database
 data(examples_anomalies)
-#Using the simple time series
-dataset <- examples_anomalies$simple
+
+#Using the tt time series
+dataset <- examples_anomalies$tt
+dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+head(dataset)
+
+#ploting the time series
 har_plot(harbinger(), dataset$serie)
 
-# establishing arima method
-model <- hanr_arima()
-#using default hutils$har_outliers_boxplot
-#using default hutils$har_distance_l2
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# data preprocessing
+slevels <- levels(dataset$event)
 
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
+train <- dataset[1:80,]
+test <- dataset[-(1:80),]
 
-```{r}
-model <- hanr_arima()
-model$har_outliers <- hutils$har_outliers_gaussian
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
+norm <- minmax()
+norm <- fit(norm, train)
+train_n <- transform(norm, train)
+summary(train_n)
 
-```{r}
-model <- hanr_arima()
-model$har_outliers <- hutils$har_outliers_ratio
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
+# establishing decision tree method
+model <- hanc_ml(cla_dtree("event", slevels))
 
-```{r}
-model <- hanr_arima()
-model$har_distance <- hutils$har_distance_l1
 # fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
+model <- fit(model, train_n)
+detection <- detect(model, train_n)
+print(detection |> dplyr::filter(event==TRUE))
+# evaluating the training
+evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+print(evaluation$confMatrix)
 
-```{r}
-model <- hanr_arima()
-model$har_distance <- hutils$har_distance_l1
-model$har_outliers <- hutils$har_outliers_gaussian
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
+# ploting training results
+har_plot(model, train_n$serie, detection, as.logical(train_n$event))
+#plot(grf)
 
-```{r}
-model <- hanr_arima()
-model$har_distance <- hutils$har_distance_l1
-model$har_outliers <- hutils$har_outliers_ratio
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
+# preparing for testing
+test_n <- transform(norm, test)
+
+# evaluating the detections during testing
+detection <- detect(model, test_n)
+
+print(detection |> dplyr::filter(event==TRUE))
+
+evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+print(evaluation$confMatrix)
+
+# ploting the results during testing
+har_plot(model, test_n$serie, detection, as.logical(test_n$event))
+#plot(grf)
+
+# ploting the results
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 #plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```
-```{r}
-model <- hanr_arima()
-model$har_distance <- hutils$har_distance_l1
-model$har_outliers <- hutils$har_outliers_gaussian
-model$har_outliers_checks <- hutils$har_outliers_checks_firstgroup
-# fitting the model
-model <- fit(model, dataset$serie)
-# making detections
-detection <- detect(model, dataset$serie)
-res <- attr(detection, "res")
-#plot(res)
-abline(v = which(detection$event==TRUE), col = "darkred")
-```

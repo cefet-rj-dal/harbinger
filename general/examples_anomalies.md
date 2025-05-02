@@ -101,14 +101,6 @@ detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).
-```
-
 ![plot of chunk unnamed-chunk-8](fig/examples_anomalies/unnamed-chunk-8-1.png)
 
 ``` r

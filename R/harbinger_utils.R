@@ -19,31 +19,34 @@ har_distance_l2 <- function(values) {
 har_outliers_boxplot <- function(res){
   org = length(res)
   cond <- rep(FALSE, org)
-  q = stats::quantile(res, na.rm=TRUE)
-  IQR = q[4] - q[2]
-  hq3 = as.double(q[4] + 1.5*IQR)
-  threshold <- hq3
-  index = which(res > threshold)
+  q <- stats::quantile(res, na.rm=TRUE)
+  IQR <- q[4] - q[2]
+  thresholdInf <- as.double(q[2] - 1.5*IQR)
+  thresholdSup <- as.double(q[4] + 1.5*IQR)
+  index = which(res > thresholdSup | res < thresholdInf)
 
-  attr(index, "threshold") <- threshold
+  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
   return (index)
 }
 
 har_outliers_gaussian <- function(res){
-  threshold <- mean(res) + 3*sd(res)
-  index <- which(res > threshold)
+  thresholdSup <- mean(res) + 3*sd(res)
+  thresholdInf <- mean(res) - 3*sd(res)
+  index <- which(res > thresholdSup | res < thresholdInf)
 
-  attr(index, "threshold") <- threshold
+  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
   return (index)
 }
 
 har_outliers_ratio <- function(res){
   ratio <- 1 - res / max(res)
-  threshold <- mean(ratio) + 3*sd(ratio)
-  threshold <- (threshold - 1) * max(res)
-  index <- which(res > threshold)
+  thresholdSup <- mean(ratio) + 3*sd(ratio)
+  thresholdSup <- (thresholdSup - 1) * max(res)
+  thresholdInf <- mean(ratio) - 3*sd(ratio)
+  thresholdInf <- (thresholdInf - 1) * max(res)
+  index <- which(res > thresholdSup | res < thresholdInf)
 
-  attr(index, "threshold") <- threshold
+  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
   return (index)
 }
 
