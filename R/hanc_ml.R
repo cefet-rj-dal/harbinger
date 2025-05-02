@@ -4,6 +4,7 @@
 #'A set of preconfigured of classification methods are described in <https://cefet-rj-dal.github.io/daltoolbox/>.
 #'They include: cla_majority, cla_dtree, cla_knn, cla_mlp, cla_nb, cla_rf, cla_svm
 #'@param model DALToolbox classification model
+#'@param threshold threshold for classification
 #'@return `hanc_ml` object
 #'@examples
 #'library(daltoolbox)
@@ -38,12 +39,12 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanc_ml <- function(model) {
+hanc_ml <- function(model, threshold = 0.5) {
   obj <- harbinger()
   obj$model <- model
+  obj$threshold <- threshold
 
   hutils <- harutils()
-  obj$har_outliers <- hutils$har_outliers_classification
 
   class(obj) <- append("hanc_ml", class(obj))
   return(obj)
@@ -63,6 +64,12 @@ fit.hanc_ml <- function(obj, serie, ...) {
 #'@importFrom stats predict
 #'@exportS3Method detect hanc_ml
 detect.hanc_ml <- function(obj, serie, ...) {
+  har_outliers_classification <- function(data) {
+    index <- which(data >= obj$threshold) # non-event versus anomaly
+    attr(index, "threshold") <- obj$threshold
+    return (index)
+  }
+
   if (!is.null(serie[,obj$model$attribute]))
     serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
   obj <- obj$har_store_refs(obj, serie)
@@ -71,7 +78,7 @@ detect.hanc_ml <- function(obj, serie, ...) {
 
   adjust <- stats::predict(obj$model, obj$serie)
   res <- adjust[,2]
-  anomalies <- obj$har_outliers(res)
+  anomalies <- har_outliers_classification(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)

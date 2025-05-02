@@ -50,11 +50,6 @@ har_outliers_ratio <- function(res){
   return (index)
 }
 
-har_outliers_classification <- function(data) {
-  index <- which(data >= 0.5) # non-event versus anomaly
-  return (index)
-}
-
 har_outliers_checks_firstgroup <- function(outliers, values) {
   threshold <- attr(outliers, "threshold")
   values <- abs(values)
@@ -141,7 +136,6 @@ harutils <- function() {
   obj$har_outliers_boxplot <- har_outliers_boxplot
   obj$har_outliers_gaussian <- har_outliers_gaussian
   obj$har_outliers_ratio <- har_outliers_ratio
-  obj$har_outliers_classification <- har_outliers_classification
 
   obj$har_outliers_checks_firstgroup <- har_outliers_checks_firstgroup
   obj$har_outliers_checks_highgroup <- har_outliers_checks_highgroup
