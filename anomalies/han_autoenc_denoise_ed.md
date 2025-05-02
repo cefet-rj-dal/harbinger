@@ -66,8 +66,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## [1] idx   event type 
+## <0 rows> (or 0-length row.names)
 ```
 
 
@@ -80,8 +80,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     0    
+## FALSE     1     100
 ```
 
 
@@ -95,14 +95,6 @@ har_plot(harbinger(), dataset$serie)
 ``` r
 # plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_denoise_ed/unnamed-chunk-11-1.png)

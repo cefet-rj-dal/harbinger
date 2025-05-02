@@ -66,8 +66,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event    type
+## 1  50  TRUE anomaly
 ```
 
 
@@ -80,8 +80,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
