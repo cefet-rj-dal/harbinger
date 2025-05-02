@@ -68,7 +68,6 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  52  TRUE anomaly
 ```
 
 
@@ -81,8 +80,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     1    
-## FALSE     0     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -97,6 +96,14 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ``` r
 # plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_point()`).
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_ed/unnamed-chunk-11-1.png)

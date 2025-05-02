@@ -97,4 +97,12 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_point()`).
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
+```
+
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_stacked_ed/unnamed-chunk-11-1.png)

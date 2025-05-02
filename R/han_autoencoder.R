@@ -60,13 +60,17 @@ detect.han_autoencoder <- function(obj, serie, ...) {
   ts <- as.data.frame(ts)
 
   result <- as.data.frame(transform(obj$model, ts))
+  res <- apply(ts - result, 1, sum, na.rm=TRUE)
 
-  ts <- c(as.double(ts[1,1:(ncol(ts)-1)]),as.double(ts[,ncol(ts)]))
-  ts_ae <- c(as.double(result[1,1:(ncol(result)-1)]),as.double(result[,ncol(result)]))
-
-  res <- obj$har_distance(ts - ts_ae)
+  res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
+
+  threshold <- attr(anomalies, "threshold")
+
+  res <- c(rep(NA, obj$input_size - 1), res)
+  anomalies <- c(rep(NA, obj$input_size - 1), anomalies)
+  attr(anomalies, "threshold") <- threshold
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 

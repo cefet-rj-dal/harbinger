@@ -58,11 +58,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Called from: eval(expr, p)
-## debug at /home/gpca/harbinger/R/hanr_ml.R#67: threshold <- attr(anomalies, "threshold")
-```
-
 
 ``` r
 # filtering detected events
@@ -100,6 +95,14 @@ har_plot(harbinger(), dataset$serie)
 ``` r
 # plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Warning: Removed 14 rows containing missing values or values outside the scale range (`geom_point()`).
+```
+
+```
+## Warning: Removed 14 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanr_ml_elm/unnamed-chunk-11-1.png)
