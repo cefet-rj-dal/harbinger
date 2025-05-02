@@ -21,7 +21,7 @@ library(harbinger)
 data(examples_anomalies)
 #Using the simple time series 
 dataset <- examples_anomalies$simple
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-3](fig/examples_harutils_outliers/unnamed-chunk-3-1.png)
@@ -37,8 +37,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/examples_harutils_outliers/unnamed-chunk-4-1.png)
@@ -52,8 +52,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/examples_harutils_outliers/unnamed-chunk-5-1.png)
@@ -67,8 +67,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred")   
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))  
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/examples_harutils_outliers/unnamed-chunk-6-1.png)
@@ -82,8 +82,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/examples_harutils_outliers/unnamed-chunk-7-1.png)
@@ -98,8 +98,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/examples_harutils_outliers/unnamed-chunk-8-1.png)
@@ -114,8 +114,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/examples_harutils_outliers/unnamed-chunk-9-1.png)
@@ -130,8 +130,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/examples_harutils_outliers/unnamed-chunk-10-1.png)

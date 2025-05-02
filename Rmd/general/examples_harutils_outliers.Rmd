@@ -18,7 +18,7 @@ library(harbinger)
 data(examples_anomalies)
 #Using the simple time series 
 dataset <- examples_anomalies$simple
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
@@ -31,8 +31,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ```{r}
@@ -43,8 +43,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ```{r}
@@ -55,8 +55,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred")   
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))  
 ```
 
 ```{r}
@@ -67,8 +67,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ```{r}
@@ -80,8 +80,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ```{r}
@@ -93,8 +93,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 ```{r}
   model <- hanr_arima()
@@ -106,6 +106,6 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  plot(res)
-  abline(v = which(detection$event==TRUE), col = "darkred") 
+  #plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```

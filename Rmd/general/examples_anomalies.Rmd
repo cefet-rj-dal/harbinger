@@ -20,8 +20,8 @@ model <- harbinger()
 dataset <- examples_anomalies$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -29,8 +29,8 @@ plot(grf)
 dataset <- examples_anomalies$contextual
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -38,8 +38,8 @@ plot(grf)
 dataset <- examples_anomalies$trend
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -47,8 +47,8 @@ plot(grf)
 dataset <- examples_anomalies$multiple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -56,8 +56,8 @@ plot(grf)
 dataset <- examples_anomalies$sequence
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -65,8 +65,8 @@ plot(grf)
 dataset <- examples_anomalies$tt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -74,8 +74,8 @@ plot(grf)
 dataset <- examples_anomalies$tt_warped
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -83,8 +83,8 @@ plot(grf)
 dataset <- examples_anomalies$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -92,8 +92,8 @@ plot(grf)
 dataset <- examples_anomalies$decreasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -101,7 +101,7 @@ plot(grf)
 dataset <- examples_anomalies$volatile
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 

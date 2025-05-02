@@ -37,7 +37,7 @@ head(dataset)
 
 ``` r
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ```
@@ -109,11 +109,14 @@ print(evaluation$confMatrix)
 
 ``` r
 # ploting training results
-  grf <- har_plot(model, train_n$serie, detection, as.logical(train_n$event))
-  plot(grf)
+  har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/hanc_ml_majority/unnamed-chunk-8-1.png)
+
+``` r
+  #plot(grf)
+```
 
 
 ``` r
@@ -149,8 +152,7 @@ print(evaluation$confMatrix)
 
 ``` r
 # ploting the results during testing
-  grf <- har_plot(model, test_n$serie, detection, as.logical(test_n$event))
-  plot(grf)
+  har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
 ```
@@ -163,11 +165,30 @@ print(evaluation$confMatrix)
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_majority/unnamed-chunk-11-1.png)
 
+``` r
+  #plot(grf)
+```
+
 
 ``` r
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Warning in Ops.factor(event, (event != detection_event)): '&' not meaningful for factors
+```
+
+```
+## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
+```
+
+```
+## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanc_ml_majority/unnamed-chunk-12-1.png)
+
+``` r
+  #plot(res)
+```

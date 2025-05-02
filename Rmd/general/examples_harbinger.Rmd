@@ -20,8 +20,8 @@ model <- harbinger()
 dataset <- examples_harbinger$nonstationarity
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -29,8 +29,8 @@ plot(grf)
 dataset <- examples_harbinger$global_temperature_yearly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -38,8 +38,8 @@ plot(grf)
 dataset <- examples_harbinger$global_temperature_monthly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -47,13 +47,13 @@ plot(grf)
 dataset <- examples_harbinger$multidimensional
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 
 model <- fit(model, dataset$x)
 detection <- detect(model, dataset$x)
-grf <- har_plot(model, dataset$x, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$x, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -61,8 +61,8 @@ plot(grf)
 dataset <- examples_harbinger$seattle_week
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -70,7 +70,7 @@ plot(grf)
 dataset <- examples_harbinger$seattle_daily
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 

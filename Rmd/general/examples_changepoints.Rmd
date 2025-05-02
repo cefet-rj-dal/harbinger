@@ -20,8 +20,8 @@ model <- harbinger()
 dataset <- examples_changepoints$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -29,8 +29,8 @@ plot(grf)
 dataset <- examples_changepoints$sinusoidal
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -38,8 +38,8 @@ plot(grf)
 dataset <- examples_changepoints$incremental
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -47,8 +47,8 @@ plot(grf)
 dataset <- examples_changepoints$abrupt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -56,8 +56,8 @@ plot(grf)
 dataset <- examples_changepoints$volatility
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -65,8 +65,8 @@ plot(grf)
 dataset <- examples_changepoints$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 
 ```{r}
@@ -74,7 +74,7 @@ plot(grf)
 dataset <- examples_changepoints$complex
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
+#plot(grf)
 ```
 

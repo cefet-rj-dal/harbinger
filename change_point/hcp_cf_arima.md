@@ -36,7 +36,7 @@ head(dataset)
 
 ``` r
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/hcp_cf_arima/unnamed-chunk-4-1.png)
@@ -66,8 +66,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-##   idx event        type
-## 1  51  TRUE changepoint
+##   idx event    type
+## 1  51  TRUE anomaly
 ```
 
 
@@ -87,17 +87,23 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ``` r
 # ploting the results
-  grf <- har_plot(model, dataset$serie, detection, dataset$event)
-  plot(grf)
+  har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hcp_cf_arima/unnamed-chunk-10-1.png)
 
+``` r
+  #plot(grf)
+```
+
 
 ``` r
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hcp_cf_arima/unnamed-chunk-11-1.png)
+
+``` r
+  #plot(res)
+```

@@ -36,7 +36,7 @@ head(dataset)
 
 ``` r
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/hmo_mp_stamp/unnamed-chunk-4-1.png)
@@ -60,7 +60,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-## Finished in 0.04 secs
+## Finished in 0.02 secs
 ```
 
 
@@ -100,9 +100,12 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ``` r
 # ploting the results
-  grf <- har_plot(model, dataset$serie, detection, dataset$event)
-  plot(grf)
+  har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hmo_mp_stamp/unnamed-chunk-10-1.png)
+
+``` r
+  #plot(grf)
+```
 

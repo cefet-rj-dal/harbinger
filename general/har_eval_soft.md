@@ -36,7 +36,7 @@ head(dataset)
 
 ``` r
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/har_eval_soft/unnamed-chunk-4-1.png)
@@ -71,11 +71,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 
 ```
 ##   idx event    type
-## 1  24  TRUE anomaly
-## 2  49  TRUE anomaly
-## 3  55  TRUE anomaly
-## 4  74  TRUE anomaly
-## 5  99  TRUE anomaly
+## 1  50  TRUE anomaly
 ```
 
 
@@ -88,8 +84,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     5    
-## FALSE     1     95
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -102,8 +98,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0.8   4.2  
-## FALSE     0.2   95.8
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -116,7 +112,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0.8   4.2  
-## FALSE     0.2   95.8
+## TRUE      1     0    
+## FALSE     0     100
 ```
 

@@ -22,7 +22,7 @@ head(dataset)
 
 ```{r}
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
@@ -53,12 +53,12 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 
 ```{r}
 # ploting the results
-  grf <- har_plot(model, dataset$serie, detection, dataset$event)
-  plot(grf)
+  har_plot(model, dataset$serie, detection, dataset$event)
+  #plot(grf)
 ```
 
 ```{r}
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+  #plot(res)
 ```

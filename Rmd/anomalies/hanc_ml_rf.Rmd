@@ -23,7 +23,7 @@ head(dataset)
 
 ```{r}
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
@@ -55,8 +55,8 @@ print(evaluation$confMatrix)
 
 ```{r}
 # ploting training results
-  grf <- har_plot(model, train_n$serie, detection, as.logical(train_n$event))
-  plot(grf)
+  har_plot(model, train_n$serie, detection, as.logical(train_n$event))
+  #plot(grf)
 ```
 
 ```{r}
@@ -76,12 +76,12 @@ print(evaluation$confMatrix)
 
 ```{r}
 # ploting the results during testing
-  grf <- har_plot(model, test_n$serie, detection, as.logical(test_n$event))
-  plot(grf)
+  har_plot(model, test_n$serie, detection, as.logical(test_n$event))
+  #plot(grf)
 ```
 
 ```{r}
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+  har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+  #plot(res)
 ```

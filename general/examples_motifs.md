@@ -23,11 +23,14 @@ model <- harbinger()
 dataset <- examples_motifs$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-3](fig/examples_motifs/unnamed-chunk-3-1.png)
+
+``` r
+#plot(grf)
+```
 
 
 ``` r
@@ -35,11 +38,14 @@ plot(grf)
 dataset <- examples_motifs$mitdb100
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/examples_motifs/unnamed-chunk-4-1.png)
+
+``` r
+#plot(grf)
+```
 
 
 ``` r
@@ -47,9 +53,12 @@ plot(grf)
 dataset <- examples_motifs$mitdb102
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/examples_motifs/unnamed-chunk-5-1.png)
+
+``` r
+#plot(grf)
+```
 

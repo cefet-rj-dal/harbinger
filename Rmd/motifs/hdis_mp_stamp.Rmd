@@ -22,7 +22,7 @@ head(dataset)
 
 ```{r}
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
@@ -53,7 +53,7 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 
 ```{r}
 # ploting the results
-  grf <- har_plot(model, dataset$serie, detection, dataset$event)
-  plot(grf)
+  har_plot(model, dataset$serie, detection, dataset$event)
+  #plot(grf)
 ```
 

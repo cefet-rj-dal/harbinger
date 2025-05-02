@@ -36,7 +36,7 @@ head(dataset)
 
 ``` r
 #ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
+har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/hanr_ml_svm/unnamed-chunk-4-1.png)
@@ -70,19 +70,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
 ```
-##    idx event    type
-## 1   16  TRUE anomaly
-## 2   27  TRUE anomaly
-## 3   29  TRUE anomaly
-## 4   32  TRUE anomaly
-## 5   41  TRUE anomaly
-## 6   50  TRUE anomaly
-## 7   54  TRUE anomaly
-## 8   57  TRUE anomaly
-## 9   66  TRUE anomaly
-## 10  77  TRUE anomaly
-## 11  79  TRUE anomaly
-## 12  91  TRUE anomaly
+##   idx event    type
+## 1  50  TRUE anomaly
 ```
 
 
@@ -95,33 +84,42 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     11   
-## FALSE     0     89
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
 ``` r
 # ploting the results
-  grf <- har_plot(model, dataset$serie, detection, dataset$event)
-  plot(grf)
+  har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hanr_ml_svm/unnamed-chunk-10-1.png)
 
+``` r
+  #plot(grf)
+```
+
 
 ``` r
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanr_ml_svm/unnamed-chunk-11-1.png)
 
+``` r
+  #plot(res)
+```
+
 
 ``` r
 # ploting the results
-  res <-  attr(detection, "res")
-  plot(res)
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_ml_svm/unnamed-chunk-12-1.png)
+
+``` r
+  #plot(res)
+```

@@ -1,63 +1,105 @@
+# Harbinger Package
+# version 1.1.707
+
+
+#loading Harbinger
 library(daltoolbox)
-#library(harbinger)
+
+#class harutils
+hutils <- harutils()
 
 #loading the example database
 data(examples_anomalies)
-
 #Using the simple time series
 dataset <- examples_anomalies$simple
-head(dataset)
+har_plot(harbinger(), dataset$serie)
 
-##       serie event
-## 1 1.0000000 FALSE
-## 2 0.9689124 FALSE
-## 3 0.8775826 FALSE
-## 4 0.7316889 FALSE
-## 5 0.5403023 FALSE
-## 6 0.3153224 FALSE
-
-#ploting the time series
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
-
-# establishing hanr_fft method
-model <- hanr_fft()
-
+# establishing arima method
+model <- hanr_arima()
+#using default hutils$har_outliers_boxplot
+#using default hutils$har_distance_l2
 # fitting the model
 model <- fit(model, dataset$serie)
-
 # making detections
 detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# filtering detected events
-print(detection |> dplyr::filter(event==TRUE))
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
 
-##   idx event    type
-## 1   1  TRUE anomaly
-## 2  44  TRUE anomaly
-## 3 101  TRUE anomaly
+```{r}
+model <- hanr_arima()
+model$har_outliers <- hutils$har_outliers_gaussian
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
 
-# evaluating the detections
-evaluation <- evaluate(model, detection$event, dataset$event)
-print(evaluation$confMatrix)
+```{r}
+model <- hanr_arima()
+model$har_outliers <- hutils$har_outliers_ratio
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
 
-##           event
-## detection TRUE  FALSE
-## TRUE      0     3
-## FALSE     1     97
+```{r}
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
 
-# ploting the results
-grf <- har_plot(model, dataset$serie, detection, dataset$event)
-plot(grf)
+```{r}
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_gaussian
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
 
-# ploting the results
-res <-  attr(detection, "res")
-threshold <-
-
-
-grf <- har_plot(model, res, detection, dataset$event, yline = attr(detection, "threshold"))
-plot(grf)
-
-
-grf <- har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
-plot(grf)
-
+```{r}
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_ratio
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
+```{r}
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_gaussian
+model$har_outliers_checks <- hutils$har_outliers_checks_firstgroup
+# fitting the model
+model <- fit(model, dataset$serie)
+# making detections
+detection <- detect(model, dataset$serie)
+res <- attr(detection, "res")
+#plot(res)
+abline(v = which(detection$event==TRUE), col = "darkred")
+```
