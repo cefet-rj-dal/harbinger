@@ -70,6 +70,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
+## 2  53  TRUE anomaly
 ```
 
 
@@ -82,8 +83,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      1     1    
+## FALSE     0     99
 ```
 
 

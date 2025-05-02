@@ -7,6 +7,20 @@
 
 #loading Harbinger
 library(daltoolbox)
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
+``` r
 library(harbinger) 
 ```
 
@@ -39,7 +53,7 @@ head(dataset)
 plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-13](fig/han_autoenc_adv_ed/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-4](fig/han_autoenc_adv_ed/unnamed-chunk-4-1.png)
 
 
 ``` r
@@ -69,13 +83,10 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ##   idx event    type
 ## 1   8  TRUE anomaly
 ## 2  19  TRUE anomaly
-## 3  33  TRUE anomaly
-## 4  44  TRUE anomaly
-## 5  50  TRUE anomaly
-## 6  58  TRUE anomaly
-## 7  69  TRUE anomaly
-## 8  83  TRUE anomaly
-## 9  95  TRUE anomaly
+## 3  44  TRUE anomaly
+## 4  50  TRUE anomaly
+## 5  69  TRUE anomaly
+## 6  95  TRUE anomaly
 ```
 
 
@@ -88,8 +99,8 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     8    
-## FALSE     0     92
+## TRUE      1     5    
+## FALSE     0     95
 ```
 
 
@@ -99,7 +110,7 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-19](fig/han_autoenc_adv_ed/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-10](fig/han_autoenc_adv_ed/unnamed-chunk-10-1.png)
 
 ``` r
 # ploting the results
@@ -107,4 +118,4 @@ plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
   plot(res)
 ```
 
-![plot of chunk unnamed-chunk-20](fig/han_autoenc_adv_ed/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
