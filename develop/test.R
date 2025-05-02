@@ -6,7 +6,7 @@
 
 #loading Harbinger
 library(daltoolbox)
-library(harbinger)
+#library(harbinger)
 ###
 
 ###{r}
@@ -15,9 +15,8 @@ data(examples_anomalies)
 ###
 
 ###{r}
-#Using the tt time series
-dataset <- examples_anomalies$tt
-
+#Using the sequence time series
+dataset <- examples_anomalies$sequence
 head(dataset)
 ###
 
@@ -27,59 +26,39 @@ har_plot(harbinger(), dataset$serie)
 ###
 
 ###{r}
-# data preprocessing
-
-
-train <- dataset[1:80,]
-test <- dataset[-(1:80),]
-
-norm <- minmax()
-norm <- fit(norm, train)
-train_n <- transform(norm, train)
-summary(train_n)
-###
-
-###{r}
-# establishing decision tree method
-model <- hanc_ml(cla_dtree("event", c("FALSE", "TRUE")))
+# establishing kmeans method
+model <- hanct_kmeans(3)
 ###
 
 ###{r}
 # fitting the model
-model <- fit(model, train_n)
-detection <- detect(model, train_n)
+model <- fit(model, dataset$serie)
+###
+
+###{r}
+# making detections of discords using kmeans
+detection <- detect(model, dataset$serie)
+###
+
+###{r}
+# filtering detected events
 print(detection |> dplyr::filter(event==TRUE))
-# evaluating the training
-evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+###
+
+###{r}
+# evaluating the detections
+evaluation <- evaluate(model, detection$event, dataset$event)
 print(evaluation$confMatrix)
 ###
 
 ###{r}
-# plotting training results
-har_plot(model, train_n$serie, detection, as.logical(train_n$event))
-###
+# plotting the results
+har_plot(model, dataset$serie, detection, dataset$event)
 
-###{r}
-# preparing for testing
-test_n <- transform(norm, test)
-###
-
-###{r}
-# evaluating the detections during testing
-detection <- detect(model, test_n)
-
-print(detection |> dplyr::filter(event==TRUE))
-
-evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
-print(evaluation$confMatrix)
-###
-
-###{r}
-# plotting the results during testing
-har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ###
 
 ###{r}
 # plotting the residuals
-har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+
 ###

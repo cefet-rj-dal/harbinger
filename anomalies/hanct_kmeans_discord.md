@@ -60,11 +60,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
-```
-
-```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
+## Called from: eval(expr, p)
+## debug at /home/gpca/harbinger/R/hanct_kmeans.R#70: anomalies <- obj$har_outliers(res)
 ```
 
 
@@ -75,7 +72,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  50  TRUE discord   3      3
+## 1  51  TRUE discord   3      3
 ```
 
 
@@ -88,8 +85,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 

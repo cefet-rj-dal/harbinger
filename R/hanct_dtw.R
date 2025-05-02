@@ -69,12 +69,16 @@ detect.hanct_dtw <- function(obj, serie, ...) {
   data <- as.data.frame(sx)
 
   res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))
-
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(as.integer(anomalies + obj$seq/2), res)
+  anomalies <- obj$har_outliers_check(anomalies, res)
+  threshold <- attr(anomalies, "threshold")
 
+  res <- c(rep(0, obj$seq - 1), res)
+  anomalies <- c(rep(FALSE, obj$seq - 1), anomalies)
+  attr(anomalies, "threshold") <- threshold
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
+
   if (obj$seq != 1) {
     i <- detection$type=="anomaly"
     detection$type[i] <- "discord"

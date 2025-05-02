@@ -67,14 +67,6 @@ har_plot(harbinger(), dataset$serie)
   detection <- detect(model, dataset$serie)
 ```
 
-```
-## Warning in obj$anomalies[obj$non_na] <- anomalies: number of items to replace is not a multiple of replacement length
-```
-
-```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
-```
-
 
 ``` r
 # filtering detected events
@@ -83,7 +75,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  51  TRUE discord   3      3
+## 1  52  TRUE discord   3      3
 ```
 
 
