@@ -26,8 +26,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
-# establishing hanr_fft method 
-  model <- hanr_fft()
+# establishing hanr_fft_binseg_cusum method 
+  model <- hanr_fft_binseg_cusum()
 ```
 
 ```{r}

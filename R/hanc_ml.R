@@ -52,6 +52,8 @@ hanc_ml <- function(model) {
 #'@import daltoolbox
 #'@exportS3Method fit hanc_ml
 fit.hanc_ml <- function(obj, serie, ...) {
+  serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
+
   obj$model <- daltoolbox::fit(obj$model, serie)
   return(obj)
 }
@@ -61,6 +63,8 @@ fit.hanc_ml <- function(obj, serie, ...) {
 #'@importFrom stats predict
 #'@exportS3Method detect hanc_ml
 detect.hanc_ml <- function(obj, serie, ...) {
+  if (!is.null(serie[,obj$model$attribute]))
+    serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
   obj <- obj$har_store_refs(obj, serie)
   obj$serie <- adjust_data.frame(obj$serie)
   obj$serie <- obj$serie[,obj$model$x, drop = FALSE]

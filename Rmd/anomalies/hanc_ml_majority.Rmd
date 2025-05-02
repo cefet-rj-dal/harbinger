@@ -17,7 +17,7 @@ data(examples_anomalies)
 ```{r}
 #Using the tt time series
 dataset <- examples_anomalies$tt
-dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+
 head(dataset)
 ```
 
@@ -28,7 +28,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```{r}
 # data preprocessing
-slevels <- levels(dataset$event)
+
 
 train <- dataset[1:80,]
 test <- dataset[-(1:80),]
@@ -41,7 +41,7 @@ summary(train_n)
 
 ```{r}
 # establishing class majority method 
-model <- hanc_ml(cla_majority("event", slevels))
+model <- hanc_ml(cla_majority("event", c("FALSE", "TRUE")))
 ```
 
 ```{r}

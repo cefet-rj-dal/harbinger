@@ -20,7 +20,7 @@ data(examples_anomalies)
 ``` r
 #Using the tt time series
 dataset <- examples_anomalies$tt
-dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+
 head(dataset)
 ```
 
@@ -45,7 +45,7 @@ har_plot(harbinger(), dataset$serie)
 
 ``` r
 # data preprocessing
-slevels <- levels(dataset$event)
+
 
 train <- dataset[1:80,]
 test <- dataset[-(1:80),]
@@ -57,19 +57,19 @@ summary(train_n)
 ```
 
 ```
-##      serie          event   
-##  Min.   :0.0000   FALSE:76  
-##  1st Qu.:0.2859   TRUE : 4  
-##  Median :0.5348             
-##  Mean   :0.5221             
-##  3rd Qu.:0.7587             
+##      serie          event        
+##  Min.   :0.0000   Mode :logical  
+##  1st Qu.:0.2859   FALSE:76       
+##  Median :0.5348   TRUE :4        
+##  Mean   :0.5221                  
+##  3rd Qu.:0.7587                  
 ##  Max.   :1.0000
 ```
 
 
 ``` r
 # establishing class majority method 
-model <- hanc_ml(cla_majority("event", slevels))
+model <- hanc_ml(cla_majority("event", c("FALSE", "TRUE")))
 ```
 
 
@@ -149,10 +149,6 @@ print(evaluation$confMatrix)
 ``` r
 # plotting the residuals
   har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
-```
-
-```
-## Warning in Ops.factor(event, (event != detection_event)): '&' not meaningful for factors
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanc_ml_majority/unnamed-chunk-12-1.png)
