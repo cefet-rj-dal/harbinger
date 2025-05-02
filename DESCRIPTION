@@ -13,6 +13,7 @@ Authors@R:
         person(given = "Jessica", family = "Souza", role = c("aut"), email = "jessica.souza@eic.cefet-rj.br"),
         person(given = "Lais", family = "Baroni", role = c("aut"), email = "lais.baronis@eic.cefet-rj.br"),
         person(given = "Lucas", family = "Tavares", role = c("aut"), email = "lucas.tavares@eic.cefet-rj.br"),
+        person(given = "Michel", family = "Reis", role = c("aut"), email = "michel.reis@eic.cefet-rj.br"),
         person(given = "Rebecca", family = "Salles", role = c("aut"), email = "rebecca.salles@eic.cefet-rj.br"),
         person(given = "Diego", family = "Carvalho", role = c("aut"), email = "d.carvalho@ieee.org"),
         person(given = "Eduardo", family = "Bezerra", role = c("aut"), email = "ebezerra@cefet-rj.br"),
@@ -30,17 +31,18 @@ Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 RoxygenNote: 7.3.2
 Imports: 
-  stats,
+  changepoint,
   daltoolbox,
-  tsmp,
+  dplyr,
   dtwclust,
-  rugarch,
   forecast, 
   ggplot2, 
-  changepoint,
-  strucchange,
-  stringr,
-  wavelets,
   hht,
-  zoo,
-  dplyr
+  RcppHungarian,
+  rugarch,
+  stats,
+  stringr,
+  strucchange,
+  tsmp,
+  wavelets,
+  zoo

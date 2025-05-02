@@ -1,29 +1,30 @@
 library(daltoolbox)
 
+#loading the example database
 data(examples_anomalies)
+
+#Using the simple
 dataset <- examples_anomalies$simple
 head(dataset)
 
-plot_ts(x = 1:length(dataset$serie), y = dataset$serie)
-
-# fitting the model
-model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
+# setting up time change point using GARCH
+model <- hcp_garch()
 
 # fitting the model
 model <- fit(model, dataset$serie)
 
+# making detections
 detection <- detect(model, dataset$serie)
+detection$event[55] <- TRUE
+dataset$event[56] <- TRUE
 
-print(detection |> dplyr::filter(event==TRUE))
+# filtering detected events
+print(detection[(detection$event),])
 
-evaluation <- evaluate(model, detection$event, dataset$event)
+# evaluating the detections
+evaluation <- evaluate.har_eval_soft(har_eval_soft(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 
+# ploting the results
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
-
 plot(grf)
-
-res <-  attr(detection, "res")
-
-plot(res)
-
