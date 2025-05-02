@@ -87,16 +87,21 @@ detect.har_ensemble <- function(obj, serie, ...) {
     }
   }
   res <- rowSums(values) # Every method has 1 vote
-  event <- res >= length(obj$models)/2
+  events <- res >= length(obj$models)/2
   type <- apply(types, 1, max)
 
-  type[!event] <- ""
+  type[!events] <- ""
   anomalies <- type == "anomaly"
   change_point <- type == "changepoint"
-  anomalies <- obj$har_outliers(anomalies)
-  anomalies <- obj$har_outliers_check(anomalies, res)
-  change_point <- obj$har_outliers(change_point)
-  change_point <- obj$har_outliers_check(change_point, res)
+
+  events <- obj$har_outliers(res)
+  events <- obj$har_outliers_check(events, res)
+
+  anomalies <- anomalies & events
+  change_point <- change_point & events
+
+  attr(anomalies, "threshold") <- attr(events, "threshold")
+
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_point = change_point, res = res)
 
