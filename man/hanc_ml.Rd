@@ -4,10 +4,12 @@
 \alias{hanc_ml}
 \title{Anomaly detector based on machine learning classification}
 \usage{
-hanc_ml(model)
+hanc_ml(model, threshold = 0.5)
 }
 \arguments{
 \item{model}{DALToolbox classification model}
+
+\item{threshold}{threshold for classification}
 }
 \value{
 \code{hanc_ml} object
