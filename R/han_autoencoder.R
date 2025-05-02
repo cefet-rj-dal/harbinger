@@ -68,7 +68,7 @@ detect.han_autoencoder <- function(obj, serie, ...) {
 
   threshold <- attr(anomalies, "threshold")
 
-  res <- c(rep(NA, obj$input_size - 1), res)
+  res <- c(rep(0, obj$input_size - 1), res)
   anomalies <- c(rep(NA, obj$input_size - 1), anomalies)
   attr(anomalies, "threshold") <- threshold
 
