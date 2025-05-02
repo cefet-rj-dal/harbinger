@@ -85,15 +85,15 @@
 <span class="r-in"><span><span class="co"># filtering detected events</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="op">(</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    idx event        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53  53  TRUE changepoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55  55  TRUE changepoint</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># evaluating the detections</span></span></span>
 <span class="r-in"><span><span class="va">evaluation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/evaluate.html" class="external-link">evaluate</a></span><span class="op">(</span><span class="fu">har_eval_soft</span><span class="op">(</span><span class="op">)</span>, <span class="va">detection</span><span class="op">$</span><span class="va">event</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">evaluation</span><span class="op">$</span><span class="va">confMatrix</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           event      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> detection TRUE  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      0.8   0.2  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     0.2   99.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRUE      0.67  0.33 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> FALSE     0.33  99.67</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ploting the results</span></span></span>
 <span class="r-in"><span><span class="va">grf</span> <span class="op">&lt;-</span> <span class="fu"><a href="har_plot.html">har_plot</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span>, <span class="va">detection</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></span>
