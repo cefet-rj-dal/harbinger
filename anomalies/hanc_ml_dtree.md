@@ -100,15 +100,11 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# ploting training results
+# plotting training results
   har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/hanc_ml_dtree/unnamed-chunk-8-1.png)
-
-``` r
-  #plot(grf)
-```
 
 
 ``` r
@@ -143,19 +139,15 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# ploting the results during testing
+# plotting the results during testing
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanc_ml_dtree/unnamed-chunk-11-1.png)
 
-``` r
-  #plot(grf)
-```
-
 
 ``` r
-# ploting the results
+# plotting the residuals
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
@@ -164,7 +156,3 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanc_ml_dtree/unnamed-chunk-12-1.png)
-
-``` r
-  #plot(res)
-```

@@ -75,7 +75,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  51  TRUE discord   3      3
+## 1  50  TRUE discord   3      3
 ```
 
 
@@ -88,30 +88,22 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hanct_kmeans_discord/unnamed-chunk-10-1.png)
 
-``` r
-  #plot(grf)
-```
-
 
 ``` r
-# ploting the results
+# plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanct_kmeans_discord/unnamed-chunk-11-1.png)
-
-``` r
-  #plot(res)
-```

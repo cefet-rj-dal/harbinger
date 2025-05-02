@@ -37,7 +37,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
@@ -52,7 +52,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
@@ -67,7 +67,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))  
 ```
 
@@ -82,7 +82,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
@@ -98,7 +98,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
@@ -114,7 +114,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
@@ -130,7 +130,7 @@ har_plot(harbinger(), dataset$serie)
 # making detections
   detection <- detect(model, dataset$serie)
   res <- attr(detection, "res")
-  #plot(res)
+  
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 

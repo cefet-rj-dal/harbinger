@@ -28,10 +28,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-3](fig/examples_changepoints/unnamed-chunk-3-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the sinusoidal time series
@@ -43,10 +39,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-4](fig/examples_changepoints/unnamed-chunk-4-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the incremental time series
@@ -57,10 +49,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/examples_changepoints/unnamed-chunk-5-1.png)
-
-``` r
-#plot(grf)
-```
 
 
 ``` r
@@ -77,10 +65,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-6](fig/examples_changepoints/unnamed-chunk-6-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the volatility time series
@@ -96,10 +80,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-7](fig/examples_changepoints/unnamed-chunk-7-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the increasing_amplitude time series
@@ -111,10 +91,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-8](fig/examples_changepoints/unnamed-chunk-8-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the complex time series
@@ -125,8 +101,4 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/examples_changepoints/unnamed-chunk-9-1.png)
-
-``` r
-#plot(grf)
-```
 

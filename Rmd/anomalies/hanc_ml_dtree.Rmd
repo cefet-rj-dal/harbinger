@@ -55,9 +55,8 @@ print(evaluation$confMatrix)
 ```
 
 ```{r}
-# ploting training results
+# plotting training results
   har_plot(model, train_n$serie, detection, as.logical(train_n$event))
-  #plot(grf)
 ```
 
 ```{r}
@@ -76,13 +75,11 @@ print(evaluation$confMatrix)
 ```
 
 ```{r}
-# ploting the results during testing
+# plotting the results during testing
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
-  #plot(grf)
 ```
 
 ```{r}
-# ploting the results
+# plotting the residuals
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
-  #plot(res)
 ```

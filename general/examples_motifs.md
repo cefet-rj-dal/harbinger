@@ -28,10 +28,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-3](fig/examples_motifs/unnamed-chunk-3-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the sample of mitdb 100 time series 
@@ -43,10 +39,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-4](fig/examples_motifs/unnamed-chunk-4-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the sample of mitdb 102 time series 
@@ -57,8 +49,4 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/examples_motifs/unnamed-chunk-5-1.png)
-
-``` r
-#plot(grf)
-```
 

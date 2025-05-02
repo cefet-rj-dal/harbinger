@@ -21,7 +21,7 @@ dataset <- examples_motifs$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
-#plot(grf)
+
 ```
 
 ```{r}
@@ -30,7 +30,7 @@ dataset <- examples_motifs$mitdb100
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
-#plot(grf)
+
 ```
 
 ```{r}
@@ -39,6 +39,6 @@ dataset <- examples_motifs$mitdb102
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
-#plot(grf)
+
 ```
 

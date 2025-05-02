@@ -87,24 +87,16 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/han_autoenc_ed/unnamed-chunk-10-1.png)
 
-``` r
-  #plot(grf)
-```
-
 
 ``` r
-# ploting the results
+# plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_ed/unnamed-chunk-11-1.png)
-
-``` r
-  #plot(res)
-```

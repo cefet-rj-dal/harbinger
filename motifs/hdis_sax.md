@@ -206,13 +206,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hdis_sax/unnamed-chunk-10-1.png)
-
-``` r
-  #plot(grf)
-```
 

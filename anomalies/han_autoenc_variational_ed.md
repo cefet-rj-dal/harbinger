@@ -67,9 +67,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type
-## 1  30  TRUE anomaly
-## 2  50  TRUE anomaly
-## 3  52  TRUE anomaly
+## 1  31  TRUE anomaly
 ```
 
 
@@ -82,30 +80,22 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     2    
-## FALSE     0     98
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/han_autoenc_variational_ed/unnamed-chunk-10-1.png)
 
-``` r
-  #plot(grf)
-```
-
 
 ``` r
-# ploting the results
+# plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_variational_ed/unnamed-chunk-11-1.png)
-
-``` r
-  #plot(res)
-```

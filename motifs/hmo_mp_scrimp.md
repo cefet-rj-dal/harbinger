@@ -60,7 +60,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Finished in 0.03 secs
+## Finished in 0.04 secs
 ```
 
 
@@ -99,13 +99,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hmo_mp_scrimp/unnamed-chunk-10-1.png)
-
-``` r
-  #plot(grf)
-```
 

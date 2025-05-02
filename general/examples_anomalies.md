@@ -28,10 +28,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-3](fig/examples_anomalies/unnamed-chunk-3-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the contextual time series
@@ -42,10 +38,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/examples_anomalies/unnamed-chunk-4-1.png)
-
-``` r
-#plot(grf)
-```
 
 
 ``` r
@@ -58,10 +50,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-5](fig/examples_anomalies/unnamed-chunk-5-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the multiple-event time series 
@@ -72,10 +60,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/examples_anomalies/unnamed-chunk-6-1.png)
-
-``` r
-#plot(grf)
-```
 
 
 ``` r
@@ -88,10 +72,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-7](fig/examples_anomalies/unnamed-chunk-7-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the train-test (tt) time series
@@ -102,10 +82,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/examples_anomalies/unnamed-chunk-8-1.png)
-
-``` r
-#plot(grf)
-```
 
 
 ``` r
@@ -118,10 +94,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-9](fig/examples_anomalies/unnamed-chunk-9-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the increasing_amplitude time series
@@ -132,10 +104,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/examples_anomalies/unnamed-chunk-10-1.png)
-
-``` r
-#plot(grf)
-```
 
 
 ``` r
@@ -148,10 +116,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-11](fig/examples_anomalies/unnamed-chunk-11-1.png)
 
-``` r
-#plot(grf)
-```
-
 
 ``` r
 #Using the volatile time series
@@ -162,8 +126,4 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/examples_anomalies/unnamed-chunk-12-1.png)
-
-``` r
-#plot(grf)
-```
 

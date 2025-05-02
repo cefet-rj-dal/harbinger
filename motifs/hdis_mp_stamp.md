@@ -89,13 +89,9 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hdis_mp_stamp/unnamed-chunk-10-1.png)
-
-``` r
-  #plot(grf)
-```
 

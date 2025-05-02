@@ -52,8 +52,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
-# ploting the results
+# plotting the results
   har_plot(model, dataset$serie, detection, dataset$event)
-  #plot(grf)
+  
 ```
 

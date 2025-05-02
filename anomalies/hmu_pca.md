@@ -60,24 +60,18 @@ detection <- detect(model, dataset[,1:2])
 ``` r
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
 grf <- grf + ylab("serie")
-#plot(grf)
 ```
 
 
 ``` r
 grf <- har_plot(model, dataset$x, detection, dataset$event)
 grf <- grf + ylab("x")
-#plot(grf)
 ```
 
 
 ``` r
-# ploting the results
+# plotting the results
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/hmu_pca/unnamed-chunk-9-1.png)
-
-``` r
-  #plot(res)
-```
