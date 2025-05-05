@@ -15,12 +15,12 @@ Authors@R:
         person(given = "Lucas", family = "Tavares", role = c("aut"), email = "lucas.tavares@eic.cefet-rj.br"),
         person(given = "Michel", family = "Reis", role = c("aut"), email = "michel.reis@eic.cefet-rj.br"),
         person(given = "Rebecca", family = "Salles", role = c("aut"), email = "rebecca.salles@eic.cefet-rj.br"),
-        person(given = "Diego", family = "Carvalho", role = c("aut"), email = "d.carvalho@ieee.org"),
-        person(given = "Eduardo", family = "Bezerra", role = c("aut"), email = "ebezerra@cefet-rj.br"),
-        person(given = "Rafaelli", family = "Coutinho", role = c("aut"), email = "rafaelli.coutinho@cefet-rj.br"),
-        person(given = "Esther", family = "Pacitti", role = c("aut"), email = "Esther.Pacitti@lirmm.fr"),
-        person(given = "Fabio", family = "Porto", role = c("aut"), email = "fporto@lncc.br"),
-        person(given = "Federal Center for Technological Education of Rio de Janeiro (CEFET/RJ)", role = "cph", comment = c(organization = "CEFET/RJ"))
+        person(given = "Diego", family = "Carvalho", role = c("ctb"), email = "d.carvalho@ieee.org"),
+        person(given = "Eduardo", family = "Bezerra", role = c("ctb"), email = "ebezerra@cefet-rj.br"),
+        person(given = "Rafaelli", family = "Coutinho", role = c("ctb"), email = "rafaelli.coutinho@cefet-rj.br"),
+        person(given = "Esther", family = "Pacitti", role = c("ctb"), email = "Esther.Pacitti@lirmm.fr"),
+        person(given = "Fabio", family = "Porto", role = c("ctb"), email = "fporto@lncc.br"),
+        person(given = "CEFET/RJ", role = "cph")
    )
 Description: By analyzing time series, it is possible to observe significant changes in the behavior of observations that frequently characterize events. Events present themselves as anomalies, change points, or motifs. In the literature, there are several methods for detecting events. However, searching for a suitable time series method is a complex task, especially considering that the nature of events is often unknown. This work presents Harbinger, a framework for integrating and analyzing event detection methods. Harbinger contains several state-of-the-art methods described in Salles et al. (2020) <doi:10.5753/sbbd.2020.13626>.
 License: MIT + file LICENSE
