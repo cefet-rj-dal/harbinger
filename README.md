@@ -85,8 +85,9 @@ model <- harbinger()
 #stub detector
 detection <- detect(model, examples_anomalies$simple$serie)
 
-#plot anomalies
-har_plot(detection, examples_anomalies$simple$serie, detection)
+# filtering detected events
+library(dplyr)
+print(detection |> dplyr::filter(event==TRUE))
 ```
 
 <img src="man/figures/README-example-1.png" alt="Harbinger example figure" width="100%" />
