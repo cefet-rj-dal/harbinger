@@ -7,6 +7,8 @@
 
 #loading Harbinger
 library(daltoolbox)
+library(tspredit)
+library(daltoolboxdp)
 library(harbinger) 
 ```
 

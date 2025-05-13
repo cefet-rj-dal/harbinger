@@ -8,6 +8,7 @@
 #'@return `hanr_ml` object
 #'@examples
 #'library(daltoolbox)
+#'library(tspredit)
 #'
 #'#loading the example database
 #'data(examples_anomalies)

@@ -4,7 +4,7 @@
 \alias{han_autoencoder}
 \title{Anomaly detector using autoencoder}
 \usage{
-han_autoencoder(input_size, encode_size, encoderclass = autoenc_ed, ...)
+han_autoencoder(input_size, encode_size, encoderclass = autoenc_base_ed, ...)
 }
 \arguments{
 \item{input_size}{Establish the input size for the autoencoder anomaly detector. It is the size of the output also.}

@@ -8,6 +8,7 @@
 #loading Harbinger
 library(daltoolbox)
 library(harbinger) 
+library(daltoolboxdp)
 ```
 
 
@@ -68,7 +69,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  52  TRUE anomaly
 ```
 
 
@@ -81,8 +81,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     1    
-## FALSE     0     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 

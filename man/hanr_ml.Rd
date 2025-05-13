@@ -22,6 +22,7 @@ They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm
 }
 \examples{
 library(daltoolbox)
+library(tspredit)
 
 #loading the example database
 data(examples_anomalies)

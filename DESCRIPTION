@@ -1,6 +1,6 @@
 Package: harbinger
 Title: A Unified Time Series Event Detection Framework
-Version: 1.1.737
+Version: 1.2.707
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
@@ -44,5 +44,6 @@ Imports:
   stringr,
   strucchange,
   tsmp,
+  tspredit,
   wavelets,
   zoo

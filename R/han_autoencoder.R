@@ -10,15 +10,16 @@
 #'#See an example of using `autoenc_ed` at this
 #'#https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
 #'@importFrom stats na.omit
-#'@importFrom daltoolbox ts_norm_gminmax
+#'@importFrom daltoolbox autoenc_base_ed
+#'@importFrom tspredit ts_norm_gminmax
 #'@export
-han_autoencoder <- function(input_size, encode_size, encoderclass = autoenc_ed, ...) {
+han_autoencoder <- function(input_size, encode_size, encoderclass = autoenc_base_ed, ...) {
   obj <- harbinger()
 
   obj$input_size <- input_size
   obj$encode_size <- encode_size
   obj$model <- encoderclass(obj$input_size, obj$encode_size, ...)
-  obj$preproc <- daltoolbox::ts_norm_gminmax()
+  obj$preproc <- tspredit::ts_norm_gminmax()
 
   hutils <- harutils()
 
