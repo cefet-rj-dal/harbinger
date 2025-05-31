@@ -1,24 +1,29 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_anomalies)
 ```
 
 
 ``` r
-#Using the tt time series
+# Using the tt time series
 dataset <- examples_anomalies$tt
 
 head(dataset)
@@ -36,15 +41,15 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/hanc_ml_mlp/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/hanc_ml_mlp/unnamed-chunk-5-1.png)
 
 
 ``` r
-#data preprocessing
+# data preprocessing
 
 
 train <- dataset[1:80,]
@@ -103,7 +108,7 @@ print(evaluation$confMatrix)
   har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
-![plot of chunk unnamed-chunk-8](fig/hanc_ml_mlp/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-9](fig/hanc_ml_mlp/unnamed-chunk-9-1.png)
 
 
 ``` r
@@ -142,7 +147,7 @@ print(evaluation$confMatrix)
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanc_ml_mlp/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](fig/hanc_ml_mlp/unnamed-chunk-12-1.png)
 
 
 ``` r
@@ -150,4 +155,4 @@ print(evaluation$confMatrix)
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/hanc_ml_mlp/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-13](fig/hanc_ml_mlp/unnamed-chunk-13-1.png)

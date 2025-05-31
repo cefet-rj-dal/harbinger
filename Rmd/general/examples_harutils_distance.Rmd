@@ -1,16 +1,16 @@
 ```{r}
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
-
-
-#loading Harbinger
+```{r}
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-#class harutils
+# class harutils
   hutils <- harutils()
 ```
 

@@ -1,10 +1,10 @@
 ```{r}
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
-
-
-#loading Harbinger
+```{r}
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 library(ggplot2)
@@ -22,12 +22,12 @@ head(dataset)
 ```
 
 ```{r}
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
-#ploting the time x
+# ploting the time x
 har_plot(harbinger(), dataset$x)
 ```
 

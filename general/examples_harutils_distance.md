@@ -1,18 +1,23 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-#class harutils
+# class harutils
   hutils <- harutils()
 ```
 
@@ -27,11 +32,11 @@ v1 <- hutils$har_distance_l1(values)
 har_plot(harbinger(), v1)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/examples_harutils_distance/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/examples_harutils_distance/unnamed-chunk-5-1.png)
 
 ``` r
 v2 <- hutils$har_distance_l2(values)
 har_plot(harbinger(), v2)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/examples_harutils_distance/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-6](fig/examples_harutils_distance/unnamed-chunk-6-1.png)

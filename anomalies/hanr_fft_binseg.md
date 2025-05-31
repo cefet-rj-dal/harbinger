@@ -1,24 +1,29 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_anomalies)
 ```
 
 
 ``` r
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -35,11 +40,11 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/hanr_fft_binseg/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/hanr_fft_binseg/unnamed-chunk-5-1.png)
 
 
 ``` r
@@ -90,7 +95,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/hanr_fft_binseg/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](fig/hanr_fft_binseg/unnamed-chunk-11-1.png)
 
 
 ``` r
@@ -98,4 +103,4 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanr_fft_binseg/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](fig/hanr_fft_binseg/unnamed-chunk-12-1.png)

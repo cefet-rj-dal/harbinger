@@ -1,12 +1,30 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
+```
+
+```
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+```
+
+```
+## Registered S3 methods overwritten by 'forecast':
+##   method  from 
+##   head.ts stats
+##   tail.ts stats
 ```
 
 ```
@@ -21,19 +39,19 @@ library(daltoolbox)
 ```
 
 ``` r
-library(harbinger) 
 library(daltoolboxdp)
+library(harbinger) 
 ```
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_anomalies)
 ```
 
 
 ``` r
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -50,11 +68,11 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/han_autoenc_adv_ed/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/han_autoenc_adv_ed/unnamed-chunk-5-1.png)
 
 
 ``` r
@@ -106,11 +124,11 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/han_autoenc_adv_ed/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
 
 ``` r
 # plotting the residuals
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)

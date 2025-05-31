@@ -1,25 +1,30 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
+```
 
-
-#loading Harbinger
-library(daltoolbox)
-library(harbinger) 
-library(daltoolboxdp)
 ```
 
 
 ``` r
-#loading the example database
+# Loading Harbinger
+library(daltoolbox)
+library(daltoolboxdp)
+library(harbinger) 
+```
+
+
+``` r
+# loading the example database
 data(examples_anomalies)
 ```
 
 
 ``` r
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,11 +41,11 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/han_autoenc_ed/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/han_autoenc_ed/unnamed-chunk-5-1.png)
 
 
 ``` r
@@ -69,7 +74,6 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  52  TRUE anomaly
 ```
 
 
@@ -82,8 +86,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     1    
-## FALSE     0     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -92,7 +96,7 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/han_autoenc_ed/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](fig/han_autoenc_ed/unnamed-chunk-11-1.png)
 
 
 ``` r
@@ -100,4 +104,4 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/han_autoenc_ed/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](fig/han_autoenc_ed/unnamed-chunk-12-1.png)

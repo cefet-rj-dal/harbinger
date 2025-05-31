@@ -40,7 +40,7 @@ hanr_red <- function(sw_size = 30, noise = 0.001, trials = 5) {
   return(obj)
 }
 
-## Roughness function
+#  Roughness function
 #'@importFrom stats sd
 fc_rug <- function(x){
   firstD = diff(x)
@@ -49,7 +49,7 @@ fc_rug <- function(x){
   return(mean(roughness))
 }
 
-## Function that sums the IMFs given an initial and final IMF.
+#  Function that sums the IMFs given an initial and final IMF.
 fc_somaIMF <- function(ceemd.result, inicio, fim){
   soma_imf <- rep(0, length(ceemd.result[["original.signal"]]))
   for (k in inicio:fim){
@@ -74,7 +74,7 @@ detect.hanr_red <- function(obj, serie, ...) {
   id <- 1:length(obj$serie)
   san_size <-  length(obj$serie)
 
-  ## calculate IMFs
+  #  calculate IMFs
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   model_an <- ceemd.result
@@ -82,17 +82,17 @@ detect.hanr_red <- function(obj, serie, ...) {
   if (model_an$nimf < 4){
     soma_an <- obj$serie - model_an$residue
   }else{
-    ## calculate roughness for each imf
+    #  calculate roughness for each imf
     vec <- vector()
     for (n in 1:model_an$nimf){
       vec[n] <- fc_rug(model_an[["imf"]][,n])
     }
 
-    ## Maximum curvature
+    #  Maximum curvature
     res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
 
-    ## somando as IMFs de maior variância
+    #  somando as IMFs de maior variância
     soma_an <- fc_somaIMF(model_an, 1, div)
   }
 
@@ -101,7 +101,7 @@ detect.hanr_red <- function(obj, serie, ...) {
   diff_soma[1] <- diff_soma[2]#repeti no primeiro termo, o segundo termo da série diferenciada
 
 
-  ##Tira a tendência da série original
+  # Tira a tendência da série original
   isEmpty <- function(x) {
     return(length(x)==0)
   }
@@ -112,10 +112,10 @@ detect.hanr_red <- function(obj, serie, ...) {
     d_serie <- obj$serie-model_an$residue
   }
 
-  ##Calcula volatilidade instantânea
+  # Calcula volatilidade instantânea
   sd <-  rollapply(d_serie, 30, sd, by = 1, partial=TRUE)
 
-  ## Criando vetor de anomalias
+  #  Criando vetor de anomalias
   RED_transform <- diff_soma/sd
 
   res <- obj$har_distance(RED_transform)

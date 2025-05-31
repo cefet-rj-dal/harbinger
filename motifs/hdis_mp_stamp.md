@@ -1,24 +1,29 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_motifs)
 ```
 
 
 ``` r
-#Using the simple time series
+# Using the simple time series
 dataset <- examples_motifs$mitdb102
 head(dataset)
 ```
@@ -35,11 +40,11 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/hdis_mp_stamp/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/hdis_mp_stamp/unnamed-chunk-5-1.png)
 
 
 ``` r
@@ -93,5 +98,5 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/hdis_mp_stamp/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](fig/hdis_mp_stamp/unnamed-chunk-11-1.png)
 

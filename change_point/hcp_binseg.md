@@ -1,24 +1,29 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_changepoints)
 ```
 
 
 ``` r
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_changepoints$complex
 head(dataset)
 ```
@@ -35,11 +40,11 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/hcp_binseg/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/hcp_binseg/unnamed-chunk-5-1.png)
 
 
 ``` r
@@ -96,5 +101,5 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/hcp_binseg/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](fig/hcp_binseg/unnamed-chunk-11-1.png)
 

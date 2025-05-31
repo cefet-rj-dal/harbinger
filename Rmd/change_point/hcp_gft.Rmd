@@ -1,27 +1,27 @@
 ```{r}
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
-
-
-#loading Harbinger
+```{r}
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-#loading the example database
+# loading the example database
 data(examples_changepoints)
 ```
 
 ```{r}
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_changepoints$simple
 head(dataset)
 ```
 
 ```{r}
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 

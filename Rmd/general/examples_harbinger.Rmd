@@ -1,22 +1,22 @@
 ```{r}
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
-
-
-#loading Harbinger
+```{r}
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-#loading the example database
+# loading the example database
 data(examples_harbinger)
 model <- harbinger()
 ```
 
 ```{r}
-#Using the nonstationarity time series 
+# Using the nonstationarity time series 
 dataset <- examples_harbinger$nonstationarity
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -25,7 +25,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-#Using the global temperature (yearly) time series
+# Using the global temperature (yearly) time series
 dataset <- examples_harbinger$global_temperature_yearly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -34,7 +34,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-#Using the global temperature (monthly) time series
+# Using the global temperature (monthly) time series
 dataset <- examples_harbinger$global_temperature_monthly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -43,7 +43,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-#Using the multidimensional time series 
+# Using the multidimensional time series 
 dataset <- examples_harbinger$multidimensional
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -57,7 +57,7 @@ har_plot(model, dataset$x, detection, dataset$event)
 ```
 
 ```{r}
-#Using the Seattle weekly temperature time series
+# Using the Seattle weekly temperature time series
 dataset <- examples_harbinger$seattle_week
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -66,7 +66,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-#Using the Seattle daily temperature time series
+# Using the Seattle daily temperature time series
 dataset <- examples_harbinger$seattle_daily
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)

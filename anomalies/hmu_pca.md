@@ -1,11 +1,16 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
+
+```
+
+```
 
 
-
-#loading Harbinger
+``` r
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 library(ggplot2)
@@ -36,19 +41,19 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/hmu_pca/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](fig/hmu_pca/unnamed-chunk-5-1.png)
 
 
 ``` r
-#ploting the time x
+# ploting the time x
 har_plot(harbinger(), dataset$x)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/hmu_pca/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-6](fig/hmu_pca/unnamed-chunk-6-1.png)
 
 
 ``` r
@@ -74,4 +79,4 @@ grf <- grf + ylab("x")
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-9](fig/hmu_pca/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-10](fig/hmu_pca/unnamed-chunk-10-1.png)

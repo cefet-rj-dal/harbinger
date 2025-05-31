@@ -1,22 +1,23 @@
 ```{r}
-# Harbinger Package
-# version 1.1.707
+# Installing Harbinger
+install.packages("harbinger")
+```
 
-
-#loading Harbinger
+```{r}
+# Loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-#class harutils
+# class harutils
   hutils <- harutils()
 ```
 
 ```{r}
-#loading the example database
+# loading the example database
 data(examples_anomalies)
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_anomalies$simple
 har_plot(harbinger(), dataset$serie)
 ```
@@ -24,8 +25,8 @@ har_plot(harbinger(), dataset$serie)
 ```{r}
 # establishing arima method 
   model <- hanr_arima()
-  #using default hutils$har_outliers_gaussian
-  #using default hutils$har_distance_l2
+  # using default hutils$har_outliers_gaussian
+  # using default hutils$har_distance_l2
   # fitting the model
   model <- fit(model, dataset$serie)
 # making detections

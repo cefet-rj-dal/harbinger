@@ -65,7 +65,7 @@ detect.hanr_remd <- function(obj, serie, ...) {
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model <- ceemd.result
-  ## calculate roughness for each imf
+  #  calculate roughness for each imf
   vec <- vector()
   for (n in 1:obj$model$nimf) {
     vec[n] <- fc_roughness(obj$model[["imf"]][, n])
@@ -73,7 +73,7 @@ detect.hanr_remd <- function(obj, serie, ...) {
 
   vec <- cumsum(vec)
 
-  ## Maximum curvature
+  #  Maximum curvature
   res <- transform(fit_curvature_min(), vec)
   div <- res$x
   sum_high_freq <- obj$model[["imf"]][, 1]

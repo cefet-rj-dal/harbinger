@@ -1,11 +1,6 @@
 
 ``` r
-# Harbinger Package
-# version 1.1.707
-
-
-
-#loading Harbinger
+# loading Harbinger
 library(daltoolbox)
 library(harbinger) 
 library(daltoolboxdp)
@@ -13,13 +8,13 @@ library(daltoolboxdp)
 
 
 ``` r
-#loading the example database
+# loading the example database
 data(examples_anomalies)
 ```
 
 
 ``` r
-#Using the simple time series 
+# Using the simple time series 
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,7 +31,7 @@ head(dataset)
 
 
 ``` r
-#ploting the time series
+# ploting the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -68,9 +63,8 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type
-## 1  23  TRUE anomaly
-## 2  31  TRUE anomaly
-## 3  83  TRUE anomaly
+## 1  50  TRUE anomaly
+## 2  83  TRUE anomaly
 ```
 
 
@@ -83,8 +77,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     3    
-## FALSE     1     97
+## TRUE      1     1    
+## FALSE     0     99
 ```
 
 

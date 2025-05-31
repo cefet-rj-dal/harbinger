@@ -45,7 +45,7 @@ hcp_red <- function(sw_size = 30, noise = 0.001, trials = 5, red_cp = TRUE, vola
   return(obj)
 }
 
-## Roughness function
+#  Roughness function
 #'@importFrom stats sd
 fc <- function(x){
   firstD = base::diff(x)
@@ -54,7 +54,7 @@ fc <- function(x){
   return(base::mean(roughness))
 }
 
-## Function that sums the IMFs given an initial and final IMF.
+#  Function that sums the IMFs given an initial and final IMF.
 fc_sumIMF <- function(ceemd.result, start, end){
   soma_imf <- base::rep(0, length(ceemd.result[["original.signal"]]))
   for (k in start:end){
@@ -63,7 +63,7 @@ fc_sumIMF <- function(ceemd.result, start, end){
   return(soma_imf)
 }
 
-## Function that calculates the central point of the sequences.
+#  Function that calculates the central point of the sequences.
 median_point <- function(cp){
   group_outliers <- base::split(cp, base::cumsum(c(1, base::diff(cp) != 1)))
 
@@ -98,45 +98,45 @@ detect.hcp_red <- function(obj, serie, ...) {
   id <- 1:length(obj$serie)
   san_size <- length(obj$serie)
 
-  ## calculate IMFs
+  #  calculate IMFs
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model_an <- ceemd.result
 
   if (ceemd.result$nimf > 3) {
 
-    ## create accumulate IMFs vector
+    #  create accumulate IMFs vector
     cum.vec <- list()
     for (n in 1:obj$model_an$nimf){
       cum.vec[[n]] <- fc_sumIMF(obj$model_an, 1, n)
     }
 
-    ## calculate roughness for each imf
+    #  calculate roughness for each imf
     vec <- vector()
     for (n in 1:length(cum.vec)){
       vec[n] <- fc(cum.vec[[n]])
     }
 
-    ## Maximum curvature
+    #  Maximum curvature
     res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
   } else {div=1}
 
-  ## ANOMALY ##
-  ## adding the IMFs with the highest variance
+  #  ANOMALY # 
+  #  adding the IMFs with the highest variance
   sum_an <- fc_sumIMF(obj$model_an, 1, div) # for AN
 
   # Creates the differential of the sum_an
   sum_diff <- c(NA, diff(sum_an)) #NA in the first value to maintain the length of the series
 
-  ## Calculates the standard deviation of the central point.
+  #  Calculates the standard deviation of the central point.
   sd <- zoo::rollapply(serie, sd, by = 1,  width = list(c(c(-15:-1), c(1:15))))
   sd <- c(rep(NA,15),sd,rep(NA,15)) #filling the borders with NA.
 
-  ## Creating anomaly vector.
+  #  Creating anomaly vector.
   anoms <- sum_diff/sd
 
-  ## determining outliers according to criterion 2.698 x standard deviation.
+  #  determining outliers according to criterion 2.698 x standard deviation.
   outliers <- which(abs(anoms) > 2.698*sd(anoms, na.rm=TRUE))
 
   # removing duplicate anomalies
@@ -144,7 +144,7 @@ detect.hcp_red <- function(obj, serie, ...) {
   group_an <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
 
   an <- rep(FALSE, length(obj$serie))
-  ## removes the first point from the sequences.
+  #  removes the first point from the sequences.
   for (g in group_an) {
     if (length(g) > 0) {
       i <- min(g)
@@ -159,19 +159,19 @@ detect.hcp_red <- function(obj, serie, ...) {
     anomalies[i_an] <- TRUE
   }
 
-  ## CHANGE POINT ##
+  #  CHANGE POINT # 
   serie2 <- serie
   serie2[i_an] <- NA
   no_na <- which(!is.na(serie2))
   serie_cp <- serie2[!is.na(serie2)]
   id <- 1:length(serie_cp)
 
-  ## calculate IMFs
+  #  calculate IMFs
   suppressWarnings(ceemd.result <- hht::CEEMD(serie_cp, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model_cp <- ceemd.result
 
-  ## CP do hcp_red
+  #  CP do hcp_red
   cp_hcp_red <- vector()
   if(obj$red_cp){
     sum_cp <- vector()
@@ -180,7 +180,7 @@ detect.hcp_red <- function(obj, serie, ...) {
       #adding the IMFs of low variance
       sum_cp <- fc_sumIMF(obj$model_cp, div+1, obj$model_cp$nimf)
 
-      ## resuming the positions of the original series
+      #  resuming the positions of the original series
       i <- rep(NA, san_size)
       i[no_na] <- sum_cp
 
@@ -190,7 +190,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     }
   }
 
-  ## Volatility CP (Change Points)
+  #  Volatility CP (Change Points)
   cp_volatility <- vector()
   if(obj$volatility_cp){
 
@@ -200,7 +200,7 @@ detect.hcp_red <- function(obj, serie, ...) {
 	sd3 <- zoo::rollapply(sd2, width = list(c(c(-15:-1), c(1:15))), sd, by = 1)
 	sd3 <- c(rep(NA,15),sd3,rep(NA,15))
 
-    ## resuming the positions of the original series
+    #  resuming the positions of the original series
     i <- rep(NA, san_size)
     i[no_na] <- sd3
 
@@ -209,7 +209,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     cp_volatility <- median_point(cp_volatility)
   }
 
-  ## Trend CP (Change Points)
+  #  Trend CP (Change Points)
   cp_trend <- vector()
   if(obj$trend_cp && length(obj$model_cp$residue) > 0){
 
@@ -222,7 +222,7 @@ detect.hcp_red <- function(obj, serie, ...) {
     cp_trend <- which(cp_trend$event)
   }
 
-  ## merging the Change Points
+  #  merging the Change Points
   cps <- c(cp_hcp_red, cp_volatility, cp_trend)
 
   change_points <- rep(FALSE, length(obj$serie))
