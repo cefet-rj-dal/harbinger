@@ -33,8 +33,6 @@ RoxygenNote: 7.3.2
 Imports: 
   changepoint,
   daltoolbox,
-  dplyr,
-  dtwclust,
   forecast, 
   ggplot2, 
   hht,
@@ -44,6 +42,5 @@ Imports:
   stringr,
   strucchange,
   tsmp,
-  tspredit,
   wavelets,
   zoo

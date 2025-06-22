@@ -26,7 +26,8 @@ dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series emd detector
-model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+model <- har_ensemble(hanr_arima(), hanr_arima(), hanr_arima())
+#model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
 
 # fitting the model
 model <- fit(model, dataset$serie)
