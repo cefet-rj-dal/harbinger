@@ -1,11 +1,7 @@
 
 ``` r
 # Installing Harbinger
-install.packages("harbinger")
-```
-
-```
-
+#install.packages"harbinger")
 ```
 
 
@@ -72,8 +68,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  97  TRUE anomaly
+## [1] idx   event type 
+## <0 rows> (or 0-length row.names)
 ```
 
 
@@ -86,8 +82,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      0     0    
+## FALSE     1     100
 ```
 
 

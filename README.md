@@ -43,13 +43,12 @@ it easy to extend and integrate new methods into the framework.
 The latest version of Harbinger is available on CRAN:
 
 ``` r
-install.packages("harbinger")
+#install.packages"harbinger")
 ```
 
 You can install the development version from GitHub:
 
 ``` r
-# install.packages("devtools")
 library(devtools)
 devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
 ```

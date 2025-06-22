@@ -1,11 +1,7 @@
 
 ``` r
 # Installing Harbinger
-install.packages("harbinger")
-```
-
-```
-
+#install.packages"harbinger")
 ```
 
 
@@ -73,7 +69,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 
 ```
 ##   idx event    type
-## 1  50  TRUE anomaly
+## 1  18  TRUE anomaly
+## 2  51  TRUE anomaly
 ```
 
 
@@ -86,8 +83,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     2    
+## FALSE     1     98
 ```
 
 

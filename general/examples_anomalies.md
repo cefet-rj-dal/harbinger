@@ -1,11 +1,7 @@
 
 ``` r
 # Installing Harbinger
-install.packages("harbinger")
-```
-
-```
-
+#install.packages"harbinger")
 ```
 
 

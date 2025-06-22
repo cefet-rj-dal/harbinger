@@ -1,11 +1,7 @@
 
 ``` r
 # Installing Harbinger
-install.packages("harbinger")
-```
-
-```
-
+#install.packages"harbinger")
 ```
 
 
@@ -41,6 +37,19 @@ library(daltoolbox)
 ``` r
 library(daltoolboxdp)
 library(harbinger) 
+```
+
+```
+## Registered S3 methods overwritten by 'tspredit':
+##   method           from      
+##   [.ts_data        daltoolbox
+##   action.ts_reg    daltoolbox
+##   evaluate.ts_reg  daltoolbox
+##   fit.ts_arima     daltoolbox
+##   fit.ts_regsw     daltoolbox
+##   predict.ts_arima daltoolbox
+##   predict.ts_reg   daltoolbox
+##   predict.ts_regsw daltoolbox
 ```
 
 
