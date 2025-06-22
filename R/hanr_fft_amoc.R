@@ -1,6 +1,6 @@
 #'@title Anomaly Detector using FFT with AMOC Cutoff
 #'@description
-#'This function implements an anomaly detection method that uses the Fast Fourier Transform (FFT)
+#'This function implements an anomaly detection method that uses the Fast Fourier daltoolbox::transform (FFT)
 #'combined with an automatic frequency cutoff strategy based on the AMOC (At Most One Change)
 #'algorithm. The model analyzes the power spectrum of the time series and detects the optimal
 #'cutoff frequency — the point where the frequency content significantly changes — using

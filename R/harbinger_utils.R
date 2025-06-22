@@ -124,7 +124,7 @@ har_fuzzify_detections_triangle <- function(value, tolerance) {
 #'@return Harbinger Utils
 #'@examples
 #'# See ?hanc_ml for an example of anomaly detection using machine learning classification
-#'@import daltoolbox
+#'@importFrom daltoolbox dal_base
 #'@importFrom stats quantile
 #'@export
 harutils <- function() {

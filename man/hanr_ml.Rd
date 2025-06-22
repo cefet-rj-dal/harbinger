@@ -32,10 +32,11 @@ dataset <- examples_anomalies$simple
 head(dataset)
 
 # setting up time series regression model
-model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+model <- hanr_ml(tspredit::ts_elm(tspredit::ts_norm_gminmax(),
+                  input_size=4, nhid=3, actfun="purelin"))
 
 # fitting the model
-model <- fit(model, dataset$serie)
+model <- daltoolbox::fit(model, dataset$serie)
 
 detection <- detect(model, dataset$serie)
 

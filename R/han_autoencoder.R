@@ -27,6 +27,8 @@ han_autoencoder <- function(input_size, encode_size, encoderclass = autoenc_base
   return(obj)
 }
 
+#'@importFrom daltoolbox fit
+#'@importFrom tspredit ts_data
 #'@importFrom stats na.omit
 #'@exportS3Method fit han_autoencoder
 fit.han_autoencoder <- function(obj, serie, ...) {
@@ -34,19 +36,20 @@ fit.han_autoencoder <- function(obj, serie, ...) {
 
   serie <- stats::na.omit(serie)
 
-  ts <- ts_data(serie, obj$input_size)
+  ts <- tspredit::ts_data(serie, obj$input_size)
 
-  obj$preproc <- fit(obj$preproc, ts)
-  ts <- transform(obj$preproc, ts)
+  obj$preproc <- daltoolbox::fit(obj$preproc, ts)
+  ts <- daltoolbox::transform(obj$preproc, ts)
   ts <- as.data.frame(ts)
 
-  obj$model <- fit(obj$model, ts)
+  obj$model <- daltoolbox::fit(obj$model, ts)
 
   return(obj)
 }
 
 
-#'@import daltoolbox
+#'@importFrom daltoolbox transform
+#'@importFrom tspredit ts_data
 #'@importFrom stats na.omit
 #'@importFrom graphics hist
 #'@exportS3Method detect han_autoencoder
@@ -55,11 +58,11 @@ detect.han_autoencoder <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  ts <- ts_data(obj$serie, obj$input_size)
-  ts <- transform(obj$preproc, ts)
+  ts <- tspredit::ts_data(obj$serie, obj$input_size)
+  ts <- daltoolbox::transform(obj$preproc, ts)
   ts <- as.data.frame(ts)
 
-  result <- as.data.frame(transform(obj$model, ts))
+  result <- as.data.frame(daltoolbox::transform(obj$model, ts))
   res <- apply(ts - result, 1, sum, na.rm=TRUE)
 
   res <- obj$har_distance(res)

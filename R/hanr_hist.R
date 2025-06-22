@@ -34,7 +34,6 @@ hanr_histogram <- function(density_threshold = 0.05) {
   return(obj)
 }
 
-#'@import daltoolbox
 #'@importFrom stats na.omit
 #'@importFrom graphics hist
 #'@exportS3Method detect hanr_histogram

@@ -34,7 +34,7 @@ hanr_fbiad <- function(sw_size = 30) {
   return(obj)
 }
 
-#'@import daltoolbox
+#'@importFrom tspredit ts_data
 #'@importFrom stats na.omit
 #'@exportS3Method detect hanr_fbiad
 detect.hanr_fbiad <- function(obj, serie, ...) {
@@ -42,7 +42,7 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  sx <- daltoolbox::ts_data(obj$serie, obj$sw_size)
+  sx <- tspredit::ts_data(obj$serie, obj$sw_size)
   ma <- apply(sx, 1, mean)
   resF <- obj$har_distance(sx[,ncol(sx)] - ma)
   iF <- obj$har_outliers(resF)
@@ -50,7 +50,7 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
   iF <- c(rep(FALSE, obj$sw_size-1), iF)
   resF <- c(rep(0, obj$sw_size-1), resF)
 
-  sx <- ts_data(rev(obj$serie), obj$sw_size)
+  sx <- tspredit::ts_data(rev(obj$serie), obj$sw_size)
   ma <- apply(sx, 1, mean)
   resB <- obj$har_distance(sx[,ncol(sx)] - ma)
   iB <- obj$har_outliers(resB)

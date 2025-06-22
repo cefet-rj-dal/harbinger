@@ -49,6 +49,11 @@ fc_roughness <- function(x) {
   return(mean(roughness))
 }
 
+#'@importFrom tspredit ts_data
+#'@importFrom tspredit ts_projection
+#'@importFrom tspredit ts_arima
+#'@importFrom daltoolbox transform
+#'@importFrom daltoolbox fit_curvature_min
 #'@importFrom stats median
 #'@importFrom stats sd
 #'@importFrom hht CEEMD
@@ -74,7 +79,7 @@ detect.hanr_remd <- function(obj, serie, ...) {
   vec <- cumsum(vec)
 
   #  Maximum curvature
-  res <- transform(fit_curvature_min(), vec)
+  res <- daltoolbox::transform(daltoolbox::fit_curvature_min(), vec)
   div <- res$x
   sum_high_freq <- obj$model[["imf"]][, 1]
 
@@ -84,9 +89,9 @@ detect.hanr_remd <- function(obj, serie, ...) {
     }
   }
 
-  ts <- ts_data(sum_high_freq, 0)
-  io <- ts_projection(ts)
-  model <- ts_arima()
+  ts <- tspredit::ts_data(sum_high_freq, 0)
+  io <- tspredit::ts_projection(ts)
+  model <- tspredit::ts_arima()
   model <- fit(model, x = io$input, y = io$output)
   adjust <- predict(model, io$input)
   adjust <- as.vector(adjust)

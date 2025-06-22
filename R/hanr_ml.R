@@ -18,10 +18,11 @@
 #'head(dataset)
 #'
 #'# setting up time series regression model
-#'model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+#'model <- hanr_ml(tspredit::ts_elm(tspredit::ts_norm_gminmax(),
+#'                   input_size=4, nhid=3, actfun="purelin"))
 #'
 #'# fitting the model
-#'model <- fit(model, dataset$serie)
+#'model <- daltoolbox::fit(model, dataset$serie)
 #'
 # making detection using hanr_ml
 #'detection <- detect(model, dataset$serie)
@@ -39,24 +40,28 @@ hanr_ml <- function(model, sw_size = 15) {
   return(obj)
 }
 
+#'@importFrom tspredit ts_data
+#'@importFrom tspredit ts_projection
 #'@exportS3Method fit hanr_ml
 fit.hanr_ml <- function(obj, serie, ...) {
-  ts <- ts_data(serie, obj$sw_size)
-  io <- ts_projection(ts)
+  ts <- tspredit::ts_data(serie, obj$sw_size)
+  io <- tspredit::ts_projection(ts)
 
   obj$model <- fit(obj$model, x=io$input, y=io$output)
 
   return(obj)
 }
 
+#'@importFrom tspredit ts_data
+#'@importFrom tspredit ts_projection
 #'@importFrom stats na.omit
 #'@importFrom stats predict
 #'@exportS3Method detect hanr_ml
 detect.hanr_ml <- function(obj, serie, ...) {
   obj <- obj$har_store_refs(obj, serie)
 
-  ts <- ts_data(obj$serie, obj$sw_size)
-  io <- ts_projection(ts)
+  ts <- tspredit::ts_data(obj$serie, obj$sw_size)
+  io <- tspredit::ts_projection(ts)
 
   adjust <- stats::predict(obj$model, io$input)
 

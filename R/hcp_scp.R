@@ -65,7 +65,7 @@ detect.hcp_scp <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  sx <- ts_data(obj$serie, obj$sw_size)
+  sx <- tspredit::ts_data(obj$serie, obj$sw_size)
   obj$offset <- round(obj$sw_size/2)
 
   #===== Analyzing all data windows ======

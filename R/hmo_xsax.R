@@ -71,9 +71,9 @@ detect.hmo_xsax <- function(obj, serie, ...) {
 
   tsax <- trans_xsax(obj$a)
   tsax <- fit(tsax, obj$serie)
-  tss <- transform(tsax, obj$serie)
+  tss <- daltoolbox::transform(tsax, obj$serie)
 
-  tsw <- daltoolbox::ts_data(tss, obj$w)
+  tsw <- tspredit::ts_data(tss, obj$w)
   seq <- base::apply(tsw, MARGIN = 1, function(x) paste(as.vector(x), collapse=""))
   entropy <- base::apply(as.matrix(seq), MARGIN = 1, comp_word_entropy)
 

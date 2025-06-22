@@ -10,7 +10,7 @@ hanr_fft_binseg_cusum()
 \code{hanr_fft_binseg_cusum} object
 }
 \description{
-This function implements an anomaly detection method that combines the Fast Fourier Transform (FFT)
+This function implements an anomaly detection method that combines the Fast Fourier daltoolbox::transform (FFT)
 with a changepoint-based cutoff strategy using the Binary Segmentation (BinSeg) method applied
 to the cumulative sum (CUSUM) of the frequency spectrum.
 

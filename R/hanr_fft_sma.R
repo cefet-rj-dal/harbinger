@@ -1,6 +1,6 @@
 #'@title Anomaly Detector using Adaptive FFT and Moving Average
 #'@description
-#'This function implements an anomaly detection model based on the Fast Fourier Transform (FFT),
+#'This function implements an anomaly detection model based on the Fast Fourier daltoolbox::transform (FFT),
 #'combined with an adaptive moving average filter. The method estimates the dominant frequency
 #'in the input time series using spectral analysis and then applies a moving average filter
 #'with a window size derived from that frequency. This highlights high-frequency deviations,
@@ -45,7 +45,7 @@ hanr_fft_sma <- function() {
   return(obj)
 }
 
-#'@import daltoolbox
+#'@importFrom tspredit ts_data
 #'@importFrom stats fft
 #'@importFrom stats sd
 #'@importFrom stats spec.pgram
@@ -75,7 +75,7 @@ detect.hanr_fft_sma <- function(obj, serie, ...) {
   # Dynamically apply the best moving average
   optimal_window <- find_best_moving_average(serie)
 
-  sx <- daltoolbox::ts_data(serie, optimal_window)
+  sx <- tspredit::ts_data(serie, optimal_window)
   ts_sma <- apply(sx, 1, mean)
 
   filtered_series <- serie - ts_sma

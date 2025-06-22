@@ -46,7 +46,7 @@ fit.hanct_dtw <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
-  data <- ts_data(stats::na.omit(serie), obj$seq)
+  data <- tspredit::ts_data(stats::na.omit(serie), obj$seq)
   data <- as.data.frame(data)
 
   # Apply k-means
@@ -65,7 +65,7 @@ detect.hanct_dtw <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  sx <- ts_data(obj$serie, obj$seq)
+  sx <- tspredit::ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
 
   res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))

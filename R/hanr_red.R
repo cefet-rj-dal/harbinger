@@ -89,7 +89,7 @@ detect.hanr_red <- function(obj, serie, ...) {
     }
 
     #  Maximum curvature
-    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
+    res <- transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
 
     #  somando as IMFs de maior variância

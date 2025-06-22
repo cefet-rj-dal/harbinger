@@ -24,7 +24,7 @@
 #'# normalizing the data
 #'norm <- minmax()
 #'norm <- fit(norm, train)
-#'train_n <- transform(norm, train)
+#'train_n <- daltoolbox::transform(norm, train)
 #'
 #'# establishing decision tree method
 #'model <- hanc_ml(cla_dtree("event", slevels))
@@ -33,7 +33,7 @@
 #'model <- fit(model, train_n)
 #'
 #'# evaluating the detections during testing
-#'test_n <- transform(norm, test)
+#'test_n <- daltoolbox::transform(norm, test)
 #'
 #'detection <- detect(model, test_n)
 #'print(detection[(detection$event),])
@@ -50,7 +50,7 @@ hanc_ml <- function(model, threshold = 0.5) {
   return(obj)
 }
 
-#'@import daltoolbox
+#'@importFrom daltoolbox fit
 #'@exportS3Method fit hanc_ml
 fit.hanc_ml <- function(obj, serie, ...) {
   serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
@@ -62,6 +62,7 @@ fit.hanc_ml <- function(obj, serie, ...) {
 
 #'@importFrom stats na.omit
 #'@importFrom stats predict
+#'@importFrom daltoolbox adjust_data.frame
 #'@exportS3Method detect hanc_ml
 detect.hanc_ml <- function(obj, serie, ...) {
   har_outliers_classification <- function(data) {
@@ -73,7 +74,7 @@ detect.hanc_ml <- function(obj, serie, ...) {
   if (!is.null(serie[,obj$model$attribute]))
     serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
   obj <- obj$har_store_refs(obj, serie)
-  obj$serie <- adjust_data.frame(obj$serie)
+  obj$serie <- daltoolbox::adjust_data.frame(obj$serie)
   obj$serie <- obj$serie[,obj$model$x, drop = FALSE]
 
   adjust <- stats::predict(obj$model, obj$serie)

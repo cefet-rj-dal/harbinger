@@ -4,7 +4,7 @@
 #'@examples
 #'#See examples of detectors for anomalies, change points, and motifs
 #'#at https://cefet-rj-dal.github.io/harbinger
-#'@import daltoolbox
+#'@importFrom daltoolbox dal_base
 #'@importFrom stats quantile
 #'@export
 harbinger <- function() {
@@ -82,7 +82,7 @@ detect.harbinger <- function(obj, serie, ...) {
   return(data.frame(idx = 1:length(serie), event = rep(FALSE, length(serie)), type = ""))
 }
 
-#'@import daltoolbox
+#'@importFrom daltoolbox evaluate
 #'@exportS3Method evaluate harbinger
 evaluate.harbinger <- function(obj, detection, event, evaluation = har_eval(), ...) {
   return(evaluate(evaluation, detection, event))

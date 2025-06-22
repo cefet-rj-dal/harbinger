@@ -15,7 +15,7 @@
 #' @references R.H. Shumway and D.S. Stoffer, 2010, Time Series Analysis and
 #' Its Applications: With R Examples. 3rd ed. 2011 edition ed. New York,
 #' Springer.
-#' @keywords moving average smoother transform time series
+#' @keywords moving average smoother daltoolbox::transform time series
 #' @examples
 #'#loading the example database
 #'data(examples_changepoints)

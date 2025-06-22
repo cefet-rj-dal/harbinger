@@ -10,7 +10,7 @@ hanr_fft_amoc_cusum()
 \code{hanr_fft_amoc_cusum} object
 }
 \description{
-This function implements an anomaly detection method based on the Fast Fourier Transform (FFT)
+This function implements an anomaly detection method based on the Fast Fourier daltoolbox::transform (FFT)
 and a changepoint-based cutoff strategy using the AMOC (At Most One Change) algorithm applied
 to the cumulative sum (CUSUM) of the power spectrum.
 

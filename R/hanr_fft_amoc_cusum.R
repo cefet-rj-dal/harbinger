@@ -1,6 +1,6 @@
 #'@title Anomaly Detector using FFT with AMOC and CUSUM Cutoff
 #'@description
-#'This function implements an anomaly detection method based on the Fast Fourier Transform (FFT)
+#'This function implements an anomaly detection method based on the Fast Fourier daltoolbox::transform (FFT)
 #'and a changepoint-based cutoff strategy using the AMOC (At Most One Change) algorithm applied
 #'to the cumulative sum (CUSUM) of the power spectrum.
 #'

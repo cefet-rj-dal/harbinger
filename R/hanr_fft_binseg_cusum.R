@@ -1,6 +1,6 @@
 #'@title Anomaly Detector using FFT with BinSeg and CUSUM Cutoff
 #'@description
-#'This function implements an anomaly detection method that combines the Fast Fourier Transform (FFT)
+#'This function implements an anomaly detection method that combines the Fast Fourier daltoolbox::transform (FFT)
 #'with a changepoint-based cutoff strategy using the Binary Segmentation (BinSeg) method applied
 #'to the cumulative sum (CUSUM) of the frequency spectrum.
 #'

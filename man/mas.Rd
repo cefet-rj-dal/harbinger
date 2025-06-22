@@ -42,8 +42,8 @@ Its Applications: With R Examples. 3rd ed. 2011 edition ed. New York,
 Springer.
 }
 \keyword{average}
+\keyword{daltoolbox::transform}
 \keyword{moving}
 \keyword{series}
 \keyword{smoother}
 \keyword{time}
-\keyword{transform}

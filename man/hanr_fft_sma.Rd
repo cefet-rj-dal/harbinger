@@ -10,7 +10,7 @@ hanr_fft_sma()
 \code{hanr_fft_sma} object
 }
 \description{
-This function implements an anomaly detection model based on the Fast Fourier Transform (FFT),
+This function implements an anomaly detection model based on the Fast Fourier daltoolbox::transform (FFT),
 combined with an adaptive moving average filter. The method estimates the dominant frequency
 in the input time series using spectral analysis and then applies a moving average filter
 with a window size derived from that frequency. This highlights high-frequency deviations,

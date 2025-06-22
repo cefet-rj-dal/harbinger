@@ -10,7 +10,7 @@ hanr_fft_binseg()
 \code{hanr_fft_binseg} object
 }
 \description{
-This function implements an anomaly detection method that combines the Fast Fourier Transform (FFT)
+This function implements an anomaly detection method that combines the Fast Fourier daltoolbox::transform (FFT)
 with a spectral cutoff strategy based on the Binary Segmentation (BinSeg) algorithm for changepoint detection.
 
 The method analyzes the power spectrum of the input time series and applies the BinSeg algorithm

@@ -22,7 +22,6 @@
 #'
 #'# filtering detected events
 #'print(detection[(detection$event),])
-#'@import daltoolbox
 #'@importFrom stats quantile
 #'@export
 har_ensemble <- function(...) {

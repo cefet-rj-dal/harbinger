@@ -38,7 +38,7 @@ test <- dataset[-(1:80),]
 # normalizing the data
 norm <- minmax()
 norm <- fit(norm, train)
-train_n <- transform(norm, train)
+train_n <- daltoolbox::transform(norm, train)
 
 # establishing decision tree method
 model <- hanc_ml(cla_dtree("event", slevels))
@@ -47,7 +47,7 @@ model <- hanc_ml(cla_dtree("event", slevels))
 model <- fit(model, train_n)
 
 # evaluating the detections during testing
-test_n <- transform(norm, test)
+test_n <- daltoolbox::transform(norm, test)
 
 detection <- detect(model, test_n)
 print(detection[(detection$event),])
