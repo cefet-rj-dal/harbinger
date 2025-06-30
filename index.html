@@ -60,18 +60,6 @@
 <hr>
 </div>
 <div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
-<p>The latest version of Harbinger is available on CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#install.packages"harbinger")</span></span></code></pre></div>
-<p>You can install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/harbinger"</span>, force <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
 <h1 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h1>
 <p>Examples of Harbinger are organized by application area:</p>
@@ -81,7 +69,7 @@
 <li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/change_point" class="external-link">Change points</a></li>
 <li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/motifs" class="external-link">Motifs</a></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cefet-rj-dal.github.io/harbinger/">harbinger</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span></span>
 <span><span class="co">#&gt;   method            from</span></span>
@@ -113,6 +101,18 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] idx   event type </span></span>
 <span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
+<hr>
+</div>
+<div class="section level1">
+<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h1>
+<p>The latest version of Harbinger is available on CRAN:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#install.packages"harbinger")</span></span></code></pre></div>
+<p>You can install the development version from GitHub:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/harbinger"</span>, force <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level1">
