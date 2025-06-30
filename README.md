@@ -38,24 +38,7 @@ it easy to extend and integrate new methods into the framework.
 
 ------------------------------------------------------------------------
 
-#  Installation
-
-The latest version of Harbinger is available on CRAN:
-
-``` r
-#install.packages"harbinger")
-```
-
-You can install the development version from GitHub:
-
-``` r
-library(devtools)
-devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
-```
-
-------------------------------------------------------------------------
-
-#  Examples
+# Examples
 
 Examples of Harbinger are organized by application area:
 
@@ -101,7 +84,24 @@ print(detection |> dplyr::filter(event==TRUE))
 
 ------------------------------------------------------------------------
 
-#  Bug reports and feature requests
+# Installation
+
+The latest version of Harbinger is available on CRAN:
+
+``` r
+#install.packages"harbinger")
+```
+
+You can install the development version from GitHub:
+
+``` r
+library(devtools)
+devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
+```
+
+------------------------------------------------------------------------
+
+# Bug reports and feature requests
 
 If you find any bugs or would like to suggest new features, please
 submit an issue here:
