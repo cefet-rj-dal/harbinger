@@ -89,7 +89,7 @@ print(detection |> dplyr::filter(event==TRUE))
 The latest version of Harbinger is available on CRAN:
 
 ``` r
-#install.packages"harbinger")
+install.packages("harbinger")
 ```
 
 You can install the development version from GitHub:

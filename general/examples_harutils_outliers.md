@@ -1,7 +1,7 @@
 
 ``` r
 # Installing Harbinger
-#install.packages"harbinger")
+install.packages("harbinger")
 ```
 
 
@@ -126,7 +126,7 @@ har_plot(harbinger(), dataset$serie)
   model <- hanr_arima()
   model$har_distance <- hutils$har_distance_l1
   model$har_outliers <- hutils$har_outliers_boxplot
-  model$har_outliers_checks <- hutils$har_outliers_checks_highgroup  
+  model$har_outliers_check <- hutils$har_outliers_checks_highgroup  
 # fitting the model
   model <- fit(model, dataset$serie)
 # making detections
