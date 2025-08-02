@@ -1,11 +1,12 @@
-#'@title Anomaly and change point detector using RED
-#'@description Anomaly and change point detection using RED
-#'The RED model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+#'@title Anomaly and change point detector using RTAD
+#'@description Anomaly and change point detection using RTAD
+#'The RTAD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
 #'It wraps the EMD model presented in the hht library.
 #'@param sw_size sliding window size (default 30)
 #'@param noise noise
 #'@param trials trials
-#'@return `hanr_red` object
+#'@param sigma function to compute the dispersion
+#'@return `hanr_rtad` object
 #'@examples
 #'library(daltoolbox)
 #'library(zoo)
@@ -18,7 +19,7 @@
 #'head(dataset)
 #'
 #'# setting up time series emd detector
-#'model <- hanr_red()
+#'model <- hanr_rtad()
 #'
 #'# fitting the model
 #'model <- fit(model, dataset$serie)
@@ -30,13 +31,14 @@
 #'print(detection[(detection$event),])
 #'
 #'@export
-hanr_red <- function(sw_size = 30, noise = 0.001, trials = 5) {
+hanr_rtad <- function(sw_size = 30, noise = 0.001, trials = 5, sigma = sd) {
   obj <- harbinger()
   obj$sw_size <- sw_size
   obj$noise <- noise
   obj$trials <- trials
+  obj$sigma <- sigma
 
-  class(obj) <- append("hanr_red", class(obj))
+  class(obj) <- append("hanr_rtad", class(obj))
   return(obj)
 }
 
@@ -64,8 +66,8 @@ fc_somaIMF <- function(ceemd.result, inicio, fim){
 #'@importFrom zoo rollapply
 #'@importFrom daltoolbox transform
 #'@importFrom daltoolbox fit_curvature_max
-#'@exportS3Method detect hanr_red
-detect.hanr_red <- function(obj, serie, ...) {
+#'@exportS3Method detect hanr_rtad
+detect.hanr_rtad <- function(obj, serie, ...) {
   if (is.null(serie))
     stop("No data was provided for computation", call. = FALSE)
 
@@ -74,7 +76,7 @@ detect.hanr_red <- function(obj, serie, ...) {
   id <- 1:length(obj$serie)
   san_size <-  length(obj$serie)
 
-  #  calculate IMFs
+  ## calculate IMFs
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   model_an <- ceemd.result
@@ -82,26 +84,26 @@ detect.hanr_red <- function(obj, serie, ...) {
   if (model_an$nimf < 4){
     soma_an <- obj$serie - model_an$residue
   }else{
-    #  calculate roughness for each imf
+    ## calculate roughness for each imf
     vec <- vector()
     for (n in 1:model_an$nimf){
       vec[n] <- fc_rug(model_an[["imf"]][,n])
     }
 
-    #  Maximum curvature
-    res <- transform(daltoolbox::fit_curvature_max(), vec)
+    ## Maximum curvature
+    res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
 
-    #  somando as IMFs de maior variância
+    ## sum IMFs
     soma_an <- fc_somaIMF(model_an, 1, div)
   }
 
-  #Cria o diferencial da soma_an
+  # diff
   diff_soma <- c(NA, diff(soma_an))
-  diff_soma[1] <- diff_soma[2]#repeti no primeiro termo, o segundo termo da série diferenciada
+  diff_soma[1] <- diff_soma[2]
 
 
-  # Tira a tendência da série original
+  ## dtrend
   isEmpty <- function(x) {
     return(length(x)==0)
   }
@@ -112,13 +114,13 @@ detect.hanr_red <- function(obj, serie, ...) {
     d_serie <- obj$serie-model_an$residue
   }
 
-  # Calcula volatilidade instantânea
-  sd <-  rollapply(d_serie, 30, sd, by = 1, partial=TRUE)
+  ##Calcula volatilidade instantânea
+  dm <-  rollapply(d_serie, obj$sw_size, obj$sigma, by = 1, partial=TRUE)
 
-  #  Criando vetor de anomalias
-  RED_transform <- diff_soma/sd
+  ## Criando vetor de anomalias
+  RTAD_transform <- diff_soma/dm
 
-  res <- obj$har_distance(RED_transform)
+  res <- obj$har_distance(RTAD_transform)
 
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
