@@ -27,7 +27,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```{r}
 # establishing arima method 
-  model <- model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+  model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
   model$time_tolerance <- 10
 ```
 
