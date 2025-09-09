@@ -69,7 +69,7 @@ summary(train_n)
 
 
 ``` r
-model <- hanc_ml(cla_rf("event", c("FALSE", "TRUE"), mtry = 1, ntree=5))
+model <- hanr_ml(ts_rf(ts_norm_gminmax(), input_size=4, nodesize=1, ntree=20))
 ```
 
 

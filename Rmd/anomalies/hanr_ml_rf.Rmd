@@ -28,7 +28,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```{r}
 # establishing random forest method 
-  model <- hanr_ml(ts_elm(ts_norm_gminmax(), input_size=4, nhid=3, actfun="purelin"))
+  model <- hanr_ml(ts_rf(ts_norm_gminmax(), input_size=4, nodesize=1, ntree=20))
 ```
 
 ```{r}
