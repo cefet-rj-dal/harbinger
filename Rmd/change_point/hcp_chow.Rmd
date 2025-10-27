@@ -6,7 +6,7 @@ The Chow-style structural break test estimates a linear model and finds breakpoi
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

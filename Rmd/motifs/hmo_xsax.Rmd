@@ -6,7 +6,7 @@ XSAX extends SAX to a larger alphanumeric alphabet, enabling finer symbolic reso
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

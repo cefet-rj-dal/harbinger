@@ -4,7 +4,7 @@ This Rmd provides quick end-to-end examples using the default `harbinger()` pipe
 
 ```{r}
 # Install Harbinger (only once, if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

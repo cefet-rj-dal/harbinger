@@ -4,7 +4,7 @@ This Rmd demonstrates motif discovery using Matrix Profile with the STOMP algori
 
 ```{r}
 # Install Harbinger (only once, if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

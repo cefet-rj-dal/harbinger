@@ -6,7 +6,7 @@ SAX (Symbolic Aggregate approXimation) maps z-normalized values to symbols; recu
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

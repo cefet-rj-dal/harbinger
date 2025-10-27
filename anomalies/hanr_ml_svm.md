@@ -1,12 +1,16 @@
+# Overview
+
+This Rmd demonstrates anomaly detection in a univariate time series using a Support Vector Machine regressor via harbinger's `hanr_ml + ts_svm`. The model learns short-range dynamics to predict the next value; large residuals are flagged as anomalies using an adaptive threshold. The workflow is: load packages and data, visualize the series, define and fit the model, run detection, evaluate, and plot results (including residual scores).
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 library(tspredit)
@@ -14,13 +18,13 @@ library(tspredit)
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -37,7 +41,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -45,25 +49,27 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing SVM
+# Define SVM-based regressor for anomaly detection (hanr_ml + ts_svm)
+# - input_size=4 sets the window length used for prediction
+# - kernel="radial" uses the RBF kernel; tune if needed
   model <- hanr_ml(ts_svm(ts_norm_gminmax(), input_size=4,  kernel = "radial"))
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies (compute residuals and events)
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -74,7 +80,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -88,7 +94,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
@@ -96,7 +102,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 

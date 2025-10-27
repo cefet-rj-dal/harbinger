@@ -2,7 +2,7 @@ This notebook shows how different Harbinger utility functions for distance, thre
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

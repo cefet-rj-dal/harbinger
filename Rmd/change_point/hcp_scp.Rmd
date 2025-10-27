@@ -6,7 +6,7 @@ Seminal Change Point (SCP) compares regression fits with and without the central
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

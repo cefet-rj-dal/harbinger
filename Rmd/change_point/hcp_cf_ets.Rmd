@@ -6,7 +6,7 @@ ChangeFinder-ETS detects change points by modeling residual deviations with an E
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

@@ -4,7 +4,7 @@ This Rmd demonstrates variable-length motif discovery with Matrix Profile using 
 
 ```{r}
 # Install Harbinger (only once, if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

@@ -2,7 +2,7 @@ SoftED provides soft evaluation by matching detections within tolerance windows 
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

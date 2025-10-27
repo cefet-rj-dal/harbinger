@@ -6,7 +6,7 @@ ChangeFinder-GARCH models volatility with GARCH and detects change points by smo
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

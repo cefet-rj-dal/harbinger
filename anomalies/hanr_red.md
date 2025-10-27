@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd applies the Residual Error-based Detector (`hanr_red`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,61 +48,80 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing hanr_emd method 
+# Define Residual Error-based Detector (hanr_red)
   model <- hanr_red()
 ```
 
+```
+## Error in hanr_red(): não foi possível encontrar a função "hanr_red"
+```
+
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
-
-``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+```
+## Error: objeto 'model' não encontrado
 ```
 
 
 ``` r
-# filtering detected events
+# Detect anomalies (compute residuals and events)
+  detection <- detect(model, dataset$serie)
+```
+
+```
+## Error: objeto 'model' não encontrado
+```
+
+
+``` r
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error: objeto 'detection' não encontrado
 ```
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error: objeto 'model' não encontrado
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error: objeto 'evaluation' não encontrado
 ```
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanr_red/unnamed-chunk-11-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/hanr_red/unnamed-chunk-12-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 

@@ -1,12 +1,18 @@
+The PCA-based detector flags large reconstruction errors when projecting multivariate data onto principal components. In this tutorial we:
+
+- Load a multivariate example and create synthetic event labels
+- Fit the PCA detector on two dimensions
+- Visualize detections over different series and inspect residual magnitudes
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 library(ggplot2)
@@ -14,6 +20,7 @@ library(ggplot2)
 
 
 ``` r
+# Load a multivariate example and define event labels (for demo)
 data("examples_harbinger")
 dataset <- examples_harbinger$multidimensional
 dataset$event <- FALSE
@@ -37,7 +44,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the target series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -45,7 +52,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# ploting the time x
+# Plot the second dimension
 har_plot(harbinger(), dataset$x)
 ```
 
@@ -53,26 +60,29 @@ har_plot(harbinger(), dataset$x)
 
 
 ``` r
+# Fit the PCA detector on the first two columns and run detection
 model <- fit(hmu_pca(), dataset[,1:2])
 detection <- detect(model, dataset[,1:2])
 ```
 
 
 ``` r
+# Plot detections on the target series
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
 grf <- grf + ylab("serie")
 ```
 
 
 ``` r
+# Plot detections on the second dimension
 grf <- har_plot(model, dataset$x, detection, dataset$event)
 grf <- grf + ylab("x")
 ```
 
 
 ``` r
-# plotting the results
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Plot residual magnitude and decision thresholds
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/hmu_pca/unnamed-chunk-10-1.png)

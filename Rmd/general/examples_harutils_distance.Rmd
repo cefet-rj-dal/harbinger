@@ -2,7 +2,7 @@ This notebook demonstrates Harbinger utility distance functions for summarizing 
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

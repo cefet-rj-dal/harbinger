@@ -2,7 +2,7 @@ This notebook demonstrates several change-point patterns in the example datasets
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

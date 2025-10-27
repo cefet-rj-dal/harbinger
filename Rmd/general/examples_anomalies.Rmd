@@ -2,7 +2,7 @@ This notebook demonstrates different anomaly patterns available in the example d
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}
