@@ -1,6 +1,6 @@
 # Overview
 
-This Rmd applies the Residual Error-based Detector (`hanr_red`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+This Rmd applies the Residual Error-based Detector (`hanr_rt`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -30,8 +30,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```{r}
-# Define Residual Error-based Detector (hanr_red)
-  model <- hanr_red()
+# Define Residual Error-based Detector (hanr_rt)
+  model <- hanr_rtad()
 ```
 
 ```{r}

@@ -46,7 +46,7 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/hanct_dtw_discord/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-17](fig/hanct_dtw_discord/unnamed-chunk-17-1.png)
 
 
 ``` r
@@ -97,7 +97,7 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanct_dtw_discord/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-23](fig/hanct_dtw_discord/unnamed-chunk-23-1.png)
 
 
 ``` r
@@ -105,4 +105,4 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/hanct_dtw_discord/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-24](fig/hanct_dtw_discord/unnamed-chunk-24-1.png)

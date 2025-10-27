@@ -75,7 +75,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Finished in 0.03 secs
+## Finished in 0.04 secs
 ```
 
 

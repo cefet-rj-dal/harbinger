@@ -87,7 +87,7 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ## [1] idx   event type 
-## <0 linhas> (ou row.names de comprimento 0)
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r
@@ -125,7 +125,7 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ## [1] idx   event type 
-## <0 linhas> (ou row.names de comprimento 0)
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r

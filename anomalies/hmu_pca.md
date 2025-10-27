@@ -19,7 +19,7 @@ library(ggplot2)
 ```
 
 ```
-## Warning: pacote 'ggplot2' foi compilado no R versão 4.5.1
+## Warning: package 'ggplot2' was built under R version 4.5.1
 ```
 
 

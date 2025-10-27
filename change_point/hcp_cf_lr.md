@@ -73,7 +73,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ## [1] idx   event type 
-## <0 linhas> (ou row.names de comprimento 0)
+## <0 rows> (or 0-length row.names)
 ```
 
 

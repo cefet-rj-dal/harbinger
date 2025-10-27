@@ -1,6 +1,6 @@
 # Overview
 
-This Rmd applies the Residual Error-based Detector (`hanr_red`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+This Rmd applies the Residual Error-based Detector (`hanr_rt`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
 
 
 ``` r
@@ -44,16 +44,12 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/hanr_red/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/hanr_rtad/unnamed-chunk-5-1.png)
 
 
 ``` r
-# Define Residual Error-based Detector (hanr_red)
-  model <- hanr_red()
-```
-
-```
-## Error in hanr_red(): não foi possível encontrar a função "hanr_red"
+# Define Residual Error-based Detector (hanr_rt)
+  model <- hanr_rtad()
 ```
 
 
@@ -62,18 +58,10 @@ har_plot(harbinger(), dataset$serie)
   model <- fit(model, dataset$serie)
 ```
 
-```
-## Error: objeto 'model' não encontrado
-```
-
 
 ``` r
 # Detect anomalies (compute residuals and events)
   detection <- detect(model, dataset$serie)
-```
-
-```
-## Error: objeto 'model' não encontrado
 ```
 
 
@@ -83,25 +71,22 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Error: objeto 'detection' não encontrado
+##   idx event    type
+## 1  50  TRUE anomaly
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error: objeto 'model' não encontrado
-```
-
-``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error: objeto 'evaluation' não encontrado
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -110,9 +95,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error: objeto 'detection' não encontrado
-```
+![plot of chunk unnamed-chunk-11](fig/hanr_rtad/unnamed-chunk-11-1.png)
 
 
 ``` r
@@ -120,8 +103,6 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Error: objeto 'detection' não encontrado
-```
+![plot of chunk unnamed-chunk-12](fig/hanr_rtad/unnamed-chunk-12-1.png)
 
 

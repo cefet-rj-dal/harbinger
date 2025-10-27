@@ -16,11 +16,11 @@ library(daltoolbox)
 
 ```
 ## 
-## Anexando pacote: 'daltoolbox'
+## Attaching package: 'daltoolbox'
 ```
 
 ```
-## O seguinte objeto é mascarado por 'package:base':
+## The following object is masked from 'package:base':
 ## 
 ##     transform
 ```
@@ -82,44 +82,10 @@ har_plot(harbinger(), dataset$serie)
   model <- fit(model, dataset$serie)
 ```
 
-```
-## Warning in system2(python, args, stdout = TRUE): execução do comando
-## '"C:/Users/eduar/AppData/Local/R/cache/R/reticulate/uv/cache/archive-v0/n3jrw-3a68KSNon74FalM/Scripts/python.exe"
-## -m pip freeze' teve status 1
-```
-
-```
-## 
-```
-
-```
-## Warning in py_install(pip_packages, pip = TRUE): An ephemeral virtual environment managed by 'reticulate' is currently in use.
-## To add more packages to your current session, call `py_require()` instead
-## of `py_install()`. Running:
-##   `py_require(c("matplotlib", "numpy", "pandas", "scikit-learn", "scipy", "torch"))`
-```
-
-```
-## Warning in py_require(packages): After Python has initialized, only `action
-## = 'add'` with new packages is supported.
-```
-
-```
-## Done!
-```
-
-```
-## No module named 'torch'
-```
-
 
 ``` r
 # Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
-```
-
-```
-## No module named 'torch'
 ```
 
 
@@ -129,25 +95,23 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Error: objeto 'detection' não encontrado
+##   idx event    type
+## 1  19  TRUE anomaly
+## 2  44  TRUE anomaly
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error: objeto 'detection' não encontrado
-```
-
-``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error: objeto 'evaluation' não encontrado
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     2    
+## FALSE     1     98
 ```
 
 
@@ -156,9 +120,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error: objeto 'detection' não encontrado
-```
+![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
 
 ``` r
 # Plot residual scores and threshold
@@ -166,5 +128,12 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Error: objeto 'detection' não encontrado
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the harbinger package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
+
+![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)

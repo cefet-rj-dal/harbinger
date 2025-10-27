@@ -87,7 +87,7 @@ print(detection |> dplyr::filter(event==TRUE))
 
 ```
 ## [1] idx   event type 
-## <0 linhas> (ou row.names de comprimento 0)
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r
@@ -127,7 +127,7 @@ print(evaluation$confMatrix)
 
 ```
 ## [1] idx   event type 
-## <0 linhas> (ou row.names de comprimento 0)
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r
@@ -154,17 +154,6 @@ print(evaluation$confMatrix)
 ``` r
 # Plot residual scores and threshold
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
-```
-
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the harbinger package.
-##   Please report the issue at
-##   <https://github.com/cefet-rj-dal/harbinger/issues>.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
 ```
 
 ![plot of chunk unnamed-chunk-13](fig/hanc_ml_dtree/unnamed-chunk-13-1.png)
