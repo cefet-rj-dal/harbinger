@@ -8,7 +8,7 @@ AMOC (At Most One Change) detects a single, most significant change point in a u
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

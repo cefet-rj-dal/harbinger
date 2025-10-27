@@ -6,7 +6,7 @@ The ARIMA-based anomaly detector fits an ARIMA model to the time series and flag
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

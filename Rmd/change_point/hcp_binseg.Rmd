@@ -7,7 +7,7 @@ Binary Segmentation (BinSeg) recursively identifies multiple change points by sp
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

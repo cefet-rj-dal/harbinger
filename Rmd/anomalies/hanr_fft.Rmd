@@ -6,7 +6,7 @@ The FFT-based detector applies a high-pass filter in the frequency domain and fl
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

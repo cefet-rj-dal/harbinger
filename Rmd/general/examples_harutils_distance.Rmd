@@ -1,28 +1,33 @@
+This notebook demonstrates Harbinger utility distance functions for summarizing residual magnitudes (L1 and L2) and plotting results for quick inspection.
+
 ```{r}
-# Installing Harbinger
+# Install Harbinger (if needed)
 install.packages("harbinger")
 ```
 
 ```{r}
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-# class harutils
-  hutils <- harutils()
+# Instantiate utilities
+hutils <- harutils()
 ```
 
 ```{r}
+# Generate synthetic residuals
 values <- rnorm(30, mean = 0, sd = 1)
 ```
 
 ```{r}
+# L1 aggregation of residual magnitude
 v1 <- hutils$har_distance_l1(values)
 har_plot(harbinger(), v1)
 ```
 ```{r}
+# L2 aggregation of residual magnitude
 v2 <- hutils$har_distance_l2(values)
 har_plot(harbinger(), v2)
 ```

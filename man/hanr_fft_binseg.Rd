@@ -27,23 +27,24 @@ This function is part of the HARBINGER framework and returns an object of class 
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series fft detector
+# Configure FFT+BinSeg detector
 model <- hanr_fft_binseg()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
-print(detection[(detection$event),])
+# Inspect detected anomalies
+print(detection[detection$event, ])
 
 
 }

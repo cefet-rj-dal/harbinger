@@ -26,7 +26,7 @@ This function extends the HARBINGER framework and returns an object of class \co
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
 #Using simple example

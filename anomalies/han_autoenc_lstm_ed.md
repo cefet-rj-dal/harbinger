@@ -1,12 +1,12 @@
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(daltoolboxdp)
 library(harbinger) 
@@ -14,13 +14,13 @@ library(harbinger)
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -37,7 +37,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -45,36 +45,37 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing han_autoencoder method 
+# Define LSTM autoencoder-based detector (autoenc_lstm_ed)
   model <- han_autoencoder(3, 2, autoenc_lstm_ed, num_epochs = 1500)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ```
 ##   idx event    type
-## 1  52  TRUE anomaly
+## 1  50  TRUE anomaly
+## 2  52  TRUE anomaly
 ```
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -82,13 +83,13 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      1     1    
+## FALSE     0     99
 ```
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
@@ -100,3 +101,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_lstm_ed/unnamed-chunk-12-1.png)
+# Overview
+
+This Rmd demonstrates anomaly detection with an LSTM autoencoder (`han_autoencoder(..., autoenc_lstm_ed, ...)`). The model encodes and decodes sequences; high reconstruction error flags anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.

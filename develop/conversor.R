@@ -46,7 +46,7 @@ convert_rmd_md <- function(input) {
 
 
 
-dir <- "."
+dir <- "Rmd"
 
 texs <- list.files(path = dir, pattern = ".ipynb$", full.names = TRUE, recursive = TRUE)
 if (FALSE) {
@@ -70,7 +70,6 @@ if (TRUE) {
     convert_rmd_md(tex)
   }
 }
-
 #Procurar por ## Error
 
 #Procurar por ## Error in install.packages : Updating loaded packages

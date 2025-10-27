@@ -6,7 +6,7 @@ The GARCH-based detector models conditional heteroskedasticity and flags large s
 
 ```{r}
 # Install Harbinger (if needed)
-install.packages("harbinger")
+#install.packages("harbinger")
 ```
 
 ```{r}

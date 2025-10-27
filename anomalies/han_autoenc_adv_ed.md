@@ -1,66 +1,55 @@
+# Overview
+
+This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 ```
 
 ```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
-```
-## Registered S3 methods overwritten by 'forecast':
-##   method  from 
-##   head.ts stats
-##   tail.ts stats
+## Warning: pacote 'daltoolbox' foi compilado no R versão 4.5.1
 ```
 
 ```
 ## 
-## Attaching package: 'daltoolbox'
+## Anexando pacote: 'daltoolbox'
 ```
 
 ```
-## The following object is masked from 'package:base':
+## O seguinte objeto é mascarado por 'package:base':
 ## 
 ##     transform
 ```
 
 ``` r
 library(daltoolboxdp)
-library(harbinger) 
 ```
 
 ```
-## Registered S3 methods overwritten by 'tspredit':
-##   method           from      
-##   [.ts_data        daltoolbox
-##   action.ts_reg    daltoolbox
-##   evaluate.ts_reg  daltoolbox
-##   fit.ts_arima     daltoolbox
-##   fit.ts_regsw     daltoolbox
-##   predict.ts_arima daltoolbox
-##   predict.ts_reg   daltoolbox
-##   predict.ts_regsw daltoolbox
+## Warning: pacote 'daltoolboxdp' foi compilado no R versão 4.5.1
+```
+
+``` r
+library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -77,7 +66,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -85,25 +74,40 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing han_autoencoder method 
+# Define adversarial autoencoder-based detector (autoenc_adv_ed)
   model <- han_autoencoder(3, 2, autoenc_adv_ed, num_epochs = 1500)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## 
+```
+
+```
+## Warning in py_install(pip_packages, pip = TRUE): An ephemeral virtual environment managed by 'reticulate' is currently in use.
+## To add more packages to your current session, call `py_require()` instead
+## of `py_install()`. Running:
+##   `py_require(c("matplotlib", "pandas", "scikit-learn", "scipy", "torch"))`
+```
+
+```
+## Done!
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -115,7 +119,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -129,14 +133,14 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 

@@ -1,6 +1,10 @@
+# Overview
+
+This Rmd demonstrates anomaly detection with a stacked autoencoder (`han_autoencoder(..., autoenc_stacked_ed, ...)`). Stacking deepens the encoder/decoder to capture richer structure; anomalies have higher reconstruction error. Steps: load packages/data, visualize, define layers/epochs, fit, detect, evaluate, and plot.
+
 
 ``` r
-# loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 library(daltoolboxdp)
@@ -8,13 +12,13 @@ library(daltoolboxdp)
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -31,7 +35,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -39,25 +43,25 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing han_autoencoder method 
+# Define stacked autoencoder-based detector (autoenc_stacked_ed)
   model <- han_autoencoder(3, 2, autoenc_stacked_ed, num_epochs = 1500)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -68,7 +72,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -82,14 +86,14 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/han_autoenc_stacked_ed/unnamed-chunk-10-1.png)
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
