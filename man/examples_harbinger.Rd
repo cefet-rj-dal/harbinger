@@ -14,22 +14,27 @@ A list of time series.
 data(examples_harbinger)
 }
 \description{
-A list of time series for event detection
+A list of time series for demonstrating event detection tasks.
 \itemize{
-\item nonstationarity: a synthetic nonstationarity time series
-\item global_temperature_yearly: yearly global temperature of the world
-\item global_temperature_monthly: monthly global temperature of the world
-\item multidimensional: multidimensional time series with a change point
-\item seattle_week: Seattle weakly temperature in 2019
-\item seattle_daily: Seattle daily temperature in 2019
+\item nonstationarity: synthetic nonstationary time series.
+\item global_temperature_yearly: yearly global temperature.
+\item global_temperature_monthly: monthly global temperature.
+\item multidimensional: multivariate series with a change point.
+\item seattle_week: Seattle weekly temperature in 2019.
+\item seattle_daily: Seattle daily temperature in 2019.
 }
 #'
 }
 \examples{
 data(examples_harbinger)
+# Inspect a series (Seattle daily temperatures)
 serie <- examples_harbinger$seattle_daily
+head(serie)
 }
 \references{
 \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+
+Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series.
+1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 }
 \keyword{datasets}

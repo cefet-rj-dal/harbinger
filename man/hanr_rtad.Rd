@@ -27,22 +27,29 @@ It wraps the EMD model presented in the hht library.
 library(daltoolbox)
 library(zoo)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series emd detector
+# Configure RTAD detector
 model <- hanr_rtad()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected events
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

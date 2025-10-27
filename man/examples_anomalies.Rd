@@ -14,24 +14,28 @@ A list of time series for anomaly detection.
 data(examples_anomalies)
 }
 \description{
-A list of time series for anomaly detection
+A list of time series designed for anomaly detection tasks.
 \itemize{
-\item simple: a simple synthetic time series
-\item contextual: a contextual synthetic time series
-\item simple: a trend synthetic time series
-\item trend: a simple synthetic time series
-\item multiple: a multiple anomalies synthetic time series
-\item sequence: a sequence synthetic time series
-\item tt: a train-test synthetic time series
-\item tt_warped: a warped train-test synthetic time series
+\item simple: simple synthetic series with isolated anomalies.
+\item contextual: contextual anomalies relative to local behavior.
+\item trend: synthetic series with trend and anomalies.
+\item multiple: multiple anomalies.
+\item sequence: repeated anomalous sequences.
+\item tt: train-test split synthetic series.
+\item tt_warped: warped train-test synthetic series.
 }
 #'
 }
 \examples{
 data(examples_anomalies)
+# Select a simple anomaly series
 serie <- examples_anomalies$simple
+head(serie)
 }
 \references{
 \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+
+Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series.
+1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 }
 \keyword{datasets}

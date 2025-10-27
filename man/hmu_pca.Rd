@@ -7,34 +7,45 @@
 hmu_pca()
 }
 \value{
-\code{hmu_pca} object
+\code{hmu_pca} object.
 }
 \description{
-Multivariate anomaly detector using PCA \url{doi:10.1016/0098-3004(93)90090-R}
+Projects multivariate observations onto principal components and flags
+large reconstruction errors as anomalies. Based on classical PCA.
+}
+\details{
+The series is standardized, PCA is computed, and data are reconstructed from
+principal components. The reconstruction error is summarized and thresholded.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load multivariate example data
 data(examples_harbinger)
 
-#Using the time series 9
+# Use a multidimensional time series
 dataset <- examples_harbinger$multidimensional
 head(dataset)
 
-# establishing hmu_pca method
+# Configure PCA-based anomaly detector
 model <- hmu_pca()
 
-# fitting the model using the two columns of the dataset
+# Fit the model (example uses first two columns)
 model <- fit(model, dataset[,1:2])
 
-# making detections
+# Run detection
 detection <- detect(model, dataset[,1:2])
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
-# evaluating the detections
+# Evaluate detections
 evaluation <- evaluate(model, detection$event, dataset$event)
 print(evaluation$confMatrix)
+
+}
+\references{
+\itemize{
+\item Jolliffe IT (2002). Principal Component Analysis. Springer.
+}
 }

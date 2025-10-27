@@ -2,7 +2,7 @@
 % Please edit documentation in R/hcp_chow.R
 \name{hcp_chow}
 \alias{hcp_chow}
-\title{Chow test method}
+\title{Chow Test (structural break)}
 \usage{
 hcp_chow()
 }
@@ -10,29 +10,29 @@ hcp_chow()
 \code{hcp_chow} object
 }
 \description{
-Change-point detection method that focus on identifying structural changes  \url{doi:10.18637/jss.v007.i02}.
+Change-point detection for linear models using F-based structural break tests from the strucchange package \url{doi:10.18637/jss.v007.i02}.
 It wraps the Fstats and breakpoints implementation available in the strucchange library.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure the Chow detector
 model <- hcp_chow()
 
-# fitting the model
+# Fit the detector (no-op for Chow)
 model <- fit(model, dataset$serie)
 
-# execute the detection method
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
 }

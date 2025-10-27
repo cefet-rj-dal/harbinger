@@ -2,27 +2,34 @@
 % Please edit documentation in R/han_autoencoder.R
 \name{han_autoencoder}
 \alias{han_autoencoder}
-\title{Anomaly detector using autoencoder}
+\title{Anomaly detector using autoencoders}
 \usage{
 han_autoencoder(input_size, encode_size, encoderclass = autoenc_base_ed, ...)
 }
 \arguments{
-\item{input_size}{Establish the input size for the autoencoder anomaly detector. It is the size of the output also.}
+\item{input_size}{Integer. Input (and output) window size for the autoencoder.}
 
-\item{encode_size}{The encode size for the autoencoder.}
+\item{encode_size}{Integer. Size of the encoded (bottleneck) representation.}
 
-\item{encoderclass}{The class of daltoolbox encoder-decoder.}
+\item{encoderclass}{DALToolbox encoder-decoder constructor to instantiate.}
 
-\item{...}{optional arguments for encoder-decoder class.}
+\item{...}{Additional arguments forwarded to \code{encoderclass}.}
 }
 \value{
-han_autoencoder object
-histogram based method to detect anomalies in time series. Bins with smaller amount of observations are considered anomalies. Values below first bin or above last bin are also considered anomalies.>.
+\code{han_autoencoder} object
 }
 \description{
-Anomaly detector using autoencoder
+Trains an encoder-decoder (autoencoder) to reconstruct sliding windows of the
+series; large reconstruction errors indicate anomalies.
 }
 \examples{
-#See an example of using `autoenc_ed` at this
-#https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
+# For a full example using `autoenc_ed`, see:
+# https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
+
+}
+\references{
+\itemize{
+\item Sakurada M, Yairi T (2014). Anomaly Detection Using Autoencoders with
+Nonlinear Dimensionality Reduction. MLSDA 2014.
+}
 }

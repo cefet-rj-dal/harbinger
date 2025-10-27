@@ -2,38 +2,41 @@
 % Please edit documentation in R/hcp_cf_lr.R
 \name{hcp_cf_lr}
 \alias{hcp_cf_lr}
-\title{Change Finder using LR}
+\title{Change Finder using Linear Regression}
 \usage{
 hcp_cf_lr(sw_size = 30)
 }
 \arguments{
-\item{sw_size}{Sliding window size}
+\item{sw_size}{Integer. Sliding window size for smoothing/statistics.}
 }
 \value{
-\code{hcp_cf_lr} object
+\code{hcp_cf_lr} object.
 }
 \description{
-Change-point detection is related to event/trend change detection. Change Finder LR detects change points based on deviations relative to linear regression model \url{doi:10.1109/TKDE.2006.1599387}.
+Change-point detection by modeling residual deviations with linear regression
+and applying a second-stage smoothing and thresholding, inspired by
+ChangeFinder \url{doi:10.1109/TKDE.2006.1599387}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure ChangeFinder-LR detector
 model <- hcp_cf_lr()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
 }

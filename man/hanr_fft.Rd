@@ -10,29 +10,42 @@ hanr_fft()
 \code{hanr_fft} object
 }
 \description{
-Anomaly detection using FFT
-The FFT model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the FFT model presented in the stats library.
+High-pass filtering via FFT to isolate high-frequency components; anomalies
+are flagged where the filtered magnitude departs strongly from baseline.
+}
+\details{
+The spectrum is computed by FFT, a cutoff is selected from the power spectrum,
+low frequencies are nulled, and the inverse FFT reconstructs a high-pass
+signal. Magnitudes are summarized and thresholded using \code{harutils()}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series fft detector
+# Configure FFT-based anomaly detector
 model <- hanr_fft()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Sobrinho, E. P., Souza, J., Lima, J., Giusti, L., Bezerra, E., Coutinho, R., Baroni, L.,
+Pacitti, E., Porto, F., Belloze, K., Ogasawara, E. Fine-Tuning Detection Criteria for
+Enhancing Anomaly Detection in Time Series. In: Simpósio Brasileiro de Banco de Dados
+(SBBD). SBC, 29 Sep. 2025. doi:10.5753/sbbd.2025.247063
+}
 }

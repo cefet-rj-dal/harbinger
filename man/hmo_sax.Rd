@@ -7,37 +7,46 @@
 hmo_sax(a, w, qtd = 2)
 }
 \arguments{
-\item{a}{alphabet size}
+\item{a}{Integer. Alphabet size.}
 
-\item{w}{word size}
+\item{w}{Integer. Word/window size.}
 
-\item{qtd}{number of occurrences to be classified as motifs}
+\item{qtd}{Integer. Minimum number of occurrences to classify as a motif.}
 }
 \value{
-\code{hmo_sax} object
+\code{hmo_sax} object.
 }
 \description{
-Motif discovery using SAX \url{doi:10.1007/s10618-007-0064-z}
+Discovers repeated subsequences (motifs) using a Symbolic Aggregate approXimation
+(SAX) representation \url{doi:10.1007/s10618-007-0064-z}. Subsequences are discretized
+and grouped by symbolic words; frequently occurring words indicate motifs.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load motif example data
 data(examples_motifs)
 
-#Using sequence example
+# Use a simple sequence example
 dataset <- examples_motifs$simple
 head(dataset)
 
-# setting up motif discovery method
+# Configure SAX-based motif discovery
 model <- hmo_sax(26, 3, 3)
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected motifs
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Lin J, Keogh E, Lonardi S, Chiu B (2007). A symbolic representation of time series,
+with implications for streaming algorithms. Data Mining and Knowledge Discovery 15, 107–144.
+}
 }

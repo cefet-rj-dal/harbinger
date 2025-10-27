@@ -19,22 +19,29 @@ It wraps the GARCH model presented in the rugarch library.
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using volatility example
+# Use a volatility example
 dataset <- examples_changepoints$volatility
 head(dataset)
 
-# setting up change point method
+# Configure ChangeFinder-GARCH detector
 model <- hcp_garch()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

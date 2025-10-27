@@ -2,46 +2,55 @@
 % Please edit documentation in R/har_eval_soft.R
 \name{har_eval_soft}
 \alias{har_eval_soft}
-\title{Evaluation of event detection}
+\title{Evaluation of event detection (SoftED)}
 \usage{
 har_eval_soft(sw_size = 15)
 }
 \arguments{
-\item{sw_size}{tolerance window size}
+\item{sw_size}{Integer. Tolerance window size for soft matching.}
 }
 \value{
 \code{har_eval_soft} object
 }
 \description{
-Evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}
+Soft evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using the simple
+# Use the simple series
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time change point using GARCH
+# Configure a change-point detector (GARCH)
 model <- hcp_garch()
 
-# fitting the model
+# Fit the detector
 model <- fit(model, dataset$serie)
 
-# making detections
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected events
 print(detection[(detection$event),])
 
-# evaluating the detections
+# Evaluate detections (SoftED)
 evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 
-# ploting the results
+# Plot the results
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
+
+}
+\references{
+\itemize{
+\item Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R.,
+Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. SoftED: Metrics for soft evaluation of
+time series event detection. Computers and Industrial Engineering, 2024.
+doi:10.1016/j.cie.2024.110728
+}
 }

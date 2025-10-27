@@ -10,34 +10,44 @@ har_eval()
 \code{har_eval} object
 }
 \description{
-Evaluation of event detection (traditional hard evaluation)
+Hard evaluation of event detection producing confusion matrix and common
+metrics (accuracy, precision, recall, F1, etc.).
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time change point using GARCH
+# Configure a change-point detector (GARCH)
 model <- hcp_garch()
 
-# fitting the model
+# Fit the detector
 model <- fit(model, dataset$serie)
 
-# making detections
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected events
 print(detection[(detection$event),])
 
-# evaluating the detections
+# Evaluate detections
 evaluation <- evaluate(har_eval(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 
-# ploting the results
+# Plot the results
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
+
+}
+\references{
+\itemize{
+\item Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R.,
+Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. SoftED: Metrics for soft evaluation of
+time series event detection. Computers and Industrial Engineering, 2024.
+doi:10.1016/j.cie.2024.110728
+}
 }

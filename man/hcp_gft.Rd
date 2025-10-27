@@ -7,32 +7,40 @@
 hcp_gft()
 }
 \value{
-\code{hcp_chow} object
+\code{hcp_gft} object
 }
 \description{
-GFT detection method focuses on identifying structural changes  \url{doi:10.18637/jss.v007.i02}.
-It wraps the breakpoints implementation available in the strucchange library.
+Structural change detection using generalized fluctuation tests via
+\code{strucchange::breakpoints()} \url{doi:10.18637/jss.v007.i02}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure the GFT detector
 model <- hcp_gft()
 
-# fitting the model
+# Fit the detector (no-op for GFT)
 model <- fit(model, dataset$serie)
 
-# execute the detection method
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Zeileis A, Leisch F, Kleiber C, Hornik K (2002). strucchange: An R package for testing
+for structural change in linear regression models. Journal of Statistical Software, 7(2). doi:10.18637/jss.v007.i02
+\item Zeileis A, Kleiber C, Krämer W, Hornik K (2003). Testing and dating of structural
+changes in practice. Computational Statistics & Data Analysis, 44(1):109–123.
+}
 }

@@ -7,33 +7,42 @@
 har_ensemble(...)
 }
 \arguments{
-\item{...}{list of detectors}
+\item{...}{One or more detector objects.}
 }
 \value{
-Harbinger object
+A \code{har_ensemble} object
 }
 \description{
-Ensemble detector
+Majority-vote ensemble across multiple Harbinger detectors with optional
+temporal fuzzification to combine nearby detections.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series emd detector
+# Configure an ensemble of detectors
 model <- har_ensemble(hanr_arima(), hanr_arima(), hanr_arima())
-#model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+# model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
 
-# fitting the model
+# Fit all ensemble members
 model <- fit(model, dataset$serie)
 
+# Run ensemble detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected events
 print(detection[(detection$event),])
+
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

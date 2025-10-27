@@ -19,22 +19,31 @@ Anomaly detector using FBIAD
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series regression model
+# Configure FBIAD detector
 model <- hanr_fbiad()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Lima, J., Salles, R., Porto, F., Coutinho, R., Alpis, P., Escobar, L., Pacitti, E.,
+Ogasawara, E. Forward and Backward Inertial Anomaly Detector: A Novel Time Series
+Event Detection Method. Proceedings of the International Joint Conference on Neural
+Networks, 2022. doi:10.1109/IJCNN55064.2022.9892088
+}
 }

@@ -7,34 +7,42 @@
 hcp_cf_arima(sw_size = NULL)
 }
 \arguments{
-\item{sw_size}{Sliding window size}
+\item{sw_size}{Integer. Sliding window size for smoothing/statistics.}
 }
 \value{
-\code{hcp_cf_arima} object
+\code{hcp_cf_arima} object.
 }
 \description{
-Change-point detection is related to event/trend change detection. Change Finder ARIMA detects change points based on deviations relative to ARIMA model \url{doi:10.1109/TKDE.2006.1599387}.
-It wraps the ARIMA model presented in the forecast library.
+Change-point detection by modeling residual deviations with ARIMA and applying
+a second-stage smoothing and thresholding, inspired by ChangeFinder
+\url{doi:10.1109/TKDE.2006.1599387}. Wraps ARIMA from the \code{forecast} package.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure ChangeFinder-ARIMA detector
 model <- hcp_cf_arima()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers and
+change points from time series. IEEE Transactions on Knowledge and Data Engineering.
+}
 }

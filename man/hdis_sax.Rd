@@ -22,22 +22,29 @@ Discord discovery using SAX \url{doi:10.1007/s10618-007-0064-z}
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load motif/discord example data
 data(examples_motifs)
 
-#Using sequence example
+# Use a simple sequence example
 dataset <- examples_motifs$simple
 head(dataset)
 
-# setting up discord discovery method
+# Configure discord discovery via SAX
 model <- hdis_sax(26, 3, 3)
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected discords
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

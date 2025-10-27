@@ -2,18 +2,19 @@
 % Please edit documentation in R/trans_sax.R
 \name{trans_sax}
 \alias{trans_sax}
-\title{SAX}
+\title{SAX transformation}
 \usage{
 trans_sax(alpha)
 }
 \arguments{
-\item{alpha}{alphabet}
+\item{alpha}{Integer. Alphabet size (2–26).}
 }
 \value{
-obj
+A \code{trans_sax} transformer object.
 }
 \description{
-SAX
+Symbolic Aggregate approXimation (SAX) discretization of a numeric time series.
+The series is z-normalized, quantile-binned, and mapped to an alphabet of size \code{alpha}.
 }
 \examples{
 library(daltoolbox)
@@ -22,4 +23,11 @@ model <- trans_sax(alpha = 26)
 model <- fit(model, vector)
 xvector <- transform(model, vector)
 print(xvector)
+
+}
+\references{
+\itemize{
+\item Lin J, Keogh E, Lonardi S, Chiu B (2007). A symbolic representation of time series,
+with implications for streaming algorithms. Data Mining and Knowledge Discovery 15, 107–144.
+}
 }
