@@ -52,22 +52,25 @@ hanr_garch <- function() {
 #'@importFrom rugarch ugarchfit
 #'@exportS3Method detect hanr_garch
 detect.hanr_garch <- function(obj, serie, ...) {
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
                               mean.model = list(armaOrder = c(1, 1), include.mean = TRUE),
                               distribution.model = "norm")
 
-  #Adjusting a model to the entire series
+  # Adjust a GARCH(1,1) with ARMA(1,1) mean to the series
   model <- rugarch::ugarchfit(spec=spec, data=obj$serie, solver="hybrid")@fit
 
-  #Adjustment error on the entire series
+  # Standardized residuals as anomaly signal
   res <- residuals(model, standardize = TRUE)
 
+  # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

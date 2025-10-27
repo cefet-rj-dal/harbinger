@@ -3,6 +3,7 @@ is_matrix_or_df <- function(obj) {
 }
 
 har_distance_l1 <- function(values) {
+  # L1 aggregation of absolute values; rows are summed for matrices/data.frames
   values <- abs(values)
   if (is_matrix_or_df(values))
     values <-rowSums(values)
@@ -10,6 +11,7 @@ har_distance_l1 <- function(values) {
 }
 
 har_distance_l2 <- function(values) {
+  # L2 aggregation of squared values; rows are summed for matrices/data.frames
   values <- values^2
   if (is_matrix_or_df(values))
     values <-rowSums(values)
@@ -17,6 +19,7 @@ har_distance_l2 <- function(values) {
 }
 
 har_outliers_boxplot <- function(res){
+  # Boxplot/IQR rule: flags outside [Q1-1.5*IQR, Q3+1.5*IQR]
   org = length(res)
   cond <- rep(FALSE, org)
   q <- stats::quantile(res, na.rm=TRUE)
@@ -30,6 +33,7 @@ har_outliers_boxplot <- function(res){
 }
 
 har_outliers_gaussian <- function(res){
+  # 3-sigma rule under Gaussian assumption
   thresholdSup <- mean(res) + 3*sd(res)
   thresholdInf <- mean(res) - 3*sd(res)
   index <- which(res > thresholdSup | res < thresholdInf)
@@ -39,6 +43,7 @@ har_outliers_gaussian <- function(res){
 }
 
 har_outliers_ratio <- function(res){
+  # Ratio-based thresholding emphasizing relative deviation
   ratio <- 1 - res / max(res)
   thresholdSup <- mean(ratio) + 3*sd(ratio)
   thresholdSup <- (thresholdSup - 1) * max(res)
@@ -51,6 +56,7 @@ har_outliers_ratio <- function(res){
 }
 
 har_outliers_checks_firstgroup <- function(outliers, values) {
+  # For contiguous anomaly runs, keep only the first index of each run
   threshold <- attr(outliers, "threshold")
   values <- abs(values)
   if (is_matrix_or_df(values))
@@ -69,6 +75,7 @@ har_outliers_checks_firstgroup <- function(outliers, values) {
 }
 
 har_outliers_checks_highgroup <- function(outliers, values) {
+  # For contiguous anomaly runs, keep the index with highest magnitude
   threshold <- attr(outliers, "threshold")
   values <- abs(values)
   if (is_matrix_or_df(values))
@@ -89,6 +96,7 @@ har_outliers_checks_highgroup <- function(outliers, values) {
 
 
 har_fuzzify_detections_triangle <- function(value, tolerance) {
+  # Triangular fuzzification: spreads detection weight within a tolerance window
   type <- attr(value, "type")
   value <- as.double(value)
   if (!tolerance) {
@@ -139,8 +147,8 @@ har_fuzzify_detections_triangle <- function(value, tolerance) {
 #' # these utilities are applied internally to compute distances and thresholds.
 #'
 #' @references
-#' - Tukey JW (1977). Exploratory Data Analysis. Addison-Wesley. [boxplot/IQR]
-#' - Shewhart WA (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. [3-sigma]
+#' - Tukey JW (1977). Exploratory Data Analysis. Addison-Wesley. (boxplot/IQR heuristic)
+#' - Shewhart WA (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three-sigma rule)
 #' - Silva, E. P., Balbi, H., Pacitti, E., Porto, F., Santos, J., Ogasawara, E. Cutoff
 #'   Frequency Adjustment for FFT-Based Anomaly Detectors. In: Simpósio Brasileiro de
 #'   Banco de Dados (SBBD). SBC, 14 Oct. 2024. doi:10.5753/sbbd.2024.243319

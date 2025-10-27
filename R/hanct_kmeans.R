@@ -50,6 +50,7 @@ fit.hanct_kmeans <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
+  # Build sliding windows for sequence clustering
   data <- tspredit::ts_data(stats::na.omit(serie), obj$seq)
   data <- as.data.frame(data)
 
@@ -62,10 +63,13 @@ fit.hanct_kmeans <- function(obj, serie, ...) {
 #'@importFrom stats na.omit
 #'@exportS3Method detect hanct_kmeans
 detect.hanct_kmeans <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Compute distance from nearest centroid per window
   sx <- tspredit::ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
 
@@ -75,6 +79,7 @@ detect.hanct_kmeans <- function(obj, serie, ...) {
   anomalies <- obj$har_outliers_check(anomalies, res)
   threshold <- attr(anomalies, "threshold")
 
+  # Align detections back to original positions
   res <- c(rep(0, obj$seq - 1), res)
   anomalies <- c(rep(FALSE, obj$seq - 1), anomalies)
   attr(anomalies, "threshold") <- threshold

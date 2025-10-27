@@ -51,22 +51,28 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
 #'@importFrom hht CEEMD
 #'@exportS3Method detect hanr_emd
 detect.hanr_emd <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   id <- 1:length(obj$serie)
 
+  # CEEMD decomposition
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model <- ceemd.result
 
+  # Use the highest-frequency IMF as anomaly signal
   sum_high_freq <- obj$model[["imf"]][,1]
 
+  # Distance and outlier detection on high-frequency component
   res <- obj$har_distance(sum_high_freq)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

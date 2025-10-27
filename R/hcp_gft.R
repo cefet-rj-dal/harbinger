@@ -45,13 +45,16 @@ hcp_gft <- function() {
 #'@importFrom strucchange breakpoints
 #'@exportS3Method detect hcp_gft
 detect.hcp_gft <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   y <- obj$serie
   x <- 1:length(y)
 
+  # Fit breakpoints on linear model residual patterns
   breaks <- breakpoints(y ~ x)
 
   cp <- rep(FALSE, length(obj$serie))
@@ -59,6 +62,7 @@ detect.hcp_gft <- function(obj, serie, ...) {
   if (n > 0)
     cp[breaks$breakpoints] <- TRUE
 
+  # Restore change points to original indexing
   detection <- obj$har_restore_refs(obj, change_points = cp)
 
   return(detection)

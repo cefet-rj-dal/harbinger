@@ -68,11 +68,13 @@ detect.hanr_remd <- function(obj, serie, ...) {
   if (is.null(serie))
     stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   id <- 1:length(obj$serie)
   obj$sw_size <-  length(obj$serie)
 
+  # CEEMD decomposition
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   obj$model <- ceemd.result
@@ -84,7 +86,7 @@ detect.hanr_remd <- function(obj, serie, ...) {
 
   vec <- cumsum(vec)
 
-  #  Maximum curvature
+  #  Minimum curvature to choose split index of roughness trend
   res <- daltoolbox::transform(daltoolbox::fit_curvature_min(), vec)
   div <- res$x
   sum_high_freq <- obj$model[["imf"]][, 1]
@@ -107,6 +109,7 @@ detect.hanr_remd <- function(obj, serie, ...) {
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

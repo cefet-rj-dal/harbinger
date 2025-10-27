@@ -37,8 +37,10 @@ hcp_chow <- function() {
 #'@importFrom strucchange breakpoints
 #'@exportS3Method detect hcp_chow
 detect.hcp_chow <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   y <- obj$serie
@@ -48,11 +50,13 @@ detect.hcp_chow <- function(obj, serie, ...) {
   model <- strucchange::Fstats(y ~ x)
   breaks <- strucchange::breakpoints(model)
 
+  # Convert breakpoints to boolean vector
   cp <- rep(FALSE, length(obj$serie))
   n <- length(breaks$breakpoints)
   if (n > 0)
     cp[breaks$breakpoints] <- TRUE
 
+  # Restore to original indexing
   detection <- obj$har_restore_refs(obj, change_points = cp)
 
   return(detection)

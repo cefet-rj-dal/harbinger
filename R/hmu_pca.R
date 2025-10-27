@@ -49,8 +49,10 @@ hmu_pca <- function() {
 #'@importFrom stats princomp
 #'@exportS3Method detect hmu_pca
 detect.hmu_pca <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   # Standardize the data (mean-centered and scaled to unit variance)
@@ -66,10 +68,12 @@ detect.hmu_pca <- function(obj, serie, ...) {
   # Calculate the residuals
   reconstructed_data <- pcs %*% t(loadings)
 
+  # Distance and outlier detection on reconstruction error
   res <- obj$har_distance(scaled_data - reconstructed_data)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

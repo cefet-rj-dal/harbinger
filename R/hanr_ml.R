@@ -37,7 +37,7 @@
 #'
 #' @references
 #' - Hyndman RJ, Athanasopoulos G (2021). Forecasting: Principles and Practice. OTexts.
-#' - Goodfellow I, Bengio Y, Courville A (2016). Deep Learning. MIT Press. [for NN-based regressors]
+#' - Goodfellow I, Bengio Y, Courville A (2016). Deep Learning. MIT Press.
 #'
 #'@export
 hanr_ml <- function(model, sw_size = 15) {
@@ -53,9 +53,11 @@ hanr_ml <- function(model, sw_size = 15) {
 #'@importFrom tspredit ts_projection
 #'@exportS3Method fit hanr_ml
 fit.hanr_ml <- function(obj, serie, ...) {
+  # Build sliding windows and input/output projection
   ts <- tspredit::ts_data(serie, obj$sw_size)
   io <- tspredit::ts_projection(ts)
 
+  # Fit the underlying regressor on supervised (X, y)
   obj$model <- fit(obj$model, x=io$input, y=io$output)
 
   return(obj)
@@ -67,24 +69,30 @@ fit.hanr_ml <- function(obj, serie, ...) {
 #'@importFrom stats predict
 #'@exportS3Method detect hanr_ml
 detect.hanr_ml <- function(obj, serie, ...) {
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Build sliding windows and inputs for prediction
   ts <- tspredit::ts_data(obj$serie, obj$sw_size)
   io <- tspredit::ts_projection(ts)
 
+  # One-step-ahead prediction and residuals
   adjust <- stats::predict(obj$model, io$input)
 
   res <- io$output-adjust
 
+  # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
   threshold <- attr(anomalies, "threshold")
 
+  # Align back to original positions (pad warm-up window)
   res <- c(rep(0, obj$sw_size - 1), res)
   anomalies <- c(rep(FALSE, obj$sw_size - 1), anomalies)
   attr(anomalies, "threshold") <- threshold
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

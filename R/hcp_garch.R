@@ -52,6 +52,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
     return(stats::lm(x~t, data))
   }
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   spec <- rugarch::ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
@@ -64,8 +65,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   #Adjustment error on the entire series
   y <- residuals(model, standardize = TRUE)
 
-  #Adjusting a model to the entire series
-  #Adjusting to the entire series
+  # Adjust a linear model to residuals and compute smoothed deviation
   M2 <- linreg(y)
 
   #Adjustment error on the whole window
@@ -79,6 +79,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   cp <- c(rep(FALSE, obj$sw_size - 1), cp)
   attr(cp, "threshold") <- threshold
 
+  # Restore change points to original indexing
   detection <- obj$har_restore_refs(obj, change_points = cp, res = u)
 
   return(detection)

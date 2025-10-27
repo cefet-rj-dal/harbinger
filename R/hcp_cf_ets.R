@@ -44,13 +44,15 @@ hcp_cf_ets <- function(sw_size = 7) {
 #'@importFrom forecast ets
 #'@exportS3Method detect hcp_cf_ets
 detect.hcp_cf_ets <- function(obj, serie, ...) {
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
-  #Adjusting a model to the entire series
+  # Adjust ETS to the entire series
   model <- forecast::ets(stats::ts(obj$serie))
 
   res <- stats::residuals(model)
 
+  # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
 
@@ -60,7 +62,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
 
   y <- mas(res, obj$sw_size)
 
-  #Adjusting to the entire series
+  # Adjust ETS to the smoothed residual signal
   M2 <- forecast::ets(ts(y))
 
   #Adjustment error on the whole window
@@ -72,6 +74,7 @@ detect.hcp_cf_ets <- function(obj, serie, ...) {
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(res)-length(u)), cp)
 
+  # Restore anomalies and change points to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp, res = res)
 
   return(detection)

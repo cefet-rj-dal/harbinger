@@ -50,6 +50,7 @@ fit.hanct_dtw <- function(obj, serie, ...) {
   if (is.na(obj$centers))
     obj$centers <- ceiling(log(length(serie), 10))
 
+  # Build sliding windows for sequence clustering
   data <- tspredit::ts_data(stats::na.omit(serie), obj$seq)
   data <- as.data.frame(data)
 
@@ -65,10 +66,13 @@ fit.hanct_dtw <- function(obj, serie, ...) {
 #'@importFrom stats na.omit
 #'@exportS3Method detect hanct_dtw
 detect.hanct_dtw <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Compute distance from nearest DTW centroid per window
   sx <- tspredit::ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
 

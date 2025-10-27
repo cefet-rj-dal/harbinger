@@ -50,21 +50,26 @@ hanr_wavelet <- function(filter = "haar") {
 #'@importFrom wavelets modwt
 #'@exportS3Method detect hanr_wavelet
 detect.hanr_wavelet <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   wt <- wavelets::modwt(obj$serie, filter=obj$filter, boundary="periodic")
 
   W <- as.data.frame(wt@W)
 
+  # Aggregate detail bands as anomaly magnitude
   w_component <- apply(W, 1, sum)
 
+  # Distance and outlier detection
   res <- obj$har_distance(w_component)
   anomalies <- obj$har_outliers(res)
 
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
   return(detection)
 }

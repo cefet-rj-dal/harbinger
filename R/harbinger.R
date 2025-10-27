@@ -29,23 +29,28 @@
 #' @importFrom stats quantile
 #' @export
 harbinger <- function() {
+  # Store references of the original series and pre-allocate containers
   har_store_refs <- function(obj, serie) {
     n <- length(serie)
     if (is.data.frame(serie)) {
       n <- nrow(serie)
+      # Non-NA rows and NA-omitted series (multivariate)
       obj$non_na <- which(!is.na(apply(serie, 1, max)))
       obj$serie <- stats::na.omit(serie)
     }
     else {
+      # Non-NA positions and NA-omitted series (univariate)
       obj$non_na <- which(!is.na(serie))
       obj$serie <- stats::na.omit(serie)
     }
+    # Placeholders to be restored to original indexing
     obj$anomalies <- rep(NA, n)
     obj$change_points <- rep(NA, n)
     obj$res <- rep(NA, n)
     return(obj)
   }
 
+  # Restore detections to original indexing, assembling a common data.frame
   har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL, res = NULL) {
     threshold <- NULL
     startup <- obj$anomalies
@@ -63,6 +68,7 @@ harbinger <- function() {
       obj$res[obj$non_na] <- res
     }
 
+    # Build unified detection table and tag event types
     detection <- data.frame(idx=1:length(obj$anomalies), event = startup, type="")
     detection$type[obj$anomalies] <- "anomaly"
     detection$event[obj$change_points] <- TRUE

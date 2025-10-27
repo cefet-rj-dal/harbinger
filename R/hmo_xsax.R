@@ -72,11 +72,14 @@ comp_word_entropy <- function(str) {
 detect.hmo_xsax <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
   falsemotifs <- round(obj$w/2)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Transform series to XSAX symbols
   tsax <- trans_xsax(obj$a)
   tsax <- fit(tsax, obj$serie)
   tss <- daltoolbox::transform(tsax, obj$serie)
@@ -118,6 +121,7 @@ detect.hmo_xsax <- function(obj, serie, ...) {
   mots[motifs$i] <- TRUE
   seqs[motifs$i] <- motifs$seq
 
+  # Restore detections to original indexing and tag motif info
   detection <- obj$har_restore_refs(obj, anomalies = mots)
   detection$seq <- NA
   detection$seqlen <- NA

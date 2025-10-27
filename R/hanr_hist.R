@@ -3,7 +3,7 @@
 #' Flags observations that fall into low-density histogram bins or outside the
 #' observed bin range.
 #'
-#' @param density_threshold Numeric in [0,1]. Minimum bin density to avoid being
+#' @param density_threshold Numeric between 0 and 1. Minimum bin density to avoid being
 #'   considered an anomaly (default 0.05).
 #' @return `hanr_histogram` object
 #'
@@ -46,16 +46,19 @@ hanr_histogram <- function(density_threshold = 0.05) {
 #'@importFrom graphics hist
 #'@exportS3Method detect hanr_histogram
 detect.hanr_histogram <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Estimate histogram structure (bins and densities)
   hist_data <- graphics::hist(obj$serie, plot = FALSE)
 
   # Calculate bin edges and midpoints
   bin_edges <- hist_data$breaks
 
-  # Detect anomalies based on the histogram
+  # Detect anomalies based on bin membership and density threshold
   anomalies <- rep(FALSE, length(obj$serie))
   for (i in 1:length(obj$serie)) {
     # Find the bin to which the data point belongs
@@ -70,12 +73,13 @@ detect.hanr_histogram <- function(obj, serie, ...) {
     else
       upper_bound <- bin_edges[bin_index]
 
-    # Check if the data point is outside the expected range
+    # Outside any bin or underdensity => anomaly
     if (obj$serie[i] < lower_bound || obj$serie[i] > upper_bound || hist_data$density[bin_index] < obj$density_threshold) {
       anomalies[i] <- TRUE
     }
   }
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies)
 
   return(detection)

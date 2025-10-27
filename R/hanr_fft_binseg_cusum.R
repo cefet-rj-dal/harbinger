@@ -77,8 +77,10 @@ detect.hanr_fft_binseg_cusum <- function(obj, serie, ...) {
     return(cutindex)
   }
 
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   fft_signal <- stats::fft(obj$serie)
@@ -89,16 +91,19 @@ detect.hanr_fft_binseg_cusum <- function(obj, serie, ...) {
   cutindex <- compute_cut_index(half_spectrum)
   n <- length(fft_signal)
 
+  # Zero out low frequencies (high-pass)
   fft_signal[1:cutindex] <- 0
   fft_signal[(n - cutindex):n] <- 0
 
   filtered_series <- base::Re(stats::fft(fft_signal, inverse = TRUE) / n)
 
+  # Distance and outlier detection on filtered magnitude
   res <- obj$har_distance(filtered_series)
 
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

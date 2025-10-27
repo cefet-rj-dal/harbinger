@@ -47,8 +47,10 @@ hcp_cf_arima <- function(sw_size = NULL) {
 #'@importFrom stats na.omit
 #'@exportS3Method fit hcp_cf_arima
 fit.hcp_cf_arima <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
+  # Omit missing values before model selection
   serie <- stats::na.omit(serie)
 
   obj$model <- forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
@@ -72,6 +74,7 @@ fit.hcp_cf_arima <- function(obj, serie, ...) {
 #'@importFrom forecast auto.arima
 #'@exportS3Method detect hcp_cf_arima
 detect.hcp_cf_arima <- function(obj, serie, ...) {
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   #Adjusting a model to the entire series
@@ -87,11 +90,13 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   #Adjustment error on the entire series
   res <- stats::residuals(model)
 
+  # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
 
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Ignore initial positions where the model is warming up
   anomalies[1:obj$sw_size] <- FALSE
 
   y <- mas(res, obj$sw_size)
@@ -108,6 +113,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(res)-length(u)), cp)
 
+  # Restore anomalies and change points to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp, res = res)
 
   return(detection)

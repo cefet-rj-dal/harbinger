@@ -68,10 +68,13 @@ comp_word_entropy <- function(str) {
 detect.hdis_sax <- function(obj, serie, ...) {
   i <- 0
   total_count <- 0
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Transform series to SAX symbols
   tsax <- trans_sax(obj$a)
   tsax <- fit(tsax, obj$serie)
   tss <- daltoolbox::transform(tsax, obj$serie)
@@ -119,6 +122,7 @@ detect.hdis_sax <- function(obj, serie, ...) {
   mots[discords$i] <- TRUE
   seqs[discords$i] <- discords$seq
 
+  # Restore detections to original indexing and tag discord info
   detection <- obj$har_restore_refs(obj, anomalies = mots)
   detection$seq <- NA
   detection$seqlen <- NA

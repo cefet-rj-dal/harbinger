@@ -64,6 +64,7 @@ hanc_ml <- function(model, threshold = 0.5) {
 #'@importFrom daltoolbox fit
 #'@exportS3Method fit hanc_ml
 fit.hanc_ml <- function(obj, serie, ...) {
+  # Ensure target is a two-level factor with explicit labels
   serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
 
   obj$model <- daltoolbox::fit(obj$model, serie)
@@ -77,22 +78,27 @@ fit.hanc_ml <- function(obj, serie, ...) {
 #'@exportS3Method detect hanc_ml
 detect.hanc_ml <- function(obj, serie, ...) {
   har_outliers_classification <- function(data) {
+    # Flag as event when positive class probability >= threshold
     index <- which(data >= obj$threshold) # non-event versus anomaly
     attr(index, "threshold") <- obj$threshold
     return (index)
   }
 
+  # Ensure target factor if present
   if (!is.null(serie[,obj$model$attribute]))
     serie[,obj$model$attribute] <- factor(serie[,obj$model$attribute], labels=c("FALSE", "TRUE"))
+  # Normalize indexing and sanitize data.frame columns
   obj <- obj$har_store_refs(obj, serie)
   obj$serie <- daltoolbox::adjust_data.frame(obj$serie)
   obj$serie <- obj$serie[,obj$model$x, drop = FALSE]
 
+  # Predict probabilities and extract positive class
   adjust <- stats::predict(obj$model, obj$serie)
   res <- adjust[,2]
   anomalies <- har_outliers_classification(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

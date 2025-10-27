@@ -51,8 +51,10 @@ hanr_arima <- function() {
 #'@importFrom stats na.omit
 #'@exportS3Method fit hanr_arima
 fit.hanr_arima <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
+  # Omit missing values, select ARIMA order and cache parameters
   serie <- stats::na.omit(serie)
 
   obj$model <- forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
@@ -76,8 +78,10 @@ fit.hanr_arima <- function(obj, serie, ...) {
 #'@importFrom stats na.omit
 #'@exportS3Method detect hanr_arima
 detect.hanr_arima <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
   #Adjusting a model to the entire series
@@ -92,12 +96,15 @@ detect.hanr_arima <- function(obj, serie, ...) {
 
   res <- stats::residuals(model)
 
+  # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res)
 
+  # Ignore initial warm-up window
   anomalies[1:obj$sw_size] <- FALSE
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)

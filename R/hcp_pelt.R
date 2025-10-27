@@ -46,17 +46,22 @@ hcp_pelt <- function() {
 #' @importFrom changepoint cpt.meanvar
 #' @exportS3Method detect hcp_pelt
 detect.hcp_pelt <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Run PELT on mean/variance
   cpt_result <- cpt.meanvar(obj$serie, method = "PELT", test.stat = "Normal", pen.value = "MBIC")
 
+  # Convert breakpoints to boolean vector
   cp <- rep(FALSE, length(obj$serie))
   n <- length(cpt_result@cpts)
   if (n > 1)
     cp[cpt_result@cpts[1:(n-1)]] <- TRUE
 
+  # Restore to original indexing
   detection <- obj$har_restore_refs(obj, change_points = cp)
 
   return(detection)

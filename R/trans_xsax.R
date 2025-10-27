@@ -33,6 +33,7 @@ trans_xsax <- function(alpha) {
 
 #'@importFrom stats quantile
 binning_xsax <- function(v, a) {
+  # Compute quantile-based bins and assign each value to a bin
   p <- base::seq(from = 0, to = 1, by = 1/a)
   q <- stats::quantile(v, p)
   qf <- base::matrix(c(q[1:(length(q)-1)],q[2:(length(q))]), ncol=2)
@@ -72,6 +73,7 @@ convert_to_xsax_vec <- function(num, nbase) {
 #'@importFrom daltoolbox transform
 #'@exportS3Method transform trans_xsax
 transform.trans_xsax <- function(obj, data, ...) {
+  # Z-normalize series and quantile-bin into an extended alphabet
   vectorNorm <- (data - base::mean(data, na.rm = TRUE)) / stats::sd(data, na.rm = TRUE)
   mybin <- binning_xsax(vectorNorm, obj$alpha)
   i <- base::ceiling(log(obj$alpha, 36))

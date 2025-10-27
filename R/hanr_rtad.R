@@ -80,7 +80,7 @@ detect.hanr_rtad <- function(obj, serie, ...) {
   id <- 1:length(obj$serie)
   san_size <-  length(obj$serie)
 
-  ## calculate IMFs
+  ## calculate IMFs (CEEMD decomposition)
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   model_an <- ceemd.result
@@ -88,13 +88,13 @@ detect.hanr_rtad <- function(obj, serie, ...) {
   if (model_an$nimf < 4){
     soma_an <- obj$serie - model_an$residue
   }else{
-    ## calculate roughness for each imf
+    ## calculate roughness for each IMF
     vec <- vector()
     for (n in 1:model_an$nimf){
       vec[n] <- fc_rug(model_an[["imf"]][,n])
     }
 
-    ## Maximum curvature
+    ## Maximum curvature to select split index
     res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
 
@@ -107,7 +107,7 @@ detect.hanr_rtad <- function(obj, serie, ...) {
   diff_soma[1] <- diff_soma[2]
 
 
-  ## dtrend
+  ## detrend using CEEMD residue
   isEmpty <- function(x) {
     return(length(x)==0)
   }
@@ -133,4 +133,5 @@ detect.hanr_rtad <- function(obj, serie, ...) {
 
   return(detection)
 }
+
 

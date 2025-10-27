@@ -50,17 +50,20 @@ hdis_mp <- function(mode = "stamp", w, qtd) {
 #'@importFrom tsmp find_motif
 #'@exportS3Method detect hdis_mp
 detect.hdis_mp <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   n <- length(serie)
   non_na <- which(!is.na(serie))
 
+  # Omit NAs for algorithm run
   serie <- stats::na.omit(serie)
 
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
   if(!(is.numeric(obj$w)&&(obj$w >=4))) stop("Window size must be at least 4", call. = FALSE)
   if(!(is.numeric(obj$qtd)&&(obj$qtd >=3))) stop("the number of selected discords must be greater than 3", call. = FALSE)
 
+  # Compute Matrix Profile and extract discord sets
   discords <- tsmp::tsmp(serie, window_size = obj$w, mode = obj$mode)
   discords <- tsmp::find_discord(discords, qtd = obj$qtd)
 
@@ -72,6 +75,7 @@ detect.hdis_mp <- function(obj, serie, ...) {
     outliers$seq[mot] <- as.character(i)
   }
 
+  # Assemble detection table and restore to original indexing
   detection <- data.frame(idx=1:n, event = FALSE, type="", seq=NA, seqlen = NA)
   detection$event[non_na] <- outliers$event
   detection$type[detection$event[non_na]] <- "motif"

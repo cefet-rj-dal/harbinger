@@ -44,10 +44,13 @@ hanr_fbiad <- function(sw_size = 30) {
 #'@importFrom stats na.omit
 #'@exportS3Method detect hanr_fbiad
 detect.hanr_fbiad <- function(obj, serie, ...) {
+  # Validate input
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
+  # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
+  # Forward window analysis
   sx <- tspredit::ts_data(obj$serie, obj$sw_size)
   ma <- apply(sx, 1, mean)
   resF <- obj$har_distance(sx[,ncol(sx)] - ma)
@@ -56,6 +59,7 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
   iF <- c(rep(FALSE, obj$sw_size-1), iF)
   resF <- c(rep(0, obj$sw_size-1), resF)
 
+  # Backward window analysis (reverse series)
   sx <- tspredit::ts_data(rev(obj$serie), obj$sw_size)
   ma <- apply(sx, 1, mean)
   resB <- obj$har_distance(sx[,ncol(sx)] - ma)
@@ -66,10 +70,12 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
   resB <- rev(resB)
   resB <- c(resB, rep(0, obj$sw_size-1))
 
+  # Combine forward and backward evidences
   res <- (resB + resF)/2
 
   anomalies <- iF | iB
 
+  # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
   return(detection)
