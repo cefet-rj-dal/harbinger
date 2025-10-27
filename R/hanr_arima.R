@@ -1,31 +1,42 @@
-#'@title Anomaly detector using ARIMA.
-#'@description Anomaly detection using ARIMA
-#'The ARIMA model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the ARIMA model presented in the forecast library.
-#'@return `hanr_arima` object
-#'@examples
-#'library(daltoolbox)
+#' @title Anomaly detector using ARIMA
+#' @description
+#' Fits an ARIMA model to the series and flags observations with large
+#' model residuals as anomalies. Wraps ARIMA from the `forecast` package.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @details
+#' The detector estimates ARIMA(p,d,q) and computes standardized residuals.
+#' Residual magnitudes are summarized via a distance function and thresholded
+#' with outlier heuristics from `harutils()`.
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @return `hanr_arima` object.
 #'
-#'# setting up time series regression model
-#'model <- hanr_arima()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure ARIMA anomaly detector
+#' model <- hanr_arima()
 #'
-#'@export
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Box GEP, Jenkins GM, Reinsel GC, Ljung GM (2015). Time Series Analysis: Forecasting
+#'   and Control. Wiley.
+#'
+#' @export
 hanr_arima <- function() {
   obj <- harbinger()
   obj$sw_size <- NULL

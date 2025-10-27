@@ -1,32 +1,41 @@
-#'@title Motif discovery using SAX
-#'@description Motif discovery using SAX <doi:10.1007/s10618-007-0064-z>
-#'@param a alphabet size
-#'@param w word size
-#'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_sax` object
-#'@examples
-#'library(daltoolbox)
+#' @title Motif discovery using SAX
+#' @description
+#' Discovers repeated subsequences (motifs) using a Symbolic Aggregate approXimation
+#' (SAX) representation <doi:10.1007/s10618-007-0064-z>. Subsequences are discretized
+#' and grouped by symbolic words; frequently occurring words indicate motifs.
 #'
-#'#loading the example database
-#'data(examples_motifs)
+#' @param a Integer. Alphabet size.
+#' @param w Integer. Word/window size.
+#' @param qtd Integer. Minimum number of occurrences to classify as a motif.
+#' @return `hmo_sax` object.
 #'
-#'#Using sequence example
-#'dataset <- examples_motifs$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up motif discovery method
-#'model <- hmo_sax(26, 3, 3)
+#' # Load motif example data
+#' data(examples_motifs)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple sequence example
+#' dataset <- examples_motifs$simple
+#' head(dataset)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Configure SAX-based motif discovery
+#' model <- hmo_sax(26, 3, 3)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-#'@export
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected motifs
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Lin J, Keogh E, Lonardi S, Chiu B (2007). A symbolic representation of time series,
+#'   with implications for streaming algorithms. Data Mining and Knowledge Discovery 15, 107–144.
+#'
+#' @export
 hmo_sax <- function(a, w, qtd=2) {
   obj <- harbinger()
   if(!(is.numeric(a)&&(a>=1)&&(a<=26))) stop("alphabet must be between 1 and 26", call. = FALSE)

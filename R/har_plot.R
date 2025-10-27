@@ -21,50 +21,62 @@ motifs_seqs <- function(detection) {
 }
 
 
-#'@title Plot event detection on a time series
-#'@description It accepts as harbinger, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
-#'@param obj harbinger detector
-#'@param serie time series
-#'@param detection detection
-#'@param event events
-#'@param mark.cp show change points
-#'@param ylim limits for y-axis
-#'@param idx labels for x observations
-#'@param pointsize default point size
-#'@param colors default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.
-#'@param yline values for plotting horizontal dashed lines
-#'@return A time series plot with marked events
-#'@examples
-#'library(daltoolbox)
+#' @title Plot event detection on a time series
+#' @description
+#' Convenience plotting helper for Harbinger detections. It accepts a detector,
+#' the input series, an optional detection data.frame, and optional ground-truth
+#' events to color-code true positives (TP), false positives (FP), and false negatives (FN).
+#' It can also mark detected change points and draw reference horizontal lines.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @param obj A `harbinger` detector used to produce `detection`.
+#' @param serie Numeric vector with the time series to plot.
+#' @param detection Optional detection data.frame as returned by `detect()`.
+#' @param event Optional logical vector with ground-truth events (same length as `serie`).
+#' @param mark.cp Logical; if TRUE, marks detected change points with dashed vertical lines.
+#' @param ylim Optional numeric vector of length 2 for y-axis limits.
+#' @param idx Optional x-axis labels or indices (defaults to `seq_along(serie)`).
+#' @param pointsize Base point size for observations.
+#' @param colors Character vector of length 4 with colors for TP, FN, FP, and motif segments.
+#' @param yline Optional numeric vector with y values to draw dotted horizontal lines.
 #'
-#'#Using the simple time series
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @return A `ggplot` object showing the time series with detected events highlighted.
 #'
-#'# setting up time change point using GARCH
-#'model <- hanr_arima()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load an example anomaly dataset
+#' data(examples_anomalies)
 #'
-#'# making detections
-#'detection <- detect(model, dataset$serie)
+#' # Use the simple time series
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Set up an ARIMA-based anomaly detector
+#' model <- hanr_arima()
 #'
-#'# evaluating the detections
-#'evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
-#'print(evaluation$confMatrix)
+#' # Fit the detector
+#' model <- fit(model, dataset$serie)
 #'
-#'# ploting the results
-#'grf <- har_plot(model, dataset$serie, detection, dataset$event)
-#'plot(grf)
-#'@import ggplot2
-#'@export
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Inspect detected events
+#' print(detection[(detection$event),])
+#'
+#' # Evaluate detections (soft evaluation)
+#' evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
+#' print(evaluation$confMatrix)
+#'
+#' # Plot the results
+#' grf <- har_plot(model, dataset$serie, detection, dataset$event)
+#' plot(grf)
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+#'
+#' @import ggplot2
+#' @export
 har_plot <- function (obj, serie, detection = NULL, event = NULL, mark.cp = TRUE, ylim = NULL, idx = NULL, pointsize=0.5, colors=c("green", "blue", "red", "purple"), yline = NULL)
 {
   time <- 0

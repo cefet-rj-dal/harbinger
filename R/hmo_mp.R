@@ -1,30 +1,40 @@
-#'@title Motif discovery using Matrix Profile
-#'@description Motif discovery using Matrix Profile <doi:10.32614/RJ-2020-021>
-#'@param mode mode of computing distance between sequences. Available options include: "stomp", "stamp", "simple", "mstomp", "scrimp", "valmod", "pmp"
-#'@param w word size
-#'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_mp` object
-#'@examples
-#'library(daltoolbox)
+#' @title Motif discovery using Matrix Profile
+#' @description
+#' Discovers repeated subsequences (motifs) using Matrix Profile methods as
+#' implemented in the `tsmp` package <doi:10.32614/RJ-2020-021>.
 #'
-#'#loading the example database
-#'data(examples_motifs)
+#' @param mode Character. Algorithm: one of "stomp", "stamp", "simple",
+#'   "mstomp", "scrimp", "valmod", "pmp".
+#' @param w Integer. Subsequence window size.
+#' @param qtd Integer. Minimum number of occurrences to classify as a motif.
+#' @return `hmo_mp` object.
 #'
-#'#Using sequence example
-#'dataset <- examples_motifs$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up motif discovery method
-#'model <- hmo_mp("stamp", 4, 3)
+#' # Load motif example data
+#' data(examples_motifs)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple sequence example
+#' dataset <- examples_motifs$simple
+#' head(dataset)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Configure motif discovery via Matrix Profile
+#' model <- hmo_mp("stamp", 4, 3)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected motifs
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Yeh CCM, et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable
+#'   time series motifs/discrod discovery. IEEE ICDM.
+#' - Tavenard R, et al. tsmp: The Matrix Profile in R. The R Journal (2020). doi:10.32614/RJ-2020-021
 #'
 #'@export
 hmo_mp <- function(mode = "stamp", w, qtd) {

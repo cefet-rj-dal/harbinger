@@ -1,32 +1,37 @@
-#'@title Anomaly detector using EMD
-#'@description Anomaly detection using EMD
-#'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the EMD model presented in the hht library.
-#'@param noise nosie
-#'@param trials trials
-#'@return `hanr_emd` object
+#' @title Anomaly detector using EMD
+#' @description
+#' Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions and
+#' flag anomalies from high-frequency components. Wraps `hht::CEEMD`.
 #'
-#'@examples
-#'library(daltoolbox)
+#' @param noise Numeric. Noise amplitude for CEEMD.
+#' @param trials Integer. Number of CEEMD trials.
+#' @return `hanr_emd` object
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @examples
+#' library(daltoolbox)
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'# setting up time series emd detector
-#'model <- hanr_emd()
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Configure EMD-based anomaly detector
+#' model <- hanr_emd()
 #'
-# making detection
-#'detection <- detect(model, dataset$serie)
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Huang NE, et al. (1998). The empirical mode decomposition and the Hilbert spectrum
+#'   for nonlinear and non-stationary time series analysis. Proc. Royal Society A.
 #'
 #'@export
 hanr_emd <- function(noise = 0.1, trials = 5) {

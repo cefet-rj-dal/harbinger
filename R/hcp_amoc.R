@@ -1,39 +1,51 @@
-#'@title At most one change (AMOC) method
-#'@description Change-point detection method that focus on identify one change point in mean/variance <doi:10.1093/biomet/57.1.1>.
-#'It wraps the amoc implementation available in the changepoint library.
-#Hinkley, D. V. Inference about the change-point in a sequence of random variables. Biometrika, 57(1):1–17, 1970
-#'@return `hcp_amoc` object
-#'@examples
-#'library(daltoolbox)
+#' @title At Most One Change (AMOC)
+#' @description
+#' Change-point detection method focusing on identifying at most one change in
+#' mean and/or variance. This is a wrapper around the AMOC implementation from
+#' the `changepoint` package.
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' @details
+#' AMOC detects a single most significant change point under a cost function
+#' optimized for a univariate series. It is useful when at most one structural
+#' break is expected.
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' @return `hcp_amoc` object.
 #'
-#'# setting up change point method
-#'model <- hcp_amoc()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'# execute the detection method
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure the AMOC detector
+#' model <- hcp_amoc()
 #'
-#'@export
+#' # Fit the detector (no-op for AMOC)
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected change point(s)
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Hinkley DV (1970). Inference about the change-point in a sequence of random variables. Biometrika, 57(1):1–17. doi:10.1093/biomet/57.1.1
+#' - Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598.
+#'
+#' @export
 hcp_amoc <- function() {
   obj <- harbinger()
   class(obj) <- append("hcp_amoc", class(obj))
   return(obj)
 }
 
-#'@importFrom changepoint cpt.meanvar
-#'@exportS3Method detect hcp_amoc
+#' @importFrom changepoint cpt.meanvar
+#' @exportS3Method detect hcp_amoc
 detect.hcp_amoc <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 

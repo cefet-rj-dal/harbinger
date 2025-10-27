@@ -1,36 +1,43 @@
-#'@title Evaluation of event detection
-#'@description Evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>
-#'@param sw_size tolerance window size
-#'@return `har_eval_soft` object
-#'@examples
-#'library(daltoolbox)
+#' @title Evaluation of event detection (SoftED)
+#' @description Soft evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>.
+#' @param sw_size Integer. Tolerance window size for soft matching.
+#' @return `har_eval_soft` object
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @examples
+#' library(daltoolbox)
 #'
-#'#Using the simple
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'# setting up time change point using GARCH
-#'model <- hcp_garch()
+#' # Use the simple series
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Configure a change-point detector (GARCH)
+#' model <- hcp_garch()
 #'
-#'# making detections
-#'detection <- detect(model, dataset$serie)
+#' # Fit the detector
+#' model <- fit(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# evaluating the detections
-#'evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
-#'print(evaluation$confMatrix)
+#' # Show detected events
+#' print(detection[(detection$event),])
 #'
-#'# ploting the results
-#'grf <- har_plot(model, dataset$serie, detection, dataset$event)
-#'plot(grf)
+#' # Evaluate detections (SoftED)
+#' evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
+#' print(evaluation$confMatrix)
+#'
+#' # Plot the results
+#' grf <- har_plot(model, dataset$serie, detection, dataset$event)
+#' plot(grf)
+#'
+#' @references
+#' - Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R.,
+#'   Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. SoftED: Metrics for soft evaluation of
+#'   time series event detection. Computers and Industrial Engineering, 2024.
+#'   doi:10.1016/j.cie.2024.110728
 #'@export
 har_eval_soft <- function(sw_size = 15) {
   obj <- har_eval()

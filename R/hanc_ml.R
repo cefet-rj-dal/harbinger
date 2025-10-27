@@ -1,42 +1,53 @@
-#'@title Anomaly detector based on machine learning classification
-#'@description Anomaly detection using daltoolbox classification.
-#'A training and test set should be used. The training set must contain labeled events.
-#'A set of preconfigured of classification methods are described in <https://cefet-rj-dal.github.io/daltoolbox/>.
-#'They include: cla_majority, cla_dtree, cla_knn, cla_mlp, cla_nb, cla_rf, cla_svm
-#'@param model DALToolbox classification model
-#'@param threshold threshold for classification
-#'@return `hanc_ml` object
-#'@examples
-#'library(daltoolbox)
+#' @title Anomaly detector based on ML classification
+#' @description
+#' Supervised anomaly detection using a DALToolbox classifier trained with
+#' labeled events. Predictions above a probability threshold are flagged.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' A set of preconfigured classification methods are listed at
+#' <https://cefet-rj-dal.github.io/daltoolbox/> (e.g., `cla_majority`,
+#' `cla_dtree`, `cla_knn`, `cla_mlp`, `cla_nb`, `cla_rf`, `cla_svm`).
 #'
-#'#Using example tt
-#'dataset <- examples_anomalies$tt
-#'dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
-#'slevels <- levels(dataset$event)
+#' @param model A DALToolbox classification model.
+#' @param threshold Numeric. Probability threshold for positive class.
+#' @return `hanc_ml` object.
 #'
-#'# separating into training and test
-#'train <- dataset[1:80,]
-#'test <- dataset[-(1:80),]
+#' @examples
+#' library(daltoolbox)
 #'
-#'# normalizing the data
-#'norm <- minmax()
-#'norm <- fit(norm, train)
-#'train_n <- daltoolbox::transform(norm, train)
+#' # Load labeled anomaly dataset
+#' data(examples_anomalies)
 #'
-#'# establishing decision tree method
-#'model <- hanc_ml(cla_dtree("event", slevels))
+#' # Use train-test example
+#' dataset <- examples_anomalies$tt
+#' dataset$event <- factor(dataset$event, labels=c("FALSE", "TRUE"))
+#' slevels <- levels(dataset$event)
 #'
-#'# fitting the model
-#'model <- fit(model, train_n)
+#' # Split into training and test
+#' train <- dataset[1:80,]
+#' test <- dataset[-(1:80),]
 #'
-#'# evaluating the detections during testing
-#'test_n <- daltoolbox::transform(norm, test)
+#' # Normalize features
+#' norm <- minmax()
+#' norm <- fit(norm, train)
+#' train_n <- daltoolbox::transform(norm, train)
 #'
-#'detection <- detect(model, test_n)
-#'print(detection[(detection$event),])
+#' # Configure a decision tree classifier
+#' model <- hanc_ml(cla_dtree("event", slevels))
+#'
+#' # Fit the classifier
+#' model <- fit(model, train_n)
+#'
+#' # Evaluate detections on the test set
+#' test_n <- daltoolbox::transform(norm, test)
+#'
+#' detection <- detect(model, test_n)
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Bishop CM (2006). Pattern Recognition and Machine Learning. Springer.
+#' - Hyndman RJ, Athanasopoulos G (2021). Forecasting: Principles and Practice. OTexts.
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
 #'@export
 hanc_ml <- function(model, threshold = 0.5) {

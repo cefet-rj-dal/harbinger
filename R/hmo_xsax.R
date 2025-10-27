@@ -1,32 +1,40 @@
-#'@title Motif discovery using xsax
-#'@description Motif discovery using xsax <doi:10.1007/s10618-007-0064-z>
-#'@param a alphabet size
-#'@param w word size
-#'@param qtd number of occurrences to be classified as motifs
-#'@return `hmo_xsax` object
-#'@examples
-#'library(daltoolbox)
+#' @title Motif discovery using XSAX
+#' @description
+#' Discovers repeated subsequences (motifs) using an extended SAX (XSAX)
+#' representation that supports a larger alphanumeric alphabet.
 #'
-#'#loading the example database
-#'data(examples_motifs)
+#' @param a Integer. Alphabet size.
+#' @param w Integer. Word/window size.
+#' @param qtd Integer. Minimum number of occurrences to be classified as motifs.
+#' @return `hmo_xsax` object.
 #'
-#'#Using sequence example
-#'dataset <- examples_motifs$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up motif discovery method
-#'model <- hmo_xsax(37, 3, 3)
+#' # Load motif example data
+#' data(examples_motifs)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple sequence example
+#' dataset <- examples_motifs$simple
+#' head(dataset)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Configure XSAX-based motif discovery
+#' model <- hmo_xsax(37, 3, 3)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-#'@export
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected motifs
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+#'
+#' @export
 hmo_xsax <- function(a, w, qtd) {
   obj <- harbinger()
   obj$a <- a

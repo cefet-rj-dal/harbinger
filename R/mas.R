@@ -17,15 +17,15 @@
 #' Springer.
 #' @keywords moving average smoother daltoolbox::transform time series
 #' @examples
-#'#loading the example database
-#'data(examples_changepoints)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# setting up change point method
-#'ma <- mas(dataset$serie, 5)
+#' # Compute a 5-point moving average
+#' ma <- mas(dataset$serie, 5)
 #' @export mas
 mas <- function(x, order){
   n <- length(x)

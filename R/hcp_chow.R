@@ -1,5 +1,5 @@
-#'@title Chow test method
-#'@description Change-point detection method that focus on identifying structural changes  <doi:10.18637/jss.v007.i02>.
+#'@title Chow Test (structural break)
+#'@description Change-point detection for linear models using F-based structural break tests from the strucchange package <doi:10.18637/jss.v007.i02>.
 #'It wraps the Fstats and breakpoints implementation available in the strucchange library.
 #A. Zeileis, C. Kleiber, W. Krämer, and K. Hornik, 2003, Testing and dating of structural changes in practice, Computational Statistics & Data Analysis, v. 44, n. 1 (Oct.), p. 109–123.
 #A. Zeileis, F. Leisch, K. Hornik, and C. Kleiber 2002.  Strucchange: An R package for testing for structural change in linear regression models.
@@ -7,24 +7,24 @@
 #'@examples
 #'library(daltoolbox)
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# setting up change point method
-#'model <- hcp_chow()
+#' # Configure the Chow detector
+#' model <- hcp_chow()
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Fit the detector (no-op for Chow)
+#' model <- fit(model, dataset$serie)
 #'
-#'# execute the detection method
-#'detection <- detect(model, dataset$serie)
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Show detected change points
+#' print(detection[(detection$event),])
 #'
 #'@export
 hcp_chow <- function() {

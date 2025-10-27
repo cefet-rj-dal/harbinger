@@ -1,39 +1,50 @@
-#'@title Pruned exact linear time (PELT) method
-#'@description Change-point detection method that focus on identifying multiple exact change points in mean/variance <doi:10.1080/01621459.2012.737745>.
-#'It wraps the BinSeg implementation available in the changepoint library.
-#PELT Algorithm: Killick R, Fearnhead P, Eckley IA (2012) Optimal detection of changepoints with a linear computational cost, JASA 107(500), 1590–1598
-#'@return `hcp_pelt` object
-#'@examples
-#'library(daltoolbox)
+#' @title Pruned Exact Linear Time (PELT)
+#' @description
+#' Multiple change-point detection using the PELT algorithm for mean/variance
+#' with a linear-time cost under suitable penalty choices. This function wraps
+#' the PELT implementation in the `changepoint` package.
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' @details
+#' PELT performs optimal partitioning while pruning candidate change-point
+#' locations to achieve near-linear computational cost.
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' @return `hcp_pelt` object.
 #'
-#'# setting up change point method
-#'model <- hcp_pelt()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'# execute the detection method
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure the PELT detector
+#' model <- hcp_pelt()
 #'
-#'@export
+#' # Fit the detector (no-op for PELT)
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected change points
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints
+#'   with a linear computational cost. JASA, 107(500):1590–1598.
+#'
+#' @export
 hcp_pelt <- function() {
   obj <- harbinger()
   class(obj) <- append("hcp_pelt", class(obj))
   return(obj)
 }
 
-#'@importFrom changepoint cpt.meanvar
-#'@exportS3Method detect hcp_pelt
+#' @importFrom changepoint cpt.meanvar
+#' @exportS3Method detect hcp_pelt
 detect.hcp_pelt <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 

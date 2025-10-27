@@ -5,24 +5,28 @@
 #'@examples
 #'library(daltoolbox)
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# setting up change point method
-#'model <- hcp_scp()
+#' # Configure seminal change-point detector
+#' model <- hcp_scp()
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Show detected change points
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
 #'@export
 hcp_scp <- function(sw_size = 30) {

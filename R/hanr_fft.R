@@ -1,30 +1,42 @@
-#'@title Anomaly detector using FFT
-#'@description Anomaly detection using FFT
-#'The FFT model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the FFT model presented in the stats library.
-#'@return `hanr_fft` object
+#' @title Anomaly detector using FFT
+#' @description
+#' High-pass filtering via FFT to isolate high-frequency components; anomalies
+#' are flagged where the filtered magnitude departs strongly from baseline.
 #'
-#'@examples
-#'library(daltoolbox)
+#' @details
+#' The spectrum is computed by FFT, a cutoff is selected from the power spectrum,
+#' low frequencies are nulled, and the inverse FFT reconstructs a high-pass
+#' signal. Magnitudes are summarized and thresholded using `harutils()`.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @return `hanr_fft` object
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up time series fft detector
-#'model <- hanr_fft()
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-# making detection
-#'detection <- detect(model, dataset$serie)
+#' # Configure FFT-based anomaly detector
+#' model <- hanr_fft()
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Sobrinho, E. P., Souza, J., Lima, J., Giusti, L., Bezerra, E., Coutinho, R., Baroni, L.,
+#'   Pacitti, E., Porto, F., Belloze, K., Ogasawara, E. Fine-Tuning Detection Criteria for
+#'   Enhancing Anomaly Detection in Time Series. In: Simpósio Brasileiro de Banco de Dados
+#'   (SBBD). SBC, 29 Sep. 2025. doi:10.5753/sbbd.2025.247063
 #'
 #'@export
 hanr_fft <- function() {

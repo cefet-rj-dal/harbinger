@@ -1,18 +1,29 @@
-#'@title XSAX
-#'@description XSAX
-#'@param alpha alphabet
-#'@return obj
-#'@examples
-#'library(daltoolbox)
-#'vector <- 1:52
-#'model <- trans_xsax(alpha = 52)
-#'model <- fit(model, vector)
-#'xvector <- transform(model, vector)
-#'print(xvector)
-#'@importFrom daltoolbox dal_transform
-#'@importFrom daltoolbox fit
-#'@importFrom daltoolbox transform
-#'@export
+#' @title XSAX transformation
+#' @description
+#' Extended SAX (XSAX) discretization using a larger alphanumeric alphabet
+#' for finer symbolic resolution.
+#'
+#' @param alpha Integer. Alphabet size (2–36).
+#' @return A `trans_xsax` transformer object.
+#'
+#' @examples
+#' library(daltoolbox)
+#' vector <- 1:52
+#' model <- trans_xsax(alpha = 36)
+#' model <- fit(model, vector)
+#' xvector <- transform(model, vector)
+#' print(xvector)
+#'
+#' @seealso trans_sax
+#'
+#' @importFrom daltoolbox dal_transform
+#' @importFrom daltoolbox fit
+#' @importFrom daltoolbox transform
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+#' @export
 trans_xsax <- function(alpha) {
   obj <- dal_transform()
   obj$alpha <- alpha

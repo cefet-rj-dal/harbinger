@@ -1,30 +1,39 @@
-#'@title Harbinger Ensemble
-#'@description Ensemble detector
-#'@param ... list of detectors
-#'@return Harbinger object
-#'@examples
-#'library(daltoolbox)
+#' @title Harbinger Ensemble
+#' @description
+#' Majority-vote ensemble across multiple Harbinger detectors with optional
+#' temporal fuzzification to combine nearby detections.
+#' @param ... One or more detector objects.
+#' @return A `har_ensemble` object
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @examples
+#' library(daltoolbox)
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'# setting up time series emd detector
-#'model <- har_ensemble(hanr_arima(), hanr_arima(), hanr_arima())
-#'#model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Configure an ensemble of detectors
+#' model <- har_ensemble(hanr_arima(), hanr_arima(), hanr_arima())
+#' # model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
 #'
-#'detection <- detect(model, dataset$serie)
+#' # Fit all ensemble members
+#' model <- fit(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
-#'@importFrom stats quantile
-#'@export
+#' # Run ensemble detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected events
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+#'
+#' @importFrom stats quantile
+#' @export
 har_ensemble <- function(...) {
   obj <- harbinger()
   obj$time_tolerance <- 0

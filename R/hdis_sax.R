@@ -7,24 +7,28 @@
 #'@examples
 #'library(daltoolbox)
 #'
-#'#loading the example database
-#'data(examples_motifs)
+#' # Load motif/discord example data
+#' data(examples_motifs)
 #'
-#'#Using sequence example
-#'dataset <- examples_motifs$simple
-#'head(dataset)
+#' # Use a simple sequence example
+#' dataset <- examples_motifs$simple
+#' head(dataset)
 #'
-#'# setting up discord discovery method
-#'model <- hdis_sax(26, 3, 3)
+#' # Configure discord discovery via SAX
+#' model <- hdis_sax(26, 3, 3)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Show detected discords
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
 #'@export
 hdis_sax <- function(a, w, qtd=2) {

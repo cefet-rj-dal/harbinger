@@ -1,33 +1,42 @@
-#'@title Anomaly detector using Wavelet
-#'@description Anomaly detection using Wavelet
-#'The Wavelet model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the Wavelet model presented in the stats library.
-#'@param filter Availables wavelet filters: haar, d4, la8, bl14, c6
-#'@return `hanr_wavelet` object
+#' @title Anomaly detector using Wavelets
+#' @description
+#' Multiresolution decomposition via wavelets; anomalies are flagged where
+#' aggregated wavelet detail coefficients indicate unusual energy.
 #'
-#'@examples
-#'library(daltoolbox)
+#' @details
+#' The series is decomposed with MODWT and detail bands are aggregated to
+#' compute a magnitude signal that is thresholded using `harutils()`.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @param filter Character. Available wavelet filters: `haar`, `d4`, `la8`, `bl14`, `c6`.
+#' @return `hanr_wavelet` object
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up time series fft detector
-#'model <- hanr_wavelet()
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-# making detection
-#'detection <- detect(model, dataset$serie)
+#' # Configure wavelet-based anomaly detector
+#' model <- hanr_wavelet()
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-#'@export
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Mallat S (1989). A theory for multiresolution signal decomposition: The wavelet
+#'   representation. IEEE Transactions on Pattern Analysis and Machine Intelligence, 11(7):674–693.
+#'
+#' @export
 hanr_wavelet <- function(filter = "haar") {
   obj <- harbinger()
   obj$filter <- filter

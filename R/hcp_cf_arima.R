@@ -1,31 +1,39 @@
-#'@title Change Finder using ARIMA
-#'@description Change-point detection is related to event/trend change detection. Change Finder ARIMA detects change points based on deviations relative to ARIMA model <doi:10.1109/TKDE.2006.1599387>.
-#'It wraps the ARIMA model presented in the forecast library.
-#'@param sw_size Sliding window size
-#'@return `hcp_cf_arima` object
-#'@examples
-#'library(daltoolbox)
+#' @title Change Finder using ARIMA
+#' @description
+#' Change-point detection by modeling residual deviations with ARIMA and applying
+#' a second-stage smoothing and thresholding, inspired by ChangeFinder
+#' <doi:10.1109/TKDE.2006.1599387>. Wraps ARIMA from the `forecast` package.
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' @param sw_size Integer. Sliding window size for smoothing/statistics.
+#' @return `hcp_cf_arima` object.
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' @examples
+#' library(daltoolbox)
 #'
-#'# setting up change point method
-#'model <- hcp_cf_arima()
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Configure ChangeFinder-ARIMA detector
+#' model <- hcp_cf_arima()
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-#'@export
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected change points
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers and
+#'   change points from time series. IEEE Transactions on Knowledge and Data Engineering.
+#'
+#' @export
 hcp_cf_arima <- function(sw_size = NULL) {
   obj <- harbinger()
   obj$sw_size <- sw_size

@@ -1,18 +1,27 @@
-#'@title SAX
-#'@description SAX
-#'@param alpha alphabet
-#'@return obj
-#'@examples
-#'library(daltoolbox)
-#'vector <- 1:52
-#'model <- trans_sax(alpha = 26)
-#'model <- fit(model, vector)
-#'xvector <- transform(model, vector)
-#'print(xvector)
-#'@importFrom daltoolbox dal_transform
-#'@importFrom daltoolbox fit
-#'@importFrom daltoolbox transform
-#'@export
+#' @title SAX transformation
+#' @description
+#' Symbolic Aggregate approXimation (SAX) discretization of a numeric time series.
+#' The series is z-normalized, quantile-binned, and mapped to an alphabet of size `alpha`.
+#'
+#' @param alpha Integer. Alphabet size (2–26).
+#' @return A `trans_sax` transformer object.
+#'
+#' @examples
+#' library(daltoolbox)
+#' vector <- 1:52
+#' model <- trans_sax(alpha = 26)
+#' model <- fit(model, vector)
+#' xvector <- transform(model, vector)
+#' print(xvector)
+#'
+#' @references
+#' - Lin J, Keogh E, Lonardi S, Chiu B (2007). A symbolic representation of time series,
+#'   with implications for streaming algorithms. Data Mining and Knowledge Discovery 15, 107–144.
+#'
+#' @importFrom daltoolbox dal_transform
+#' @importFrom daltoolbox fit
+#' @importFrom daltoolbox transform
+#' @export
 trans_sax <- function(alpha) {
   obj <- dal_transform()
   obj$alpha <- alpha

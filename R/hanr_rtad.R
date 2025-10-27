@@ -11,24 +11,28 @@
 #'library(daltoolbox)
 #'library(zoo)
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# setting up time series emd detector
-#'model <- hanr_rtad()
+#' # Configure RTAD detector
+#' model <- hanr_rtad()
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-# making detection
-#'detection <- detect(model, dataset$serie)
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Show detected events
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
 #'@export
 hanr_rtad <- function(sw_size = 30, noise = 0.001, trials = 5, sigma = sd) {

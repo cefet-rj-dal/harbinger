@@ -1,14 +1,23 @@
-#'@title Anomaly detector using autoencoder
-#'@description Anomaly detector using autoencoder
-#'@param input_size Establish the input size for the autoencoder anomaly detector. It is the size of the output also.
-#'@param encode_size The encode size for the autoencoder.
-#'@param encoderclass The class of daltoolbox encoder-decoder.
-#'@param ... optional arguments for encoder-decoder class.
-#'@return han_autoencoder object
-#'histogram based method to detect anomalies in time series. Bins with smaller amount of observations are considered anomalies. Values below first bin or above last bin are also considered anomalies.>.
-#'@examples
-#'#See an example of using `autoenc_ed` at this
-#'#https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
+#' @title Anomaly detector using autoencoders
+#' @description
+#' Trains an encoder-decoder (autoencoder) to reconstruct sliding windows of the
+#' series; large reconstruction errors indicate anomalies.
+#'
+#' @param input_size Integer. Input (and output) window size for the autoencoder.
+#' @param encode_size Integer. Size of the encoded (bottleneck) representation.
+#' @param encoderclass DALToolbox encoder-decoder constructor to instantiate.
+#' @param ... Additional arguments forwarded to `encoderclass`.
+#'
+#' @return `han_autoencoder` object
+#'
+#' @examples
+#' # For a full example using `autoenc_ed`, see:
+#' # https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
+#'
+#' @references
+#' - Sakurada M, Yairi T (2014). Anomaly Detection Using Autoencoders with
+#'   Nonlinear Dimensionality Reduction. MLSDA 2014.
+#'
 #'@importFrom stats na.omit
 #'@importFrom daltoolbox autoenc_base_ed
 #'@importFrom tspredit ts_norm_gminmax

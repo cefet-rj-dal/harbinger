@@ -1,34 +1,43 @@
-#'@title Anomaly detector based on machine learning regression.
-#'@description Anomaly detection using daltoolbox regression
-#'The regression model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'A set of preconfigured regression methods are described in <https://cefet-rj-dal.github.io/daltoolbox/>.
-#'They include: ts_elm, ts_conv1d, ts_lstm, ts_mlp, ts_rf, ts_svm
-#'@param model DALToolbox regression model
-#'@param sw_size sliding window size
-#'@return `hanr_ml` object
-#'@examples
-#'library(daltoolbox)
-#'library(tspredit)
+#' @title Anomaly detector based on ML regression
+#' @description
+#' Trains a regression model to forecast the next value from a sliding window
+#' and flags large prediction errors as anomalies. Uses DALToolbox regressors.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' A set of preconfigured regression methods are described at
+#' <https://cefet-rj-dal.github.io/daltoolbox/> (e.g., `ts_elm`, `ts_conv1d`,
+#' `ts_lstm`, `ts_mlp`, `ts_rf`, `ts_svm`).
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @param model A DALToolbox regression model.
+#' @param sw_size Integer. Sliding window size.
+#' @return `hanr_ml` object.
 #'
-#'# setting up time series regression model
-#'model <- hanr_ml(tspredit::ts_elm(tspredit::ts_norm_gminmax(),
-#'                   input_size=4, nhid=3, actfun="purelin"))
+#' @examples
+#' library(daltoolbox)
+#' library(tspredit)
 #'
-#'# fitting the model
-#'model <- daltoolbox::fit(model, dataset$serie)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure a time series regression model
+#' model <- hanr_ml(tspredit::ts_elm(tspredit::ts_norm_gminmax(),
+#'                    input_size=4, nhid=3, actfun="purelin"))
+#'
+#' # Fit the model
+#' model <- daltoolbox::fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Hyndman RJ, Athanasopoulos G (2021). Forecasting: Principles and Practice. OTexts.
+#' - Goodfellow I, Bengio Y, Courville A (2016). Deep Learning. MIT Press. [for NN-based regressors]
 #'
 #'@export
 hanr_ml <- function(model, sw_size = 15) {

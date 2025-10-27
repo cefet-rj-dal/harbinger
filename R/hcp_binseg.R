@@ -1,32 +1,43 @@
-#'@title Binary segmentation (BinSeg) method
-#'@description Change-point detection method that focus on identify change points in mean/variance <doi:10.2307/2529204>.
-#'It wraps the BinSeg implementation available in the changepoint library.
-#'@param Q The maximum number of change-points to search for using the BinSeg method
-#Binary Segmentation: Scott, A. J. and Knott, M. (1974) A Cluster Analysis Method for Grouping Means in the Analysis of Variance, Biometrics 30(3), 507–512
-#'@return `hcp_binseg` object
-#'@examples
-#'library(daltoolbox)
+#' @title Binary Segmentation (BinSeg)
+#' @description
+#' Multi-change-point detection via Binary Segmentation on mean/variance using
+#' the `changepoint` package.
 #'
-#'#loading the example database
-#'data(examples_changepoints)
+#' @details
+#' Binary Segmentation recursively partitions the series around the largest
+#' detected change until a maximum number of change points or stopping criterion
+#' is met. This is a fast heuristic widely used in practice.
 #'
-#'#Using simple example
-#'dataset <- examples_changepoints$simple
-#'head(dataset)
+#' @param Q Integer. Maximum number of change points to search for.
+#' @return `hcp_binseg` object.
 #'
-#'# setting up change point method
-#'model <- hcp_binseg()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load change-point example data
+#' data(examples_changepoints)
 #'
-#'# execute the detection method
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_changepoints$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure the BinSeg detector
+#' model <- hcp_binseg()
 #'
-#'@export
+#' # Fit the detector (no-op for BinSeg)
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected change points
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Vostrikova L (1981). Detecting "disorder" in multidimensional random processes. Soviet Mathematics Doklady, 24, 55–59. [Binary Segmentation]
+#' - Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598. [context]
+#'
+#' @export
 hcp_binseg <- function(Q = 2) {
   obj <- harbinger()
   obj$Q <- Q
@@ -34,8 +45,8 @@ hcp_binseg <- function(Q = 2) {
   return(obj)
 }
 
-#'@importFrom changepoint cpt.meanvar
-#'@exportS3Method detect hcp_binseg
+#' @importFrom changepoint cpt.meanvar
+#' @exportS3Method detect hcp_binseg
 detect.hcp_binseg <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 

@@ -1,31 +1,43 @@
-#'@title Anomaly detector using GARCH
-#'@description Anomaly detection using GARCH
-#'The GARCH model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the ugarch model presented in the rugarch library.
-#'@return `hanr_garch` object
-#'@examples
-#'library(daltoolbox)
+#' @title Anomaly detector using GARCH
+#' @description
+#' Fits a GARCH model to capture conditional heteroskedasticity and flags
+#' observations with large standardized residuals as anomalies. Wraps `rugarch`.
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' @details
+#' A sGARCH(1,1) with ARMA(1,1) mean is estimated. Standardized residuals are
+#' summarized and thresholded via `harutils()`.
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' @return `hanr_garch` object.
 #'
-#'# setting up time series regression model
-#'model <- hanr_garch()
+#' @examples
+#' library(daltoolbox)
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-# making detection using hanr_ml
-#'detection <- detect(model, dataset$serie)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Configure GARCH anomaly detector
+#' model <- hanr_garch()
 #'
-#'@export
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
+#'
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
+#'
+#' # Show detected anomalies
+#' print(detection[(detection$event),])
+#'
+#' @references
+#' - Engle RF (1982). Autoregressive Conditional Heteroscedasticity with Estimates of
+#'   the Variance of United Kingdom Inflation. Econometrica, 50(4):987–1007.
+#' - Bollerslev T (1986). Generalized Autoregressive Conditional Heteroskedasticity.
+#'   Journal of Econometrics, 31(3):307–327.
+#'
+#' @export
 hanr_garch <- function() {
   obj <- harbinger()
 
