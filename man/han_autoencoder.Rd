@@ -23,8 +23,27 @@ Trains an encoder-decoder (autoencoder) to reconstruct sliding windows of the
 series; large reconstruction errors indicate anomalies.
 }
 \examples{
-# For a full example using `autoenc_ed`, see:
-# https://github.com/cefet-rj-dal/harbinger/blob/master/anomalies/han_autoenc_ed
+library(daltoolbox)
+library(tspredit)
+
+# Load anomaly example data
+data(examples_anomalies)
+
+# Use a simple example
+dataset <- examples_anomalies$simple
+head(dataset)
+
+# Configure an autoencoder-based anomaly detector
+model <- han_autoencoder(input_size = 5, encode_size = 3)
+
+# Fit the model
+model <- fit(model, dataset$serie)
+
+# Run detection
+detection <- detect(model, dataset$serie)
+
+# Inspect detected anomalies
+print(detection[detection$event, ])
 
 }
 \references{

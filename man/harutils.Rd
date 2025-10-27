@@ -25,8 +25,18 @@ Provided helpers include:
 These utilities centralize common tasks and ensure consistent behavior across detectors.
 }
 \examples{
-# See also ?hanc_ml and ?hanr_ml for end-to-end detector usage where
-# these utilities are applied internally to compute distances and thresholds.
+# Basic usage of utilities
+utils <- harutils()
+
+# Compute L2 distance on residuals
+res <- c(0.1, -0.5, 1.2, -0.3)
+d2 <- utils$har_distance_l2(res)
+print(d2)
+
+# Apply 3-sigma outlier rule and keep only first index of contiguous runs
+idx <- utils$har_outliers_gaussian(d2)
+flags <- utils$har_outliers_checks_firstgroup(idx, d2)
+print(which(flags))
 
 }
 \references{
