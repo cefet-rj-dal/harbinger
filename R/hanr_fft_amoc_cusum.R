@@ -22,26 +22,26 @@
 #'@return `hanr_fft_amoc_cusum` object
 #'
 #'@examples
-#'library(daltoolbox)
+#' library(daltoolbox)
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
-#'#Using simple example
-#'dataset <- examples_anomalies$simple
-#'head(dataset)
+#' # Use a simple example
+#' dataset <- examples_anomalies$simple
+#' head(dataset)
 #'
-#'# setting up time series fft detector
-#'model <- hanr_fft_amoc_cusum()
+#' # Configure FFT+CUSUM+AMOC detector
+#' model <- hanr_fft_amoc_cusum()
 #'
-#'# fitting the model
-#'model <- fit(model, dataset$serie)
+#' # Fit the model
+#' model <- fit(model, dataset$serie)
 #'
-# making detection
-#'detection <- detect(model, dataset$serie)
+#' # Run detection
+#' detection <- detect(model, dataset$serie)
 #'
-#'# filtering detected events
-#'print(detection[(detection$event),])
+#' # Inspect detected anomalies
+#' print(detection[detection$event, ])
 #'
 #'@export
 hanr_fft_amoc_cusum <- function() {

@@ -17,8 +17,8 @@
 #'@examples
 #'library(daltoolbox)
 #'
-#'#loading the example database
-#'data(examples_anomalies)
+#' # Load anomaly example data
+#' data(examples_anomalies)
 #'
 #'#Using simple example
 #'dataset <- examples_anomalies$simple
