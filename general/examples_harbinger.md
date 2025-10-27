@@ -1,26 +1,30 @@
+# Overview
+
+This Rmd provides quick end-to-end examples using the default `harbinger()` pipeline on several datasets (nonstationarity, global temperature monthly/yearly, multidimensional, and Seattle temperatures). For each dataset we: fit the default pipeline, run detection, and plot detections over the series.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_harbinger)
 model <- harbinger()
 ```
 
 
 ``` r
-# Using the nonstationarity time series 
+# Example: nonstationarity time series
 dataset <- examples_harbinger$nonstationarity
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -31,7 +35,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the global temperature (yearly) time series
+# Example: global temperature (yearly)
 dataset <- examples_harbinger$global_temperature_yearly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -42,7 +46,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the global temperature (monthly) time series
+# Example: global temperature (monthly)
 dataset <- examples_harbinger$global_temperature_monthly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -53,7 +57,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the multidimensional time series 
+# Example: multidimensional time series
 dataset <- examples_harbinger$multidimensional
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -72,7 +76,7 @@ har_plot(model, dataset$x, detection, dataset$event)
 
 
 ``` r
-# Using the Seattle weekly temperature time series
+# Example: Seattle weekly temperature time series
 dataset <- examples_harbinger$seattle_week
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -83,7 +87,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the Seattle daily temperature time series
+# Example: Seattle daily temperature time series
 dataset <- examples_harbinger$seattle_daily
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)

@@ -1,26 +1,28 @@
+This notebook demonstrates several change-point patterns in the example datasets and how to visualize detections. We iterate across series and apply: fit, detect, plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load change-point example datasets and create a base object
 data(examples_changepoints)
 model <- harbinger()
 ```
 
 
 ``` r
-# Using the simple time series 
+# Simple change point
 dataset <- examples_changepoints$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -31,7 +33,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the sinusoidal time series
+# Sinusoidal pattern with regime shift
 dataset <- examples_changepoints$sinusoidal
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -42,7 +44,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the incremental time series
+# Incremental trend changes
 dataset <- examples_changepoints$incremental
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -53,7 +55,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the abrupt time series 
+# Abrupt level shift
 dataset <- examples_changepoints$abrupt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -61,14 +63,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
+## Don't know how to automatically pick scale for object of type <ts>.
+## Defaulting to continuous.
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/examples_changepoints/unnamed-chunk-7-1.png)
 
 
 ``` r
-# Using the volatility time series
+# Volatility (variance) change
 dataset <- examples_changepoints$volatility
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -76,14 +79,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
+## Don't know how to automatically pick scale for object of type <ts>.
+## Defaulting to continuous.
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/examples_changepoints/unnamed-chunk-8-1.png)
 
 
 ``` r
-# Using the increasing_amplitude time series
+# Increasing amplitude
 dataset <- examples_changepoints$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -94,7 +98,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the complex time series
+# Complex multi-regime series
 dataset <- examples_changepoints$complex
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)

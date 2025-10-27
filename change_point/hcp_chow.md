@@ -1,25 +1,31 @@
+The Chow-style structural break test estimates a linear model and finds breakpoints using F statistics. In this tutorial we:
+
+- Load and visualize a simple change-point dataset
+- Configure the Chow detector (`hcp_chow`)
+- Inspect detections and evaluate against labels
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example change-point datasets
 data(examples_changepoints)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select the simple dataset
 dataset <- examples_changepoints$simple
 head(dataset)
 ```
@@ -36,7 +42,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +50,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing change point method 
-  model <- hcp_chow()
+# Configure the Chow detector
+model <- hcp_chow()
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector (no training required)
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+# Run detection
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected change points
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -73,9 +79,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -87,8 +93,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot detections vs. ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hcp_chow/unnamed-chunk-11-1.png)

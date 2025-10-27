@@ -1,25 +1,27 @@
+This notebook demonstrates how to compute hard evaluation metrics (confusion matrix, accuracy, precision, recall, F1) for a detector’s output.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example anomaly datasets
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple anomaly dataset
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,7 +38,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +46,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing mlp method 
-  model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size=5, size=3, decay=0))
+# Configure a simple MLP regressor-based anomaly detector
+model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size = 5, size = 3, decay = 0))
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections 
-  detection <- detect(model, dataset$serie)
+# Run detection
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Inspect detected anomaly indices
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -73,9 +75,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections using hard evaluation
-  evaluation <- evaluate(har_eval(), detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate using hard metrics
+evaluation <- evaluate(har_eval(), detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```

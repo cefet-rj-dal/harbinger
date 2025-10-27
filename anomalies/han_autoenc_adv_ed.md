@@ -15,10 +15,6 @@ library(daltoolbox)
 ```
 
 ```
-## Warning: pacote 'daltoolbox' foi compilado no R versão 4.5.1
-```
-
-```
 ## 
 ## Anexando pacote: 'daltoolbox'
 ```
@@ -34,7 +30,9 @@ library(daltoolboxdp)
 ```
 
 ```
-## Warning: pacote 'daltoolboxdp' foi compilado no R versão 4.5.1
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
 ```
 
 ``` r
@@ -85,6 +83,12 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
+## Warning in system2(python, args, stdout = TRUE): execução do comando
+## '"C:/Users/eduar/AppData/Local/R/cache/R/reticulate/uv/cache/archive-v0/n3jrw-3a68KSNon74FalM/Scripts/python.exe"
+## -m pip freeze' teve status 1
+```
+
+```
 ## 
 ```
 
@@ -92,17 +96,30 @@ har_plot(harbinger(), dataset$serie)
 ## Warning in py_install(pip_packages, pip = TRUE): An ephemeral virtual environment managed by 'reticulate' is currently in use.
 ## To add more packages to your current session, call `py_require()` instead
 ## of `py_install()`. Running:
-##   `py_require(c("matplotlib", "pandas", "scikit-learn", "scipy", "torch"))`
+##   `py_require(c("matplotlib", "numpy", "pandas", "scikit-learn", "scipy", "torch"))`
+```
+
+```
+## Warning in py_require(packages): After Python has initialized, only `action
+## = 'add'` with new packages is supported.
 ```
 
 ```
 ## Done!
 ```
 
+```
+## No module named 'torch'
+```
+
 
 ``` r
 # Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
+```
+
+```
+## No module named 'torch'
 ```
 
 
@@ -112,23 +129,25 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  19  TRUE anomaly
-## 2  44  TRUE anomaly
+## Error: objeto 'detection' não encontrado
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error: objeto 'detection' não encontrado
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## Error: objeto 'evaluation' não encontrado
 ```
 
 
@@ -137,11 +156,15 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 ``` r
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```

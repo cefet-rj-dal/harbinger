@@ -1,27 +1,28 @@
+This notebook shows how different Harbinger utility functions for distance, thresholding and grouping affect anomaly flags and thresholds.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# class harutils
-  hutils <- harutils()
+# Instantiate utilities
+hutils <- harutils()
 ```
 
 
 ``` r
-# loading the example database
+# Load a simple anomaly dataset and plot it
 data(examples_anomalies)
-# Using the simple time series 
 dataset <- examples_anomalies$simple
 har_plot(harbinger(), dataset$serie)
 ```
@@ -30,110 +31,86 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing arima method 
-  model <- hanr_arima()
-  # using default hutils$har_outliers_gaussian
-  # using default hutils$har_distance_l2
-  # fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Baseline: ARIMA with default distance (L2) and threshold (Gaussian 3-sigma)
+model <- hanr_arima()
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/examples_harutils_outliers/unnamed-chunk-5-1.png)
 
 
 ``` r
-  model <- hanr_arima()
-  model$har_outliers <- hutils$har_outliers_boxplot
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Use Boxplot/IQR threshold instead of Gaussian
+model <- hanr_arima()
+model$har_outliers <- hutils$har_outliers_boxplot
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/examples_harutils_outliers/unnamed-chunk-6-1.png)
 
 
 ``` r
-  model <- hanr_arima()
-  model$har_outliers <- hutils$har_outliers_ratio
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))  
+# Use ratio thresholding emphasizing relative deviation
+model <- hanr_arima()
+model$har_outliers <- hutils$har_outliers_ratio
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/examples_harutils_outliers/unnamed-chunk-7-1.png)
 
 
 ``` r
-  model <- hanr_arima()
-  model$har_distance <- hutils$har_distance_l1
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Change distance to L1 (absolute deviation)
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/examples_harutils_outliers/unnamed-chunk-8-1.png)
 
 
 ``` r
-  model <- hanr_arima()
-  model$har_distance <- hutils$har_distance_l1
-  model$har_outliers <- hutils$har_outliers_boxplot
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# L1 distance + Boxplot/IQR threshold
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_boxplot
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/examples_harutils_outliers/unnamed-chunk-9-1.png)
 
 
 ``` r
-  model <- hanr_arima()
-  model$har_distance <- hutils$har_distance_l1
-  model$har_outliers <- hutils$har_outliers_ratio
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# L1 distance + ratio threshold
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_ratio
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/examples_harutils_outliers/unnamed-chunk-10-1.png)
 
 ``` r
-  model <- hanr_arima()
-  model$har_distance <- hutils$har_distance_l1
-  model$har_outliers <- hutils$har_outliers_boxplot
-  model$har_outliers_check <- hutils$har_outliers_checks_highgroup  
-# fitting the model
-  model <- fit(model, dataset$serie)
-# making detections
-  detection <- detect(model, dataset$serie)
-  res <- attr(detection, "res")
-  
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Keep only the highest-magnitude index in contiguous runs
+model <- hanr_arima()
+model$har_distance <- hutils$har_distance_l1
+model$har_outliers <- hutils$har_outliers_boxplot
+model$har_outliers_check <- hutils$har_outliers_checks_highgroup
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/examples_harutils_outliers/unnamed-chunk-11-1.png)

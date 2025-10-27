@@ -67,8 +67,8 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Warning in serie - ts_sma: comprimento do objeto maior não é múltiplo do comprimento do objeto
-## menor
+## Warning in serie - ts_sma: comprimento do objeto maior não é múltiplo do
+## comprimento do objeto menor
 ```
 
 

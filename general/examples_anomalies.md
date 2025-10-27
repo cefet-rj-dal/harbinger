@@ -1,26 +1,28 @@
+This notebook demonstrates different anomaly patterns available in the example datasets and how to visualize detections with Harbinger’s default plot. We will iterate over multiple series and apply the base workflow: fit, detect, plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example anomaly datasets and create a base object
 data(examples_anomalies)
 model <- harbinger()
 ```
 
 
 ``` r
-# Using the simple time series 
+# Simple anomalies: isolated spikes
 dataset <- examples_anomalies$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -31,7 +33,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the contextual time series
+# Contextual anomalies: depend on local context
 dataset <- examples_anomalies$contextual
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -42,7 +44,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the trend time series
+# Trend with anomalies
 dataset <- examples_anomalies$trend
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -53,7 +55,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the multiple-event time series 
+# Multiple anomalies
 dataset <- examples_anomalies$multiple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -64,7 +66,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the sequence time series 
+# Anomalous repeating sequences
 dataset <- examples_anomalies$sequence
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -75,7 +77,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the train-test (tt) time series
+# Train/Test split
 dataset <- examples_anomalies$tt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -86,7 +88,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the train-test warped (tt_warped) time series
+# Train/Test warped
 dataset <- examples_anomalies$tt_warped
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -97,7 +99,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the increasing_amplitude time series
+# Increasing amplitude over time
 dataset <- examples_anomalies$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -108,7 +110,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the decreasing_amplitude time series
+# Decreasing amplitude over time
 dataset <- examples_anomalies$decreasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -119,7 +121,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 
 ``` r
-# Using the volatile time series
+# Volatile variance
 dataset <- examples_anomalies$volatile
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)

@@ -18,6 +18,10 @@ library(harbinger)
 library(ggplot2)
 ```
 
+```
+## Warning: pacote 'ggplot2' foi compilado no R versão 4.5.1
+```
+
 
 ``` r
 # Load a multivariate example and define event labels (for demo)

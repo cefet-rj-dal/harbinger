@@ -61,10 +61,18 @@ har_plot(harbinger(), dataset$serie)
   model <- fit(model, dataset$serie)
 ```
 
+```
+## No module named 'torch'
+```
+
 
 ``` r
 # Detect anomalies (compute residuals and events)
   detection <- detect(model, dataset$serie)
+```
+
+```
+## Error in (ncol(data) - input_size + 1):ncol(data): argumento de comprimento zero
 ```
 
 
@@ -74,22 +82,25 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error: objeto 'detection' não encontrado
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error: objeto 'detection' não encontrado
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error: objeto 'evaluation' não encontrado
 ```
 
 
@@ -98,7 +109,9 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanr_ml_lstm/unnamed-chunk-11-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 
 ``` r
@@ -106,4 +119,6 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/hanr_ml_lstm/unnamed-chunk-12-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```

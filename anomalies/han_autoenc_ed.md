@@ -60,10 +60,18 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
   model <- fit(model, dataset$serie)
 ```
 
+```
+## No module named 'torch'
+```
+
 
 ``` r
 # Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
+```
+
+```
+## No module named 'torch'
 ```
 
 
@@ -73,22 +81,25 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 
 ```
-##   idx event    type
-## 1  51  TRUE anomaly
+## Error: objeto 'detection' não encontrado
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error: objeto 'detection' não encontrado
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## Error: objeto 'evaluation' não encontrado
 ```
 
 
@@ -97,7 +108,9 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/han_autoenc_ed/unnamed-chunk-11-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 
 ``` r
@@ -105,4 +118,6 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/han_autoenc_ed/unnamed-chunk-12-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```

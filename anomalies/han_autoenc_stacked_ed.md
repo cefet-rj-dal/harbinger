@@ -6,43 +6,8 @@ This Rmd demonstrates anomaly detection with a stacked autoencoder (`han_autoenc
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## Warning: pacote 'daltoolbox' foi compilado no R versão 4.5.1
-```
-
-```
-## 
-## Anexando pacote: 'daltoolbox'
-```
-
-```
-## O seguinte objeto é mascarado por 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger) 
-```
-
-```
-## Warning: pacote 'harbinger' foi compilado no R versão 4.5.1
-```
-
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
-``` r
 library(daltoolboxdp)
-```
-
-```
-## Warning: pacote 'daltoolboxdp' foi compilado no R versão 4.5.1
 ```
 
 
@@ -89,24 +54,17 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## 
-```
-
-```
-## Warning in py_install(pip_packages, pip = TRUE): An ephemeral virtual environment managed by 'reticulate' is currently in use.
-## To add more packages to your current session, call `py_require()` instead
-## of `py_install()`. Running:
-##   `py_require(c("matplotlib", "pandas", "scikit-learn", "scipy", "torch"))`
-```
-
-```
-## Done!
+## No module named 'torch'
 ```
 
 
 ``` r
 # Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
+```
+
+```
+## No module named 'torch'
 ```
 
 
@@ -116,24 +74,25 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  10  TRUE anomaly
-## 2  19  TRUE anomaly
-## 3  52  TRUE anomaly
+## Error: objeto 'detection' não encontrado
 ```
 
 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error: objeto 'detection' não encontrado
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     3    
-## FALSE     1     97
+## Error: objeto 'evaluation' não encontrado
 ```
 
 
@@ -142,11 +101,15 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/han_autoenc_stacked_ed/unnamed-chunk-10-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```
 
 ``` r
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/han_autoenc_stacked_ed/unnamed-chunk-11-1.png)
+```
+## Error: objeto 'detection' não encontrado
+```

@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd demonstrates variable-length motif discovery with Matrix Profile using `hmo_mp("valmod", ...)`. VALMOD searches for recurring patterns across a range of subsequence lengths. Steps: load packages/data, visualize, define the model (min/max lengths and count), fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_motifs)
 ```
 
 
 ``` r
-# Using the simple time series
+# Select a simple example time series
 dataset <- examples_motifs$simple
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,19 +48,21 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing the method  
+# Define Matrix Profile (VALMOD) motif model
+# - second arg: min subsequence length (window)
+# - third arg: number of motifs to retrieve
   model <- hmo_mp("valmod", 4, 3)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect motifs
   detection <- detect(model, dataset$serie)
 ```
 
@@ -69,12 +75,12 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Finished in 0.02 secs
+## Finished in 0.03 secs
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -95,7 +101,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -109,9 +115,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_mp_valmod/unnamed-chunk-11-1.png)
-
