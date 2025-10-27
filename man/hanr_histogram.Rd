@@ -2,39 +2,47 @@
 % Please edit documentation in R/hanr_hist.R
 \name{hanr_histogram}
 \alias{hanr_histogram}
-\title{Anomaly detector using histogram}
+\title{Anomaly detector using histograms}
 \usage{
 hanr_histogram(density_threshold = 0.05)
 }
 \arguments{
-\item{density_threshold}{It is the minimum frequency for a bin to not be considered an anomaly. Default value is 5\%.}
+\item{density_threshold}{Numeric between 0 and 1. Minimum bin density to avoid being
+considered an anomaly (default 0.05).}
 }
 \value{
-hanr_histogram object
-histogram based method to detect anomalies in time series. Bins with smaller amount of observations are considered anomalies. Values below first bin or above last bin are also considered anomalies.>.
+\code{hanr_histogram} object
 }
 \description{
-Anomaly detector using histogram
+Flags observations that fall into low-density histogram bins or outside the
+observed bin range.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series regression model
+# Configure histogram-based detector
 model <- hanr_histogram()
 
-# fitting the model
+# Fit the model (no-op)
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

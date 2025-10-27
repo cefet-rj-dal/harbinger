@@ -18,59 +18,69 @@ har_plot(
 )
 }
 \arguments{
-\item{obj}{harbinger detector}
+\item{obj}{A \code{harbinger} detector used to produce \code{detection}.}
 
-\item{serie}{time series}
+\item{serie}{Numeric vector with the time series to plot.}
 
-\item{detection}{detection}
+\item{detection}{Optional detection data.frame as returned by \code{detect()}.}
 
-\item{event}{events}
+\item{event}{Optional logical vector with ground-truth events (same length as \code{serie}).}
 
-\item{mark.cp}{show change points}
+\item{mark.cp}{Logical; if TRUE, marks detected change points with dashed vertical lines.}
 
-\item{ylim}{limits for y-axis}
+\item{ylim}{Optional numeric vector of length 2 for y-axis limits.}
 
-\item{idx}{labels for x observations}
+\item{idx}{Optional x-axis labels or indices (defaults to \code{seq_along(serie)}).}
 
-\item{pointsize}{default point size}
+\item{pointsize}{Base point size for observations.}
 
-\item{colors}{default colors for event detection: green is TP, blue is FN, red is FP, purple means observations that are part of a sequence.}
+\item{colors}{Character vector of length 4 with colors for TP, FN, FP, and motif segments.}
 
-\item{yline}{values for plotting horizontal dashed lines}
+\item{yline}{Optional numeric vector with y values to draw dotted horizontal lines.}
 }
 \value{
-A time series plot with marked events
+A \code{ggplot} object showing the time series with detected events highlighted.
 }
 \description{
-It accepts as harbinger, a time series, a data.frame of events, a parameter to mark the detected change points, a threshold for the y-axis and an index for the time series
+Convenience plotting helper for Harbinger detections. It accepts a detector,
+the input series, an optional detection data.frame, and optional ground-truth
+events to color-code true positives (TP), false positives (FP), and false negatives (FN).
+It can also mark detected change points and draw reference horizontal lines.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load an example anomaly dataset
 data(examples_anomalies)
 
-#Using the simple time series
+# Use the simple time series
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time change point using GARCH
+# Set up an ARIMA-based anomaly detector
 model <- hanr_arima()
 
-# fitting the model
+# Fit the detector
 model <- fit(model, dataset$serie)
 
-# making detections
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Inspect detected events
 print(detection[(detection$event),])
 
-# evaluating the detections
+# Evaluate detections (soft evaluation)
 evaluation <- evaluate(har_eval_soft(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 
-# ploting the results
+# Plot the results
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
 plot(grf)
+
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

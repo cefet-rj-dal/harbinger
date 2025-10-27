@@ -2,42 +2,50 @@
 % Please edit documentation in R/hmo_xsax.R
 \name{hmo_xsax}
 \alias{hmo_xsax}
-\title{Motif discovery using xsax}
+\title{Motif discovery using XSAX}
 \usage{
 hmo_xsax(a, w, qtd)
 }
 \arguments{
-\item{a}{alphabet size}
+\item{a}{Integer. Alphabet size.}
 
-\item{w}{word size}
+\item{w}{Integer. Word/window size.}
 
-\item{qtd}{number of occurrences to be classified as motifs}
+\item{qtd}{Integer. Minimum number of occurrences to be classified as motifs.}
 }
 \value{
-\code{hmo_xsax} object
+\code{hmo_xsax} object.
 }
 \description{
-Motif discovery using xsax \url{doi:10.1007/s10618-007-0064-z}
+Discovers repeated subsequences (motifs) using an extended SAX (XSAX)
+representation that supports a larger alphanumeric alphabet.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load motif example data
 data(examples_motifs)
 
-#Using sequence example
+# Use a simple sequence example
 dataset <- examples_motifs$simple
 head(dataset)
 
-# setting up motif discovery method
+# Configure XSAX-based motif discovery
 model <- hmo_xsax(37, 3, 3)
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected motifs
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
 }

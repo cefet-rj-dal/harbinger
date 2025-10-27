@@ -2,37 +2,48 @@
 % Please edit documentation in R/hanr_arima.R
 \name{hanr_arima}
 \alias{hanr_arima}
-\title{Anomaly detector using ARIMA.}
+\title{Anomaly detector using ARIMA}
 \usage{
 hanr_arima()
 }
 \value{
-\code{hanr_arima} object
+\code{hanr_arima} object.
 }
 \description{
-Anomaly detection using ARIMA
-The ARIMA model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the ARIMA model presented in the forecast library.
+Fits an ARIMA model to the series and flags observations with large
+model residuals as anomalies. Wraps ARIMA from the \code{forecast} package.
+}
+\details{
+The detector estimates ARIMA(p,d,q) and computes standardized residuals.
+Residual magnitudes are summarized via a distance function and thresholded
+with outlier heuristics from \code{harutils()}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series regression model
+# Configure ARIMA anomaly detector
 model <- hanr_arima()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Box GEP, Jenkins GM, Reinsel GC, Ljung GM (2015). Time Series Analysis: Forecasting
+and Control. Wiley.
+}
 }

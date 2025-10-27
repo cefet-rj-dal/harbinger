@@ -3,7 +3,7 @@
 \docType{data}
 \name{examples_motifs}
 \alias{examples_motifs}
-\title{Time series for change point detection}
+\title{Time series for motif/discord discovery}
 \format{
 A list of time series for motif discovery.
 }
@@ -14,19 +14,24 @@ A list of time series for motif discovery.
 data(examples_motifs)
 }
 \description{
-A list of time series for change point
+A list of time series for motif (repeated patterns) and discord (rare patterns) discovery.
 \itemize{
-\item simple: a simple synthetic time series
-\item mitdb100: sample of mitdb 100 time series
-\item mitdb102: sample of mitdb 102 time series
+\item simple: simple synthetic series with motifs.
+\item mitdb100: sample from MIT-BIH arrhythmia database (record 100).
+\item mitdb102: sample from MIT-BIH arrhythmia database (record 102).
 }
 #'
 }
 \examples{
 data(examples_motifs)
+# Select a simple motif series
 serie <- examples_motifs$simple
+head(serie)
 }
 \references{
 \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+
+Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series.
+1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 }
 \keyword{datasets}

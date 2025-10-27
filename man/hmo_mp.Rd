@@ -7,37 +7,47 @@
 hmo_mp(mode = "stamp", w, qtd)
 }
 \arguments{
-\item{mode}{mode of computing distance between sequences. Available options include: "stomp", "stamp", "simple", "mstomp", "scrimp", "valmod", "pmp"}
+\item{mode}{Character. Algorithm: one of "stomp", "stamp", "simple",
+"mstomp", "scrimp", "valmod", "pmp".}
 
-\item{w}{word size}
+\item{w}{Integer. Subsequence window size.}
 
-\item{qtd}{number of occurrences to be classified as motifs}
+\item{qtd}{Integer. Minimum number of occurrences to classify as a motif.}
 }
 \value{
-\code{hmo_mp} object
+\code{hmo_mp} object.
 }
 \description{
-Motif discovery using Matrix Profile \url{doi:10.32614/RJ-2020-021}
+Discovers repeated subsequences (motifs) using Matrix Profile methods as
+implemented in the \code{tsmp} package \url{doi:10.32614/RJ-2020-021}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load motif example data
 data(examples_motifs)
 
-#Using sequence example
+# Use a simple sequence example
 dataset <- examples_motifs$simple
 head(dataset)
 
-# setting up motif discovery method
+# Configure motif discovery via Matrix Profile
 model <- hmo_mp("stamp", 4, 3)
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected motifs
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Yeh CCM, et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable
+time series motifs/discrod discovery. IEEE ICDM.
+\item Tavenard R, et al. tsmp: The Matrix Profile in R. The R Journal (2020). doi:10.32614/RJ-2020-021
+}
 }

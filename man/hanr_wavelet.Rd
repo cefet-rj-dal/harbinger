@@ -2,40 +2,50 @@
 % Please edit documentation in R/hanr_wavelet.R
 \name{hanr_wavelet}
 \alias{hanr_wavelet}
-\title{Anomaly detector using Wavelet}
+\title{Anomaly detector using Wavelets}
 \usage{
 hanr_wavelet(filter = "haar")
 }
 \arguments{
-\item{filter}{Availables wavelet filters: haar, d4, la8, bl14, c6}
+\item{filter}{Character. Available wavelet filters: \code{haar}, \code{d4}, \code{la8}, \code{bl14}, \code{c6}.}
 }
 \value{
 \code{hanr_wavelet} object
 }
 \description{
-Anomaly detection using Wavelet
-The Wavelet model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the Wavelet model presented in the stats library.
+Multiresolution decomposition via wavelets; anomalies are flagged where
+aggregated wavelet detail coefficients indicate unusual energy.
+}
+\details{
+The series is decomposed with MODWT and detail bands are aggregated to
+compute a magnitude signal that is thresholded using \code{harutils()}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series fft detector
+# Configure wavelet-based anomaly detector
 model <- hanr_wavelet()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Mallat S (1989). A theory for multiresolution signal decomposition: The wavelet
+representation. IEEE Transactions on Pattern Analysis and Machine Intelligence, 11(7):674–693.
+}
 }

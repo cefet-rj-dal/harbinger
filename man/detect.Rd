@@ -7,17 +7,20 @@
 detect(obj, ...)
 }
 \arguments{
-\item{obj}{harbinger object}
+\item{obj}{A \code{harbinger} detector object.}
 
-\item{...}{optional arguments.}
+\item{...}{Additional arguments passed to methods.}
 }
 \value{
-a data frame with the index of observations and if they are identified or not as an event, and their type
+A data frame with columns: \code{idx} (index), \code{event} (logical), and
+\code{type} (character: "anomaly", "changepoint", or ""). Some detectors may
+also attach attributes (e.g., \code{threshold}) or columns (e.g., \code{seq}, \code{seqlen}).
 }
 \description{
-Event detection using a fitted Harbinger model
+Generic S3 generic for event detection using a fitted Harbinger model.
+Concrete methods are implemented by each detector class.
 }
 \examples{
-#See examples of detectors for anomalies, change points, and motifs
-#at https://cefet-rj-dal.github.io/harbinger
+# See detector-specific examples in the package site for usage patterns
+# and plotting helpers.
 }

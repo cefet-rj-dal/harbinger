@@ -2,40 +2,51 @@
 % Please edit documentation in R/hcp_binseg.R
 \name{hcp_binseg}
 \alias{hcp_binseg}
-\title{Binary segmentation (BinSeg) method}
+\title{Binary Segmentation (BinSeg)}
 \usage{
 hcp_binseg(Q = 2)
 }
 \arguments{
-\item{Q}{The maximum number of change-points to search for using the BinSeg method}
+\item{Q}{Integer. Maximum number of change points to search for.}
 }
 \value{
-\code{hcp_binseg} object
+\code{hcp_binseg} object.
 }
 \description{
-Change-point detection method that focus on identify change points in mean/variance \url{doi:10.2307/2529204}.
-It wraps the BinSeg implementation available in the changepoint library.
+Multi-change-point detection via Binary Segmentation on mean/variance using
+the \code{changepoint} package.
+}
+\details{
+Binary Segmentation recursively partitions the series around the largest
+detected change until a maximum number of change points or stopping criterion
+is met. This is a fast heuristic widely used in practice.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure the BinSeg detector
 model <- hcp_binseg()
 
-# fitting the model
+# Fit the detector (no-op for BinSeg)
 model <- fit(model, dataset$serie)
 
-# execute the detection method
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Vostrikova L (1981). Detecting "disorder" in multidimensional random processes. Soviet Mathematics Doklady, 24, 55–59.
+\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598. \link[dplyr:context]{dplyr::context}
+}
 }

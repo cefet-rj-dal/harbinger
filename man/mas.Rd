@@ -26,14 +26,14 @@ values in the range \code{1:(n-k+1)}, and \code{n=length(x)}. See also the
 \code{\link[forecast]{ma}} of the \code{forecast} package.
 }
 \examples{
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Compute a 5-point moving average
 ma <- mas(dataset$serie, 5)
 }
 \references{

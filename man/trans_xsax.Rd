@@ -2,24 +2,35 @@
 % Please edit documentation in R/trans_xsax.R
 \name{trans_xsax}
 \alias{trans_xsax}
-\title{XSAX}
+\title{XSAX transformation}
 \usage{
 trans_xsax(alpha)
 }
 \arguments{
-\item{alpha}{alphabet}
+\item{alpha}{Integer. Alphabet size (2–36).}
 }
 \value{
-obj
+A \code{trans_xsax} transformer object.
 }
 \description{
-XSAX
+Extended SAX (XSAX) discretization using a larger alphanumeric alphabet
+for finer symbolic resolution.
 }
 \examples{
 library(daltoolbox)
 vector <- 1:52
-model <- trans_xsax(alpha = 52)
+model <- trans_xsax(alpha = 36)
 model <- fit(model, vector)
 xvector <- transform(model, vector)
 print(xvector)
+
+}
+\references{
+\itemize{
+\item Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
+}
+}
+\seealso{
+trans_sax
 }

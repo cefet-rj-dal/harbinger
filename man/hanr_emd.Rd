@@ -7,37 +7,43 @@
 hanr_emd(noise = 0.1, trials = 5)
 }
 \arguments{
-\item{noise}{nosie}
+\item{noise}{Numeric. Noise amplitude for CEEMD.}
 
-\item{trials}{trials}
+\item{trials}{Integer. Number of CEEMD trials.}
 }
 \value{
 \code{hanr_emd} object
 }
 \description{
-Anomaly detection using EMD
-The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the EMD model presented in the hht library.
+Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions and
+flag anomalies from high-frequency components. Wraps \code{hht::CEEMD}.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series emd detector
+# Configure EMD-based anomaly detector
 model <- hanr_emd()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Huang NE, et al. (1998). The empirical mode decomposition and the Hilbert spectrum
+for nonlinear and non-stationary time series analysis. Proc. Royal Society A.
+}
 }

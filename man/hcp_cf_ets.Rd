@@ -7,34 +7,36 @@
 hcp_cf_ets(sw_size = 7)
 }
 \arguments{
-\item{sw_size}{Sliding window size}
+\item{sw_size}{Integer. Sliding window size for smoothing/statistics.}
 }
 \value{
-\code{hcp_cf_ets} object
+\code{hcp_cf_ets} object.
 }
 \description{
-Change-point detection is related to event/trend change detection. Change Finder ETS detects change points based on deviations relative to trend component (T), a seasonal component (S), and an error term (E) model \url{doi:10.1109/TKDE.2006.1599387}.
-It wraps the ETS model presented in the forecast library.
+Change-point detection by modeling residual deviations with ETS and applying
+a second-stage smoothing and thresholding, inspired by ChangeFinder
+\url{doi:10.1109/TKDE.2006.1599387}. Wraps ETS from the \code{forecast} package.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure ChangeFinder-ETS detector
 model <- hcp_cf_ets()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
 }

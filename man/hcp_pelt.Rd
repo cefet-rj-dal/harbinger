@@ -2,37 +2,48 @@
 % Please edit documentation in R/hcp_pelt.R
 \name{hcp_pelt}
 \alias{hcp_pelt}
-\title{Pruned exact linear time (PELT) method}
+\title{Pruned Exact Linear Time (PELT)}
 \usage{
 hcp_pelt()
 }
 \value{
-\code{hcp_pelt} object
+\code{hcp_pelt} object.
 }
 \description{
-Change-point detection method that focus on identifying multiple exact change points in mean/variance \url{doi:10.1080/01621459.2012.737745}.
-It wraps the BinSeg implementation available in the changepoint library.
+Multiple change-point detection using the PELT algorithm for mean/variance
+with a linear-time cost under suitable penalty choices. This function wraps
+the PELT implementation in the \code{changepoint} package.
+}
+\details{
+PELT performs optimal partitioning while pruning candidate change-point
+locations to achieve near-linear computational cost.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure the PELT detector
 model <- hcp_pelt()
 
-# fitting the model
+# Fit the detector (no-op for PELT)
 model <- fit(model, dataset$serie)
 
-# execute the detection method
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints
+with a linear computational cost. JASA, 107(500):1590–1598.
+}
 }

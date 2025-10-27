@@ -2,17 +2,39 @@
 % Please edit documentation in R/harbinger_utils.R
 \name{harutils}
 \alias{harutils}
-\title{Harbinger Utils}
+\title{Harbinger Utilities}
 \usage{
 harutils()
 }
 \value{
-Harbinger Utils
+A \code{harutils} object exposing the helper functions.
 }
 \description{
-Utility class that contains major distance measures,
-threshold limits, and outliers grouping functions
+Utility object that groups common distance measures, threshold heuristics,
+and outlier grouping rules used by Harbinger detectors.
+}
+\details{
+Provided helpers include:
+\itemize{
+\item L1 and L2 distance aggregations over vectors or rows of matrices/data frames.
+\item Thresholding heuristics: boxplot-based (IQR), Gaussian 3-sigma, and a ratio-based rule.
+\item Grouping strategies for contiguous outliers: keep first index or keep highest-magnitude index.
+\item Optional fuzzification over detections to propagate influence within a tolerance window.
+}
+
+These utilities centralize common tasks and ensure consistent behavior across detectors.
 }
 \examples{
-# See ?hanc_ml for an example of anomaly detection using machine learning classification
+# See also ?hanc_ml and ?hanr_ml for end-to-end detector usage where
+# these utilities are applied internally to compute distances and thresholds.
+
+}
+\references{
+\itemize{
+\item Tukey JW (1977). Exploratory Data Analysis. Addison-Wesley. (boxplot/IQR heuristic)
+\item Shewhart WA (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three-sigma rule)
+\item Silva, E. P., Balbi, H., Pacitti, E., Porto, F., Santos, J., Ogasawara, E. Cutoff
+Frequency Adjustment for FFT-Based Anomaly Detectors. In: Simpósio Brasileiro de
+Banco de Dados (SBBD). SBC, 14 Oct. 2024. doi:10.5753/sbbd.2024.243319
+}
 }

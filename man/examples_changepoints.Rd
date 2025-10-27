@@ -14,21 +14,26 @@ A list of time series for change point detection.
 data(examples_changepoints)
 }
 \description{
-A list of time series for change point
+A list of time series for change point experiments.
 \itemize{
-\item simple: a simple synthetic time series
-\item sinusoidal: a sinusoidal synthetic time series
-\item incremental: a incremental synthetic time series
-\item abrupt: a abrupt synthetic time series
-\item volatility: a volatility synthetic time series
+\item simple: simple synthetic series with one change point.
+\item sinusoidal: sinusoidal pattern with a regime change.
+\item incremental: gradual change in mean/variance.
+\item abrupt: abrupt level shift.
+\item volatility: variance change.
 }
 #'
 }
 \examples{
 data(examples_changepoints)
+# Select a simple change point series
 serie <- examples_changepoints$simple
+head(serie)
 }
 \references{
 \href{https://github.com/cefet-rj-dal/harbinger}{Harbinger package}
+
+Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series.
+1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 }
 \keyword{datasets}

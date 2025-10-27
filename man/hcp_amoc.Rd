@@ -2,37 +2,49 @@
 % Please edit documentation in R/hcp_amoc.R
 \name{hcp_amoc}
 \alias{hcp_amoc}
-\title{At most one change (AMOC) method}
+\title{At Most One Change (AMOC)}
 \usage{
 hcp_amoc()
 }
 \value{
-\code{hcp_amoc} object
+\code{hcp_amoc} object.
 }
 \description{
-Change-point detection method that focus on identify one change point in mean/variance \url{doi:10.1093/biomet/57.1.1}.
-It wraps the amoc implementation available in the changepoint library.
+Change-point detection method focusing on identifying at most one change in
+mean and/or variance. This is a wrapper around the AMOC implementation from
+the \code{changepoint} package.
+}
+\details{
+AMOC detects a single most significant change point under a cost function
+optimized for a univariate series. It is useful when at most one structural
+break is expected.
 }
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load change-point example data
 data(examples_changepoints)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_changepoints$simple
 head(dataset)
 
-# setting up change point method
+# Configure the AMOC detector
 model <- hcp_amoc()
 
-# fitting the model
+# Fit the detector (no-op for AMOC)
 model <- fit(model, dataset$serie)
 
-# execute the detection method
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected change point(s)
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Hinkley DV (1970). Inference about the change-point in a sequence of random variables. Biometrika, 57(1):1–17. doi:10.1093/biomet/57.1.1
+\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598.
+}
 }

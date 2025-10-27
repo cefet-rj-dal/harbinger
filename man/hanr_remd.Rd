@@ -22,22 +22,31 @@ It wraps the EMD model presented in the forecast library.
 \examples{
 library(daltoolbox)
 
-#loading the example database
+# Load anomaly example data
 data(examples_anomalies)
 
-#Using simple example
+# Use a simple example
 dataset <- examples_anomalies$simple
 head(dataset)
 
-# setting up time series emd detector
+# Configure REMD detector
 model <- hanr_remd()
 
-# fitting the model
+# Fit the model
 model <- fit(model, dataset$serie)
 
+# Run detection
 detection <- detect(model, dataset$serie)
 
-# filtering detected events
+# Show detected anomalies
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Souza, J., Paixão, E., Fraga, F., Baroni, L., Alves, R. F. S., Belloze, K., Dos Santos, J.,
+Bezerra, E., Porto, F., Ogasawara, E. REMD: A Novel Hybrid Anomaly Detection Method Based on
+EMD and ARIMA. Proceedings of the International Joint Conference on Neural Networks, 2024.
+doi:10.1109/IJCNN60899.2024.10651192
+}
 }
