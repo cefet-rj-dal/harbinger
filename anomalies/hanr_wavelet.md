@@ -1,25 +1,31 @@
+The wavelet-based detector decomposes the series into multi-resolution detail bands (MODWT) and flags large aggregated high-frequency energy as anomalies. Steps:
+
+- Load and visualize a simple anomaly dataset
+- Configure and run `hanr_wavelet`
+- Inspect detections, evaluate, and plot residual magnitudes and thresholds
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example anomaly datasets
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple anomaly dataset
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,7 +42,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +50,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing hanr_wavelet method 
-  model <- hanr_wavelet()
+# Configure the wavelet-based detector
+model <- hanr_wavelet()
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+# Run detection
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected anomaly indices
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -73,9 +79,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -87,16 +93,16 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot detections vs. ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanr_wavelet/unnamed-chunk-11-1.png)
 
 
 ``` r
-# plotting the residuals
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Plot residual magnitude and decision thresholds
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_wavelet/unnamed-chunk-12-1.png)

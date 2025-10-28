@@ -1,25 +1,32 @@
+Binary Segmentation (BinSeg) recursively identifies multiple change points by splitting the series at the strongest change and repeating. In this tutorial we will:
+
+- Load a dataset with change points and visualize it
+- Configure and run the BinSeg detector (`hcp_binseg`)
+- Inspect detections and evaluate against ground truth
+- Plot the detections on the series
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example change-point datasets
 data(examples_changepoints)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a dataset ("complex" contains multiple regimes)
 dataset <- examples_changepoints$complex
 head(dataset)
 ```
@@ -36,7 +43,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series to visualize regimes
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +51,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing change point method 
-  model <- hcp_binseg(Q=10)
+# Configure BinSeg; Q is the max number of change points to search
+model <- hcp_binseg(Q = 10)
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector (keeps parameters on object)
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+# Run detection over the series
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected change-point indices
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -79,9 +86,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labeled events
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -93,8 +100,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot detections and ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hcp_binseg/unnamed-chunk-11-1.png)

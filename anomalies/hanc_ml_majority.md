@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd shows a simple supervised baseline for anomaly classification using `hanc_ml` with a Majority Classifier (`cla_majority`). It predicts the most frequent class in training. Steps: load packages/data, visualize, preprocess (split + normalize), define and fit, detect, evaluate, and plot results.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the tt time series
+# Use the "tt" time series (labeled)
 dataset <- examples_anomalies$tt
 
 head(dataset)
@@ -37,7 +41,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -45,7 +49,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# data preprocessing
+# Data preprocessing: split and scale
 
 
 train <- dataset[1:80,]
@@ -69,13 +73,13 @@ summary(train_n)
 
 
 ``` r
-# establishing class majority method 
+# Define Majority Classifier for events (hanc_ml + cla_majority)
 model <- hanc_ml(cla_majority("event", c("FALSE", "TRUE")))
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model on training data
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
 print(detection |> dplyr::filter(event==TRUE))
@@ -87,7 +91,7 @@ print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ``` r
-# evaluating the training
+# Evaluate training performance
 evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
 print(evaluation$confMatrix)
 ```
@@ -101,7 +105,7 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# plotting training results
+# Plot training detections
   har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
@@ -109,13 +113,13 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# preparing for testing
+# Prepare test data (apply same scaler)
   test_n <- transform(norm, test)
 ```
 
 
 ``` r
-# evaluating the detections during testing
+# Detect and evaluate on test data
   detection <- detect(model, test_n)
 
   print(detection |> dplyr::filter(event==TRUE))
@@ -140,7 +144,7 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# plotting the results during testing
+# Plot test detections
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
@@ -148,7 +152,7 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 

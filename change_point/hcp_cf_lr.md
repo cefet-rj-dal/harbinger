@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd demonstrates change-point detection using Conformal Forecasting with a Linear Regression forecaster (`hcp_cf_lr`). The method scores deviations from short-term predictions and flags structural changes when nonconformity exceeds a learned threshold. Steps: load packages/data, visualize, define model (window size), fit, detect, evaluate, and plot both detections and residuals.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_changepoints)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled change-points
 dataset <- examples_changepoints$simple
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,25 +48,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing change finder arima method 
+# Define Conformal Forecasting (Linear Regression) change-point model
+# - sw_size controls the sliding window length
   model <- hcp_cf_lr(sw_size = 10)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect change-points
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -73,7 +78,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -87,7 +92,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
@@ -95,7 +100,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 

@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd demonstrates motif discovery using Matrix Profile with the STAMP algorithm via `hmo_mp("stamp", ...)`. It finds repeated subsequences (motifs) in a time series. Steps: load packages/data, visualize the series, define the motif model (subsequence length and number of motifs), fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_motifs)
 ```
 
 
 ``` r
-# Using the simple time series
+# Select a simple example time series
 dataset <- examples_motifs$simple
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,29 +48,32 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing the method  
+# Define Matrix Profile (STAMP) motif model
+# - first arg: algorithm name
+# - second arg: subsequence length (window)
+# - third arg: number of motifs to retrieve
   model <- hmo_mp("stamp", 4, 3)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect motifs
   detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Finished in 0.02 secs
+## Finished in 0.13 secs
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -86,7 +93,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -100,9 +107,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_mp_stamp/unnamed-chunk-11-1.png)
-

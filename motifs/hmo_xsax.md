@@ -1,25 +1,31 @@
+XSAX extends SAX to a larger alphanumeric alphabet, enabling finer symbolic resolution for motif discovery. In this tutorial we:
+
+- Load and visualize a motif dataset
+- Configure `hmo_xsax(a, w, qtd)` and run detection
+- Inspect and evaluate motif occurrences
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example motif datasets
 data(examples_motifs)
 ```
 
 
 ``` r
-# Using the simple time series
+# Select the simple motif dataset
 dataset <- examples_motifs$simple
 head(dataset)
 ```
@@ -36,7 +42,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +50,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing the method  
-  model <- hmo_xsax(37, 3, 3)
+# Configure XSAX motif discovery (alphabet=37, word=3, min occurrences=3)
+model <- hmo_xsax(37, 3, 3)
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector (learns binning thresholds)
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+# Run motif discovery
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected motif starts
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -75,9 +81,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -89,8 +95,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot motifs and ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_xsax/unnamed-chunk-11-1.png)

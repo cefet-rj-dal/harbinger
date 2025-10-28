@@ -1,25 +1,31 @@
+This tutorial shows supervised anomaly detection via Naive Bayes classification over a labeled train/test split. We will:
+
+- Load a train/test dataset and visualize it
+- Normalize features, train a Naive Bayes classifier, and evaluate on train and test
+- Plot detections and residual magnitudes
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example anomaly datasets
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the tt time series
+# Select the train/test dataset
 dataset <- examples_anomalies$tt
 
 head(dataset)
@@ -37,7 +43,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -45,9 +51,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# data preprocessing
-
-
+# Split into train/test and normalize features
 train <- dataset[1:80,]
 test <- dataset[-(1:80),]
 
@@ -69,15 +73,16 @@ summary(train_n)
 
 
 ``` r
+# Configure NB classifier
 model <- hanc_ml(cla_nb("event", c("FALSE", "TRUE")))
 ```
 
 
 ``` r
-# fitting the model
+# Fit on training data, evaluate on train
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
-print(detection |> dplyr::filter(event==TRUE))
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -86,7 +91,6 @@ print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ``` r
-# evaluating the training
 evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
 print(evaluation$confMatrix)
 ```
@@ -100,24 +104,23 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# plotting training results
-  har_plot(model, train_n$serie, detection, as.logical(train_n$event))
+# Plot training detections
+har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/hanc_ml_nb/unnamed-chunk-9-1.png)
 
 
 ``` r
-# preparing for testing
-  test_n <- transform(norm, test)
+# Prepare normalized test set
+test_n <- transform(norm, test)
 ```
 
 
 ``` r
-# evaluating the detections during testing
-  detection <- detect(model, test_n)
-
-  print(detection |> dplyr::filter(event==TRUE))
+# Detect and evaluate on test
+detection <- detect(model, test_n)
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -126,8 +129,8 @@ print(evaluation$confMatrix)
 ```
 
 ``` r
-  evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
-  print(evaluation$confMatrix)
+evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -139,16 +142,16 @@ print(evaluation$confMatrix)
 
 
 ``` r
-# plotting the results during testing
-  har_plot(model, test_n$serie, detection, as.logical(test_n$event))
+# Plot test detections
+har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanc_ml_nb/unnamed-chunk-12-1.png)
 
 
 ``` r
-# plotting the residuals
-  har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+# Plot residual magnitude and decision threshold
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
 ![plot of chunk unnamed-chunk-13](fig/hanc_ml_nb/unnamed-chunk-13-1.png)

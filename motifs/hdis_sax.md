@@ -1,25 +1,31 @@
+SAX-based discord discovery identifies rare, dissimilar subsequences by discretizing the series and finding unique words with high entropy. We will:
+
+- Load and visualize a motif/discord dataset
+- Configure `hdis_sax(a, w)` and run discovery
+- Inspect and evaluate discord occurrences
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example motif/discord datasets
 data(examples_motifs)
 ```
 
 
 ``` r
-# Using the simple time series
+# Select an ECG sample (mitdb102)
 dataset <- examples_motifs$mitdb102
 head(dataset)
 ```
@@ -36,7 +42,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +50,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing the method  
-  model <- hdis_sax(26, 25)
+# Configure SAX-based discord discovery (alphabet=26, word=25)
+model <- hdis_sax(26, 25)
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector (learns binning thresholds)
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
-  detection <- detect(model, dataset$serie)
+# Run discord discovery
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected discord starts
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
@@ -193,9 +199,9 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -207,8 +213,8 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot discords and ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hdis_sax/unnamed-chunk-11-1.png)

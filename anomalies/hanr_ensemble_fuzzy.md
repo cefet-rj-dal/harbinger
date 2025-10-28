@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd demonstrates anomaly detection using a fuzzy-tolerant ensemble (`har_ensemble(...)` with `time_tolerance`). Multiple detectors (FBIAD, ARIMA, EMD) vote and detections within a time tolerance are merged. Steps: load packages/data, visualize, define ensemble and tolerance, fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,26 +48,26 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing arima method 
+# Define the ensemble and set time tolerance for fuzzy matching
   model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
   model$time_tolerance <- 10
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies via ensemble voting with tolerance
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -74,7 +78,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -88,14 +92,14 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hanr_ensemble_fuzzy/unnamed-chunk-11-1.png)
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 

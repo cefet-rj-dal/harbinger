@@ -1,25 +1,31 @@
+DTW-based discord discovery uses sequence windows (seq > 1) and flags sequences far from any centroid as discords. Steps:
+
+- Load and visualize a dataset with repeating sequences
+- Configure and run `hanct_dtw(seq > 1)`
+- Inspect detections, evaluate, and plot results
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example anomaly datasets
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the sequence time series
+# Select the sequence dataset
 dataset <- examples_anomalies$sequence
 head(dataset)
 ```
@@ -36,46 +42,46 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/hanct_dtw_discord/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-17](fig/hanct_dtw_discord/unnamed-chunk-17-1.png)
 
 
 ``` r
-# establishing the method 
-  model <- hanct_dtw(3)
+# Configure DTW-clustering for sequence discords (seq = 3)
+model <- hanct_dtw(3)
 ```
 
 
 ``` r
-# fitting the model
-  model <- fit(model, dataset$serie)
+# Fit the detector
+model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections of discords using kmeans
-  detection <- detect(model, dataset$serie)
+# Run detection
+detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
-  print(detection |> dplyr::filter(event==TRUE))
+# Show detected discord starts
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
 ##   idx event    type seq seqlen
-## 1  51  TRUE discord   3      3
+## 1  52  TRUE discord   3      3
 ```
 
 
 ``` r
-# evaluating the detections
-  evaluation <- evaluate(model, detection$event, dataset$event)
-  print(evaluation$confMatrix)
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
 ```
 
 ```
@@ -87,16 +93,16 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
-  har_plot(model, dataset$serie, detection, dataset$event)
+# Plot discords vs. ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/hanct_dtw_discord/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-23](fig/hanct_dtw_discord/unnamed-chunk-23-1.png)
 
 
 ``` r
-# plotting the residuals
-  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+# Plot residual magnitude and decision thresholds
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/hanct_dtw_discord/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-24](fig/hanct_dtw_discord/unnamed-chunk-24-1.png)

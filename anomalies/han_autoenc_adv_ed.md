@@ -1,26 +1,17 @@
+# Overview
+
+This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
-```
-
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
-```
-## Registered S3 methods overwritten by 'forecast':
-##   method  from 
-##   head.ts stats
-##   tail.ts stats
 ```
 
 ```
@@ -36,31 +27,27 @@ library(daltoolbox)
 
 ``` r
 library(daltoolboxdp)
-library(harbinger) 
 ```
 
 ```
-## Registered S3 methods overwritten by 'tspredit':
-##   method           from      
-##   [.ts_data        daltoolbox
-##   action.ts_reg    daltoolbox
-##   evaluate.ts_reg  daltoolbox
-##   fit.ts_arima     daltoolbox
-##   fit.ts_regsw     daltoolbox
-##   predict.ts_arima daltoolbox
-##   predict.ts_reg   daltoolbox
-##   predict.ts_regsw daltoolbox
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+```
+
+``` r
+library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
 
 
 ``` r
-# Using the simple time series 
+# Select a simple synthetic time series with labeled anomalies
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
@@ -77,7 +64,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -85,25 +72,25 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing han_autoencoder method 
+# Define adversarial autoencoder-based detector (autoenc_adv_ed)
   model <- han_autoencoder(3, 2, autoenc_adv_ed, num_epochs = 1500)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -115,7 +102,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -129,15 +116,24 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_adv_ed/unnamed-chunk-11-1.png)
 
 ``` r
-# plotting the residuals
+# Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the harbinger package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)

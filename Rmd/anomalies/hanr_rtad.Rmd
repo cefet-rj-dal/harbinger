@@ -1,0 +1,68 @@
+# Overview
+
+This Rmd applies the Residual Error-based Detector (`hanr_rt`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+
+```{r}
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+# Load example datasets bundled with harbinger
+data(examples_anomalies)
+```
+
+```{r}
+# Select a simple synthetic time series with labeled anomalies
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+# Plot the time series
+har_plot(harbinger(), dataset$serie)
+```
+
+```{r}
+# Define Residual Error-based Detector (hanr_rt)
+  model <- hanr_rtad()
+```
+
+```{r}
+# Fit the model
+  model <- fit(model, dataset$serie)
+```
+
+```{r}
+# Detect anomalies (compute residuals and events)
+  detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Show only timestamps flagged as events
+  print(detection |> dplyr::filter(event==TRUE))
+```
+
+```{r}
+# Evaluate detections against ground-truth labels
+  evaluation <- evaluate(model, detection$event, dataset$event)
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# Plot detections over the series
+  har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+```{r}
+# Plot residual scores and threshold
+  har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+

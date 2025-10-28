@@ -1,25 +1,29 @@
+# Overview
+
+This Rmd demonstrates discord (anomaly) discovery using Matrix Profile with the STOMP algorithm via `hdis_mp(mode = "stomp", ...)`. Discords are subsequences maximally dissimilar to the rest. Steps: load packages/data, visualize, define the discord model (subsequence length and count), fit, detect, evaluate, and plot.
+
 
 ``` r
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
 ```
 
 
 ``` r
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 
 ``` r
-# loading the example database
+# Load example datasets bundled with harbinger
 data(examples_motifs)
 ```
 
 
 ``` r
-# Using the simple time series
+# Select an ECG time series with annotated anomalies
 dataset <- examples_motifs$mitdb102
 head(dataset)
 ```
@@ -36,7 +40,7 @@ head(dataset)
 
 
 ``` r
-# ploting the time series
+# Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
 
@@ -44,25 +48,27 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# establishing the method  
+# Define Matrix Profile discord model (STOMP)
+# - w: subsequence length (window)
+# - qtd: number of discords to retrieve
 model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 ```
 
 
 ``` r
-# fitting the model
+# Fit the model
   model <- fit(model, dataset$serie)
 ```
 
 
 ``` r
-# making detections
+# Detect discords
   suppressMessages(detection <- detect(model, dataset$serie))
 ```
 
 
 ``` r
-# filtering detected events
+# Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
@@ -76,7 +82,7 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 
 
 ``` r
-# evaluating the detections
+# Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
 ```
@@ -90,9 +96,8 @@ model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 
 
 ``` r
-# plotting the results
+# Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hdis_mp_stamp/unnamed-chunk-11-1.png)
-

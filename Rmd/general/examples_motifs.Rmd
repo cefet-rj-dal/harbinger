@@ -1,22 +1,24 @@
+This notebook demonstrates motif discovery datasets and visualization using Harbinger’s base plotting. We will iterate over multiple series and apply the base workflow: fit, detect, plot.
+
 ```{r}
-# Installing Harbinger
-install.packages("harbinger")
+# Install Harbinger (if needed)
+#install.packages("harbinger")
 ```
 
 ```{r}
-# Loading Harbinger
+# Load required packages
 library(daltoolbox)
 library(harbinger) 
 ```
 
 ```{r}
-# loading the example database
+# Load motif example datasets and create a base object
 data(examples_motifs)
 model <- harbinger()
 ```
 
 ```{r}
-# Using the simple time series 
+# Simple synthetic motif dataset
 dataset <- examples_motifs$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -25,7 +27,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-# Using the sample of mitdb 100 time series 
+# ECG sample: MIT-BIH record 100
 dataset <- examples_motifs$mitdb100
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
@@ -34,7 +36,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```{r}
-# Using the sample of mitdb 102 time series 
+# ECG sample: MIT-BIH record 102
 dataset <- examples_motifs$mitdb102
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
