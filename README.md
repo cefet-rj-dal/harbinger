@@ -42,11 +42,11 @@ it easy to extend and integrate new methods into the framework.
 
 Examples of Harbinger are organized by application area:
 
-- [General](https://github.com/cefet-rj-dal/harbinger/tree/master/general)
-- [Anomalies](https://github.com/cefet-rj-dal/harbinger/tree/master/anomalies)
+- [General](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general)
+- [Anomalies](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies)
 - [Change
-  points](https://github.com/cefet-rj-dal/harbinger/tree/master/change_point)
-- [Motifs](https://github.com/cefet-rj-dal/harbinger/tree/master/motifs)
+  points](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point)
+- [Motifs](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs)
 
 ``` r
 library(harbinger)
