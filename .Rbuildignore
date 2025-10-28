@@ -15,6 +15,9 @@
 ^motifs$
 ^multivariate$
 ^Rmd$
+^examples$
+^examples-r$
+^examples-word$
 package.R
 jupyter.R
 
