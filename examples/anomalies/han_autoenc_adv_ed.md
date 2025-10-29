@@ -1,4 +1,4 @@
-Adversarial Autoencoder (encode-decode): <<explain>>
+Adversarial Autoencoder (encode-decode): An adversarial autoencoder (AAE) augments a standard encoder–decoder with an adversarial objective on the latent code. The encoder maps each input window into a latent vector and the decoder attempts to reconstruct the original window. In parallel, a discriminator is trained to distinguish latent samples produced by the encoder from samples drawn from a chosen prior distribution (e.g., Gaussian). The encoder is trained to fool the discriminator, aligning the aggregated posterior of the latent space with the prior. This regularization encourages the model to represent normal time-series patterns on a compact manifold and to reconstruct them well. Windows that deviate from this learned manifold (anomalies) typically yield larger reconstruction errors. In this example, windows are scored by reconstruction error and events are flagged when the score exceeds a learned threshold.
 
 Objectives: 
 This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
@@ -105,15 +105,8 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the harbinger package.
-##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-```
-
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)
 
-<<references>>
+References:
+- Makhzani, A., Shlens, J., Jaitly, N., Goodfellow, I., & Frey, B. (2016). Adversarial Autoencoders. arXiv:1511.05644.
+- Chalapathy, R., & Chawla, S. (2019). Deep Learning for Anomaly Detection: A Survey. arXiv:1901.03407.
