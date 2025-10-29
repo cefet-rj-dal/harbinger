@@ -1,10 +1,6 @@
-Method: 
+Convolutional autoencoder (encode-decode): A convolutional autoencoder reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Convolutions capture local patterns and translation invariance; thresholds use `harutils()`.
 
-A convolutional autoencoder reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Convolutions capture local patterns and translation invariance; thresholds use `harutils()`.
-
-Objectives: 
-
-This Rmd demonstrates anomaly detection with a convolutional autoencoder (`han_autoencoder(..., autoenc_conv_ed, ...)`). The model reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates anomaly detection with a convolutional autoencoder (`han_autoencoder(..., autoenc_conv_ed, ...)`). The model reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
 
 
 ``` r
