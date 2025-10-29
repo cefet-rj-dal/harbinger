@@ -1,5 +1,6 @@
-# Overview
+Adversarial Autoencoder (encode-decode): <<explain>>
 
+Objectives: 
 This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
 
 
@@ -33,13 +34,6 @@ library(daltoolboxdp)
 ## Registered S3 method overwritten by 'quantmod':
 ##   method            from
 ##   as.zoo.data.frame zoo
-```
-
-```
-## Registered S3 methods overwritten by 'forecast':
-##   method  from 
-##   head.ts stats
-##   tail.ts stats
 ```
 
 ``` r
@@ -104,7 +98,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##   idx event    type
 ## 1  19  TRUE anomaly
-## 2  44  TRUE anomaly
 ```
 
 
@@ -117,8 +110,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
@@ -144,3 +137,5 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)
+
+<<references>>

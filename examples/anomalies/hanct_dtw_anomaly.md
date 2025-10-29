@@ -1,5 +1,8 @@
-DTW-based clustering detects anomalies by measuring distance to cluster centroids over sliding windows (seq=1 flags point anomalies). Steps:
+DTW-based clustering anomaly detector: This approach applies Dynamic Time Warping (DTW) within a clustering framework. For `seq = 1`, each observation is assigned to the nearest centroid under DTW; observations with large DTW distance from their closest centroid are flagged as point anomalies. For `seq > 1`, sliding-window subsequences are compared and large-distance windows are flagged as discords. The implementation wraps DTW-based clustering from `dtwclust` and uses `harutils()` for summarization and thresholding.
 
+DTW-based clustering detects anomalies by measuring distance to cluster centroids over sliding windows (seq=1 flags point anomalies). 
+
+Steps:
 - Load and visualize a simple anomaly dataset
 - Configure and run `hanct_dtw(seq = 1)`
 - Inspect detections, evaluate, and plot residual magnitudes and thresholds
@@ -106,3 +109,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanct_dtw_anomaly/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3

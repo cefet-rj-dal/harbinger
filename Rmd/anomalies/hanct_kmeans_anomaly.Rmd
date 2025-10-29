@@ -1,5 +1,6 @@
-# Overview
+k-means clustering anomaly detection: This approach applies k-means clustering to either points (`seq = 1`) or sliding-window subsequences (`seq > 1`). Observations (or windows) that lie far from their nearest centroid are flagged as anomalies or discords, respectively. The implementation wraps `stats::kmeans` for clustering and uses `harutils()` to summarize distances and set thresholds.
 
+Objectives: 
 This Rmd demonstrates clustering-based anomaly detection using k-means via `hanct_kmeans(k)`. The model clusters subsequences and flags anomalies based on distance to cluster centroids. Steps: load packages/data, visualize, define k-means model, fit, detect, evaluate, and plot series and residuals.
 
 ```{r}
@@ -66,3 +67,6 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
   
 ```
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3

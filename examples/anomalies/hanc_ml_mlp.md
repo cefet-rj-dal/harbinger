@@ -1,6 +1,6 @@
-# Overview
+MLP classification anomaly detector: Supervised anomaly detection with a neural network classifier (MLP) trained on labeled events; predicted probabilities above a threshold are flagged.
 
-This Rmd shows supervised anomaly classification using `hanc_ml` with a Multi-Layer Perceptron (`cla_mlp`). It uses labeled events, a simple train/test split, and min–max normalization. Steps: load packages/data, visualize, preprocess, define and fit the classifier, detect, evaluate, and plot results.
+Objectives: This Rmd shows supervised anomaly classification using `hanc_ml` with a Multi-Layer Perceptron (`cla_mlp`). It uses labeled events, a simple train/test split, and min–max normalization. Steps: load packages/data, visualize, preprocess, define and fit the classifier, detect, evaluate, and plot results.
 
 
 ``` r
@@ -157,3 +157,8 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 ```
 
 ![plot of chunk unnamed-chunk-13](fig/hanc_ml_mlp/unnamed-chunk-13-1.png)
+
+
+References 
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

@@ -1,6 +1,6 @@
-# Overview
+Majority-class classification anomaly detector: Supervised anomaly detection using a majority-class baseline to illustrate the `hanc_ml` interface. Events correspond to predicted positive class above the threshold.
 
-This Rmd shows a simple supervised baseline for anomaly classification using `hanc_ml` with a Majority Classifier (`cla_majority`). It predicts the most frequent class in training. Steps: load packages/data, visualize, preprocess (split + normalize), define and fit, detect, evaluate, and plot results.
+Objectives: This Rmd shows a simple supervised baseline for anomaly classification using `hanc_ml` with a Majority Classifier (`cla_majority`). It predicts the most frequent class in training. Steps: load packages/data, visualize, preprocess (split + normalize), define and fit, detect, evaluate, and plot results.
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -85,5 +85,9 @@ print(evaluation$confMatrix)
 
 ```{r}
 # Plot residual scores and threshold
-  har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
+
+References 
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

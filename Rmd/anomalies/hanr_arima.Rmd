@@ -1,3 +1,5 @@
+ARIMA regression anomaly detection: This detector fits an ARIMA(p, d, q) model to the series and uses large standardized residuals as anomaly evidence. After estimating the model, residual magnitudes are summarized via a distance function and thresholded using outlier heuristics provided by `harutils()`.
+
 The ARIMA-based anomaly detector fits an ARIMA model to the time series and flags large residuals as anomalies. In this walkthrough we will:
 
 - Load a synthetic anomaly dataset and visualize it
@@ -66,3 +68,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 # Plot the residual magnitude and the decision thresholds
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
+
+References 
+- Box, G. E. P., Jenkins, G. M., Reinsel, G. C., Ljung, G. M. (2015). Time Series Analysis: Forecasting and Control. Wiley.

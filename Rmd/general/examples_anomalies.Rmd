@@ -1,4 +1,4 @@
-This notebook demonstrates different anomaly patterns available in the example datasets and how to visualize detections with Harbinger’s default plot. We will iterate over multiple series and apply the base workflow: fit, detect, plot.
+Overview and objectives: This notebook tours common time-series anomaly patterns (point/isolated, contextual, collective/sequence, regime variance shifts) using Harbinger’s base pipeline. For each dataset, we fit a detector, run detection, and visualize predictions against ground truth. The goal is to illustrate how different patterns appear in residual magnitude and plots, and how Harbinger’s unified interface helps compare detectors consistently.
 
 ```{r}
 # Install Harbinger (if needed)
@@ -107,3 +107,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+References
+
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
+- Chandola, V., Banerjee, A., Kumar, V. (2009). Anomaly detection: A survey. ACM Computing Surveys, 41(3), 1–58.

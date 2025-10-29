@@ -1,6 +1,6 @@
-# Overview
+VALMOD motif discovery: VALMOD maintains the Matrix Profile under streaming updates, enabling motif discovery in evolving series. It computes nearest-neighbor distances for subsequences efficiently.
 
-This Rmd demonstrates variable-length motif discovery with Matrix Profile using `hmo_mp("valmod", ...)`. VALMOD searches for recurring patterns across a range of subsequence lengths. Steps: load packages/data, visualize, define the model (min/max lengths and count), fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates variable-length motif discovery with Matrix Profile using `hmo_mp("valmod", ...)`. VALMOD searches for recurring patterns across a range of subsequence lengths. Steps: load packages/data, visualize, define the model (min/max lengths and count), fit, detect, evaluate, and plot.
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -62,3 +62,8 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, dataset$serie, detection, dataset$event)
   
 ```
+
+
+References 
+- Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
+- Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021

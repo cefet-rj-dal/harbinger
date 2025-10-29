@@ -1,6 +1,6 @@
-# Overview
+PMP motif discovery: PMP (Pan-Matrix Profile) unifies matrix profiles across multiple dimensions or parameters to expose motifs that persist under variations. Harbinger wraps `tsmp` to compute and search the profile.
 
-This Rmd demonstrates motif discovery with the Pan Matrix Profile (`hmo_mp("pmp", ...)`), which summarizes motifs across multiple subsequence lengths. Steps: load packages/data, visualize, configure parameters, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates motif discovery with the Pan Matrix Profile (`hmo_mp("pmp", ...)`), which summarizes motifs across multiple subsequence lengths. Steps: load packages/data, visualize, configure parameters, fit, detect, evaluate, and plot.
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -63,3 +63,6 @@ har_plot(harbinger(), dataset$serie)
   
 ```
 
+References 
+- Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
+- Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021

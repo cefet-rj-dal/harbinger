@@ -1,5 +1,6 @@
-# Overview
+Adversarial Autoencoder (encode-decode): <<explain>>
 
+Objectives: 
 This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
 
 ```{r}
@@ -64,3 +65,5 @@ har_plot(harbinger(), dataset$serie)
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
+
+<<references>>

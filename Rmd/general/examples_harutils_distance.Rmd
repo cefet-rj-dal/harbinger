@@ -1,4 +1,4 @@
-This notebook demonstrates Harbinger utility distance functions for summarizing residual magnitudes (L1 and L2) and plotting results for quick inspection.
+Overview and objectives: This notebook demonstrates Harbinger utility distance functions for summarizing residual magnitudes (L1 and L2) and plotting results for quick inspection. L1 emphasizes robustness to outliers; L2 emphasizes larger deviations. These aggregations feed subsequent thresholding/outlier rules in the detection pipeline.
 
 ```{r}
 # Install Harbinger (if needed)
@@ -31,3 +31,8 @@ har_plot(harbinger(), v1)
 v2 <- hutils$har_distance_l2(values)
 har_plot(harbinger(), v2)
 ```
+
+References
+
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison‑Wesley. (IQR/boxplot heuristics underpin some thresholding rules)
+- Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three‑sigma rule)

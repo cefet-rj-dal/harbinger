@@ -1,3 +1,5 @@
+EMD regression anomaly detection: This detector uses Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions (IMFs) and isolates high-frequency components that capture abrupt deviations. Anomalies are flagged where these components show large magnitudes relative to baseline. Computation wraps `hht::CEEMD` and thresholds are applied via `harutils()`.
+
 The EMD-based detector (CEEMD variant) decomposes the series into intrinsic mode functions (IMFs) and uses high-frequency components to flag anomalies. In this tutorial we:
 
 - Load and visualize a simple anomaly dataset
@@ -66,3 +68,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 # Plot residual magnitude and decision thresholds
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
+
+References 
+- Huang, N. E., et al. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. Proceedings of the Royal Society A.
+

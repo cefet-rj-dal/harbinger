@@ -1,3 +1,5 @@
+SAX motif discovery: SAX (Symbolic Aggregate approXimation) discretizes z-normalized subsequences into symbolic words using breakpoints derived from a Gaussian distribution. Motifs emerge as frequently occurring words or closely related symbolic patterns. Harbinger wraps SAX-based discovery and returns motif locations for plotting and evaluation.
+
 SAX (Symbolic Aggregate approXimation) maps z-normalized values to symbols; recurring words indicate motifs. In this example we:
 
 - Load and visualize a motif dataset
@@ -62,3 +64,5 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
+References 
+- Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. Data Mining and Knowledge Discovery, 15, 107–144.

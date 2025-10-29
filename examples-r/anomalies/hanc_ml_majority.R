@@ -56,4 +56,4 @@ print(evaluation$confMatrix)
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 
 # Plot residual scores and threshold
-  har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))

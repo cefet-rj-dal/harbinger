@@ -1,6 +1,6 @@
-# Overview
+FFT AMOC CUSUM regression anomaly detection: This hybrid detector computes the FFT and transforms the power spectrum with CUSUM to emphasize gradual spectral shifts. AMOC selects a single changepoint that serves as a frequency cutoff. Components below the cutoff are removed, the inverse FFT reconstructs a high-pass signal, and residual magnitudes are thresholded via `harutils()`.
 
-This Rmd demonstrates a hybrid residual-based anomaly detector combining FFT preprocessing, AMOC (At Most One Change) modeling, and CUSUM scoring via `hanr_fft_amoc_cusum()`. The pipeline models dominant frequencies, captures a single change, and accumulates deviations to flag anomalies. Steps: load packages/data, visualize, define and fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates a hybrid residual-based anomaly detector combining FFT preprocessing, AMOC (At Most One Change) modeling, and CUSUM scoring via `hanr_fft_amoc_cusum()`. The pipeline models dominant frequencies, captures a single change, and accumulates deviations to flag anomalies. Steps: load packages/data, visualize, define and fit, detect, evaluate, and plot.
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -66,3 +66,6 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
   
 ```
+
+References 
+- Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063

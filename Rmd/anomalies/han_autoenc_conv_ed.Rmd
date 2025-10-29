@@ -1,4 +1,8 @@
-# Overview
+Method: 
+
+A convolutional autoencoder reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Convolutions capture local patterns and translation invariance; thresholds use `harutils()`.
+
+Objectives: 
 
 This Rmd demonstrates anomaly detection with a convolutional autoencoder (`han_autoencoder(..., autoenc_conv_ed, ...)`). The model reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
 
@@ -64,3 +68,7 @@ har_plot(harbinger(), dataset$serie)
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
+
+References 
+
+- Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.

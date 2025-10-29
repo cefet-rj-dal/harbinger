@@ -1,5 +1,8 @@
-This tutorial shows supervised anomaly detection with an SVM classifier over a labeled train/test split. Steps:
+SVM classification anomaly detector: Supervised anomaly detection with an SVM classifier trained on labeled events; positive-class probabilities above a threshold correspond to detected events.
 
+This tutorial shows supervised anomaly detection with an SVM classifier over a labeled train/test split. 
+
+Steps:
 - Load and visualize the dataset
 - Normalize, train SVM, evaluate on train and test
 - Plot detections and residual magnitudes
@@ -159,3 +162,7 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 ```
 
 ![plot of chunk unnamed-chunk-13](fig/hanc_ml_svm/unnamed-chunk-13-1.png)
+
+References 
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+
