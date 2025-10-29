@@ -1,6 +1,6 @@
-# Overview
+STOMP motif discovery: Matrix Profile methods compute, for each subsequence, the distance to its nearest neighbor subsequence. STOMP is an efficient exact algorithm for long series. Harbinger provides Matrix Profile via `tsmp` and wraps it in `hmo_mp()`.
 
-This Rmd demonstrates motif discovery using Matrix Profile with the STOMP algorithm via `hmo_mp("stomp", ...)`. It identifies repeated subsequences (motifs) efficiently in long series. Steps: load packages/data, visualize, configure subsequence length and number of motifs, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates motif discovery using Matrix Profile with the STOMP algorithm via `hmo_mp("stomp", ...)`. It identifies repeated subsequences (motifs) efficiently in long series. Steps: load packages/data, visualize, configure subsequence length and number of motifs, fit, detect, evaluate, and plot.
 
 
 ``` r
@@ -67,7 +67,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Finished in 0.01 secs
+## Finished in 0.05 secs
 ```
 
 
@@ -112,3 +112,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_mp_stomp/unnamed-chunk-11-1.png)
+
+References 
+- Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
+- Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021

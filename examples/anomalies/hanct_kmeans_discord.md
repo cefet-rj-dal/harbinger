@@ -1,6 +1,6 @@
-# Overview
+K-means clustering discord anomaly detection: K-means clustering over sliding-window subsequences; windows far from their nearest centroid are flagged as discords. Summaries and thresholds use `harutils()`.
 
-This Rmd demonstrates discord (rare pattern) discovery using k-means via `hanct_kmeans(k)`. The model clusters subsequences and identifies discords that are far from any cluster centroid. Steps: load packages/data, visualize, define k-means model, fit, detect, evaluate, and plot series and residuals.
+Objectives: This Rmd demonstrates discord (rare pattern) discovery using k-means via `hanct_kmeans(k)`. The model clusters subsequences and identifies discords that are far from any cluster centroid. Steps: load packages/data, visualize, define k-means model, fit, detect, evaluate, and plot series and residuals.
 
 
 ``` r
@@ -104,3 +104,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanct_kmeans_discord/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

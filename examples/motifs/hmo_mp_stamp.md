@@ -1,6 +1,6 @@
-# Overview
+STAMP motif discovery: Matrix Profile methods compute, for each subsequence, the distance to its nearest neighbor subsequence, enabling efficient discovery of repeated patterns (motifs). STAMP uses random sampling to approximate the Matrix Profile with scalability to long series. In Harbinger this is provided via `tsmp` and wrapped by `hmo_mp()`.
 
-This Rmd demonstrates motif discovery using Matrix Profile with the STAMP algorithm via `hmo_mp("stamp", ...)`. It finds repeated subsequences (motifs) in a time series. Steps: load packages/data, visualize the series, define the motif model (subsequence length and number of motifs), fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates motif discovery using Matrix Profile with the STAMP algorithm via `hmo_mp("stamp", ...)`. It finds repeated subsequences (motifs) in a time series. Steps: load packages/data, visualize the series, define the motif model (subsequence length and number of motifs), fit, detect, evaluate, and plot.
 
 
 ``` r
@@ -112,3 +112,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_mp_stamp/unnamed-chunk-11-1.png)
+
+References 
+- Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
+- Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021

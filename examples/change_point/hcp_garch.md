@@ -1,3 +1,5 @@
+ChangeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts.
+
 ChangeFinder-GARCH models volatility with GARCH and detects change points by smoothing residual deviations. In this tutorial we:
 
 - Load and visualize a change-point dataset
@@ -106,3 +108,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hcp_garch/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

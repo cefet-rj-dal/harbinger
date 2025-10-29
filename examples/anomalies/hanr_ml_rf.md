@@ -1,6 +1,6 @@
-# Overview
+Random Forest regression anomaly detection: Model-deviation detection using ML regression: a Random Forest forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies. Implemented via DALToolbox regressors and thresholded with `harutils()`.
 
-This Rmd demonstrates anomaly detection using a Random Forest regressor (`hanr_ml + ts_rf`). The model predicts the next value and flags anomalies when residuals exceed a learned threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+Objectives: This Rmd demonstrates anomaly detection using a Random Forest regressor (`hanr_ml + ts_rf`). The model predicts the next value and flags anomalies when residuals exceed a learned threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
 
 
 ``` r
@@ -108,3 +108,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_ml_rf/unnamed-chunk-12-1.png)
+
+References 
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

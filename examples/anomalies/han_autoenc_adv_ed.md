@@ -13,30 +13,7 @@ This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_au
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(daltoolboxdp)
-```
-
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
-``` r
 library(harbinger) 
 ```
 
@@ -98,6 +75,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##   idx event    type
 ## 1  19  TRUE anomaly
+## 2  44  TRUE anomaly
 ```
 
 
@@ -110,8 +88,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      0     2    
+## FALSE     1     98
 ```
 
 

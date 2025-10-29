@@ -1,4 +1,4 @@
-This notebook shows how different Harbinger utility functions for distance, thresholding and grouping affect anomaly flags and thresholds.
+Overview and objectives: This notebook shows how Harbinger’s utility functions for distance aggregation, thresholding, and grouping affect anomaly flags and decision thresholds. We compare Gaussian 3‑sigma vs. boxplot/IQR vs. ratio rules, and grouping strategies for contiguous detections.
 
 
 ``` r
@@ -114,3 +114,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/examples_harutils_outliers/unnamed-chunk-11-1.png)
+
+References
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison‑Wesley. (boxplot/IQR outlier rule)
+- Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three‑sigma rule)

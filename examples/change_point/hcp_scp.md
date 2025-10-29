@@ -1,3 +1,5 @@
+SCP: Seminal Change Point compares linear regression fits with and without the central observation in sliding windows; large deviations around a center indicate a change location.
+
 Seminal Change Point (SCP) compares regression fits with and without the central observation in sliding windows to highlight break locations. In this tutorial we:
 
 - Load and visualize a simple change-point dataset
@@ -106,3 +108,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hcp_scp/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

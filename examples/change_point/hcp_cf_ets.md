@@ -1,3 +1,5 @@
+ChangeFinder with ETS: ChangeFinder with ETS models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes. Implementation wraps ETS from `forecast` and uses `harutils()` for thresholds.
+
 ChangeFinder-ETS detects change points by modeling residual deviations with an ETS model and smoothing over a sliding window. We will:
 
 - Load and visualize a simple change-point dataset
@@ -106,3 +108,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hcp_cf_ets/unnamed-chunk-12-1.png)
+
+References 
+
+- Takeuchi, J., Yamanishi, K. (2006). A unifying framework for detecting outliers and change points from time series. IEEE TKDE. doi:10.1109/TKDE.2006.1599387

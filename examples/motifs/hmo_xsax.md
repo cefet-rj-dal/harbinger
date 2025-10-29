@@ -1,3 +1,5 @@
+XSAX motif discovery: XSAX extends SAX to a larger alphanumeric alphabet, allowing finer symbolic resolution. Motifs are frequent symbolic words or closely related patterns.
+
 XSAX extends SAX to a larger alphanumeric alphabet, enabling finer symbolic resolution for motif discovery. In this tutorial we:
 
 - Load and visualize a motif dataset
@@ -101,3 +103,5 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-11](fig/hmo_xsax/unnamed-chunk-11-1.png)
 
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

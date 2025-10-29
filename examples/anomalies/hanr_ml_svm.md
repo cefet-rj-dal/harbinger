@@ -1,6 +1,6 @@
-# Overview
+SVM regression anomaly detection: Model-deviation detection using ML regression: an SVM forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies. Implemented via DALToolbox regressors and thresholded with `harutils()`.
 
-This Rmd demonstrates anomaly detection in a univariate time series using a Support Vector Machine regressor via harbinger's `hanr_ml + ts_svm`. The model learns short-range dynamics to predict the next value; large residuals are flagged as anomalies using an adaptive threshold. The workflow is: load packages and data, visualize the series, define and fit the model, run detection, evaluate, and plot results (including residual scores).
+Objectives: This Rmd demonstrates anomaly detection in a univariate time series using a Support Vector Machine regressor via harbinger's `hanr_ml + ts_svm`. The model learns short-range dynamics to predict the next value; large residuals are flagged as anomalies using an adaptive threshold. The workflow is: load packages and data, visualize the series, define and fit the model, run detection, evaluate, and plot results (including residual scores).
 
 
 ``` r
@@ -107,3 +107,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_ml_svm/unnamed-chunk-12-1.png)
+
+References 
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

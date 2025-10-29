@@ -1,3 +1,5 @@
+GARCH-based regression anomaly detection: This detector estimates a GARCH model to capture conditional heteroskedasticity and flags observations with large standardized residuals as anomalies. A common configuration is sGARCH(1,1) with an ARMA mean. Residuals are summarized and thresholded using `harutils()`.
+
 The GARCH-based detector models conditional heteroskedasticity and flags large standardized residuals as anomalies. We will:
 
 - Load and visualize a sample anomaly dataset
@@ -106,3 +108,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_garch/unnamed-chunk-12-1.png)
+
+References 
+- Engle, R. F. (1982). Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation. Econometrica, 50(4), 987–1007.
+- Bollerslev, T. (1986). Generalized Autoregressive Conditional Heteroskedasticity. Journal of Econometrics, 31(3), 307–327.

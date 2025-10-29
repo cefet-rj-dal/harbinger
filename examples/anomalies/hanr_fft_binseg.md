@@ -1,5 +1,8 @@
-This variant combines FFT high-pass filtering with a spectral cutoff chosen by Binary Segmentation (BinSeg) on the power spectrum. We will:
+FFT Binseg regression anomaly detection: FFT-based high-pass filtering with a cutoff selected via Binary Segmentation on the power spectrum. Frequencies below the detected spectral changepoint are suppressed; anomalies are flagged from the residual magnitude and thresholded using `harutils()`.
 
+This variant combines FFT high-pass filtering with a spectral cutoff chosen by Binary Segmentation (BinSeg) on the power spectrum. 
+
+We will:
 - Load and visualize a simple anomaly dataset
 - Configure and run `hanr_fft_binseg`
 - Inspect detections, evaluate, and plot residual magnitudes and thresholds
@@ -106,3 +109,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_fft_binseg/unnamed-chunk-12-1.png)
+
+References 
+- Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063

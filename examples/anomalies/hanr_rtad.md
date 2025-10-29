@@ -1,5 +1,6 @@
-# Overview
+RTAD regression anomaly detector: RTAD adapts to local dynamics using EMD-derived components and robust dispersion within sliding windows. Points with large deviations relative to the modeled behavior are flagged as anomalies; thresholds use `harutils()`.
 
+Objectives: 
 This Rmd applies the Residual Error-based Detector (`hanr_rt`) to identify anomalies in a univariate time series. The pipeline fits a baseline model, scores residuals, and flags points exceeding an adaptive threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
 
 
@@ -105,4 +106,6 @@ har_plot(harbinger(), dataset$serie)
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_rtad/unnamed-chunk-12-1.png)
 
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
 

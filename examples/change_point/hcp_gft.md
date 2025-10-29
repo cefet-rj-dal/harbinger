@@ -1,3 +1,5 @@
+GFT: Generalized fluctuation tests assess stability of regression parameters over time using `strucchange::breakpoints()`, returning estimated break dates under information criteria.
+
 Generalized Fluctuation Tests (GFT) assess structural changes by examining stability of regression fits across time. In this tutorial we:
 
 - Load and visualize a simple change-point dataset
@@ -100,3 +102,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-11](fig/hcp_gft/unnamed-chunk-11-1.png)
 
+References 
+- Zeileis, A., Leisch, F., Kleiber, C., Hornik, K. (2002). strucchange: An R package for testing for structural change in linear regression models. Journal of Statistical Software, 7(2). doi:10.18637/jss.v007.i02
+- Zeileis, A., Kleiber, C., Krämer, W., Hornik, K. (2003). Testing and dating of structural changes in practice. Computational Statistics & Data Analysis, 44(1), 109–123.

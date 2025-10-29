@@ -1,3 +1,5 @@
+FFT SMA regression anomaly detection: Adaptive FFT + moving average: estimates a dominant frequency from the spectrum to set the smoothing window, computes residuals (original minus smoothed), and flags large residuals as anomalies with `harutils()` thresholding.
+
 This variant adapts a moving average window from the dominant frequency (FFT) to smooth the series, then flags large deviations of the high-frequency component. Steps:
 
 - Load and visualize a simple anomaly dataset
@@ -110,3 +112,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_fft_sma/unnamed-chunk-12-1.png)
+
+References 
+- Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063
+
