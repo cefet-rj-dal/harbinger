@@ -1,5 +1,8 @@
-This variant applies CUSUM to the spectrum to emphasize aggregated changes, then uses BinSeg to choose the cutoff before high-pass filtering. Steps:
+FFT Binseg CUSUM regression anomaly detection: FFT-based filtering with a cutoff determined by applying CUSUM to the spectrum and locating a changepoint via Binary Segmentation. Low-frequency energy below the cutoff is removed; anomalies are flagged from residual magnitudes and thresholded with `harutils()`.
 
+This variant applies CUSUM to the spectrum to emphasize aggregated changes, then uses BinSeg to choose the cutoff before high-pass filtering. 
+
+Steps:
 - Load and visualize a simple anomaly dataset
 - Configure and run `hanr_fft_binseg_cusum`
 - Inspect detections, evaluate, and plot residual magnitudes and thresholds
@@ -106,3 +109,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_fft_binseg_cusum/unnamed-chunk-12-1.png)
+
+References 
+- Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063
+

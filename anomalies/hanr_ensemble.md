@@ -1,5 +1,6 @@
-# Overview
+Ensemble anomaly detection: Majority-vote ensemble across multiple detectors, optionally with temporal fuzzification to combine nearby detections into a single event. Each base detector contributes a vote; final events reflect consensus.
 
+Objectives: 
 This Rmd demonstrates anomaly detection via an ensemble of residual-based detectors using `har_ensemble(...)`. Multiple base detectors (e.g., FBIAD, ARIMA, EMD) vote to produce a final event decision. Steps: load packages/data, visualize, define ensemble, fit, detect, evaluate, and plot results and residuals.
 
 
@@ -103,3 +104,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_ensemble/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

@@ -1,4 +1,4 @@
-# Overview
+Autoencoder (encode-decode): An autoencoder reconstructs sliding windows; large reconstruction errors indicate anomalies. This example uses a feed-forward encoder-decoder. Training minimizes reconstruction loss; detection thresholds use `harutils()`.
 
 This Rmd demonstrates anomaly detection via a basic feed-forward autoencoder (`han_autoencoder(..., autoenc_ed, ...)`). The model reconstructs the input window; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the autoencoder (layers/epochs), fit, detect, evaluate, and plot series and residuals.
 
@@ -74,7 +74,7 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 
 ```
 ##   idx event    type
-## 1  51  TRUE anomaly
+## 1  50  TRUE anomaly
 ```
 
 
@@ -87,8 +87,8 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -106,3 +106,7 @@ model <- han_autoencoder(3, 2, autoenc_ed, num_epochs = 1500)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_ed/unnamed-chunk-12-1.png)
+
+References 
+
+- Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.

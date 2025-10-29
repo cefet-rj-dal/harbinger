@@ -1,3 +1,5 @@
+FFT AMOC regression anomaly detection: FFT-based high-pass filtering with an automatic cutoff selected via AMOC on the power spectrum. Low frequencies below the AMOC changepoint are removed; anomalies are flagged from residual magnitudes and thresholded using `harutils()`.
+
 This variant combines FFT high-pass filtering with a cutoff selected by AMOC (single change in the spectrum). We will:
 
 - Load and visualize a simple anomaly dataset
@@ -106,3 +108,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_fft_amoc/unnamed-chunk-12-1.png)
+
+References 
+- Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063

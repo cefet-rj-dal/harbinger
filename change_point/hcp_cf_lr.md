@@ -1,6 +1,6 @@
-# Overview
+ChangeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes. Thresholding is done via `harutils()`.
 
-This Rmd demonstrates change-point detection using Conformal Forecasting with a Linear Regression forecaster (`hcp_cf_lr`). The method scores deviations from short-term predictions and flags structural changes when nonconformity exceeds a learned threshold. Steps: load packages/data, visualize, define model (window size), fit, detect, evaluate, and plot both detections and residuals.
+Objectives: This Rmd demonstrates change-point detection using Conformal Forecasting with a Linear Regression forecaster (`hcp_cf_lr`). The method scores deviations from short-term predictions and flags structural changes when nonconformity exceeds a learned threshold. Steps: load packages/data, visualize, define model (window size), fit, detect, evaluate, and plot both detections and residuals.
 
 
 ``` r
@@ -105,3 +105,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hcp_cf_lr/unnamed-chunk-12-1.png)
+
+References 
+- Takeuchi, J., Yamanishi, K. (2006). A unifying framework for detecting outliers and change points from time series. IEEE TKDE. doi:10.1109/TKDE.2006.1599387

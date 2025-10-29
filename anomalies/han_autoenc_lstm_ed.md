@@ -1,6 +1,8 @@
-# Overview
+LSTM autoencoder (encode-decode): An LSTM autoencoder learns temporal dependencies by encoding and decoding sequences; large reconstruction error flags anomalies. The model optimizes sequence reconstruction and thresholds errors via `harutils()`.
 
+Objectives: 
 This Rmd demonstrates anomaly detection with an LSTM autoencoder (`han_autoencoder(..., autoenc_lstm_ed, ...)`). The model encodes and decodes sequences; high reconstruction error flags anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+
 
 ``` r
 # Install Harbinger (only once, if needed)
@@ -73,7 +75,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  52  TRUE anomaly
 ```
 
 
@@ -86,8 +87,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     1    
-## FALSE     0     99
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -104,3 +105,7 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_lstm_ed/unnamed-chunk-12-1.png)
+
+
+References 
+- Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.

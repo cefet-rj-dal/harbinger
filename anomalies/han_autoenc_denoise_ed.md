@@ -1,6 +1,6 @@
-# Overview
+Denoise Autoencoder (encode-decode): A denoising autoencoder reconstructs clean inputs from noisy windows, improving robustness. At inference, large reconstruction errors indicate anomalies. Thresholds use `harutils()`.
 
-This Rmd demonstrates anomaly detection with a denoising autoencoder (`han_autoencoder(..., autoenc_denoise_ed, ...)`). The model learns to reconstruct clean inputs from noisy windows; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates anomaly detection with a denoising autoencoder (`han_autoencoder(..., autoenc_denoise_ed, ...)`). The model learns to reconstruct clean inputs from noisy windows; high reconstruction error indicates anomalies. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
 
 
 ``` r
@@ -73,7 +73,10 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type
-## 1  52  TRUE anomaly
+## 1  23  TRUE anomaly
+## 2  49  TRUE anomaly
+## 3  74  TRUE anomaly
+## 4  99  TRUE anomaly
 ```
 
 
@@ -86,8 +89,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## TRUE      0     4    
+## FALSE     1     96
 ```
 
 
@@ -104,3 +107,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_denoise_ed/unnamed-chunk-12-1.png)
+
+References 
+- Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.

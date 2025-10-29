@@ -1,6 +1,4 @@
-# Overview
-
-This Rmd provides quick end-to-end examples using the default `harbinger()` pipeline on several datasets (nonstationarity, global temperature monthly/yearly, multidimensional, and Seattle temperatures). For each dataset we: fit the default pipeline, run detection, and plot detections over the series.
+Overview and objectives: This notebook provides quick end‑to‑end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather). For each dataset we: fit the default pipeline, run detection, and plot detections over the series. The goal is to illustrate Harbinger’s unified interface for anomalies, change points, and motifs, and how it builds on DAL Toolbox models.
 
 
 ``` r
@@ -95,4 +93,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/examples_harbinger/unnamed-chunk-9-1.png)
+
+References
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
+- DAL Toolbox documentation: https://cefet-rj-dal.github.io/daltoolbox/
 

@@ -1,4 +1,4 @@
-SoftED provides soft evaluation by matching detections within tolerance windows and measuring partial credit. This notebook shows how to compute both hard and soft metrics.
+Overview and objectives: SoftED provides soft evaluation by matching detections to ground truth within tolerance windows and assigning partial credit. This notebook shows how to compute both hard and soft metrics and when soft evaluation is more appropriate (e.g., temporal uncertainty around event onset).
 
 
 ``` r
@@ -115,3 +115,5 @@ print(result$confMatrix)
 ## FALSE     0     100
 ```
 
+References
+- Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R., Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. (2024). SoftED: Metrics for soft evaluation of time series event detection. Computers and Industrial Engineering. doi:10.1016/j.cie.2024.110728

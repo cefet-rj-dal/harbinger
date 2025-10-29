@@ -1,5 +1,8 @@
-REMD combines EMD-based decomposition with ARIMA modeling on the high-frequency component to detect anomalies. In this tutorial we:
+REMD regression anomaly detection: REMD combines Empirical Mode Decomposition with ARIMA modeling: IMFs capture nonstationary structure and ARIMA models residual dynamics. Large residual magnitudes signal anomalies and are thresholded via `harutils()`.
 
+REMD combines EMD-based decomposition with ARIMA modeling on the high-frequency component to detect anomalies. 
+
+In this tutorial we:
 - Load and visualize a simple anomaly dataset
 - Configure and run the REMD detector (`hanr_remd`)
 - Inspect detections, evaluate, and plot residual magnitudes
@@ -74,8 +77,9 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event    type
-## 1  51  TRUE anomaly
-## 2  53  TRUE anomaly
+## 1   1  TRUE anomaly
+## 2  50  TRUE anomaly
+## 3  55  TRUE anomaly
 ```
 
 
@@ -88,8 +92,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      1     2    
+## FALSE     0     98
 ```
 
 
@@ -107,3 +111,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_remd/unnamed-chunk-12-1.png)
+
+References 
+- Souza, J., et al. REMD: A Novel Hybrid Anomaly Detection Method Based on EMD and ARIMA. IJCNN, 2024. doi:10.1109/IJCNN60899.2024.10651192
+

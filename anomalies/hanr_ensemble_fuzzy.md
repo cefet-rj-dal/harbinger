@@ -1,6 +1,6 @@
-# Overview
+Ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity.
 
-This Rmd demonstrates anomaly detection using a fuzzy-tolerant ensemble (`har_ensemble(...)` with `time_tolerance`). Multiple detectors (FBIAD, ARIMA, EMD) vote and detections within a time tolerance are merged. Steps: load packages/data, visualize, define ensemble and tolerance, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates anomaly detection using a fuzzy-tolerant ensemble (`har_ensemble(...)` with `time_tolerance`). Multiple detectors (FBIAD, ARIMA, EMD) vote and detections within a time tolerance are merged. Steps: load packages/data, visualize, define ensemble and tolerance, fit, detect, evaluate, and plot.
 
 
 ``` r
@@ -104,3 +104,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hanr_ensemble_fuzzy/unnamed-chunk-12-1.png)
+
+References 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

@@ -1,4 +1,4 @@
-This notebook demonstrates how to compute hard evaluation metrics (confusion matrix, accuracy, precision, recall, F1) for a detector’s output.
+Overview and objectives: This notebook demonstrates hard evaluation of event detection results using confusion matrix–based metrics (accuracy, precision, recall, F1). It shows how to compute metrics with `har_eval()` from detections and ground truth, and how to visualize results alongside the series.
 
 
 ``` r
@@ -87,3 +87,6 @@ print(evaluation$confMatrix)
 ## FALSE     0     100
 ```
 
+References
+
+- Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R., Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. (2024). SoftED: Metrics for soft evaluation of time series event detection. Computers and Industrial Engineering. doi:10.1016/j.cie.2024.110728

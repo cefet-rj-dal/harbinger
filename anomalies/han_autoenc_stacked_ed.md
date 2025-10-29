@@ -1,6 +1,6 @@
-# Overview
+Stacked autoencoder (encode-decode): A stacked autoencoder deepens encoder/decoder layers to capture richer nonlinear structure; large reconstruction error flags anomalies. Detection thresholds use `harutils()`.
 
-This Rmd demonstrates anomaly detection with a stacked autoencoder (`han_autoencoder(..., autoenc_stacked_ed, ...)`). Stacking deepens the encoder/decoder to capture richer structure; anomalies have higher reconstruction error. Steps: load packages/data, visualize, define layers/epochs, fit, detect, evaluate, and plot.
+Objectives: This Rmd demonstrates anomaly detection with a stacked autoencoder (`han_autoencoder(..., autoenc_stacked_ed, ...)`). Stacking deepens the encoder/decoder to capture richer structure; anomalies have higher reconstruction error. Steps: load packages/data, visualize, define layers/epochs, fit, detect, evaluate, and plot.
 
 
 ``` r
@@ -67,9 +67,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type
-## 1  11  TRUE anomaly
-## 2  43  TRUE anomaly
-## 3  46  TRUE anomaly
+## 1  51  TRUE anomaly
 ```
 
 
@@ -82,8 +80,8 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     3    
-## FALSE     1     97
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 
@@ -100,3 +98,6 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-11](fig/han_autoenc_stacked_ed/unnamed-chunk-11-1.png)
+
+References 
+- Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.

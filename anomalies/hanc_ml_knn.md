@@ -1,5 +1,6 @@
-# Overview
+k-NN classification anomaly detector: Supervised anomaly detection using k-NN classification on labeled data; positive-class probabilities above a threshold indicate events.
 
+Objectives: 
 This Rmd shows supervised anomaly classification using `hanc_ml` with k-Nearest Neighbors (`cla_knn`). It uses labeled events, a simple train/test split, and min–max normalization. Steps: load packages/data, visualize, preprocess, define and fit the classifier, detect, evaluate, and plot results.
 
 
@@ -161,3 +162,8 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 ```
 
 ![plot of chunk unnamed-chunk-13](fig/hanc_ml_knn/unnamed-chunk-13-1.png)
+
+References 
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

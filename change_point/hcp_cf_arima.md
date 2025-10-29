@@ -1,3 +1,5 @@
+ChangeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes. Implementation wraps ARIMA from `forecast` and uses `harutils()` for thresholds.
+
 ChangeFinder-ARIMA detects change points by modeling residual deviations and smoothing them over a sliding window. In this tutorial we will:
 
 - Load and visualize a simple change-point dataset
@@ -106,3 +108,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/hcp_cf_arima/unnamed-chunk-12-1.png)
+
+References 
+
+- Takeuchi, J., Yamanishi, K. (2006). A unifying framework for detecting outliers and change points from time series. IEEE TKDE. doi:10.1109/TKDE.2006.1599387

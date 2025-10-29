@@ -1,4 +1,4 @@
-This notebook demonstrates motif discovery datasets and visualization using Harbinger’s base plotting. We will iterate over multiple series and apply the base workflow: fit, detect, plot.
+Overview and objectives: This notebook showcases motif discovery (repeated subsequences) using Harbinger’s unified interface and base plotting. Across synthetic and ECG datasets, we fit a detector, run discovery, and plot results. The aim is to build intuition for how motifs (and related discords) appear in time series and how Matrix Profile/SAX-based methods surface them.
 
 
 ``` r
@@ -52,4 +52,9 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/examples_motifs/unnamed-chunk-6-1.png)
+
+References
+- Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
+- Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021
+- Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. DMKD, 15, 107–144.
 

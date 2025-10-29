@@ -1,3 +1,5 @@
+SAX motif discovery: SAX discretizes z-normalized subsequences into symbolic words; discords emerge as rare words or windows with large symbolic distance to their neighbors.
+
 SAX-based discord discovery identifies rare, dissimilar subsequences by discretizing the series and finding unique words with high entropy. We will:
 
 - Load and visualize a motif/discord dataset
@@ -219,3 +221,5 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ![plot of chunk unnamed-chunk-11](fig/hdis_sax/unnamed-chunk-11-1.png)
 
+References 
+- Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. Data Mining and Knowledge Discovery, 15, 107–144.
