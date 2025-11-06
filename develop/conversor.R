@@ -11,6 +11,9 @@
 #   copy/move failures.
 ################################################################################
 
+# Root directory containing source Rmd files
+dir <- "Rmd"
+
 # Convert a Jupyter notebook (.ipynb) to R Markdown (.Rmd)
 convert_ipynb_to_rmarkdown <- function(input) {
   # Require rmarkdown without attaching; return a clear message if missing
@@ -31,9 +34,9 @@ delete_ipynb <- function(input) {
 }
 
 # Knit an .Rmd to .md under 'examples/', move figures to
-# '<examples-subdir>/fig/<doc-basename>/', render a Word (.docx)
-# under top-level 'examples-word/', and also extract a pure R script under
-# 'examples-r/'.
+# '<examples-subdir>/fig/<doc-basename>/', render a Word (.docx) under
+# 'examples/<folder>/doc/', and also extract a pure R script under
+# 'examples/<folder>/r/'.
 convert_rmd_md <- function(input) {
   # Require needed packages; keep behavior consistent with original
   if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
@@ -50,15 +53,16 @@ convert_rmd_md <- function(input) {
   md_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "md"))
   mdfile  <- file.path("examples", md_rel)
 
-  # Output Word path goes under top-level 'examples-word/' directory
-  # Preserve sub-structure after removing the leading 'Rmd/'
-  docx_rel <- gsub("^Rmd/", "", xfun::with_ext(input, "docx"))
-  docxfile <- file.path("examples-word", docx_rel)
+  # Output Word and R script paths go under per-folder destinations:
+  # - Word: examples/<folder>/doc/<name>.docx
+  # - R:    examples/<folder>/r/<name>.R
+  # Determine the immediate folder under 'Rmd/' and base output dir
+  folder        <- basename(dirname(input))
+  base_out_dir  <- file.path("examples", folder)
+  base_filename <- xfun::sans_ext(basename(input))
 
-  # Output R script path goes under top-level 'examples-r/' directory
-  # Preserve sub-structure after removing the leading 'Rmd/'
-  r_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "R"))
-  rfile  <- file.path("examples-r", r_rel)
+  docxfile <- file.path(base_out_dir, "doc", paste0(base_filename, ".docx"))
+  rfile    <- file.path(base_out_dir, "r",   paste0(base_filename, ".R"))
 
   # Destination figure directory: '<md-dir>/fig/<rmd-basename>/'
   figdir <- file.path(dirname(mdfile), "fig", basename(xfun::with_ext(input, "")))
@@ -87,6 +91,19 @@ convert_rmd_md <- function(input) {
     file.rename("figure", figdir)
   }
 
+  # Also handle figures created under the Rmd's directory (non-recursive)
+  rmd_fig <- file.path(dirname(input), "figure")
+  if (dir.exists(rmd_fig)) {
+    if (!dir.exists(figdir)) {
+      dir.create(figdir, recursive = TRUE, showWarnings = FALSE)
+    }
+    figs <- list.files(rmd_fig, full.names = TRUE, recursive = FALSE, include.dirs = FALSE)
+    if (length(figs) > 0) {
+      file.rename(figs, file.path(figdir, basename(figs)))
+    }
+    unlink(rmd_fig, recursive = TRUE)
+  }
+
   # Post-process the generated Markdown to update figure paths
   con_in <- file(mdfile, encoding = "UTF-8")
   on.exit(close(con_in), add = TRUE)
@@ -103,8 +120,8 @@ convert_rmd_md <- function(input) {
   # htmlfile <- xfun::with_ext(input, "html")
   # if (file.exists(htmlfile)) file.remove(htmlfile)
 
-  # Ensure 'word/' destination directory exists for the .docx
-  docx_dir <- dirname(docxfile)
+  # Ensure per-folder 'doc/' destination directory exists for the .docx
+  docx_dir <- dirname(docxfile) # 'examples/<folder>/doc'
   if (!dir.exists(docx_dir)) {
     dir.create(docx_dir, recursive = TRUE, showWarnings = FALSE)
   }
@@ -118,8 +135,8 @@ convert_rmd_md <- function(input) {
     output_dir    = dirname(docxfile)
   )
 
-  # Ensure 'examples-r/' destination directory exists and extract pure R code
-  r_dir <- dirname(rfile)
+  # Ensure per-folder 'r/' destination directory exists and extract pure R code
+  r_dir <- dirname(rfile) # 'examples/<folder>/r'
   if (!dir.exists(r_dir)) {
     dir.create(r_dir, recursive = TRUE, showWarnings = FALSE)
   }
@@ -127,8 +144,6 @@ convert_rmd_md <- function(input) {
 }
 
 
-# Root directory containing source Rmd files
-dir <- "Rmd"
 
 # Convert .ipynb -> .Rmd (disabled by default; enable by toggling to TRUE)
 texs <- list.files(path = dir, pattern = ".ipynb$", full.names = TRUE, recursive = TRUE)
@@ -148,7 +163,6 @@ if (FALSE) {
 }
 
 # Knit all .Rmd under 'Rmd/' to Markdown (enabled)
-dir <- "Rmd"
 texs <- list.files(path = dir, pattern = ".Rmd$", full.names = TRUE, recursive = TRUE)
 if (TRUE) {
   for (tex in texs) {
