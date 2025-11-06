@@ -68,7 +68,97 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## Finished in 0.04 secs
+## 
+STAMP [==>-----------------------------]  10% at 46 it/s, elapsed:  0s, eta:  2s
+STAMP [===>----------------------------]  11% at 51 it/s, elapsed:  0s, eta:  2s
+STAMP [===>----------------------------]  12% at 55 it/s, elapsed:  0s, eta:  2s
+STAMP [===>----------------------------]  13% at 59 it/s, elapsed:  0s, eta:  1s
+STAMP [====>---------------------------]  14% at 63 it/s, elapsed:  0s, eta:  1s
+STAMP [====>---------------------------]  15% at 67 it/s, elapsed:  0s, eta:  1s
+STAMP [====>---------------------------]  16% at 71 it/s, elapsed:  0s, eta:  1s
+STAMP [=====>--------------------------]  17% at 76 it/s, elapsed:  0s, eta:  1s
+STAMP [=====>--------------------------]  18% at 80 it/s, elapsed:  0s, eta:  1s
+STAMP [=====>--------------------------]  19% at 84 it/s, elapsed:  0s, eta:  1s
+STAMP [======>-------------------------]  20% at 87 it/s, elapsed:  0s, eta:  1s
+STAMP [======>-------------------------]  21% at 91 it/s, elapsed:  0s, eta:  1s
+STAMP [======>-------------------------]  22% at 95 it/s, elapsed:  0s, eta:  1s
+STAMP [=======>------------------------]  23% at 99 it/s, elapsed:  0s, eta:  1s
+STAMP [=======>-----------------------]  24% at 103 it/s, elapsed:  0s, eta:  1s
+STAMP [=======>-----------------------]  26% at 106 it/s, elapsed:  0s, eta:  1s
+STAMP [=======>-----------------------]  27% at 110 it/s, elapsed:  0s, eta:  1s
+STAMP [========>----------------------]  28% at 114 it/s, elapsed:  0s, eta:  1s
+STAMP [========>----------------------]  29% at 117 it/s, elapsed:  0s, eta:  1s
+STAMP [========>----------------------]  30% at 121 it/s, elapsed:  0s, eta:  1s
+STAMP [========>----------------------]  31% at 124 it/s, elapsed:  0s, eta:  1s
+STAMP [=========>---------------------]  32% at 128 it/s, elapsed:  0s, eta:  1s
+STAMP [=========>---------------------]  33% at 131 it/s, elapsed:  0s, eta:  1s
+STAMP [=========>---------------------]  34% at 135 it/s, elapsed:  0s, eta:  0s
+STAMP [==========>--------------------]  35% at 138 it/s, elapsed:  0s, eta:  0s
+STAMP [==========>--------------------]  36% at 141 it/s, elapsed:  0s, eta:  0s
+STAMP [==========>--------------------]  37% at 145 it/s, elapsed:  0s, eta:  0s
+STAMP [===========>-------------------]  38% at 148 it/s, elapsed:  0s, eta:  0s
+STAMP [===========>-------------------]  39% at 151 it/s, elapsed:  0s, eta:  0s
+STAMP [===========>-------------------]  40% at 155 it/s, elapsed:  0s, eta:  0s
+STAMP [============>------------------]  41% at 158 it/s, elapsed:  0s, eta:  0s
+STAMP [============>------------------]  42% at 161 it/s, elapsed:  0s, eta:  0s
+STAMP [============>------------------]  43% at 164 it/s, elapsed:  0s, eta:  0s
+STAMP [=============>-----------------]  44% at 167 it/s, elapsed:  0s, eta:  0s
+STAMP [=============>-----------------]  45% at 170 it/s, elapsed:  0s, eta:  0s
+STAMP [=============>-----------------]  46% at 173 it/s, elapsed:  0s, eta:  0s
+STAMP [==============>----------------]  47% at 176 it/s, elapsed:  0s, eta:  0s
+STAMP [==============>----------------]  48% at 179 it/s, elapsed:  0s, eta:  0s
+STAMP [==============>----------------]  49% at 182 it/s, elapsed:  0s, eta:  0s
+STAMP [===============>---------------]  50% at 185 it/s, elapsed:  0s, eta:  0s
+STAMP [===============>---------------]  51% at 188 it/s, elapsed:  0s, eta:  0s
+STAMP [===============>---------------]  52% at 191 it/s, elapsed:  0s, eta:  0s
+STAMP [===============>---------------]  53% at 194 it/s, elapsed:  0s, eta:  0s
+STAMP [================>--------------]  54% at 197 it/s, elapsed:  0s, eta:  0s
+STAMP [================>--------------]  55% at 200 it/s, elapsed:  0s, eta:  0s
+STAMP [================>--------------]  56% at 203 it/s, elapsed:  0s, eta:  0s
+STAMP [=================>-------------]  57% at 205 it/s, elapsed:  0s, eta:  0s
+STAMP [=================>-------------]  58% at 208 it/s, elapsed:  0s, eta:  0s
+STAMP [=================>-------------]  59% at 211 it/s, elapsed:  0s, eta:  0s
+STAMP [==================>------------]  60% at 214 it/s, elapsed:  0s, eta:  0s
+STAMP [==================>------------]  61% at 216 it/s, elapsed:  0s, eta:  0s
+STAMP [==================>------------]  62% at 219 it/s, elapsed:  0s, eta:  0s
+STAMP [===================>-----------]  63% at 222 it/s, elapsed:  0s, eta:  0s
+STAMP [===================>-----------]  64% at 225 it/s, elapsed:  0s, eta:  0s
+STAMP [===================>-----------]  65% at 227 it/s, elapsed:  0s, eta:  0s
+STAMP [====================>----------]  66% at 230 it/s, elapsed:  0s, eta:  0s
+STAMP [====================>----------]  67% at 232 it/s, elapsed:  0s, eta:  0s
+STAMP [====================>----------]  68% at 235 it/s, elapsed:  0s, eta:  0s
+STAMP [=====================>---------]  69% at 237 it/s, elapsed:  0s, eta:  0s
+STAMP [=====================>---------]  70% at 240 it/s, elapsed:  0s, eta:  0s
+STAMP [=====================>---------]  71% at 242 it/s, elapsed:  0s, eta:  0s
+STAMP [=====================>---------]  72% at 245 it/s, elapsed:  0s, eta:  0s
+STAMP [======================>--------]  73% at 247 it/s, elapsed:  0s, eta:  0s
+STAMP [======================>--------]  74% at 250 it/s, elapsed:  0s, eta:  0s
+STAMP [======================>--------]  76% at 252 it/s, elapsed:  0s, eta:  0s
+STAMP [=======================>-------]  77% at 255 it/s, elapsed:  0s, eta:  0s
+STAMP [=======================>-------]  78% at 257 it/s, elapsed:  0s, eta:  0s
+STAMP [=======================>-------]  79% at 259 it/s, elapsed:  0s, eta:  0s
+STAMP [========================>------]  80% at 262 it/s, elapsed:  0s, eta:  0s
+STAMP [========================>------]  81% at 264 it/s, elapsed:  0s, eta:  0s
+STAMP [========================>------]  82% at 266 it/s, elapsed:  0s, eta:  0s
+STAMP [=========================>-----]  83% at 269 it/s, elapsed:  0s, eta:  0s
+STAMP [=========================>-----]  84% at 271 it/s, elapsed:  0s, eta:  0s
+STAMP [=========================>-----]  85% at 273 it/s, elapsed:  0s, eta:  0s
+STAMP [==========================>----]  86% at 276 it/s, elapsed:  0s, eta:  0s
+STAMP [==========================>----]  87% at 278 it/s, elapsed:  0s, eta:  0s
+STAMP [==========================>----]  88% at 280 it/s, elapsed:  0s, eta:  0s
+STAMP [===========================>---]  89% at 282 it/s, elapsed:  0s, eta:  0s
+STAMP [===========================>---]  90% at 284 it/s, elapsed:  0s, eta:  0s
+STAMP [===========================>---]  91% at 287 it/s, elapsed:  0s, eta:  0s
+STAMP [===========================>---]  92% at 289 it/s, elapsed:  0s, eta:  0s
+STAMP [============================>--]  93% at 291 it/s, elapsed:  0s, eta:  0s
+STAMP [============================>--]  94% at 293 it/s, elapsed:  0s, eta:  0s
+STAMP [============================>--]  95% at 295 it/s, elapsed:  0s, eta:  0s
+STAMP [=============================>-]  96% at 297 it/s, elapsed:  0s, eta:  0s
+STAMP [=============================>-]  97% at 299 it/s, elapsed:  0s, eta:  0s
+STAMP [=============================>-]  98% at 301 it/s, elapsed:  0s, eta:  0s
+STAMP [==============================>]  99% at 303 it/s, elapsed:  0s, eta:  0s
+STAMP [===============================] 100% at 305 it/s, elapsed:  0s, eta:  0s
+## Finished in 0.32 secs
 ```
 
 

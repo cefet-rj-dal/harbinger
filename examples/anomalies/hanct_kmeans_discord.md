@@ -72,7 +72,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```
 ##   idx event    type seq seqlen
-## 1  51  TRUE discord   3      3
+## 1  52  TRUE discord   3      3
 ```
 
 
