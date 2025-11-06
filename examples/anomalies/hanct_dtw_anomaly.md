@@ -63,14 +63,6 @@ model <- hanct_dtw(1)
 model <- fit(model, dataset$serie)
 ```
 
-```
-## Found more than one class "dist" in cache; using the first, from namespace 'dtwclust'
-```
-
-```
-## Also defined by 'spam'
-```
-
 
 ``` r
 # Run detection

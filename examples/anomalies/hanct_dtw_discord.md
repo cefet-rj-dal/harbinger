@@ -63,14 +63,6 @@ model <- hanct_dtw(3)
 model <- fit(model, dataset$serie)
 ```
 
-```
-## Found more than one class "dist" in cache; using the first, from namespace 'dtwclust'
-```
-
-```
-## Also defined by 'spam'
-```
-
 
 ``` r
 # Run detection
@@ -84,8 +76,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## [1] idx    event  type   seq    seqlen
-## <0 rows> (or 0-length row.names)
+##   idx event    type seq seqlen
+## 1  51  TRUE discord   3      3
 ```
 
 
@@ -98,8 +90,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 

@@ -20,6 +20,10 @@ library(harbinger)
 library(ggplot2)
 ```
 
+```
+## Need help getting started? Try the R Graphics Cookbook: https://r-graphics.org
+```
+
 
 ``` r
 # Load a multivariate example and define event labels (for demo)
