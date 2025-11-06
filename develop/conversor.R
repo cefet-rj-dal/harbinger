@@ -76,15 +76,15 @@ convert_rmd_md <- function(input) {
   # Clean any previous temporary and destination figure folders
   unlink("figure", recursive = TRUE)   # knitr default temporary figure dir
   unlink(figdir, recursive = TRUE)     # destination for this document's figures
-
-  # Knit Rmd -> md (knitr will write figures under './figure' by default)
-  knit(input, mdfile)
-
+  
   # Ensure destination 'fig' base folder exists before moving
   fig_base <- dirname(figdir) # '<md-dir>/fig'
   if (!dir.exists(fig_base)) {
     dir.create(fig_base, recursive = TRUE, showWarnings = FALSE)
   }
+
+  # Knit Rmd -> md (knitr will write figures under './figure' by default)
+  knit(input, mdfile)
 
   # Move figures from './figure' to '<md-dir>/fig/<doc-basename>/' if they exist
   if (dir.exists("figure")) {
@@ -94,9 +94,6 @@ convert_rmd_md <- function(input) {
   # Also handle figures created under the Rmd's directory (non-recursive)
   rmd_fig <- file.path(dirname(input), "figure")
   if (dir.exists(rmd_fig)) {
-    if (!dir.exists(figdir)) {
-      dir.create(figdir, recursive = TRUE, showWarnings = FALSE)
-    }
     figs <- list.files(rmd_fig, full.names = TRUE, recursive = FALSE, include.dirs = FALSE)
     if (length(figs) > 0) {
       file.rename(figs, file.path(figdir, basename(figs)))
