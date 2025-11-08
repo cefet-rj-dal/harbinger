@@ -13,37 +13,7 @@ This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_au
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(daltoolboxdp)
-```
-
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
-```
-## Registered S3 methods overwritten by 'forecast':
-##   method  from 
-##   head.ts stats
-##   tail.ts stats
-```
-
-``` r
 library(harbinger) 
 ```
 
@@ -133,15 +103,6 @@ har_plot(harbinger(), dataset$serie)
 ``` r
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
-```
-
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the harbinger package.
-##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/han_autoenc_adv_ed/unnamed-chunk-12-1.png)
