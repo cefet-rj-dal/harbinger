@@ -39,14 +39,14 @@ Source:
 [`DESCRIPTION`](https://github.com/cefet-rj-dal/harbinger/blob/master/DESCRIPTION)
 
 Ogasawara E, Castro A, Mello A, Paixão E, Fraga F, Borges H, Lima J,
-Souza J, Baroni L, Tavares L, Reis M, Salles R (2025). *harbinger: A
+Souza J, Baroni L, Tavares L, Reis M, Salles R (2026). *harbinger: A
 Unified Time Series Event Detection Framework*. R package version
-1.2.747, <https://cefet-rj-dal.github.io/harbinger/>.
+1.2.767, <https://cefet-rj-dal.github.io/harbinger/>.
 
     @Manual{,
       title = {harbinger: A Unified Time Series Event Detection Framework},
       author = {Eduardo Ogasawara and Antonio Castro and Antonio Mello and Ellen Paixão and Fernando Fraga and Heraldo Borges and Janio Lima and Jessica Souza and Lais Baroni and Lucas Tavares and Michel Reis and Rebecca Salles},
-      year = {2025},
-      note = {R package version 1.2.747},
+      year = {2026},
+      note = {R package version 1.2.767},
       url = {https://cefet-rj-dal.github.io/harbinger/},
     }

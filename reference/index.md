@@ -2,6 +2,14 @@
 
 ## All functions
 
+- [`A1Benchmark`](https://cefet-rj-dal.github.io/harbinger/reference/A1Benchmark.md)
+  : Yahoo Webscope S5 – A1 Benchmark (Real)
+- [`A2Benchmark`](https://cefet-rj-dal.github.io/harbinger/reference/A2Benchmark.md)
+  : Yahoo Webscope S5 – A2 Benchmark (Synthetic)
+- [`A3Benchmark`](https://cefet-rj-dal.github.io/harbinger/reference/A3Benchmark.md)
+  : Yahoo Webscope S5 – A3 Benchmark (Synthetic with Outliers)
+- [`A4Benchmark`](https://cefet-rj-dal.github.io/harbinger/reference/A4Benchmark.md)
+  : Yahoo Webscope S5 – A4 Benchmark (Synthetic with Anomalies and CPs)
 - [`detect()`](https://cefet-rj-dal.github.io/harbinger/reference/detect.md)
   : Detect events in time series
 - [`examples_anomalies`](https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies.md)
@@ -12,6 +20,8 @@
   : Time series for event detection
 - [`examples_motifs`](https://cefet-rj-dal.github.io/harbinger/reference/examples_motifs.md)
   : Time series for motif/discord discovery
+- [`gecco`](https://cefet-rj-dal.github.io/harbinger/reference/gecco.md)
+  : GECCO Challenge 2018 – Water Quality Time Series
 - [`han_autoencoder()`](https://cefet-rj-dal.github.io/harbinger/reference/han_autoencoder.md)
   : Anomaly detector using autoencoders
 - [`hanc_ml()`](https://cefet-rj-dal.github.io/harbinger/reference/hanc_ml.md)
@@ -94,9 +104,53 @@
   : Motif discovery using XSAX
 - [`hmu_pca()`](https://cefet-rj-dal.github.io/harbinger/reference/hmu_pca.md)
   : Multivariate anomaly detector using PCA
+- [`loadfulldata()`](https://cefet-rj-dal.github.io/harbinger/reference/loadfulldata.md)
+  : Load full dataset from mini data object
 - [`mas()`](https://cefet-rj-dal.github.io/harbinger/reference/mas.md) :
   Moving average smoothing
+- [`mit_bih_MLII`](https://cefet-rj-dal.github.io/harbinger/reference/mit_bih_MLII.md)
+  : MIT-BIH Arrhythmia Database – MLII Lead
+- [`mit_bih_V1`](https://cefet-rj-dal.github.io/harbinger/reference/mit_bih_V1.md)
+  : MIT-BIH Arrhythmia Database – V1 Lead
+- [`mit_bih_V2`](https://cefet-rj-dal.github.io/harbinger/reference/mit_bih_V2.md)
+  : MIT-BIH Arrhythmia Database – V2 Lead
+- [`mit_bih_V5`](https://cefet-rj-dal.github.io/harbinger/reference/mit_bih_V5.md)
+  : MIT-BIH Arrhythmia Database – V5 Lead
+- [`nab_artificialWithAnomaly`](https://cefet-rj-dal.github.io/harbinger/reference/nab_artificialWithAnomaly.md)
+  : Numenta Anomaly Benchmark (NAB) – artificialWithAnomaly
+- [`nab_realAWSCloudwatch`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realAWSCloudwatch.md)
+  : Numenta Anomaly Benchmark (NAB) realAWSCloudwatch
+- [`nab_realAdExchange`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realAdExchange.md)
+  : Numenta Anomaly Benchmark (NAB) – realAdExchange
+- [`nab_realKnownCause`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realKnownCause.md)
+  : Numenta Anomaly Benchmark (NAB) realKnownCause
+- [`nab_realTraffic`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realTraffic.md)
+  : Numenta Anomaly Benchmark (NAB) realTraffic
+- [`nab_realTweets`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realTweets.md)
+  : Numenta Anomaly Benchmark (NAB) realTweets
+- [`oil_3w_Type_1`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_1.md)
+  : Oil Wells Dataset – Type 1
+- [`oil_3w_Type_2`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_2.md)
+  : Oil Wells Dataset – Type 2
+- [`oil_3w_Type_4`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_4.md)
+  : Oil Wells Dataset – Type 4
+- [`oil_3w_Type_5`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_5.md)
+  : Oil Wells Dataset – Type 5
+- [`oil_3w_Type_6`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_6.md)
+  : Oil Wells Dataset – Type 6
+- [`oil_3w_Type_7`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_7.md)
+  : Oil Wells Dataset – Type 7
+- [`oil_3w_Type_8`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_8.md)
+  : Oil Wells Dataset – Type 8
 - [`trans_sax()`](https://cefet-rj-dal.github.io/harbinger/reference/trans_sax.md)
   : SAX transformation
 - [`trans_xsax()`](https://cefet-rj-dal.github.io/harbinger/reference/trans_xsax.md)
   : XSAX transformation
+- [`ucr_ecg`](https://cefet-rj-dal.github.io/harbinger/reference/ucr_ecg.md)
+  : UCR Anomaly Archive – ECG
+- [`ucr_int_bleeding`](https://cefet-rj-dal.github.io/harbinger/reference/ucr_int_bleeding.md)
+  : UCR Anomaly Archive – Internal Bleeding
+- [`ucr_nasa`](https://cefet-rj-dal.github.io/harbinger/reference/ucr_nasa.md)
+  : UCR Anomaly Archive – NASA Spacecraft
+- [`ucr_power_demand`](https://cefet-rj-dal.github.io/harbinger/reference/ucr_power_demand.md)
+  : UCR Anomaly Archive – Italian Power Demand
