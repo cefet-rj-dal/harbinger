@@ -14,7 +14,7 @@
 #' @references Genetic and Evolutionary Computation Conference (GECCO), Association for Computing Machinery (ACM).
 #'     See also: Chandola, V., Banerjee, A., & Kumar, V. (2009). Anomaly detection:
 #'     A survey. ACM Computing Surveys, 41(3), 1–58.
-#' @source \href{https://www.spotseven.de/gecco/gecco-challenge/}{Gecco Challenge 2018}
+#' @source GECCO Challenge 2018 (legacy challenge page unavailable)
 #' @examples
 #' data(gecco)
 #' # Select the first univariate series and inspect
@@ -530,7 +530,7 @@
 #' @keywords datasets
 #' @references MIT-BIH Arrhythmia Database (MIT-BIH). See also: Moody, G. B., & Mark, R. G. (2001).
 #'     The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45–50.
-#' @source \href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+#' @source \doi{10.1109/51.932724}
 #' @examples
 #' data(mit_bih_MLII)
 #' data <- mit_bih_MLII[[1]]
@@ -552,7 +552,7 @@
 #' @keywords datasets
 #' @references MIT-BIH Arrhythmia Database (MIT-BIH). See also: Moody, G. B., & Mark, R. G. (2001).
 #'     The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45–50.
-#' @source \href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+#' @source \doi{10.1109/51.932724}
 #' @examples
 #' data(mit_bih_V1)
 #' data <- mit_bih_V1[[1]]
@@ -574,7 +574,7 @@
 #' @keywords datasets
 #' @references MIT-BIH Arrhythmia Database (MIT-BIH). See also: Moody, G. B., & Mark, R. G. (2001).
 #'     The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45–50.
-#' @source \href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+#' @source \doi{10.1109/51.932724}
 #' @examples
 #' data(mit_bih_V2)
 #' data <- mit_bih_V2[[1]]
@@ -596,7 +596,7 @@
 #' @keywords datasets
 #' @references MIT-BIH Arrhythmia Database (MIT-BIH). See also: Moody, G. B., & Mark, R. G. (2001).
 #'     The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45–50.
-#' @source \href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+#' @source \doi{10.1109/51.932724}
 #' @examples
 #' data(mit_bih_V5)
 #' data <- mit_bih_V5[[1]]

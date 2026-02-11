@@ -8,7 +8,7 @@
 A list of time series from the MLII sensor of the MIT-BIH Arrhythmia Database.
 }
 \source{
-\href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+\doi{10.1109/51.932724}
 }
 \usage{
 data(mit_bih_MLII)

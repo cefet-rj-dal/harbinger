@@ -8,7 +8,7 @@
 A list of time series.
 }
 \source{
-\href{https://www.spotseven.de/gecco/gecco-challenge/}{Gecco Challenge 2018}
+GECCO Challenge 2018 (legacy challenge page unavailable)
 }
 \usage{
 data(gecco)

@@ -8,7 +8,7 @@
 A list of time series from the V5 sensor of the MIT-BIH Arrhythmia Database.
 }
 \source{
-\href{https://doi.org/10.1109/51.932724}{MIT-BIH}
+\doi{10.1109/51.932724}
 }
 \usage{
 data(mit_bih_V5)
@@ -33,3 +33,4 @@ MIT-BIH Arrhythmia Database (MIT-BIH). See also: Moody, G. B., & Mark, R. G. (20
 The impact of the MIT-BIH Arrhythmia Database. IEEE Engineering in Medicine and Biology Magazine, 20(3), 45–50.
 }
 \keyword{datasets}
+
