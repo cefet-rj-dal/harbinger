@@ -19,7 +19,7 @@ Database.
 
 ## Source
 
-[MIT-BIH](https://doi.org/10.1109/51.932724)
+[doi:10.1109/51.932724](https://doi.org/10.1109/51.932724)
 
 ## Details
 

@@ -19,7 +19,7 @@ A list of time series.
 
 ## Source
 
-[Gecco Challenge 2018](https://www.spotseven.de/gecco/gecco-challenge/)
+GECCO Challenge 2018 (legacy challenge page unavailable)
 
 ## Details
 
