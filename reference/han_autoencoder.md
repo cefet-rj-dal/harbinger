@@ -46,6 +46,11 @@ library(daltoolbox)
 #> 
 #>     transform
 library(tspredit)
+#> 
+#> Attaching package: ‘tspredit’
+#> The following object is masked from ‘package:harbinger’:
+#> 
+#>     loadfulldata
 
 # Load anomaly example data
 data(examples_anomalies)
