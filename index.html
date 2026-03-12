@@ -51,77 +51,92 @@
 </h1></div>
 <!-- badges: start -->
 <p><img src="https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github" alt="GitHub Stars"><img src="https://cranlogs.r-pkg.org/badges/harbinger" alt="CRAN Downloads"><!-- badges: end --></p>
-<p><strong>Harbinger</strong> is a framework for event detection in time series. It provides an integrated environment for anomaly detection, change point detection, and motif discovery. Harbinger offers a broad range of methods and functions for plotting and evaluating detected events.</p>
-<p>For anomaly detection, methods are based on: - Machine learning model deviation: Conv1D, ELM, MLP, LSTM, Random Regression Forest, and SVM - Classification models: Decision Tree, KNN, MLP, Naive Bayes, Random Forest, and SVM - Clustering: k-means and DTW - Statistical techniques: ARIMA, FBIAD, GARCH</p>
-<p>For change point detection, Harbinger includes: - Linear regression, ARIMA, ETS, and GARCH-based approaches - Classic methods such as AMOC, ChowTest, Binary Segmentation (BinSeg), GFT, and PELT</p>
-<p>For motif discovery, it provides: - Methods based on Hashing and Matrix Profile</p>
-<p>Harbinger also supports <strong>multivariate time series analysis</strong> and <strong>event evaluation</strong> using both traditional and soft computing metrics.</p>
-<p>The architecture of Harbinger is based on <strong>Experiment Lines</strong> and is built on top of the <a href="https://github.com/cefet-rj-dal/daltoolbox" class="external-link">DAL Toolbox</a>. This design makes it easy to extend and integrate new methods into the framework.</p>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h1>
-<p>Examples of Harbinger are organized by application area:</p>
+<p><strong>Harbinger</strong> is a framework for event detection in time series. It offers a unified interface for anomaly detection, change-point detection, motif discovery, transformations, plotting, and evaluation. The package is designed to help users move from exploratory examples to reproducible experiment lines with less friction.</p>
+<div class="section level2">
+<h2 id="what-you-can-study-with-harbinger">What you can study with Harbinger<a class="anchor" aria-label="anchor" href="#what-you-can-study-with-harbinger"></a>
+</h2>
 <ul>
-<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general" class="external-link">General</a></li>
-<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies" class="external-link">Anomalies</a></li>
-<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point" class="external-link">Change points</a></li>
-<li><a href="https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs" class="external-link">Motifs</a></li>
+<li>anomaly detection with statistical models, clustering, supervised learning, and deep autoencoders</li>
+<li>change-point detection with classical tests, segmentation methods, and ChangeFinder-based strategies</li>
+<li>motif and discord discovery with symbolic methods and Matrix Profile algorithms</li>
+<li>transformations such as smoothing and symbolic encoding before detection or pattern discovery</li>
+<li>hard and soft evaluation of detected events in univariate and multivariate series</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="where-to-start">Where to start<a class="anchor" aria-label="anchor" href="#where-to-start"></a>
+</h2>
+<p>The examples are organized so that a new user can understand not only how to run a method, but also why that method is useful and what to look for in the result.</p>
+<ul>
+<li>
+<a href="/examples/tutorial/README.html">Tutorials</a>: a numbered guided path from first steps and data understanding to transformations, detection, evaluation, and motifs</li>
+<li>
+<a href="/examples/general/README.html">General examples</a>: short guided tours of the package, utilities, and evaluation workflows</li>
+<li>
+<a href="/examples/custom/README.html">Custom examples</a>: extension-oriented notebooks showing how to plug custom detectors, transformations, and evaluation rules into Harbinger</li>
+<li>
+<a href="/examples/data/README.html">Dataset examples</a>: how to load the full benchmark datasets, inspect their structure, and visualize the first available signal</li>
+<li>
+<a href="/examples/transformations/README.html">Transformation examples</a>: smoothing and symbolic representations such as <code><a href="reference/mas.html">mas()</a></code>, <code><a href="reference/trans_sax.html">trans_sax()</a></code>, and <code><a href="reference/trans_xsax.html">trans_xsax()</a></code>
+</li>
+<li>
+<a href="/examples/anomalies/README.html">Anomaly examples</a>: detectors for isolated, contextual, collective, and multivariate anomalies</li>
+<li>
+<a href="/examples/change_point/README.html">Change-point examples</a>: examples focused on regime shifts, structural breaks, and volatility changes</li>
+<li>
+<a href="/examples/motifs/README.html">Motif examples</a>: repeated-pattern discovery and discord analysis with symbolic and Matrix Profile approaches</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="a-first-example">A first example<a class="anchor" aria-label="anchor" href="#a-first-example"></a>
+</h2>
+<p>The snippet below uses the default <code><a href="reference/harbinger.html">harbinger()</a></code> pipeline on a bundled dataset. It is intentionally short so that new users can see the core workflow before exploring the more detailed notebooks in <code>/examples/</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cefet-rj-dal.github.io/harbinger/">harbinger</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span></span>
-<span><span class="co">#&gt;   method            from</span></span>
-<span><span class="co">#&gt;   as.zoo.data.frame zoo</span></span>
-<span><span class="co">#&gt; Registered S3 methods overwritten by 'forecast':</span></span>
-<span><span class="co">#&gt;   method  from </span></span>
-<span><span class="co">#&gt;   head.ts stats</span></span>
-<span><span class="co">#&gt;   tail.ts stats</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#loading the example database</span></span>
+<span><span class="co"># Load an example dataset with labeled anomalies</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_anomalies</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#model</span></span>
+<span><span class="co"># Create the default detector and run it on the series</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/harbinger.html">harbinger</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#stub detector</span></span>
 <span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">examples_anomalies</span><span class="op">$</span><span class="va">simple</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># filtering detected events</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] idx   event type </span></span>
-<span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
-<hr>
+<span><span class="co"># Inspect only the detected events</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">event</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
-<p>The latest version of Harbinger is available on CRAN:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>The latest release of Harbinger is available on CRAN:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"harbinger"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the development version from GitHub:</p>
+<p>To install the development version from GitHub:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/harbinger"</span>, force <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
-<hr>
 </div>
-<div class="section level1">
-<h1 id="bug-reports-and-feature-requests">Bug reports and feature requests<a class="anchor" aria-label="anchor" href="#bug-reports-and-feature-requests"></a>
-</h1>
-<p>If you find any bugs or would like to suggest new features, please submit an issue here:</p>
+<div class="section level2">
+<h2 id="learn-the-examples-progressively">Learn the examples progressively<a class="anchor" aria-label="anchor" href="#learn-the-examples-progressively"></a>
+</h2>
+<p>If you are new to the package, this order works well:</p>
+<ol style="list-style-type: decimal">
+<li>start with <code>/examples/tutorial/README.md</code> for the guided path</li>
+<li>continue with <code>/examples/general/examples_harbinger.md</code> if you want a compact package tour</li>
+<li>visit <code>/examples/data/README.md</code> to understand the benchmark datasets and how to load their full versions</li>
+<li>visit <code>/examples/transformations/README.md</code> to see smoothing and symbolic representations before modeling</li>
+<li>move to one family of methods such as anomalies or change points</li>
+<li>visit <code>/examples/custom/README.md</code> when you want to see how new components can be integrated into the framework</li>
+<li>finish with <code>/examples/motifs/README.md</code> when you want to study repeated patterns and symbolic sequence analysis</li>
+</ol>
+</div>
+<div class="section level2">
+<h2 id="bug-reports-and-feature-requests">Bug reports and feature requests<a class="anchor" aria-label="anchor" href="#bug-reports-and-feature-requests"></a>
+</h2>
+<p>If you find a bug or want to suggest an improvement, please open an issue:</p>
 <p><a href="https://github.com/cefet-rj-dal/harbinger/issues" class="external-link uri">https://github.com/cefet-rj-dal/harbinger/issues</a></p>
 </div>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
