@@ -13,6 +13,68 @@
 
 # Root directory containing source Rmd files
 dir <- "Rmd"
+log_dir <- file.path("examples", "logs")
+if (!dir.exists(log_dir)) {
+  dir.create(log_dir, recursive = TRUE, showWarnings = FALSE)
+}
+log_file <- file.path(log_dir, sprintf("conversion-%s.log", format(Sys.time(), "%Y%m%d-%H%M%S")))
+
+append_log <- function(...) {
+  cat(..., file = log_file, append = TRUE, sep = "")
+}
+
+format_calls <- function(calls) {
+  if (length(calls) == 0) {
+    return("<no call stack available>")
+  }
+  lines <- vapply(seq_along(calls), function(i) {
+    call_txt <- paste(deparse(calls[[i]]), collapse = " ")
+    sprintf("%03d: %s", i, call_txt)
+  }, character(1))
+  paste(lines, collapse = "\n")
+}
+
+record_condition <- function(phase, input, err) {
+  append_log(
+    "\n",
+    strrep("=", 80), "\n",
+    sprintf("[%s] %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), phase),
+    sprintf("file: %s\n", input),
+    sprintf("message: %s\n", conditionMessage(err)),
+    sprintf("call: %s\n", paste(deparse(conditionCall(err)), collapse = " ")),
+    "stack:\n",
+    format_calls(sys.calls()), "\n"
+  )
+}
+
+run_phase <- function(inputs, phase, converter) {
+  results <- vector("list", length(inputs))
+  names(results) <- inputs
+
+  for (i in seq_along(inputs)) {
+    input <- inputs[[i]]
+    print(sprintf("[%s] %s", phase, input))
+
+    result <- tryCatch({
+      converter(input)
+      list(ok = TRUE, input = input, phase = phase, message = NULL)
+    }, error = function(err) {
+      record_condition(phase, input, err)
+      list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err))
+    })
+
+    results[[i]] <- result
+  }
+
+  results
+}
+
+summarize_phase <- function(results, phase) {
+  ok <- sum(vapply(results, function(x) isTRUE(x$ok), logical(1)))
+  fail <- length(results) - ok
+  cat(sprintf("[%s] ok=%d fail=%d\n", phase, ok, fail))
+  invisible(list(ok = ok, fail = fail))
+}
 
 # Convert a Jupyter notebook (.ipynb) to R Markdown (.Rmd)
 convert_ipynb_to_rmarkdown <- function(input) {
@@ -195,17 +257,22 @@ if (FALSE) {
 # 3. generate all extracted R scripts
 texs <- list.files(path = dir, pattern = ".Rmd$", full.names = TRUE, recursive = TRUE)
 if (TRUE) {
-  for (tex in texs) {
-    print(tex)
-    convert_rmd_md(tex)
-  }
-  for (tex in texs) {
-    print(tex)
-    convert_rmd_docx(tex)
-  }
-  for (tex in texs) {
-    print(tex)
-    convert_rmd_r(tex)
+  append_log(sprintf("Conversion run started at %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S")))
+  append_log(sprintf("Working directory: %s\n", normalizePath(getwd(), winslash = "/")))
+
+  md_results <- run_phase(texs, "rmd->md", convert_rmd_md)
+  docx_results <- run_phase(texs, "rmd->docx", convert_rmd_docx)
+  r_results <- run_phase(texs, "rmd->r", convert_rmd_r)
+
+  md_summary <- summarize_phase(md_results, "rmd->md")
+  docx_summary <- summarize_phase(docx_results, "rmd->docx")
+  r_summary <- summarize_phase(r_results, "rmd->r")
+
+  total_fail <- md_summary$fail + docx_summary$fail + r_summary$fail
+  if (total_fail > 0) {
+    cat(sprintf("Conversion finished with failures. Log: %s\n", log_file))
+  } else {
+    cat("Conversion finished without failures.\n")
   }
 }
 
