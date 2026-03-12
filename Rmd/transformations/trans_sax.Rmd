@@ -1,0 +1,74 @@
+## Objective
+
+This notebook demonstrates the `trans_sax()` transformation. The goal is to show how a numeric time series can be converted into a symbolic representation that is easier to compare, summarize, and use in motif or discord analysis.
+
+## Method at a glance
+
+SAX, or Symbolic Aggregate approXimation, z-normalizes a series and discretizes it into a finite alphabet. Instead of working directly with the raw values, we work with symbolic codes that preserve coarse shape information.
+
+## What you will do
+
+- load a motif example series from Harbinger
+- inspect the original numeric signal
+- configure a SAX transformer with a chosen alphabet size
+- transform the series into symbols
+- compare the numeric and symbolic views of the same signal
+
+## Walkthrough
+
+```{r}
+# Install Harbinger (if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger)
+```
+
+```{r}
+# Load example motif datasets
+data(examples_motifs)
+```
+
+```{r}
+# Select a simple motif dataset
+dataset <- examples_motifs$simple
+head(dataset)
+```
+
+```{r}
+# Plot the original time series
+har_plot(harbinger(), dataset$serie, event = dataset$event)
+```
+
+```{r}
+# Configure the SAX transformer
+model <- trans_sax(alpha = 8)
+```
+
+```{r}
+# Fit and transform the numeric series into symbols
+model <- fit(model, dataset$serie)
+sax_series <- transform(model, dataset$serie)
+```
+
+```{r}
+# Inspect the first symbolic values
+head(sax_series, 20)
+```
+
+```{r}
+# Compare original values with SAX symbols
+comparison <- data.frame(
+  idx = seq_along(dataset$serie),
+  value = dataset$serie,
+  sax = sax_series
+)
+head(comparison, 20)
+```
+
+## References
+
+- Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. Data Mining and Knowledge Discovery, 15, 107-144.

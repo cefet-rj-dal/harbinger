@@ -1,4 +1,18 @@
-Overview and objectives: This notebook illustrates typical change-point scenarios (single break, multiple breaks, variance/volatility shifts) and how Harbinger visualizes detected change locations. We use the unified pipeline to fit, detect, and plot across datasets, highlighting when classic (AMOC/BinSeg/PELT) or regression-based (GFT/Chow) approaches are appropriate.
+## Objective
+
+The goal of this notebook is to present a complete Harbinger workflow: loading an example dataset, configuring the method used in the notebook, running the analysis, and interpreting the resulting outputs and plots.
+
+## Method at a glance
+
+This notebook illustrates typical change-point scenarios (single break, multiple breaks, variance/volatility shifts) and how Harbinger visualizes detected change locations. We use the unified pipeline to fit, detect, and plot across datasets, highlighting when classic (AMOC/BinSeg/PELT) or regression-based (GFT/Chow) approaches are appropriate.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -80,7 +94,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
-References
+## References
 
 - Hinkley, D. V. (1970). Inference about the change-point in a sequence of random variables. Biometrika, 57(1), 1–17.
 - Killick, R., Fearnhead, P., Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500), 1590–1598.

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%",
-  fig.alt = "Harbinger example figure"  
+  fig.alt = "Harbinger example figure"
 )
 ```
 
@@ -21,74 +21,77 @@ knitr::opts_chunk$set(
 ![CRAN Downloads](https://cranlogs.r-pkg.org/badges/harbinger)
 <!-- badges: end -->
 
-**Harbinger** is a framework for event detection in time series. It provides an integrated environment for anomaly detection, change point detection, and motif discovery. Harbinger offers a broad range of methods and functions for plotting and evaluating detected events.
+**Harbinger** is a framework for event detection in time series. It offers a unified interface for anomaly detection, change-point detection, motif discovery, transformations, plotting, and evaluation. The package is designed to help users move from exploratory examples to reproducible experiment lines with less friction.
 
-For anomaly detection, methods are based on:
-- Machine learning model deviation: Conv1D, ELM, MLP, LSTM, Random Regression Forest, and SVM
-- Classification models: Decision Tree, KNN, MLP, Naive Bayes, Random Forest, and SVM
-- Clustering: k-means and DTW
-- Statistical techniques: ARIMA, FBIAD, GARCH
+## What you can study with Harbinger
 
-For change point detection, Harbinger includes:
-- Linear regression, ARIMA, ETS, and GARCH-based approaches
-- Classic methods such as AMOC, ChowTest, Binary Segmentation (BinSeg), GFT, and PELT
+- anomaly detection with statistical models, clustering, supervised learning, and deep autoencoders
+- change-point detection with classical tests, segmentation methods, and ChangeFinder-based strategies
+- motif and discord discovery with symbolic methods and Matrix Profile algorithms
+- transformations such as smoothing and symbolic encoding before detection or pattern discovery
+- hard and soft evaluation of detected events in univariate and multivariate series
 
-For motif discovery, it provides:
-- Methods based on Hashing and Matrix Profile
+## Where to start
 
-Harbinger also supports **multivariate time series analysis** and **event evaluation** using both traditional and soft computing metrics.
+The examples are organized so that a new user can understand not only how to run a method, but also why that method is useful and what to look for in the result.
 
-The architecture of Harbinger is based on **Experiment Lines** and is built on top of the [DAL Toolbox](https://github.com/cefet-rj-dal/daltoolbox). This design makes it easy to extend and integrate new methods into the framework.
+- [Tutorials](/examples/tutorial/README.md): a numbered guided path from first steps and data understanding to transformations, detection, evaluation, and motifs
+- [General examples](/examples/general/README.md): short guided tours of the package, utilities, and evaluation workflows
+- [Custom examples](/examples/custom/README.md): extension-oriented notebooks showing how to plug custom detectors, transformations, and evaluation rules into Harbinger
+- [Dataset examples](/examples/data/README.md): how to load the full benchmark datasets, inspect their structure, and visualize the first available signal
+- [Transformation examples](/examples/transformations/README.md): smoothing and symbolic representations such as `mas()`, `trans_sax()`, and `trans_xsax()`
+- [Anomaly examples](/examples/anomalies/README.md): detectors for isolated, contextual, collective, and multivariate anomalies
+- [Change-point examples](/examples/change_point/README.md): examples focused on regime shifts, structural breaks, and volatility changes
+- [Motif examples](/examples/motifs/README.md): repeated-pattern discovery and discord analysis with symbolic and Matrix Profile approaches
 
----
+## A first example
 
-#  Examples
-
-Examples of Harbinger are organized by application area:
-
-- [General](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general)
-- [Anomalies](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies)
-- [Change points](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point)
-- [Motifs](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs)
+The snippet below uses the default `harbinger()` pipeline on a bundled dataset. It is intentionally short so that new users can see the core workflow before exploring the more detailed notebooks in `/examples/`.
 
 ```{r example}
 library(harbinger)
 
-#loading the example database
+# Load an example dataset with labeled anomalies
 data(examples_anomalies)
 
-#model
+# Create the default detector and run it on the series
 model <- harbinger()
-
-#stub detector
 detection <- detect(model, examples_anomalies$simple$serie)
 
-# filtering detected events
+# Inspect only the detected events
 library(dplyr)
-print(detection |> dplyr::filter(event==TRUE))
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
----
+## Installation
 
-#  Installation
-
-The latest version of Harbinger is available on CRAN:
+The latest release of Harbinger is available on CRAN:
 
 ```r
 install.packages("harbinger")
 ```
 
-You can install the development version from GitHub:
+To install the development version from GitHub:
 
 ```r
 library(devtools)
 devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
 ```
 
----
+## Learn the examples progressively
 
-#  Bug reports and feature requests
+If you are new to the package, this order works well:
 
-If you find any bugs or would like to suggest new features, please submit an issue here:
+1. start with `/examples/tutorial/README.md` for the guided path
+2. continue with `/examples/general/examples_harbinger.md` if you want a compact package tour
+3. visit `/examples/data/README.md` to understand the benchmark datasets and how to load their full versions
+4. visit `/examples/transformations/README.md` to see smoothing and symbolic representations before modeling
+5. move to one family of methods such as anomalies or change points
+6. visit `/examples/custom/README.md` when you want to see how new components can be integrated into the framework
+7. finish with `/examples/motifs/README.md` when you want to study repeated patterns and symbolic sequence analysis
+
+## Bug reports and feature requests
+
+If you find a bug or want to suggest an improvement, please open an issue:
 
 <https://github.com/cefet-rj-dal/harbinger/issues>

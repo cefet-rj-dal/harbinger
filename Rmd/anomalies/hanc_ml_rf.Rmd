@@ -1,4 +1,4 @@
-Random Forest classification anomaly detection: Supervised anomaly detection with a Random Forest classifier trained on labeled events; predicted probabilities above a threshold are flagged.
+## Objective
 
 This tutorial shows supervised anomaly detection with a Random Forest classifier on a labeled train/test split. 
 
@@ -6,6 +6,18 @@ Steps:
 - Load and visualize the dataset
 - Normalize, train RF, evaluate on train and test
 - Plot detections and residual magnitudes
+
+## Method at a glance
+
+Random Forest classification anomaly detection: Supervised anomaly detection with a Random Forest classifier trained on labeled events; predicted probabilities above a threshold are flagged.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -88,5 +100,6 @@ har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
-References 
+## References
+
 - Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.

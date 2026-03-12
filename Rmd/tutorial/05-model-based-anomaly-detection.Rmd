@@ -1,0 +1,64 @@
+## Objective
+
+This tutorial introduces a model-based anomaly detector using `hanr_arima()`. The goal is to show how Harbinger can detect unusual behavior by modeling expected dynamics and then analyzing residual deviations.
+
+## Method at a glance
+
+`hanr_arima()` fits an ARIMA model to the series, computes residual magnitudes, and flags unusually large residuals as anomalies. This moves from a simple distribution-based baseline to a temporal model that tries to explain normal behavior first.
+
+## What you will do
+
+- fit an ARIMA-based detector
+- run anomaly detection on a labeled series
+- inspect the evaluation output
+- plot residual magnitudes and thresholds
+
+## Walkthrough
+
+```{r}
+library(daltoolbox)
+library(harbinger)
+```
+
+```{r}
+data(examples_anomalies)
+dataset <- examples_anomalies$simple
+```
+
+```{r}
+# Configure and fit the ARIMA-based detector
+model <- hanr_arima()
+model <- fit(model, dataset$serie)
+```
+
+```{r}
+# Detect anomalies from model residuals
+detection <- detect(model, dataset$serie)
+head(detection)
+```
+
+```{r}
+# Evaluate against the ground truth
+evaluation <- evaluate(model, detection$event, dataset$event)
+evaluation$confMatrix
+```
+
+```{r}
+# Plot detections on the original series
+har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+```{r}
+# Plot the residual signal used by the detector
+har_plot(
+  model,
+  attr(detection, "res"),
+  detection,
+  dataset$event,
+  yline = attr(detection, "threshold")
+)
+```
+
+## References
+
+- Box, G. E. P., Jenkins, G. M., Reinsel, G. C., Ljung, G. M. (2015). Time Series Analysis: Forecasting and Control. Wiley.

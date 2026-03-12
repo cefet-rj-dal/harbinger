@@ -1,4 +1,4 @@
-DTW-based discord anomaly detection: Dynamic Time Warping (DTW) clustering over subsequences; windows with large DTW distance to their nearest centroid are flagged as discords. Implementation wraps `dtwclust` and thresholds via `harutils()`.
+## Objective
 
 DTW-based discord discovery uses sequence windows (seq > 1) and flags sequences far from any centroid as discords. 
 
@@ -6,6 +6,18 @@ Steps:
 - Load and visualize a dataset with repeating sequences
 - Configure and run `hanct_dtw(seq > 1)`
 - Inspect detections, evaluate, and plot results
+
+## Method at a glance
+
+DTW-based discord anomaly detection: Dynamic Time Warping (DTW) clustering over subsequences; windows with large DTW distance to their nearest centroid are flagged as discords. Implementation wraps `dtwclust` and thresholds via `harutils()`.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -70,6 +82,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-References 
-- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
+## References
 
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

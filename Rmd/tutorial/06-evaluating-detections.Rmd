@@ -1,0 +1,53 @@
+## Objective
+
+This tutorial explains how to evaluate detected events in Harbinger. The goal is to compare strict event matching with a softer evaluation that tolerates small timing deviations.
+
+## Method at a glance
+
+Harbinger supports both hard and soft evaluation. Hard evaluation requires the detected event to match the labeled event position directly. Soft evaluation relaxes this and can be more appropriate when a detector finds the right phenomenon but marks it a few timestamps earlier or later.
+
+## What you will do
+
+- run an anomaly detector
+- compute hard evaluation metrics
+- compute soft evaluation metrics
+- compare the two interpretations
+
+## Walkthrough
+
+```{r}
+library(daltoolbox)
+library(harbinger)
+```
+
+```{r}
+data(examples_anomalies)
+dataset <- examples_anomalies$simple
+model <- hanr_arima()
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Hard evaluation: direct match between detected and labeled events
+hard_eval <- har_eval()
+hard_result <- evaluate(hard_eval, detection$event, dataset$event)
+hard_result$confMatrix
+```
+
+```{r}
+# Soft evaluation: tolerates small temporal misalignment
+soft_eval <- har_eval_soft()
+soft_result <- evaluate(soft_eval, detection$event, dataset$event)
+soft_result$confMatrix
+```
+
+```{r}
+# Inspect summary metrics returned by the evaluation objects
+hard_result
+soft_result
+```
+
+## References
+
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

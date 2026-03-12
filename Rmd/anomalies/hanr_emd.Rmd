@@ -1,10 +1,22 @@
-EMD regression anomaly detection: This detector uses Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions (IMFs) and isolates high-frequency components that capture abrupt deviations. Anomalies are flagged where these components show large magnitudes relative to baseline. Computation wraps `hht::CEEMD` and thresholds are applied via `harutils()`.
+## Objective
 
 The EMD-based detector (CEEMD variant) decomposes the series into intrinsic mode functions (IMFs) and uses high-frequency components to flag anomalies. In this tutorial we:
 
 - Load and visualize a simple anomaly dataset
 - Configure and run the EMD detector (`hanr_emd`)
 - Inspect detections, evaluate, and plot residual magnitudes
+
+## Method at a glance
+
+EMD regression anomaly detection: This detector uses Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions (IMFs) and isolates high-frequency components that capture abrupt deviations. Anomalies are flagged where these components show large magnitudes relative to baseline. Computation wraps `hht::CEEMD` and thresholds are applied via `harutils()`.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -69,6 +81,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-References 
-- Huang, N. E., et al. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. Proceedings of the Royal Society A.
+## References
 
+- Huang, N. E., et al. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. Proceedings of the Royal Society A.

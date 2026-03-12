@@ -1,0 +1,47 @@
+## Objective
+
+This tutorial introduces change-point detection with `hcp_amoc()`. The goal is to show how Harbinger handles structural changes, which differ from isolated anomalies because the objective is to locate a transition in the behavior of the series.
+
+## Method at a glance
+
+`hcp_amoc()` searches for a single most significant change point. This is a good first method for learning because it is simple, focused, and works well as an entry point before more complex segmentation techniques.
+
+## What you will do
+
+- load a change-point dataset
+- run a single-change detector
+- inspect the detected location
+- plot the result against the labeled event
+
+## Walkthrough
+
+```{r}
+library(harbinger)
+```
+
+```{r}
+data(examples_changepoints)
+dataset <- examples_changepoints$simple
+head(dataset)
+```
+
+```{r}
+# Plot the original series with the known change point
+har_plot(harbinger(), dataset$serie, event = dataset$event)
+```
+
+```{r}
+# Configure and run the AMOC detector
+model <- hcp_amoc()
+detection <- detect(model, dataset$serie)
+detection
+```
+
+```{r}
+# Plot detections against the labeled event
+har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+## References
+
+- Killick, R., Eckley, I. A. changepoint: An R Package for Changepoint Analysis. Journal of Statistical Software, 58(3), 2014.

@@ -1,10 +1,22 @@
-Wavelet regression anomaly detection: Multi-resolution analysis via MODWT wavelet decomposition; detail coefficients are aggregated to form a magnitude signal. Large localized energy indicates anomalies, with thresholding via `harutils()`.
+## Objective
 
 The wavelet-based detector decomposes the series into multi-resolution detail bands (MODWT) and flags large aggregated high-frequency energy as anomalies. Steps:
 
 - Load and visualize a simple anomaly dataset
 - Configure and run `hanr_wavelet`
 - Inspect detections, evaluate, and plot residual magnitudes and thresholds
+
+## Method at a glance
+
+Wavelet regression anomaly detection: Multi-resolution analysis via MODWT wavelet decomposition; detail coefficients are aggregated to form a magnitude signal. Large localized energy indicates anomalies, with thresholding via `harutils()`.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -69,6 +81,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-References 
-- Mallat, S. (1989). A theory for multiresolution signal decomposition: The wavelet representation. IEEE TPAMI, 11(7), 674–693.
+## References
 
+- Mallat, S. (1989). A theory for multiresolution signal decomposition: The wavelet representation. IEEE TPAMI, 11(7), 674–693.

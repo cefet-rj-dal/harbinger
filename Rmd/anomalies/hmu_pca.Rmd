@@ -1,10 +1,22 @@
-PCA-based regression anomaly detection: Projects multivariate observations onto principal components and reconstructs data; large reconstruction errors indicate anomalies. Data are standardized, PCA is fitted, and reconstruction errors are thresholded.
+## Objective
 
 The PCA-based detector flags large reconstruction errors when projecting multivariate data onto principal components. In this tutorial we:
 
 - Load a multivariate example and create synthetic event labels
 - Fit the PCA detector on two dimensions
 - Visualize detections over different series and inspect residual magnitudes
+
+## Method at a glance
+
+PCA-based regression anomaly detection: Projects multivariate observations onto principal components and reconstructs data; large reconstruction errors indicate anomalies. Data are standardized, PCA is fitted, and reconstruction errors are thresholded.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -66,5 +78,6 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
   
 ```
 
-References 
+## References
+
 - Jolliffe, I. T. (2002). Principal Component Analysis. Springer.

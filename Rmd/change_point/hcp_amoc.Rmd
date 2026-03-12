@@ -1,4 +1,4 @@
-AMOC: AMOC targets a single most significant change point in a univariate series by optimizing a cost function over all possible change locations. It is appropriate when at most one structural break is expected. This wraps the AMOC method from the `changepoint` package.
+## Objective
 
 AMOC (At Most One Change) detects a single, most significant change point in a univariate time series. In this tutorial we will:
 
@@ -7,6 +7,18 @@ AMOC (At Most One Change) detects a single, most significant change point in a u
 - Configure and run the AMOC detector (`hcp_amoc`)
 - Inspect detections and evaluate against ground truth
 - Plot the detections over the series
+
+## Method at a glance
+
+AMOC: AMOC targets a single most significant change point in a univariate series by optimizing a cost function over all possible change locations. It is appropriate when at most one structural break is expected. This wraps the AMOC method from the `changepoint` package.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -66,6 +78,7 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-References 
+## References
+
 - Hinkley, D. V. (1970). Inference about the change-point in a sequence of random variables. Biometrika, 57(1), 1–17. doi:10.1093/biomet/57.1.1
 - Killick, R., Fearnhead, P., Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association, 107(500), 1590–1598.

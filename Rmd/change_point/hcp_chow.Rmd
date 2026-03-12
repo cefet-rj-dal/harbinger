@@ -1,10 +1,22 @@
-Chow tests: Chow tests for structural breaks in linear models using F-statistics over candidate breakpoints and returns estimated break locations. Harbinger wraps `strucchange` F-stats/breakpoints.
+## Objective
 
 The Chow-style structural break test estimates a linear model and finds breakpoints using F statistics. In this tutorial we:
 
 - Load and visualize a simple change-point dataset
 - Configure the Chow detector (`hcp_chow`)
 - Inspect detections and evaluate against labels
+
+## Method at a glance
+
+Chow tests: Chow tests for structural breaks in linear models using F-statistics over candidate breakpoints and returns estimated break locations. Harbinger wraps `strucchange` F-stats/breakpoints.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -64,5 +76,6 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-References 
+## References
+
 - Zeileis, A., Leisch, F., Kleiber, C., Hornik, K. (2002). strucchange: An R package for testing for structural change in linear regression models. Journal of Statistical Software, 7(2). doi:10.18637/jss.v007.i02

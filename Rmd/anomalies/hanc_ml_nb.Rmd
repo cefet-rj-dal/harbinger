@@ -1,10 +1,22 @@
-Naive Bayes classification anomaly detector: Supervised anomaly detection using Naive Bayes classification on labeled sequences; positive-class probabilities above the threshold indicate events.
+## Objective
 
 This tutorial shows supervised anomaly detection via Naive Bayes classification over a labeled train/test split. We will:
 
 - Load a train/test dataset and visualize it
 - Normalize features, train a Naive Bayes classifier, and evaluate on train and test
 - Plot detections and residual magnitudes
+
+## Method at a glance
+
+Naive Bayes classification anomaly detector: Supervised anomaly detection using Naive Bayes classification on labeled sequences; positive-class probabilities above the threshold indicate events.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -87,6 +99,6 @@ har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
+## References
 
-References 
 - Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.

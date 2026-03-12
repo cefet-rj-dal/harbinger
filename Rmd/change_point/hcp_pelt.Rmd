@@ -1,10 +1,22 @@
-PELT: PELT performs optimal partitioning of the time series under a penalized cost function while pruning candidate change locations to achieve near-linear time under suitable penalties. In Harbinger this wraps the `changepoint` package implementation and returns detected change indices along with evaluation helpers.
+## Objective
 
 PELT (Pruned Exact Linear Time) finds multiple change points efficiently by pruning candidates under a penalized cost. In this tutorial we:
 
 - Load and visualize a simple change-point dataset
 - Configure and run the PELT detector (`hcp_pelt`)
 - Inspect detections, evaluate, and plot results
+
+## Method at a glance
+
+PELT: PELT performs optimal partitioning of the time series under a penalized cost function while pruning candidate change locations to achieve near-linear time under suitable penalties. In Harbinger this wraps the `changepoint` package implementation and returns detected change indices along with evaluation helpers.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -64,5 +76,6 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-References 
+## References
+
 - Killick, R., Fearnhead, P., Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association, 107(500), 1590–1598.

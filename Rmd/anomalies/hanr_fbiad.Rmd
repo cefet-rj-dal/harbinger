@@ -1,10 +1,22 @@
-FBIAD regression anomaly detection: Forward and Backward Inertial Anomaly Detector compares each point against forward and backward inertia, flagging observations that break both temporal tendencies. Scores are summarized and thresholded using `harutils()`.
+## Objective
 
 FBIAD (Forward and Backward Inertial Anomaly Detector) compares deviations from sliding-window means computed forward and backward in time, then merges evidence. In this tutorial we:
 
 - Load and visualize a simple anomaly dataset
 - Configure and run the FBIAD detector (`hanr_fbiad`)
 - Inspect detections, evaluate, and plot residual magnitudes
+
+## Method at a glance
+
+FBIAD regression anomaly detection: Forward and Backward Inertial Anomaly Detector compares each point against forward and backward inertia, flagging observations that break both temporal tendencies. Scores are summarized and thresholded using `harutils()`.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -69,5 +81,6 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-References 
+## References
+
 - Lima, J., et al. Forward and Backward Inertial Anomaly Detector: A Novel Time Series Event Detection Method. IJCNN, 2022. doi:10.1109/IJCNN55064.2022.9892088

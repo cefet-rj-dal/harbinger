@@ -1,6 +1,18 @@
+## Objective
+
+This notebook demonstrates anomaly detection using a 1D Convolutional regressor (`hanr_ml + ts_conv1d`). The model predicts the next value using convolutional filters; anomalies are flagged when residuals exceed a learned threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+
+## Method at a glance
+
 Conv1d regression anomaly detection: Model-deviation detection using ML regression: a Conv1D forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies. Implemented via DALToolbox regressors and thresholded with `harutils()`.
 
-Objectives: This Rmd demonstrates anomaly detection using a 1D Convolutional regressor (`hanr_ml + ts_conv1d`). The model predicts the next value using convolutional filters; anomalies are flagged when residuals exceed a learned threshold. Steps: load packages/data, visualize, define and fit the model, detect, evaluate, and plot results and residuals.
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -70,6 +82,7 @@ har_plot(harbinger(), dataset$serie)
   
 ```
 
-References 
+## References
+
 - Goodfellow, I., Bengio, Y., Courville, A. (2016). Deep Learning. MIT Press.
 - Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

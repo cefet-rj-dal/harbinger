@@ -1,4 +1,4 @@
-BinSeg: Binary Segmentation recursively partitions the series around the largest detected change until a maximum number of change points or a stopping criterion is met. It is a fast heuristic widely used in practice. Harbinger wraps the `changepoint` implementation and returns detected indices with plotting and evaluation utilities.
+## Objective
 
 Binary Segmentation (BinSeg) recursively identifies multiple change points by splitting the series at the strongest change and repeating. In this tutorial we will:
 
@@ -6,6 +6,18 @@ Binary Segmentation (BinSeg) recursively identifies multiple change points by sp
 - Configure and run the BinSeg detector (`hcp_binseg`)
 - Inspect detections and evaluate against ground truth
 - Plot the detections on the series
+
+## Method at a glance
+
+BinSeg: Binary Segmentation recursively partitions the series around the largest detected change until a maximum number of change points or a stopping criterion is met. It is a fast heuristic widely used in practice. Harbinger wraps the `changepoint` implementation and returns detected indices with plotting and evaluation utilities.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (if needed)
@@ -65,6 +77,7 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-References 
+## References
+
 - Vostrikova, L. (1981). Detecting “disorder” in multidimensional random processes. Soviet Mathematics Doklady, 24, 55–59.
 - Killick, R., Fearnhead, P., Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association, 107(500), 1590–1598.

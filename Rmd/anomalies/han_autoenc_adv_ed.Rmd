@@ -1,7 +1,18 @@
+## Objective
+
+This notebook demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+
+## Method at a glance
+
 Adversarial Autoencoder (encode-decode): An adversarial autoencoder (AAE) augments a standard encoder–decoder with an adversarial objective on the latent code. The encoder maps each input window into a latent vector and the decoder attempts to reconstruct the original window. In parallel, a discriminator is trained to distinguish latent samples produced by the encoder from samples drawn from a chosen prior distribution (e.g., Gaussian). The encoder is trained to fool the discriminator, aligning the aggregated posterior of the latent space with the prior. This regularization encourages the model to represent normal time-series patterns on a compact manifold and to reconstruct them well. Windows that deviate from this learned manifold (anomalies) typically yield larger reconstruction errors. In this example, windows are scored by reconstruction error and events are flagged when the score exceeds a learned threshold.
 
-Objectives: 
-This Rmd demonstrates anomaly detection with an adversarial autoencoder (`han_autoencoder(..., autoenc_adv_ed, ...)`). The model learns a robust latent representation; anomalies yield higher reconstruction error. Steps: load packages/data, visualize, define the architecture/epochs, fit, detect, evaluate, and plot.
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## Walkthrough
 
 ```{r}
 # Install Harbinger (only once, if needed)
@@ -66,6 +77,7 @@ har_plot(harbinger(), dataset$serie)
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-References:
+## References
+
 - Makhzani, A., Shlens, J., Jaitly, N., Goodfellow, I., & Frey, B. (2016). Adversarial Autoencoders. arXiv:1511.05644.
 - Chalapathy, R., & Chawla, S. (2019). Deep Learning for Anomaly Detection: A Survey. arXiv:1901.03407.
