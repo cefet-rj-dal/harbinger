@@ -4,14 +4,14 @@ This notebook shows how to load the full `gecco` dataset with `loadfulldata()`, 
 
 ## Method at a glance
 
-The purpose here is exploratory orientation. Before modeling, the reader can confirm how the dataset object is organized and which column should be used as the first signal in a quick inspection.
+The purpose here is exploratory orientation. Before modeling, the reader can confirm how the dataset object is organized and which column should be used as the first signal in a quick inspection. To keep the visualization readable, the plot shows at most the first 1000 observations of the first series.
 
 ## What you will do
 
 - load the bundled `gecco` object and replace it with the full dataset
 - count the available series in the collection
 - inspect the signal columns present in the first series
-- plot the first available signal with its event labels
+- plot a didactic preview of the first available signal with its event labels
 
 ## Walkthrough
 
@@ -30,6 +30,7 @@ dataset_summary <- function(x) {
     dataset_type = dataset_type,
     signal_cols = signal_cols,
     plot_column = plot_column,
+    preview_size = min(1000, nrow(first_series)),
     first_series = first_series
   )
 }
@@ -41,7 +42,17 @@ show_dataset <- function(x, name) {
   cat("Dataset type:", info$dataset_type, "\n")
   cat("Signals in the first series:", paste(info$signal_cols, collapse = ", "), "\n")
   cat("Column plotted with har_plot():", info$plot_column, "\n")
+  cat("Plot preview length:", info$preview_size, "observations\n")
   invisible(info)
+}
+
+plot_dataset_preview <- function(info) {
+  preview <- info$first_series[seq_len(info$preview_size), , drop = FALSE]
+  har_plot(
+    harbinger(),
+    preview[[info$plot_column]],
+    event = preview$event
+  )
 }
 ```
 
@@ -52,11 +63,7 @@ gecco_info <- show_dataset(gecco, "gecco")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  gecco_info$first_series[[gecco_info$plot_column]],
-  event = gecco_info$first_series$event
-)
+plot_dataset_preview(gecco_info)
 ```
 
 ## References

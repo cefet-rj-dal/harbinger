@@ -4,14 +4,14 @@ This notebook shows how to inspect the MIT-BIH Arrhythmia datasets included in H
 
 ## Method at a glance
 
-The MIT-BIH objects are separate dataset collections by lead. This notebook helps the reader see how those objects are organized before building anomaly or event-detection experiments on the ECG signals.
+The MIT-BIH objects are separate dataset collections by lead. This notebook helps the reader see how those objects are organized before building anomaly or event-detection experiments on the ECG signals. To keep the ECG plots readable, each preview is restricted to at most the first 1000 observations.
 
 ## What you will do
 
 - load the full MIT-BIH collections for each lead
 - count how many series are available in each object
 - inspect the signal columns and sequence metadata in the first series
-- plot the first signal together with the labeled events
+- plot a shorter preview of the first signal together with the labeled events
 
 ## Walkthrough
 
@@ -30,6 +30,7 @@ dataset_summary <- function(x) {
     dataset_type = dataset_type,
     signal_cols = signal_cols,
     plot_column = plot_column,
+    preview_size = min(1000, nrow(first_series)),
     first_series = first_series
   )
 }
@@ -41,7 +42,17 @@ show_dataset <- function(x, name) {
   cat("Dataset type:", info$dataset_type, "\n")
   cat("Signals in the first series:", paste(info$signal_cols, collapse = ", "), "\n")
   cat("Column plotted with har_plot():", info$plot_column, "\n")
+  cat("Plot preview length:", info$preview_size, "observations\n")
   invisible(info)
+}
+
+plot_dataset_preview <- function(info) {
+  preview <- info$first_series[seq_len(info$preview_size), , drop = FALSE]
+  har_plot(
+    harbinger(),
+    preview[[info$plot_column]],
+    event = preview$event
+  )
 }
 ```
 
@@ -54,11 +65,7 @@ mit_mlii_info <- show_dataset(mit_bih_MLII, "mit_bih_MLII")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  mit_mlii_info$first_series[[mit_mlii_info$plot_column]],
-  event = mit_mlii_info$first_series$event
-)
+plot_dataset_preview(mit_mlii_info)
 ```
 
 ### mit_bih_V1
@@ -70,11 +77,7 @@ mit_v1_info <- show_dataset(mit_bih_V1, "mit_bih_V1")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  mit_v1_info$first_series[[mit_v1_info$plot_column]],
-  event = mit_v1_info$first_series$event
-)
+plot_dataset_preview(mit_v1_info)
 ```
 
 ### mit_bih_V2
@@ -86,11 +89,7 @@ mit_v2_info <- show_dataset(mit_bih_V2, "mit_bih_V2")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  mit_v2_info$first_series[[mit_v2_info$plot_column]],
-  event = mit_v2_info$first_series$event
-)
+plot_dataset_preview(mit_v2_info)
 ```
 
 ### mit_bih_V5
@@ -102,11 +101,7 @@ mit_v5_info <- show_dataset(mit_bih_V5, "mit_bih_V5")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  mit_v5_info$first_series[[mit_v5_info$plot_column]],
-  event = mit_v5_info$first_series$event
-)
+plot_dataset_preview(mit_v5_info)
 ```
 
 ## References

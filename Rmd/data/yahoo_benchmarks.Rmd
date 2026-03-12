@@ -4,14 +4,14 @@ This notebook introduces the Yahoo Webscope S5 benchmark datasets available in H
 
 ## Method at a glance
 
-This is a dataset-orientation notebook. It does not fit a detector. Instead, it shows how to inspect the dataset structure before choosing a modeling strategy.
+This is a dataset-orientation notebook. It does not fit a detector. Instead, it shows how to inspect the dataset structure before choosing a modeling strategy. To keep the figures didactic, each plot is capped at the first 1000 observations of the selected series.
 
 ## What you will do
 
 - load the packaged mini object and replace it with the full dataset
 - count how many series are available in each benchmark object
 - identify whether the collection is univariate or multivariate
-- plot the first available signal and its event labels
+- plot a short preview of the first available signal and its event labels
 
 ## Walkthrough
 
@@ -34,6 +34,7 @@ dataset_summary <- function(x) {
     dataset_type = dataset_type,
     signal_cols = signal_cols,
     plot_column = plot_column,
+    preview_size = min(1000, nrow(first_series)),
     first_series = first_series
   )
 }
@@ -45,7 +46,17 @@ show_dataset <- function(x, name) {
   cat("Dataset type:", info$dataset_type, "\n")
   cat("Signals in the first series:", paste(info$signal_cols, collapse = ", "), "\n")
   cat("Column plotted with har_plot():", info$plot_column, "\n")
+  cat("Plot preview length:", info$preview_size, "observations\n")
   invisible(info)
+}
+
+plot_dataset_preview <- function(info) {
+  preview <- info$first_series[seq_len(info$preview_size), , drop = FALSE]
+  har_plot(
+    harbinger(),
+    preview[[info$plot_column]],
+    event = preview$event
+  )
 }
 ```
 
@@ -60,11 +71,7 @@ a1_info <- show_dataset(A1Benchmark, "A1Benchmark")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  a1_info$first_series[[a1_info$plot_column]],
-  event = a1_info$first_series$event
-)
+plot_dataset_preview(a1_info)
 ```
 
 ### A2Benchmark
@@ -78,11 +85,7 @@ a2_info <- show_dataset(A2Benchmark, "A2Benchmark")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  a2_info$first_series[[a2_info$plot_column]],
-  event = a2_info$first_series$event
-)
+plot_dataset_preview(a2_info)
 ```
 
 ### A3Benchmark
@@ -96,11 +99,7 @@ a3_info <- show_dataset(A3Benchmark, "A3Benchmark")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  a3_info$first_series[[a3_info$plot_column]],
-  event = a3_info$first_series$event
-)
+plot_dataset_preview(a3_info)
 ```
 
 ### A4Benchmark
@@ -114,11 +113,7 @@ a4_info <- show_dataset(A4Benchmark, "A4Benchmark")
 ```
 
 ```{r}
-har_plot(
-  harbinger(),
-  a4_info$first_series[[a4_info$plot_column]],
-  event = a4_info$first_series$event
-)
+plot_dataset_preview(a4_info)
 ```
 
 ## References
