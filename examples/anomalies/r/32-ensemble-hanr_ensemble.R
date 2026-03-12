@@ -34,6 +34,7 @@ har_plot(harbinger(), dataset$serie)
 # Plot detections over the series
   har_plot(model, dataset$serie, detection, dataset$event)
   
+
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
   

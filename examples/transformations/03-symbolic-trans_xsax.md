@@ -23,10 +23,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -36,10 +50,16 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Load example motif datasets
 data(examples_motifs)
 ```
+
+
 
 
 ``` r
@@ -59,6 +79,16 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the original time series
 har_plot(harbinger(), dataset$serie, event = dataset$event)
@@ -67,10 +97,22 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 ![plot of chunk unnamed-chunk-5](fig/03-symbolic-trans_xsax/unnamed-chunk-5-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Configure the XSAX transformer
 model <- trans_xsax(alpha = 16)
 ```
+
+
 
 
 ``` r
@@ -78,6 +120,12 @@ model <- trans_xsax(alpha = 16)
 model <- fit(model, dataset$serie)
 xsax_series <- transform(model, dataset$serie)
 ```
+
+
+
+
+
+
 
 
 ``` r
@@ -88,6 +136,14 @@ head(xsax_series, 20)
 ```
 ##  [1] "6" "6" "6" "5" "4" "3" "2" "2" "1" "0" "0" "0" "0" "0" "0" "0" "1" "1" "2" "3"
 ```
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -127,5 +183,4 @@ head(comparison, 20)
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

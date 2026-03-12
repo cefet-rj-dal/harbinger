@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,16 +48,32 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Instantiate utilities
 hutils <- harutils()
 ```
 
 
+
+
 ``` r
 # Generate synthetic residuals
 values <- rnorm(30, mean = 0, sd = 1)
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r
@@ -53,6 +83,9 @@ har_plot(harbinger(), v1)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/05-utilities-examples_harutils_distance/unnamed-chunk-5-1.png)
+
+
+
 
 ``` r
 # L2 aggregation of residual magnitude
@@ -66,5 +99,3 @@ har_plot(harbinger(), v2)
 
 - Tukey, J. W. (1977). Exploratory Data Analysis. Addison‑Wesley. (IQR/boxplot heuristics underpin some thresholding rules)
 - Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three‑sigma rule)
-
-

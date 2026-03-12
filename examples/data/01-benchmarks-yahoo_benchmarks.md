@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -72,6 +82,13 @@ plot_dataset_preview <- function(info) {
 `A1Benchmark` contains real-world labeled univariate series from Yahoo Webscope S5.
 
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
+
 ``` r
 data(A1Benchmark)
 A1Benchmark <- loadfulldata(A1Benchmark)
@@ -88,6 +105,10 @@ a1_info <- show_dataset(A1Benchmark, "A1Benchmark")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(a1_info)
 ```
@@ -97,6 +118,13 @@ plot_dataset_preview(a1_info)
 ### A2Benchmark
 
 `A2Benchmark` contains synthetic labeled univariate series designed for anomaly-detection benchmarking.
+
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -115,6 +143,10 @@ a2_info <- show_dataset(A2Benchmark, "A2Benchmark")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(a2_info)
 ```
@@ -124,6 +156,13 @@ plot_dataset_preview(a2_info)
 ### A3Benchmark
 
 `A3Benchmark` contains synthetic Yahoo series with labeled anomalous observations.
+
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -142,6 +181,10 @@ a3_info <- show_dataset(A3Benchmark, "A3Benchmark")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(a3_info)
 ```
@@ -151,6 +194,13 @@ plot_dataset_preview(a3_info)
 ### A4Benchmark
 
 `A4Benchmark` combines synthetic anomalies and structural changes in the Yahoo benchmark family.
+
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -169,6 +219,10 @@ a4_info <- show_dataset(A4Benchmark, "A4Benchmark")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(a4_info)
 ```
@@ -179,5 +233,4 @@ plot_dataset_preview(a4_info)
 
 - Yahoo Webscope S5 benchmark documentation and downstream studies on labeled anomaly detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

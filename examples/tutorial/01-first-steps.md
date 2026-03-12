@@ -23,16 +23,34 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 # install.packages("harbinger")
 ```
 
 
+
+
+
+
 ``` r
 # Load the package
 library(harbinger)
 ```
+
+
+
+
 
 
 ``` r
@@ -53,6 +71,16 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the series with the known labeled events
 har_plot(harbinger(), dataset$serie, event = dataset$event)
@@ -61,10 +89,30 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/01-first-steps/unnamed-chunk-4-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Create the default Harbinger detector
 model <- harbinger()
 ```
+
+
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -82,6 +130,16 @@ head(detection)
 ## 5   5 FALSE     
 ## 6   6 FALSE
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r

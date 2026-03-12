@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -66,6 +76,12 @@ plot_dataset_preview <- function(info) {
 ### mit_bih_MLII
 
 
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
+
 ``` r
 data(mit_bih_MLII)
 mit_bih_MLII <- loadfulldata(mit_bih_MLII)
@@ -82,6 +98,10 @@ mit_mlii_info <- show_dataset(mit_bih_MLII, "mit_bih_MLII")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(mit_mlii_info)
 ```
@@ -89,6 +109,12 @@ plot_dataset_preview(mit_mlii_info)
 ![plot of chunk unnamed-chunk-3](fig/04-domain-mit_bih/unnamed-chunk-3-1.png)
 
 ### mit_bih_V1
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -107,6 +133,10 @@ mit_v1_info <- show_dataset(mit_bih_V1, "mit_bih_V1")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(mit_v1_info)
 ```
@@ -114,6 +144,12 @@ plot_dataset_preview(mit_v1_info)
 ![plot of chunk unnamed-chunk-5](fig/04-domain-mit_bih/unnamed-chunk-5-1.png)
 
 ### mit_bih_V2
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -132,6 +168,10 @@ mit_v2_info <- show_dataset(mit_bih_V2, "mit_bih_V2")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(mit_v2_info)
 ```
@@ -139,6 +179,12 @@ plot_dataset_preview(mit_v2_info)
 ![plot of chunk unnamed-chunk-7](fig/04-domain-mit_bih/unnamed-chunk-7-1.png)
 
 ### mit_bih_V5
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -157,6 +203,10 @@ mit_v5_info <- show_dataset(mit_bih_V5, "mit_bih_V5")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(mit_v5_info)
 ```
@@ -167,5 +217,4 @@ plot_dataset_preview(mit_v5_info)
 
 - Moody, G. B., Mark, R. G. (2001). The impact of the MIT-BIH Arrhythmia Database.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

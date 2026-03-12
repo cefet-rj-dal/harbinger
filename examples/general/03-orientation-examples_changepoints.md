@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,11 +48,21 @@ library(harbinger)
 ```
 
 
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Load change-point example datasets and create a base object
 data(examples_changepoints)
 model <- harbinger()
 ```
+
+
 
 
 ``` r
@@ -52,6 +76,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/03-orientation-examples_changepoints/unnamed-chunk-4-1.png)
 
 
+
+
 ``` r
 # Sinusoidal pattern with regime shift
 dataset <- examples_changepoints$sinusoidal
@@ -63,6 +89,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-5](fig/03-orientation-examples_changepoints/unnamed-chunk-5-1.png)
 
 
+
+
 ``` r
 # Incremental trend changes
 dataset <- examples_changepoints$incremental
@@ -72,6 +100,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/03-orientation-examples_changepoints/unnamed-chunk-6-1.png)
+
+
 
 
 ``` r
@@ -89,6 +119,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-7](fig/03-orientation-examples_changepoints/unnamed-chunk-7-1.png)
 
 
+
+
 ``` r
 # Volatility (variance) change
 dataset <- examples_changepoints$volatility
@@ -104,6 +136,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-8](fig/03-orientation-examples_changepoints/unnamed-chunk-8-1.png)
 
 
+
+
 ``` r
 # Increasing amplitude
 dataset <- examples_changepoints$increasing_amplitude
@@ -113,6 +147,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/03-orientation-examples_changepoints/unnamed-chunk-9-1.png)
+
+
 
 
 ``` r
@@ -130,5 +166,3 @@ har_plot(model, dataset$serie, detection, dataset$event)
 - Hinkley, D. V. (1970). Inference about the change-point in a sequence of random variables. Biometrika, 57(1), 1–17.
 - Killick, R., Fearnhead, P., Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500), 1590–1598.
 - Zeileis, A., Leisch, F., Kleiber, C., Hornik, K. (2002). strucchange: An R package for testing for structural change in linear regression models. JSS, 7(2). doi:10.18637/jss.v007.i02
-
-

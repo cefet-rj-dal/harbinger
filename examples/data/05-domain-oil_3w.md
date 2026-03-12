@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -66,6 +76,12 @@ plot_dataset_preview <- function(info) {
 ### oil_3w_Type_1
 
 
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
+
 ``` r
 data(oil_3w_Type_1)
 oil_3w_Type_1 <- loadfulldata(oil_3w_Type_1)
@@ -82,6 +98,10 @@ oil_type_1_info <- show_dataset(oil_3w_Type_1, "oil_3w_Type_1")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_1_info)
 ```
@@ -89,6 +109,12 @@ plot_dataset_preview(oil_type_1_info)
 ![plot of chunk unnamed-chunk-3](fig/05-domain-oil_3w/unnamed-chunk-3-1.png)
 
 ### oil_3w_Type_2
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -107,6 +133,10 @@ oil_type_2_info <- show_dataset(oil_3w_Type_2, "oil_3w_Type_2")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_2_info)
 ```
@@ -114,6 +144,12 @@ plot_dataset_preview(oil_type_2_info)
 ![plot of chunk unnamed-chunk-5](fig/05-domain-oil_3w/unnamed-chunk-5-1.png)
 
 ### oil_3w_Type_4
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -132,6 +168,10 @@ oil_type_4_info <- show_dataset(oil_3w_Type_4, "oil_3w_Type_4")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_4_info)
 ```
@@ -139,6 +179,12 @@ plot_dataset_preview(oil_type_4_info)
 ![plot of chunk unnamed-chunk-7](fig/05-domain-oil_3w/unnamed-chunk-7-1.png)
 
 ### oil_3w_Type_5
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -157,6 +203,10 @@ oil_type_5_info <- show_dataset(oil_3w_Type_5, "oil_3w_Type_5")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_5_info)
 ```
@@ -164,6 +214,12 @@ plot_dataset_preview(oil_type_5_info)
 ![plot of chunk unnamed-chunk-9](fig/05-domain-oil_3w/unnamed-chunk-9-1.png)
 
 ### oil_3w_Type_6
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -182,6 +238,10 @@ oil_type_6_info <- show_dataset(oil_3w_Type_6, "oil_3w_Type_6")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_6_info)
 ```
@@ -189,6 +249,12 @@ plot_dataset_preview(oil_type_6_info)
 ![plot of chunk unnamed-chunk-11](fig/05-domain-oil_3w/unnamed-chunk-11-1.png)
 
 ### oil_3w_Type_7
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -207,6 +273,10 @@ oil_type_7_info <- show_dataset(oil_3w_Type_7, "oil_3w_Type_7")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_7_info)
 ```
@@ -214,6 +284,12 @@ plot_dataset_preview(oil_type_7_info)
 ![plot of chunk unnamed-chunk-13](fig/05-domain-oil_3w/unnamed-chunk-13-1.png)
 
 ### oil_3w_Type_8
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -232,6 +308,10 @@ oil_type_8_info <- show_dataset(oil_3w_Type_8, "oil_3w_Type_8")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(oil_type_8_info)
 ```
@@ -242,5 +322,4 @@ plot_dataset_preview(oil_type_8_info)
 
 - 3W dataset documentation from the UCI Machine Learning Repository.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

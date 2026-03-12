@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,11 +48,21 @@ library(harbinger)
 ```
 
 
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Load motif example datasets and create a base object
 data(examples_motifs)
 model <- harbinger()
 ```
+
+
 
 
 ``` r
@@ -52,6 +76,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/04-orientation-examples_motifs/unnamed-chunk-4-1.png)
 
 
+
+
 ``` r
 # ECG sample: MIT-BIH record 100
 dataset <- examples_motifs$mitdb100
@@ -61,6 +87,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/04-orientation-examples_motifs/unnamed-chunk-5-1.png)
+
+
 
 
 ``` r
@@ -78,5 +106,3 @@ har_plot(model, dataset$serie, detection, dataset$event)
 - Yeh, C.-C. M., et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable time series motif/discord discovery. IEEE ICDM.
 - Tavenard, R., et al. (2020). tsmp: The Matrix Profile in R. The R Journal. doi:10.32614/RJ-2020-021
 - Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. DMKD, 15, 107–144.
-
-

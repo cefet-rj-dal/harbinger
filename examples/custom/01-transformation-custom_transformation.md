@@ -23,6 +23,16 @@ The transformation applies `stats::runmed()` to the numeric series and then feed
 The transformation implemented here is a median filter. It is useful for reducing isolated spikes before an anomaly detector is applied. The integration contract is small because a simple transformation only needs a constructor and a `transform()` method when no fitted state is required.
 
 
+
+## Walkthrough
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
@@ -30,6 +40,14 @@ The transformation implemented here is a median filter. It is useful for reducin
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 
 ``` r
@@ -54,6 +72,14 @@ transform.har_fil_median_custom <- function(obj, data, ...) {
 We first visualize the raw series, then apply the custom filter to attenuate local spikes.
 
 
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
@@ -62,6 +88,14 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-3](fig/01-transformation-custom_transformation/unnamed-chunk-3-1.png)
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -74,6 +108,14 @@ har_plot(harbinger(), serie_filtered, event = dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/01-transformation-custom_transformation/unnamed-chunk-4-1.png)
 
 Once the transformation is defined, it can be inserted before a regular detector. Here we use `hanr_arima()` because it remains stable after smoothing and makes the downstream comparison easier to interpret.
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
 
 
 ``` r
@@ -91,4 +133,3 @@ This example shows the usual role of a custom transformation in Harbinger: chang
 ## References
 
 - Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
-

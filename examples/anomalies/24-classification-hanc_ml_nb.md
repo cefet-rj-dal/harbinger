@@ -25,10 +25,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -38,10 +52,16 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Load example anomaly datasets
 data(examples_anomalies)
 ```
+
+
 
 
 ``` r
@@ -62,12 +82,32 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/24-classification-hanc_ml_nb/unnamed-chunk-5-1.png)
+
+
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
 
 
 ``` r
@@ -92,10 +132,14 @@ summary(train_n)
 ```
 
 
+
+
 ``` r
 # Configure NB classifier
 model <- hanc_ml(cla_nb("event", c("FALSE", "TRUE")))
 ```
+
+
 
 
 ``` r
@@ -123,6 +167,16 @@ print(evaluation$confMatrix)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot training detections
 har_plot(model, train_n$serie, detection, as.logical(train_n$event))
@@ -131,10 +185,22 @@ har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ![plot of chunk unnamed-chunk-9](fig/24-classification-hanc_ml_nb/unnamed-chunk-9-1.png)
 
 
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+
+
 ``` r
 # Prepare normalized test set
 test_n <- transform(norm, test)
 ```
+
+
 
 
 ``` r
@@ -161,12 +227,24 @@ print(evaluation$confMatrix)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot test detections
 har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/24-classification-hanc_ml_nb/unnamed-chunk-12-1.png)
+
+
 
 
 ``` r
@@ -179,5 +257,3 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 ## References
 
 - Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
-
-

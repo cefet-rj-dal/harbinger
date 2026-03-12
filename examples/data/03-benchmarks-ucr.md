@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -66,6 +76,12 @@ plot_dataset_preview <- function(info) {
 ### ucr_ecg
 
 
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
+
 ``` r
 data(ucr_ecg)
 ucr_ecg <- loadfulldata(ucr_ecg)
@@ -82,6 +98,10 @@ ucr_ecg_info <- show_dataset(ucr_ecg, "ucr_ecg")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(ucr_ecg_info)
 ```
@@ -89,6 +109,12 @@ plot_dataset_preview(ucr_ecg_info)
 ![plot of chunk unnamed-chunk-3](fig/03-benchmarks-ucr/unnamed-chunk-3-1.png)
 
 ### ucr_nasa
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -107,6 +133,10 @@ ucr_nasa_info <- show_dataset(ucr_nasa, "ucr_nasa")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(ucr_nasa_info)
 ```
@@ -114,6 +144,12 @@ plot_dataset_preview(ucr_nasa_info)
 ![plot of chunk unnamed-chunk-5](fig/03-benchmarks-ucr/unnamed-chunk-5-1.png)
 
 ### ucr_int_bleeding
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -132,6 +168,10 @@ ucr_bleeding_info <- show_dataset(ucr_int_bleeding, "ucr_int_bleeding")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(ucr_bleeding_info)
 ```
@@ -139,6 +179,12 @@ plot_dataset_preview(ucr_bleeding_info)
 ![plot of chunk unnamed-chunk-7](fig/03-benchmarks-ucr/unnamed-chunk-7-1.png)
 
 ### ucr_power_demand
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -157,6 +203,10 @@ ucr_power_info <- show_dataset(ucr_power_demand, "ucr_power_demand")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(ucr_power_info)
 ```
@@ -167,5 +217,4 @@ plot_dataset_preview(ucr_power_info)
 
 - UCR Time Series Anomaly Archive.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

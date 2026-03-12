@@ -22,9 +22,21 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 library(harbinger)
 ```
+
+
 
 
 ``` r
@@ -44,12 +56,32 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the original series with the known change point
 har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-3](fig/07-first-change-point-detector/unnamed-chunk-3-1.png)
+
+
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -163,6 +195,16 @@ detection
 ## 100 100 FALSE            
 ## 101 101 FALSE
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r

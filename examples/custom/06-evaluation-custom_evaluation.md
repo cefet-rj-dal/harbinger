@@ -29,6 +29,16 @@ The evaluator first converts the boolean event vector into contiguous intervals.
 This is not a full reimplementation of the Tatbul framework. It is a didactic Harbinger-compatible variant meant to capture the central idea: sequence anomalies should be evaluated as ranges, not just as isolated timestamps.
 
 
+
+## Walkthrough
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
@@ -36,6 +46,14 @@ This is not a full reimplementation of the Tatbul framework. It is a didactic Ha
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 
 ``` r
@@ -124,6 +142,10 @@ evaluate.har_eval_range_custom <- function(obj, detection, event, ...) {
 We first illustrate the metric on a toy example with contiguous anomalous intervals. This makes the scoring logic easier to understand than starting directly from a detector output.
 
 
+
+
+
+
 ``` r
 n <- 100
 event <- rep(FALSE, n)
@@ -158,6 +180,14 @@ list(
 ```
 
 
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
+
+
 ``` r
 # Hard pointwise evaluation is often harsh for sequence anomalies
 hard_eval <- evaluate(har_eval(), detection, event)
@@ -170,6 +200,8 @@ hard_eval$confMatrix
 ## TRUE      20    10   
 ## FALSE     7     63
 ```
+
+
 
 
 ``` r

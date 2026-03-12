@@ -55,6 +55,7 @@ model$har_outliers <- hutils$har_outliers_ratio
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+
 # Keep only the highest-magnitude index in contiguous runs
 model <- hanr_arima()
 model$har_distance <- hutils$har_distance_l1

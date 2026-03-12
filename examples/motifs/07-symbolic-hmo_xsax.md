@@ -25,10 +25,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -38,10 +52,16 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Load example motif datasets
 data(examples_motifs)
 ```
+
+
 
 
 ``` r
@@ -61,6 +81,16 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the raw time series
 har_plot(harbinger(), dataset$serie)
@@ -69,10 +99,22 @@ har_plot(harbinger(), dataset$serie)
 ![plot of chunk unnamed-chunk-5](fig/07-symbolic-hmo_xsax/unnamed-chunk-5-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Configure XSAX motif discovery (alphabet=37, word=3, min occurrences=3)
 model <- hmo_xsax(37, 3, 3)
 ```
+
+
 
 
 ``` r
@@ -81,10 +123,22 @@ model <- fit(model, dataset$serie)
 ```
 
 
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+
+
 ``` r
 # Run motif discovery
 detection <- detect(model, dataset$serie)
 ```
+
+
 
 
 ``` r
@@ -98,6 +152,16 @@ print(detection |> dplyr::filter(event == TRUE))
 ## 2  50  TRUE motif 0N0P0R      3
 ## 3  75  TRUE motif 0N0P0R      3
 ```
+
+
+
+
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
 
 
 ``` r
@@ -114,6 +178,16 @@ print(evaluation$confMatrix)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot motifs and ground truth
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -124,5 +198,3 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
-

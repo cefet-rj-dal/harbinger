@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,11 +48,21 @@ library(harbinger)
 ```
 
 
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Load example anomaly datasets and create a base object
 data(examples_anomalies)
 model <- harbinger()
 ```
+
+
 
 
 ``` r
@@ -52,6 +76,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/02-orientation-examples_anomalies/unnamed-chunk-4-1.png)
 
 
+
+
 ``` r
 # Contextual anomalies: depend on local context
 dataset <- examples_anomalies$contextual
@@ -61,6 +87,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/02-orientation-examples_anomalies/unnamed-chunk-5-1.png)
+
+
 
 
 ``` r
@@ -74,6 +102,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-6](fig/02-orientation-examples_anomalies/unnamed-chunk-6-1.png)
 
 
+
+
 ``` r
 # Multiple anomalies
 dataset <- examples_anomalies$multiple
@@ -83,6 +113,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/02-orientation-examples_anomalies/unnamed-chunk-7-1.png)
+
+
 
 
 ``` r
@@ -96,6 +128,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-8](fig/02-orientation-examples_anomalies/unnamed-chunk-8-1.png)
 
 
+
+
 ``` r
 # Train/Test split
 dataset <- examples_anomalies$tt
@@ -105,6 +139,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-9](fig/02-orientation-examples_anomalies/unnamed-chunk-9-1.png)
+
+
 
 
 ``` r
@@ -118,6 +154,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-10](fig/02-orientation-examples_anomalies/unnamed-chunk-10-1.png)
 
 
+
+
 ``` r
 # Increasing amplitude over time
 dataset <- examples_anomalies$increasing_amplitude
@@ -129,6 +167,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-11](fig/02-orientation-examples_anomalies/unnamed-chunk-11-1.png)
 
 
+
+
 ``` r
 # Decreasing amplitude over time
 dataset <- examples_anomalies$decreasing_amplitude
@@ -138,6 +178,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/02-orientation-examples_anomalies/unnamed-chunk-12-1.png)
+
+
 
 
 ``` r
@@ -154,5 +196,3 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
 - Chandola, V., Banerjee, A., Kumar, V. (2009). Anomaly detection: A survey. ACM Computing Surveys, 41(3), 1–58.
-
-

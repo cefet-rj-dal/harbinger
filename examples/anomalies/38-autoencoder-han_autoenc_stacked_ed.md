@@ -21,6 +21,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Load required packages
 library(daltoolbox)
@@ -29,10 +39,16 @@ library(daltoolboxdp)
 ```
 
 
+
+
+
+
 ``` r
 # Load example datasets bundled with harbinger
 data(examples_anomalies)
 ```
+
+
 
 
 ``` r
@@ -52,6 +68,16 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the time series
 har_plot(harbinger(), dataset$serie)
@@ -60,10 +86,22 @@ har_plot(harbinger(), dataset$serie)
 ![plot of chunk unnamed-chunk-4](fig/38-autoencoder-han_autoenc_stacked_ed/unnamed-chunk-4-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Define stacked autoencoder-based detector (autoenc_stacked_ed)
   model <- han_autoencoder(3, 2, autoenc_stacked_ed, num_epochs = 1500)
 ```
+
+
 
 
 ``` r
@@ -72,10 +110,22 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+
+
 ``` r
 # Detect anomalies (reconstruction error -> events)
   detection <- detect(model, dataset$serie)
 ```
+
+
 
 
 ``` r
@@ -84,9 +134,19 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event    type
+## 1  51  TRUE anomaly
 ```
+
+
+
+
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
 
 
 ``` r
@@ -98,9 +158,19 @@ har_plot(harbinger(), dataset$serie)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r
@@ -109,6 +179,9 @@ har_plot(harbinger(), dataset$serie)
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/38-autoencoder-han_autoenc_stacked_ed/unnamed-chunk-10-1.png)
+
+
+
 
 ``` r
 # Plot residual scores and threshold
@@ -120,5 +193,3 @@ har_plot(harbinger(), dataset$serie)
 ## References
 
 - Sakurada, M., Yairi, T. (2014). Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction. MLSDA 2014.
-
-

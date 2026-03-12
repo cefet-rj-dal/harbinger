@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,11 +48,21 @@ library(harbinger)
 ```
 
 
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Load example datasets bundled with harbinger
 data(examples_harbinger)
 model <- harbinger()
 ```
+
+
 
 
 ``` r
@@ -52,6 +76,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-4](fig/01-orientation-examples_harbinger/unnamed-chunk-4-1.png)
 
 
+
+
 ``` r
 # Example: global temperature (yearly)
 dataset <- examples_harbinger$global_temperature_yearly
@@ -63,6 +89,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ![plot of chunk unnamed-chunk-5](fig/01-orientation-examples_harbinger/unnamed-chunk-5-1.png)
 
 
+
+
 ``` r
 # Example: global temperature (monthly)
 dataset <- examples_harbinger$global_temperature_monthly
@@ -72,6 +100,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/01-orientation-examples_harbinger/unnamed-chunk-6-1.png)
+
+
 
 
 ``` r
@@ -93,6 +123,8 @@ har_plot(model, dataset$x, detection, dataset$event)
 ![plot of chunk unnamed-chunk-7](fig/01-orientation-examples_harbinger/unnamed-chunk-7-2.png)
 
 
+
+
 ``` r
 # Example: Seattle weekly temperature time series
 dataset <- examples_harbinger$seattle_week
@@ -102,6 +134,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/01-orientation-examples_harbinger/unnamed-chunk-8-1.png)
+
+
 
 
 ``` r
@@ -118,5 +152,3 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
 - DAL Toolbox documentation: https://cefet-rj-dal.github.io/daltoolbox/
-
-

@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -64,6 +74,16 @@ plot_dataset_preview <- function(info) {
 ```
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 data(gecco)
 gecco <- loadfulldata(gecco)
@@ -80,6 +100,16 @@ gecco_info <- show_dataset(gecco, "gecco")
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 plot_dataset_preview(gecco_info)
 ```
@@ -90,5 +120,4 @@ plot_dataset_preview(gecco_info)
 
 - GECCO Challenge 2018 material for water-quality event detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

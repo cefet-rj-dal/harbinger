@@ -21,9 +21,25 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 library(harbinger)
 ```
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r
@@ -34,6 +50,12 @@ har_plot(harbinger(), uni$serie, event = uni$event)
 ```
 
 ![plot of chunk unnamed-chunk-2](fig/03-plotting-series/unnamed-chunk-2-1.png)
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
 
 
 ``` r
@@ -49,6 +71,16 @@ signal_cols
 ```
 ## [1] "p_pdg"      "p_tpt"      "t_tpt"      "p_mon_ckp"  "t_jus_ckp"  "p_jus_ckgl" "qgl"
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r

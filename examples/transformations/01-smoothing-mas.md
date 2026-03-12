@@ -24,10 +24,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -36,10 +50,16 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Load example change-point datasets
 data(examples_changepoints)
 ```
+
+
 
 
 ``` r
@@ -59,6 +79,16 @@ head(dataset)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the original time series
 har_plot(harbinger(), dataset$serie, event = dataset$event)
@@ -67,11 +97,27 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 ![plot of chunk unnamed-chunk-5](fig/01-smoothing-mas/unnamed-chunk-5-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Compute smoothers with two different window sizes
 ma_5 <- mas(dataset$serie, order = 5)
 ma_15 <- mas(dataset$serie, order = 15)
 ```
+
+
+
+
+
+
 
 
 ``` r
@@ -100,6 +146,16 @@ head(ma_15)
 ```
 
 
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the 5-point moving average
 har_plot(
@@ -110,6 +166,8 @@ har_plot(
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/01-smoothing-mas/unnamed-chunk-8-1.png)
+
+
 
 
 ``` r
@@ -126,5 +184,4 @@ har_plot(
 ## References
 
 - Shumway, R. H., Stoffer, D. S. Time Series Analysis and Its Applications. Springer.
-
 

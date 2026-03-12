@@ -30,6 +30,16 @@ This makes the example useful from two perspectives:
 - it introduces a motif definition based on subsequence clustering rather than nearest-neighbor Matrix Profile search.
 
 
+
+## Walkthrough
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox", "dtwclust"))
@@ -37,6 +47,14 @@ This makes the example useful from two perspectives:
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 
 ``` r
@@ -116,6 +134,14 @@ detect.hmo_dtw_cluster_custom <- function(obj, serie, ...) {
 We can now use the custom detector on a motif example series.
 
 
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 data(examples_motifs)
 dataset <- examples_motifs$simple
@@ -124,6 +150,14 @@ model <- hmo_dtw_cluster_custom(w = 15, centers = 3, min_cluster_size = 3)
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 ```
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -141,6 +175,14 @@ head(detection[detection$event, ])
 ```
 
 
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
@@ -154,4 +196,3 @@ This example is useful because it shows a real alternative motif strategy. Inste
 - Berndt, D. J., Clifford, J. (1994). Using Dynamic Time Warping to Find Patterns in Time Series. AAAI Workshop on Knowledge Discovery in Databases.
 - Sarda-Espinosa, A. (2019). Time-Series Clustering in R Using the dtwclust Package. The R Journal, 11(1), 22-43.
 - Mueen, A., Keogh, E., Zhu, Q., Cash, S., Westover, M. B. (2009). Exact Discovery of Time Series Motifs. SIAM International Conference on Data Mining.
-

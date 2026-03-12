@@ -22,6 +22,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
+
 ``` r
 library(harbinger)
 
@@ -66,6 +76,12 @@ plot_dataset_preview <- function(info) {
 ### nab_artificialWithAnomaly
 
 
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
+
 ``` r
 data(nab_artificialWithAnomaly)
 nab_artificialWithAnomaly <- loadfulldata(nab_artificialWithAnomaly)
@@ -82,6 +98,10 @@ nab_artificial_info <- show_dataset(nab_artificialWithAnomaly, "nab_artificialWi
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_artificial_info)
 ```
@@ -89,6 +109,12 @@ plot_dataset_preview(nab_artificial_info)
 ![plot of chunk unnamed-chunk-3](fig/02-benchmarks-nab/unnamed-chunk-3-1.png)
 
 ### nab_realAdExchange
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -107,6 +133,10 @@ nab_adexchange_info <- show_dataset(nab_realAdExchange, "nab_realAdExchange")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_adexchange_info)
 ```
@@ -114,6 +144,12 @@ plot_dataset_preview(nab_adexchange_info)
 ![plot of chunk unnamed-chunk-5](fig/02-benchmarks-nab/unnamed-chunk-5-1.png)
 
 ### nab_realAWSCloudwatch
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -132,6 +168,10 @@ nab_aws_info <- show_dataset(nab_realAWSCloudwatch, "nab_realAWSCloudwatch")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_aws_info)
 ```
@@ -139,6 +179,12 @@ plot_dataset_preview(nab_aws_info)
 ![plot of chunk unnamed-chunk-7](fig/02-benchmarks-nab/unnamed-chunk-7-1.png)
 
 ### nab_realKnownCause
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -157,6 +203,10 @@ nab_known_info <- show_dataset(nab_realKnownCause, "nab_realKnownCause")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_known_info)
 ```
@@ -164,6 +214,12 @@ plot_dataset_preview(nab_known_info)
 ![plot of chunk unnamed-chunk-9](fig/02-benchmarks-nab/unnamed-chunk-9-1.png)
 
 ### nab_realTraffic
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -182,6 +238,10 @@ nab_traffic_info <- show_dataset(nab_realTraffic, "nab_realTraffic")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_traffic_info)
 ```
@@ -189,6 +249,12 @@ plot_dataset_preview(nab_traffic_info)
 ![plot of chunk unnamed-chunk-11](fig/02-benchmarks-nab/unnamed-chunk-11-1.png)
 
 ### nab_realTweets
+
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
 
 
 ``` r
@@ -207,6 +273,10 @@ nab_tweets_info <- show_dataset(nab_realTweets, "nab_realTweets")
 ```
 
 
+
+
+
+
 ``` r
 plot_dataset_preview(nab_tweets_info)
 ```
@@ -217,5 +287,4 @@ plot_dataset_preview(nab_tweets_info)
 
 - Lavin, A., Ahmad, S. (2015). Evaluating real-time anomaly detection algorithms: the Numenta Anomaly Benchmark.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

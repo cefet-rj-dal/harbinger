@@ -24,6 +24,16 @@ The detector computes a rolling median baseline and a rolling MAD scale. It then
 The key customization is not only the scoring function, but the post-processing rule: instead of choosing the first or highest point in each group, the detector marks the whole contiguous interval as anomalous.
 
 
+
+## Walkthrough
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
@@ -31,6 +41,14 @@ The key customization is not only the scoring function, but the post-processing 
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 
 ``` r
@@ -88,6 +106,8 @@ detect.hanr_sequence_mad_custom <- function(obj, serie, ...) {
 ```
 
 To compare interval-aware evaluation in the same notebook, we define a small range-based evaluator that scores overlap between detected ranges and true ranges.
+
+
 
 
 ``` r
@@ -157,6 +177,14 @@ evaluate.har_eval_range_custom <- function(obj, detection, event, ...) {
 We use the `sequence` example because it naturally motivates collective anomaly detection.
 
 
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 data(examples_anomalies)
 dataset <- examples_anomalies$sequence
@@ -165,6 +193,14 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/03-sequence-custom_sequence_anomaly/unnamed-chunk-4-1.png)
+
+
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
 
 
 ``` r
@@ -180,12 +216,28 @@ head(detection[detection$event, ])
 ```
 
 
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 # Plot the detected anomalous interval against the labeled sequence anomaly
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/03-sequence-custom_sequence_anomaly/unnamed-chunk-6-1.png)
+
+
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
 
 
 ``` r
@@ -224,4 +276,3 @@ This example makes the modeling choice explicit: sequence anomalies are better r
 
 - Chandola, V., Banerjee, A., Kumar, V. (2009). Anomaly Detection: A Survey. ACM Computing Surveys, 41(3), 15.
 - Sørbø, S., Ruocco, M. (2024). Navigating the metric maze: a taxonomy of evaluation metrics for anomaly detection in time series. Data Mining and Knowledge Discovery, 38, 1027-1068. https://doi.org/10.1007/s10618-023-00988-8
-

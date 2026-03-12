@@ -22,10 +22,26 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
 
 
 ``` r
@@ -35,6 +51,16 @@ model <- hanr_arima()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 ```
+
+
+
+
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
 
 
 ``` r
@@ -52,6 +78,8 @@ hard_result$confMatrix
 ```
 
 
+
+
 ``` r
 # Soft evaluation: tolerates small temporal misalignment
 soft_eval <- har_eval_soft()
@@ -65,6 +93,12 @@ soft_result$confMatrix
 ## TRUE      1     0    
 ## FALSE     0     100
 ```
+
+
+
+
+
+
 
 
 ``` r

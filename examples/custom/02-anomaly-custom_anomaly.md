@@ -25,6 +25,16 @@ The integration contract is intentionally small. We define a constructor based o
 To make the example concrete, the custom detector wraps `forecast::tsoutliers()`, a classical routine for identifying additive outliers in univariate time series.
 
 
+
+## Walkthrough
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox", "forecast"))
@@ -32,6 +42,14 @@ To make the example concrete, the custom detector wraps `forecast::tsoutliers()`
 library(daltoolbox)
 library(harbinger)
 ```
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 
 ``` r
@@ -60,6 +78,14 @@ detect.hanr_tsoutliers_custom <- function(obj, serie, ...) {
 We now use the custom detector exactly as we would use any other anomaly detector in the package.
 
 
+
+
+
+### Run the Core Analysis
+
+With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+
+
 ``` r
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
@@ -67,6 +93,14 @@ dataset <- examples_anomalies$simple
 model <- hanr_tsoutliers_custom()
 detection <- detect(model, dataset$serie)
 ```
+
+
+
+
+
+### Evaluate What Was Found
+
+After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
 
 
 ``` r
@@ -82,6 +116,14 @@ evaluation$confMatrix
 ```
 
 
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+
+
 ``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
@@ -93,4 +135,3 @@ This example shows that a custom anomaly detector does not need to reimplement t
 ## References
 
 - Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice.
-

@@ -21,10 +21,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 ## Walkthrough
 
 
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
+
 ``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 
 ``` r
@@ -34,10 +48,24 @@ library(harbinger)
 ```
 
 
+
+
+
+
 ``` r
 # Instantiate utilities
 hutils <- harutils()
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 
 ``` r
@@ -50,6 +78,16 @@ har_plot(harbinger(), dataset$serie)
 ![plot of chunk unnamed-chunk-4](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-4-1.png)
 
 
+
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
+
 ``` r
 # Baseline: ARIMA with default distance (L2) and threshold (Gaussian 3-sigma)
 model <- hanr_arima()
@@ -59,6 +97,8 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-5-1.png)
+
+
 
 
 ``` r
@@ -73,6 +113,8 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ![plot of chunk unnamed-chunk-6](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-6-1.png)
 
 
+
+
 ``` r
 # Use ratio thresholding emphasizing relative deviation
 model <- hanr_arima()
@@ -85,6 +127,8 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ![plot of chunk unnamed-chunk-7](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-7-1.png)
 
 
+
+
 ``` r
 # Change distance to L1 (absolute deviation)
 model <- hanr_arima()
@@ -95,6 +139,8 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-8-1.png)
+
+
 
 
 ``` r
@@ -110,6 +156,8 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ![plot of chunk unnamed-chunk-9](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-9-1.png)
 
 
+
+
 ``` r
 # L1 distance + ratio threshold
 model <- hanr_arima()
@@ -121,6 +169,9 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ![plot of chunk unnamed-chunk-10](fig/06-utilities-examples_harutils_outliers/unnamed-chunk-10-1.png)
+
+
+
 
 ``` r
 # Keep only the highest-magnitude index in contiguous runs
@@ -139,5 +190,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Tukey, J. W. (1977). Exploratory Data Analysis. Addison‑Wesley. (boxplot/IQR outlier rule)
 - Shewhart, W. A. (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three‑sigma rule)
-
-
