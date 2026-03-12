@@ -73,27 +73,18 @@ har_plot(harbinger(), serie_filtered, event = dataset$event)
 
 ![plot of chunk unnamed-chunk-4](fig/custom_transformation/unnamed-chunk-4-1.png)
 
-Once the transformation is defined, it can be inserted before a regular detector.
+Once the transformation is defined, it can be inserted before a regular detector. Here we use `hanr_arima()` because it remains stable after smoothing and makes the downstream comparison easier to interpret.
 
 
 ``` r
-model <- hanr_histogram(density_threshold = 0.05)
-detection <- detect(model, serie_filtered)
+model <- hanr_arima()
+model <- fit(model, as.numeric(serie_filtered))
+detection <- detect(model, as.numeric(serie_filtered))
+
+har_plot(model, as.numeric(serie_filtered), detection, dataset$event)
 ```
 
-```
-## Error in `if (...) NULL`:
-## ! missing value where TRUE/FALSE needed
-```
-
-``` r
-har_plot(model, serie_filtered, detection, dataset$event)
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-5](fig/custom_transformation/unnamed-chunk-5-1.png)
 
 This example shows the usual role of a custom transformation in Harbinger: change the signal representation first, and then feed the transformed series into the downstream detection workflow.
 

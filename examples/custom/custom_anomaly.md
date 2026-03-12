@@ -30,27 +30,7 @@ To make the example concrete, the custom detector wraps `forecast::tsoutliers()`
 # install.packages(c("harbinger", "daltoolbox", "forecast"))
 
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger)
-```
-
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
 ```
 
 

@@ -28,12 +28,6 @@ We use the default `harbinger()` model as a first contact with the package inter
 library(harbinger)
 ```
 
-```
-## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo
-```
-
 
 ``` r
 # Load a small labeled anomaly dataset distributed with the package

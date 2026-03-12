@@ -1,0 +1,86 @@
+## Objective
+
+This notebook shows how to load the full `gecco` dataset with `loadfulldata()`, inspect how many series are available, verify whether the collection is univariate or multivariate, and plot the first signal with `har_plot()`.
+
+## Method at a glance
+
+The purpose here is exploratory orientation. Before modeling, the reader can confirm how the dataset object is organized and which column should be used as the first signal in a quick inspection. To keep the visualization readable, the plot shows at most the first 1000 observations of the first series.
+
+## What you will do
+
+- load the bundled `gecco` object and replace it with the full dataset
+- count the available series in the collection
+- inspect the signal columns present in the first series
+- plot a didactic preview of the first available signal with its event labels
+
+## Walkthrough
+
+
+``` r
+library(harbinger)
+
+dataset_summary <- function(x) {
+  first_series <- x[[1]]
+  meta_cols <- c("idx", "event", "type", "seq", "seqlen")
+  signal_cols <- setdiff(names(first_series), meta_cols)
+  dataset_type <- if ("value" %in% names(first_series) || length(signal_cols) == 1) "univariate" else "multivariate"
+  plot_column <- if ("value" %in% names(first_series)) "value" else signal_cols[1]
+
+  list(
+    n_series = length(x),
+    dataset_type = dataset_type,
+    signal_cols = signal_cols,
+    plot_column = plot_column,
+    preview_size = min(1000, nrow(first_series)),
+    first_series = first_series
+  )
+}
+
+show_dataset <- function(x, name) {
+  info <- dataset_summary(x)
+  cat("Dataset:", name, "\n")
+  cat("Number of series:", info$n_series, "\n")
+  cat("Dataset type:", info$dataset_type, "\n")
+  cat("Signals in the first series:", paste(info$signal_cols, collapse = ", "), "\n")
+  cat("Column plotted with har_plot():", info$plot_column, "\n")
+  cat("Plot preview length:", info$preview_size, "observations\n")
+  invisible(info)
+}
+
+plot_dataset_preview <- function(info) {
+  preview <- info$first_series[seq_len(info$preview_size), , drop = FALSE]
+  har_plot(
+    harbinger(),
+    preview[[info$plot_column]],
+    event = preview$event
+  )
+}
+```
+
+
+``` r
+data(gecco)
+gecco <- loadfulldata(gecco)
+gecco_info <- show_dataset(gecco, "gecco")
+```
+
+```
+## Dataset: gecco 
+## Number of series: 10 
+## Dataset type: univariate 
+## Signals in the first series: value 
+## Column plotted with har_plot(): value 
+## Plot preview length: 1000 observations
+```
+
+
+``` r
+plot_dataset_preview(gecco_info)
+```
+
+![plot of chunk unnamed-chunk-3](fig/gecco/unnamed-chunk-3-1.png)
+
+## References
+
+- GECCO Challenge 2018 material for water-quality event detection.
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3

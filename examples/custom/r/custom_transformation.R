@@ -31,7 +31,8 @@ serie_filtered <- transform(filter_custom, dataset$serie)
 
 har_plot(harbinger(), serie_filtered, event = dataset$event)
 
-model <- hanr_histogram(density_threshold = 0.05)
-detection <- detect(model, serie_filtered)
+model <- hanr_arima()
+model <- fit(model, as.numeric(serie_filtered))
+detection <- detect(model, as.numeric(serie_filtered))
 
-har_plot(model, serie_filtered, detection, dataset$event)
+har_plot(model, as.numeric(serie_filtered), detection, dataset$event)

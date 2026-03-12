@@ -18,20 +18,6 @@ This tutorial introduces anomaly detection with a very simple and interpretable 
 
 ``` r
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger)
 ```
 

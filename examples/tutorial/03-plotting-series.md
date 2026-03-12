@@ -34,20 +34,6 @@ har_plot(harbinger(), uni$serie, event = uni$event)
 # Multivariate example from the 3W benchmark
 data(oil_3w_Type_1)
 oil_3w_Type_1 <- loadfulldata(oil_3w_Type_1)
-```
-
-```
-## Warning in utils::download.file(url, tmp, mode = "wb", quiet = TRUE): URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/united/refs/heads/main/harbinger/oil_3w_Type_1.RData':
-## status was 'Could not connect to server'
-```
-
-```
-## Error in `utils::download.file()`:
-## ! cannot open URL 'https://raw.githubusercontent.com/cefet-rj-dal/united/refs/heads/main/harbinger/oil_3w_Type_1.RData'
-```
-
-``` r
 first_mv <- oil_3w_Type_1[[1]]
 meta_cols <- c("idx", "event", "type", "seq", "seqlen")
 signal_cols <- setdiff(names(first_mv), meta_cols)
@@ -55,8 +41,7 @@ signal_cols
 ```
 
 ```
-## [1] "p_pdg"      "p_tpt"      "t_tpt"      "p_mon_ckp"  "t_jus_ckp" 
-## [6] "p_jus_ckgl" "qgl"
+## [1] "p_pdg"      "p_tpt"      "t_tpt"      "p_mon_ckp"  "t_jus_ckp"  "p_jus_ckgl" "qgl"
 ```
 
 

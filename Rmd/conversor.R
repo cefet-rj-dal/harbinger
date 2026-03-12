@@ -33,10 +33,38 @@ delete_ipynb <- function(input) {
   file.remove(input)
 }
 
-# Knit an .Rmd to .md under 'examples/', move figures to
-# '<examples-subdir>/fig/<doc-basename>/', render a Word (.docx) under
-# 'examples/<folder>/doc/', and also extract a pure R script under
-# 'examples/<folder>/r/'.
+# Normalize the relative path under 'Rmd/' so that:
+# - every regular subfolder becomes a subfolder under 'examples/'
+# - the special leading folder 'examples/' is dropped to avoid
+#   creating 'examples/examples/...'
+normalize_examples_rel <- function(path) {
+  rel <- gsub("^Rmd/", "", path)
+  rel <- gsub("^examples/", "", rel)
+  rel
+}
+
+# Build output paths for a source .Rmd
+build_output_paths <- function(input) {
+  rel_input      <- normalize_examples_rel(input)
+  rel_md         <- xfun::with_ext(rel_input, "md")
+  rel_dir        <- dirname(rel_md)
+  base_filename  <- xfun::sans_ext(basename(rel_md))
+  mdfile         <- file.path("examples", rel_md)
+  base_out_dir   <- if (rel_dir == ".") "examples" else file.path("examples", rel_dir)
+  docxfile       <- file.path(base_out_dir, "doc", paste0(base_filename, ".docx"))
+  rfile          <- file.path(base_out_dir, "r", paste0(base_filename, ".R"))
+  figdir         <- file.path(dirname(mdfile), "fig", base_filename)
+
+  list(
+    mdfile = mdfile,
+    docxfile = docxfile,
+    rfile = rfile,
+    figdir = figdir
+  )
+}
+
+# Knit an .Rmd to .md under 'examples/' and relocate figures to
+# '<examples-subdir>/fig/<doc-basename>/'.
 convert_rmd_md <- function(input) {
   # Require needed packages; keep behavior consistent with original
   if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
@@ -48,24 +76,9 @@ convert_rmd_md <- function(input) {
     return("Error: Invalid file format")
   }
 
-  # Output Markdown path goes under top-level 'examples/' directory
-  # Preserve sub-structure after removing the leading 'Rmd/'
-  md_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "md"))
-  mdfile  <- file.path("examples", md_rel)
-
-  # Output Word and R script paths go under per-folder destinations:
-  # - Word: examples/<folder>/doc/<name>.docx
-  # - R:    examples/<folder>/r/<name>.R
-  # Determine the immediate folder under 'Rmd/' and base output dir
-  folder        <- basename(dirname(input))
-  base_out_dir  <- file.path("examples", folder)
-  base_filename <- xfun::sans_ext(basename(input))
-
-  docxfile <- file.path(base_out_dir, "doc", paste0(base_filename, ".docx"))
-  rfile    <- file.path(base_out_dir, "r",   paste0(base_filename, ".R"))
-
-  # Destination figure directory: '<md-dir>/fig/<rmd-basename>/'
-  figdir <- file.path(dirname(mdfile), "fig", basename(xfun::with_ext(input, "")))
+  paths  <- build_output_paths(input)
+  mdfile <- paths$mdfile
+  figdir <- paths$figdir
 
   # Ensure 'examples/' destination directory exists for the .md
   md_dir <- dirname(mdfile)
@@ -112,28 +125,45 @@ convert_rmd_md <- function(input) {
   con_out <- file(mdfile, encoding = "UTF-8")
   on.exit(close(con_out), add = TRUE)
   writeLines(data, con_out)
+}
 
-  # Optional: remove intermediate HTML if produced by other workflows
-  # htmlfile <- xfun::with_ext(input, "html")
-  # if (file.exists(htmlfile)) file.remove(htmlfile)
+# Render an .Rmd to .docx under 'examples/<subdir>/doc/'.
+convert_rmd_docx <- function(input) {
+  if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
 
-  # Ensure per-folder 'doc/' destination directory exists for the .docx
-  docx_dir <- dirname(docxfile) # 'examples/<folder>/doc'
+  if (tolower(xfun::file_ext(input)) != "rmd") {
+    return("Error: Invalid file format")
+  }
+
+  paths <- build_output_paths(input)
+  docxfile <- paths$docxfile
+  docx_dir <- dirname(docxfile)
   if (!dir.exists(docx_dir)) {
     dir.create(docx_dir, recursive = TRUE, showWarnings = FALSE)
   }
 
-  # Additionally render Word document into the 'word/' destination
-  # Use rmarkdown::render to produce .docx under word/
   rmarkdown::render(
     input,
     output_format = "word_document",
     output_file   = basename(docxfile),
     output_dir    = dirname(docxfile)
   )
+}
 
-  # Ensure per-folder 'r/' destination directory exists and extract pure R code
-  r_dir <- dirname(rfile) # 'examples/<folder>/r'
+# Extract a pure .R script under 'examples/<subdir>/r/'.
+convert_rmd_r <- function(input) {
+  if (!require("knitr")) return("Missing necessary package: 'knitr'")
+
+  if (tolower(xfun::file_ext(input)) != "rmd") {
+    return("Error: Invalid file format")
+  }
+
+  paths <- build_output_paths(input)
+  rfile <- paths$rfile
+  if (basename(rfile) == "README.R") {
+    return(invisible(NULL))
+  }
+  r_dir <- dirname(rfile)
   if (!dir.exists(r_dir)) {
     dir.create(r_dir, recursive = TRUE, showWarnings = FALSE)
   }
@@ -159,12 +189,23 @@ if (FALSE) {
   }
 }
 
-# Knit all .Rmd under 'Rmd/' to Markdown (enabled)
+# Convert all .Rmd under 'Rmd/' in phases:
+# 1. generate all Markdown files
+# 2. generate all Word files
+# 3. generate all extracted R scripts
 texs <- list.files(path = dir, pattern = ".Rmd$", full.names = TRUE, recursive = TRUE)
 if (TRUE) {
   for (tex in texs) {
     print(tex)
     convert_rmd_md(tex)
+  }
+  for (tex in texs) {
+    print(tex)
+    convert_rmd_docx(tex)
+  }
+  for (tex in texs) {
+    print(tex)
+    convert_rmd_r(tex)
   }
 }
 

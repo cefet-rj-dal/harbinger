@@ -50,26 +50,12 @@ dataset_summary <- function(x) {
 # Load a benchmark object and expand it to the full dataset
 data(A1Benchmark)
 A1Benchmark <- loadfulldata(A1Benchmark)
-```
-
-```
-## Warning in utils::download.file(url, tmp, mode = "wb", quiet = TRUE): URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/united/refs/heads/main/harbinger/A1Benchmark.RData':
-## status was 'Could not connect to server'
-```
-
-```
-## Error in `utils::download.file()`:
-## ! cannot open URL 'https://raw.githubusercontent.com/cefet-rj-dal/united/refs/heads/main/harbinger/A1Benchmark.RData'
-```
-
-``` r
 info <- dataset_summary(A1Benchmark)
 info$n_series
 ```
 
 ```
-## [1] 1
+## [1] 67
 ```
 
 ``` r
