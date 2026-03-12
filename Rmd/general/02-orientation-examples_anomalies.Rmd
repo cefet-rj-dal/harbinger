@@ -20,10 +20,24 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ## Walkthrough
 
+
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
 ```{r}
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
+
+
+
+
 
 ```{r}
 # Load required packages
@@ -31,11 +45,21 @@ library(daltoolbox)
 library(harbinger) 
 ```
 
+
+
+
+
+### Configure the Method
+
+The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+
 ```{r}
 # Load example anomaly datasets and create a base object
 data(examples_anomalies)
 model <- harbinger()
 ```
+
+
 
 ```{r}
 # Simple anomalies: isolated spikes
@@ -46,6 +70,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+
+
 ```{r}
 # Contextual anomalies: depend on local context
 dataset <- examples_anomalies$contextual
@@ -54,6 +80,8 @@ detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
+
+
 
 ```{r}
 # Trend with anomalies
@@ -64,6 +92,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+
+
 ```{r}
 # Multiple anomalies
 dataset <- examples_anomalies$multiple
@@ -72,6 +102,8 @@ detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
+
+
 
 ```{r}
 # Anomalous repeating sequences
@@ -82,6 +114,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+
+
 ```{r}
 # Train/Test split
 dataset <- examples_anomalies$tt
@@ -90,6 +124,8 @@ detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
+
+
 
 ```{r}
 # Train/Test warped
@@ -100,6 +136,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+
+
 ```{r}
 # Increasing amplitude over time
 dataset <- examples_anomalies$increasing_amplitude
@@ -109,6 +147,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
 
+
+
 ```{r}
 # Decreasing amplitude over time
 dataset <- examples_anomalies$decreasing_amplitude
@@ -117,6 +157,8 @@ detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 
 ```
+
+
 
 ```{r}
 # Volatile variance

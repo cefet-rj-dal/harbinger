@@ -21,6 +21,16 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ## Walkthrough
 
+
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+
 ```{r}
 library(harbinger)
 
@@ -64,11 +74,21 @@ plot_dataset_preview <- function(info) {
 
 ### oil_3w_Type_1
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_1)
 oil_3w_Type_1 <- loadfulldata(oil_3w_Type_1)
 oil_type_1_info <- show_dataset(oil_3w_Type_1, "oil_3w_Type_1")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_1_info)
@@ -76,11 +96,21 @@ plot_dataset_preview(oil_type_1_info)
 
 ### oil_3w_Type_2
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_2)
 oil_3w_Type_2 <- loadfulldata(oil_3w_Type_2)
 oil_type_2_info <- show_dataset(oil_3w_Type_2, "oil_3w_Type_2")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_2_info)
@@ -88,11 +118,21 @@ plot_dataset_preview(oil_type_2_info)
 
 ### oil_3w_Type_4
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_4)
 oil_3w_Type_4 <- loadfulldata(oil_3w_Type_4)
 oil_type_4_info <- show_dataset(oil_3w_Type_4, "oil_3w_Type_4")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_4_info)
@@ -100,11 +140,21 @@ plot_dataset_preview(oil_type_4_info)
 
 ### oil_3w_Type_5
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_5)
 oil_3w_Type_5 <- loadfulldata(oil_3w_Type_5)
 oil_type_5_info <- show_dataset(oil_3w_Type_5, "oil_3w_Type_5")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_5_info)
@@ -112,11 +162,21 @@ plot_dataset_preview(oil_type_5_info)
 
 ### oil_3w_Type_6
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_6)
 oil_3w_Type_6 <- loadfulldata(oil_3w_Type_6)
 oil_type_6_info <- show_dataset(oil_3w_Type_6, "oil_3w_Type_6")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_6_info)
@@ -124,11 +184,21 @@ plot_dataset_preview(oil_type_6_info)
 
 ### oil_3w_Type_7
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_7)
 oil_3w_Type_7 <- loadfulldata(oil_3w_Type_7)
 oil_type_7_info <- show_dataset(oil_3w_Type_7, "oil_3w_Type_7")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_7_info)
@@ -136,11 +206,21 @@ plot_dataset_preview(oil_type_7_info)
 
 ### oil_3w_Type_8
 
+
+
+
+
+In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+
 ```{r}
 data(oil_3w_Type_8)
 oil_3w_Type_8 <- loadfulldata(oil_3w_Type_8)
 oil_type_8_info <- show_dataset(oil_3w_Type_8, "oil_3w_Type_8")
 ```
+
+
+
+
 
 ```{r}
 plot_dataset_preview(oil_type_8_info)

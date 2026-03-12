@@ -22,9 +22,29 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ## Walkthrough
 
+
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
 ```{r}
 library(harbinger)
 ```
+
+
+
+
+
+
+
+### Define the Support Structures
+
+Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
 
 ```{r}
 # Helper to summarize the dataset structure in a consistent way
@@ -49,6 +69,16 @@ dataset_summary <- function(x) {
 }
 ```
 
+
+
+
+
+
+
+### Prepare the Example
+
+We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+
 ```{r}
 # Load a benchmark object and expand it to the full dataset
 data(A1Benchmark)
@@ -58,6 +88,16 @@ info$n_series
 info$dataset_type
 info$signal_cols
 ```
+
+
+
+
+
+
+
+### Interpret the Result Visually
+
+The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
 
 ```{r}
 # Plot the first available signal with its labels
