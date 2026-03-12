@@ -40,9 +40,9 @@ for in the result.
   extension-oriented notebooks showing how to plug custom detectors,
   transformations, and evaluation rules into Harbinger
 - [Dataset
-  examples](https://cefet-rj-dal.github.io/examples/data/README.md): how
-  to load the full benchmark datasets, inspect their structure, and
-  visualize the first available signal
+  examples](https://cefet-rj-dal.github.io/examples/data/README.md):
+  grouped dataset tours starting with general benchmark archives and
+  then moving to domain-specific collections
 - [Transformation
   examples](https://cefet-rj-dal.github.io/examples/transformations/README.md):
   smoothing and symbolic representations such as
@@ -52,16 +52,16 @@ for in the result.
   [`trans_xsax()`](https://cefet-rj-dal.github.io/harbinger/reference/trans_xsax.md)
 - [Anomaly
   examples](https://cefet-rj-dal.github.io/examples/anomalies/README.md):
-  detectors for isolated, contextual, collective, and multivariate
-  anomalies
+  grouped paths from baseline detectors to residual models, machine
+  learning, ensembles, autoencoders, and multivariate workflows
 - [Change-point
   examples](https://cefet-rj-dal.github.io/examples/change_point/README.md):
-  examples focused on regime shifts, structural breaks, and volatility
-  changes
+  examples ordered from single-break intuition to multiple-break,
+  structural-break, and volatility-oriented methods
 - [Motif
   examples](https://cefet-rj-dal.github.io/examples/motifs/README.md):
-  repeated-pattern discovery and discord analysis with symbolic and
-  Matrix Profile approaches
+  repeated-pattern discovery and discord analysis grouped into Matrix
+  Profile, symbolic, and discord-oriented studies
 
 ## A first example
 
@@ -71,28 +71,27 @@ pipeline on a bundled dataset. It is intentionally short so that new
 users can see the core workflow before exploring the more detailed
 notebooks in `/examples/`.
 
-``` r
-library(harbinger)
-library(dplyr)
+\`\`\`{r example} library(harbinger)
 
 # Load an example dataset with labeled anomalies
+
 data(examples_anomalies)
 
 # Create the default detector and run it on the series
-model <- harbinger()
-detection <- detect(model, examples_anomalies$simple$serie)
+
+model \<- harbinger() detection \<- detect(model,
+examples_anomalies$simple$serie)
 
 # Inspect only the detected events
-print(detection |> dplyr::filter(event == TRUE))
-```
 
-## Installation
+library(dplyr) print(detection \|\> dplyr::filter(event == TRUE))
 
-The latest release of Harbinger is available on CRAN:
+    ## Installation
 
-``` r
-install.packages("harbinger")
-```
+    The latest release of Harbinger is available on CRAN:
+
+    ```r
+    install.packages("harbinger")
 
 To install the development version from GitHub:
 
@@ -106,7 +105,8 @@ devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "neve
 If you are new to the package, this order works well:
 
 1.  start with `/examples/tutorial/README.md` for the guided path
-2.  continue with `/examples/general/examples_harbinger.md` if you want
+2.  continue with
+    `/examples/general/01-orientation-examples_harbinger.md` if you want
     a compact package tour
 3.  visit `/examples/data/README.md` to understand the benchmark
     datasets and how to load their full versions
