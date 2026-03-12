@@ -14,6 +14,12 @@ Harbinger exposes benchmark datasets through packaged objects and `loadfulldata(
 - identify whether the collection is univariate or multivariate
 - plot the first signal using `har_plot()`
 
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
 ## Walkthrough
 
 ```{r}
@@ -66,3 +72,4 @@ har_plot(
 
 - Yahoo Webscope S5 benchmark documentation and downstream studies on labeled anomaly detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
+

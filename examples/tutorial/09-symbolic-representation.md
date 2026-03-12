@@ -13,6 +13,12 @@ SAX and XSAX discretize the series into symbolic codes. SAX uses a compact alpha
 - transform the same signal with XSAX
 - compare the first symbolic values returned by each method
 
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
 ## Walkthrough
 
 
@@ -96,3 +102,4 @@ head(
 ## References
 
 - Lin, J., Keogh, E., Lonardi, S., Chiu, B. (2007). A symbolic representation of time series, with implications for streaming algorithms. Data Mining and Knowledge Discovery, 15, 107-144.
+

@@ -5,20 +5,22 @@ output: github_document
 
 # Motifs — Examples Index
 
-This folder contains motif and discord discovery notebooks whose generated Markdown output should live in `/examples/motifs/`. The examples are useful for readers who want to see how Harbinger represents repeated subsequences, rare subsequences, and symbolic approximations through a common workflow.
+This folder contains motif and discord discovery notebooks whose generated Markdown output should live in `/examples/motifs/`. The examples are grouped by conceptual family so the reader can first understand Matrix Profile workflows, then symbolic ones, and finally discord-oriented analyses.
 
-The most approachable route is to start with `hmo_mp_stamp` for Matrix Profile intuition, then compare `hmo_mp_stomp` and `hmo_mp_scrimp`, and finally explore the symbolic methods `hmo_sax`, `hmo_xsax`, and `hdis_sax`.
+## 1. Matrix Profile motifs
 
-This directory contains example R Markdown notebooks for motif and discord discovery in Harbinger.
+- [01-matrix-profile-hmo_mp_stamp.md](/examples/motifs/01-matrix-profile-hmo_mp_stamp.md) — STAMP motif discovery.
+- [02-matrix-profile-hmo_mp_stomp.md](/examples/motifs/02-matrix-profile-hmo_mp_stomp.md) — STOMP motif discovery.
+- [03-matrix-profile-hmo_mp_scrimp.md](/examples/motifs/03-matrix-profile-hmo_mp_scrimp.md) — SCRIMP motif discovery.
+- [04-matrix-profile-hmo_mp_pmp.md](/examples/motifs/04-matrix-profile-hmo_mp_pmp.md) — PMP motif discovery.
+- [05-matrix-profile-hmo_mp_valmod.md](/examples/motifs/05-matrix-profile-hmo_mp_valmod.md) — VALMOD motif discovery.
 
-## Examples
+## 2. Symbolic motifs
 
-- [hdis_mp_stamp.md](/examples/motifs/hdis_mp_stamp.md) — STOMP motif discovery: Matrix Profile-based discord discovery identifies rare subsequences whose nearest-neighbor distance is large.
-- [hdis_sax.md](/examples/motifs/hdis_sax.md) — SAX motif discovery: SAX discretizes z-normalized subsequences into symbolic words; discords emerge as rare words or windows with large symbolic distance to their neighbors.
-- [hmo_mp_pmp.md](/examples/motifs/hmo_mp_pmp.md) — PMP motif discovery: PMP (Pan-Matrix Profile) unifies matrix profiles across multiple dimensions or parameters to expose motifs that persist under variations.
-- [hmo_mp_scrimp.md](/examples/motifs/hmo_mp_scrimp.md) — SCRIMP motif discovery: Matrix Profile methods compute nearest-neighbor distances for subsequences.
-- [hmo_mp_stamp.md](/examples/motifs/hmo_mp_stamp.md) — STAMP motif discovery: Matrix Profile methods compute, for each subsequence, the distance to its nearest neighbor subsequence, enabling efficient discovery of repeated patterns (motifs).
-- [hmo_mp_stomp.md](/examples/motifs/hmo_mp_stomp.md) — STOMP motif discovery: Matrix Profile methods compute, for each subsequence, the distance to its nearest neighbor subsequence.
-- [hmo_mp_valmod.md](/examples/motifs/hmo_mp_valmod.md) — VALMOD motif discovery: VALMOD maintains the Matrix Profile under streaming updates, enabling motif discovery in evolving series.
-- [hmo_sax.md](/examples/motifs/hmo_sax.md) — SAX motif discovery: SAX (Symbolic Aggregate approXimation) discretizes z-normalized subsequences into symbolic words using breakpoints derived from a Gaussian distribution.
-- [hmo_xsax.md](/examples/motifs/hmo_xsax.md) — XSAX motif discovery: XSAX extends SAX to a larger alphanumeric alphabet, allowing finer symbolic resolution.
+- [06-symbolic-hmo_sax.md](/examples/motifs/06-symbolic-hmo_sax.md) — SAX motif discovery.
+- [07-symbolic-hmo_xsax.md](/examples/motifs/07-symbolic-hmo_xsax.md) — XSAX motif discovery.
+
+## 3. Discord-oriented analyses
+
+- [08-discord-hdis_mp_stamp.md](/examples/motifs/08-discord-hdis_mp_stamp.md) — Matrix Profile-based discord discovery.
+- [09-discord-hdis_sax.md](/examples/motifs/09-discord-hdis_sax.md) — SAX-based discord discovery.

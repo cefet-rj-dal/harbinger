@@ -5,52 +5,71 @@ output: github_document
 
 # Anomalies — Examples Index
 
-This folder concentrates the anomaly-detection tutorials that will be published under `/examples/anomalies/`. The collection mixes simple baselines, clustering-based detectors, model-deviation methods, ensembles, autoencoders, and multivariate examples so that readers can compare very different strategies on the same package interface.
+This folder concentrates the anomaly-detection tutorials that will be published under `/examples/anomalies/`. The collection now follows a learning path: first the reader sees simple or interpretable baselines, then residual-model detectors, then supervised and clustering approaches, and only afterwards the ensemble, autoencoder, and multivariate notebooks.
 
-If the reader is new to Harbinger, a good path is: start with one regression-based detector such as `hanr_arima`, compare it with one clustering example, and only then move to the neural autoencoders. That progression makes the plots and thresholds easier to interpret.
+If the reader is new to Harbinger, follow the groups in order. That progression helps separate the conceptual goal of each family before comparing their plots and thresholds.
 
-This directory contains example R Markdown notebooks for anomaly detection in Harbinger. Each link opens an `.md` with a short, focused tutorial.
+## 1. Baseline intuition
 
-## Examples
+- [01-baseline-hanr_histogram.md](/examples/anomalies/01-baseline-hanr_histogram.md) — Histogram-based anomaly detection: A didactic baseline that flags observations falling into rare histogram bins or outside the observed density range.
 
-- [han_autoenc_adv_ed.md](/examples/anomalies/han_autoenc_adv_ed.md) — Adversarial Autoencoder (encode-decode): An adversarial autoencoder (AAE) augments a standard encoder-decoder with an adversarial objective on the latent code.
-- [han_autoenc_conv_ed.md](/examples/anomalies/han_autoenc_conv_ed.md) — Convolutional autoencoder (encode-decode): A convolutional autoencoder reconstructs windows via Conv1D layers; high reconstruction error indicates anomalies.
-- [han_autoenc_denoise_ed.md](/examples/anomalies/han_autoenc_denoise_ed.md) — Denoise Autoencoder (encode-decode): A denoising autoencoder reconstructs clean inputs from noisy windows, improving robustness.
-- [han_autoenc_ed.md](/examples/anomalies/han_autoenc_ed.md) — Autoencoder (encode-decode): An autoencoder reconstructs sliding windows; large reconstruction errors indicate anomalies.
-- [han_autoenc_lstm_ed.md](/examples/anomalies/han_autoenc_lstm_ed.md) — LSTM autoencoder (encode-decode): An LSTM autoencoder learns temporal dependencies by encoding and decoding sequences; large reconstruction error flags anomalies.
-- [han_autoenc_stacked_ed.md](/examples/anomalies/han_autoenc_stacked_ed.md) — Stacked autoencoder (encode-decode): A stacked autoencoder deepens encoder/decoder layers to capture richer nonlinear structure; large reconstruction error flags anomalies.
-- [han_autoenc_variational_ed.md](/examples/anomalies/han_autoenc_variational_ed.md) — variational autoencoder (VAE) (encode-decode): A variational autoencoder (VAE) learns a probabilistic latent space and reconstructs windows; high reconstruction error (and uncertainty) signals anomalies.
-- [hanc_ml_dtree.md](/examples/anomalies/hanc_ml_dtree.md) — Decision tree classification anomaly detector: Supervised anomaly detection using a classifier trained on labeled events; predictions above a probability threshold are flagged.
-- [hanc_ml_knn.md](/examples/anomalies/hanc_ml_knn.md) — k-NN classification anomaly detector: Supervised anomaly detection using k-NN classification on labeled data; positive-class probabilities above a threshold indicate events.
-- [hanc_ml_majority.md](/examples/anomalies/hanc_ml_majority.md) — Majority-class classification anomaly detector: Supervised anomaly detection using a majority-class baseline to illustrate the `hanc_ml` interface.
-- [hanc_ml_mlp.md](/examples/anomalies/hanc_ml_mlp.md) — MLP classification anomaly detector: Supervised anomaly detection with a neural network classifier (MLP) trained on labeled events; predicted probabilities above a threshold are flagged.
-- [hanc_ml_nb.md](/examples/anomalies/hanc_ml_nb.md) — Naive Bayes classification anomaly detector: Supervised anomaly detection using Naive Bayes classification on labeled sequences; positive-class probabilities above the threshold indicate events.
-- [hanc_ml_rf.md](/examples/anomalies/hanc_ml_rf.md) — Random Forest classification anomaly detection: Supervised anomaly detection with a Random Forest classifier trained on labeled events; predicted probabilities above a threshold are flagged.
-- [hanc_ml_svm.md](/examples/anomalies/hanc_ml_svm.md) — SVM classification anomaly detector: Supervised anomaly detection with an SVM classifier trained on labeled events; positive-class probabilities above a threshold correspond to detected events.
-- [hanct_dtw_anomaly.md](/examples/anomalies/hanct_dtw_anomaly.md) — DTW-based clustering anomaly detector: This approach applies Dynamic Time Warping (DTW) within a clustering framework.
-- [hanct_dtw_discord.md](/examples/anomalies/hanct_dtw_discord.md) — DTW-based discord anomaly detection: Dynamic Time Warping (DTW) clustering over subsequences; windows with large DTW distance to their nearest centroid are flagged as discords.
-- [hanct_kmeans_anomaly.md](/examples/anomalies/hanct_kmeans_anomaly.md) — k-means clustering anomaly detection: This approach applies k-means clustering to either points (`seq = 1`) or sliding-window subsequences (`seq > 1`).
-- [hanct_kmeans_discord.md](/examples/anomalies/hanct_kmeans_discord.md) — K-means clustering discord anomaly detection: K-means clustering over sliding-window subsequences; windows far from their nearest centroid are flagged as discords.
-- [hanr_arima.md](/examples/anomalies/hanr_arima.md) — ARIMA regression anomaly detection: This detector fits an ARIMA(p, d, q) model to the series and uses large standardized residuals as anomaly evidence.
-- [hanr_emd.md](/examples/anomalies/hanr_emd.md) — EMD regression anomaly detection: This detector uses Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions (IMFs) and isolates high-frequency components that capture abrupt deviations.
-- [hanr_ensemble_fuzzy.md](/examples/anomalies/hanr_ensemble_fuzzy.md) — Ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity.
-- [hanr_ensemble.md](/examples/anomalies/hanr_ensemble.md) — Ensemble anomaly detection: Majority-vote ensemble across multiple detectors, optionally with temporal fuzzification to combine nearby detections into a single event.
-- [hanr_fbiad.md](/examples/anomalies/hanr_fbiad.md) — FBIAD regression anomaly detection: Forward and Backward Inertial Anomaly Detector compares each point against forward and backward inertia, flagging observations that break both temporal tendencies.
-- [hanr_fft_amoc_cusum.md](/examples/anomalies/hanr_fft_amoc_cusum.md) — FFT AMOC CUSUM regression anomaly detection: This hybrid detector computes the FFT and transforms the power spectrum with CUSUM to emphasize gradual spectral shifts.
-- [hanr_fft_amoc.md](/examples/anomalies/hanr_fft_amoc.md) — FFT AMOC regression anomaly detection: FFT-based high-pass filtering with an automatic cutoff selected via AMOC on the power spectrum.
-- [hanr_fft_binseg_cusum.md](/examples/anomalies/hanr_fft_binseg_cusum.md) — FFT Binseg CUSUM regression anomaly detection: FFT-based filtering with a cutoff determined by applying CUSUM to the spectrum and locating a changepoint via Binary Segmentation.
-- [hanr_fft_binseg.md](/examples/anomalies/hanr_fft_binseg.md) — FFT Binseg regression anomaly detection: FFT-based high-pass filtering with a cutoff selected via Binary Segmentation on the power spectrum.
-- [hanr_fft_sma.md](/examples/anomalies/hanr_fft_sma.md) — FFT SMA regression anomaly detection: Adaptive FFT + moving average: estimates a dominant frequency from the spectrum to set the smoothing window, computes residuals (original minus smoothed), and flags large residuals as anomalies with `harutils()` thresholding.
-- [hanr_fft.md](/examples/anomalies/hanr_fft.md) — FFT regression anomaly detector: This detector applies high-pass filtering via the discrete Fourier transform.
-- [hanr_garch.md](/examples/anomalies/hanr_garch.md) — GARCH-based regression anomaly detection: This detector estimates a GARCH model to capture conditional heteroskedasticity and flags observations with large standardized residuals as anomalies.
-- [hanr_histogram.md](/examples/anomalies/hanr_histogram.md) — Histogram-based anomaly detection: A didactic baseline that flags observations falling into rare histogram bins or outside the observed density range.
-- [hanr_ml_conv1d.md](/examples/anomalies/hanr_ml_conv1d.md) — Conv1d regression anomaly detection: Model-deviation detection using ML regression: a Conv1D forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_ml_elm.md](/examples/anomalies/hanr_ml_elm.md) — ELM regression anomaly detection: Model-deviation detection using ML regression: an ELM forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_ml_lstm.md](/examples/anomalies/hanr_ml_lstm.md) — LSTM regression anomaly detection: Model-deviation detection using ML regression: an LSTM forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_ml_mlp.md](/examples/anomalies/hanr_ml_mlp.md) — MLP regression anomaly detection: Model-deviation detection using ML regression: an MLP forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_ml_rf.md](/examples/anomalies/hanr_ml_rf.md) — Random Forest regression anomaly detection: Model-deviation detection using ML regression: a Random Forest forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_ml_svm.md](/examples/anomalies/hanr_ml_svm.md) — SVM regression anomaly detection: Model-deviation detection using ML regression: an SVM forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies.
-- [hanr_remd.md](/examples/anomalies/hanr_remd.md) — REMD regression anomaly detection: REMD combines Empirical Mode Decomposition with ARIMA modeling: IMFs capture nonstationary structure and ARIMA models residual dynamics.
-- [hanr_rtad.md](/examples/anomalies/hanr_rtad.md) — RTAD regression anomaly detector: RTAD adapts to local dynamics using EMD-derived components and robust dispersion within sliding windows.
-- [hanr_wavelet.md](/examples/anomalies/hanr_wavelet.md) — Wavelet regression anomaly detection: Multi-resolution analysis via MODWT wavelet decomposition; detail coefficients are aggregated to form a magnitude signal.
-- [hmu_pca.md](/examples/anomalies/hmu_pca.md) — PCA-based regression anomaly detection: Projects multivariate observations onto principal components and reconstructs data; large reconstruction errors indicate anomalies.
+## 2. Residual and signal-model detectors
+
+- [02-regression-hanr_arima.md](/examples/anomalies/02-regression-hanr_arima.md) — ARIMA regression anomaly detection.
+- [03-regression-hanr_fbiad.md](/examples/anomalies/03-regression-hanr_fbiad.md) — FBIAD regression anomaly detection.
+- [04-regression-hanr_emd.md](/examples/anomalies/04-regression-hanr_emd.md) — EMD regression anomaly detection.
+- [05-regression-hanr_fft.md](/examples/anomalies/05-regression-hanr_fft.md) — FFT regression anomaly detector.
+- [06-regression-hanr_fft_amoc.md](/examples/anomalies/06-regression-hanr_fft_amoc.md) — FFT AMOC regression anomaly detection.
+- [07-regression-hanr_fft_amoc_cusum.md](/examples/anomalies/07-regression-hanr_fft_amoc_cusum.md) — FFT AMOC CUSUM regression anomaly detection.
+- [08-regression-hanr_fft_binseg.md](/examples/anomalies/08-regression-hanr_fft_binseg.md) — FFT Binseg regression anomaly detection.
+- [09-regression-hanr_fft_binseg_cusum.md](/examples/anomalies/09-regression-hanr_fft_binseg_cusum.md) — FFT Binseg CUSUM regression anomaly detection.
+- [10-regression-hanr_fft_sma.md](/examples/anomalies/10-regression-hanr_fft_sma.md) — FFT SMA regression anomaly detection.
+- [11-regression-hanr_garch.md](/examples/anomalies/11-regression-hanr_garch.md) — GARCH-based regression anomaly detection.
+- [12-regression-hanr_remd.md](/examples/anomalies/12-regression-hanr_remd.md) — REMD regression anomaly detection.
+- [13-regression-hanr_rtad.md](/examples/anomalies/13-regression-hanr_rtad.md) — RTAD regression anomaly detector.
+- [14-regression-hanr_wavelet.md](/examples/anomalies/14-regression-hanr_wavelet.md) — Wavelet regression anomaly detection.
+
+## 3. Supervised regression models
+
+- [15-regression-ml-hanr_ml_elm.md](/examples/anomalies/15-regression-ml-hanr_ml_elm.md) — ELM regression anomaly detection.
+- [16-regression-ml-hanr_ml_mlp.md](/examples/anomalies/16-regression-ml-hanr_ml_mlp.md) — MLP regression anomaly detection.
+- [17-regression-ml-hanr_ml_rf.md](/examples/anomalies/17-regression-ml-hanr_ml_rf.md) — Random Forest regression anomaly detection.
+- [18-regression-ml-hanr_ml_svm.md](/examples/anomalies/18-regression-ml-hanr_ml_svm.md) — SVM regression anomaly detection.
+- [19-regression-ml-hanr_ml_lstm.md](/examples/anomalies/19-regression-ml-hanr_ml_lstm.md) — LSTM regression anomaly detection.
+- [20-regression-ml-hanr_ml_conv1d.md](/examples/anomalies/20-regression-ml-hanr_ml_conv1d.md) — Conv1D regression anomaly detection.
+
+## 4. Supervised classification detectors
+
+- [21-classification-hanc_ml_majority.md](/examples/anomalies/21-classification-hanc_ml_majority.md) — Majority-class classification anomaly detector.
+- [22-classification-hanc_ml_dtree.md](/examples/anomalies/22-classification-hanc_ml_dtree.md) — Decision tree classification anomaly detector.
+- [23-classification-hanc_ml_knn.md](/examples/anomalies/23-classification-hanc_ml_knn.md) — k-NN classification anomaly detector.
+- [24-classification-hanc_ml_nb.md](/examples/anomalies/24-classification-hanc_ml_nb.md) — Naive Bayes classification anomaly detector.
+- [25-classification-hanc_ml_rf.md](/examples/anomalies/25-classification-hanc_ml_rf.md) — Random Forest classification anomaly detector.
+- [26-classification-hanc_ml_svm.md](/examples/anomalies/26-classification-hanc_ml_svm.md) — SVM classification anomaly detector.
+- [27-classification-hanc_ml_mlp.md](/examples/anomalies/27-classification-hanc_ml_mlp.md) — MLP classification anomaly detector.
+
+## 5. Clustering and discord-oriented detectors
+
+- [28-clustering-hanct_kmeans_anomaly.md](/examples/anomalies/28-clustering-hanct_kmeans_anomaly.md) — k-means clustering anomaly detection.
+- [29-clustering-hanct_kmeans_discord.md](/examples/anomalies/29-clustering-hanct_kmeans_discord.md) — k-means clustering discord anomaly detection.
+- [30-clustering-hanct_dtw_anomaly.md](/examples/anomalies/30-clustering-hanct_dtw_anomaly.md) — DTW-based clustering anomaly detector.
+- [31-clustering-hanct_dtw_discord.md](/examples/anomalies/31-clustering-hanct_dtw_discord.md) — DTW-based discord anomaly detection.
+
+## 6. Ensemble strategies
+
+- [32-ensemble-hanr_ensemble.md](/examples/anomalies/32-ensemble-hanr_ensemble.md) — Ensemble anomaly detection.
+- [33-ensemble-hanr_ensemble_fuzzy.md](/examples/anomalies/33-ensemble-hanr_ensemble_fuzzy.md) — Ensemble anomaly detection with temporal fuzzification.
+
+## 7. Autoencoders
+
+- [34-autoencoder-han_autoenc_ed.md](/examples/anomalies/34-autoencoder-han_autoenc_ed.md) — Autoencoder (encode-decode).
+- [35-autoencoder-han_autoenc_denoise_ed.md](/examples/anomalies/35-autoencoder-han_autoenc_denoise_ed.md) — Denoising autoencoder.
+- [36-autoencoder-han_autoenc_conv_ed.md](/examples/anomalies/36-autoencoder-han_autoenc_conv_ed.md) — Convolutional autoencoder.
+- [37-autoencoder-han_autoenc_lstm_ed.md](/examples/anomalies/37-autoencoder-han_autoenc_lstm_ed.md) — LSTM autoencoder.
+- [38-autoencoder-han_autoenc_stacked_ed.md](/examples/anomalies/38-autoencoder-han_autoenc_stacked_ed.md) — Stacked autoencoder.
+- [39-autoencoder-han_autoenc_variational_ed.md](/examples/anomalies/39-autoencoder-han_autoenc_variational_ed.md) — Variational autoencoder (VAE).
+- [40-autoencoder-han_autoenc_adv_ed.md](/examples/anomalies/40-autoencoder-han_autoenc_adv_ed.md) — Adversarial autoencoder (AAE).
+
+## 8. Multivariate analysis
+
+- [41-multivariate-hmu_pca.md](/examples/anomalies/41-multivariate-hmu_pca.md) — PCA-based regression anomaly detection for multivariate series.

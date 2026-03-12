@@ -1,0 +1,90 @@
+## Objective
+
+The goal of this notebook is to present a complete Harbinger workflow: loading an example dataset, configuring the method used in the notebook, running the analysis, and interpreting the resulting outputs and plots.
+
+## Method at a glance
+
+SoftED provides soft evaluation by matching detections to ground truth within tolerance windows and assigning partial credit. This notebook shows how to compute both hard and soft metrics and when soft evaluation is more appropriate (e.g., temporal uncertainty around event onset).
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
+## Walkthrough
+
+```{r}
+# Install Harbinger (if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+# Load example anomaly datasets
+data(examples_anomalies)
+```
+
+```{r}
+# Select a simple anomaly dataset
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+# Plot the raw time series
+har_plot(harbinger(), dataset$serie)
+```
+
+```{r}
+# Configure a simple MLP regressor-based anomaly detector
+model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size = 5, size = 3, decay = 0))
+```
+
+```{r}
+# Fit the detector
+model <- fit(model, dataset$serie)
+```
+
+```{r}
+# Run detection 
+detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Inspect detected anomaly indices
+print(detection |> dplyr::filter(event == TRUE))
+```
+
+```{r}
+# Hard evaluation
+evaluation <- evaluate(model, detection$event, dataset$event, evaluation = har_eval())
+print(evaluation$confMatrix)
+```
+
+```{r}
+# Soft evaluation (SoftED) with tolerance window sw_size = 5
+result <- evaluate(model, detection$event, dataset$event, evaluation = har_eval_soft(sw_size = 5))
+print(result$confMatrix)
+```
+
+```{r}
+# Evaluation can also be performed directly without a model object
+result <- evaluate(har_eval_soft(sw_size = 5), detection$event, dataset$event)
+print(result$confMatrix)
+```
+
+## References
+
+- Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R., Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. (2024). SoftED: Metrics for soft evaluation of time series event detection. Computers and Industrial Engineering. doi:10.1016/j.cie.2024.110728

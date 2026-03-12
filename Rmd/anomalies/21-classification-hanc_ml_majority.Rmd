@@ -1,0 +1,112 @@
+## Objective
+
+This Rmd shows a simple supervised baseline for anomaly classification using `hanc_ml` with a Majority Classifier (`cla_majority`). It predicts the most frequent class in training. Steps: load packages/data, visualize, preprocess (split + normalize), define and fit, detect, evaluate, and plot results.
+
+## Method at a glance
+
+Majority-class classification anomaly detector: Supervised anomaly detection using a majority-class baseline to illustrate the `hanc_ml` interface. Events correspond to predicted positive class above the threshold.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
+## Walkthrough
+
+```{r}
+# Install Harbinger (only once, if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+# Load example datasets bundled with harbinger
+data(examples_anomalies)
+```
+
+```{r}
+# Use the "tt" time series (labeled)
+dataset <- examples_anomalies$tt
+
+head(dataset)
+```
+
+```{r}
+# Plot the time series
+har_plot(harbinger(), dataset$serie)
+```
+
+```{r}
+# Data preprocessing: split and scale
+
+
+train <- dataset[1:80,]
+test <- dataset[-(1:80),]
+
+norm <- minmax()
+norm <- fit(norm, train)
+train_n <- transform(norm, train)
+summary(train_n)
+```
+
+```{r}
+# Define Majority Classifier for events (hanc_ml + cla_majority)
+model <- hanc_ml(cla_majority("event", c("FALSE", "TRUE")))
+```
+
+```{r}
+# Fit the model on training data
+model <- fit(model, train_n)
+detection <- detect(model, train_n)
+print(detection |> dplyr::filter(event==TRUE))
+# Evaluate training performance
+evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+print(evaluation$confMatrix)
+```
+
+```{r}
+# Plot training detections
+  har_plot(model, train_n$serie, detection, as.logical(train_n$event))
+```
+
+```{r}
+# Prepare test data (apply same scaler)
+  test_n <- transform(norm, test)
+```
+
+```{r}
+# Detect and evaluate on test data
+  detection <- detect(model, test_n)
+
+  print(detection |> dplyr::filter(event==TRUE))
+
+  evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+  print(evaluation$confMatrix)
+```
+
+```{r}
+# Plot test detections
+  har_plot(model, test_n$serie, detection, as.logical(test_n$event))
+```
+
+```{r}
+# Plot residual scores and threshold
+har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
+```
+
+## References
+
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+- Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.

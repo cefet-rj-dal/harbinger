@@ -5,21 +5,29 @@ output: github_document
 
 # Change Points — Examples Index
 
-This folder gathers change-point tutorials that are generated into `/examples/change_point/`. The examples range from classical single-break methods to segmentation approaches and ChangeFinder variants, so the reader can understand both the modeling assumptions and the trade-offs in sensitivity.
+This folder gathers change-point tutorials that are generated into `/examples/change_point/`. The examples are now ordered by learning objective: single-break intuition, multiple-break segmentation, structural-break tests, ChangeFinder variants, and volatility-oriented strategies.
 
-For a didactic progression, begin with `hcp_amoc` and `hcp_binseg`, then move to `hcp_pelt`, and finally compare the ChangeFinder-based notebooks when you want a more model-driven view of structural change.
+## 1. Single-break intuition
 
-This directory contains example R Markdown notebooks for change-point detection in Harbinger.
+- [01-single-break-hcp_amoc.md](/examples/change_point/01-single-break-hcp_amoc.md) — AMOC: a first notebook for understanding one dominant structural change.
 
-## Examples
+## 2. Multiple-break segmentation
 
-- [hcp_amoc.md](/examples/change_point/hcp_amoc.md) — AMOC: AMOC targets a single most significant change point in a univariate series by optimizing a cost function over all possible change locations.
-- [hcp_binseg.md](/examples/change_point/hcp_binseg.md) — BinSeg: Binary Segmentation recursively partitions the series around the largest detected change until a maximum number of change points or a stopping criterion is met.
-- [hcp_cf_arima.md](/examples/change_point/hcp_cf_arima.md) — ChangeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes.
-- [hcp_cf_ets.md](/examples/change_point/hcp_cf_ets.md) — ChangeFinder with ETS: ChangeFinder with ETS models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes.
-- [hcp_cf_lr.md](/examples/change_point/hcp_cf_lr.md) — ChangeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes.
-- [hcp_chow.md](/examples/change_point/hcp_chow.md) — Chow tests: Chow tests for structural breaks in linear models using F-statistics over candidate breakpoints and returns estimated break locations.
-- [hcp_garch.md](/examples/change_point/hcp_garch.md) — ChangeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts.
-- [hcp_gft.md](/examples/change_point/hcp_gft.md) — GFT: Generalized fluctuation tests assess stability of regression parameters over time using strucchange::breakpoints(), returning estimated break dates under information criteria.
-- [hcp_pelt.md](/examples/change_point/hcp_pelt.md) — PELT: PELT performs optimal partitioning of the time series under a penalized cost function while pruning candidate change locations to achieve near-linear time under suitable penalties.
-- [hcp_scp.md](/examples/change_point/hcp_scp.md) — SCP: Seminal Change Point compares linear regression fits with and without the central observation in sliding windows; large deviations around a center indicate a change location.
+- [02-multiple-breaks-hcp_binseg.md](/examples/change_point/02-multiple-breaks-hcp_binseg.md) — BinSeg: recursive segmentation for multiple breakpoints.
+- [03-multiple-breaks-hcp_pelt.md](/examples/change_point/03-multiple-breaks-hcp_pelt.md) — PELT: optimal partitioning with pruning.
+
+## 3. Structural-break analysis
+
+- [04-structural-break-hcp_chow.md](/examples/change_point/04-structural-break-hcp_chow.md) — Chow tests for regression-structure breaks.
+- [05-structural-break-hcp_gft.md](/examples/change_point/05-structural-break-hcp_gft.md) — Generalized fluctuation tests and breakpoint estimation.
+
+## 4. ChangeFinder family
+
+- [06-changefinder-hcp_cf_lr.md](/examples/change_point/06-changefinder-hcp_cf_lr.md) — ChangeFinder with linear regression.
+- [07-changefinder-hcp_cf_arima.md](/examples/change_point/07-changefinder-hcp_cf_arima.md) — ChangeFinder with ARIMA.
+- [08-changefinder-hcp_cf_ets.md](/examples/change_point/08-changefinder-hcp_cf_ets.md) — ChangeFinder with ETS.
+
+## 5. Volatility and local-window perspectives
+
+- [09-volatility-hcp_garch.md](/examples/change_point/09-volatility-hcp_garch.md) — ChangeFinder with GARCH for volatility shifts.
+- [10-window-hcp_scp.md](/examples/change_point/10-window-hcp_scp.md) — SCP: local-window comparison around candidate changes.

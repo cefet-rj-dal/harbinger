@@ -31,3 +31,4 @@ The sequence mirrors a common analytical workflow:
 - try simple and interpretable detectors first
 - evaluate what the detector found
 - expand to change points, transformations, and symbolic or motif-oriented tasks
+

@@ -1,9 +1,12 @@
+---
+output: github_document
+---
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # <img src='https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png' alt='Logo do pacote Harbinger' align='centre' height='150' width='129'/> Harbinger
 
 <!-- badges: start -->
-
 ![GitHub Stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)
 ![CRAN Downloads](https://cranlogs.r-pkg.org/badges/harbinger)
 <!-- badges: end -->
@@ -25,19 +28,18 @@ The examples are organized so that a new user can understand not only how to run
 - [Tutorials](/examples/tutorial/README.md): a numbered guided path from first steps and data understanding to transformations, detection, evaluation, and motifs
 - [General examples](/examples/general/README.md): short guided tours of the package, utilities, and evaluation workflows
 - [Custom examples](/examples/custom/README.md): extension-oriented notebooks showing how to plug custom detectors, transformations, and evaluation rules into Harbinger
-- [Dataset examples](/examples/data/README.md): how to load the full benchmark datasets, inspect their structure, and visualize the first available signal
+- [Dataset examples](/examples/data/README.md): grouped dataset tours starting with general benchmark archives and then moving to domain-specific collections
 - [Transformation examples](/examples/transformations/README.md): smoothing and symbolic representations such as `mas()`, `trans_sax()`, and `trans_xsax()`
-- [Anomaly examples](/examples/anomalies/README.md): detectors for isolated, contextual, collective, and multivariate anomalies
-- [Change-point examples](/examples/change_point/README.md): examples focused on regime shifts, structural breaks, and volatility changes
-- [Motif examples](/examples/motifs/README.md): repeated-pattern discovery and discord analysis with symbolic and Matrix Profile approaches
+- [Anomaly examples](/examples/anomalies/README.md): grouped paths from baseline detectors to residual models, machine learning, ensembles, autoencoders, and multivariate workflows
+- [Change-point examples](/examples/change_point/README.md): examples ordered from single-break intuition to multiple-break, structural-break, and volatility-oriented methods
+- [Motif examples](/examples/motifs/README.md): repeated-pattern discovery and discord analysis grouped into Matrix Profile, symbolic, and discord-oriented studies
 
 ## A first example
 
 The snippet below uses the default `harbinger()` pipeline on a bundled dataset. It is intentionally short so that new users can see the core workflow before exploring the more detailed notebooks in `/examples/`.
 
-``` r
+```{r example}
 library(harbinger)
-library(dplyr)
 
 # Load an example dataset with labeled anomalies
 data(examples_anomalies)
@@ -47,6 +49,7 @@ model <- harbinger()
 detection <- detect(model, examples_anomalies$simple$serie)
 
 # Inspect only the detected events
+library(dplyr)
 print(detection |> dplyr::filter(event == TRUE))
 ```
 
@@ -54,13 +57,13 @@ print(detection |> dplyr::filter(event == TRUE))
 
 The latest release of Harbinger is available on CRAN:
 
-``` r
+```r
 install.packages("harbinger")
 ```
 
 To install the development version from GitHub:
 
-``` r
+```r
 library(devtools)
 devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
 ```
@@ -70,7 +73,7 @@ devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "neve
 If you are new to the package, this order works well:
 
 1. start with `/examples/tutorial/README.md` for the guided path
-2. continue with `/examples/general/examples_harbinger.md` if you want a compact package tour
+2. continue with `/examples/general/01-orientation-examples_harbinger.md` if you want a compact package tour
 3. visit `/examples/data/README.md` to understand the benchmark datasets and how to load their full versions
 4. visit `/examples/transformations/README.md` to see smoothing and symbolic representations before modeling
 5. move to one family of methods such as anomalies or change points
@@ -82,3 +85,4 @@ If you are new to the package, this order works well:
 If you find a bug or want to suggest an improvement, please open an issue:
 
 <https://github.com/cefet-rj-dal/harbinger/issues>
+

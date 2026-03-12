@@ -1,0 +1,93 @@
+## Objective
+
+DTW-based clustering detects anomalies by measuring distance to cluster centroids over sliding windows (seq=1 flags point anomalies). 
+
+Steps:
+- Load and visualize a simple anomaly dataset
+- Configure and run `hanct_dtw(seq = 1)`
+- Inspect detections, evaluate, and plot residual magnitudes and thresholds
+
+## Method at a glance
+
+DTW-based clustering anomaly detector: This approach applies Dynamic Time Warping (DTW) within a clustering framework. For `seq = 1`, each observation is assigned to the nearest centroid under DTW; observations with large DTW distance from their closest centroid are flagged as point anomalies. For `seq > 1`, sliding-window subsequences are compared and large-distance windows are flagged as discords. The implementation wraps DTW-based clustering from `dtwclust` and uses `harutils()` for summarization and thresholding.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
+## Walkthrough
+
+```{r}
+# Install Harbinger (if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+# Load example anomaly datasets
+data(examples_anomalies)
+```
+
+```{r}
+# Select a simple anomaly dataset
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+# Plot the raw time series
+har_plot(harbinger(), dataset$serie)
+```
+
+```{r}
+# Configure DTW-clustering for point anomalies (seq = 1)
+model <- hanct_dtw(1)
+```
+
+```{r}
+# Fit the detector
+model <- fit(model, dataset$serie)
+```
+
+```{r}
+# Run detection
+detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Show detected anomaly indices
+print(detection |> dplyr::filter(event == TRUE))
+```
+
+```{r}
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
+```
+
+```{r}
+# Plot detections vs. ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+```{r}
+# Plot residual magnitude and decision thresholds
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+## References
+
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3

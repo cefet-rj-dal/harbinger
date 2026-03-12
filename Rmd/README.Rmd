@@ -22,10 +22,10 @@ Use this index as a didactic map of the example collection. Each section below p
 ## Directories
 
 - [tutorial](/examples/tutorial/README.md) - a guided learning path that connects package basics, data understanding, transformations, event detection, evaluation, and motif-oriented tasks
-- [general](/examples/general/README.md) - high-level tours, utility examples, and hard or soft evaluation notebooks
-- [custom](/examples/custom/README.md) - extension-oriented notebooks showing how to implement custom detectors, transformations, and evaluation rules on top of the Harbinger contracts
-- [data](/examples/data/README.md) - dataset-orientation notebooks showing how to load the full benchmark collections with `loadfulldata()`, count the available series, classify them as univariate or multivariate, and inspect the first signal with `har_plot()`
-- [transformations](/examples/transformations/README.md) - smoothing and symbolic transformations such as `mas()`, `trans_sax()`, and `trans_xsax()` that prepare series for downstream analysis
-- [anomalies](/examples/anomalies/README.md) - anomaly detection across multiple families: regression residuals, clustering and discord methods, supervised classifiers, autoencoders, ensembles, and multivariate workflows
-- [change_point](/examples/change_point/README.md) - change-point detection for single breaks, multiple breaks, structural changes, and volatility shifts
-- [motifs](/examples/motifs/README.md) - motif and discord discovery via Matrix Profile and symbolic approaches such as SAX and XSAX
+- [general](/examples/general/README.md) - high-level tours ordered as orientation, utilities, and evaluation notebooks
+- [custom](/examples/custom/README.md) - extension-oriented notebooks grouped by the type of component being implemented
+- [data](/examples/data/README.md) - dataset-orientation notebooks grouped into general benchmark archives and domain-specific collections
+- [transformations](/examples/transformations/README.md) - smoothing and symbolic transformations presented from simpler preprocessing to richer symbolic encodings
+- [anomalies](/examples/anomalies/README.md) - anomaly detection grouped by learning objective: baseline intuition, residual models, supervised classifiers, clustering, ensembles, autoencoders, and multivariate analysis
+- [change_point](/examples/change_point/README.md) - change-point detection ordered from single-break intuition to multiple breaks, structural change, and volatility-focused methods
+- [motifs](/examples/motifs/README.md) - motif and discord discovery grouped into Matrix Profile methods, symbolic methods, and discord-specific analyses

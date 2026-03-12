@@ -12,6 +12,12 @@ Visualization is part of the analysis workflow in Harbinger. A quick plot can re
 - plot a multivariate dataset by selecting one signal column
 - compare how the same plotting interface works in both cases
 
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
 ## Walkthrough
 
 
@@ -59,3 +65,4 @@ har_plot(
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
+

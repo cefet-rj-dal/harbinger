@@ -5,22 +5,16 @@ output: github_document
 
 # Datasets — Examples Index
 
-This folder introduces the datasets distributed through the `united` integration in Harbinger. The examples focus on data orientation rather than detection: how to load the full dataset with `loadfulldata()`, how many series are available, whether the collection is univariate or multivariate, and how to inspect the first signal with `har_plot()`.
+This folder introduces the datasets distributed through the `united` integration in Harbinger. The examples are now grouped so the learner can first explore broad benchmark archives and only then move to domain-specific collections.
 
-These notebooks are especially useful for readers who want to understand the raw material before choosing a detector.
+## 1. Benchmark archives
 
-## Suggested reading order
+- [01-benchmarks-yahoo_benchmarks.md](/examples/data/01-benchmarks-yahoo_benchmarks.md) - Yahoo Webscope S5 benchmark objects A1 to A4.
+- [02-benchmarks-nab.md](/examples/data/02-benchmarks-nab.md) - Numenta Anomaly Benchmark datasets.
+- [03-benchmarks-ucr.md](/examples/data/03-benchmarks-ucr.md) - UCR Anomaly Archive datasets.
 
-1. start with `yahoo_benchmarks.md` for simple labeled univariate benchmarks
-2. move to `nab.md` and `ucr.md` for anomaly archives widely used in the literature
-3. use `mit_bih.md` and `oil_3w.md` when you want biomedical or multivariate industrial signals
-4. read `gecco.md` for the water-quality benchmark
+## 2. Domain-focused collections
 
-## Examples
-
-- [gecco.md](/examples/data/gecco.md) - GECCO water-quality dataset, loaded with `loadfulldata()` and summarized before plotting the first available signal.
-- [mit_bih.md](/examples/data/mit_bih.md) - MIT-BIH Arrhythmia collections, showing how to inspect the ECG leads distributed as separate dataset objects.
-- [nab.md](/examples/data/nab.md) - Numenta Anomaly Benchmark datasets, with one loading-and-inspection example per NAB object.
-- [oil_3w.md](/examples/data/oil_3w.md) - 3W oil-well datasets, emphasizing the multivariate structure and plotting the first sensor column.
-- [ucr.md](/examples/data/ucr.md) - UCR Anomaly Archive datasets, loaded and summarized through the same workflow.
-- [yahoo_benchmarks.md](/examples/data/yahoo_benchmarks.md) - Yahoo Webscope S5 benchmark objects A1 to A4, with full-data loading and quick structural inspection.
+- [04-domain-mit_bih.md](/examples/data/04-domain-mit_bih.md) - MIT-BIH Arrhythmia collections and ECG inspection.
+- [05-domain-oil_3w.md](/examples/data/05-domain-oil_3w.md) - 3W oil-well datasets with multivariate sensors.
+- [06-domain-gecco.md](/examples/data/06-domain-gecco.md) - GECCO water-quality dataset.

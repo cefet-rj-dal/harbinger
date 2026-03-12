@@ -13,6 +13,12 @@ This tutorial shows how `mas()` can be used as a transformation before a modelin
 - compare the original and transformed versions
 - interpret the effect of the smoothing window
 
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
 ## Walkthrough
 
 ```{r}
@@ -48,3 +54,4 @@ har_plot(harbinger(), as.numeric(ma_15), event = dataset$event[15:length(dataset
 ## References
 
 - Shumway, R. H., Stoffer, D. S. Time Series Analysis and Its Applications. Springer.
+

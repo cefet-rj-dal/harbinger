@@ -1,0 +1,93 @@
+## Objective
+
+The FFT-based detector applies a high-pass filter in the frequency domain and flags large deviations between the original and filtered signal. 
+
+Steps:
+- Load and visualize a sample anomaly dataset
+- Configure and run the FFT detector (`hanr_fft`)
+- Inspect detections, evaluate, and plot residuals with thresholds
+
+## Method at a glance
+
+FFT regression anomaly detector: This detector applies high-pass filtering via the discrete Fourier transform. The spectrum is computed with the FFT, a cutoff is selected from the power spectrum to suppress low-frequency components, and the inverse FFT reconstructs a high-pass signal. Residual magnitudes are then summarized and thresholded using `harutils()`.
+
+## What you will do
+
+- understand the purpose of the example and when the technique is useful
+- follow the workflow from data loading to model fitting and detection
+- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+
+## How to read this walkthrough
+
+The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
+
+As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
+
+## Walkthrough
+
+```{r}
+# Install Harbinger (if needed)
+#install.packages("harbinger")
+```
+
+```{r}
+# Load required packages
+library(daltoolbox)
+library(harbinger) 
+```
+
+```{r}
+# Load example anomaly datasets
+data(examples_anomalies)
+```
+
+```{r}
+# Select a simple anomaly dataset
+dataset <- examples_anomalies$simple
+head(dataset)
+```
+
+```{r}
+# Plot the raw time series
+har_plot(harbinger(), dataset$serie)
+```
+
+```{r}
+# Configure the FFT-based detector
+model <- hanr_fft()
+```
+
+```{r}
+# Fit the detector (no training required, tracks parameters)
+model <- fit(model, dataset$serie)
+```
+
+```{r}
+# Run detection to compute residual magnitudes and flags
+detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Show detected anomaly indices
+print(detection |> dplyr::filter(event == TRUE))
+```
+
+```{r}
+# Evaluate detections against labeled events
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
+```
+
+```{r}
+# Plot detections vs. ground truth
+har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+```{r}
+# Plot residual magnitude and decision thresholds
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+## References
+
+- Sobrinho, E. P., Souza, J., Lima, J., Giusti, L., Bezerra, E., Coutinho, R., Baroni, L., Pacitti, E., Porto, F., Belloze, K., Ogasawara, E. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. In: Simpósio Brasileiro de Banco de Dados (SBBD). SBC, 29 Sep. 2025. doi:10.5753/sbbd.2025.247063
