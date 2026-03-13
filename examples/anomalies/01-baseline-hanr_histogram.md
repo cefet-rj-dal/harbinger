@@ -46,6 +46,20 @@ We begin by organizing the environment, loading the packages, and selecting the 
 ``` r
 # Load required packages
 library(daltoolbox)
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
+``` r
 library(harbinger)
 ```
 

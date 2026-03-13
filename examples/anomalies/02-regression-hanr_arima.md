@@ -201,6 +201,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the harbinger package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
 ![plot of chunk unnamed-chunk-12](fig/02-regression-hanr_arima/unnamed-chunk-12-1.png)
 
 ## References

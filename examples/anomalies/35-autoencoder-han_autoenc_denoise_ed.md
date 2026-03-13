@@ -145,10 +145,10 @@ With the environment and the method ready, we execute the central analytical ste
 
 ```
 ##   idx event    type
-## 1  13  TRUE anomaly
-## 2  39  TRUE anomaly
-## 3  64  TRUE anomaly
-## 4  89  TRUE anomaly
+## 1   4  TRUE anomaly
+## 2  29  TRUE anomaly
+## 3  54  TRUE anomaly
+## 4  79  TRUE anomaly
 ```
 
 
