@@ -4,7 +4,7 @@ The goal of this notebook is to present a complete Harbinger workflow: loading a
 
 ## Method at a glance
 
-This notebook provides quick end‑to‑end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather). For each dataset we: fit the default pipeline, run detection, and plot detections over the series. The goal is to illustrate Harbinger’s unified interface for anomalies, change points, and motifs, and how it builds on DAL Toolbox models.
+This notebook provides quick end-to-end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather). For each dataset we: fit the default pipeline, run detection, and plot detections over the series. The goal is to illustrate Harbinger's unified interface for anomalies, change points, and motifs, and how it builds on DAL Toolbox models.
 
 ## What you will do
 
@@ -12,13 +12,6 @@ This notebook provides quick end‑to‑end demonstrations of the default `harbi
 - follow the workflow from data loading to model fitting and detection
 - inspect the evaluation outputs and the diagnostic plots produced by Harbinger
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -28,7 +21,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `harbinger()`. The semantic point is the one stated above: this notebook provides quick end-to-end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather), so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -53,7 +46,7 @@ library(harbinger)
 
 ### Configure the Method
 
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+The choices below turn the central modeling idea into concrete parameters. They matter because this notebook provides quick end-to-end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather), so each argument controls how strongly the method will emphasize that pattern when it later produces workflow outputs.
 
 
 ``` r

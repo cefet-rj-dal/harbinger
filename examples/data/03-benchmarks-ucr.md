@@ -13,13 +13,6 @@ The emphasis is on understanding the data layout before applying an event-detect
 - inspect the first series and confirm the signal column
 - plot a short preview of the first signal and its labels
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -29,7 +22,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -74,12 +67,13 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### ucr_ecg
+### ucr_ecg
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews ucr_ecg with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -109,12 +103,13 @@ plot_dataset_preview(ucr_ecg_info)
 ![plot of chunk unnamed-chunk-3](fig/03-benchmarks-ucr/unnamed-chunk-3-1.png)
 
 ### ucr_nasa
+### ucr_nasa
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews ucr_nasa with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -144,12 +139,13 @@ plot_dataset_preview(ucr_nasa_info)
 ![plot of chunk unnamed-chunk-5](fig/03-benchmarks-ucr/unnamed-chunk-5-1.png)
 
 ### ucr_int_bleeding
+### ucr_int_bleeding
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews ucr_int_bleeding with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -179,12 +175,13 @@ plot_dataset_preview(ucr_bleeding_info)
 ![plot of chunk unnamed-chunk-7](fig/03-benchmarks-ucr/unnamed-chunk-7-1.png)
 
 ### ucr_power_demand
+### ucr_power_demand
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews ucr_power_demand with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -217,4 +214,3 @@ plot_dataset_preview(ucr_power_info)
 
 - UCR Time Series Anomaly Archive.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

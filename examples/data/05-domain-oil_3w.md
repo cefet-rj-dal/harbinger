@@ -13,13 +13,6 @@ This is a data-inspection notebook aimed at multivariate industrial series. The 
 - inspect the first-series sensor columns
 - plot a short preview of the first sensor column together with its labels
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -29,7 +22,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -74,12 +67,13 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### oil_3w_Type_1
+### oil_3w_Type_1
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_1 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -109,12 +103,13 @@ plot_dataset_preview(oil_type_1_info)
 ![plot of chunk unnamed-chunk-3](fig/05-domain-oil_3w/unnamed-chunk-3-1.png)
 
 ### oil_3w_Type_2
+### oil_3w_Type_2
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_2 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -144,12 +139,13 @@ plot_dataset_preview(oil_type_2_info)
 ![plot of chunk unnamed-chunk-5](fig/05-domain-oil_3w/unnamed-chunk-5-1.png)
 
 ### oil_3w_Type_4
+### oil_3w_Type_4
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_4 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -179,12 +175,13 @@ plot_dataset_preview(oil_type_4_info)
 ![plot of chunk unnamed-chunk-7](fig/05-domain-oil_3w/unnamed-chunk-7-1.png)
 
 ### oil_3w_Type_5
+### oil_3w_Type_5
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_5 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -214,12 +211,13 @@ plot_dataset_preview(oil_type_5_info)
 ![plot of chunk unnamed-chunk-9](fig/05-domain-oil_3w/unnamed-chunk-9-1.png)
 
 ### oil_3w_Type_6
+### oil_3w_Type_6
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_6 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -249,12 +247,13 @@ plot_dataset_preview(oil_type_6_info)
 ![plot of chunk unnamed-chunk-11](fig/05-domain-oil_3w/unnamed-chunk-11-1.png)
 
 ### oil_3w_Type_7
+### oil_3w_Type_7
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_7 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -284,12 +283,13 @@ plot_dataset_preview(oil_type_7_info)
 ![plot of chunk unnamed-chunk-13](fig/05-domain-oil_3w/unnamed-chunk-13-1.png)
 
 ### oil_3w_Type_8
+### oil_3w_Type_8
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews oil_3w_Type_8 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -322,4 +322,3 @@ plot_dataset_preview(oil_type_8_info)
 
 - 3W dataset documentation from the UCI Machine Learning Repository.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
