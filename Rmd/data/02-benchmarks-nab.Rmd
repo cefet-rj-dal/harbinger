@@ -20,9 +20,8 @@ The focus is on dataset inspection. NAB is often used as a benchmark family, so 
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 ```{r}
 library(harbinger)
@@ -66,13 +65,11 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### nab_artificialWithAnomaly
-### nab_artificialWithAnomaly
 
 
 
 
 
-This subsection previews nab_artificialWithAnomaly with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_artificialWithAnomaly)
@@ -89,13 +86,11 @@ plot_dataset_preview(nab_artificial_info)
 ```
 
 ### nab_realAdExchange
-### nab_realAdExchange
 
 
 
 
 
-This subsection previews nab_realAdExchange with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_realAdExchange)
@@ -112,13 +107,11 @@ plot_dataset_preview(nab_adexchange_info)
 ```
 
 ### nab_realAWSCloudwatch
-### nab_realAWSCloudwatch
 
 
 
 
 
-This subsection previews nab_realAWSCloudwatch with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_realAWSCloudwatch)
@@ -135,13 +128,11 @@ plot_dataset_preview(nab_aws_info)
 ```
 
 ### nab_realKnownCause
-### nab_realKnownCause
 
 
 
 
 
-This subsection previews nab_realKnownCause with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_realKnownCause)
@@ -158,13 +149,11 @@ plot_dataset_preview(nab_known_info)
 ```
 
 ### nab_realTraffic
-### nab_realTraffic
 
 
 
 
 
-This subsection previews nab_realTraffic with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_realTraffic)
@@ -181,13 +170,11 @@ plot_dataset_preview(nab_traffic_info)
 ```
 
 ### nab_realTweets
-### nab_realTweets
 
 
 
 
 
-This subsection previews nab_realTweets with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 ```{r}
 data(nab_realTweets)

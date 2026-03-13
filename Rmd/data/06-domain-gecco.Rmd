@@ -20,9 +20,8 @@ The purpose here is exploratory orientation. Before modeling, the reader can con
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 ```{r}
 library(harbinger)
@@ -73,7 +72,7 @@ plot_dataset_preview <- function(info) {
 
 ### Prepare the Example
 
-This setup loads the collections used in the notebook and keeps the dataset description concrete from the start. In this case the analysis begins before modeling, because the reader needs to see how the collection is organized before deciding what kind of method makes sense.
+This step expands the packaged `gecco` object to the full collection and reports the basic structure of the first series. The point is to confirm, on the actual object, which columns carry the signal and the event labels before any modeling choice is made.
 
 ```{r}
 data(gecco)
@@ -89,7 +88,7 @@ gecco_info <- show_dataset(gecco, "gecco")
 
 ### Interpret the Result Visually
 
-This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the purpose here is exploratory orientation and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
+This preview is the practical check for the notebook: it shows what the first `gecco` signal actually looks like and how the labels are arranged on top of it. That is what the reader needs before deciding whether the collection is suitable for anomaly or event-detection experiments.
 
 ```{r}
 plot_dataset_preview(gecco_info)

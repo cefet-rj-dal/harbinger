@@ -9,11 +9,9 @@ The examples follow the same two entry points presented in the project `README.R
 If you are new to `harbinger`, start with the tutorials. If you already know the basic workflow, use the thematic folders below as focused reference tracks. The links point to the rendered Markdown files intended for reading.
 
 ### Guided tutorial track
-### Guided tutorial track
 
 - [Tutorials](/examples/tutorial/README.md) - a 10-part learning sequence covering first contact with the package, data inspection, plotting, baseline anomaly detection, residual-based detection, evaluation, change points, smoothing, symbolic transformations, and motif analysis.
 
-### Thematic example collections
 ### Thematic example collections
 
 - [General examples](/examples/general/README.md) - package orientation, utility helpers, and evaluation objects that explain the common structure behind the methods.
