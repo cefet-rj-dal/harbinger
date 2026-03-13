@@ -1,96 +1,36 @@
-## Objective
+## Tutorial 07 - First Change-Point Detector
 
-This tutorial introduces change-point detection with `hcp_amoc()`. The goal is to show how Harbinger handles structural changes, which differ from isolated anomalies because the objective is to locate a transition in the behavior of the series.
+Change-point detection is different from point-anomaly detection: the target is a transition in the behavior of the series, not only an isolated unusual observation. `hcp_amoc()` is a good first method because it searches for one dominant break.
 
-## Method at a glance
+This notebook keeps the workflow short so the reader can focus on the meaning of a labeled change point.
 
-`hcp_amoc()` searches for a single most significant change point. This is a good first method for learning because it is simple, focused, and works well as an entry point before more complex segmentation techniques.
-
-## What you will do
-
-- load a change-point dataset
-- run a single-change detector
-- inspect the detected location
-- plot the result against the labeled event
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+The technique behind AMOC is single-break optimization: among all possible split positions, the method searches for the location that best separates two regimes with distinct statistical behavior. It is a strong entry point before studying multiple-break methods.
 
 ```{r}
 library(harbinger)
-```
 
-
-
-```{r}
 data(examples_changepoints)
 dataset <- examples_changepoints$simple
 head(dataset)
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Plot the original series and the labeled change point.
 ```{r}
-# Plot the original series with the known change point
 har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
-
-
-
-
-
-
-### Run the Core Analysis
-
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
-
+Configure the detector and inspect the detected location.
 ```{r}
-# Configure and run the AMOC detector
 model <- hcp_amoc()
 detection <- detect(model, dataset$serie)
 detection
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Plot the result against the reference event.
 ```{r}
-# Plot detections against the labeled event
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ## References
 
 - Killick, R., Eckley, I. A. changepoint: An R Package for Changepoint Analysis. Journal of Statistical Software, 58(3), 2014.
-

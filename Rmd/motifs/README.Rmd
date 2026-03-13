@@ -1,26 +1,23 @@
----
-title: "Motifs — Examples Index"
-output: github_document
----
+# Motif and Discord Examples
 
-# Motifs — Examples Index
+This folder covers repeated subsequences and rare subsequences. It is best studied after the reader is already comfortable with the basic workflow, because motif methods often depend on choices such as window size and symbolic representation.
 
-This folder contains motif and discord discovery notebooks whose generated Markdown output should live in `/examples/motifs/`. The examples are grouped by conceptual family so the reader can first understand Matrix Profile workflows, then symbolic ones, and finally discord-oriented analyses.
+The notebooks are grouped by conceptual family so the reader can separate Matrix Profile methods from symbolic ones before comparing their outputs.
 
-## 1. Matrix Profile motifs
+## Matrix Profile
 
-- [01-matrix-profile-hmo_mp_stamp.md](/examples/motifs/01-matrix-profile-hmo_mp_stamp.md) — STAMP motif discovery.
-- [02-matrix-profile-hmo_mp_stomp.md](/examples/motifs/02-matrix-profile-hmo_mp_stomp.md) — STOMP motif discovery.
-- [03-matrix-profile-hmo_mp_scrimp.md](/examples/motifs/03-matrix-profile-hmo_mp_scrimp.md) — SCRIMP motif discovery.
-- [04-matrix-profile-hmo_mp_pmp.md](/examples/motifs/04-matrix-profile-hmo_mp_pmp.md) — PMP motif discovery.
-- [05-matrix-profile-hmo_mp_valmod.md](/examples/motifs/05-matrix-profile-hmo_mp_valmod.md) — VALMOD motif discovery.
+- [01-matrix-profile-hmo_mp_stamp.md](/examples/motifs/01-matrix-profile-hmo_mp_stamp.md) - `hmo_mp("stamp", ...)`: approximate Matrix Profile motif discovery.
+- [02-matrix-profile-hmo_mp_stomp.md](/examples/motifs/02-matrix-profile-hmo_mp_stomp.md) - `hmo_mp("stomp", ...)`: exact Matrix Profile motif discovery with STOMP.
+- [03-matrix-profile-hmo_mp_scrimp.md](/examples/motifs/03-matrix-profile-hmo_mp_scrimp.md) - `hmo_mp("scrimp", ...)`: anytime Matrix Profile workflow.
+- [04-matrix-profile-hmo_mp_pmp.md](/examples/motifs/04-matrix-profile-hmo_mp_pmp.md) - `hmo_mp("pmp", ...)`: Pan Matrix Profile for multiple window sizes.
+- [05-matrix-profile-hmo_mp_valmod.md](/examples/motifs/05-matrix-profile-hmo_mp_valmod.md) - `hmo_mp("valmod", ...)`: variable-length motif discovery.
 
-## 2. Symbolic motifs
+## Symbolic Methods
 
-- [06-symbolic-hmo_sax.md](/examples/motifs/06-symbolic-hmo_sax.md) — SAX motif discovery.
-- [07-symbolic-hmo_xsax.md](/examples/motifs/07-symbolic-hmo_xsax.md) — XSAX motif discovery.
+- [06-symbolic-hmo_sax.md](/examples/motifs/06-symbolic-hmo_sax.md) - `hmo_sax()`: motif discovery over SAX codes.
+- [07-symbolic-hmo_xsax.md](/examples/motifs/07-symbolic-hmo_xsax.md) - `hmo_xsax()`: motif discovery over XSAX codes.
 
-## 3. Discord-oriented analyses
+## Discord Analysis
 
-- [08-discord-hdis_mp_stamp.md](/examples/motifs/08-discord-hdis_mp_stamp.md) — Matrix Profile-based discord discovery.
-- [09-discord-hdis_sax.md](/examples/motifs/09-discord-hdis_sax.md) — SAX-based discord discovery.
+- [08-discord-hdis_mp_stamp.md](/examples/motifs/08-discord-hdis_mp_stamp.md) - discord discovery with Matrix Profile.
+- [09-discord-hdis_sax.md](/examples/motifs/09-discord-hdis_sax.md) - discord discovery with symbolic discretization.

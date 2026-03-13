@@ -1,17 +1,14 @@
----
-title: "Transformations — Examples Index"
-output: github_document
----
+# Transformation Examples
 
-# Transformations — Examples Index
+These notebooks show how a series can be simplified or re-encoded before downstream analysis. The point is not only to demonstrate the functions, but to help the reader see when a transformation changes the kind of pattern that becomes easier to detect.
 
-This folder gathers transformation notebooks that prepare, simplify, or re-encode time series before a downstream task. The examples are intentionally short and ordered from simpler preprocessing to richer symbolic representations.
+The sequence starts with smoothing and then moves to symbolic representations.
 
-## 1. Smoothing before modeling
+## Smoothing
 
-- [01-smoothing-mas.md](/examples/transformations/01-smoothing-mas.md) - Simple moving-average smoothing with `mas()`.
+- [01-smoothing-mas.md](/examples/transformations/01-smoothing-mas.md) - `mas()`: moving-average smoothing for reducing local variation.
 
-## 2. Symbolic representations
+## Symbolic Representations
 
-- [02-symbolic-trans_sax.md](/examples/transformations/02-symbolic-trans_sax.md) - SAX transformation.
-- [03-symbolic-trans_xsax.md](/examples/transformations/03-symbolic-trans_xsax.md) - XSAX transformation.
+- [02-symbolic-trans_sax.md](/examples/transformations/02-symbolic-trans_sax.md) - `trans_sax()`: discretize the series into a compact symbolic alphabet.
+- [03-symbolic-trans_xsax.md](/examples/transformations/03-symbolic-trans_xsax.md) - `trans_xsax()`: use a richer alphabet for finer symbolic resolution.

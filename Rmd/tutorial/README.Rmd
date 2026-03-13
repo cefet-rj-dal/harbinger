@@ -1,34 +1,18 @@
----
-title: "Tutorials — Guided Learning Path"
-output: github_document
----
+# Tutorial Track
 
-# Tutorials — Guided Learning Path
+This section presents `harbinger` as a guided learning path. Instead of starting from isolated detectors, the tutorials begin with the package workflow, then move through data inspection, plotting, baseline methods, evaluation, and only later reach transformations and motif analysis.
 
-This folder organizes a step-by-step tutorial path for readers who want to learn Harbinger in a progressive way. Instead of jumping directly into isolated examples, the tutorials start from the package workflow, move through data understanding and transformations, and only then reach detection and pattern-discovery tasks.
+The sequence is cumulative. Each notebook introduces one main idea and keeps the code close to that idea, so the reader can understand both the package interface and the analytical reason for each step.
 
-If you are new to the package, this is the best place to begin.
+Recommended reading order:
 
-## Suggested order
-
-1. [01-first-steps.md](/examples/tutorial/01-first-steps.md) - the basic Harbinger workflow on a simple anomaly series
-2. [02-knowing-your-data.md](/examples/tutorial/02-knowing-your-data.md) - how to inspect bundled and full datasets before modeling
-3. [03-plotting-series.md](/examples/tutorial/03-plotting-series.md) - how to visualize univariate and multivariate series with `har_plot()`
-4. [04-first-anomaly-detector.md](/examples/tutorial/04-first-anomaly-detector.md) - a simple histogram-based anomaly detector
-5. [05-model-based-anomaly-detection.md](/examples/tutorial/05-model-based-anomaly-detection.md) - ARIMA-based anomaly detection and residual inspection
-6. [06-evaluating-detections.md](/examples/tutorial/06-evaluating-detections.md) - hard and soft evaluation of detected events
-7. [07-first-change-point-detector.md](/examples/tutorial/07-first-change-point-detector.md) - a first structural-change workflow
-8. [08-smoothing-with-mas.md](/examples/tutorial/08-smoothing-with-mas.md) - smoothing as a transformation before analysis
-9. [09-symbolic-representation.md](/examples/tutorial/09-symbolic-representation.md) - SAX and XSAX as symbolic transformations
-10. [10-motifs-and-discords.md](/examples/tutorial/10-motifs-and-discords.md) - repeated patterns and rare subsequences
-
-## How this path is organized
-
-The sequence mirrors a common analytical workflow:
-
-- understand the package and the data
-- visualize the series before modeling
-- try simple and interpretable detectors first
-- evaluate what the detector found
-- expand to change points, transformations, and symbolic or motif-oriented tasks
-
+- [01-first-steps.md](/examples/tutorial/01-first-steps.md) - understand the minimum Harbinger workflow on a labeled anomaly series.
+- [02-knowing-your-data.md](/examples/tutorial/02-knowing-your-data.md) - inspect benchmark collections before choosing a method.
+- [03-plotting-series.md](/examples/tutorial/03-plotting-series.md) - use `har_plot()` to read univariate and multivariate series.
+- [04-first-anomaly-detector.md](/examples/tutorial/04-first-anomaly-detector.md) - start with a simple histogram detector before moving to stronger models.
+- [05-model-based-anomaly-detection.md](/examples/tutorial/05-model-based-anomaly-detection.md) - detect anomalies through residuals from an ARIMA model.
+- [06-evaluating-detections.md](/examples/tutorial/06-evaluating-detections.md) - compare strict and tolerant evaluation of detections.
+- [07-first-change-point-detector.md](/examples/tutorial/07-first-change-point-detector.md) - detect a first structural break with AMOC.
+- [08-smoothing-with-mas.md](/examples/tutorial/08-smoothing-with-mas.md) - see how moving averages change the reading of a series.
+- [09-symbolic-representation.md](/examples/tutorial/09-symbolic-representation.md) - transform a numeric series into SAX and XSAX codes.
+- [10-motifs-and-discords.md](/examples/tutorial/10-motifs-and-discords.md) - close the path with motif-oriented sequence analysis.

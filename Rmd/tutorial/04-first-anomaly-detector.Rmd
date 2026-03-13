@@ -1,102 +1,43 @@
-## Objective
+## Tutorial 04 - First Anomaly Detector
 
-This tutorial introduces anomaly detection with a very simple and interpretable baseline: `hanr_histogram()`. The goal is to help the reader understand what a detector does before moving to model-based methods.
+This tutorial introduces anomaly detection with a simple and interpretable baseline: `hanr_histogram()`. It is a good first detector because the logic is easy to explain: points in very low-density histogram bins are treated as unusual.
 
-## Method at a glance
+The value of this notebook is not raw performance. It gives the reader a concrete reference before moving to model-based methods.
 
-`hanr_histogram()` builds a histogram of observed values and marks points as anomalies when they fall in very low-density bins or outside the observed range. It is useful as a first baseline because it focuses on the empirical distribution of the series.
+The technique is distribution-based anomaly detection. Instead of learning temporal dynamics, the method asks a simpler question: which values are rare relative to the empirical distribution of the series? That makes it useful as a baseline and as a sanity check.
 
-## What you will do
-
-- load a labeled anomaly dataset
-- run the histogram-based detector
-- inspect which points were flagged
-- compare detections against the ground truth
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
-
+Load the packages and a labeled anomaly series.
 ```{r}
 library(daltoolbox)
 library(harbinger)
-```
 
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
-```{r}
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
+```
+
+Plot the original series and the labeled anomalies.
+```{r}
 har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
-
-
-
-
-
-
-### Run the Core Analysis
-
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
-
+Configure the detector, run it, and inspect the output.
 ```{r}
-# Configure a simple baseline detector
 model <- hanr_histogram(density_threshold = 0.05)
 detection <- detect(model, dataset$serie)
 head(detection)
 ```
 
-
-
-
-
-
-
-### Evaluate What Was Found
-
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
-
+Compare the detections with the ground truth.
 ```{r}
-# Compare detections with the labeled events
 evaluation <- evaluate(model, detection$event, dataset$event)
 evaluation$confMatrix
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Plot detections and labels together.
 ```{r}
-# Plot detections and labels together
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

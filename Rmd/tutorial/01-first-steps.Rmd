@@ -1,124 +1,46 @@
-## Objective
+## Tutorial 01 - First Steps
 
-This tutorial introduces the core Harbinger workflow on a small labeled anomaly series. The goal is to help the reader see the minimum sequence of actions: load data, create a model, detect events, inspect the output, and plot the result.
+The first objective is simple: understand the basic Harbinger workflow on a labeled series. In the examples that follow, this same rhythm will appear repeatedly: load data, configure a method, run the analysis, inspect the output, and plot the result.
 
-## Method at a glance
+This notebook uses the default `harbinger()` object because the focus is not on a specific detector yet. The goal is to make the package interface familiar before introducing specialized methods.
 
-We use the default `harbinger()` model as a first contact with the package interface. The emphasis here is not on a specific detection technique, but on understanding the common workflow shared by many Harbinger objects.
-
-## What you will do
-
-- load a bundled example dataset
-- inspect the structure of the series and event labels
-- create the default Harbinger model
-- run detection
-- visualize the detected events
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+Conceptually, this object represents the common contract of the package: a Harbinger method receives a series and returns a standardized event-oriented output that can later be plotted or evaluated. Learning that contract first makes the later detectors much easier to understand.
 
 ```{r}
 # Install Harbinger (if needed)
 # install.packages("harbinger")
 ```
 
-
-
-
-
+Load the package and a small labeled anomaly series.
 ```{r}
-# Load the package
 library(harbinger)
-```
 
-
-
-
-
-```{r}
-# Load a small labeled anomaly dataset distributed with the package
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
 head(dataset)
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Before running a method, it helps to see the series and the known event labels.
 ```{r}
-# Plot the series with the known labeled events
 har_plot(harbinger(), dataset$serie, event = dataset$event)
 ```
 
-
-
-
-
-
-
-### Configure the Method
-
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
-
+Now create the default Harbinger model.
 ```{r}
-# Create the default Harbinger detector
 model <- harbinger()
 ```
 
-
-
-
-
-
-
-### Run the Core Analysis
-
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
-
+Run the analysis and inspect the returned structure.
 ```{r}
-# Run detection on the series
 detection <- detect(model, dataset$serie)
 head(detection)
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Finish by plotting the detections against the labeled events.
 ```{r}
-# Plot detections against the labeled events
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
