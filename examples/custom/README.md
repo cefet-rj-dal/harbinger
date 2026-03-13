@@ -1,19 +1,14 @@
----
-title: "Custom — Extension Examples"
-output: github_document
----
+# Custom Extension Examples
 
-# Custom — Extension Examples
+This section shows that `harbinger` is not only a catalog of built-in methods. It is also a framework with clear contracts for transformations, detectors, motif workflows, and evaluators.
 
-This section mirrors one of the central ideas behind Harbinger: the package is not only a collection of built-in detectors, but also a framework that can be extended with new detectors, transformations, and evaluation strategies.
+The examples are ordered by extension point so the reader can study one kind of customization at a time. This helps the reader move from simpler adaptations to richer extensions without needing to infer every package contract from scratch.
 
-The examples are ordered by the kind of contract being extended, so a learner can understand one extension point at a time.
+If the goal is only to use the package, this folder can wait. If the goal is to extend the package or connect Harbinger with an external library, this is the place to read carefully.
 
-## Extension path
-
-1. [01-transformation-custom_transformation.md](/examples/custom/01-transformation-custom_transformation.md) — a custom median filter used before detection
-2. [02-anomaly-custom_anomaly.md](/examples/custom/02-anomaly-custom_anomaly.md) — a custom anomaly detector based on `forecast::tsoutliers()`
-3. [03-sequence-custom_sequence_anomaly.md](/examples/custom/03-sequence-custom_sequence_anomaly.md) — a custom collective-anomaly detector that returns full anomalous ranges instead of a single representative point
-4. [04-change-point-custom_change_point.md](/examples/custom/04-change-point-custom_change_point.md) — a custom joinpoint-regression detector using `segmented`
-5. [05-motif-custom_motif.md](/examples/custom/05-motif-custom_motif.md) — a custom motif detector based on DTW subsequence clustering
-6. [06-evaluation-custom_evaluation.md](/examples/custom/06-evaluation-custom_evaluation.md) — a custom range-aware evaluator for anomalous intervals
+- [01-transformation-custom_transformation.md](/examples/custom/01-transformation-custom_transformation.md) - create a custom transformation based on a median filter.
+- [02-anomaly-custom_anomaly.md](/examples/custom/02-anomaly-custom_anomaly.md) - wrap `forecast::tsoutliers()` as a custom anomaly detector.
+- [03-sequence-custom_sequence_anomaly.md](/examples/custom/03-sequence-custom_sequence_anomaly.md) - implement a collective-anomaly detector that returns anomalous ranges.
+- [04-change-point-custom_change_point.md](/examples/custom/04-change-point-custom_change_point.md) - build a custom change-point detector with `segmented`.
+- [05-motif-custom_motif.md](/examples/custom/05-motif-custom_motif.md) - create a custom motif detector with DTW subsequence clustering.
+- [06-evaluation-custom_evaluation.md](/examples/custom/06-evaluation-custom_evaluation.md) - define a range-aware evaluator for anomalous intervals.

@@ -1,50 +1,17 @@
-## Objective
+## Tutorial 06 - Evaluating Detections
 
-This tutorial explains how to evaluate detected events in Harbinger. The goal is to compare strict event matching with a softer evaluation that tolerates small timing deviations.
+Running a detector is only part of the workflow. It is also necessary to decide how detections will be judged. In Harbinger, the same result can be read with strict event matching or with a softer criterion that tolerates small temporal shifts.
 
-## Method at a glance
+This tutorial compares those two views using the same detector output.
 
-Harbinger supports both hard and soft evaluation. Hard evaluation requires the detected event to match the labeled event position directly. Soft evaluation relaxes this and can be more appropriate when a detector finds the right phenomenon but marks it a few timestamps earlier or later.
+The method explained here is evaluation itself. Hard evaluation is exact-event matching, while soft evaluation is a tolerance-based technique that recognizes that, in time series, detecting the right phenomenon a few timestamps early or late may still be useful.
 
-## What you will do
-
-- run an anomaly detector
-- compute hard evaluation metrics
-- compute soft evaluation metrics
-- compare the two interpretations
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
-
+Load the packages, prepare a simple detector, and generate the detections once.
 
 ``` r
 library(daltoolbox)
 library(harbinger)
-```
 
-
-
-### Configure the Method
-
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
-
-
-``` r
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
 model <- hanr_arima()
@@ -52,19 +19,9 @@ model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 ```
 
-
-
-
-
-
-
-### Evaluate What Was Found
-
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
-
+Hard evaluation requires direct agreement between detected and labeled events.
 
 ``` r
-# Hard evaluation: direct match between detected and labeled events
 hard_eval <- har_eval()
 hard_result <- evaluate(hard_eval, detection$event, dataset$event)
 hard_result$confMatrix
@@ -77,11 +34,9 @@ hard_result$confMatrix
 ## FALSE     0     100
 ```
 
-
-
+Soft evaluation accepts small temporal misalignment.
 
 ``` r
-# Soft evaluation: tolerates small temporal misalignment
 soft_eval <- har_eval_soft()
 soft_result <- evaluate(soft_eval, detection$event, dataset$event)
 soft_result$confMatrix
@@ -94,15 +49,9 @@ soft_result$confMatrix
 ## FALSE     0     100
 ```
 
-
-
-
-
-
-
+Inspect the summary metrics returned by both evaluators.
 
 ``` r
-# Inspect summary metrics returned by the evaluation objects
 hard_result
 ```
 
@@ -225,4 +174,3 @@ soft_result
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

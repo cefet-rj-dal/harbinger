@@ -145,7 +145,7 @@ With the environment and the method ready, we execute the central analytical ste
 ```
 
 ```
-## Finished in 0.02 secs
+## Finished in 0.07 secs
 ```
 
 

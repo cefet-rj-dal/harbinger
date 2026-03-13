@@ -1,6 +1,5 @@
 library(harbinger)
 
-# Helper to summarize the dataset structure in a consistent way
 dataset_summary <- function(x) {
   first_series <- x[[1]]
   meta_cols <- c("idx", "event", "type", "seq", "seqlen")
@@ -21,15 +20,14 @@ dataset_summary <- function(x) {
   )
 }
 
-# Load a benchmark object and expand it to the full dataset
 data(A1Benchmark)
 A1Benchmark <- loadfulldata(A1Benchmark)
 info <- dataset_summary(A1Benchmark)
+
 info$n_series
 info$dataset_type
 info$signal_cols
 
-# Plot the first available signal with its labels
 har_plot(
   harbinger(),
   info$first_series[[info$plot_column]],

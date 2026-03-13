@@ -1,55 +1,19 @@
-## Objective
+## Tutorial 02 - Knowing Your Data
 
-This tutorial shows why understanding the dataset comes before choosing a detector. The goal is to inspect a full benchmark collection, count how many series it provides, determine whether the data are univariate or multivariate, and plot the first available signal.
+Before choosing a detector, it is worth understanding what the dataset actually contains. This tutorial inspects a benchmark collection, checks how many series are available, determines whether the data are univariate or multivariate, and plots the first signal.
 
-## Method at a glance
+The main point is practical: a good method choice depends on the shape of the collection and not only on the package catalog.
 
-Harbinger exposes benchmark datasets through packaged objects and `loadfulldata()`. Before modeling, it is useful to know the size of the collection, the shape of each series, and which signal column should be visualized first.
-
-## What you will do
-
-- load a packaged benchmark object
-- replace the mini object with the full dataset
-- count the available series
-- identify whether the collection is univariate or multivariate
-- plot the first signal using `har_plot()`
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+The technique here is exploratory rather than predictive. Instead of fitting a model, the notebook studies dataset structure, because tasks such as anomaly detection, change-point detection, and motif discovery depend strongly on whether the signals are single-channel, multichannel, short, long, sparse, or densely labeled.
 
 
 ``` r
 library(harbinger)
 ```
 
-
-
-
-
-
-
-### Define the Support Structures
-
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
-
+Define a small helper so the same checks can be reused with other collections.
 
 ``` r
-# Helper to summarize the dataset structure in a consistent way
 dataset_summary <- function(x) {
   first_series <- x[[1]]
   meta_cols <- c("idx", "event", "type", "seq", "seqlen")
@@ -71,22 +35,13 @@ dataset_summary <- function(x) {
 }
 ```
 
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
-
+Load a benchmark object, expand it to the full dataset, and inspect its structure.
 
 ``` r
-# Load a benchmark object and expand it to the full dataset
 data(A1Benchmark)
 A1Benchmark <- loadfulldata(A1Benchmark)
 info <- dataset_summary(A1Benchmark)
+
 info$n_series
 ```
 
@@ -110,19 +65,9 @@ info$signal_cols
 ## [1] "value"
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Plot the first available signal together with its labels.
 
 ``` r
-# Plot the first available signal with its labels
 har_plot(
   harbinger(),
   info$first_series[[info$plot_column]],
@@ -136,4 +81,3 @@ har_plot(
 
 - Yahoo Webscope S5 benchmark documentation and downstream studies on labeled anomaly detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

@@ -1,80 +1,31 @@
-## Objective
+## Tutorial 05 - Model-Based Anomaly Detection
 
-This tutorial introduces a model-based anomaly detector using `hanr_arima()`. The goal is to show how Harbinger can detect unusual behavior by modeling expected dynamics and then analyzing residual deviations.
+After a simple baseline, the next step is to model the expected behavior of the series and look for unusual residuals. `hanr_arima()` follows exactly that idea: fit an ARIMA model, compute residuals, and flag large deviations.
 
-## Method at a glance
+This notebook is useful because it connects anomaly detection with a standard time-series modeling workflow.
 
-`hanr_arima()` fits an ARIMA model to the series, computes residual magnitudes, and flags unusually large residuals as anomalies. This moves from a simple distribution-based baseline to a temporal model that tries to explain normal behavior first.
+The technique is residual-based anomaly detection. ARIMA tries to explain the normal temporal structure of the signal, and anomalies appear as points where the observed value deviates too much from what the fitted model would expect.
 
-## What you will do
-
-- fit an ARIMA-based detector
-- run anomaly detection on a labeled series
-- inspect the evaluation output
-- plot residual magnitudes and thresholds
-
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
-
-
-
-
-
-
-
-### Prepare the Example
-
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
-
+Load the packages and the example series.
 
 ``` r
 library(daltoolbox)
 library(harbinger)
-```
 
-
-
-
-``` r
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
 ```
 
-
-
-
-
-
-
-### Configure the Method
-
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
-
+Configure the ARIMA-based detector and fit it to the series.
 
 ``` r
-# Configure and fit the ARIMA-based detector
 model <- hanr_arima()
 model <- fit(model, dataset$serie)
 ```
 
-
-
-
-
-
-
-### Run the Core Analysis
-
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
-
+Run detection and inspect the returned events.
 
 ``` r
-# Detect anomalies from model residuals
 detection <- detect(model, dataset$serie)
 head(detection)
 ```
@@ -89,19 +40,9 @@ head(detection)
 ## 6   6 FALSE
 ```
 
-
-
-
-
-
-
-### Evaluate What Was Found
-
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
-
+Evaluate the detections against the labels.
 
 ``` r
-# Evaluate against the ground truth
 evaluation <- evaluate(model, detection$event, dataset$event)
 evaluation$confMatrix
 ```
@@ -113,29 +54,17 @@ evaluation$confMatrix
 ## FALSE     0     100
 ```
 
-
-
-
-
-
-
-### Interpret the Result Visually
-
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
-
+Plot the detections on the original series.
 
 ``` r
-# Plot detections on the original series
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/05-model-based-anomaly-detection/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-5](fig/05-model-based-anomaly-detection/unnamed-chunk-5-1.png)
 
-
-
+The residual signal helps explain why points were flagged.
 
 ``` r
-# Plot the residual signal used by the detector
 har_plot(
   model,
   attr(detection, "res"),
@@ -145,9 +74,8 @@ har_plot(
 )
 ```
 
-![plot of chunk unnamed-chunk-7](fig/05-model-based-anomaly-detection/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-6](fig/05-model-based-anomaly-detection/unnamed-chunk-6-1.png)
 
 ## References
 
 - Box, G. E. P., Jenkins, G. M., Reinsel, G. C., Ljung, G. M. (2015). Time Series Analysis: Forecasting and Control. Wiley.
-

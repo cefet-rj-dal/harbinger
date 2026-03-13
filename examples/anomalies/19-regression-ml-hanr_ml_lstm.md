@@ -148,6 +148,7 @@ With the environment and the method ready, we execute the central analytical ste
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
+## 2  54  TRUE anomaly
 ```
 
 
@@ -170,8 +171,8 @@ After producing detections or transformed outputs, we compare them with the refe
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      1     1    
+## FALSE     0     99
 ```
 
 
