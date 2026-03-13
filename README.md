@@ -1,54 +1,95 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # <img src='https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png' alt='Logo do pacote Harbinger' align='centre' height='150' width='129'/> Harbinger
 
 <!-- badges: start -->
-![GitHub Stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)
+
+![GitHub
+Stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)
 ![CRAN Downloads](https://cranlogs.r-pkg.org/badges/harbinger)
 <!-- badges: end -->
 
-Time-series event analysis is rarely a matter of calling one isolated function. In practice, the analyst needs to understand the signal, choose a suitable family of methods, inspect the result visually, and evaluate whether the detected events actually correspond to the phenomenon of interest. **Harbinger** was designed to support this full learning and experimentation path with a unified interface for anomaly detection, change-point detection, motif discovery, transformations, plotting, and evaluation.
+Time-series event analysis is rarely a matter of calling one isolated
+function. In practice, the analyst needs to understand the signal,
+choose a suitable family of methods, inspect the result visually, and
+evaluate whether the detected events actually correspond to the
+phenomenon of interest. **Harbinger** was designed to support this full
+learning and experimentation path with a unified interface for anomaly
+detection, change-point detection, motif discovery, transformations,
+plotting, and evaluation.
 
-The package is not only a catalog of methods. It is also a framework for organizing event-oriented studies in a more consistent way, from first examples to reusable experiment lines.
+The package is not only a catalog of methods. It is also a framework for
+organizing event-oriented studies in a more consistent way, from first
+examples to reusable experiment lines.
 
 ------------------------------------------------------------------------
 
 ## Documentation
 
-The documentation was reorganized to support two complementary entry points:
+The documentation was reorganized to support two complementary entry
+points:
 
-- a guided tutorial track for readers who want to learn the workflow step by step
-- thematic example collections for readers who want to inspect a specific family of methods
+- a guided tutorial track for readers who want to learn the workflow
+  step by step
+- thematic example collections for readers who want to inspect a
+  specific family of methods
 
-If you are new to `harbinger`, start with the tutorials. If you already know the basic workflow, the thematic collections remain available and are grouped by subject in a more didactic order.
+If you are new to `harbinger`, start with the tutorials. If you already
+know the basic workflow, the thematic collections remain available and
+are grouped by subject in a more didactic order.
 
 ### Guided tutorial track
 
-- [Tutorials](/examples/tutorial/README.md) - a 10-part learning sequence covering first contact with the package, data inspection, plotting, baseline anomaly detection, residual-based detection, evaluation, change points, smoothing, symbolic transformations, and motif analysis.
+- [Tutorials](/examples/tutorial/README.md) - a 10-part learning
+  sequence covering first contact with the package, data inspection,
+  plotting, baseline anomaly detection, residual-based detection,
+  evaluation, change points, smoothing, symbolic transformations, and
+  motif analysis.
 
 ### Thematic example collections
 
-- [General examples](/examples/general/README.md) - package orientation, utility helpers, and evaluation objects that explain the common structure behind the methods.
-- [Dataset examples](/examples/data/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
-- [Transformation examples](/examples/transformations/README.md) - smoothing and symbolic encodings that prepare a series for later anomaly, change-point, or motif analysis.
-- [Anomaly examples](/examples/anomalies/README.md) - anomaly detection methods grouped from simple baselines to residual models, supervised learners, clustering, ensembles, autoencoders, and multivariate workflows.
-- [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, and volatility-oriented techniques.
-- [Motif examples](/examples/motifs/README.md) - repeated-pattern and discord analysis grouped into Matrix Profile, symbolic, and discord-oriented studies.
-- [Custom examples](/examples/custom/README.md) - extension-oriented notebooks showing how to plug new transformations, detectors, motif methods, and evaluators into Harbinger.
+- [General examples](/examples/general/README.md) - package orientation,
+  utility helpers, and evaluation objects that explain the common
+  structure behind the methods.
+- [Dataset examples](/examples/data/README.md) - benchmark archives and
+  domain datasets, organized to help the reader understand the
+  collections before modeling.
+- [Transformation examples](/examples/transformations/README.md) -
+  smoothing and symbolic encodings that prepare a series for later
+  anomaly, change-point, or motif analysis.
+- [Anomaly examples](/examples/anomalies/README.md) - anomaly detection
+  methods grouped from simple baselines to residual models, supervised
+  learners, clustering, ensembles, autoencoders, and multivariate
+  workflows.
+- [Change-point examples](/examples/change_point/README.md) -
+  change-point methods ordered from a first single-break intuition to
+  multiple-break, structural-break, and volatility-oriented techniques.
+- [Motif examples](/examples/motifs/README.md) - repeated-pattern and
+  discord analysis grouped into Matrix Profile, symbolic, and
+  discord-oriented studies.
+- [Custom examples](/examples/custom/README.md) - extension-oriented
+  notebooks showing how to plug new transformations, detectors, motif
+  methods, and evaluators into Harbinger.
 
 ### Documentation design
 
 The examples were revised to be more useful for learning:
 
 - files inside each collection are numbered in a suggested reading order
-- category `README` files group examples by subject rather than only by function name
-- tutorials and introductory notebooks explain the technique being presented, not only the commands required to run it
+- category `README` files group examples by subject rather than only by
+  function name
+- tutorials and introductory notebooks explain the technique being
+  presented, not only the commands required to run it
 
 ------------------------------------------------------------------------
 
 ## A first example
 
-The snippet below uses the default `harbinger()` pipeline on a bundled dataset. It is intentionally short so that a new reader can see the minimum workflow before moving to the more didactic notebooks in `/examples/`.
+The snippet below uses the default `harbinger()` pipeline on a bundled
+dataset. It is intentionally short so that a new reader can see the
+minimum workflow before moving to the more didactic notebooks in
+`/examples/`.
 
 ``` r
 library(harbinger)
@@ -62,7 +103,17 @@ detection <- detect(model, examples_anomalies$simple$serie)
 
 # Inspect only the detected events
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 print(detection |> dplyr::filter(event == TRUE))
+#> [1] idx   event type 
+#> <0 rows> (or 0-length row.names)
 ```
 
 ------------------------------------------------------------------------
@@ -71,13 +122,22 @@ print(detection |> dplyr::filter(event == TRUE))
 
 If you are new to the package, this sequence works well:
 
-1. start with [Tutorials](/examples/tutorial/README.md) to understand the basic workflow
-2. continue with [General examples](/examples/general/README.md) for a compact view of package scope, utilities, and evaluation
-3. visit [Dataset examples](/examples/data/README.md) to understand the benchmark collections before choosing a method
-4. visit [Transformation examples](/examples/transformations/README.md) to see how smoothing and symbolic encodings change the signal before analysis
-5. move to one modeling family, usually [Anomaly examples](/examples/anomalies/README.md) or [Change-point examples](/examples/change_point/README.md)
-6. study [Motif examples](/examples/motifs/README.md) after you are comfortable with subsequences, windows, and symbolic representations
-7. finish with [Custom examples](/examples/custom/README.md) when you want to integrate your own components into the framework
+1.  start with [Tutorials](/examples/tutorial/README.md) to understand
+    the basic workflow
+2.  continue with [General examples](/examples/general/README.md) for a
+    compact view of package scope, utilities, and evaluation
+3.  visit [Dataset examples](/examples/data/README.md) to understand the
+    benchmark collections before choosing a method
+4.  visit [Transformation examples](/examples/transformations/README.md)
+    to see how smoothing and symbolic encodings change the signal before
+    analysis
+5.  move to one modeling family, usually [Anomaly
+    examples](/examples/anomalies/README.md) or [Change-point
+    examples](/examples/change_point/README.md)
+6.  study [Motif examples](/examples/motifs/README.md) after you are
+    comfortable with subsequences, windows, and symbolic representations
+7.  finish with [Custom examples](/examples/custom/README.md) when you
+    want to integrate your own components into the framework
 
 ------------------------------------------------------------------------
 
