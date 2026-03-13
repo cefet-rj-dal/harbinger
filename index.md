@@ -105,7 +105,17 @@ detection <- detect(model, examples_anomalies$simple$serie)
 
 # Inspect only the detected events
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 print(detection |> dplyr::filter(event == TRUE))
+#> [1] idx   event type 
+#> <0 rows> (or 0-length row.names)
 ```
 
 ------------------------------------------------------------------------
