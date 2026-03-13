@@ -20,9 +20,8 @@ This is a data-inspection notebook aimed at multivariate industrial series. The 
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -67,13 +66,11 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### oil_3w_Type_1
-### oil_3w_Type_1
 
 
 
 
 
-This subsection previews oil_3w_Type_1 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -103,13 +100,11 @@ plot_dataset_preview(oil_type_1_info)
 ![plot of chunk unnamed-chunk-3](fig/05-domain-oil_3w/unnamed-chunk-3-1.png)
 
 ### oil_3w_Type_2
-### oil_3w_Type_2
 
 
 
 
 
-This subsection previews oil_3w_Type_2 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -139,13 +134,11 @@ plot_dataset_preview(oil_type_2_info)
 ![plot of chunk unnamed-chunk-5](fig/05-domain-oil_3w/unnamed-chunk-5-1.png)
 
 ### oil_3w_Type_4
-### oil_3w_Type_4
 
 
 
 
 
-This subsection previews oil_3w_Type_4 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -175,13 +168,11 @@ plot_dataset_preview(oil_type_4_info)
 ![plot of chunk unnamed-chunk-7](fig/05-domain-oil_3w/unnamed-chunk-7-1.png)
 
 ### oil_3w_Type_5
-### oil_3w_Type_5
 
 
 
 
 
-This subsection previews oil_3w_Type_5 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -211,13 +202,11 @@ plot_dataset_preview(oil_type_5_info)
 ![plot of chunk unnamed-chunk-9](fig/05-domain-oil_3w/unnamed-chunk-9-1.png)
 
 ### oil_3w_Type_6
-### oil_3w_Type_6
 
 
 
 
 
-This subsection previews oil_3w_Type_6 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -247,13 +236,11 @@ plot_dataset_preview(oil_type_6_info)
 ![plot of chunk unnamed-chunk-11](fig/05-domain-oil_3w/unnamed-chunk-11-1.png)
 
 ### oil_3w_Type_7
-### oil_3w_Type_7
 
 
 
 
 
-This subsection previews oil_3w_Type_7 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -283,13 +270,11 @@ plot_dataset_preview(oil_type_7_info)
 ![plot of chunk unnamed-chunk-13](fig/05-domain-oil_3w/unnamed-chunk-13-1.png)
 
 ### oil_3w_Type_8
-### oil_3w_Type_8
 
 
 
 
 
-This subsection previews oil_3w_Type_8 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r

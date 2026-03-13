@@ -39,20 +39,6 @@ This setup anchors the notebook in the specific series used to examine `hanr_his
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger)
 ```
 

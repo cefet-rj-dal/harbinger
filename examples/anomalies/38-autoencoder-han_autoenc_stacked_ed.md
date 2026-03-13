@@ -128,7 +128,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 
 ```
 ##   idx event    type
-## 1  18  TRUE anomaly
+## 1  51  TRUE anomaly
 ```
 
 

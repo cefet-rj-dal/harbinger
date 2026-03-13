@@ -20,9 +20,8 @@ The emphasis is on understanding the data layout before applying an event-detect
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -67,13 +66,11 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### ucr_ecg
-### ucr_ecg
 
 
 
 
 
-This subsection previews ucr_ecg with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -103,13 +100,11 @@ plot_dataset_preview(ucr_ecg_info)
 ![plot of chunk unnamed-chunk-3](fig/03-benchmarks-ucr/unnamed-chunk-3-1.png)
 
 ### ucr_nasa
-### ucr_nasa
 
 
 
 
 
-This subsection previews ucr_nasa with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -139,13 +134,11 @@ plot_dataset_preview(ucr_nasa_info)
 ![plot of chunk unnamed-chunk-5](fig/03-benchmarks-ucr/unnamed-chunk-5-1.png)
 
 ### ucr_int_bleeding
-### ucr_int_bleeding
 
 
 
 
 
-This subsection previews ucr_int_bleeding with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -175,13 +168,11 @@ plot_dataset_preview(ucr_bleeding_info)
 ![plot of chunk unnamed-chunk-7](fig/03-benchmarks-ucr/unnamed-chunk-7-1.png)
 
 ### ucr_power_demand
-### ucr_power_demand
 
 
 
 
 
-This subsection previews ucr_power_demand with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r

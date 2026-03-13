@@ -20,9 +20,8 @@ The focus is on dataset inspection. NAB is often used as a benchmark family, so 
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -67,13 +66,11 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### nab_artificialWithAnomaly
-### nab_artificialWithAnomaly
 
 
 
 
 
-This subsection previews nab_artificialWithAnomaly with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -103,13 +100,11 @@ plot_dataset_preview(nab_artificial_info)
 ![plot of chunk unnamed-chunk-3](fig/02-benchmarks-nab/unnamed-chunk-3-1.png)
 
 ### nab_realAdExchange
-### nab_realAdExchange
 
 
 
 
 
-This subsection previews nab_realAdExchange with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -139,13 +134,11 @@ plot_dataset_preview(nab_adexchange_info)
 ![plot of chunk unnamed-chunk-5](fig/02-benchmarks-nab/unnamed-chunk-5-1.png)
 
 ### nab_realAWSCloudwatch
-### nab_realAWSCloudwatch
 
 
 
 
 
-This subsection previews nab_realAWSCloudwatch with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -175,13 +168,11 @@ plot_dataset_preview(nab_aws_info)
 ![plot of chunk unnamed-chunk-7](fig/02-benchmarks-nab/unnamed-chunk-7-1.png)
 
 ### nab_realKnownCause
-### nab_realKnownCause
 
 
 
 
 
-This subsection previews nab_realKnownCause with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -211,13 +202,11 @@ plot_dataset_preview(nab_known_info)
 ![plot of chunk unnamed-chunk-9](fig/02-benchmarks-nab/unnamed-chunk-9-1.png)
 
 ### nab_realTraffic
-### nab_realTraffic
 
 
 
 
 
-This subsection previews nab_realTraffic with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -247,13 +236,11 @@ plot_dataset_preview(nab_traffic_info)
 ![plot of chunk unnamed-chunk-11](fig/02-benchmarks-nab/unnamed-chunk-11-1.png)
 
 ### nab_realTweets
-### nab_realTweets
 
 
 
 
 
-This subsection previews nab_realTweets with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r

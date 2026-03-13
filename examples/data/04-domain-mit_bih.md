@@ -20,9 +20,8 @@ The MIT-BIH objects are separate dataset collections by lead. This notebook help
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -67,13 +66,11 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### mit_bih_MLII
-### mit_bih_MLII
 
 
 
 
 
-This subsection previews mit_bih_MLII with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -103,13 +100,11 @@ plot_dataset_preview(mit_mlii_info)
 ![plot of chunk unnamed-chunk-3](fig/04-domain-mit_bih/unnamed-chunk-3-1.png)
 
 ### mit_bih_V1
-### mit_bih_V1
 
 
 
 
 
-This subsection previews mit_bih_V1 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -139,13 +134,11 @@ plot_dataset_preview(mit_v1_info)
 ![plot of chunk unnamed-chunk-5](fig/04-domain-mit_bih/unnamed-chunk-5-1.png)
 
 ### mit_bih_V2
-### mit_bih_V2
 
 
 
 
 
-This subsection previews mit_bih_V2 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -175,13 +168,11 @@ plot_dataset_preview(mit_v2_info)
 ![plot of chunk unnamed-chunk-7](fig/04-domain-mit_bih/unnamed-chunk-7-1.png)
 
 ### mit_bih_V5
-### mit_bih_V5
 
 
 
 
 
-This subsection previews mit_bih_V5 with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r

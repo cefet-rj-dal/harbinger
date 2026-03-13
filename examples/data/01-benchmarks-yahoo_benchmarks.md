@@ -20,9 +20,8 @@ This is a dataset-orientation notebook. It does not fit a detector. Instead, it 
 
 
 
-### Define the Support Structures
+### Helper Functions
 
-The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -71,7 +70,6 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### A1Benchmark
-### A1Benchmark
 
 `A1Benchmark` contains real-world labeled univariate series from Yahoo Webscope S5.
 
@@ -80,7 +78,6 @@ plot_dataset_preview <- function(info) {
 
 
 
-This subsection previews A1Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -110,7 +107,6 @@ plot_dataset_preview(a1_info)
 ![plot of chunk unnamed-chunk-3](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-3-1.png)
 
 ### A2Benchmark
-### A2Benchmark
 
 `A2Benchmark` contains synthetic labeled univariate series designed for anomaly-detection benchmarking.
 
@@ -119,7 +115,6 @@ plot_dataset_preview(a1_info)
 
 
 
-This subsection previews A2Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -149,7 +144,6 @@ plot_dataset_preview(a2_info)
 ![plot of chunk unnamed-chunk-5](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-5-1.png)
 
 ### A3Benchmark
-### A3Benchmark
 
 `A3Benchmark` contains synthetic Yahoo series with labeled anomalous observations.
 
@@ -158,7 +152,6 @@ plot_dataset_preview(a2_info)
 
 
 
-This subsection previews A3Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -188,7 +181,6 @@ plot_dataset_preview(a3_info)
 ![plot of chunk unnamed-chunk-7](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-7-1.png)
 
 ### A4Benchmark
-### A4Benchmark
 
 `A4Benchmark` combines synthetic anomalies and structural changes in the Yahoo benchmark family.
 
@@ -197,7 +189,6 @@ plot_dataset_preview(a3_info)
 
 
 
-This subsection previews A4Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
