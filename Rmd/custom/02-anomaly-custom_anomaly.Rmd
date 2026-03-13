@@ -26,13 +26,12 @@ To make the example concrete, the custom detector wraps `forecast::tsoutliers()`
 
 
 
-## Walkthrough
 
 
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `forecast::tsoutliers()`. The semantic point is the one stated above: the custom detector converts the input into a time-series object and applies `forecast::tsoutliers()`, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
 # installation
@@ -48,7 +47,7 @@ library(harbinger)
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The code below defines the smallest Harbinger contract needed to express the idea behind this example. Read it in semantic terms: the goal is to encode that the custom detector converts the input into a time-series object and applies `forecast::tsoutliers()` while still returning objects that Harbinger can plot and evaluate like any native method.
 
 ```{r}
 hanr_tsoutliers_custom <- function(frequency = 1) {
@@ -81,7 +80,7 @@ We now use the custom detector exactly as we would use any other anomaly detecto
 
 ### Run the Core Analysis
 
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+This is the moment where the notebook tests its central assumption on actual data. After applying `forecast::tsoutliers()`, the important question is whether the resulting anomaly flags really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
 
 ```{r}
 data(examples_anomalies)
@@ -97,7 +96,7 @@ detection <- detect(model, dataset$serie)
 
 ### Evaluate What Was Found
 
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
+The evaluation asks whether the anomaly flags produced by `forecast::tsoutliers()` match the labeled structure on this dataset. Read the scores as evidence about the method's assumptions in practice, not as detached summary numbers.
 
 ```{r}
 evaluation <- evaluate(model, detection$event, dataset$event)
@@ -110,7 +109,7 @@ evaluation$confMatrix
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This visual check puts the model output back on top of the original signal. What matters now is whether the highlighted anomaly flags line up with the structure suggested by the method, which is the real semantic test of whether the example is teaching the right lesson.
 
 ```{r}
 har_plot(model, dataset$serie, detection, dataset$event)

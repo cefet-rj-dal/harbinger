@@ -24,13 +24,12 @@ Joinpoint or segmented regression is a good custom extension example because it 
 
 
 
-## Walkthrough
 
 
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `04-change-point-custom_change_point`. The semantic point is the one stated above: the detector first fits a linear model and then refines it with `segmented::segmented()`, which estimates one or more joinpoints, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
 # installation
@@ -46,7 +45,7 @@ library(harbinger)
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The code below defines the smallest Harbinger contract needed to express the idea behind this example. Read it in semantic terms: the goal is to encode that the detector first fits a linear model and then refines it with `segmented::segmented()`, which estimates one or more joinpoints while still returning objects that Harbinger can plot and evaluate like any native method.
 
 ```{r}
 hcp_joinpoint_custom <- function(npsi = 1) {
@@ -87,7 +86,7 @@ We now fit and use the custom joinpoint detector on a simple change-point series
 
 ### Configure the Method
 
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+The choices below turn the central modeling idea into concrete parameters. They matter because the detector first fits a linear model and then refines it with `segmented::segmented()`, which estimates one or more joinpoints, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
 
 ```{r}
 data(examples_changepoints)
@@ -104,7 +103,7 @@ detection <- detect(model, dataset$serie)
 
 ### Evaluate What Was Found
 
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
+The evaluation asks whether the change-point candidates produced by `04-change-point-custom_change_point` match the labeled structure on this dataset. Read the scores as evidence about the method's assumptions in practice, not as detached summary numbers.
 
 ```{r}
 evaluation <- evaluate(model, detection$event, dataset$event)
@@ -117,7 +116,7 @@ evaluation$confMatrix
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the detector first fits a linear model and then refines it with `segmented::segmented()`, which estimates one or more joinpoints and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 ```{r}
 har_plot(model, dataset$serie, detection, dataset$event)
