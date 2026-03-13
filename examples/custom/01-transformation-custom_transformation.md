@@ -24,13 +24,12 @@ The transformation implemented here is a median filter. It is useful for reducin
 
 
 
-## Walkthrough
 
 
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `01-transformation-custom_transformation`. The semantic point is the one stated above: the transformation applies `stats::runmed()` to the numeric series and then feeds the filtered output into a regular Harbinger detector, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -47,7 +46,7 @@ library(harbinger)
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The code below defines the smallest Harbinger contract needed to express the idea behind this example. Read it in semantic terms: the goal is to encode that the transformation applies `stats::runmed()` to the numeric series and then feeds the filtered output into a regular Harbinger detector while still returning objects that Harbinger can plot and evaluate like any native method.
 
 
 ``` r
@@ -77,7 +76,7 @@ We first visualize the raw series, then apply the custom filter to attenuate loc
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the transformation applies `stats::runmed()` to the numeric series and then feeds the filtered output into a regular Harbinger detector and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 
 ``` r
@@ -95,7 +94,7 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 
 ### Run the Core Analysis
 
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+This is the moment where the notebook tests its central assumption on actual data. After applying `01-transformation-custom_transformation`, the important question is whether the resulting transformed outputs really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
 
 
 ``` r
@@ -115,7 +114,7 @@ Once the transformation is defined, it can be inserted before a regular detector
 
 ### Configure the Method
 
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+The choices below turn the central modeling idea into concrete parameters. They matter because the transformation applies `stats::runmed()` to the numeric series and then feeds the filtered output into a regular Harbinger detector, so each argument controls how strongly the method will emphasize that pattern when it later produces transformed outputs.
 
 
 ``` r

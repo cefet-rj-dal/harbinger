@@ -12,13 +12,6 @@ Ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification me
 - follow the workflow from data loading to model fitting and detection
 - inspect the evaluation outputs and the diagnostic plots produced by Harbinger
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -28,7 +21,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `33-ensemble-hanr_ensemble_fuzzy`. The semantic point is the one stated above: ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -84,7 +77,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 
 ``` r
@@ -102,7 +95,7 @@ har_plot(harbinger(), dataset$serie)
 
 ### Configure the Method
 
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+The choices below turn the central modeling idea into concrete parameters. They matter because ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity, so each argument controls how strongly the method will emphasize that pattern when it later produces ensemble anomaly flags.
 
 
 ``` r
@@ -129,7 +122,7 @@ The next step is to instantiate the method and, when necessary, fit it to the se
 
 ### Run the Core Analysis
 
-With the environment and the method ready, we execute the central analytical step and inspect its immediate output. This is the point where the abstract idea described earlier becomes operational, so the reader should pay attention to what is produced and how Harbinger standardizes the result.
+This is the moment where the notebook tests its central assumption on actual data. After applying `33-ensemble-hanr_ensemble_fuzzy`, the important question is whether the resulting ensemble anomaly flags really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
 
 
 ``` r
@@ -158,7 +151,7 @@ With the environment and the method ready, we execute the central analytical ste
 
 ### Evaluate What Was Found
 
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
+The evaluation asks whether the ensemble anomaly flags produced by `33-ensemble-hanr_ensemble_fuzzy` match the labeled structure on this dataset. Read the scores as evidence about the method's assumptions in practice, not as detached summary numbers.
 
 
 ``` r
@@ -182,7 +175,7 @@ After producing detections or transformed outputs, we compare them with the refe
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This visual check puts the model output back on top of the original signal. What matters now is whether the highlighted ensemble anomaly flags line up with the structure suggested by the method, which is the real semantic test of whether the example is teaching the right lesson.
 
 
 ``` r

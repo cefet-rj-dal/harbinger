@@ -10,7 +10,7 @@ This is important because event-detection quality depends not only on the detect
 
 For point anomalies, strict timestamp-level metrics are often acceptable. For collective or sequence anomalies, they can be misleading. If the true anomaly spans a range and the detector overlaps with most of that range, a pointwise confusion matrix may still look harsh simply because the boundaries do not line up exactly.
 
-This is one of the main points emphasized in the recent metric taxonomy by Sørbø and Ruocco: the choice of metric has to reflect the anomaly type and the intended use of the detector. Range-based anomalies should be judged with range-aware metrics.
+This is one of the main points emphasized in the recent metric taxonomy by Sorbo and Ruocco: the choice of metric has to reflect the anomaly type and the intended use of the detector. Range-based anomalies should be judged with range-aware metrics.
 
 This example therefore introduces a more interesting custom evaluator than a fixed tolerance window. It is designed for contiguous anomalous intervals and rewards two things:
 
@@ -30,13 +30,12 @@ This is not a full reimplementation of the Tatbul framework. It is a didactic Ha
 
 
 
-## Walkthrough
 
 
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `06-evaluation-custom_evaluation`. The semantic point is the one stated above: the evaluator first converts the boolean event vector into contiguous intervals, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -53,7 +52,7 @@ library(harbinger)
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The code below defines the smallest Harbinger contract needed to express the idea behind this example. Read it in semantic terms: the goal is to encode that the evaluator first converts the boolean event vector into contiguous intervals while still returning objects that Harbinger can plot and evaluate like any native method.
 
 
 ``` r
@@ -185,7 +184,7 @@ list(
 
 ### Evaluate What Was Found
 
-After producing detections or transformed outputs, we compare them with the reference labels whenever they are available. This stage matters because it connects the visual intuition of the method with an explicit measurement of quality, helping the learner understand not only whether the method runs, but how well it behaves.
+The evaluation asks whether the evaluation outputs produced by `06-evaluation-custom_evaluation` match the labeled structure on this dataset. Read the scores as evidence about the method's assumptions in practice, not as detached summary numbers.
 
 
 ``` r
@@ -245,5 +244,5 @@ This example shows that a custom evaluator in Harbinger only needs to respect th
 
 ## References
 
-- Sørbø, S., Ruocco, M. (2024). Navigating the metric maze: a taxonomy of evaluation metrics for anomaly detection in time series. Data Mining and Knowledge Discovery, 38, 1027-1068. https://doi.org/10.1007/s10618-023-00988-8
+- Sorbo, S., Ruocco, M. (2024). Navigating the metric maze: a taxonomy of evaluation metrics for anomaly detection in time series. Data Mining and Knowledge Discovery, 38, 1027-1068. https://doi.org/10.1007/s10618-023-00988-8
 - Tatbul, N., Lee, T. J., Zdonik, S., Alam, M., Gottschlich, J. (2018). Precision and Recall for Time Series. Advances in Neural Information Processing Systems 31.

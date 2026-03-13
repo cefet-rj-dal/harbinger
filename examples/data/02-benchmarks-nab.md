@@ -13,13 +13,6 @@ The focus is on dataset inspection. NAB is often used as a benchmark family, so 
 - verify that the first series is univariate
 - plot a short preview of the first signal and its labels
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -29,7 +22,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -74,12 +67,13 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### nab_artificialWithAnomaly
+### nab_artificialWithAnomaly
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_artificialWithAnomaly with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -109,12 +103,13 @@ plot_dataset_preview(nab_artificial_info)
 ![plot of chunk unnamed-chunk-3](fig/02-benchmarks-nab/unnamed-chunk-3-1.png)
 
 ### nab_realAdExchange
+### nab_realAdExchange
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_realAdExchange with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -144,12 +139,13 @@ plot_dataset_preview(nab_adexchange_info)
 ![plot of chunk unnamed-chunk-5](fig/02-benchmarks-nab/unnamed-chunk-5-1.png)
 
 ### nab_realAWSCloudwatch
+### nab_realAWSCloudwatch
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_realAWSCloudwatch with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -179,12 +175,13 @@ plot_dataset_preview(nab_aws_info)
 ![plot of chunk unnamed-chunk-7](fig/02-benchmarks-nab/unnamed-chunk-7-1.png)
 
 ### nab_realKnownCause
+### nab_realKnownCause
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_realKnownCause with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -214,12 +211,13 @@ plot_dataset_preview(nab_known_info)
 ![plot of chunk unnamed-chunk-9](fig/02-benchmarks-nab/unnamed-chunk-9-1.png)
 
 ### nab_realTraffic
+### nab_realTraffic
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_realTraffic with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -249,12 +247,13 @@ plot_dataset_preview(nab_traffic_info)
 ![plot of chunk unnamed-chunk-11](fig/02-benchmarks-nab/unnamed-chunk-11-1.png)
 
 ### nab_realTweets
+### nab_realTweets
 
 
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews nab_realTweets with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -287,4 +286,3 @@ plot_dataset_preview(nab_tweets_info)
 
 - Lavin, A., Ahmad, S. (2015). Evaluating real-time anomaly detection algorithms: the Numenta Anomaly Benchmark.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

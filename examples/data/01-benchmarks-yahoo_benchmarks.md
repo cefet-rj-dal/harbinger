@@ -13,13 +13,6 @@ This is a dataset-orientation notebook. It does not fit a detector. Instead, it 
 - identify whether the collection is univariate or multivariate
 - plot a short preview of the first available signal and its event labels
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -29,7 +22,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -78,6 +71,7 @@ plot_dataset_preview <- function(info) {
 ```
 
 ### A1Benchmark
+### A1Benchmark
 
 `A1Benchmark` contains real-world labeled univariate series from Yahoo Webscope S5.
 
@@ -86,7 +80,7 @@ plot_dataset_preview <- function(info) {
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews A1Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -116,6 +110,7 @@ plot_dataset_preview(a1_info)
 ![plot of chunk unnamed-chunk-3](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-3-1.png)
 
 ### A2Benchmark
+### A2Benchmark
 
 `A2Benchmark` contains synthetic labeled univariate series designed for anomaly-detection benchmarking.
 
@@ -124,7 +119,7 @@ plot_dataset_preview(a1_info)
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews A2Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -154,6 +149,7 @@ plot_dataset_preview(a2_info)
 ![plot of chunk unnamed-chunk-5](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-5-1.png)
 
 ### A3Benchmark
+### A3Benchmark
 
 `A3Benchmark` contains synthetic Yahoo series with labeled anomalous observations.
 
@@ -162,7 +158,7 @@ plot_dataset_preview(a2_info)
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews A3Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -192,6 +188,7 @@ plot_dataset_preview(a3_info)
 ![plot of chunk unnamed-chunk-7](fig/01-benchmarks-yahoo_benchmarks/unnamed-chunk-7-1.png)
 
 ### A4Benchmark
+### A4Benchmark
 
 `A4Benchmark` combines synthetic anomalies and structural changes in the Yahoo benchmark family.
 
@@ -200,7 +197,7 @@ plot_dataset_preview(a3_info)
 
 
 
-In this subsection, we load the relevant data object, confirm its structure, and prepare a concise preview so the reader can understand what kind of signal will be explored.
+This subsection previews A4Benchmark with the same summary routine defined above. The goal is to understand what kind of signal, dimensionality, and labeling this specific collection brings to the benchmark before any method is chosen.
 
 
 ``` r
@@ -233,4 +230,3 @@ plot_dataset_preview(a4_info)
 
 - Yahoo Webscope S5 benchmark documentation and downstream studies on labeled anomaly detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-

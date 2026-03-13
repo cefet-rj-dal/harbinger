@@ -15,13 +15,6 @@ This notebook explains how to use `mas()` as a simple moving-average transformat
 - understand the trade-off between smoothness and temporal detail
 - see why smoothing is often used before a modeling step
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -31,7 +24,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup anchors the notebook in the specific series used to examine `01-smoothing-mas`. The semantic point is the one stated above: `mas()` computes a simple moving average, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -86,7 +79,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because `mas()` computes a simple moving average and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 
 ``` r
@@ -104,7 +97,7 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 
 ### Configure the Method
 
-The next step is to instantiate the method and, when necessary, fit it to the selected series. This is where the notebook makes its analytical choice explicit: the parameters chosen here determine what kind of pattern the detector or transformer will become sensitive to and how the later outputs should be interpreted.
+The choices below turn the central modeling idea into concrete parameters. They matter because `mas()` computes a simple moving average, so each argument controls how strongly the method will emphasize that pattern when it later produces transformed outputs.
 
 
 ``` r
@@ -153,7 +146,7 @@ head(ma_15)
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This visual check puts the model output back on top of the original signal. What matters now is whether the highlighted transformed outputs line up with the structure suggested by the method, which is the real semantic test of whether the example is teaching the right lesson.
 
 
 ``` r
@@ -184,4 +177,3 @@ har_plot(
 ## References
 
 - Shumway, R. H., Stoffer, D. S. Time Series Analysis and Its Applications. Springer.
-

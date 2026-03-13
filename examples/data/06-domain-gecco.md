@@ -13,13 +13,6 @@ The purpose here is exploratory orientation. Before modeling, the reader can con
 - inspect the signal columns present in the first series
 - plot a didactic preview of the first available signal with its event labels
 
-## How to read this walkthrough
-
-The code blocks below follow the same learning rhythm used throughout the collection: prepare the environment, choose the dataset, configure the method, run the analysis, and then inspect the result. Readers who are still learning time-series mining can use that order to understand not only *what* each command does, but also *why* it appears at that stage of the workflow.
-
-As you go through the notebook, read the inline comments inside each chunk as the operational explanation and use the surrounding prose as the conceptual guide.
-
-## Walkthrough
 
 
 
@@ -29,7 +22,7 @@ As you go through the notebook, read the inline comments inside each chunk as th
 
 ### Define the Support Structures
 
-Before applying the workflow itself, we define the helper functions or custom objects that make the example possible. This is one of the most important didactic moments in extension-oriented notebooks because it shows the contract that Harbinger expects and where the reader can adapt the behavior later.
+The helper code below standardizes how each collection is counted, typed, and previewed. In a dataset notebook this is not scaffolding for its own sake; it is the mechanism that makes different collections comparable before any detector is discussed.
 
 
 ``` r
@@ -81,7 +74,7 @@ plot_dataset_preview <- function(info) {
 
 ### Prepare the Example
 
-We begin by organizing the environment, loading the packages, and selecting the dataset used in the notebook. This part is intentionally more direct: the goal is to make the starting point explicit before the method-specific reasoning begins.
+This setup loads the collections used in the notebook and keeps the dataset description concrete from the start. In this case the analysis begins before modeling, because the reader needs to see how the collection is organized before deciding what kind of method makes sense.
 
 
 ``` r
@@ -107,7 +100,7 @@ gecco_info <- show_dataset(gecco, "gecco")
 
 ### Interpret the Result Visually
 
-The final plots are not just illustrations. They help the reader connect the method's internal output with the original series, making it easier to see why a point, range, motif, or symbolic pattern was emphasized and whether that emphasis is coherent with the stated objective of the example.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the purpose here is exploratory orientation and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 
 ``` r
@@ -120,4 +113,3 @@ plot_dataset_preview(gecco_info)
 
 - GECCO Challenge 2018 material for water-quality event detection.
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
