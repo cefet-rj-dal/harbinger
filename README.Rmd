@@ -43,7 +43,7 @@ If you are new to `harbinger`, start with the tutorials. If you already know the
 ### Thematic example collections
 
 - [General examples](/examples/general/README.md) - package orientation, utility helpers, and evaluation objects that explain the common structure behind the methods.
-- [Dataset examples](/examples/data/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
+- [Dataset examples](/examples/datasets/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
 - [Transformation examples](/examples/transformations/README.md) - smoothing and symbolic encodings that prepare a series for later anomaly, change-point, or motif analysis.
 - [Anomaly examples](/examples/anomalies/README.md) - anomaly detection methods grouped from simple baselines to residual models, supervised learners, clustering, ensembles, autoencoders, and multivariate workflows.
 - [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, and volatility-oriented techniques.
@@ -87,7 +87,7 @@ If you are new to the package, this sequence works well:
 
 1. start with [Tutorials](/examples/tutorial/README.md) to understand the basic workflow
 2. continue with [General examples](/examples/general/README.md) for a compact view of package scope, utilities, and evaluation
-3. visit [Dataset examples](/examples/data/README.md) to understand the benchmark collections before choosing a method
+3. visit [Dataset examples](/examples/datasets/README.md) to understand the benchmark collections before choosing a method
 4. visit [Transformation examples](/examples/transformations/README.md) to see how smoothing and symbolic encodings change the signal before analysis
 5. move to one modeling family, usually [Anomaly examples](/examples/anomalies/README.md) or [Change-point examples](/examples/change_point/README.md)
 6. study [Motif examples](/examples/motifs/README.md) after you are comfortable with subsequences, windows, and symbolic representations

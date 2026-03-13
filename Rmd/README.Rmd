@@ -15,7 +15,7 @@ If you are new to `harbinger`, start with the tutorials. If you already know the
 ### Thematic example collections
 
 - [General examples](/examples/general/README.md) - package orientation, utility helpers, and evaluation objects that explain the common structure behind the methods.
-- [Dataset examples](/examples/data/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
+- [Dataset examples](/examples/datasets/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
 - [Transformation examples](/examples/transformations/README.md) - smoothing and symbolic encodings that prepare a series for later anomaly, change-point, or motif analysis.
 - [Anomaly examples](/examples/anomalies/README.md) - anomaly detection methods grouped from simple baselines to residual models, supervised learners, clustering, ensembles, autoencoders, and multivariate workflows.
 - [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, and volatility-oriented techniques.
