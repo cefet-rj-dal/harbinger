@@ -4,6 +4,8 @@ This section presents `harbinger` as a guided learning path. Instead of starting
 
 The sequence is cumulative. Each notebook introduces one main idea and keeps the code close to that idea, so the reader can understand both the package interface and the analytical reason for each step.
 
+This folder should be read in order. The first notebooks lower the entry barrier, the middle notebooks explain how to inspect and evaluate results, and the last ones broaden the reader's view of what event analysis can include beyond a first anomaly detector.
+
 Recommended reading order:
 
 - [01-first-steps.md](/examples/tutorial/01-first-steps.md) - understand the minimum Harbinger workflow on a labeled anomaly series.

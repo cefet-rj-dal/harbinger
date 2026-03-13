@@ -2,13 +2,17 @@
 
 This folder organizes anomaly detection as a progression of modeling ideas. The intention is to help the reader study the families in a useful order: start with simple baselines, then move to residual models, supervised approaches, clustering, ensembles, and deep architectures.
 
-If you are learning the area, do not treat this as a flat catalog. The groups below were ordered to make comparisons easier.
+If you are learning the area, do not treat this as a flat catalog. The groups below were ordered to make comparisons easier and to help the reader ask better questions at each stage: what counts as unusual, how temporal structure changes the answer, when labels are available, and when stronger models are worth the added complexity.
 
 ## Foundations
+
+Start here if you want a first intuition for anomaly detection before dealing with forecasting errors, windows, embeddings, or neural architectures.
 
 - [01-baseline-hanr_histogram.md](/examples/anomalies/01-baseline-hanr_histogram.md) - `hanr_histogram()`: simple baseline based on low-density histogram bins.
 
 ## Residual and Signal Models
+
+These notebooks are the natural next step because they explain anomalies through the mismatch between the observed series and a model of expected behavior.
 
 - [02-regression-hanr_arima.md](/examples/anomalies/02-regression-hanr_arima.md) - `hanr_arima()`: anomaly detection from ARIMA residuals.
 - [03-regression-hanr_fbiad.md](/examples/anomalies/03-regression-hanr_fbiad.md) - `hanr_fbiad()`: forecasting-based anomaly detection.
@@ -26,6 +30,8 @@ If you are learning the area, do not treat this as a flat catalog. The groups be
 
 ## Supervised Detectors
 
+Read this group when the dataset includes labels and the goal is no longer only to model normal behavior, but to learn directly from examples of anomalous and non-anomalous cases.
+
 - [15-regression-ml-hanr_ml_elm.md](/examples/anomalies/15-regression-ml-hanr_ml_elm.md) - regression-based anomaly detection with ELM.
 - [16-regression-ml-hanr_ml_mlp.md](/examples/anomalies/16-regression-ml-hanr_ml_mlp.md) - regression-based anomaly detection with MLP.
 - [17-regression-ml-hanr_ml_rf.md](/examples/anomalies/17-regression-ml-hanr_ml_rf.md) - regression-based anomaly detection with Random Forest.
@@ -42,12 +48,16 @@ If you are learning the area, do not treat this as a flat catalog. The groups be
 
 ## Clustering and Discords
 
+These methods are useful when similarity between subsequences matters more than a fitted predictive model.
+
 - [28-clustering-hanct_kmeans_anomaly.md](/examples/anomalies/28-clustering-hanct_kmeans_anomaly.md) - clustering-based anomaly detection with k-means.
 - [29-clustering-hanct_kmeans_discord.md](/examples/anomalies/29-clustering-hanct_kmeans_discord.md) - discord-oriented k-means workflow.
 - [30-clustering-hanct_dtw_anomaly.md](/examples/anomalies/30-clustering-hanct_dtw_anomaly.md) - anomaly detection with DTW clustering.
 - [31-clustering-hanct_dtw_discord.md](/examples/anomalies/31-clustering-hanct_dtw_discord.md) - discord discovery with DTW clustering.
 
 ## Ensembles and Deep Models
+
+Leave this group for later. It is easier to understand these notebooks after the reader already knows the simpler families they combine or generalize.
 
 - [32-ensemble-hanr_ensemble.md](/examples/anomalies/32-ensemble-hanr_ensemble.md) - ensemble detector that combines multiple anomaly scores.
 - [33-ensemble-hanr_ensemble_fuzzy.md](/examples/anomalies/33-ensemble-hanr_ensemble_fuzzy.md) - ensemble detector with temporal fuzzification.
@@ -60,5 +70,7 @@ If you are learning the area, do not treat this as a flat catalog. The groups be
 - [40-autoencoder-han_autoenc_adv_ed.md](/examples/anomalies/40-autoencoder-han_autoenc_adv_ed.md) - adversarial autoencoder.
 
 ## Multivariate Analysis
+
+Finish here if your goal is to move from single-signal intuition to the joint behavior of several variables.
 
 - [41-multivariate-hmu_pca.md](/examples/anomalies/41-multivariate-hmu_pca.md) - PCA-based anomaly detection for multivariate time series.
