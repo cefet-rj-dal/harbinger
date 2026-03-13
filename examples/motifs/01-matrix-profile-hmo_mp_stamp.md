@@ -131,7 +131,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Finished in 0.02 secs
+## Finished in 0.03 secs
 ```
 
 

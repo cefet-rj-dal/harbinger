@@ -52,8 +52,8 @@ are grouped by subject in a more didactic order.
 - [General examples](/examples/general/README.md) - package orientation,
   utility helpers, and evaluation objects that explain the common
   structure behind the methods.
-- [Dataset examples](/examples/data/README.md) - benchmark archives and
-  domain datasets, organized to help the reader understand the
+- [Dataset examples](/examples/datasets/README.md) - benchmark archives
+  and domain datasets, organized to help the reader understand the
   collections before modeling.
 - [Transformation examples](/examples/transformations/README.md) -
   smoothing and symbolic encodings that prepare a series for later
@@ -126,8 +126,8 @@ If you are new to the package, this sequence works well:
     the basic workflow
 2.  continue with [General examples](/examples/general/README.md) for a
     compact view of package scope, utilities, and evaluation
-3.  visit [Dataset examples](/examples/data/README.md) to understand the
-    benchmark collections before choosing a method
+3.  visit [Dataset examples](/examples/datasets/README.md) to understand
+    the benchmark collections before choosing a method
 4.  visit [Transformation examples](/examples/transformations/README.md)
     to see how smoothing and symbolic encodings change the signal before
     analysis

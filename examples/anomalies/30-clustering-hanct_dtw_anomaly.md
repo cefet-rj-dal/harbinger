@@ -117,11 +117,19 @@ model <- fit(model, dataset$serie)
 ```
 
 ```
-## Found more than one class "dist" in cache; using the first, from namespace 'spam'
+## Found more than one class "dist" in cache; using the first, from namespace 'arules'
 ```
 
 ```
-## Also defined by 'arules' 'dtwclust'
+## Also defined by 'spam'
+```
+
+```
+## Found more than one class "dist" in cache; using the first, from namespace 'arules'
+```
+
+```
+## Also defined by 'spam'
 ```
 
 

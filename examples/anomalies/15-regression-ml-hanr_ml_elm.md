@@ -41,6 +41,17 @@ library(harbinger)
 library(tspredit)
 ```
 
+```
+## 
+## Attaching package: 'tspredit'
+```
+
+```
+## The following object is masked from 'package:harbinger':
+## 
+##     loadfulldata
+```
+
 
 
 
