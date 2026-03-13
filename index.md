@@ -48,7 +48,7 @@ are grouped by subject in a more didactic order.
   package orientation, utility helpers, and evaluation objects that
   explain the common structure behind the methods.
 - [Dataset
-  examples](https://cefet-rj-dal.github.io/examples/data/README.md) -
+  examples](https://cefet-rj-dal.github.io/examples/datasets/README.md) -
   benchmark archives and domain datasets, organized to help the reader
   understand the collections before modeling.
 - [Transformation
@@ -131,8 +131,8 @@ If you are new to the package, this sequence works well:
     examples](https://cefet-rj-dal.github.io/examples/general/README.md)
     for a compact view of package scope, utilities, and evaluation
 3.  visit [Dataset
-    examples](https://cefet-rj-dal.github.io/examples/data/README.md) to
-    understand the benchmark collections before choosing a method
+    examples](https://cefet-rj-dal.github.io/examples/datasets/README.md)
+    to understand the benchmark collections before choosing a method
 4.  visit [Transformation
     examples](https://cefet-rj-dal.github.io/examples/transformations/README.md)
     to see how smoothing and symbolic encodings change the signal before
