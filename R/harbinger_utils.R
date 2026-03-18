@@ -103,25 +103,31 @@ har_fuzzify_detections_triangle <- function(value, tolerance) {
     attr(value, "type") <- type
     return(value)
   }
+  
   idx <- which(value >= 1)
   n <- length(value)
-  ratio <- 1/tolerance
-  range <- tolerance-1
+  ratio <- 1 / tolerance
+  range <- tolerance - 1
+  
   for (i in idx) {
     curtype <- ""
     if (!is.null(type))
       curtype <- type[i]
+    
     for (j in 1:range) {
-      if (i + j < n) {
-        value[i+j] <- value[i+j] + (tolerance - j)*ratio
-        type[i+j] <- curtype
+      weight <- (tolerance - j) * ratio
+      
+      if (i + j <= n) {
+        value[i + j] <- max(value[i + j], weight)
+        type[i + j] <- curtype
       }
       if (i - j > 0) {
-        value[i-j] <- value[i-j] + (tolerance - j)*ratio
-        type[i-j] <- curtype
+        value[i - j] <- max(value[i - j], weight)
+        type[i - j] <- curtype
       }
     }
   }
+  
   attr(value, "type") <- type
   return(value)
 }
