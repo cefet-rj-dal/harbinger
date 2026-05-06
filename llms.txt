@@ -94,6 +94,7 @@ reader can see the minimum workflow before moving to the more didactic
 notebooks in `/examples/`.
 
 ``` r
+
 library(harbinger)
 
 # Load an example dataset with labeled anomalies
@@ -159,12 +160,14 @@ The latest version of Harbinger at CRAN is available at:
 You can install the stable version from CRAN with:
 
 ``` r
+
 install.packages("harbinger")
 ```
 
 You can install the development version from GitHub with:
 
 ``` r
+
 library(devtools)
 devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
 ```
