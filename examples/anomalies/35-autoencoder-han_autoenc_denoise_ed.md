@@ -101,7 +101,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ``` r
 # Define denoising autoencoder-based detector (autoenc_denoise_ed)
-  model <- han_autoencoder(3, 2, autoenc_denoise_ed, num_epochs = 1500)
+  model <- han_autoencoder(3, 2, autoenc_denoise_ed, epochs = 1500)
 ```
 
 

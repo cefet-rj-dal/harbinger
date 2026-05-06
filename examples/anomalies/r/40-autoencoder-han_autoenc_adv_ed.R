@@ -17,7 +17,7 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 
 # Define adversarial autoencoder-based detector (autoenc_adv_ed)
-  model <- han_autoencoder(3, 2, autoenc_adv_ed, num_epochs = 1500)
+  model <- han_autoencoder(3, 2, autoenc_adv_ed, epochs = 1500)
 
 # Fit the model
   model <- fit(model, dataset$serie)
