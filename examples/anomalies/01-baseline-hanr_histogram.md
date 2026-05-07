@@ -42,6 +42,10 @@ library(daltoolbox)
 ```
 
 ```
+## Warning: package 'daltoolbox' was built under R version 4.5.3
+```
+
+```
 ## 
 ## Attaching package: 'daltoolbox'
 ```

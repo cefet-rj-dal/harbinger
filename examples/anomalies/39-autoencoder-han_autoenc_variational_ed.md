@@ -91,7 +91,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ``` r
 # Define variational autoencoder-based detector (autoenc_variational_ed)
-  model <- han_autoencoder(3, 2, autoenc_variational_ed, epochs = 1500)
+  model <- han_autoencoder(3, 2, autoenc_variational_ed, epochs = 100)
 ```
 
 
@@ -100,6 +100,28 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
 ```
 
 
@@ -118,6 +140,28 @@ This is the moment where the notebook tests its central assumption on actual dat
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
+```
+
 
 
 
@@ -127,9 +171,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-##   idx event    type
-## 1  21  TRUE anomaly
-## 2  69  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -146,14 +189,20 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -172,7 +221,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-10](fig/39-autoencoder-han_autoenc_variational_ed/unnamed-chunk-10-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -182,7 +234,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-11](fig/39-autoencoder-han_autoenc_variational_ed/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

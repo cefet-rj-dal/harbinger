@@ -1,6 +1,16 @@
-#'@title Seminal change point
-#'@description Change-point detection is related to event/trend change detection. Seminal change point detects change points based on deviations of linear regression models adjusted with and without a central observation in each sliding window <10.1145/312129.312190>.
-#'@param sw_size Sliding window size
+#' @title Seminal change point
+#' @description
+#' Window-based change-point detection that compares two local linear models
+#' fitted on each sliding window: one using the full window and another using the
+#' same window split around its central observation. The difference between the
+#' two residual summaries is used as the change score.
+#'
+#' The method is called "seminal" because the paper defines a seminal point for
+#' each window family, i.e. the central observation used to split the local
+#' regression into two sides. This makes the detector a local family method based
+#' on windows rather than a global segmentation algorithm.
+#'
+#' @param sw_size Sliding window size.
 #'@return `hcp_scp` object
 #'@examples
 #'library(daltoolbox)
@@ -12,7 +22,7 @@
 #' dataset <- examples_changepoints$simple
 #' head(dataset)
 #'
-#' # Configure seminal change-point detector
+#' # Configure the seminal change-point detector
 #' model <- hcp_scp()
 #'
 #' # Fit the model
@@ -25,6 +35,8 @@
 #' print(detection[(detection$event),])
 #'
 #' @references
+#' - The seminal change-point paper referenced in
+#'   `Event Detection from Time Series Data`.
 #' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
 #'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
@@ -45,7 +57,8 @@ hcp_scp <- function(sw_size = 30) {
 #'@importFrom stats na.omit
 #'@exportS3Method detect hcp_scp
 detect.hcp_scp <- function(obj, serie, ...) {
-analyze_window <- function(data, offset) {
+  # Compare the full-window regression against the split-window regression.
+  analyze_window <- function(data, offset) {
   n <- length(data)
   y <- data.frame(t = 1:n, y = data)
 
@@ -67,13 +80,13 @@ analyze_window <- function(data, offset) {
 
   if(is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
-  # Normalize indexing and omit NAs
+  # Normalize indexing and omit NAs.
   obj <- obj$har_store_refs(obj, serie)
 
   sx <- tspredit::ts_data(obj$serie, obj$sw_size)
   obj$offset <- round(obj$sw_size/2)
 
-  #===== Analyze all data windows ======
+  # Analyze all data windows.
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
 
   res <- errors$mdl_dif
@@ -86,7 +99,7 @@ analyze_window <- function(data, offset) {
   change_point <- c(rep(FALSE, obj$offset), change_point, rep(FALSE, obj$sw_size - obj$offset - 1))
   attr(change_point, "threshold") <- threshold
 
-  # Restore change points to original indexing
+  # Restore change points to original indexing.
   detection <- obj$har_restore_refs(obj, change_point = change_point, res = res)
 
   return(detection)

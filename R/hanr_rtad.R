@@ -1,11 +1,17 @@
-#'@title Anomaly and change point detector using RTAD
-#'@description Anomaly and change point detection using RTAD
-#'The RTAD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the EMD model presented in the hht library.
-#'@param sw_size sliding window size (default 30)
-#'@param noise noise
-#'@param trials trials
-#'@param sigma function to compute the dispersion
+#' @title Resilient Transformation Anomaly Detector (RTAD)
+#' @description
+#' Hybrid anomaly detector built from the Resilient Transformation (RT) proposed
+#' in the RT/RTAD paper. The series is decomposed with CEEMD, the highest-frequency
+#' structure is selected from IMF roughness, the transformed signal is differentiated,
+#' and local dispersion is used to normalize deviations before thresholding.
+#'
+#' RTAD is not a generic wrapper around EMD. It is the standalone detector obtained
+#' when the resilient transformation is coupled with a simple decision rule.
+#'
+#' @param sw_size Sliding window size used to compute local dispersion.
+#' @param noise CEEMD noise amplitude.
+#' @param trials Number of CEEMD trials.
+#' @param sigma Function used to compute local dispersion.
 #'@return `hanr_rtad` object
 #'@examples
 #'library(daltoolbox)
@@ -46,7 +52,7 @@ hanr_rtad <- function(sw_size = 30, noise = 0.001, trials = 5, sigma = sd) {
   return(obj)
 }
 
-#  Roughness function
+# Roughness of an IMF, used to select the high-frequency regime.
 #'@importFrom stats sd
 fc_rug <- function(x){
   firstD = diff(x)
@@ -55,7 +61,7 @@ fc_rug <- function(x){
   return(mean(roughness))
 }
 
-#  Function that sums the IMFs given an initial and final IMF.
+# Sum a contiguous range of IMFs into a single reconstructed signal.
 fc_somaIMF <- function(ceemd.result, inicio, fim){
   soma_imf <- rep(0, length(ceemd.result[["original.signal"]]))
   for (k in inicio:fim){
@@ -80,7 +86,7 @@ detect.hanr_rtad <- function(obj, serie, ...) {
   id <- 1:length(obj$serie)
   san_size <-  length(obj$serie)
 
-  ## calculate IMFs (CEEMD decomposition)
+  # CEEMD decomposition of the observed series.
   suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
 
   model_an <- ceemd.result
@@ -88,26 +94,26 @@ detect.hanr_rtad <- function(obj, serie, ...) {
   if (model_an$nimf < 4){
     soma_an <- obj$serie - model_an$residue
   }else{
-    ## calculate roughness for each IMF
+    # Measure roughness of each IMF and keep the high-frequency block.
     vec <- vector()
     for (n in 1:model_an$nimf){
       vec[n] <- fc_rug(model_an[["imf"]][,n])
     }
 
-    ## Maximum curvature to select split index
+    # Use maximum curvature to select the split between retained and discarded IMFs.
     res <- daltoolbox::transform(daltoolbox::fit_curvature_max(), vec)
     div <- res$x
 
-    ## sum IMFs
+    # Reconstruct the transformed signal from the selected IMFs.
     soma_an <- fc_somaIMF(model_an, 1, div)
   }
 
-  # diff
+  # First-order differencing of the reconstructed signal.
   diff_soma <- c(NA, diff(soma_an))
   diff_soma[1] <- diff_soma[2]
 
 
-  ## detrend using CEEMD residue
+  # Detrend using the CEEMD residue when available.
   isEmpty <- function(x) {
     return(length(x)==0)
   }
@@ -118,10 +124,10 @@ detect.hanr_rtad <- function(obj, serie, ...) {
     d_serie <- obj$serie-model_an$residue
   }
 
-  ##Calcula volatilidade instantânea
+  # Local dispersion normalization over a sliding window.
   dm <-  rollapply(d_serie, obj$sw_size, obj$sigma, by = 1, partial=TRUE)
 
-  ## Criando vetor de anomalias
+  # The normalized residual becomes the anomaly score.
   RTAD_transform <- diff_soma/dm
 
   res <- obj$har_distance(RTAD_transform)
