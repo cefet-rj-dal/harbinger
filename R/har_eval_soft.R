@@ -1,7 +1,11 @@
 #' @title Evaluation of event detection (SoftED)
-#' @description Soft evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>.
+#' @description
+#' Soft evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>.
+#' The metric assigns partial credit to detections that fall within a tolerance
+#' window around the ground-truth event.
+#'
 #' @param sw_size Integer. Tolerance window size for soft matching.
-#' @return `har_eval_soft` object
+#' @return `har_eval_soft` object.
 #'
 #' @examples
 #' library(daltoolbox)

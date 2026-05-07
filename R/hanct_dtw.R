@@ -1,9 +1,10 @@
 #'@title Anomaly detector using DTW
-#'@description Anomaly detection using DTW
-#'The DTW is applied to the time series.
-#'When seq equals one, observations distant from the closest centroids are labeled as anomalies.
-#'When `seq` is greater than one, sequences distant from the closest centroids are labeled as discords.
-#'Wraps the `tsclust` implementation from the `dtwclust` library.
+#'@description Distance-based anomaly and discord detection using dynamic time warping.
+#'The detector clusters the series with DTW and flags observations or subsequences
+#'that are far from the nearest centroid.
+#'When `seq` equals one, isolated observations are labeled as anomalies.
+#'When `seq` is greater than one, subsequences are labeled as discords.
+#'Wraps the `tsclust` implementation from the `dtwclust` package.
 #'@param seq sequence size
 #'@param centers number of centroids
 #'@return `hanct_dtw` object

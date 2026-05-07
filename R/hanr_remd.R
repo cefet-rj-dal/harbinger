@@ -1,9 +1,10 @@
 #'@title Anomaly detector using REMD
-#'@description Anomaly detection using REMD
-#'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
+#'@description Anomaly detection using REMD with EMD-based decomposition.
+#'The detector decomposes the series, selects components according to curvature,
+#'and flags large residual deviations as anomalies.
 #'Wraps the EMD-based model presented in the `forecast` package.
-#'@param noise nosie
-#'@param trials trials
+#'@param noise Noise amplitude for the decomposition.
+#'@param trials Number of trials used by the decomposition step.
 #'@return `hanr_remd` object
 #'
 #'@examples

@@ -1,6 +1,6 @@
 #' @title Bayesian Online Change Point Detection
 #' @description
-#' Bayesian Online Change Point Detection (BOCPD) using the `ocp` package.
+#' Online Bayesian change-point detection using the `ocp` package.
 #'
 #' This implementation follows the Adams & MacKay formulation and uses the
 #' `ocp` backend to infer changepoint evidence over the full series.
