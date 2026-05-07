@@ -106,7 +106,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
+## Don't know how to automatically pick scale for object of type <ts>. Defaulting
+## to continuous.
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/03-orientation-examples_changepoints/unnamed-chunk-7-1.png)
@@ -123,7 +124,8 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
+## Don't know how to automatically pick scale for object of type <ts>. Defaulting
+## to continuous.
 ```
 
 ![plot of chunk unnamed-chunk-8](fig/03-orientation-examples_changepoints/unnamed-chunk-8-1.png)

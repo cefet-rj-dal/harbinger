@@ -34,7 +34,8 @@ head(sax_series, 20)
 ```
 
 ```
-##  [1] "D" "D" "D" "C" "C" "B" "B" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B"
+##  [1] "D" "D" "D" "C" "C" "B" "B" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B"
+## [20] "B"
 ```
 
 Then apply XSAX, which allows a richer alphabet.
@@ -47,7 +48,8 @@ head(xsax_series, 20)
 ```
 
 ```
-##  [1] "6" "6" "6" "5" "4" "3" "2" "2" "1" "0" "0" "0" "0" "0" "0" "0" "1" "1" "2" "3"
+##  [1] "6" "6" "6" "5" "4" "3" "2" "2" "1" "0" "0" "0" "0" "0" "0" "0" "1" "1" "2"
+## [20] "3"
 ```
 
 Compare the numeric and symbolic representations side by side.

@@ -17,7 +17,7 @@ head(dataset)
 har_plot(harbinger(), dataset$serie)
 
 # Define LSTM autoencoder-based detector (autoenc_lstm_ed)
-  model <- han_autoencoder(3, 2, autoenc_lstm_ed, epochs = 1500)
+  model <- han_autoencoder(3, 2, autoenc_lstm_ed, epochs = 100)
 
 # Fit the model
   model <- fit(model, dataset$serie)

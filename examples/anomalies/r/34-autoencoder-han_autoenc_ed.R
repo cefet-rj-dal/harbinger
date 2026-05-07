@@ -18,7 +18,7 @@ har_plot(harbinger(), dataset$serie)
 
 # Define autoencoder-based detector (autoenc_ed)
 # - first/second args: encoder/decoder sizes; epochs: training epochs
-model <- han_autoencoder(3, 2, autoenc_ed, epochs = 1500)
+model <- han_autoencoder(3, 2, autoenc_ed, epochs = 100)
 
 # Fit the model
   model <- fit(model, dataset$serie)
