@@ -40,8 +40,6 @@ library(daltoolbox)
 library(harbinger) 
 library(tspredit)
 library(daltoolboxdp)
-python_available <- requireNamespace("reticulate", quietly = TRUE) && reticulate::py_available()
-knitr::opts_chunk$set(eval = python_available)
 ```
 
 
@@ -63,6 +61,16 @@ dataset <- examples_anomalies$simple
 head(dataset)
 ```
 
+```
+##       serie event
+## 1 1.0000000 FALSE
+## 2 0.9689124 FALSE
+## 3 0.8775826 FALSE
+## 4 0.7316889 FALSE
+## 5 0.5403023 FALSE
+## 6 0.3153224 FALSE
+```
+
 
 
 
@@ -78,6 +86,8 @@ This first visual pass establishes what the method should react to in the raw se
 # Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
+
+![plot of chunk unnamed-chunk-5](fig/20-regression-ml-hanr_ml_conv1d/unnamed-chunk-5-1.png)
 
 
 
@@ -128,6 +138,11 @@ detection <- detect(model, dataset$serie)
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
+```
+##   idx event    type
+## 1  50  TRUE anomaly
+```
+
 
 
 
@@ -143,6 +158,13 @@ The evaluation asks whether the anomaly flags produced by `hanr_ml + ts_conv1d` 
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
   print(evaluation$confMatrix)
+```
+
+```
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -161,6 +183,8 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
+![plot of chunk unnamed-chunk-11](fig/20-regression-ml-hanr_ml_conv1d/unnamed-chunk-11-1.png)
+
 
 
 
@@ -168,6 +192,8 @@ This visual check puts the model output back on top of the original signal. What
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
+
+![plot of chunk unnamed-chunk-12](fig/20-regression-ml-hanr_ml_conv1d/unnamed-chunk-12-1.png)
 
 ## References
 

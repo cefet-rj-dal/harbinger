@@ -82,7 +82,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ```{r}
 # Configure a simple MLP regressor-based anomaly detector
-model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size = 5, size = 3, decay = 0))
+model <- hanr_ml(tspredit::ts_mlp(tspredit::ts_norm_gminmax(), input_size = 5, size = 3, decay = 0))
 ```
 
 
