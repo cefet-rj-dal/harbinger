@@ -1,20 +1,16 @@
 ## Objective
 
-ChangeFinder-GARCH models volatility with GARCH and detects change points by smoothing residual deviations. In this tutorial we:
-
-- Load and visualize a change-point dataset
-- Configure and run the GARCH-based change detector (`hcp_garch`)
-- Inspect detections, evaluate, and plot residuals with thresholds
+This notebook demonstrates change-point detection with a GARCH-based ChangeFinder (`hcp_garch`). The detector tracks volatility regimes by scoring short-term residual behavior.
 
 ## Method at a glance
 
-ChangeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts.
+ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts.
 
 ## What you will do
 
-- understand the purpose of the example and when the technique is useful
-- follow the workflow from data loading to model fitting and detection
-- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+- load the example data and inspect the raw series
+- configure the detector with a sliding window
+- fit the model, detect change points, evaluate the result, and plot the output
 
 
 
@@ -25,7 +21,7 @@ ChangeFinder with GARCH: ChangeFinder with GARCH models conditional variance dyn
 
 ### Prepare the Example
 
-This setup anchors the notebook in the specific series used to examine `hcp_garch`. The semantic point is the one stated above: changeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
+This setup anchors the notebook in the specific series used to examine `hcp_garch`. The key idea is that the detector works on residual behavior, so the raw signal should be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -81,7 +77,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because changeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the plot reveals whether the signal contains clean, weak, local, repeated, or mixed structural changes.
 
 
 ``` r
@@ -99,11 +95,11 @@ har_plot(harbinger(), dataset$serie)
 
 ### Configure the Method
 
-The choices below turn the central modeling idea into concrete parameters. They matter because changeFinder with GARCH: ChangeFinder with GARCH models conditional variance dynamics; residual-based scores are smoothed and thresholded to flag volatility regime shifts, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
+The choices below turn the central modeling idea into concrete parameters. Each argument controls how strongly the method emphasizes residual shifts when it produces change-point candidates.
 
 
 ``` r
-# Configure GARCH-based ChangeFinder detector
+# Configure the GARCH-based ChangeFinder model
 model <- hcp_garch()
 ```
 
@@ -123,7 +119,7 @@ model <- fit(model, dataset$serie)
 
 ### Run the Core Analysis
 
-This is the moment where the notebook tests its central assumption on actual data. After applying `hcp_garch`, the important question is whether the resulting change-point candidates really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
+This is the moment where the notebook tests its central assumption on actual data. After applying `hcp_garch`, the question is whether the resulting change-point candidates correspond to the residual pattern described above rather than to arbitrary numerical variation.
 
 
 ``` r

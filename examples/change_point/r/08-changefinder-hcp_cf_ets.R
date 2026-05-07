@@ -15,7 +15,7 @@ head(dataset)
 # Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 
-# Configure ChangeFinder-ETS
+# Configure the ChangeFinder-ETS model
 model <- hcp_cf_ets(sw_size = 10)
 
 # Fit the detector

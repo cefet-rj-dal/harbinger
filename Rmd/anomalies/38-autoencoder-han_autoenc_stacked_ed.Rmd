@@ -28,6 +28,8 @@ This setup anchors the notebook in the specific series used to examine `han_auto
 library(daltoolbox)
 library(harbinger) 
 library(daltoolboxdp)
+python_available <- requireNamespace("reticulate", quietly = TRUE) && reticulate::py_available()
+knitr::opts_chunk$set(eval = python_available)
 ```
 
 

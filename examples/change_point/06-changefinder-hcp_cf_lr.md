@@ -1,16 +1,16 @@
 ## Objective
 
-This notebook demonstrates change-point detection using Conformal Forecasting with a Linear Regression forecaster (`hcp_cf_lr`). The method scores deviations from short-term predictions and flags structural changes when nonconformity exceeds a learned threshold. Steps: load packages/data, visualize, define model (window size), fit, detect, evaluate, and plot both detections and residuals.
+This notebook demonstrates change-point detection with a linear-regression-based ChangeFinder (`hcp_cf_lr`). The method scores short-term prediction residuals and flags structural changes when the residual pattern becomes persistent.
 
 ## Method at a glance
 
-ChangeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes. Thresholding is done via `harutils()`.
+ChangeFinder with linear regression models residual deviations, smooths the score over time, and applies a threshold to highlight structural changes. Thresholding is handled by `harutils()`.
 
 ## What you will do
 
-- understand the purpose of the example and when the technique is useful
-- follow the workflow from data loading to model fitting and detection
-- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+- load the example data and inspect the raw series
+- configure the detector with a sliding window
+- fit the model, detect change points, evaluate the result, and plot the output
 
 
 
@@ -21,7 +21,7 @@ ChangeFinder with linear regression: ChangeFinder with linear regression models 
 
 ### Prepare the Example
 
-This setup anchors the notebook in the specific series used to examine `hcp_cf_lr`. The semantic point is the one stated above: changeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
+This setup anchors the notebook in the specific series used to examine `hcp_cf_lr`. The key idea is that the detector works on residual deviations, so the raw signal should be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -77,7 +77,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because changeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the plot reveals whether the signal contains clean, weak, local, repeated, or mixed structural changes.
 
 
 ``` r
@@ -95,13 +95,13 @@ har_plot(harbinger(), dataset$serie)
 
 ### Configure the Method
 
-The choices below turn the central modeling idea into concrete parameters. They matter because changeFinder with linear regression: ChangeFinder with linear regression models residual deviations and applies a second-stage smoothing/thresholding to expose structural changes, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
+The choices below turn the central modeling idea into concrete parameters. Each argument controls how strongly the method emphasizes residual shifts when it produces change-point candidates.
 
 
 ``` r
-# Define Conformal Forecasting (Linear Regression) change-point model
+# Define the ChangeFinder-LR model
 # - sw_size controls the sliding window length
-  model <- hcp_cf_lr(sw_size = 10)
+model <- hcp_cf_lr(sw_size = 10)
 ```
 
 
@@ -109,7 +109,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ``` r
 # Fit the model
-  model <- fit(model, dataset$serie)
+model <- fit(model, dataset$serie)
 ```
 
 
@@ -120,12 +120,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ### Run the Core Analysis
 
-This is the moment where the notebook tests its central assumption on actual data. After applying `hcp_cf_lr`, the important question is whether the resulting change-point candidates really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
+This is the moment where the notebook tests its central assumption on actual data. After applying `hcp_cf_lr`, the question is whether the resulting change-point candidates correspond to the residual pattern described above rather than to arbitrary numerical variation.
 
 
 ``` r
 # Detect change-points
-  detection <- detect(model, dataset$serie)
+detection <- detect(model, dataset$serie)
 ```
 
 
@@ -133,7 +133,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 
 ``` r
 # Show only timestamps flagged as events
-  print(detection |> dplyr::filter(event==TRUE))
+print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```

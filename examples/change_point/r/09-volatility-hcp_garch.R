@@ -15,7 +15,7 @@ head(dataset)
 # Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 
-# Configure GARCH-based ChangeFinder detector
+# Configure the GARCH-based ChangeFinder model
 model <- hcp_garch()
 
 # Fit the detector

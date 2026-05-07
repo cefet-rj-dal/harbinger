@@ -1,12 +1,17 @@
 library(daltoolbox)
 library(harbinger)
+if (!exists("hcp_bocpd")) source("../../R/hcp_bocpd.R")
 
-data(examples_changepoints)
-dataset <- examples_changepoints$simple
+if (requireNamespace("ocp", quietly = TRUE)) {
+  data(examples_changepoints)
+  dataset <- examples_changepoints$simple
 
-model <- hcp_bocpd(hazard = 100, dist = "gaussian", threshold = 0.5)
-model <- fit(model, dataset$serie)
-detection <- detect(model, dataset$serie)
+  model <- hcp_bocpd(hazard = 100, dist = "gaussian", threshold = 0.5)
+  model <- fit(model, dataset$serie)
+  detection <- detect(model, dataset$serie)
 
-print(detection[detection$event, ])
-har_plot(model, dataset$serie, detection, dataset$event)
+  print(detection[detection$event, ])
+  har_plot(model, dataset$serie, detection, dataset$event)
+} else {
+  message("The 'ocp' package is not installed, so this example is skipped.")
+}

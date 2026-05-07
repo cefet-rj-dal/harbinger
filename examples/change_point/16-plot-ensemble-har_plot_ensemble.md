@@ -11,45 +11,16 @@ data(examples_changepoints)
 dataset <- examples_changepoints$simple
 
 model <- har_ensemble_fuzzy(hcp_amoc(), hcp_pelt(), hcp_cf_lr())
-```
-
-```
-## Error in `har_ensemble_fuzzy()`:
-## ! could not find function "har_ensemble_fuzzy"
-```
-
-``` r
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 detection <- detect(model, dataset$serie, time_tolerance = 8, use_nms = TRUE)
-```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 har_ensemble_plot(detection, dataset$serie)
 ```
 
-```
-## Error in `har_ensemble_plot()`:
-## ! could not find function "har_ensemble_plot"
-```
+![plot of chunk unnamed-chunk-1](fig/16-plot-ensemble-har_plot_ensemble/unnamed-chunk-1-1.png)
 
 ``` r
 har_ensemble_plot_models(detection, dataset$serie)
 ```
 
-```
-## Error in `har_ensemble_plot_models()`:
-## ! could not find function "har_ensemble_plot_models"
-```
+![plot of chunk unnamed-chunk-1](fig/16-plot-ensemble-har_plot_ensemble/unnamed-chunk-1-2.png)

@@ -15,7 +15,7 @@ head(dataset)
 # Plot the raw time series
 har_plot(harbinger(), dataset$serie)
 
-# Configure ChangeFinder-ARIMA (sw_size controls smoothing window)
+# Configure the ChangeFinder-ARIMA model
 model <- hcp_cf_arima(sw_size = 10)
 
 # Fit the detector

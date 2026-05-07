@@ -1,20 +1,20 @@
 ## Objective
 
-ChangeFinder-ARIMA detects change points by modeling residual deviations and smoothing them over a sliding window. In this tutorial we will:
-
-- Load and visualize a simple change-point dataset
-- Configure the ChangeFinder-ARIMA detector with a window size
-- Inspect detections, evaluate, and plot residuals with thresholds
+This notebook demonstrates change-point detection with a ChangeFinder variant
+based on ARIMA (`hcp_cf_arima`). The detector scores short-term prediction
+residuals and flags structural changes when those scores persist.
 
 ## Method at a glance
 
-ChangeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes. Implementation wraps ARIMA from `forecast` and uses `harutils()` for thresholds.
+ChangeFinder with ARIMA models residual deviations, smooths the score over time,
+and applies a threshold to highlight structural changes. The ARIMA component is
+provided by `forecast`, and thresholds are handled by `harutils()`.
 
 ## What you will do
 
-- understand the purpose of the example and when the technique is useful
-- follow the workflow from data loading to model fitting and detection
-- inspect the evaluation outputs and the diagnostic plots produced by Harbinger
+- load the example data and inspect the raw series
+- configure the detector with a sliding window
+- fit the model, detect change points, evaluate the result, and plot the output
 
 
 
@@ -25,7 +25,7 @@ ChangeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and 
 
 ### Prepare the Example
 
-This setup anchors the notebook in the specific series used to examine `harutils()`. The semantic point is the one stated above: changeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
+This setup anchors the notebook in the specific series used to examine `hcp_cf_arima`. The key idea is that the detector works on residual deviations, so the raw signal should be visible before any fitting step hides that structure behind model output.
 
 
 ``` r
@@ -81,7 +81,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because changeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because the plot reveals whether the signal contains clean, weak, local, repeated, or mixed structural changes.
 
 
 ``` r
@@ -99,11 +99,11 @@ har_plot(harbinger(), dataset$serie)
 
 ### Configure the Method
 
-The choices below turn the central modeling idea into concrete parameters. They matter because changeFinder with ARIMA: ChangeFinder with ARIMA models residual deviations and applies a second-stage smoothing/thresholding to highlight structural changes, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
+The choices below turn the central modeling idea into concrete parameters. Each argument controls how strongly the method emphasizes residual shifts when it produces change-point candidates.
 
 
 ``` r
-# Configure ChangeFinder-ARIMA (sw_size controls smoothing window)
+# Configure the ChangeFinder-ARIMA model
 model <- hcp_cf_arima(sw_size = 10)
 ```
 
@@ -123,7 +123,7 @@ model <- fit(model, dataset$serie)
 
 ### Run the Core Analysis
 
-This is the moment where the notebook tests its central assumption on actual data. After applying `harutils()`, the important question is whether the resulting change-point candidates really correspond to the pattern implied by the method description above, rather than to arbitrary numerical variation.
+This is the moment where the notebook tests its central assumption on actual data. After applying `hcp_cf_arima`, the question is whether the resulting change-point candidates correspond to the residual pattern described above rather than to arbitrary numerical variation.
 
 
 ``` r

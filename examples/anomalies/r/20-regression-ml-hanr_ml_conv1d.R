@@ -6,6 +6,8 @@ library(daltoolbox)
 library(harbinger) 
 library(tspredit)
 library(daltoolboxdp)
+python_available <- requireNamespace("reticulate", quietly = TRUE) && reticulate::py_available()
+knitr::opts_chunk$set(eval = python_available)
 
 # Load example datasets bundled with harbinger
 data(examples_anomalies)
@@ -19,13 +21,13 @@ har_plot(harbinger(), dataset$serie)
 
 # Define Conv1D-based regressor (hanr_ml + ts_conv1d)
 # - input_size: window length; epochs: training iterations
-  model <- hanr_ml(ts_conv1d(ts_norm_gminmax(), input_size=4, epochs=10000))
+model <- hanr_ml(ts_conv1d(ts_norm_gminmax(), input_size = 4, epochs = 100))
 
 # Fit the model
-  model <- fit(model, dataset$serie)
+model <- fit(model, dataset$serie)
 
 # Detect anomalies (compute residuals and events)
-  detection <- detect(model, dataset$serie)
+detection <- detect(model, dataset$serie)
 
 # Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))

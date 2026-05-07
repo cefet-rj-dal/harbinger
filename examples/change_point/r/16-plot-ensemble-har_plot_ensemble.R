@@ -1,5 +1,8 @@
 library(daltoolbox)
 library(harbinger)
+source("../../R/harbinger_utils.R")
+source("../../R/har_ensemble_fuzzy.R")
+source("../../R/har_plot_ensemble.R")
 
 data(examples_changepoints)
 dataset <- examples_changepoints$simple

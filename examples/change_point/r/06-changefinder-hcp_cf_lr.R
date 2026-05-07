@@ -15,18 +15,18 @@ head(dataset)
 # Plot the time series
 har_plot(harbinger(), dataset$serie)
 
-# Define Conformal Forecasting (Linear Regression) change-point model
+# Define the ChangeFinder-LR model
 # - sw_size controls the sliding window length
-  model <- hcp_cf_lr(sw_size = 10)
+model <- hcp_cf_lr(sw_size = 10)
 
 # Fit the model
-  model <- fit(model, dataset$serie)
+model <- fit(model, dataset$serie)
 
 # Detect change-points
-  detection <- detect(model, dataset$serie)
+detection <- detect(model, dataset$serie)
 
 # Show only timestamps flagged as events
-  print(detection |> dplyr::filter(event==TRUE))
+print(detection |> dplyr::filter(event == TRUE))
 
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
