@@ -39,11 +39,24 @@ har_outliers_gaussian <- function(res) {
 }
 
 har_outliers_ratio <- function(res) {
-  ratio <- 1 - res / max(res)
+  if (length(res) == 0) {
+    index <- integer(0)
+    attr(index, "threshold") <- c(NA_real_, NA_real_)
+    return(index)
+  }
+
+  max_res <- max(res, na.rm = TRUE)
+  if (!is.finite(max_res) || max_res <= 0) {
+    index <- integer(0)
+    attr(index, "threshold") <- c(NA_real_, NA_real_)
+    return(index)
+  }
+
+  ratio <- 1 - res / max_res
   thresholdSup <- mean(ratio) + 3 * stats::sd(ratio)
-  thresholdSup <- (thresholdSup - 1) * max(res)
+  thresholdSup <- (thresholdSup - 1) * max_res
   thresholdInf <- mean(ratio) - 3 * stats::sd(ratio)
-  thresholdInf <- (thresholdInf - 1) * max(res)
+  thresholdInf <- (thresholdInf - 1) * max_res
   index <- which(res > thresholdSup | res < thresholdInf)
   attr(index, "threshold") <- c(thresholdInf, thresholdSup)
   index
@@ -179,6 +192,3 @@ harutils <- function() {
 
   return(obj)
 }
-
-#' @export
-harutils_custom <- harutils

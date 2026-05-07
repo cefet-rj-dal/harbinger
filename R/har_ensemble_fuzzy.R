@@ -72,7 +72,8 @@ fit.har_ensemble_fuzzy <- function(obj, serie, ...) {
 #' @param time_tolerance Integer window for temporal fuzzification and NMS.
 #' @param use_nms Logical; whether to apply non-maximum suppression.
 #' @param outliers_check Optional refinement function.
-#' @param outlier_filter Function used to select candidate events.
+#' @param outlier_filter Optional post-filter over the ensemble score. It may
+#'   return a logical mask or integer positions.
 #' @param ... Additional arguments.
 #' @return A detection object with score and per-model events as attributes.
 #' @exportS3Method detect har_ensemble_fuzzy

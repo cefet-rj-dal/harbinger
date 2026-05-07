@@ -81,7 +81,7 @@ detect.har_ensemble <- function(obj, serie, ...) {
     }
   }
   res <- rowSums(votes)
-  events <- res >= length(obj$models)/2
+  events <- res > length(obj$models) / 2
   type <- apply(types, 1, function(x) {
     x <- x[x != ""]
     if (length(x) == 0) return("")
