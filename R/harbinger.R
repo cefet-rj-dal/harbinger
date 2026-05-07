@@ -92,13 +92,13 @@ harbinger <- function() {
 }
 
 #' @title Detect events in time series
-#' @description Generic S3 generic for event detection using a fitted Harbinger model.
+#' @description Generic S3 method for event detection using a fitted Harbinger model.
 #' Concrete methods are implemented by each detector class.
 #' @param obj A `harbinger` detector object.
 #' @param ... Additional arguments passed to methods.
 #' @return A data frame with columns: `idx` (index), `event` (logical), and
 #'   `type` (character: "anomaly", "changepoint", or ""). Some detectors may
-#'   also attach attributes (e.g., `threshold`) or columns (e.g., `seq`, `seqlen`).
+#'   also attach attributes (e.g., `threshold`) or extra columns (e.g., `seq`, `seqlen`).
 #' @examples
 #' # See detector-specific examples in the package site for usage patterns
 #' # and plotting helpers.

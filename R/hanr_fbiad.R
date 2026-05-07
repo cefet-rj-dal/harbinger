@@ -1,8 +1,11 @@
 #'@title Anomaly detector using FBIAD
-#'@description Anomaly detector using FBIAD
-#'@param sw_size Window size for FBIAD
-#'@return hanr_fbiad object
-#'Forward and Backward Inertial Anomaly Detector (FBIAD) detects anomalies in time series. Anomalies are observations that differ from both forward and backward time series inertia <doi:10.1109/IJCNN55064.2022.9892088>.
+#'@description
+#'Forward and Backward Inertial Anomaly Detector (FBIAD) detects anomalies in
+#'time series by comparing each observation against both forward and backward
+#'inertial context.
+#'
+#'@param sw_size Window size for FBIAD.
+#'@return `hanr_fbiad` object.
 #'@examples
 #'library(daltoolbox)
 #'

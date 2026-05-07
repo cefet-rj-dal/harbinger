@@ -2,8 +2,6 @@
 #' @description
 #' Structural change detection using generalized fluctuation tests via
 #' `strucchange::breakpoints()` <doi:10.18637/jss.v007.i02>.
-#A. Zeileis, C. Kleiber, W. Krämer, and K. Hornik, 2003, Testing and dating of structural changes in practice, Computational Statistics & Data Analysis, v. 44, n. 1 (Oct.), p. 109–123.
-#A. Zeileis, F. Leisch, K. Hornik, and C. Kleiber 2002.  Strucchange: An R package for testing for structural change in linear regression models.
 #' @return `hcp_gft` object
 #'
 #' @examples

@@ -1,8 +1,7 @@
 #'@title Chow Test (structural break)
-#'@description Change-point detection for linear models using F-based structural break tests from the strucchange package <doi:10.18637/jss.v007.i02>.
+#'@description Change-point detection for linear models using F-based structural
+#'break tests from the `strucchange` package <doi:10.18637/jss.v007.i02>.
 #'Wraps the `Fstats` and `breakpoints` implementations from the `strucchange` package.
-#A. Zeileis, C. Kleiber, W. Krämer, and K. Hornik, 2003, Testing and dating of structural changes in practice, Computational Statistics & Data Analysis, v. 44, n. 1 (Oct.), p. 109–123.
-#A. Zeileis, F. Leisch, K. Hornik, and C. Kleiber 2002.  Strucchange: An R package for testing for structural change in linear regression models.
 #'@return `hcp_chow` object
 #'@examples
 #'library(daltoolbox)
