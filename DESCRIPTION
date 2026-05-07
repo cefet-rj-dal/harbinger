@@ -1,6 +1,6 @@
 Package: harbinger
 Title: A Unified Time Series Event Detection Framework
-Version: 1.2.767
+Version: 1.2.777
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
@@ -11,6 +11,9 @@ Authors@R:
         person(given = "Ellen", family = "Paixão", role = c("aut"), email = "ellen.paixao@eic.cefet-rj.br"),
         person(given = "Fernando", family = "Fraga", role = c("aut"), email = "fernando.fraga@eic.cefet-rj.br"),
         person(given = "Heraldo", family = "Borges", role = c("aut"), email = "heraldo.borges@cefet-rj.br"),
+        person(given = "Igor", family = "Andrade", role = c("aut"), email = "igor.andrade@eic.cefet-rj.br"),
+        person(given = "Isabele", family = "Rocha", role = c("aut"), email = "isabele.rocha@eic.cefet-rj.br"),
+        person(given = "Janio", family = "Lima", role = c("aut"), email = "janio.lima@eic.cefet-rj.br"),
         person(given = "Janio", family = "Lima", role = c("aut"), email = "janio.lima@eic.cefet-rj.br"),
         person(given = "Jessica", family = "Souza", role = c("aut"), email = "jessica.souza@eic.cefet-rj.br"),
         person(given = "Lais", family = "Baroni", role = c("aut"), email = "lais.baronis@eic.cefet-rj.br"),
@@ -38,9 +41,12 @@ Imports:
   dplyr, 
   dtwclust,
   rugarch,
+  patchwork,
   stats,
   stringr,
   strucchange,
   tsmp,
   wavelets,
   zoo
+Suggests:
+  ocp

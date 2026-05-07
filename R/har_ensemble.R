@@ -1,7 +1,6 @@
 #' @title Harbinger Ensemble
 #' @description
-#' Majority-vote ensemble across multiple Harbinger detectors with optional
-#' temporal fuzzification to combine nearby detections.
+#' Majority-vote ensemble across multiple Harbinger detectors.
 #' @param ... One or more detector objects.
 #' @return A `har_ensemble` object
 #'
@@ -32,16 +31,11 @@
 #' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
 #'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
-#' @importFrom stats quantile
 #' @export
 har_ensemble <- function(...) {
   obj <- harbinger()
-  obj$time_tolerance <- 0
   obj$models <- c(list(...))
-
-  hutils <- harutils()
   obj$har_outliers_check <- NULL
-  obj$har_fuzzify_detections <- hutils$har_fuzzify_detections_triangle
 
   class(obj) <- append("har_ensemble", class(obj))
   return(obj)
@@ -51,12 +45,6 @@ har_ensemble <- function(...) {
 #'@exportS3Method fit har_ensemble
 fit.har_ensemble <- function(obj, serie, ...) {
   if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
-
-  if (is.null(obj$har_outliers_check)) {
-    hutils <- harutils()
-    obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
-  }
-
   serie <- stats::na.omit(serie)
 
   for (i in 1:length(obj$models)) {
@@ -75,44 +63,43 @@ detect.har_ensemble <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  values <- NULL
+  votes <- NULL
   types <- NULL
   for (i in 1:length(obj$models)) {
     model <- obj$models[[i]]
     detection <- detect(model, obj$serie)
-
-    varname <- sprintf("v%d", i)
-    evt <- detection$event
-    attr(evt, "type") <- detection$type
-    if (is.null(values)) {
-      evt <- obj$har_fuzzify_detections(evt, obj$time_tolerance)
-      values <- as.double(evt)
-      types <- as.data.frame(attr(evt, "type"))
-    }
-    else {
-      evt <- obj$har_fuzzify_detections(evt, obj$time_tolerance)
-      values <- cbind(values, as.double(evt))
-      types <- cbind(types, attr(evt, "type"))
+    evt <- as.logical(detection$event)
+    evt[is.na(evt)] <- FALSE
+    typ <- detection$type
+    typ[is.na(typ)] <- ""
+    if (is.null(votes)) {
+      votes <- matrix(as.numeric(evt), ncol = 1)
+      types <- matrix(typ, ncol = 1)
+    } else {
+      votes <- cbind(votes, as.numeric(evt))
+      types <- cbind(types, typ)
     }
   }
-  res <- rowSums(values) # Every method has 1 vote
+  res <- rowSums(votes)
   events <- res >= length(obj$models)/2
-  type <- apply(types, 1, max)
+  type <- apply(types, 1, function(x) {
+    x <- x[x != ""]
+    if (length(x) == 0) return("")
+    if ("changepoint" %in% x) return("changepoint")
+    "anomaly"
+  })
 
   type[!events] <- ""
   anomalies <- type == "anomaly"
   change_point <- type == "changepoint"
 
-  events <- obj$har_outliers(res)
-  events <- obj$har_outliers_check(events, res)
-
   anomalies <- anomalies & events
   change_point <- change_point & events
 
-  attr(anomalies, "threshold") <- attr(events, "threshold")
-
-
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_point = change_point, res = res)
+  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = change_point, res = res)
+  detection$event <- events
+  attr(detection, "score") <- res
+  attr(detection, "type") <- type
 
   return(detection)
 }

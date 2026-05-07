@@ -3,127 +3,122 @@ is_matrix_or_df <- function(obj) {
 }
 
 har_distance_l1 <- function(values) {
-  # L1 aggregation of absolute values; rows are summed for matrices/data.frames
   values <- abs(values)
-  if (is_matrix_or_df(values))
-    values <-rowSums(values)
-  return(values)
+  if (is_matrix_or_df(values)) values <- rowSums(values)
+  values
 }
 
 har_distance_l2 <- function(values) {
-  # L2 aggregation of squared values; rows are summed for matrices/data.frames
   values <- values^2
-  if (is_matrix_or_df(values))
-    values <-rowSums(values)
-  return(values)
+  if (is_matrix_or_df(values)) values <- rowSums(values)
+  values
 }
 
-har_outliers_boxplot <- function(res){
-  # Boxplot/IQR rule: flags outside [Q1-1.5*IQR, Q3+1.5*IQR]
-  org = length(res)
-  cond <- rep(FALSE, org)
-  q <- stats::quantile(res, na.rm=TRUE)
-  IQR <- q[4] - q[2]
-  thresholdInf <- as.double(q[2] - 1.5*IQR)
-  thresholdSup <- as.double(q[4] + 1.5*IQR)
-  index = which(res > thresholdSup | res < thresholdInf)
-
-  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  return (index)
+har_outliers_none <- function(res) {
+  index <- integer(0)
+  attr(index, "threshold") <- c(-Inf, Inf)
+  index
 }
 
-har_outliers_gaussian <- function(res){
-  # 3-sigma rule under Gaussian assumption
-  thresholdSup <- mean(res) + 3*sd(res)
-  thresholdInf <- mean(res) - 3*sd(res)
+har_outliers_boxplot <- function(res) {
+  q <- stats::quantile(res, na.rm = TRUE)
+  iqr <- q[4] - q[2]
+  thresholdInf <- as.double(q[2] - 1.5 * iqr)
+  thresholdSup <- as.double(q[4] + 1.5 * iqr)
   index <- which(res > thresholdSup | res < thresholdInf)
-
   attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  return (index)
+  index
 }
 
-har_outliers_ratio <- function(res){
-  # Ratio-based thresholding emphasizing relative deviation
+har_outliers_gaussian <- function(res) {
+  thresholdSup <- mean(res) + 3 * stats::sd(res)
+  thresholdInf <- mean(res) - 3 * stats::sd(res)
+  index <- which(res > thresholdSup | res < thresholdInf)
+  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
+  index
+}
+
+har_outliers_ratio <- function(res) {
   ratio <- 1 - res / max(res)
-  thresholdSup <- mean(ratio) + 3*sd(ratio)
+  thresholdSup <- mean(ratio) + 3 * stats::sd(ratio)
   thresholdSup <- (thresholdSup - 1) * max(res)
-  thresholdInf <- mean(ratio) - 3*sd(ratio)
+  thresholdInf <- mean(ratio) - 3 * stats::sd(ratio)
   thresholdInf <- (thresholdInf - 1) * max(res)
   index <- which(res > thresholdSup | res < thresholdInf)
-
   attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  return (index)
+  index
 }
 
 har_outliers_checks_firstgroup <- function(outliers, values) {
-  # For contiguous anomaly runs, keep only the first index of each run
   threshold <- attr(outliers, "threshold")
   values <- abs(values)
-  if (is_matrix_or_df(values))
-    values <-rowSums(values)
+  if (is_matrix_or_df(values)) values <- rowSums(values)
+  values <- as.numeric(values)
   size <- length(values)
-  group <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, size)
-  for (g in group) {
-    if (length(g) > 0) {
-      i <- min(g)
-      outliers[i] <- TRUE
-    }
+  idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
+  if (length(idx) == 0) {
+    result <- rep(FALSE, size)
+    attr(result, "threshold") <- threshold
+    return(result)
   }
-  attr(outliers, "threshold") <- threshold
-  return(outliers)
+  groups <- split(idx, cumsum(c(1, diff(idx) != 1)))
+  result <- rep(FALSE, size)
+  for (g in groups) result[min(g)] <- TRUE
+  attr(result, "threshold") <- threshold
+  result
 }
 
 har_outliers_checks_highgroup <- function(outliers, values) {
-  # For contiguous anomaly runs, keep the index with highest magnitude
   threshold <- attr(outliers, "threshold")
   values <- abs(values)
-  if (is_matrix_or_df(values))
-    values <-rowSums(values)
+  if (is_matrix_or_df(values)) values <- rowSums(values)
+  values <- as.numeric(values)
   size <- length(values)
-  group <- split(outliers, cumsum(c(1, diff(outliers) != 1)))
-  outliers <- rep(FALSE, size)
-  for (g in group) {
-    if (length(g) > 0) {
-      i <- which.max(values[g])
-      i <- g[i]
-      outliers[i] <- TRUE
-    }
+  idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
+  if (length(idx) == 0) {
+    result <- rep(FALSE, size)
+    attr(result, "threshold") <- threshold
+    return(result)
   }
-  attr(outliers, "threshold") <- threshold
-  return(outliers)
+  groups <- split(idx, cumsum(c(1, diff(idx) != 1)))
+  result <- rep(FALSE, size)
+  for (g in groups) {
+    max_val <- max(values[g])
+    candidates <- g[values[g] == max_val]
+    result[min(candidates)] <- TRUE
+  }
+  attr(result, "threshold") <- threshold
+  result
 }
 
-
 har_fuzzify_detections_triangle <- function(value, tolerance) {
-  # Triangular fuzzification: spreads detection weight within a tolerance window
   type <- attr(value, "type")
   value <- as.double(value)
-  if (!tolerance) {
+  if (!tolerance || tolerance <= 1) {
     attr(value, "type") <- type
     return(value)
   }
   idx <- which(value >= 1)
   n <- length(value)
-  ratio <- 1/tolerance
-  range <- tolerance-1
+  ratio <- 1 / tolerance
+  range <- tolerance - 1
   for (i in idx) {
     curtype <- ""
-    if (!is.null(type))
-      curtype <- type[i]
+    if (!is.null(type)) curtype <- type[i]
     for (j in 1:range) {
-      if (i + j < n) {
-        value[i+j] <- value[i+j] + (tolerance - j)*ratio
-        type[i+j] <- curtype
+      weight <- (tolerance - j) * ratio
+      if (i + j <= n) {
+        value[i + j] <- max(value[i + j], weight)
+        type[i + j] <- curtype
       }
       if (i - j > 0) {
-        value[i-j] <- value[i-j] + (tolerance - j)*ratio
-        type[i-j] <- curtype
+        value[i - j] <- max(value[i - j], weight)
+        type[i - j] <- curtype
       }
     }
   }
   attr(value, "type") <- type
-  return(value)
+  value
 }
 
 #' @title Harbinger Utilities
@@ -171,6 +166,7 @@ harutils <- function() {
   class(obj) <- append("harutils", class(obj))
   obj$har_distance_l1 <- har_distance_l1
   obj$har_distance_l2 <- har_distance_l2
+  obj$har_outliers_none <- har_outliers_none
 
   obj$har_outliers_boxplot <- har_outliers_boxplot
   obj$har_outliers_gaussian <- har_outliers_gaussian
@@ -183,3 +179,6 @@ harutils <- function() {
 
   return(obj)
 }
+
+#' @export
+harutils_custom <- harutils
