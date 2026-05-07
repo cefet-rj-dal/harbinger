@@ -2,8 +2,8 @@
 #'@description Anomaly detection using DTW
 #'The DTW is applied to the time series.
 #'When seq equals one, observations distant from the closest centroids are labeled as anomalies.
-#'When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
-#'It wraps the tsclust presented in the dtwclust library.
+#'When `seq` is greater than one, sequences distant from the closest centroids are labeled as discords.
+#'Wraps the `tsclust` implementation from the `dtwclust` library.
 #'@param seq sequence size
 #'@param centers number of centroids
 #'@return `hanct_dtw` object

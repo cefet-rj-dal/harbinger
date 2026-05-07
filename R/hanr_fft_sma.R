@@ -1,15 +1,8 @@
 #'@title Anomaly Detector using Adaptive FFT and Moving Average
 #'@description
-#'This function implements an anomaly detection model based on the Fast Fourier daltoolbox::transform (FFT),
-#'combined with an adaptive moving average filter. The method estimates the dominant frequency
-#'in the input time series using spectral analysis and then applies a moving average filter
-#'with a window size derived from that frequency. This highlights high-frequency deviations,
-#'which are likely to be anomalies.
-#'
-#'The residuals (original signal minus smoothed version) are then processed to compute the
-#'distance from the expected behavior, and points significantly distant are flagged as anomalies.
-#'The detection also includes a grouping strategy to reduce false positives by selecting
-#'the most representative point in a cluster of consecutive anomalies.
+#'This detector combines FFT-based spectral analysis with an adaptive moving-average
+#'filter. The residual signal is scored for anomalies, and a grouping strategy
+#'reduces false positives by keeping a representative point from each cluster.
 #'
 #'This function extends the HARBINGER framework and returns an object of class `hanr_fft_sma`.
 #'@return `hanr_fft_sma` object

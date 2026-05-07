@@ -2,8 +2,8 @@
 #'@description Anomaly detection using kmeans
 #'The kmeans is applied to the time series.
 #'When seq equals one, observations distant from the closest centroids are labeled as anomalies.
-#'When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
-#'It wraps the kmeans presented in the stats library.
+#'When `seq` is greater than one, sequences distant from the closest centroids are labeled as discords.
+#'Wraps the `kmeans` implementation from the `stats` package.
 #'@param seq sequence size
 #'@param centers number of centroids
 #'@return `hanct_kmeans` object

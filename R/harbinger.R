@@ -1,8 +1,8 @@
 #' @title Harbinger
 #' @description
 #' Base class for time series event detection in the Harbinger framework.
-#' It provides common state handling and helper methods used by anomaly,
-#' change point, and motif detectors. Concrete detectors extend this class
+#' It provides shared state handling and helper methods used by anomaly,
+#' change-point, and motif detectors. Concrete detectors extend this class
 #' and implement their own `fit()` and/or `detect()` S3 methods.
 #'
 #' @details
@@ -29,28 +29,28 @@
 #' @importFrom stats quantile
 #' @export
 harbinger <- function() {
-  # Store references of the original series and pre-allocate containers
+  # Store references to the original series and pre-allocate containers.
   har_store_refs <- function(obj, serie) {
     n <- length(serie)
     if (is.data.frame(serie)) {
       n <- nrow(serie)
-      # Non-NA rows and NA-omitted series (multivariate)
+      # Non-NA rows and NA-omitted series for multivariate inputs.
       obj$non_na <- which(!is.na(apply(serie, 1, max)))
       obj$serie <- stats::na.omit(serie)
     }
     else {
-      # Non-NA positions and NA-omitted series (univariate)
+      # Non-NA positions and NA-omitted series for univariate inputs.
       obj$non_na <- which(!is.na(serie))
       obj$serie <- stats::na.omit(serie)
     }
-    # Placeholders to be restored to original indexing
+    # Placeholders restored to the original indexing.
     obj$anomalies <- rep(NA, n)
     obj$change_points <- rep(NA, n)
     obj$res <- rep(NA, n)
     return(obj)
   }
 
-  # Restore detections to original indexing, assembling a common data.frame
+  # Restore detections to original indexing and assemble a common data frame.
   har_restore_refs <- function(obj, anomalies = NULL, change_points = NULL, res = NULL) {
     threshold <- NULL
     startup <- obj$anomalies
@@ -68,8 +68,8 @@ harbinger <- function() {
       obj$res[obj$non_na] <- res
     }
 
-    # Build unified detection table and tag event types
-    detection <- data.frame(idx=1:length(obj$anomalies), event = startup, type="")
+    # Build the unified detection table and tag event types.
+    detection <- data.frame(idx = 1:length(obj$anomalies), event = startup, type = "")
     detection$type[obj$anomalies] <- "anomaly"
     detection$event[obj$change_points] <- TRUE
     detection$type[obj$change_points] <- "changepoint"

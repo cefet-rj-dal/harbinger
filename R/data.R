@@ -8,7 +8,7 @@
 #' \item seattle_week: Seattle weekly temperature in 2019.
 #' \item seattle_daily: Seattle daily temperature in 2019.
 #' }
-#'#'
+#'
 #' @docType data
 #' @usage data(examples_harbinger)
 #' @format A list of time series.
@@ -35,7 +35,7 @@
 #' \item tt: train-test split synthetic series.
 #' \item tt_warped: warped train-test synthetic series.
 #' }
-#'#'
+#'
 #' @docType data
 #' @usage data(examples_anomalies)
 #' @format A list of time series for anomaly detection.
@@ -60,7 +60,7 @@
 #' \item abrupt: abrupt level shift.
 #' \item volatility: variance change.
 #' }
-#'#'
+#'
 #' @docType data
 #' @usage data(examples_changepoints)
 #' @format A list of time series for change point detection.
@@ -83,7 +83,7 @@
 #' \item mitdb100: sample from MIT-BIH arrhythmia database (record 100).
 #' \item mitdb102: sample from MIT-BIH arrhythmia database (record 102).
 #' }
-#'#'
+#'
 #' @docType data
 #' @usage data(examples_motifs)
 #' @format A list of time series for motif discovery.

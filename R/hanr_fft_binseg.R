@@ -1,16 +1,9 @@
 #'@title Anomaly Detector using FFT with Binary Segmentation Cutoff
 #'@description
-#'This function implements an anomaly detection method that combines the Fast Fourier daltoolbox::transform (FFT)
-#'with a spectral cutoff strategy based on the Binary Segmentation (BinSeg) algorithm for changepoint detection.
-#'
-#'The method analyzes the power spectrum of the input time series and applies the BinSeg algorithm
-#'to identify a changepoint in the spectral density, corresponding to a shift in the frequency content.
-#'Frequencies below this changepoint are considered part of the underlying trend or noise and are removed
-#'from the signal.
-#'
-#'The modified spectrum is then transformed back into the time domain via inverse FFT, resulting in
-#'a high-pass filtered version of the series. Anomalies are identified by measuring the distance between
-#'the original and the filtered signal, highlighting unusual deviations from the dominant signal behavior.
+#'This detector combines FFT-based spectral filtering with a Binary Segmentation
+#'change-point cutoff on the power spectrum. Frequencies below the selected cutoff
+#'are removed, the signal is reconstructed from the remaining high-frequency content,
+#'and the residual is scored for anomalies.
 #'
 #'This function is part of the HARBINGER framework and returns an object of class `hanr_fft_binseg`.
 #'

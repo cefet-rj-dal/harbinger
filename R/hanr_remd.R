@@ -1,7 +1,7 @@
 #'@title Anomaly detector using REMD
 #'@description Anomaly detection using REMD
 #'The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-#'It wraps the EMD model presented in the forecast library.
+#'Wraps the EMD-based model presented in the `forecast` package.
 #'@param noise nosie
 #'@param trials trials
 #'@return `hanr_remd` object

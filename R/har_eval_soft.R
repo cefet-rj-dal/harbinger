@@ -1,4 +1,4 @@
-﻿#' @title Evaluation of event detection (SoftED)
+#' @title Evaluation of event detection (SoftED)
 #' @description Soft evaluation of event detection using SoftED <doi:10.48550/arXiv.2304.00439>.
 #' @param sw_size Integer. Tolerance window size for soft matching.
 #' @return `har_eval_soft` object

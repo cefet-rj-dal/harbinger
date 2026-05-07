@@ -1,6 +1,6 @@
 #'@title Change Finder using GARCH
 #'@description Change-point detection is related to event/trend change detection. Change Finder GARCH detects change points based on deviations relative to linear regression model <doi:10.1109/TKDE.2006.1599387>.
-#'It wraps the GARCH model presented in the rugarch library.
+#'Wraps the GARCH model presented in the `rugarch` package.
 #'@param sw_size Sliding window size
 #'@return `hcp_garch` object
 #'@examples
