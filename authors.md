@@ -19,6 +19,12 @@
 
 - **Heraldo Borges**. Author.
 
+- **Igor Andrade**. Author.
+
+- **Isabele Rocha**. Author.
+
+- **Janio Lima**. Author.
+
 - **Janio Lima**. Author.
 
 - **Jessica Souza**. Author.
@@ -38,15 +44,15 @@
 Source:
 [`DESCRIPTION`](https://github.com/cefet-rj-dal/harbinger/blob/master/DESCRIPTION)
 
-Ogasawara E, Castro A, Mello A, Paixão E, Fraga F, Borges H, Lima J,
-Souza J, Baroni L, Tavares L, Reis M, Salles R (2026). *harbinger: A
-Unified Time Series Event Detection Framework*. R package version
-1.2.767, <https://cefet-rj-dal.github.io/harbinger/>.
+Ogasawara E, Castro A, Mello A, Paixão E, Fraga F, Borges H, Andrade I,
+Rocha I, Lima J, Lima J, Souza J, Baroni L, Tavares L, Reis M, Salles R
+(2026). *harbinger: A Unified Time Series Event Detection Framework*. R
+package version 1.2.777, <https://cefet-rj-dal.github.io/harbinger/>.
 
     @Manual{,
       title = {harbinger: A Unified Time Series Event Detection Framework},
-      author = {Eduardo Ogasawara and Antonio Castro and Antonio Mello and Ellen Paixão and Fernando Fraga and Heraldo Borges and Janio Lima and Jessica Souza and Lais Baroni and Lucas Tavares and Michel Reis and Rebecca Salles},
+      author = {Eduardo Ogasawara and Antonio Castro and Antonio Mello and Ellen Paixão and Fernando Fraga and Heraldo Borges and Igor Andrade and Isabele Rocha and Janio Lima and Janio Lima and Jessica Souza and Lais Baroni and Lucas Tavares and Michel Reis and Rebecca Salles},
       year = {2026},
-      note = {R package version 1.2.767},
+      note = {R package version 1.2.777},
       url = {https://cefet-rj-dal.github.io/harbinger/},
     }
