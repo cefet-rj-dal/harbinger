@@ -34,10 +34,9 @@
 #' plot(grf)
 #'
 #' @references
-#' - Salles, R., Lima, J., Reis, M., Coutinho, R., Pacitti, E., Masseglia, F., Akbarinia, R.,
-#'   Chen, C., Garibaldi, J., Porto, F., Ogasawara, E. SoftED: Metrics for soft evaluation of
-#'   time series event detection. Computers and Industrial Engineering, 2024.
-#'   doi:10.1016/j.cie.2024.110728
+#' - Harbinger documentation: https://cefet-rj-dal.github.io/harbinger
+#' - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed.
+#'   Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
 #'
 #' @export
 har_eval <- function() {
@@ -90,5 +89,5 @@ evaluate.har_eval <- function(obj, detection, event, ...) {
 #'@importFrom daltoolbox evaluate
 #'@exportS3Method evaluate harbinger
 evaluate.harbinger <- function(obj, detection, event, ...) {
-  return(har_eval(), detection, event)
+  return(evaluate(har_eval(), detection, event))
 }
