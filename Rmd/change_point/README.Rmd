@@ -33,3 +33,8 @@ This folder collects notebooks that focus on structural change rather than isola
 - [15-ensemble-fuzzy-har_ensemble_fuzzy.md](/examples/change_point/15-ensemble-fuzzy-har_ensemble_fuzzy.md) - fuzzy score-based ensemble for change-point detectors.
 - [16-plot-ensemble-har_plot_ensemble.md](/examples/change_point/16-plot-ensemble-har_plot_ensemble.md) - plotting helpers for fuzzy ensemble outputs.
 
+## Univariate Drift Detectors
+
+- [17-drift-page-hinkley-hcd_page_hinkley.md](/examples/change_point/17-drift-page-hinkley-hcd_page_hinkley.md) - `hcd_page_hinkley()`: univariate Page-Hinkley detector.
+- [18-drift-kswin-hcd_kswin.md](/examples/change_point/18-drift-kswin-hcd_kswin.md) - `hcd_kswin()`: univariate KSWIN detector.
+
