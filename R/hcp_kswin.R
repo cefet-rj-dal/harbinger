@@ -75,7 +75,7 @@ detect.hcp_kswin <- function(obj, serie, ...) {
     }
 
     if (length(obj$window) > obj$window_size) {
-      obj$window <- tail(obj$window, obj$window_size)
+      obj$window <- utils::tail(obj$window, obj$window_size)
     }
 
     early <- obj$window[seq_len(obj$window_size - obj$stat_size)]
