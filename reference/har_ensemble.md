@@ -1,7 +1,6 @@
 # Harbinger Ensemble
 
-Majority-vote ensemble across multiple Harbinger detectors with optional
-temporal fuzzification to combine nearby detections.
+Majority-vote ensemble across multiple Harbinger detectors.
 
 ## Usage
 

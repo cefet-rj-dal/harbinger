@@ -33,7 +33,7 @@ criterion is met. This is a fast heuristic widely used in practice.
 - Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of
   changepoints with a linear computational cost. JASA,
   107(500):1590–1598.
-  [dplyr::context](https://dplyr.tidyverse.org/reference/context.html)
+  [context](https://dplyr.tidyverse.org/reference/context.html)
 
 ## Examples
 

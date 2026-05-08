@@ -9,8 +9,6 @@ patterns) discovery.
 
 - mitdb102: sample from MIT-BIH arrhythmia database (record 102).
 
-\#'
-
 ## Usage
 
 ``` r

@@ -1,7 +1,9 @@
 # Evaluation of event detection (SoftED)
 
 Soft evaluation of event detection using SoftED
-<doi:10.48550/arXiv.2304.00439>.
+<doi:10.48550/arXiv.2304.00439>. The metric assigns partial credit to
+detections that fall within a tolerance window around the ground-truth
+event.
 
 ## Usage
 
@@ -17,7 +19,7 @@ har_eval_soft(sw_size = 15)
 
 ## Value
 
-`har_eval_soft` object
+`har_eval_soft` object.
 
 ## References
 

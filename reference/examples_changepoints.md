@@ -12,8 +12,6 @@ A list of time series for change point experiments.
 
 - volatility: variance change.
 
-\#'
-
 ## Usage
 
 ``` r

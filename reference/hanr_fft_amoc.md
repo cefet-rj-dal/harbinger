@@ -1,18 +1,10 @@
 # Anomaly Detector using FFT with AMOC Cutoff
 
-This function implements an anomaly detection method that uses the Fast
-Fourier daltoolbox::transform (FFT) combined with an automatic frequency
-cutoff strategy based on the AMOC (At Most One Change) algorithm. The
-model analyzes the power spectrum of the time series and detects the
-optimal cutoff frequency — the point where the frequency content
-significantly changes — using a changepoint detection method from the
-`changepoint` package.
-
-All frequencies below the cutoff are removed from the spectrum, and the
-inverse FFT reconstructs a filtered version of the original signal that
-preserves only high-frequency components. The resulting residual signal
-is then analyzed to identify anomalous patterns based on its distance
-from the expected behavior.
+This detector combines FFT-based spectral filtering with an AMOC
+change-point cutoff on the power spectrum. Frequencies below the
+selected cutoff are removed, the signal is reconstructed from the
+remaining high-frequency content, and the residual is scored for
+anomalies.
 
 This function extends the HARBINGER framework and returns an object of
 class `hanr_fft_amoc`.

@@ -31,7 +31,7 @@ hdis_mp(mode = "stamp", w, qtd)
 ## References
 
 - Yeh CCM, et al. (2016). Matrix Profile I/II: All-pairs similarity
-  joins and scalable time series motifs/discrod discovery. IEEE ICDM.
+  joins and scalable time series motifs/discord discovery. IEEE ICDM.
 
 - Tavenard R, et al. tsmp: The Matrix Profile in R. The R Journal
   (2020). doi:10.32614/RJ-2020-021
@@ -63,7 +63,7 @@ model <- fit(model, dataset$serie)
 
 # Run detection
 detection <- detect(model, dataset$serie)
-#> Finished in 0.03 secs
+#> Finished in 0.02 secs
 
 # Show detected discords
 print(detection[(detection$event),])

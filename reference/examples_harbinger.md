@@ -14,8 +14,6 @@ A list of time series for demonstrating event detection tasks.
 
 - seattle_daily: Seattle daily temperature in 2019.
 
-\#'
-
 ## Usage
 
 ``` r

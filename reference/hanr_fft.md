@@ -1,7 +1,7 @@
 # Anomaly detector using FFT
 
-High-pass filtering via FFT to isolate high-frequency components;
-anomalies are flagged where the filtered magnitude departs strongly from
+High-pass filtering via FFT isolates high-frequency components.
+Anomalies are flagged where the filtered magnitude departs strongly from
 baseline.
 
 ## Usage

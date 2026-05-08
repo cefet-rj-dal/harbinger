@@ -1,9 +1,9 @@
 # Chow Test (structural break)
 
 Change-point detection for linear models using F-based structural break
-tests from the strucchange package <doi:10.18637/jss.v007.i02>. It wraps
-the Fstats and breakpoints implementation available in the strucchange
-library.
+tests from the `strucchange` package <doi:10.18637/jss.v007.i02>. Wraps
+the `Fstats` and `breakpoints` implementations from the `strucchange`
+package.
 
 ## Usage
 

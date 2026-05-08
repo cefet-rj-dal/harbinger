@@ -1,8 +1,14 @@
-# Anomaly and change point detector using RTAD
+# Resilient Transformation Anomaly Detector (RTAD)
 
-Anomaly and change point detection using RTAD The RTAD model adjusts to
-the time series. Observations distant from the model are labeled as
-anomalies. It wraps the EMD model presented in the hht library.
+Hybrid anomaly detector built from the Resilient Transformation (RT)
+proposed in the RT/RTAD paper. The series is decomposed with CEEMD, the
+highest-frequency structure is selected from IMF roughness, the
+transformed signal is differentiated, and local dispersion is used to
+normalize deviations before thresholding.
+
+RTAD is not a generic wrapper around EMD. It is the standalone detector
+obtained when the resilient transformation is coupled with a simple
+decision rule.
 
 ## Usage
 
@@ -14,19 +20,19 @@ hanr_rtad(sw_size = 30, noise = 0.001, trials = 5, sigma = sd)
 
 - sw_size:
 
-  sliding window size (default 30)
+  Sliding window size used to compute local dispersion.
 
 - noise:
 
-  noise
+  CEEMD noise amplitude.
 
 - trials:
 
-  trials
+  Number of CEEMD trials.
 
 - sigma:
 
-  function to compute the dispersion
+  Function used to compute local dispersion.
 
 ## Value
 

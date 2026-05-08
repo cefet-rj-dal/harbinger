@@ -12,6 +12,8 @@
   : Yahoo Webscope S5 – A4 Benchmark (Synthetic with Anomalies and CPs)
 - [`detect()`](https://cefet-rj-dal.github.io/harbinger/reference/detect.md)
   : Detect events in time series
+- [`detect(`*`<har_ensemble_fuzzy>`*`)`](https://cefet-rj-dal.github.io/harbinger/reference/detect.har_ensemble_fuzzy.md)
+  : Detect events using Harbinger Fuzzy Ensemble
 - [`examples_anomalies`](https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies.md)
   : Time series for anomaly detection
 - [`examples_changepoints`](https://cefet-rj-dal.github.io/harbinger/reference/examples_changepoints.md)
@@ -29,7 +31,7 @@
 - [`hanct_dtw()`](https://cefet-rj-dal.github.io/harbinger/reference/hanct_dtw.md)
   : Anomaly detector using DTW
 - [`hanct_kmeans()`](https://cefet-rj-dal.github.io/harbinger/reference/hanct_kmeans.md)
-  : Anomaly detector using kmeans
+  : Anomaly detector using k-means
 - [`hanr_arima()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.md)
   : Anomaly detector using ARIMA
 - [`hanr_emd()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_emd.md)
@@ -57,11 +59,17 @@
 - [`hanr_remd()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_remd.md)
   : Anomaly detector using REMD
 - [`hanr_rtad()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_rtad.md)
-  : Anomaly and change point detector using RTAD
+  : Resilient Transformation Anomaly Detector (RTAD)
 - [`hanr_wavelet()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_wavelet.md)
   : Anomaly detector using Wavelets
 - [`har_ensemble()`](https://cefet-rj-dal.github.io/harbinger/reference/har_ensemble.md)
   : Harbinger Ensemble
+- [`har_ensemble_fuzzy()`](https://cefet-rj-dal.github.io/harbinger/reference/har_ensemble_fuzzy.md)
+  : Harbinger Fuzzy Ensemble
+- [`har_ensemble_plot()`](https://cefet-rj-dal.github.io/harbinger/reference/har_ensemble_plot.md)
+  : Plot Harbinger Ensemble Outputs
+- [`har_ensemble_plot_models()`](https://cefet-rj-dal.github.io/harbinger/reference/har_ensemble_plot_models.md)
+  : Plot individual model detections in a Harbinger fuzzy ensemble
 - [`har_eval()`](https://cefet-rj-dal.github.io/harbinger/reference/har_eval.md)
   : Evaluation of event detection
 - [`har_eval_soft()`](https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.md)
@@ -76,6 +84,8 @@
   : At Most One Change (AMOC)
 - [`hcp_binseg()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_binseg.md)
   : Binary Segmentation (BinSeg)
+- [`hcp_bocpd()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_bocpd.md)
+  : Bayesian Online Change Point Detection
 - [`hcp_cf_arima()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_arima.md)
   : Change Finder using ARIMA
 - [`hcp_cf_ets()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_cf_ets.md)
@@ -88,10 +98,16 @@
   : Change Finder using GARCH
 - [`hcp_gft()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_gft.md)
   : Generalized Fluctuation Test (GFT)
+- [`hcp_kswin()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_kswin.md)
+  : KSWIN change-point detector
+- [`hcp_page_hinkley()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_page_hinkley.md)
+  : Page-Hinkley change-point detector
 - [`hcp_pelt()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_pelt.md)
   : Pruned Exact Linear Time (PELT)
 - [`hcp_scp()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_scp.md)
   : Seminal change point
+- [`hcp_waypoint()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_waypoint.md)
+  : Waypoint: adaptive change-point detection with autoencoder and CUSUM
 - [`hdis_mp()`](https://cefet-rj-dal.github.io/harbinger/reference/hdis_mp.md)
   : Discord discovery using Matrix Profile
 - [`hdis_sax()`](https://cefet-rj-dal.github.io/harbinger/reference/hdis_sax.md)

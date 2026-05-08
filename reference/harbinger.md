@@ -1,8 +1,8 @@
 # Harbinger
 
 Base class for time series event detection in the Harbinger framework.
-It provides common state handling and helper methods used by anomaly,
-change point, and motif detectors. Concrete detectors extend this class
+It provides shared state handling and helper methods used by anomaly,
+change-point, and motif detectors. Concrete detectors extend this class
 and implement their own
 [`fit()`](https://rdrr.io/pkg/daltoolbox/man/fit.html) and/or
 [`detect()`](https://cefet-rj-dal.github.io/harbinger/reference/detect.md)

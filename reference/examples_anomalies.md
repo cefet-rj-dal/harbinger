@@ -16,8 +16,6 @@ A list of time series designed for anomaly detection tasks.
 
 - tt_warped: warped train-test synthetic series.
 
-\#'
-
 ## Usage
 
 ``` r
