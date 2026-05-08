@@ -56,5 +56,5 @@ detection <- detect(model, dataset$serie)
 print(detection[(detection$event),])
 #>    idx event        type
 #> 49  49  TRUE changepoint
-#> 69  69  TRUE changepoint
+#> 64  64  TRUE changepoint
 ```
