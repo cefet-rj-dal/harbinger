@@ -98,6 +98,8 @@
   : Change Finder using GARCH
 - [`hcp_gft()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_gft.md)
   : Generalized Fluctuation Test (GFT)
+- [`hcp_joinpoint()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_joinpoint.md)
+  : Joinpoint Regression++ change-point detector
 - [`hcp_kswin()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_kswin.md)
   : KSWIN change-point detector
 - [`hcp_page_hinkley()`](https://cefet-rj-dal.github.io/harbinger/reference/hcp_page_hinkley.md)
