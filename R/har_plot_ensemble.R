@@ -27,18 +27,18 @@ har_ensemble_plot <- function(detection, serie, threshold = NULL, time_idx = NUL
   score <- pmax(pmin(score, 1), 0)
   if (is.null(threshold)) threshold <- attr(detection, "threshold")
   if (!is.numeric(threshold) || length(threshold) != 1) threshold <- 0.5
-  df <- data.frame(time = time_idx, serie = serie, event = event, score = score)
-  p1 <- ggplot2::ggplot(df, ggplot2::aes(x = time, y = score)) +
+  df <- data.frame(x_time = time_idx, x_value = serie, event = event, score = score)
+  p1 <- ggplot2::ggplot(df, ggplot2::aes(x = x_time, y = score)) +
     ggplot2::geom_line(linewidth = 0.5, color = "black") +
     ggplot2::geom_hline(yintercept = threshold, linetype = "dashed", color = "red", linewidth = 0.5) +
     ggplot2::theme_bw() +
     ggplot2::theme(panel.grid = ggplot2::element_blank()) +
     ggplot2::labs(title = "Ensemble Score", x = NULL, y = NULL)
-  p2 <- ggplot2::ggplot(df, ggplot2::aes(x = time, y = serie)) +
+  p2 <- ggplot2::ggplot(df, ggplot2::aes(x = x_time, y = x_value)) +
     ggplot2::geom_line(linewidth = 0.5, color = "black") +
     ggplot2::geom_point(size = 0.5, color = "black") +
     ggplot2::geom_point(data = df[df$event, ], color = "red", size = 2) +
-    ggplot2::geom_vline(xintercept = df$time[df$event], linetype = "dashed", color = "red", linewidth = 0.5) +
+    ggplot2::geom_vline(xintercept = df$x_time[df$event], linetype = "dashed", color = "red", linewidth = 0.5) +
     ggplot2::theme_bw() +
     ggplot2::theme(panel.grid = ggplot2::element_blank()) +
     ggplot2::labs(title = "Detected Events", x = NULL, y = NULL)
@@ -67,8 +67,8 @@ har_ensemble_plot_models <- function(detection, serie, time_idx = NULL) {
     model_events <- list()
   }
   plots <- list()
-  df_series <- data.frame(time = time_idx, serie = serie)
-  plots[[1]] <- ggplot2::ggplot(df_series, ggplot2::aes(x = time, y = serie)) +
+  df_series <- data.frame(x_time = time_idx, x_value = serie)
+  plots[[1]] <- ggplot2::ggplot(df_series, ggplot2::aes(x = x_time, y = x_value)) +
     ggplot2::geom_line(linewidth = 0.5, color = "black") +
     ggplot2::geom_point(size = 0.5) +
     ggplot2::theme_bw() +
@@ -79,10 +79,10 @@ har_ensemble_plot_models <- function(detection, serie, time_idx = NULL) {
     if (is.null(evt) || length(evt) != n) evt <- rep(FALSE, n)
     event <- as.logical(evt)
     event[is.na(event)] <- FALSE
-    df_model <- data.frame(time = time_idx, y = 0, event = event)
+    df_model <- data.frame(x_time = time_idx, x_level = 0, event = event)
     model_name <- names(model_events)[i]
     if (is.null(model_name) || model_name == "") model_name <- paste0("model_", i)
-    plots[[i + 1]] <- ggplot2::ggplot(df_model, ggplot2::aes(x = time, y = y)) +
+    plots[[i + 1]] <- ggplot2::ggplot(df_model, ggplot2::aes(x = x_time, y = x_level)) +
       ggplot2::geom_line(color = "black", linewidth = 0.7) +
       ggplot2::geom_point(data = df_model[df_model$event, ], color = "red", size = 2) +
       ggplot2::theme_bw() +
