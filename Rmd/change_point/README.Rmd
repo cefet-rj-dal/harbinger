@@ -38,3 +38,7 @@ This folder collects notebooks that focus on structural change rather than isola
 - [17-page-hinkley-hcp_page_hinkley.md](/examples/change_point/17-page-hinkley-hcp_page_hinkley.md) - `hcp_page_hinkley()`: univariate Page-Hinkley detector.
 - [18-kswin-hcp_kswin.md](/examples/change_point/18-kswin-hcp_kswin.md) - `hcp_kswin()`: univariate KSWIN detector.
 
+## Joinpoint Regression
+
+- [19-joinpoint-hcp_joinpoint.md](/examples/change_point/19-joinpoint-hcp_joinpoint.md) - `hcp_joinpoint()`: segmented regression with model selection by WBIC.
+
