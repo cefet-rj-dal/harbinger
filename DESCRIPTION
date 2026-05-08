@@ -44,6 +44,7 @@ Imports:
   dtwclust,
   rugarch,
   patchwork,
+  rlang,
   stats,
   stringr,
   strucchange,
