@@ -63,7 +63,7 @@ model <- fit(model, dataset$serie)
 
 # Run detection
 detection <- detect(model, dataset$serie)
-#> Finished in 0.04 secs
+#> Finished in 0.02 secs
 
 # Show detected motifs
 print(detection[(detection$event),])
