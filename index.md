@@ -35,7 +35,7 @@ are grouped by subject in a more didactic order.
 
 ### Guided tutorial track
 
-- [Tutorials](https://cefet-rj-dal.github.io/examples/tutorial/README.md) -
+- [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/) -
   a 10-part learning sequence covering first contact with the package,
   data inspection, plotting, baseline anomaly detection, residual-based
   detection, evaluation, change points, smoothing, symbolic
@@ -44,32 +44,32 @@ are grouped by subject in a more didactic order.
 ### Thematic example collections
 
 - [General
-  examples](https://cefet-rj-dal.github.io/examples/general/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/) -
   package orientation, utility helpers, and evaluation objects that
   explain the common structure behind the methods.
 - [Dataset
-  examples](https://cefet-rj-dal.github.io/examples/datasets/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/) -
   benchmark archives and domain datasets, organized to help the reader
   understand the collections before modeling.
 - [Transformation
-  examples](https://cefet-rj-dal.github.io/examples/transformations/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/) -
   smoothing and symbolic encodings that prepare a series for later
   anomaly, change-point, or motif analysis.
 - [Anomaly
-  examples](https://cefet-rj-dal.github.io/examples/anomalies/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/) -
   anomaly detection methods grouped from simple baselines to residual
   models, supervised learners, clustering, ensembles, autoencoders, and
   multivariate workflows.
 - [Change-point
-  examples](https://cefet-rj-dal.github.io/examples/change_point/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/) -
   change-point methods ordered from a first single-break intuition to
   multiple-break, structural-break, and volatility-oriented techniques.
 - [Motif
-  examples](https://cefet-rj-dal.github.io/examples/motifs/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/) -
   repeated-pattern and discord analysis grouped into Matrix Profile,
   symbolic, and discord-oriented studies.
 - [Custom
-  examples](https://cefet-rj-dal.github.io/examples/custom/README.md) -
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/) -
   extension-oriented notebooks showing how to plug new transformations,
   detectors, motif methods, and evaluators into Harbinger.
 
@@ -106,6 +106,7 @@ detection <- detect(model, examples_anomalies$simple$serie)
 
 # Inspect only the detected events
 library(dplyr)
+#> Warning: package 'dplyr' was built under R version 4.5.3
 #> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':
@@ -126,28 +127,28 @@ print(detection |> dplyr::filter(event == TRUE))
 If you are new to the package, this sequence works well:
 
 1.  start with
-    [Tutorials](https://cefet-rj-dal.github.io/examples/tutorial/README.md)
+    [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/)
     to understand the basic workflow
 2.  continue with [General
-    examples](https://cefet-rj-dal.github.io/examples/general/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/)
     for a compact view of package scope, utilities, and evaluation
 3.  visit [Dataset
-    examples](https://cefet-rj-dal.github.io/examples/datasets/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/)
     to understand the benchmark collections before choosing a method
 4.  visit [Transformation
-    examples](https://cefet-rj-dal.github.io/examples/transformations/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/)
     to see how smoothing and symbolic encodings change the signal before
     analysis
 5.  move to one modeling family, usually [Anomaly
-    examples](https://cefet-rj-dal.github.io/examples/anomalies/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/)
     or [Change-point
-    examples](https://cefet-rj-dal.github.io/examples/change_point/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/)
 6.  study [Motif
-    examples](https://cefet-rj-dal.github.io/examples/motifs/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/)
     after you are comfortable with subsequences, windows, and symbolic
     representations
 7.  finish with [Custom
-    examples](https://cefet-rj-dal.github.io/examples/custom/README.md)
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/)
     when you want to integrate your own components into the framework
 
 ------------------------------------------------------------------------
