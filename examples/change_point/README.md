@@ -35,6 +35,6 @@ This folder collects notebooks that focus on structural change rather than isola
 
 ## Univariate Drift Detectors
 
-- [17-drift-page-hinkley-hcd_page_hinkley.md](/examples/change_point/17-drift-page-hinkley-hcd_page_hinkley.md) - `hcd_page_hinkley()`: univariate Page-Hinkley detector.
-- [18-drift-kswin-hcd_kswin.md](/examples/change_point/18-drift-kswin-hcd_kswin.md) - `hcd_kswin()`: univariate KSWIN detector.
+- [17-page-hinkley-hcp_page_hinkley.md](/examples/change_point/17-page-hinkley-hcp_page_hinkley.md) - `hcp_page_hinkley()`: univariate Page-Hinkley detector.
+- [18-kswin-hcp_kswin.md](/examples/change_point/18-kswin-hcp_kswin.md) - `hcp_kswin()`: univariate KSWIN detector.
 

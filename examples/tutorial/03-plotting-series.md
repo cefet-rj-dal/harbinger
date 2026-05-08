@@ -33,8 +33,7 @@ signal_cols
 ```
 
 ```
-## [1] "p_pdg"      "p_tpt"      "t_tpt"      "p_mon_ckp"  "t_jus_ckp" 
-## [6] "p_jus_ckgl" "qgl"
+## [1] "p_pdg"      "p_tpt"      "t_tpt"      "p_mon_ckp"  "t_jus_ckp"  "p_jus_ckgl" "qgl"
 ```
 
 Plot one signal column from the multivariate series with the same interface.

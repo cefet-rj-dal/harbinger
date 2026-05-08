@@ -2,8 +2,6 @@
 library(daltoolbox)
 library(harbinger) 
 library(daltoolboxdp)
-python_available <- requireNamespace("reticulate", quietly = TRUE) && reticulate::py_available()
-knitr::opts_chunk$set(eval = python_available)
 
 # Load example datasets bundled with harbinger
 data(examples_anomalies)
