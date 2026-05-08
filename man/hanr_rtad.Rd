@@ -2,26 +2,30 @@
 % Please edit documentation in R/hanr_rtad.R
 \name{hanr_rtad}
 \alias{hanr_rtad}
-\title{Anomaly and change point detector using RTAD}
+\title{Resilient Transformation Anomaly Detector (RTAD)}
 \usage{
 hanr_rtad(sw_size = 30, noise = 0.001, trials = 5, sigma = sd)
 }
 \arguments{
-\item{sw_size}{sliding window size (default 30)}
+\item{sw_size}{Sliding window size used to compute local dispersion.}
 
-\item{noise}{noise}
+\item{noise}{CEEMD noise amplitude.}
 
-\item{trials}{trials}
+\item{trials}{Number of CEEMD trials.}
 
-\item{sigma}{function to compute the dispersion}
+\item{sigma}{Function used to compute local dispersion.}
 }
 \value{
 \code{hanr_rtad} object
 }
 \description{
-Anomaly and change point detection using RTAD
-The RTAD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the EMD model presented in the hht library.
+Hybrid anomaly detector built from the Resilient Transformation (RT) proposed
+in the RT/RTAD paper. The series is decomposed with CEEMD, the highest-frequency
+structure is selected from IMF roughness, the transformed signal is differentiated,
+and local dispersion is used to normalize deviations before thresholding.
+
+RTAD is not a generic wrapper around EMD. It is the standalone detector obtained
+when the resilient transformation is coupled with a simple decision rule.
 }
 \examples{
 library(daltoolbox)

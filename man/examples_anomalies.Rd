@@ -24,7 +24,6 @@ A list of time series designed for anomaly detection tasks.
 \item tt: train-test split synthetic series.
 \item tt_warped: warped train-test synthetic series.
 }
-#'
 }
 \examples{
 data(examples_anomalies)

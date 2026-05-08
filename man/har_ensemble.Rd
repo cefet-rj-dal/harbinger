@@ -13,8 +13,7 @@ har_ensemble(...)
 A \code{har_ensemble} object
 }
 \description{
-Majority-vote ensemble across multiple Harbinger detectors with optional
-temporal fuzzification to combine nearby detections.
+Majority-vote ensemble across multiple Harbinger detectors.
 }
 \examples{
 library(daltoolbox)

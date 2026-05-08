@@ -10,8 +10,8 @@ hanr_fft()
 \code{hanr_fft} object
 }
 \description{
-High-pass filtering via FFT to isolate high-frequency components; anomalies
-are flagged where the filtered magnitude departs strongly from baseline.
+High-pass filtering via FFT isolates high-frequency components. Anomalies are
+flagged where the filtered magnitude departs strongly from baseline.
 }
 \details{
 The spectrum is computed by FFT, a cutoff is selected from the power spectrum,

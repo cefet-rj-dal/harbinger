@@ -2,7 +2,7 @@
 % Please edit documentation in R/hanct_kmeans.R
 \name{hanct_kmeans}
 \alias{hanct_kmeans}
-\title{Anomaly detector using kmeans}
+\title{Anomaly detector using k-means}
 \usage{
 hanct_kmeans(seq = 1, centers = NA)
 }
@@ -15,11 +15,12 @@ hanct_kmeans(seq = 1, centers = NA)
 \code{hanct_kmeans} object
 }
 \description{
-Anomaly detection using kmeans
-The kmeans is applied to the time series.
-When seq equals one, observations distant from the closest centroids are labeled as anomalies.
-When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
-It wraps the kmeans presented in the stats library.
+Distance-based anomaly and discord detection using k-means clustering.
+The detector clusters the series and flags observations or subsequences that
+are far from the nearest centroid.
+When \code{seq} equals one, isolated observations are labeled as anomalies.
+When \code{seq} is greater than one, subsequences are labeled as discords.
+Wraps the \code{kmeans} implementation from the \code{stats} package.
 }
 \examples{
 library(daltoolbox)

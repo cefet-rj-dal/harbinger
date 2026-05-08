@@ -10,22 +10,9 @@ hanr_fft_amoc_cusum()
 \code{hanr_fft_amoc_cusum} object
 }
 \description{
-This function implements an anomaly detection method based on the Fast Fourier daltoolbox::transform (FFT)
-and a changepoint-based cutoff strategy using the AMOC (At Most One Change) algorithm applied
-to the cumulative sum (CUSUM) of the power spectrum.
-
-The method first computes the FFT of the input time series and extracts the power spectrum.
-It then applies a CUSUM transformation to the spectral data to emphasize gradual changes or
-shifts in spectral energy. Using the AMOC algorithm, it detects a single changepoint in the
-CUSUM-transformed spectrum, which serves as a cutoff index to remove the lower-frequency components.
-
-The remaining high-frequency components are then reconstructed into a time-domain signal
-via inverse FFT, effectively isolating rapid or local deviations. Anomalies are detected
-by evaluating the distance between this filtered signal and the original series,
-highlighting points that deviate significantly from the expected pattern.
-
-This method is suitable for series where spectral shifts are subtle and a single significant
-change in behavior is expected.
+This detector combines FFT-based spectral filtering with an AMOC change-point
+cutoff applied to the cumulative spectrum. The lower-frequency components are
+removed, the signal is reconstructed, and the residual is scored for anomalies.
 
 This function extends the HARBINGER framework and returns an object of class \code{hanr_fft_amoc_cusum}.
 }

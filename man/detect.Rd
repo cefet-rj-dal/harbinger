@@ -14,10 +14,10 @@ detect(obj, ...)
 \value{
 A data frame with columns: \code{idx} (index), \code{event} (logical), and
 \code{type} (character: "anomaly", "changepoint", or ""). Some detectors may
-also attach attributes (e.g., \code{threshold}) or columns (e.g., \code{seq}, \code{seqlen}).
+also attach attributes (e.g., \code{threshold}) or extra columns (e.g., \code{seq}, \code{seqlen}).
 }
 \description{
-Generic S3 generic for event detection using a fitted Harbinger model.
+Generic S3 method for event detection using a fitted Harbinger model.
 Concrete methods are implemented by each detector class.
 }
 \examples{

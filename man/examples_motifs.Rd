@@ -20,7 +20,6 @@ A list of time series for motif (repeated patterns) and discord (rare patterns) 
 \item mitdb100: sample from MIT-BIH arrhythmia database (record 100).
 \item mitdb102: sample from MIT-BIH arrhythmia database (record 102).
 }
-#'
 }
 \examples{
 data(examples_motifs)
