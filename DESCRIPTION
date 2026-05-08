@@ -16,7 +16,6 @@ Authors@R:
         person(given = "Igor", family = "Andrade", role = c("aut"), email = "igor.andrade@eic.cefet-rj.br"),
         person(given = "Isabele", family = "Rocha", role = c("aut"), email = "isabele.rocha@eic.cefet-rj.br"),
         person(given = "Janio", family = "Lima", role = c("aut"), email = "janio.lima@eic.cefet-rj.br"),
-        person(given = "Janio", family = "Lima", role = c("aut"), email = "janio.lima@eic.cefet-rj.br"),
         person(given = "Jessica", family = "Souza", role = c("aut"), email = "jessica.souza@eic.cefet-rj.br"),
         person(given = "Lais", family = "Baroni", role = c("aut"), email = "lais.baronis@eic.cefet-rj.br"),
         person(given = "Lucas", family = "Tavares", role = c("aut"), email = "lucas.tavares@eic.cefet-rj.br"),
