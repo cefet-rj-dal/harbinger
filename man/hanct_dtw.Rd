@@ -15,11 +15,12 @@ hanct_dtw(seq = 1, centers = NA)
 \code{hanct_dtw} object
 }
 \description{
-Anomaly detection using DTW
-The DTW is applied to the time series.
-When seq equals one, observations distant from the closest centroids are labeled as anomalies.
-When seq is grater than one, sequences distant from the closest centroids are labeled as discords.
-It wraps the tsclust presented in the dtwclust library.
+Distance-based anomaly and discord detection using dynamic time warping.
+The detector clusters the series with DTW and flags observations or subsequences
+that are far from the nearest centroid.
+When \code{seq} equals one, isolated observations are labeled as anomalies.
+When \code{seq} is greater than one, subsequences are labeled as discords.
+Wraps the \code{tsclust} implementation from the \code{dtwclust} package.
 }
 \examples{
 library(daltoolbox)

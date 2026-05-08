@@ -7,17 +7,18 @@
 hanr_remd(noise = 0.1, trials = 5)
 }
 \arguments{
-\item{noise}{nosie}
+\item{noise}{Noise amplitude for the decomposition.}
 
-\item{trials}{trials}
+\item{trials}{Number of trials used by the decomposition step.}
 }
 \value{
 \code{hanr_remd} object
 }
 \description{
-Anomaly detection using REMD
-The EMD model adjusts to the time series. Observations distant from the model are labeled as anomalies.
-It wraps the EMD model presented in the forecast library.
+Anomaly detection using REMD with EMD-based decomposition.
+The detector decomposes the series, selects components according to curvature,
+and flags large residual deviations as anomalies.
+Wraps the EMD-based model presented in the \code{forecast} package.
 }
 \examples{
 library(daltoolbox)

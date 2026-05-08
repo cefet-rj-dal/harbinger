@@ -23,7 +23,6 @@ A list of time series for demonstrating event detection tasks.
 \item seattle_week: Seattle weekly temperature in 2019.
 \item seattle_daily: Seattle daily temperature in 2019.
 }
-#'
 }
 \examples{
 data(examples_harbinger)

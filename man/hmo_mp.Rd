@@ -47,7 +47,7 @@ print(detection[(detection$event),])
 \references{
 \itemize{
 \item Yeh CCM, et al. (2016). Matrix Profile I/II: All-pairs similarity joins and scalable
-time series motifs/discrod discovery. IEEE ICDM.
+time series motifs/discord discovery. IEEE ICDM.
 \item Tavenard R, et al. tsmp: The Matrix Profile in R. The R Journal (2020). doi:10.32614/RJ-2020-021
 }
 }

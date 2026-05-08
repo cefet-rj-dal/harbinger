@@ -22,7 +22,6 @@ A list of time series for change point experiments.
 \item abrupt: abrupt level shift.
 \item volatility: variance change.
 }
-#'
 }
 \examples{
 data(examples_changepoints)

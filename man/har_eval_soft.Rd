@@ -10,10 +10,12 @@ har_eval_soft(sw_size = 15)
 \item{sw_size}{Integer. Tolerance window size for soft matching.}
 }
 \value{
-\code{har_eval_soft} object
+\code{har_eval_soft} object.
 }
 \description{
 Soft evaluation of event detection using SoftED \url{doi:10.48550/arXiv.2304.00439}.
+The metric assigns partial credit to detections that fall within a tolerance
+window around the ground-truth event.
 }
 \examples{
 library(daltoolbox)

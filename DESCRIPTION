@@ -29,7 +29,7 @@ BugReports: https://github.com/cefet-rj-dal/harbinger/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
-RoxygenNote: 7.3.3
+RoxygenNote: 8.0.0
 Imports: 
   tspredit,
   changepoint,

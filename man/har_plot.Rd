@@ -43,7 +43,7 @@ A \code{ggplot} object showing the time series with detected events highlighted.
 }
 \description{
 Convenience plotting helper for Harbinger detections. It accepts a detector,
-the input series, an optional detection data.frame, and optional ground-truth
+the input series, an optional detection data frame, and optional ground-truth
 events to color-code true positives (TP), false positives (FP), and false negatives (FN).
 It can also mark detected change points and draw reference horizontal lines.
 }

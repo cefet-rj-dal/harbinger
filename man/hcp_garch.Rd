@@ -13,8 +13,10 @@ hcp_garch(sw_size = 5)
 \code{hcp_garch} object
 }
 \description{
-Change-point detection is related to event/trend change detection. Change Finder GARCH detects change points based on deviations relative to linear regression model \url{doi:10.1109/TKDE.2006.1599387}.
-It wraps the GARCH model presented in the rugarch library.
+Change-point detection for variance shifts using a GARCH-based residual model.
+The detector flags change points when the observed series departs from the
+expected volatility pattern estimated by the fitted GARCH model.
+Wraps the GARCH model presented in the \code{rugarch} package.
 }
 \examples{
 library(daltoolbox)

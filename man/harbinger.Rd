@@ -11,8 +11,8 @@ A \code{harbinger} object that can be extended by detectors.
 }
 \description{
 Base class for time series event detection in the Harbinger framework.
-It provides common state handling and helper methods used by anomaly,
-change point, and motif detectors. Concrete detectors extend this class
+It provides shared state handling and helper methods used by anomaly,
+change-point, and motif detectors. Concrete detectors extend this class
 and implement their own \code{fit()} and/or \code{detect()} S3 methods.
 }
 \details{

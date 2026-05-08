@@ -10,8 +10,9 @@ hcp_chow()
 \code{hcp_chow} object
 }
 \description{
-Change-point detection for linear models using F-based structural break tests from the strucchange package \url{doi:10.18637/jss.v007.i02}.
-It wraps the Fstats and breakpoints implementation available in the strucchange library.
+Change-point detection for linear models using F-based structural
+break tests from the \code{strucchange} package \url{doi:10.18637/jss.v007.i02}.
+Wraps the \code{Fstats} and \code{breakpoints} implementations from the \code{strucchange} package.
 }
 \examples{
 library(daltoolbox)
