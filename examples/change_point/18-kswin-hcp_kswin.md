@@ -1,4 +1,4 @@
-# KSWIN with `hcd_kswin()`
+# KSWIN with `hcp_kswin()`
 
 This notebook demonstrates KSWIN change-point detection on a univariate time series. The detector compares an early sample with the most recent observations inside a sliding window and flags a changepoint when the two distributions differ significantly.
 
@@ -25,7 +25,7 @@ har_plot(harbinger(), dataset$serie)
 ## Configure the Method
 
 ```r
-model <- hcd_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
+model <- hcp_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
 model <- fit(model, dataset$serie)
 ```
 

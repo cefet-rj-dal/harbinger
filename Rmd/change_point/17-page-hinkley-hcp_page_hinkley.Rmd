@@ -1,5 +1,5 @@
 ---
-title: "KSWIN with `hcd_kswin()`"
+title: "Page-Hinkley with `hcp_page_hinkley()`"
 output: rmarkdown::html_document
 ---
 
@@ -10,11 +10,11 @@ library(harbinger)
 
 ## Objective
 
-This notebook demonstrates KSWIN change-point detection on a univariate time series. The detector compares an early sample with the most recent observations inside a sliding window and flags a changepoint when the two distributions differ significantly.
+This notebook demonstrates Page-Hinkley change-point detection on a univariate time series. The detector monitors the cumulative deviation from the running mean and flags a changepoint when the score becomes too large.
 
 ## Method at a glance
 
-KSWIN is a window-based sequential detector for distributional change. In Harbinger it is restricted to one numeric series so that the output can be interpreted directly as virtual drift on the observed signal.
+Page-Hinkley is a sequential test for persistent mean shifts. In Harbinger it is used as a univariate change-point detector for virtual drift in a single numeric series.
 
 ## Prepare the Example
 
@@ -32,7 +32,7 @@ har_plot(harbinger(), dataset$serie)
 ## Configure the Method
 
 ```{r}
-model <- hcd_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
+model <- hcp_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
 model <- fit(model, dataset$serie)
 ```
 
@@ -58,5 +58,5 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 ## References
 
+- Page ES (1954). Continuous Inspection Schemes. Biometrika, 41(1/2), 100-115.
 - Raab C, Heusinger M, Schleif FM (2020). Reactive Soft Prototype Computing for Concept Drift Streams. Neurocomputing.
-- Bifet A, Gavaldà R (2007). Learning from time-changing data with adaptive windowing. SIAM International Conference on Data Mining.

@@ -12,14 +12,14 @@
 #' @param stat_size Size of the statistic subwindow used for the KS test.
 #' @param alpha Significance level for the KS test.
 #' @param data Optional initial window content.
-#' @return An `hcd_kswin` object.
+#' @return An `hcp_kswin` object.
 #'
 #' @references
 #' - Raab C, Heusinger M, Schleif FM (2020). Reactive Soft Prototype Computing for Concept Drift Streams. Neurocomputing.
 #' - Bifet A, Gavaldà R (2007). Learning from time-changing data with adaptive windowing. SIAM International Conference on Data Mining.
 #'
 #' @export
-hcd_kswin <- function(window_size = 100, stat_size = 30, alpha = 0.005, data = NULL) {
+hcp_kswin <- function(window_size = 100, stat_size = 30, alpha = 0.005, data = NULL) {
   obj <- harbinger()
   obj$window_size <- window_size
   obj$stat_size <- stat_size
@@ -38,26 +38,26 @@ hcd_kswin <- function(window_size = 100, stat_size = 30, alpha = 0.005, data = N
     obj$window <- as.numeric(stats::na.omit(data))
   }
 
-  class(obj) <- append("hcd_kswin", class(obj))
+  class(obj) <- append("hcp_kswin", class(obj))
   obj
 }
 
 #' @importFrom stats complete.cases
 #' @importFrom stats ks.test
 #' @importFrom stats na.omit
-#' @exportS3Method fit hcd_kswin
-fit.hcd_kswin <- function(obj, serie, ...) {
+#' @exportS3Method fit hcp_kswin
+fit.hcp_kswin <- function(obj, serie, ...) {
   if (is.null(serie)) stop("No data was provided", call. = FALSE)
   obj <- obj$har_store_refs(obj, serie)
   obj
 }
 
-#' @exportS3Method detect hcd_kswin
-detect.hcd_kswin <- function(obj, serie, ...) {
+#' @exportS3Method detect hcp_kswin
+detect.hcp_kswin <- function(obj, serie, ...) {
   if (is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   if (is.data.frame(serie)) {
-    if (ncol(serie) != 1) stop("hcd_kswin only accepts univariate series.", call. = FALSE)
+    if (ncol(serie) != 1) stop("hcp_kswin only accepts univariate series.", call. = FALSE)
     serie <- serie[[1]]
   }
   if (!is.numeric(serie)) stop("serie must be numeric.", call. = FALSE)

@@ -14,14 +14,14 @@
 #' @param delta Slack term subtracted from the deviation score.
 #' @param threshold Detection threshold for the cumulative statistic.
 #' @param alpha Forgetting factor applied to the cumulative score.
-#' @return An `hcd_page_hinkley` object.
+#' @return An `hcp_page_hinkley` object.
 #'
 #' @references
 #' - Page ES (1954). Continuous Inspection Schemes. Biometrika, 41(1/2), 100-115.
 #' - Raab C, Heusinger M, Schleif FM (2020). Reactive Soft Prototype Computing for Concept Drift Streams. Neurocomputing.
 #'
 #' @export
-hcd_page_hinkley <- function(min_instances = 30, delta = 0.005, threshold = 50, alpha = 1 - 1e-4) {
+hcp_page_hinkley <- function(min_instances = 30, delta = 0.005, threshold = 50, alpha = 1 - 1e-4) {
   obj <- harbinger()
   obj$min_instances <- min_instances
   obj$delta <- delta
@@ -31,26 +31,26 @@ hcd_page_hinkley <- function(min_instances = 30, delta = 0.005, threshold = 50, 
   obj$sum <- 0
   obj$sample_count <- 1
 
-  class(obj) <- append("hcd_page_hinkley", class(obj))
+  class(obj) <- append("hcp_page_hinkley", class(obj))
   obj
 }
 
 #' @importFrom stats na.omit
 #' @importFrom stats ecdf
 #' @importFrom stats complete.cases
-#' @exportS3Method fit hcd_page_hinkley
-fit.hcd_page_hinkley <- function(obj, serie, ...) {
+#' @exportS3Method fit hcp_page_hinkley
+fit.hcp_page_hinkley <- function(obj, serie, ...) {
   if (is.null(serie)) stop("No data was provided", call. = FALSE)
   obj <- obj$har_store_refs(obj, serie)
   obj
 }
 
-#' @exportS3Method detect hcd_page_hinkley
-detect.hcd_page_hinkley <- function(obj, serie, ...) {
+#' @exportS3Method detect hcp_page_hinkley
+detect.hcp_page_hinkley <- function(obj, serie, ...) {
   if (is.null(serie)) stop("No data was provided for computation", call. = FALSE)
 
   if (is.data.frame(serie)) {
-    if (ncol(serie) != 1) stop("hcd_page_hinkley only accepts univariate series.", call. = FALSE)
+    if (ncol(serie) != 1) stop("hcp_page_hinkley only accepts univariate series.", call. = FALSE)
     serie <- serie[[1]]
   }
   if (!is.numeric(serie)) stop("serie must be numeric.", call. = FALSE)

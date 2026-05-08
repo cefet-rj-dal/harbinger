@@ -1,4 +1,4 @@
-# Page-Hinkley with `hcd_page_hinkley()`
+# Page-Hinkley with `hcp_page_hinkley()`
 
 This notebook demonstrates Page-Hinkley change-point detection on a univariate time series. The detector monitors the cumulative deviation from the running mean and flags a changepoint when the score becomes too large.
 
@@ -25,7 +25,7 @@ har_plot(harbinger(), dataset$serie)
 ## Configure the Method
 
 ```r
-model <- hcd_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
+model <- hcp_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
 model <- fit(model, dataset$serie)
 ```
 
