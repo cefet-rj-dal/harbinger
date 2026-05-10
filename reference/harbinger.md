@@ -23,7 +23,8 @@ A `harbinger` object that can be extended by detectors.
 Internally, this class stores references to the original series, indices
 of non-missing observations, and helper structures to restore detection
 results in the original series index space. It also exposes utility
-hooks for distance computation and outlier post-processing provided by
+hooks for deviation measures, filter criteria, and candidate selection
+provided by
 [`harutils()`](https://cefet-rj-dal.github.io/harbinger/reference/harutils.md).
 
 ## References
