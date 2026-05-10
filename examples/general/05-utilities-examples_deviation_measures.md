@@ -50,11 +50,6 @@ library(harbinger)
 hutils <- harutils()
 ```
 
-```
-## Error in `harutils()`:
-## ! object 'har_deviation_l1' not found
-```
-
 
 
 
@@ -77,21 +72,10 @@ This first visual pass establishes what the method should react to in the raw se
 ``` r
 # L1 deviation measure over residual magnitude
 v1 <- hutils$har_deviation_l1(values)
-```
-
-```
-## Error:
-## ! object 'hutils' not found
-```
-
-``` r
 har_plot(harbinger(), v1)
 ```
 
-```
-## Error:
-## ! object 'v1' not found
-```
+![plot of chunk unnamed-chunk-5](fig/05-utilities-examples_deviation_measures/unnamed-chunk-5-1.png)
 
 
 
@@ -99,21 +83,10 @@ har_plot(harbinger(), v1)
 ``` r
 # L2 deviation measure over residual magnitude
 v2 <- hutils$har_deviation_l2(values)
-```
-
-```
-## Error:
-## ! object 'hutils' not found
-```
-
-``` r
 har_plot(harbinger(), v2)
 ```
 
-```
-## Error:
-## ! object 'v2' not found
-```
+![plot of chunk unnamed-chunk-6](fig/05-utilities-examples_deviation_measures/unnamed-chunk-6-1.png)
 
 ## References
 
