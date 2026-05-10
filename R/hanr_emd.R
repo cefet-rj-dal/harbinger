@@ -40,7 +40,7 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
   obj$trials <- trials
 
   hutils <- harutils()
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+  obj$har_outliers_check <- hutils$har_candidate_selection_highgroup
 
   class(obj) <- append("hanr_emd", class(obj))
   return(obj)

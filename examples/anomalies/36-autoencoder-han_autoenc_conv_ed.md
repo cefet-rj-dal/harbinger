@@ -39,8 +39,6 @@ This setup anchors the notebook in the specific series used to examine `han_auto
 library(daltoolbox)
 library(daltoolboxdp)
 library(harbinger) 
-python_available <- requireNamespace("reticulate", quietly = TRUE) && reticulate::py_available()
-knitr::opts_chunk$set(eval = python_available)
 ```
 
 
@@ -62,6 +60,16 @@ dataset <- examples_anomalies$simple
 head(dataset)
 ```
 
+```
+##       serie event
+## 1 1.0000000 FALSE
+## 2 0.9689124 FALSE
+## 3 0.8775826 FALSE
+## 4 0.7316889 FALSE
+## 5 0.5403023 FALSE
+## 6 0.3153224 FALSE
+```
+
 
 
 
@@ -77,6 +85,8 @@ This first visual pass establishes what the method should react to in the raw se
 # Plot the time series
 har_plot(harbinger(), dataset$serie)
 ```
+
+![plot of chunk unnamed-chunk-5](fig/36-autoencoder-han_autoenc_conv_ed/unnamed-chunk-5-1.png)
 
 
 
@@ -102,6 +112,28 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- fit(model, dataset$serie)
 ```
 
+```
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
+```
+
 
 
 
@@ -118,12 +150,39 @@ This is the moment where the notebook tests its central assumption on actual dat
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
+```
+
 
 
 
 ``` r
 # Show only timestamps flagged as events
   print(detection |> dplyr::filter(event==TRUE))
+```
+
+```
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -140,7 +199,20 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
   print(evaluation$confMatrix)
+```
+
+```
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -159,12 +231,22 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
+```
+## Error:
+## ! object 'detection' not found
+```
+
 
 
 
 ``` r
 # Plot residual scores and threshold
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Error:
+## ! object 'detection' not found
 ```
 
 ## References

@@ -1,4 +1,11 @@
-# KSWIN with `hcp_kswin()`
+---
+title: "KSWIN with `hcp_kswin()`"
+output: rmarkdown::html_document
+---
+
+
+
+## Objective
 
 This notebook demonstrates KSWIN change-point detection on a univariate time series. The detector compares an early sample with the most recent observations inside a sliding window and flags a changepoint when the two distributions differ significantly.
 
@@ -8,46 +15,67 @@ KSWIN is a window-based sequential detector for distributional change. In Harbin
 
 ## Prepare the Example
 
-```r
-library(daltoolbox)
-library(harbinger)
 
+``` r
 data(examples_changepoints)
 dataset <- examples_changepoints$simple
 ```
 
 ## Visualize the Raw Series
 
-```r
+
+``` r
 har_plot(harbinger(), dataset$serie)
 ```
 
+![plot of chunk unnamed-chunk-2](fig/18-kswin-hcp_kswin/unnamed-chunk-2-1.png)
+
 ## Configure the Method
 
-```r
+
+``` r
 model <- hcp_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
 model <- fit(model, dataset$serie)
 ```
 
 ## Run Detection
 
-```r
+
+``` r
 detection <- detect(model, dataset$serie)
 print(detection[detection$event, ])
 ```
 
+```
+##     idx event        type
+## 99   99  TRUE changepoint
+## 100 100  TRUE changepoint
+## 101 101  TRUE changepoint
+```
+
 ## Evaluate the Result
 
-```r
+
+``` r
 evaluation <- evaluate(har_eval(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 ```
 
+```
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     3    
+## FALSE     1     97
+```
+
 ## Plot the Detections
 
-```r
+
+``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
+
+![plot of chunk unnamed-chunk-6](fig/18-kswin-hcp_kswin/unnamed-chunk-6-1.png)
 
 ## References
 

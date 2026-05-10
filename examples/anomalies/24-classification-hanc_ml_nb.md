@@ -139,24 +139,38 @@ model <- hanc_ml(cla_nb("event", c("FALSE", "TRUE")))
 # Fit on training data, evaluate on train
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
+```
+
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
+``` r
 print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+## Error:
+## ! object 'detection' not found
 ```
 
 ``` r
 evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     4     76
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -175,7 +189,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
-![plot of chunk unnamed-chunk-9](fig/24-classification-hanc_ml_nb/unnamed-chunk-9-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -199,24 +216,38 @@ test_n <- transform(norm, test)
 ``` r
 # Detect and evaluate on test
 detection <- detect(model, test_n)
+```
+
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
+``` r
 print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+## Error:
+## ! object 'detection' not found
 ```
 
 ``` r
 evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     2     19
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -235,7 +266,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/24-classification-hanc_ml_nb/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -245,7 +279,10 @@ har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-13](fig/24-classification-hanc_ml_nb/unnamed-chunk-13-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

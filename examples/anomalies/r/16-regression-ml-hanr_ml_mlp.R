@@ -18,7 +18,7 @@ har_plot(harbinger(), dataset$serie)
 
 # Define MLP-based regressor for anomaly detection (hanr_ml + ts_mlp)
 # - input_size: window length; size: hidden units; decay: weight decay
-  model <- hanr_ml(ts_mlp(ts_norm_gminmax(), input_size=3, size=3, decay=0))
+  model <- hanr_ml(tspredit::ts_mlp(tspredit::ts_norm_gminmax(), input_size=3, size=3, decay=0))
 
 # Fit the model
   model <- fit(model, dataset$serie)

@@ -8,20 +8,20 @@ This notebook complements the custom range-aware evaluator. The two ideas belong
 
 ## Why this method matters
 
-Many anomaly workflows start by scoring each timestamp separately and then applying a post-processing rule that keeps only one point per contiguous group. That is often acceptable for isolated point anomalies, but it can be a poor representation for collective anomalies.
+Many anomaly workflows start by scoring each timestamp separately and then applying a candidate-selection rule that keeps only one point per contiguous group. That is often acceptable for isolated point anomalies, but it can be a poor representation for collective anomalies.
 
 When the anomaly is a sequence, collapsing the whole segment to one point creates two problems:
 
 - it hides the duration of the abnormal behavior;
 - it makes it harder to use interval-aware metrics and to reason about overlap with the ground truth.
 
-This custom example therefore focuses on a different post-processing philosophy: once an anomalous run is detected, keep the full run.
+This custom example therefore focuses on a different candidate-selection philosophy: once an anomalous run is detected, keep the full run.
 
 ## Method at a glance
 
 The detector computes a rolling median baseline and a rolling MAD scale. It then converts each observation into a robust local z-score. Consecutive points whose score exceeds a threshold are grouped into anomalous runs, and only runs with at least `min_run` points are kept.
 
-The key customization is not only the scoring function, but the post-processing rule: instead of choosing the first or highest point in each group, the detector marks the whole contiguous interval as anomalous.
+The key customization is not only the scoring function, but the candidate-selection rule: instead of choosing the first or highest point in each group, the detector marks the whole contiguous interval as anomalous.
 
 
 

@@ -140,27 +140,38 @@ model <- hanc_ml(cla_rf("event", c("FALSE", "TRUE"), mtry = 1, ntree = 5))
 # Fit on training data and evaluate on train
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
+```
+
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
+``` r
 print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event    type
-## 1  12  TRUE anomaly
-## 2  24  TRUE anomaly
-## 3  38  TRUE anomaly
-## 4  50  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 ``` r
 evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      4     0    
-## FALSE     0     76
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -179,7 +190,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
-![plot of chunk unnamed-chunk-9](fig/25-classification-hanc_ml_rf/unnamed-chunk-9-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -203,25 +217,38 @@ test_n <- transform(norm, test)
 ``` r
 # Detect and evaluate on test
 detection <- detect(model, test_n)
+```
+
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
+``` r
 print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event    type
-## 1  10  TRUE anomaly
-## 2  21  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 ``` r
 evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      2     0    
-## FALSE     0     19
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -240,7 +267,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/25-classification-hanc_ml_rf/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -250,7 +280,10 @@ har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-13](fig/25-classification-hanc_ml_rf/unnamed-chunk-13-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

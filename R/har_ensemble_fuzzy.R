@@ -38,8 +38,8 @@ har_ensemble_fuzzy <- function(...) {
   obj$models <- Map(function(mod, nm) list(model = mod, name = nm), args, arg_names)
   names(obj$models) <- arg_names
   hutils <- harutils()
-  obj$har_outliers <- hutils$har_outliers_none
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+  obj$har_outliers <- hutils$har_filter_none
+  obj$har_outliers_check <- hutils$har_candidate_selection_highgroup
   obj$har_fuzzify_detections <- hutils$har_fuzzify_detections_triangle
   obj$detection <- list(
     threshold = 0.5,

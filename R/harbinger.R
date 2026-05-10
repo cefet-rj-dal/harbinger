@@ -9,7 +9,8 @@
 #' Internally, this class stores references to the original series, indices of
 #' non-missing observations, and helper structures to restore detection results
 #' in the original series index space. It also exposes utility hooks for
-#' distance computation and outlier post-processing provided by `harutils()`.
+#' deviation measures, filter criteria, and candidate selection provided by
+#' `harutils()`.
 #'
 #' @return A `harbinger` object that can be extended by detectors.
 #'
@@ -84,9 +85,9 @@ harbinger <- function() {
   obj$har_restore_refs <- har_restore_refs
 
   hutils <- harutils()
-  obj$har_distance <- hutils$har_distance_l2
-  obj$har_outliers <- hutils$har_outliers_gaussian
-  obj$har_outliers_check <- hutils$har_outliers_checks_firstgroup
+  obj$har_distance <- hutils$har_deviation_l2
+  obj$har_outliers <- hutils$har_filter_gaussian
+  obj$har_outliers_check <- hutils$har_candidate_selection_firstgroup
 
   return(obj)
 }

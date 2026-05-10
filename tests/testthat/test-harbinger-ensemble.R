@@ -40,11 +40,11 @@ test_that("har_ensemble uses strict majority vote", {
   expect_identical(events, c(TRUE, FALSE, TRUE))
 })
 
-test_that("har_outliers_ratio handles zero and empty vectors", {
-  empty <- har_outliers_ratio(numeric(0))
+test_that("har_filter_ratio handles zero and empty vectors", {
+  empty <- har_filter_ratio(numeric(0))
   expect_length(empty, 0)
 
-  zeros <- har_outliers_ratio(c(0, 0, 0))
+  zeros <- har_filter_ratio(c(0, 0, 0))
   expect_length(zeros, 0)
 })
 

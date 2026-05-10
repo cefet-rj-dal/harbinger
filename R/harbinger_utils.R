@@ -1,152 +1,52 @@
-is_matrix_or_df <- function(obj) {
-  is.matrix(obj) || is.data.frame(obj)
-}
-
-har_distance_l1 <- function(values) {
-  values <- abs(values)
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values
-}
-
-har_distance_l2 <- function(values) {
-  values <- values^2
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values
-}
-
-har_outliers_none <- function(res) {
-  index <- integer(0)
-  attr(index, "threshold") <- c(-Inf, Inf)
-  index
-}
-
-har_outliers_boxplot <- function(res) {
-  q <- stats::quantile(res, na.rm = TRUE)
-  iqr <- q[4] - q[2]
-  thresholdInf <- as.double(q[2] - 1.5 * iqr)
-  thresholdSup <- as.double(q[4] + 1.5 * iqr)
-  index <- which(res > thresholdSup | res < thresholdInf)
-  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  index
-}
-
-har_outliers_gaussian <- function(res) {
-  thresholdSup <- mean(res) + 3 * stats::sd(res)
-  thresholdInf <- mean(res) - 3 * stats::sd(res)
-  index <- which(res > thresholdSup | res < thresholdInf)
-  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  index
-}
-
-har_outliers_ratio <- function(res) {
-  if (length(res) == 0) {
-    index <- integer(0)
-    attr(index, "threshold") <- c(NA_real_, NA_real_)
-    return(index)
-  }
-
-  max_res <- max(res, na.rm = TRUE)
-  if (!is.finite(max_res) || max_res <= 0) {
-    index <- integer(0)
-    attr(index, "threshold") <- c(NA_real_, NA_real_)
-    return(index)
-  }
-
-  ratio <- 1 - res / max_res
-  thresholdSup <- mean(ratio) + 3 * stats::sd(ratio)
-  thresholdSup <- (thresholdSup - 1) * max_res
-  thresholdInf <- mean(ratio) - 3 * stats::sd(ratio)
-  thresholdInf <- (thresholdInf - 1) * max_res
-  index <- which(res > thresholdSup | res < thresholdInf)
-  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
-  index
-}
-
-har_outliers_checks_firstgroup <- function(outliers, values) {
-  threshold <- attr(outliers, "threshold")
-  values <- abs(values)
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values <- as.numeric(values)
-  size <- length(values)
-  idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
-  if (length(idx) == 0) {
-    result <- rep(FALSE, size)
-    attr(result, "threshold") <- threshold
-    return(result)
-  }
-  groups <- split(idx, cumsum(c(1, diff(idx) != 1)))
-  result <- rep(FALSE, size)
-  for (g in groups) result[min(g)] <- TRUE
-  attr(result, "threshold") <- threshold
-  result
-}
-
-har_outliers_checks_highgroup <- function(outliers, values) {
-  threshold <- attr(outliers, "threshold")
-  values <- abs(values)
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values <- as.numeric(values)
-  size <- length(values)
-  idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
-  if (length(idx) == 0) {
-    result <- rep(FALSE, size)
-    attr(result, "threshold") <- threshold
-    return(result)
-  }
-  groups <- split(idx, cumsum(c(1, diff(idx) != 1)))
-  result <- rep(FALSE, size)
-  for (g in groups) {
-    max_val <- max(values[g])
-    candidates <- g[values[g] == max_val]
-    result[min(candidates)] <- TRUE
-  }
-  attr(result, "threshold") <- threshold
-  result
-}
-
-har_fuzzify_detections_triangle <- function(value, tolerance) {
-  type <- attr(value, "type")
-  value <- as.double(value)
-  if (!tolerance || tolerance <= 1) {
-    attr(value, "type") <- type
-    return(value)
-  }
-  idx <- which(value >= 1)
-  n <- length(value)
-  ratio <- 1 / tolerance
-  range <- tolerance - 1
-  for (i in idx) {
-    curtype <- ""
-    if (!is.null(type)) curtype <- type[i]
-    for (j in 1:range) {
-      weight <- (tolerance - j) * ratio
-      if (i + j <= n) {
-        value[i + j] <- max(value[i + j], weight)
-        type[i + j] <- curtype
-      }
-      if (i - j > 0) {
-        value[i - j] <- max(value[i - j], weight)
-        type[i - j] <- curtype
-      }
-    }
-  }
-  attr(value, "type") <- type
-  value
-}
-
 #' @title Harbinger Utilities
 #' @description
-#' Utility object that groups common distance measures, threshold heuristics,
-#' and outlier grouping rules used by Harbinger detectors.
+#' Utility object that groups helper functions used by Harbinger detectors.
 #'
 #' @details
-#' Provided helpers include:
-#' - L1 and L2 distance aggregations over vectors or rows of matrices/data frames.
-#' - Thresholding heuristics: boxplot-based (IQR), Gaussian 3-sigma, and a ratio-based rule.
-#' - Grouping strategies for contiguous outliers: keep first index or keep highest-magnitude index.
-#' - Optional fuzzification over detections to propagate influence within a tolerance window.
+#' These helpers naturally fall into semantic groups rather than a single
+#' homogeneous toolbox.
 #'
-#' These utilities centralize common tasks and ensure consistent behavior across detectors.
+#' \strong{Deviation measures}
+#'
+#' - `har_deviation_l1()` and `har_deviation_l2()` aggregate magnitudes over
+#'   vectors or over rows of matrices/data frames.
+#' - They are typically used to transform residual series or reconstruction
+#'   errors into a univariate score before thresholding.
+#'
+#' \strong{Filter criteria}
+#'
+#' - `har_filter_none()` disables thresholding.
+#' - `har_filter_boxplot()` uses the boxplot/IQR rule.
+#' - `har_filter_gaussian()` uses the Gaussian 3-sigma rule.
+#' - `har_filter_grubbs()` applies an iterative Grubbs test.
+#' - `har_filter_ratio()` applies a ratio-based threshold rule.
+#'
+#' For `har_filter_grubbs()`, the returned `threshold` attribute is an
+#' empirical detection boundary intended for interpretability in residual plots:
+#' it records the least extreme detected value on each side. This keeps the
+#' cutoff visually meaningful even though the Grubbs decision itself is
+#' iterative. The function also returns a `score` attribute with the Grubbs `G`
+#' statistic at each detected position and `NA` elsewhere.
+#'
+#' \strong{Candidate selection}
+#'
+#' - `har_candidate_selection_firstgroup()` keeps the first index in each
+#'   contiguous outlier run.
+#' - `har_candidate_selection_highgroup()` keeps the highest-magnitude index in
+#'   each contiguous outlier run.
+#' - `har_candidate_selection_referencedistribution()` compares each candidate
+#'   point in a contiguous run against the same reference window composed of the
+#'   observations immediately preceding the start of that run. In the current
+#'   implementation, the reference window is summarized by a Gaussian model, and
+#'   points outside the accepted region remain marked. This lets sequence
+#'   anomalies emerge naturally without collapsing the run to a single index.
+#'   When there is not enough history to form the reference window, the first
+#'   point of the run is kept.
+#' - `har_fuzzify_detections_triangle()` propagates a detection score around an
+#'   event within a tolerance window.
+#'
+#' This organization makes it easier to swap only one semantic stage of the
+#' pipeline: score construction, filter definition, or candidate selection.
 #'
 #' @return A `harutils` object exposing the helper functions.
 #'
@@ -156,17 +56,32 @@ har_fuzzify_detections_triangle <- function(value, tolerance) {
 #'
 #' # Compute L2 distance on residuals
 #' res <- c(0.1, -0.5, 1.2, -0.3)
-#' d2 <- utils$har_distance_l2(res)
+#' d2 <- utils$har_deviation_l2(res)
 #' print(d2)
 #'
 #' # Apply 3-sigma outlier rule and keep only first index of contiguous runs
-#' idx <- utils$har_outliers_gaussian(d2)
-#' flags <- utils$har_outliers_checks_firstgroup(idx, d2)
+#' idx <- utils$har_filter_gaussian(d2)
+#' flags <- utils$har_candidate_selection_firstgroup(idx, d2)
 #' print(which(flags))
+#'
+#' # Grubbs outlier rule with an interpretable plotting threshold
+#' gidx <- utils$har_filter_grubbs(c(d2, 8))
+#' print(attr(gidx, "threshold"))
+#' print(attr(gidx, "score")[gidx])
+#'
+#' # Sequence-aware candidate selection using a reference distribution
+#' idx2 <- c(31, 32, 33)
+#' flags2 <- utils$har_candidate_selection_referencedistribution(
+#'   idx2,
+#'   c(rep(0, 30), 4, 5, 4.5)
+#' )
+#' print(which(flags2))
 #'
 #' @references
 #' - Tukey JW (1977). Exploratory Data Analysis. Addison-Wesley. (boxplot/IQR heuristic)
 #' - Shewhart WA (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three-sigma rule)
+#' - Grubbs FE (1969). Procedures for Detecting Outlying Observations in Samples.
+#'   Technometrics, 11(1), 1-21. doi:10.1080/00401706.1969.10490657
 #' - Silva, E. P., Balbi, H., Pacitti, E., Porto, F., Santos, J., Ogasawara, E. Cutoff
 #'   Frequency Adjustment for FFT-Based Anomaly Detectors. In: Simpósio Brasileiro de
 #'   Banco de Dados (SBBD). SBC, 14 Oct. 2024. doi:10.5753/sbbd.2024.243319
@@ -177,16 +92,20 @@ har_fuzzify_detections_triangle <- function(value, tolerance) {
 harutils <- function() {
   obj <- dal_base()
   class(obj) <- append("harutils", class(obj))
-  obj$har_distance_l1 <- har_distance_l1
-  obj$har_distance_l2 <- har_distance_l2
-  obj$har_outliers_none <- har_outliers_none
+  obj$har_deviation_l1 <- har_deviation_l1
+  obj$har_deviation_l2 <- har_deviation_l2
+  obj$har_filter_none <- har_filter_none
+  obj$har_filter_boxplot <- har_filter_boxplot
+  obj$har_filter_gaussian <- har_filter_gaussian
+  obj$har_filter_grubbs <- har_filter_grubbs
+  obj$har_filter_ratio <- har_filter_ratio
+  obj$har_candidate_selection_firstgroup <- har_candidate_selection_firstgroup
+  obj$har_candidate_selection_highgroup <- har_candidate_selection_highgroup
+  obj$har_candidate_selection_referencedistribution <- har_candidate_selection_referencedistribution
 
-  obj$har_outliers_boxplot <- har_outliers_boxplot
-  obj$har_outliers_gaussian <- har_outliers_gaussian
-  obj$har_outliers_ratio <- har_outliers_ratio
-
-  obj$har_outliers_checks_firstgroup <- har_outliers_checks_firstgroup
-  obj$har_outliers_checks_highgroup <- har_outliers_checks_highgroup
+  # NOTE: utility names were renamed from har_distance_*, har_outliers_*,
+  # and har_outliers_checks_* to deviation/filter/candidate-selection terms.
+  # Include this rename in the next version update notes.
 
   obj$har_fuzzify_detections_triangle <- har_fuzzify_detections_triangle
 

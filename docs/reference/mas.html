@@ -9,7 +9,7 @@ provided time series."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.727</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.717</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,10 +77,10 @@ Springer.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#loading the example database</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load change-point example data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_changepoints</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Using simple example</span></span></span>
+<span class="r-in"><span><span class="co"># Use a simple example</span></span></span>
 <span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">examples_changepoints</span><span class="op">$</span><span class="va">simple</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   serie event</span>
@@ -91,7 +91,7 @@ Springer.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  1.00 FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6  1.25 FALSE</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># setting up change point method</span></span></span>
+<span class="r-in"><span><span class="co"># Compute a 5-point moving average</span></span></span>
 <span class="r-in"><span><span class="va">ma</span> <span class="op">&lt;-</span> <span class="fu">mas</span><span class="op">(</span><span class="va">dataset</span><span class="op">$</span><span class="va">serie</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
@@ -100,11 +100,11 @@ Springer.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Eduardo Ogasawara, Antonio Castro, Antonio Mello, Ellen Paixão, Fernando Fraga, Heraldo Borges, Janio Lima, Jessica Souza, Lais Baroni, Lucas Tavares, Michel Reis, Rebecca Salles, Diego Carvalho, Eduardo Bezerra, Rafaelli Coutinho, Esther Pacitti, Fabio Porto.</p>
+  <p>Developed by Eduardo Ogasawara, Antonio Castro, Antonio Mello, Ellen Paixão, Fernando Fraga, Heraldo Borges, Igor Andrade, Isabele Rocha, Janio Lima, Jessica Souza, Lais Baroni, Lucas Tavares, Michel Reis, Rebecca Salles.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

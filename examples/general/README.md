@@ -19,8 +19,8 @@ Start here if you want to understand the vocabulary of the package before studyi
 
 After the package tour, these examples show helper functions that often appear around the main models and make the outputs easier to interpret.
 
-- [05-utilities-examples_harutils_distance.md](/examples/general/05-utilities-examples_harutils_distance.md) - helper functions for distance summaries over residual or subsequence signals.
-- [06-utilities-examples_harutils_outliers.md](/examples/general/06-utilities-examples_harutils_outliers.md) - helper functions for thresholding, grouping, and anomaly post-processing.
+- [05-utilities-examples_deviation_measures.md](/examples/general/05-utilities-examples_deviation_measures.md) - helper functions for deviation measures over residual or subsequence signals.
+- [06-utilities-examples_filter_criteria_candidate_selection.md](/examples/general/06-utilities-examples_filter_criteria_candidate_selection.md) - helper functions for filter criteria and candidate selection after candidate anomalies are produced.
 
 ## Evaluation
 

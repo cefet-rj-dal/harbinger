@@ -19,7 +19,8 @@ and implement their own \code{fit()} and/or \code{detect()} S3 methods.
 Internally, this class stores references to the original series, indices of
 non-missing observations, and helper structures to restore detection results
 in the original series index space. It also exposes utility hooks for
-distance computation and outlier post-processing provided by \code{harutils()}.
+deviation measures, filter criteria, and candidate selection provided by
+\code{harutils()}.
 }
 \examples{
 # See the specific detector examples for anomalies, change points, and motifs

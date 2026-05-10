@@ -1,4 +1,11 @@
-# Page-Hinkley with `hcp_page_hinkley()`
+---
+title: "Page-Hinkley with `hcp_page_hinkley()`"
+output: rmarkdown::html_document
+---
+
+
+
+## Objective
 
 This notebook demonstrates Page-Hinkley change-point detection on a univariate time series. The detector monitors the cumulative deviation from the running mean and flags a changepoint when the score becomes too large.
 
@@ -8,46 +15,66 @@ Page-Hinkley is a sequential test for persistent mean shifts. In Harbinger it is
 
 ## Prepare the Example
 
-```r
-library(daltoolbox)
-library(harbinger)
 
+``` r
 data(examples_changepoints)
 dataset <- examples_changepoints$simple
 ```
 
 ## Visualize the Raw Series
 
-```r
+
+``` r
 har_plot(harbinger(), dataset$serie)
 ```
 
+![plot of chunk unnamed-chunk-2](fig/17-page-hinkley-hcp_page_hinkley/unnamed-chunk-2-1.png)
+
 ## Configure the Method
 
-```r
+
+``` r
 model <- hcp_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
 model <- fit(model, dataset$serie)
 ```
 
 ## Run Detection
 
-```r
+
+``` r
 detection <- detect(model, dataset$serie)
 print(detection[detection$event, ])
 ```
 
+```
+##    idx event        type
+## 28  28  TRUE changepoint
+## 57  57  TRUE changepoint
+```
+
 ## Evaluate the Result
 
-```r
+
+``` r
 evaluation <- evaluate(har_eval(), detection$event, dataset$event)
 print(evaluation$confMatrix)
 ```
 
+```
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     2    
+## FALSE     1     98
+```
+
 ## Plot the Detections
 
-```r
+
+``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
+
+![plot of chunk unnamed-chunk-6](fig/17-page-hinkley-hcp_page_hinkley/unnamed-chunk-6-1.png)
 
 ## References
 

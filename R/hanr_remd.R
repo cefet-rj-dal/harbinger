@@ -41,8 +41,8 @@ hanr_remd <- function(noise = 0.1, trials = 5) {
   class(obj) <- append("hanr_remd", class(obj))
 
   hutils <- harutils()
-  obj$har_distance <- hutils$har_distance_l1
-  obj$har_outliers <- hutils$har_outliers_ratio
+  obj$har_distance <- hutils$har_deviation_l1
+  obj$har_outliers <- hutils$har_filter_ratio
 
   return(obj)
 }

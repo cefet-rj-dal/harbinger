@@ -1,0 +1,180 @@
+# ![Logo do pacote Harbinger](https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/inst/logo.png) Harbinger
+
+![GitHub
+Stars](https://img.shields.io/github/stars/cefet-rj-dal/harbinger?logo=Github)![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/harbinger)
+
+Time-series event analysis is rarely a matter of calling one isolated
+function. In practice, the analyst needs to understand the signal,
+choose a suitable family of methods, inspect the result visually, and
+evaluate whether the detected events actually correspond to the
+phenomenon of interest. **Harbinger** was designed to support this full
+learning and experimentation path with a unified interface for anomaly
+detection, change-point detection, motif discovery, transformations,
+plotting, and evaluation.
+
+The package is not only a catalog of methods. It is also a framework for
+organizing event-oriented studies in a more consistent way, from first
+examples to reusable experiment lines.
+
+------------------------------------------------------------------------
+
+## Documentation
+
+The documentation was reorganized to support two complementary entry
+points:
+
+- a guided tutorial track for readers who want to learn the workflow
+  step by step
+- thematic example collections for readers who want to inspect a
+  specific family of methods
+
+If you are new to `harbinger`, start with the tutorials. If you already
+know the basic workflow, the thematic collections remain available and
+are grouped by subject in a more didactic order.
+
+### Guided tutorial track
+
+- [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/) -
+  a 10-part learning sequence covering first contact with the package,
+  data inspection, plotting, baseline anomaly detection, residual-based
+  detection, evaluation, change points, smoothing, symbolic
+  transformations, and motif analysis.
+
+### Thematic example collections
+
+- [General
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/) -
+  package orientation, utility helpers, and evaluation objects that
+  explain the common structure behind the methods.
+- [Dataset
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/) -
+  benchmark archives and domain datasets, organized to help the reader
+  understand the collections before modeling.
+- [Transformation
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/) -
+  smoothing and symbolic encodings that prepare a series for later
+  anomaly, change-point, or motif analysis.
+- [Anomaly
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/) -
+  anomaly detection methods grouped from simple baselines to residual
+  models, supervised learners, clustering, ensembles, autoencoders, and
+  multivariate workflows.
+- [Change-point
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/) -
+  change-point methods ordered from a first single-break intuition to
+  multiple-break, structural-break, and volatility-oriented techniques.
+- [Motif
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/) -
+  repeated-pattern and discord analysis grouped into Matrix Profile,
+  symbolic, and discord-oriented studies.
+- [Custom
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/) -
+  extension-oriented notebooks showing how to plug new transformations,
+  detectors, motif methods, and evaluators into Harbinger.
+
+### Documentation design
+
+The examples were revised to be more useful for learning:
+
+- files inside each collection are numbered in a suggested reading order
+- category `README` files group examples by subject rather than only by
+  function name
+- tutorials and introductory notebooks explain the technique being
+  presented, not only the commands required to run it
+
+------------------------------------------------------------------------
+
+## A first example
+
+The snippet below uses the default
+[`harbinger()`](https://cefet-rj-dal.github.io/harbinger/reference/harbinger.md)
+pipeline on a bundled dataset. It is intentionally short so that a new
+reader can see the minimum workflow before moving to the more didactic
+notebooks in `/examples/`.
+
+``` r
+
+library(harbinger)
+
+# Load an example dataset with labeled anomalies
+data(examples_anomalies)
+
+# Create the default detector and run it on the series
+model <- harbinger()
+detection <- detect(model, examples_anomalies$simple$serie)
+
+# Inspect only the detected events
+library(dplyr)
+#> Warning: package 'dplyr' was built under R version 4.5.3
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+print(detection |> dplyr::filter(event == TRUE))
+#> [1] idx   event type 
+#> <0 rows> (or 0-length row.names)
+```
+
+------------------------------------------------------------------------
+
+## Suggested learning order
+
+If you are new to the package, this sequence works well:
+
+1.  start with
+    [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/)
+    to understand the basic workflow
+2.  continue with [General
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/)
+    for a compact view of package scope, utilities, and evaluation
+3.  visit [Dataset
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/)
+    to understand the benchmark collections before choosing a method
+4.  visit [Transformation
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/)
+    to see how smoothing and symbolic encodings change the signal before
+    analysis
+5.  move to one modeling family, usually [Anomaly
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/)
+    or [Change-point
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/)
+6.  study [Motif
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/)
+    after you are comfortable with subsequences, windows, and symbolic
+    representations
+7.  finish with [Custom
+    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/)
+    when you want to integrate your own components into the framework
+
+------------------------------------------------------------------------
+
+## Installation
+
+The latest version of Harbinger at CRAN is available at:
+<https://CRAN.R-project.org/package=harbinger>
+
+You can install the stable version from CRAN with:
+
+``` r
+
+install.packages("harbinger")
+```
+
+You can install the development version from GitHub with:
+
+``` r
+
+library(devtools)
+devtools::install_github("cefet-rj-dal/harbinger", force = TRUE, upgrade = "never")
+```
+
+------------------------------------------------------------------------
+
+## Bug reports and feature requests
+
+<https://github.com/cefet-rj-dal/harbinger/issues>

@@ -132,6 +132,11 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
 
 
 
@@ -141,8 +146,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -159,14 +164,20 @@ The evaluation asks whether the anomaly flags produced by `hanr_fft` match the l
 ``` r
 # Evaluate detections against labeled events
 evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -185,7 +196,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/05-regression-hanr_fft/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -195,7 +209,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/05-regression-hanr_fft/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

@@ -127,6 +127,11 @@ This is the moment where the notebook tests its central assumption on actual dat
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error in `is_matrix_or_df()`:
+## ! could not find function "is_matrix_or_df"
+```
+
 
 
 
@@ -136,8 +141,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -154,14 +159,20 @@ The evaluation asks whether the cluster-based anomaly flags produced by `hanct_k
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -180,7 +191,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/28-clustering-hanct_kmeans_anomaly/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -190,7 +204,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/28-clustering-hanct_kmeans_anomaly/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

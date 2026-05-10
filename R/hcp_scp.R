@@ -46,8 +46,8 @@ hcp_scp <- function(sw_size = 30) {
   obj$sw_size <- sw_size
 
   hutils <- harutils()
-  obj$har_outliers <- hutils$har_outliers_boxplot
-  obj$har_outliers_check <- hutils$har_outliers_checks_highgroup
+  obj$har_outliers <- hutils$har_filter_boxplot
+  obj$har_outliers_check <- hutils$har_candidate_selection_highgroup
 
   class(obj) <- append("hcp_scp", class(obj))
   return(obj)
