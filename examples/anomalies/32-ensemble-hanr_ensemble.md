@@ -50,6 +50,10 @@ library(harbinger)
 data(examples_anomalies)
 ```
 
+```
+## Warning in data(examples_anomalies): data set 'examples_anomalies' not found
+```
+
 
 
 
@@ -103,6 +107,11 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- har_ensemble(hanr_fbiad(), hanr_arima(), hanr_emd())
 ```
 
+```
+## Error:
+## ! cannot open file 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb': No such file or directory
+```
+
 
 
 
@@ -111,6 +120,11 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -129,6 +143,11 @@ This is the moment where the notebook tests its central assumption on actual dat
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error:
+## ! object 'model' not found
+```
+
 
 
 
@@ -138,8 +157,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -156,14 +175,20 @@ The evaluation asks whether the ensemble anomaly flags produced by `32-ensemble-
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -182,7 +207,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/32-ensemble-hanr_ensemble/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -192,7 +220,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/32-ensemble-hanr_ensemble/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

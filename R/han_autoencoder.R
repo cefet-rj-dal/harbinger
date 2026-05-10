@@ -89,13 +89,14 @@ detect.han_autoencoder <- function(obj, serie, ...) {
   ts <- tspredit::ts_data(obj$serie, obj$input_size)
   ts <- daltoolbox::transform(obj$preproc, ts)
   ts <- as.data.frame(ts)
+  values <- ts[, ncol(ts)]
 
   result <- as.data.frame(daltoolbox::transform(obj$model, ts))
   res <- apply(ts - result, 1, sum, na.rm=TRUE)
 
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, values)
 
   threshold <- attr(anomalies, "threshold")
 

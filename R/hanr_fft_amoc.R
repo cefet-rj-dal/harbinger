@@ -83,7 +83,7 @@ detect.hanr_fft_amoc <- function(obj, serie, ...) {
   res <- obj$har_distance(filtered_series)
 
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
 
   # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)

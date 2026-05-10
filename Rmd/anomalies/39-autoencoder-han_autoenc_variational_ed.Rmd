@@ -24,6 +24,10 @@ variational autoencoder (VAE) (encode-decode): A variational autoencoder (VAE) l
 This setup anchors the notebook in the specific series used to examine `han_autoencoder(..., autoenc_variational_ed, ...)`. The semantic point is the one stated above: variational autoencoder (VAE) (encode-decode): A variational autoencoder (VAE) learns a probabilistic latent space and reconstructs windows; high reconstruction error (and uncertainty) signals anomalies, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+# Pin reticulate to the local Python runtime used by neural examples.
+Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
+reticulate::use_python("c:/python/python.exe", required = TRUE)
+
 # Load required packages
 library(daltoolbox)
 library(harbinger) 

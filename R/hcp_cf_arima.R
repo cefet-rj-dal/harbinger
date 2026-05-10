@@ -94,7 +94,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
 
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
 
   # Ignore initial positions where the model is warming up
   anomalies[1:obj$sw_size] <- FALSE
@@ -109,7 +109,7 @@ detect.hcp_cf_arima <- function(obj, serie, ...) {
 
   u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers(u)
-  cp <- obj$har_outliers_check(cp, u)
+  cp <- obj$har_outliers_check(cp, u, u)
   cp[1:obj$sw_size] <- FALSE
   cp <- c(rep(FALSE, length(res)-length(u)), cp)
 

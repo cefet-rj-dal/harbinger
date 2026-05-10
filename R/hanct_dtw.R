@@ -76,11 +76,12 @@ detect.hanct_dtw <- function(obj, serie, ...) {
   # Compute distance from nearest DTW centroid per window
   sx <- tspredit::ts_data(obj$serie, obj$seq)
   data <- as.data.frame(sx)
+  values <- sx[, ncol(sx)]
 
   res <- apply(data, 1, function(x) sqrt(min((rowSums(t(obj$centroids - x)^2)))))
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, values)
   threshold <- attr(anomalies, "threshold")
 
   res <- c(rep(0, obj$seq - 1), res)

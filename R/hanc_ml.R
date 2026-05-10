@@ -94,7 +94,7 @@ detect.hanc_ml <- function(obj, serie, ...) {
   adjust <- stats::predict(obj$model, obj$serie)
   res <- adjust[,2]
   anomalies <- har_outliers_classification(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, res)
 
   # Restore detections to original indexing
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)

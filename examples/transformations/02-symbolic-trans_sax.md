@@ -105,13 +105,31 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- trans_sax(alpha = 8)
 ```
 
+```
+## Error:
+## ! cannot allocate vector of size 3.5 Gb
+```
+
 
 
 
 ``` r
 # Fit and transform the numeric series into symbols
 model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
 sax_series <- transform(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -127,7 +145,8 @@ head(sax_series, 20)
 ```
 
 ```
-##  [1] "D" "D" "D" "C" "C" "B" "B" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B"
+## Error:
+## ! object 'sax_series' not found
 ```
 
 
@@ -146,31 +165,20 @@ comparison <- data.frame(
   value = dataset$serie,
   sax = sax_series
 )
+```
+
+```
+## Error:
+## ! object 'sax_series' not found
+```
+
+``` r
 head(comparison, 20)
 ```
 
 ```
-##    idx        value sax
-## 1    1  1.000000000   D
-## 2    2  0.993912422   D
-## 3    3  0.927582562   D
-## 4    4  0.806688869   C
-## 5    5  0.640302306   C
-## 6    6  0.440322362   B
-## 7    7  0.220737202   B
-## 8    8 -0.003246056   B
-## 9    9 -0.216146837   A
-## 10  10 -0.403173623   A
-## 11  11 -0.551143616   A
-## 12  12 -0.649302379   A
-## 13  13 -0.689992497   A
-## 14  14 -0.669129676   A
-## 15  15 -0.586456687   A
-## 16  16 -0.445559357   A
-## 17  17 -0.253643621   A
-## 18  18 -0.021087490   A
-## 19  19  0.239204201   B
-## 20  20  0.512602153   B
+## Error:
+## ! object 'comparison' not found
 ```
 
 ## References

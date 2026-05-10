@@ -6,7 +6,6 @@ output: rmarkdown::html_document
 ```{r setup, include=FALSE}
 library(daltoolbox)
 library(harbinger)
-if (!exists("hcp_bocpd")) source("../../R/hcp_bocpd.R")
 ```
 
 ```{r}

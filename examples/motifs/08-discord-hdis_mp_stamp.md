@@ -105,12 +105,26 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hdis_mp(mode = "stomp", w = 25, qtd = 10)
 ```
 
+```
+## Warning: internal error 1 in R_decompress1 with libdeflate
+```
+
+```
+## Error:
+## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
+```
+
 
 
 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -129,6 +143,11 @@ This is the moment where the notebook tests its central assumption on actual dat
   suppressMessages(detection <- detect(model, dataset$serie))
 ```
 
+```
+## Error:
+## ! object 'model' not found
+```
+
 
 
 
@@ -138,11 +157,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-##    idx event  type seq seqlen
-## 1 2602  TRUE motif   1     25
-## 2 3844  TRUE motif   1     25
-## 3 4017  TRUE motif   1     25
-## 4 6135  TRUE motif   1     25
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -159,14 +175,20 @@ The evaluation asks whether the discord candidates produced by `08-discord-hdis_
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     4    
-## FALSE     3     7195
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -185,7 +207,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/08-discord-hdis_mp_stamp/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

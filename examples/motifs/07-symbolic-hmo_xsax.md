@@ -107,12 +107,22 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hmo_xsax(37, 3, 3)
 ```
 
+```
+## Error:
+## ! cannot allocate vector of size 3.3 Gb
+```
+
 
 
 
 ``` r
 # Fit the detector (learns binning thresholds)
 model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -131,6 +141,11 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error:
+## ! object 'model' not found
+```
+
 
 
 
@@ -140,10 +155,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event  type    seq seqlen
-## 1  25  TRUE motif 0N0P0R      3
-## 2  50  TRUE motif 0N0P0R      3
-## 3  75  TRUE motif 0N0P0R      3
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -160,14 +173,20 @@ The evaluation asks whether the motif candidates produced by `hmo_xsax(a, w, qtd
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      3     0    
-## FALSE     0     98
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -186,7 +205,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/07-symbolic-hmo_xsax/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

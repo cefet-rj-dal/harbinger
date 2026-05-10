@@ -45,6 +45,10 @@ library(harbinger)
 library(ggplot2)
 ```
 
+```
+## Warning: package 'ggplot2' was built under R version 4.5.3
+```
+
 
 
 
@@ -125,7 +129,25 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Fit the PCA detector on the first two columns and run detection
 model <- fit(hmu_pca(), dataset[,1:2])
+```
+
+```
+## Warning in fit(hmu_pca(), dataset[, 1:2]): internal error 1 in R_decompress1
+## with libdeflate
+```
+
+```
+## Error in `fit()`:
+## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
+```
+
+``` r
 detection <- detect(model, dataset[,1:2])
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -142,7 +164,20 @@ This visual check puts the model output back on top of the original signal. What
 ``` r
 # Plot detections on the target series
 grf <- har_plot(model, dataset$serie, detection, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 grf <- grf + ylab("serie")
+```
+
+```
+## Error:
+## ! object 'grf' not found
 ```
 
 
@@ -151,7 +186,20 @@ grf <- grf + ylab("serie")
 ``` r
 # Plot detections on the second dimension
 grf <- har_plot(model, dataset$x, detection, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
 grf <- grf + ylab("x")
+```
+
+```
+## Error:
+## ! object 'grf' not found
 ```
 
 
@@ -162,7 +210,10 @@ grf <- grf + ylab("x")
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-10](fig/41-multivariate-hmu_pca/unnamed-chunk-10-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

@@ -4,6 +4,9 @@ autoencoder.
 The package itself does not depend on `daltoolboxdp`. The example only
 uses it at the notebook level.
 
+    Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
+    reticulate::use_python("c:/python/python.exe", required = TRUE)
+
     library(daltoolbox)
     library(daltoolboxdp)
     library(harbinger)

@@ -51,6 +51,10 @@ library(harbinger)
 data(examples_anomalies)
 ```
 
+```
+## Warning in data(examples_anomalies): data set 'examples_anomalies' not found
+```
+
 
 
 
@@ -104,12 +108,26 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- han_autoencoder(3, 2, autoenc_lstm_ed, epochs = 100)
 ```
 
+```
+## Warning: restarting interrupted promise evaluation
+```
+
+```
+## Error:
+## ! cannot open file 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb': No such file or directory
+```
+
 
 
 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -128,6 +146,11 @@ This is the moment where the notebook tests its central assumption on actual dat
   detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error:
+## ! object 'model' not found
+```
+
 
 
 
@@ -137,8 +160,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -155,14 +178,20 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -181,7 +210,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/37-autoencoder-han_autoenc_lstm_ed/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -191,7 +223,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/37-autoencoder-han_autoenc_lstm_ed/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

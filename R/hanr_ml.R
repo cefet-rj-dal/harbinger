@@ -78,13 +78,14 @@ detect.hanr_ml <- function(obj, serie, ...) {
 
   # One-step-ahead prediction and residuals
   adjust <- stats::predict(obj$model, io$input)
+  values <- io$output
 
   res <- io$output-adjust
 
   # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, values)
   threshold <- attr(anomalies, "threshold")
 
   # Align back to original positions (pad warm-up window)

@@ -56,18 +56,20 @@ detect.hanr_fbiad <- function(obj, serie, ...) {
   # Forward window analysis
   sx <- tspredit::ts_data(obj$serie, obj$sw_size)
   ma <- apply(sx, 1, mean)
+  valuesF <- sx[, ncol(sx)]
   resF <- obj$har_distance(sx[,ncol(sx)] - ma)
   iF <- obj$har_outliers(resF)
-  iF <- obj$har_outliers_check(iF, resF)
+  iF <- obj$har_outliers_check(iF, resF, valuesF)
   iF <- c(rep(FALSE, obj$sw_size-1), iF)
   resF <- c(rep(0, obj$sw_size-1), resF)
 
   # Backward window analysis (reverse series)
   sx <- tspredit::ts_data(rev(obj$serie), obj$sw_size)
   ma <- apply(sx, 1, mean)
+  valuesB <- sx[, ncol(sx)]
   resB <- obj$har_distance(sx[,ncol(sx)] - ma)
   iB <- obj$har_outliers(resB)
-  iB <- obj$har_outliers_check(iB, resB)
+  iB <- obj$har_outliers_check(iB, resB, valuesB)
   iB <- rev(iB)
   iB <- c(iB, rep(FALSE, obj$sw_size-1))
   resB <- rev(resB)

@@ -103,10 +103,12 @@ print(gidx)
 ## attr(,"threshold")
 ## [1] -1.7  1.8
 ## attr(,"score")
-##  [1]       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA
-## [14]       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA
-## [27]       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA       NA
-## [40]       NA 4.386634 5.589984
+##  [1]       NA       NA       NA       NA       NA       NA       NA       NA
+##  [9]       NA       NA       NA       NA       NA       NA       NA       NA
+## [17]       NA       NA       NA       NA       NA       NA       NA       NA
+## [25]       NA       NA       NA       NA       NA       NA       NA       NA
+## [33]       NA       NA       NA       NA       NA       NA       NA       NA
+## [41] 4.386634 5.589984
 ```
 
 ``` r

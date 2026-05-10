@@ -105,12 +105,30 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- hmo_mp("stomp", 4, 3)
 ```
 
+```
+## Warning: restarting interrupted promise evaluation
+```
+
+```
+## Warning: internal error 1 in R_decompress1 with libdeflate
+```
+
+```
+## Error:
+## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
+```
+
 
 
 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -130,84 +148,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## 
-STOMP [=======>------------------------]  23% at 63 it/s, elapsed:  0s, eta:  1s
-STOMP [=======>------------------------]  24% at 66 it/s, elapsed:  0s, eta:  1s
-STOMP [=======>------------------------]  26% at 68 it/s, elapsed:  0s, eta:  1s
-STOMP [=======>------------------------]  27% at 70 it/s, elapsed:  0s, eta:  1s
-STOMP [========>-----------------------]  28% at 73 it/s, elapsed:  0s, eta:  1s
-STOMP [========>-----------------------]  29% at 75 it/s, elapsed:  0s, eta:  1s
-STOMP [========>-----------------------]  30% at 78 it/s, elapsed:  0s, eta:  1s
-STOMP [=========>----------------------]  31% at 80 it/s, elapsed:  0s, eta:  1s
-STOMP [=========>----------------------]  32% at 82 it/s, elapsed:  0s, eta:  1s
-STOMP [=========>----------------------]  33% at 85 it/s, elapsed:  0s, eta:  1s
-STOMP [==========>---------------------]  34% at 87 it/s, elapsed:  0s, eta:  1s
-STOMP [==========>---------------------]  35% at 89 it/s, elapsed:  0s, eta:  1s
-STOMP [==========>---------------------]  36% at 91 it/s, elapsed:  0s, eta:  1s
-STOMP [===========>--------------------]  37% at 94 it/s, elapsed:  0s, eta:  1s
-STOMP [===========>--------------------]  38% at 96 it/s, elapsed:  0s, eta:  1s
-STOMP [===========>--------------------]  39% at 98 it/s, elapsed:  0s, eta:  1s
-STOMP [===========>-------------------]  40% at 101 it/s, elapsed:  0s, eta:  1s
-STOMP [============>------------------]  41% at 103 it/s, elapsed:  0s, eta:  1s
-STOMP [============>------------------]  42% at 105 it/s, elapsed:  0s, eta:  1s
-STOMP [============>------------------]  43% at 107 it/s, elapsed:  0s, eta:  1s
-STOMP [=============>-----------------]  44% at 110 it/s, elapsed:  0s, eta:  1s
-STOMP [=============>-----------------]  45% at 112 it/s, elapsed:  0s, eta:  0s
-STOMP [=============>-----------------]  46% at 114 it/s, elapsed:  0s, eta:  0s
-STOMP [==============>----------------]  47% at 116 it/s, elapsed:  0s, eta:  0s
-STOMP [==============>----------------]  48% at 118 it/s, elapsed:  0s, eta:  0s
-STOMP [==============>----------------]  49% at 121 it/s, elapsed:  0s, eta:  0s
-STOMP [===============>---------------]  50% at 123 it/s, elapsed:  0s, eta:  0s
-STOMP [===============>---------------]  51% at 125 it/s, elapsed:  0s, eta:  0s
-STOMP [===============>---------------]  52% at 127 it/s, elapsed:  0s, eta:  0s
-STOMP [===============>---------------]  53% at 129 it/s, elapsed:  0s, eta:  0s
-STOMP [================>--------------]  54% at 131 it/s, elapsed:  0s, eta:  0s
-STOMP [================>--------------]  55% at 133 it/s, elapsed:  0s, eta:  0s
-STOMP [================>--------------]  56% at 135 it/s, elapsed:  0s, eta:  0s
-STOMP [=================>-------------]  57% at 137 it/s, elapsed:  0s, eta:  0s
-STOMP [=================>-------------]  58% at 139 it/s, elapsed:  0s, eta:  0s
-STOMP [=================>-------------]  59% at 142 it/s, elapsed:  0s, eta:  0s
-STOMP [==================>------------]  60% at 144 it/s, elapsed:  0s, eta:  0s
-STOMP [==================>------------]  61% at 146 it/s, elapsed:  0s, eta:  0s
-STOMP [==================>------------]  62% at 148 it/s, elapsed:  0s, eta:  0s
-STOMP [===================>-----------]  63% at 150 it/s, elapsed:  0s, eta:  0s
-STOMP [===================>-----------]  64% at 152 it/s, elapsed:  0s, eta:  0s
-STOMP [===================>-----------]  65% at 154 it/s, elapsed:  0s, eta:  0s
-STOMP [====================>----------]  66% at 156 it/s, elapsed:  0s, eta:  0s
-STOMP [====================>----------]  67% at 158 it/s, elapsed:  0s, eta:  0s
-STOMP [====================>----------]  68% at 160 it/s, elapsed:  0s, eta:  0s
-STOMP [=====================>---------]  69% at 161 it/s, elapsed:  0s, eta:  0s
-STOMP [=====================>---------]  70% at 163 it/s, elapsed:  0s, eta:  0s
-STOMP [=====================>---------]  71% at 165 it/s, elapsed:  0s, eta:  0s
-STOMP [=====================>---------]  72% at 167 it/s, elapsed:  0s, eta:  0s
-STOMP [======================>--------]  73% at 169 it/s, elapsed:  0s, eta:  0s
-STOMP [======================>--------]  74% at 171 it/s, elapsed:  0s, eta:  0s
-STOMP [======================>--------]  76% at 173 it/s, elapsed:  0s, eta:  0s
-STOMP [=======================>-------]  77% at 175 it/s, elapsed:  0s, eta:  0s
-STOMP [=======================>-------]  78% at 177 it/s, elapsed:  0s, eta:  0s
-STOMP [=======================>-------]  79% at 179 it/s, elapsed:  0s, eta:  0s
-STOMP [========================>------]  80% at 180 it/s, elapsed:  0s, eta:  0s
-STOMP [========================>------]  81% at 182 it/s, elapsed:  0s, eta:  0s
-STOMP [========================>------]  82% at 184 it/s, elapsed:  0s, eta:  0s
-STOMP [=========================>-----]  83% at 186 it/s, elapsed:  0s, eta:  0s
-STOMP [=========================>-----]  84% at 188 it/s, elapsed:  0s, eta:  0s
-STOMP [=========================>-----]  85% at 189 it/s, elapsed:  0s, eta:  0s
-STOMP [==========================>----]  86% at 191 it/s, elapsed:  0s, eta:  0s
-STOMP [==========================>----]  87% at 193 it/s, elapsed:  0s, eta:  0s
-STOMP [==========================>----]  88% at 195 it/s, elapsed:  0s, eta:  0s
-STOMP [===========================>---]  89% at 197 it/s, elapsed:  0s, eta:  0s
-STOMP [===========================>---]  90% at 198 it/s, elapsed:  0s, eta:  0s
-STOMP [===========================>---]  91% at 200 it/s, elapsed:  0s, eta:  0s
-STOMP [===========================>---]  92% at 202 it/s, elapsed:  0s, eta:  0s
-STOMP [============================>--]  93% at 204 it/s, elapsed:  0s, eta:  0s
-STOMP [============================>--]  94% at 205 it/s, elapsed:  0s, eta:  0s
-STOMP [============================>--]  95% at 207 it/s, elapsed:  0s, eta:  0s
-STOMP [=============================>-]  96% at 209 it/s, elapsed:  0s, eta:  0s
-STOMP [=============================>-]  97% at 210 it/s, elapsed:  0s, eta:  0s
-STOMP [=============================>-]  98% at 212 it/s, elapsed:  0s, eta:  0s
-STOMP [==============================>]  99% at 214 it/s, elapsed:  0s, eta:  0s
-STOMP [===============================] 100% at 215 it/s, elapsed:  0s, eta:  0s
-## Finished in 0.46 secs
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -219,18 +161,8 @@ STOMP [===============================] 100% at 215 it/s, elapsed:  0s, eta:  0s
 ```
 
 ```
-##    idx event  type seq seqlen
-## 1    6  TRUE motif   3      4
-## 2   19  TRUE motif   2      4
-## 3   25  TRUE motif   1      4
-## 4   31  TRUE motif   3      4
-## 5   44  TRUE motif   2      4
-## 6   50  TRUE motif   1      4
-## 7   56  TRUE motif   3      4
-## 8   69  TRUE motif   2      4
-## 9   75  TRUE motif   1      4
-## 10  81  TRUE motif   3      4
-## 11  94  TRUE motif   2      4
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -247,14 +179,20 @@ The evaluation asks whether the motif candidates produced by `hmo_mp("stomp", ..
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      3     8    
-## FALSE     0     90
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -273,7 +211,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/02-matrix-profile-hmo_mp_stomp/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

@@ -1,9 +1,9 @@
-har_candidate_selection_firstgroup <- function(outliers, values) {
+har_candidate_selection_firstgroup <- function(outliers, residuals, values) {
   threshold <- attr(outliers, "threshold")
-  values <- abs(values)
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values <- as.numeric(values)
-  size <- length(values)
+  residuals <- abs(residuals)
+  if (is_matrix_or_df(residuals)) residuals <- rowSums(residuals)
+  residuals <- as.numeric(residuals)
+  size <- length(residuals)
   idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
   if (length(idx) == 0) {
     result <- rep(FALSE, size)
@@ -17,12 +17,12 @@ har_candidate_selection_firstgroup <- function(outliers, values) {
   result
 }
 
-har_candidate_selection_highgroup <- function(outliers, values) {
+har_candidate_selection_highgroup <- function(outliers, residuals, values) {
   threshold <- attr(outliers, "threshold")
-  values <- abs(values)
-  if (is_matrix_or_df(values)) values <- rowSums(values)
-  values <- as.numeric(values)
-  size <- length(values)
+  residuals <- abs(residuals)
+  if (is_matrix_or_df(residuals)) residuals <- rowSums(residuals)
+  residuals <- as.numeric(residuals)
+  size <- length(residuals)
   idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
   if (length(idx) == 0) {
     result <- rep(FALSE, size)
@@ -32,8 +32,8 @@ har_candidate_selection_highgroup <- function(outliers, values) {
   groups <- split(idx, cumsum(c(1, diff(idx) != 1)))
   result <- rep(FALSE, size)
   for (g in groups) {
-    max_val <- max(values[g])
-    candidates <- g[values[g] == max_val]
+    max_val <- max(residuals[g])
+    candidates <- g[residuals[g] == max_val]
     result[min(candidates)] <- TRUE
   }
   attr(result, "threshold") <- threshold
@@ -42,6 +42,7 @@ har_candidate_selection_highgroup <- function(outliers, values) {
 
 har_candidate_selection_referencedistribution <- function(
     outliers,
+    residuals,
     values,
     history_size = 30,
     distribution = c("gaussian"),
@@ -49,10 +50,12 @@ har_candidate_selection_referencedistribution <- function(
 ) {
   threshold <- attr(outliers, "threshold")
   distribution <- match.arg(distribution)
-  values <- abs(values)
+  residuals <- abs(residuals)
+  if (is_matrix_or_df(residuals)) residuals <- rowSums(residuals)
+  residuals <- as.numeric(residuals)
   if (is_matrix_or_df(values)) values <- rowSums(values)
   values <- as.numeric(values)
-  size <- length(values)
+  size <- length(residuals)
   idx <- if (is.logical(outliers)) which(outliers) else as.integer(outliers)
   result <- rep(FALSE, size)
 

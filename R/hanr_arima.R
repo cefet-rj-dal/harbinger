@@ -99,7 +99,7 @@ detect.hanr_arima <- function(obj, serie, ...) {
   # Distance and outlier detection on residuals
   res <- obj$har_distance(res)
   anomalies <- obj$har_outliers(res)
-  anomalies <- obj$har_outliers_check(anomalies, res)
+  anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
 
   # Ignore initial warm-up window
   anomalies[1:obj$sw_size] <- FALSE

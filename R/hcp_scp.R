@@ -88,11 +88,12 @@ detect.hcp_scp <- function(obj, serie, ...) {
 
   # Analyze all data windows.
   errors <- do.call(rbind,apply(sx, 1, analyze_window, obj$offset))
+  values <- sx[, obj$offset + 1]
 
   res <- errors$mdl_dif
 
   change_point <- obj$har_outliers(res)
-  change_point <- obj$har_outliers_check(change_point, res)
+  change_point <- obj$har_outliers_check(change_point, res, values)
 
   threshold <- attr(change_point, "threshold")
   res <- c(rep(0, obj$offset), res, rep(0, obj$sw_size - obj$offset - 1))

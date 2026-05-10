@@ -28,19 +28,42 @@ Configure the symbolic motif detector, fit it, and inspect the detections.
 
 ``` r
 model <- hmo_sax(8, 15, 3)
+```
+
+```
+## Warning: restarting interrupted promise evaluation
+```
+
+```
+## Error:
+## ! cannot allocate vector of size 2.9 Gb
+```
+
+``` r
 model <- fit(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
 detection <- detect(model, dataset$serie)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
 head(detection)
 ```
 
 ```
-##   idx event type seq seqlen
-## 1   1 FALSE       NA     15
-## 2   2 FALSE       NA     15
-## 3   3 FALSE       NA     15
-## 4   4 FALSE       NA     15
-## 5   5 FALSE       NA     15
-## 6   6 FALSE       NA     15
+## Error:
+## ! object 'detection' not found
 ```
 
 Plot the motif-oriented result.
@@ -49,7 +72,10 @@ Plot the motif-oriented result.
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/10-motifs-and-discords/unnamed-chunk-4-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 

@@ -74,7 +74,7 @@ detect.hcp_garch <- function(obj, serie, ...) {
   u <- obj$har_distance(stats::residuals(M2))
   u <- mas(u, obj$sw_size)
   cp <- obj$har_outliers(u)
-  cp <- obj$har_outliers_check(cp, u)
+  cp <- obj$har_outliers_check(cp, u, u)
 
   threshold <- attr(cp, "threshold")
   u <- c(rep(0, obj$sw_size - 1), u)

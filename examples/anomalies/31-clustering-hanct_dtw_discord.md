@@ -55,6 +55,10 @@ library(harbinger)
 data(examples_anomalies)
 ```
 
+```
+## Warning in data(examples_anomalies): data set 'examples_anomalies' not found
+```
+
 
 
 
@@ -108,6 +112,15 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hanct_dtw(3)
 ```
 
+```
+## Warning: restarting interrupted promise evaluation
+```
+
+```
+## Error:
+## ! cannot open file 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb': No such file or directory
+```
+
 
 
 
@@ -117,19 +130,8 @@ model <- fit(model, dataset$serie)
 ```
 
 ```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
-```
-
-```
-## Also defined by 'spam'
-```
-
-```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
-```
-
-```
-## Also defined by 'spam'
+## Error:
+## ! object 'model' not found
 ```
 
 
@@ -148,6 +150,11 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error:
+## ! object 'model' not found
+```
+
 
 
 
@@ -157,8 +164,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event    type seq seqlen
-## 1  52  TRUE discord   3      3
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -175,14 +182,20 @@ The evaluation asks whether the cluster-based anomaly flags produced by `hanct_d
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'model' not found
+```
+
+``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      0     1    
-## FALSE     1     99
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -201,7 +214,10 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/31-clustering-hanct_dtw_discord/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -211,7 +227,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/31-clustering-hanct_dtw_discord/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 
