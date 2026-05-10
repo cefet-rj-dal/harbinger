@@ -47,6 +47,6 @@ print(detection[(detection$event),])
 \references{
 \itemize{
 \item Vostrikova L (1981). Detecting "disorder" in multidimensional random processes. Soviet Mathematics Doklady, 24, 55–59.
-\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598. \link[testthat:context]{context}
+\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints with a linear computational cost. JASA, 107(500):1590–1598. \link[dplyr:context]{context}
 }
 }

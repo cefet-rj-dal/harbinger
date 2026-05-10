@@ -8,54 +8,61 @@ library(harbinger)
 # Instantiate utilities
 hutils <- harutils()
 
-# Synthetic residual vectors used to test the new utility functions directly
-set.seed(123)
-res_grubbs <- c(rnorm(40, mean = 0, sd = 0.15), 1.8, -1.7)
-res_sequence <- c(rnorm(30, mean = 0, sd = 0.20), 1.7, 1.9, 1.8, 0.1)
-
 # Load a simple anomaly dataset and plot it
 data(examples_anomalies)
 dataset <- examples_anomalies$simple
 har_plot(harbinger(), dataset$serie)
 
-# Direct test of the Grubbs filter criterion on a synthetic residual vector
-gidx <- hutils$har_filter_grubbs(res_grubbs)
-print(gidx)
-print(attr(gidx, "threshold"))
-print(attr(gidx, "score")[gidx])
-
-# Direct test of reference-distribution candidate selection
-candidate_idx <- 31:33
-flags_refdist <- hutils$har_candidate_selection_referencedistribution(
-  candidate_idx,
-  res_sequence,
-  history_size = 30,
-  distribution = "gaussian",
-  sigma_level = 3
-)
-print(which(flags_refdist))
-
-# Baseline: ARIMA with default deviation measure (L2) and filter criterion (Gaussian 3-sigma)
+# Baseline configuration.
+# Objective: provide a simple global rule for residual screening.
+# Property: the default Gaussian filter uses a mean ± 3*sd logic on the
+# residual magnitudes, so it works as a strong baseline when the residual
+# scale is reasonably stable.
 model <- hanr_arima()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# Use the boxplot/IQR filter criterion instead of Gaussian
+# Boxplot/IQR filter criterion.
+# Objective: replace the Gaussian assumption by a robust dispersion rule.
+# Property: the IQR cutoff is less tied to normality and often behaves better
+# when the residual distribution is asymmetric or already contains a few
+# influential extremes.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_boxplot
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# Use the ratio-based filter criterion to emphasize relative deviation
+# MAD filter criterion.
+# Objective: use a robust center/scale estimate instead of mean and standard
+# deviation.
+# Property: the median-plus-MAD cutoff remains stable even when a few extreme
+# residuals are already present, which makes it a strong alternative when the
+# residual distribution is heavy-tailed or visibly contaminated.
+model <- hanr_arima()
+model$har_outliers <- hutils$har_filter_mad
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+
+# Ratio-based filter criterion.
+# Objective: evaluate residuals in relative rather than purely absolute terms.
+# Property: this approach rescales the residuals before applying the cutoff,
+# which can be useful when the analyst wants the decision to reflect deviation
+# proportionally to the observed residual range.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_ratio
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# Use the Grubbs filter criterion to iteratively isolate the most extreme residuals
+# Grubbs filter criterion.
+# Objective: isolate truly extreme residuals through an iterative statistical
+# test instead of a single global cutoff.
+# Property: it tends to be more selective and is especially useful when the
+# goal is to retain only a few very strong extremes. Its threshold is plotted
+# as the empirical boundary of the points that were actually retained.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_grubbs
 model <- fit(model, dataset$serie)
@@ -64,14 +71,31 @@ threshold_grubbs <- attr(detection, "threshold")
 threshold_grubbs <- threshold_grubbs[is.finite(threshold_grubbs)]
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = threshold_grubbs)
 
-# Change the deviation measure to L1 (absolute deviation)
+# L1 deviation measure.
+# Objective: change how residual magnitude is summarized before filtering.
+# Property: L1 (absolute deviation) is usually more robust than L2 because it
+# reduces the influence of very large residual peaks on the scale of the score.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# L1 deviation measure + boxplot/IQR filter criterion
+# Huber deviation measure.
+# Objective: keep some of the peak sensitivity of L2 without letting a few
+# extremes dominate the score as strongly.
+# Property: Huber behaves quadratically near zero and linearly in the tails,
+# so it often acts as a compromise between L2 emphasis and L1 robustness.
+model <- hanr_arima()
+model$har_distance <- hutils$har_deviation_huber
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+
+# L1 deviation + boxplot/IQR filter.
+# Objective: combine a robust deviation summary with a robust cutoff rule.
+# Property: this is a natural configuration when the analyst wants to reduce
+# sensitivity both in the score construction and in the candidate filter.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot
@@ -79,7 +103,23 @@ model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# L1 deviation measure + ratio-based filter criterion
+# Huber deviation + MAD filter.
+# Objective: combine a compromise deviation score with a robust threshold rule.
+# Property: this configuration is useful when the analyst wants the score to
+# still react to moderate residual growth while keeping the cutoff itself
+# resistant to a few extreme observations.
+model <- hanr_arima()
+model$har_distance <- hutils$har_deviation_huber
+model$har_outliers <- hutils$har_filter_mad
+model <- fit(model, dataset$serie)
+detection <- detect(model, dataset$serie)
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+
+# L1 deviation + ratio filter.
+# Objective: keep the more robust L1 score while shifting the cutoff to a
+# relative scale.
+# Property: this combination is useful when absolute residual magnitude alone
+# is not the most informative way to decide what should be considered extreme.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_ratio
@@ -87,7 +127,11 @@ model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# Candidate selection: keep only the highest-magnitude index in contiguous runs
+# Highgroup candidate selection.
+# Objective: collapse a contiguous run of candidates into a single point.
+# Property: the representative point is the one with the highest residual
+# magnitude, which makes this strategy appropriate when the analyst wants one
+# punctual marker per event and prefers the local peak over the first crossing.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot
@@ -96,8 +140,13 @@ model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 
-# Candidate selection: evaluate each candidate against the distribution
-# estimated from the 30 observations that precede the candidate run
+# Reference-distribution candidate selection.
+# Objective: re-evaluate each candidate in a contiguous run against the local
+# regime that existed before the run started.
+# Property: unlike firstgroup/highgroup, this rule does not force the block to
+# become a single point. If several adjacent candidates are all individually
+# incompatible with the previous 30 observations, the sequence is preserved
+# naturally in the final detection.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot

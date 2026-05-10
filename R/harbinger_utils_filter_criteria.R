@@ -22,6 +22,23 @@ har_filter_gaussian <- function(res) {
   index
 }
 
+har_filter_mad <- function(res, k = 3, constant = 1.4826) {
+  center <- stats::median(res, na.rm = TRUE)
+  scale <- stats::mad(res, center = center, constant = constant, na.rm = TRUE)
+
+  if (!is.finite(center) || !is.finite(scale) || scale <= 0) {
+    index <- integer(0)
+    attr(index, "threshold") <- c(NA_real_, NA_real_)
+    return(index)
+  }
+
+  thresholdInf <- center - k * scale
+  thresholdSup <- center + k * scale
+  index <- which(res > thresholdSup | res < thresholdInf)
+  attr(index, "threshold") <- c(thresholdInf, thresholdSup)
+  index
+}
+
 har_filter_grubbs <- function(res, alpha = 0.05, two.sided = TRUE) {
   values <- as.numeric(res)
   valid <- which(is.finite(values))

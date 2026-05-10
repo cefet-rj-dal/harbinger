@@ -20,6 +20,10 @@ homogeneous toolbox.
 \itemize{
 \item \code{har_deviation_l1()} and \code{har_deviation_l2()} aggregate magnitudes over
 vectors or over rows of matrices/data frames.
+\item \code{har_deviation_huber()} applies the Huber loss, combining quadratic
+behavior near zero with linear growth in the tails. This makes the score
+less sensitive to extreme residual peaks than \code{L2}, while still
+differentiating moderate and large residuals more smoothly than \code{L1}.
 \item They are typically used to transform residual series or reconstruction
 errors into a univariate score before thresholding.
 }
@@ -29,9 +33,16 @@ errors into a univariate score before thresholding.
 \item \code{har_filter_none()} disables thresholding.
 \item \code{har_filter_boxplot()} uses the boxplot/IQR rule.
 \item \code{har_filter_gaussian()} uses the Gaussian 3-sigma rule.
+\item \code{har_filter_mad()} uses a robust median-plus-MAD cutoff.
 \item \code{har_filter_grubbs()} applies an iterative Grubbs test.
 \item \code{har_filter_ratio()} applies a ratio-based threshold rule.
 }
+
+For \code{har_filter_mad()}, the residual center is estimated by the sample
+median and the scale by the median absolute deviation (MAD), rescaled by
+\code{1.4826} by default so that it is consistent with the standard deviation
+under Gaussian data. This makes the rule robust when the residual
+distribution is skewed or already contains a few extreme points.
 
 For \code{har_filter_grubbs()}, the returned \code{threshold} attribute is an
 empirical detection boundary intended for interpretability in residual plots:
@@ -70,10 +81,18 @@ res <- c(0.1, -0.5, 1.2, -0.3)
 d2 <- utils$har_deviation_l2(res)
 print(d2)
 
+# Huber deviation offers a smoother robust alternative
+dh <- utils$har_deviation_huber(res)
+print(dh)
+
 # Apply 3-sigma outlier rule and keep only first index of contiguous runs
 idx <- utils$har_filter_gaussian(d2)
 flags <- utils$har_candidate_selection_firstgroup(idx, d2)
 print(which(flags))
+
+# MAD filter uses a robust location/scale summary
+midx <- utils$har_filter_mad(c(d2, 8))
+print(attr(midx, "threshold"))
 
 # Grubbs outlier rule with an interpretable plotting threshold
 gidx <- utils$har_filter_grubbs(c(d2, 8))
@@ -84,6 +103,7 @@ print(attr(gidx, "score")[gidx])
 idx2 <- c(31, 32, 33)
 flags2 <- utils$har_candidate_selection_referencedistribution(
   idx2,
+  c(rep(0, 30), 4, 5, 4.5),
   c(rep(0, 30), 4, 5, 4.5)
 )
 print(which(flags2))
@@ -93,6 +113,11 @@ print(which(flags2))
 \itemize{
 \item Tukey JW (1977). Exploratory Data Analysis. Addison-Wesley. (boxplot/IQR heuristic)
 \item Shewhart WA (1931). Economic Control of Quality of Manufactured Product. D. Van Nostrand. (three-sigma rule)
+\item Huber PJ (1964). Robust Estimation of a Location Parameter. Annals of
+Mathematical Statistics, 35(1), 73-101. doi:10.1214/aoms/1177703732
+\item Huber PJ, Ronchetti EM (2009). Robust Statistics, 2nd ed. Wiley.
+\item Hampel FR, Ronchetti EM, Rousseeuw PJ, Stahel WA (1986). Robust
+Statistics: The Approach Based on Influence Functions. Wiley.
 \item Grubbs FE (1969). Procedures for Detecting Outlying Observations in Samples.
 Technometrics, 11(1), 1-21. doi:10.1080/00401706.1969.10490657
 \item Silva, E. P., Balbi, H., Pacitti, E., Porto, F., Santos, J., Ogasawara, E. Cutoff
