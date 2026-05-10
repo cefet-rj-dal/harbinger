@@ -1,0 +1,25 @@
+library(daltoolbox)
+library(harbinger)
+
+data(examples_changepoints)
+dataset <- examples_changepoints$simple
+
+har_plot(harbinger(), dataset$serie)
+
+model <- hcp_joinpoint(
+  min_between = 20,
+  min_end = 20,
+  k_max = 1,
+  log_transform = FALSE
+)
+
+model <- fit(model, dataset$serie)
+model$model$comparison
+
+detection <- detect(model, dataset$serie)
+print(detection[detection$event, ])
+
+evaluation <- evaluate(har_eval(), detection$event, dataset$event)
+print(evaluation$confMatrix)
+
+har_plot(model, dataset$serie, detection, dataset$event)

@@ -1,0 +1,70 @@
+Conversion run started at 2026-05-10 00:02:04
+Working directory: /home/gpca/harbinger
+
+================================================================================
+[2026-05-10 00:06:57] rmd->docx
+file: Rmd/change_point/15-ensemble-fuzzy-har_ensemble_fuzzy.Rmd
+message: object 'har_deviation_l1' not found
+call: harutils()
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-10 00:06:58] rmd->docx
+file: Rmd/change_point/16-plot-ensemble-har_plot_ensemble.Rmd
+message: object 'har_deviation_l1' not found
+call: harutils()
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-10 00:07:58] rmd->docx
+file: Rmd/general/05-utilities-examples_deviation_measures.Rmd
+message: object 'har_deviation_l1' not found
+call: harutils()
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-10 00:07:58] rmd->docx
+file: Rmd/general/06-utilities-examples_filter_criteria_candidate_selection.Rmd
+message: object 'har_deviation_l1' not found
+call: harutils()
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)

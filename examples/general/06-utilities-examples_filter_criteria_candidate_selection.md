@@ -57,6 +57,11 @@ library(harbinger)
 hutils <- harutils()
 ```
 
+```
+## Error in `harutils()`:
+## ! object 'har_deviation_l1' not found
+```
+
 
 ``` r
 # Synthetic residual vectors used to test the new utility functions directly
@@ -95,20 +100,20 @@ The first chunk tests `har_filter_grubbs()`. This is a global filter criterion: 
 ``` r
 # Direct test of the Grubbs filter criterion on a synthetic residual vector
 gidx <- hutils$har_filter_grubbs(res_grubbs)
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 print(gidx)
 ```
 
 ```
-## [1] 41 42
-## attr(,"threshold")
-## [1] -1.7  1.8
-## attr(,"score")
-##  [1]       NA       NA       NA       NA       NA       NA       NA       NA
-##  [9]       NA       NA       NA       NA       NA       NA       NA       NA
-## [17]       NA       NA       NA       NA       NA       NA       NA       NA
-## [25]       NA       NA       NA       NA       NA       NA       NA       NA
-## [33]       NA       NA       NA       NA       NA       NA       NA       NA
-## [41] 4.386634 5.589984
+## Error:
+## ! object 'gidx' not found
 ```
 
 ``` r
@@ -116,7 +121,8 @@ print(attr(gidx, "threshold"))
 ```
 
 ```
-## [1] -1.7  1.8
+## Error:
+## ! object 'gidx' not found
 ```
 
 ``` r
@@ -124,7 +130,8 @@ print(attr(gidx, "score")[gidx])
 ```
 
 ```
-## [1] 4.386634 5.589984
+## Error:
+## ! object 'gidx' not found
 ```
 
 The second chunk tests `har_candidate_selection_referencedistribution()`. Here the candidate run is assumed to begin at index 31. The method estimates a Gaussian reference distribution from the 30 observations before that run, then checks each candidate in the run individually. If a point falls outside the accepted region of that estimated distribution, it remains marked. This allows a sequence to emerge naturally when several adjacent candidates are individually incompatible with the same pre-run baseline.
@@ -140,11 +147,20 @@ flags_refdist <- hutils$har_candidate_selection_referencedistribution(
   distribution = "gaussian",
   sigma_level = 3
 )
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 print(which(flags_refdist))
 ```
 
 ```
-## [1] 31 32 33
+## Error:
+## ! object 'flags_refdist' not found
 ```
 
 
@@ -166,17 +182,6 @@ detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the harbinger package.
-##   Please report the issue at
-##   <https://github.com/cefet-rj-dal/harbinger/issues>.
-## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
 ![plot of chunk unnamed-chunk-8](fig/06-utilities-examples_filter_criteria_candidate_selection/unnamed-chunk-8-1.png)
 
 
@@ -186,6 +191,14 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # Use the boxplot/IQR filter criterion instead of Gaussian
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_boxplot
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -200,6 +213,14 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # Use the ratio-based filter criterion to emphasize relative deviation
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_ratio
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -212,6 +233,14 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # Use the Grubbs filter criterion to iteratively isolate the most extreme residuals
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_grubbs
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 threshold_grubbs <- attr(detection, "threshold")
@@ -228,6 +257,14 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = thresh
 # Change the deviation measure to L1 (absolute deviation)
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -242,7 +279,23 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # L1 deviation measure + boxplot/IQR filter criterion
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers <- hutils$har_filter_boxplot
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -257,7 +310,23 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # L1 deviation measure + ratio-based filter criterion
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers <- hutils$har_filter_ratio
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -272,8 +341,32 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # Candidate selection: keep only the highest-magnitude index in contiguous runs
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers <- hutils$har_filter_boxplot
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers_check <- hutils$har_candidate_selection_highgroup
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -287,8 +380,32 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # estimated from the 30 observations that precede the candidate run
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers <- hutils$har_filter_boxplot
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model$har_outliers_check <- hutils$har_candidate_selection_referencedistribution
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))

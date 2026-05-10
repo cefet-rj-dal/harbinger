@@ -135,11 +135,6 @@ detection <- detect(model, dataset$serie)
 ## Warning in serie - ts_sma: longer object length is not a multiple of shorter object length
 ```
 
-```
-## Error in `is_matrix_or_df()`:
-## ! could not find function "is_matrix_or_df"
-```
-
 
 
 
@@ -149,8 +144,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event    type
+## 1  50  TRUE anomaly
 ```
 
 
@@ -167,20 +162,14 @@ The evaluation asks whether the anomaly flags produced by `hanr_fft_sma` match t
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -199,10 +188,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/10-regression-hanr_fft_sma/unnamed-chunk-11-1.png)
 
 
 
@@ -212,10 +198,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-12](fig/10-regression-hanr_fft_sma/unnamed-chunk-12-1.png)
 
 ## References
 

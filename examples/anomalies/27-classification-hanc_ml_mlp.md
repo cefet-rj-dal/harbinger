@@ -137,39 +137,25 @@ model <- hanc_ml(cla_mlp("event", c("FALSE", "TRUE"), size=3, decay=0.03))
 # Fit the model on training data
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
-```
-
-```
-## Error in `is_matrix_or_df()`:
-## ! could not find function "is_matrix_or_df"
-```
-
-``` r
 print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+## [1] idx   event type 
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r
 # Evaluate training performance
 evaluation <- evaluate(model, detection$event, as.logical(train_n$event))
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     0    
+## FALSE     4     76
 ```
 
 
@@ -188,10 +174,7 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, train_n$serie, detection, as.logical(train_n$event))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-9](fig/27-classification-hanc_ml_mlp/unnamed-chunk-9-1.png)
 
 
 
@@ -215,38 +198,25 @@ This is the moment where the notebook tests its central assumption on actual dat
 ``` r
 # Detect and evaluate on test data
   detection <- detect(model, test_n)
-```
 
-```
-## Error in `is_matrix_or_df()`:
-## ! could not find function "is_matrix_or_df"
-```
-
-``` r
   print(detection |> dplyr::filter(event==TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+## [1] idx   event type 
+## <0 rows> (or 0-length row.names)
 ```
 
 ``` r
   evaluation <- evaluate(model, detection$event, as.logical(test_n$event))
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     0    
+## FALSE     2     19
 ```
 
 
@@ -265,10 +235,7 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, test_n$serie, detection, as.logical(test_n$event))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-12](fig/27-classification-hanc_ml_mlp/unnamed-chunk-12-1.png)
 
 
 
@@ -278,10 +245,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-13](fig/27-classification-hanc_ml_mlp/unnamed-chunk-13-1.png)
 
 ## References
 

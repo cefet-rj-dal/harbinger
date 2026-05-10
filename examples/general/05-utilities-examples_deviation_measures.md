@@ -37,24 +37,6 @@ This setup anchors the notebook in the specific series used to examine `harutils
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## Warning: package 'daltoolbox' was built under R version 4.5.3
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger) 
 ```
 
@@ -66,6 +48,11 @@ library(harbinger)
 ``` r
 # Instantiate utilities
 hutils <- harutils()
+```
+
+```
+## Error in `harutils()`:
+## ! object 'har_deviation_l1' not found
 ```
 
 
@@ -90,10 +77,21 @@ This first visual pass establishes what the method should react to in the raw se
 ``` r
 # L1 deviation measure over residual magnitude
 v1 <- hutils$har_deviation_l1(values)
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 har_plot(harbinger(), v1)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/05-utilities-examples_deviation_measures/unnamed-chunk-5-1.png)
+```
+## Error:
+## ! object 'v1' not found
+```
 
 
 
@@ -101,10 +99,21 @@ har_plot(harbinger(), v1)
 ``` r
 # L2 deviation measure over residual magnitude
 v2 <- hutils$har_deviation_l2(values)
+```
+
+```
+## Error:
+## ! object 'hutils' not found
+```
+
+``` r
 har_plot(harbinger(), v2)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/05-utilities-examples_deviation_measures/unnamed-chunk-6-1.png)
+```
+## Error:
+## ! object 'v2' not found
+```
 
 ## References
 
