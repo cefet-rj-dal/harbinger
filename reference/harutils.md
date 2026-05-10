@@ -115,6 +115,7 @@ flags2 <- utils$har_candidate_selection_referencedistribution(
   idx2,
   c(rep(0, 30), 4, 5, 4.5)
 )
+#> Error in utils$har_candidate_selection_referencedistribution(idx2, c(rep(0,     30), 4, 5, 4.5)): argument "values" is missing, with no default
 print(which(flags2))
-#> [1] 31 32 33
+#> Error: object 'flags2' not found
 ```
