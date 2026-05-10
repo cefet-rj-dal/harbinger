@@ -170,25 +170,14 @@ print(evaluation$confMatrix)
 ``` r
 # Soft evaluation (SoftED) with tolerance window sw_size = 5
 result <- evaluate(model, detection$event, dataset$event, evaluation = har_eval_soft(sw_size = 5))
-```
-
-```
-## Warning in evaluate(evaluation, detection, event): internal error 1 in
-## R_decompress1 with libdeflate
-```
-
-```
-## Error in `evaluate()`:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
-``` r
 print(result$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'result' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -197,30 +186,14 @@ print(result$confMatrix)
 ``` r
 # Evaluation can also be performed directly without a model object
 result <- evaluate(har_eval_soft(sw_size = 5), detection$event, dataset$event)
-```
-
-```
-## Warning in evaluate(har_eval_soft(sw_size = 5), detection$event,
-## dataset$event): restarting interrupted promise evaluation
-```
-
-```
-## Warning in evaluate(har_eval_soft(sw_size = 5), detection$event,
-## dataset$event): internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error in `evaluate()`:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
-``` r
 print(result$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'result' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 ## References

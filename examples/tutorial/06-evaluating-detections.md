@@ -38,37 +38,15 @@ Soft evaluation accepts small temporal misalignment.
 
 ``` r
 soft_eval <- har_eval_soft()
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
-``` r
 soft_result <- evaluate(soft_eval, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'soft_eval' not found
-```
-
-``` r
 soft_result$confMatrix
 ```
 
 ```
-## Error:
-## ! object 'soft_result' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 Inspect the summary metrics returned by both evaluators.
@@ -138,8 +116,59 @@ soft_result
 ```
 
 ```
-## Error:
-## ! object 'soft_result' not found
+## $TPs
+## [1] 1
+## 
+## $FPs
+## [1] 0
+## 
+## $FNs
+## [1] 0
+## 
+## $TNs
+## [1] 100
+## 
+## $confMatrix
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100  
+## 
+## $accuracy
+## [1] 1
+## 
+## $sensitivity
+## [1] 1
+## 
+## $specificity
+## [1] 1
+## 
+## $prevalence
+## [1] 0.00990099
+## 
+## $PPV
+## [1] 1
+## 
+## $NPV
+## [1] 1
+## 
+## $detection_rate
+## [1] 0.00990099
+## 
+## $detection_prevalence
+## [1] 0.00990099
+## 
+## $balanced_accuracy
+## [1] 1
+## 
+## $precision
+## [1] 1
+## 
+## $recall
+## [1] 1
+## 
+## $F1
+## [1] 1
 ```
 
 ## References

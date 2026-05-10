@@ -105,35 +105,13 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- trans_xsax(alpha = 16)
 ```
 
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
 
 
 
 ``` r
 # Fit and transform the numeric series into an extended symbolic representation
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 xsax_series <- transform(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -149,8 +127,7 @@ head(xsax_series, 20)
 ```
 
 ```
-## Error:
-## ! object 'xsax_series' not found
+##  [1] "6" "6" "6" "5" "4" "3" "2" "2" "1" "0" "0" "0" "0" "0" "0" "0" "1" "1" "2" "3"
 ```
 
 
@@ -169,20 +146,31 @@ comparison <- data.frame(
   value = dataset$serie,
   xsax = xsax_series
 )
-```
-
-```
-## Error:
-## ! object 'xsax_series' not found
-```
-
-``` r
 head(comparison, 20)
 ```
 
 ```
-## Error:
-## ! object 'comparison' not found
+##    idx        value xsax
+## 1    1  1.000000000    6
+## 2    2  0.993912422    6
+## 3    3  0.927582562    6
+## 4    4  0.806688869    5
+## 5    5  0.640302306    4
+## 6    6  0.440322362    3
+## 7    7  0.220737202    2
+## 8    8 -0.003246056    2
+## 9    9 -0.216146837    1
+## 10  10 -0.403173623    0
+## 11  11 -0.551143616    0
+## 12  12 -0.649302379    0
+## 13  13 -0.689992497    0
+## 14  14 -0.669129676    0
+## 15  15 -0.586456687    0
+## 16  16 -0.445559357    0
+## 17  17 -0.253643621    1
+## 18  18 -0.021087490    1
+## 19  19  0.239204201    2
+## 20  20  0.512602153    3
 ```
 
 ## References

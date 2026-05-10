@@ -107,22 +107,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hcp_chow()
 ```
 
-```
-## Error:
-## ! cannot allocate vector of size 2.6 Gb
-```
-
 
 
 
 ``` r
 # Fit the detector (no training required)
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -141,11 +131,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
 
 
 
@@ -155,8 +140,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event        type
+## 1  50  TRUE changepoint
 ```
 
 
@@ -173,20 +158,14 @@ The evaluation asks whether the change-point candidates produced by `hcp_chow` m
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -205,10 +184,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/04-structural-break-hcp_chow/unnamed-chunk-11-1.png)
 
 ## References
 

@@ -35,24 +35,7 @@ har_plot(harbinger(), dataset$serie)
 
 ``` r
 model <- hcp_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
-```
-
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
-``` r
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 ## Run Detection
@@ -60,20 +43,14 @@ model <- fit(model, dataset$serie)
 
 ``` r
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(detection[detection$event, ])
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##     idx event        type
+## 99   99  TRUE changepoint
+## 100 100  TRUE changepoint
+## 101 101  TRUE changepoint
 ```
 
 ## Evaluate the Result
@@ -81,20 +58,14 @@ print(detection[detection$event, ])
 
 ``` r
 evaluation <- evaluate(har_eval(), detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     3    
+## FALSE     1     97
 ```
 
 ## Plot the Detections
@@ -104,10 +75,7 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/18-kswin-hcp_kswin/unnamed-chunk-6-1.png)
 
 ## References
 

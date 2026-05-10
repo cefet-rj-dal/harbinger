@@ -106,26 +106,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- hmo_mp("stamp", 4, 3)
 ```
 
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
 
 
 
 ``` r
 # Fit the model
   model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -145,8 +131,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Error:
-## ! object 'model' not found
+## Finished in 0.07 secs
 ```
 
 
@@ -158,8 +143,17 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##    idx event  type seq seqlen
+## 1    6  TRUE motif   3      4
+## 2   19  TRUE motif   2      4
+## 3   25  TRUE motif   1      4
+## 4   31  TRUE motif   3      4
+## 5   44  TRUE motif   2      4
+## 6   56  TRUE motif   3      4
+## 7   69  TRUE motif   2      4
+## 8   75  TRUE motif   1      4
+## 9   81  TRUE motif   3      4
+## 10  94  TRUE motif   2      4
 ```
 
 
@@ -176,20 +170,14 @@ The evaluation asks whether the motif candidates produced by `hmo_mp("stamp", ..
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      2     8    
+## FALSE     1     90
 ```
 
 
@@ -208,10 +196,7 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/01-matrix-profile-hmo_mp_stamp/unnamed-chunk-11-1.png)
 
 ## References
 

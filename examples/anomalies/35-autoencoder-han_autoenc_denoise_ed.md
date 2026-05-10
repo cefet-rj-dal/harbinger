@@ -35,6 +35,17 @@ This setup anchors the notebook in the specific series used to examine `han_auto
 
 
 ``` r
+# Pin reticulate to the local Python runtime used by neural examples.
+Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
+reticulate::use_python("c:/python/python.exe", required = TRUE)
+```
+
+```
+## Error in `reticulate::use_python()`:
+## ! Specified version of python 'c:/python/python.exe' does not exist.
+```
+
+``` r
 # Load required packages
 library(daltoolbox)
 library(daltoolboxdp)
@@ -49,10 +60,6 @@ library(harbinger)
 ``` r
 # Load example datasets bundled with harbinger
 data(examples_anomalies)
-```
-
-```
-## Warning in data(examples_anomalies): data set 'examples_anomalies' not found
 ```
 
 
@@ -108,15 +115,6 @@ The choices below turn the central modeling idea into concrete parameters. They 
   model <- han_autoencoder(3, 2, autoenc_denoise_ed, epochs = 100)
 ```
 
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot open file 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb': No such file or directory
-```
-
 
 
 
@@ -126,8 +124,8 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ```
 
 ```
-## Error:
-## ! object 'model' not found
+## Error in `py_discover_config()`:
+## ! Python specified in RETICULATE_PYTHON (c:/python/python.exe) does not exist
 ```
 
 
@@ -147,8 +145,8 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Error:
-## ! object 'model' not found
+## Error in `py_discover_config()`:
+## ! Python specified in RETICULATE_PYTHON (c:/python/python.exe) does not exist
 ```
 
 
@@ -182,7 +180,7 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 
 ```
 ## Error:
-## ! object 'model' not found
+## ! object 'detection' not found
 ```
 
 ``` r

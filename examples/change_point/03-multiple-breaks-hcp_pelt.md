@@ -107,22 +107,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hcp_pelt()
 ```
 
-```
-## Error:
-## ! cannot allocate vector of size 3.3 Gb
-```
-
 
 
 
 ``` r
 # Fit the detector (no training required)
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -141,11 +131,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
 
 
 
@@ -155,8 +140,15 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event        type
+## 1   9  TRUE changepoint
+## 2  19  TRUE changepoint
+## 3  29  TRUE changepoint
+## 4  39  TRUE changepoint
+## 5  60  TRUE changepoint
+## 6  71  TRUE changepoint
+## 7  81  TRUE changepoint
+## 8  91  TRUE changepoint
 ```
 
 
@@ -173,20 +165,14 @@ The evaluation asks whether the change-point candidates produced by `hcp_pelt` m
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     8    
+## FALSE     1     92
 ```
 
 
@@ -205,10 +191,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/03-multiple-breaks-hcp_pelt/unnamed-chunk-11-1.png)
 
 ## References
 

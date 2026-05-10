@@ -26,28 +26,7 @@ Compute moving averages with two window sizes.
 
 ``` r
 ma_5 <- mas(dataset$serie, order = 5)
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.8 Gb
-```
-
-``` r
 ma_15 <- mas(dataset$serie, order = 15)
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.8 Gb
 ```
 
 The smaller window keeps more local variation.
@@ -56,10 +35,7 @@ The smaller window keeps more local variation.
 har_plot(harbinger(), as.numeric(ma_5), event = dataset$event[5:length(dataset$event)])
 ```
 
-```
-## Error:
-## ! object 'ma_5' not found
-```
+![plot of chunk unnamed-chunk-4](fig/08-smoothing-with-mas/unnamed-chunk-4-1.png)
 
 The larger window produces a smoother series.
 
@@ -67,10 +43,7 @@ The larger window produces a smoother series.
 har_plot(harbinger(), as.numeric(ma_15), event = dataset$event[15:length(dataset$event)])
 ```
 
-```
-## Error:
-## ! object 'ma_15' not found
-```
+![plot of chunk unnamed-chunk-5](fig/08-smoothing-with-mas/unnamed-chunk-5-1.png)
 
 ## References
 

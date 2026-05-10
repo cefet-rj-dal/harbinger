@@ -44,29 +44,15 @@ model <- hcp_joinpoint(
   k_max = 1,
   log_transform = FALSE
 )
-```
 
-```
-## Error:
-## ! cannot allocate vector of size 3.0 Gb
-```
-
-``` r
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 model$model$comparison
 ```
 
 ```
-## Error:
-## ! object 'model' not found
+##   k          RSS        BIC       BIC3       Weight       WBIC
+## 1 0 1.340223e+03   2.676859   2.676859 0.000000e+00   2.676859
+## 2 1 1.333493e-27 -66.314339 -66.268645 2.220446e-16 -66.314339
 ```
 
 ## Run Detection
@@ -74,20 +60,12 @@ model$model$comparison
 
 ``` r
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(detection[detection$event, ])
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##    idx event        type
+## 51  51  TRUE changepoint
 ```
 
 ## Evaluate the Result
@@ -95,20 +73,14 @@ print(detection[detection$event, ])
 
 ``` r
 evaluation <- evaluate(har_eval(), detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 ## Plot the Detections
@@ -118,10 +90,7 @@ print(evaluation$confMatrix)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/19-joinpoint-hcp_joinpoint/unnamed-chunk-6-1.png)
 
 ## References
 

@@ -63,26 +63,10 @@ model <- harbinger()
 dataset <- examples_motifs$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-4](fig/04-orientation-examples_motifs/unnamed-chunk-4-1.png)
 
 
 
@@ -92,26 +76,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_motifs$mitdb100
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-5](fig/04-orientation-examples_motifs/unnamed-chunk-5-1.png)
 
 
 
@@ -121,26 +89,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_motifs$mitdb102
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/04-orientation-examples_motifs/unnamed-chunk-6-1.png)
 
 ## References
 

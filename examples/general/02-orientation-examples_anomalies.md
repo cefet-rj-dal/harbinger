@@ -63,26 +63,10 @@ model <- harbinger()
 dataset <- examples_anomalies$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-4](fig/02-orientation-examples_anomalies/unnamed-chunk-4-1.png)
 
 
 
@@ -92,26 +76,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$contextual
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-5](fig/02-orientation-examples_anomalies/unnamed-chunk-5-1.png)
 
 
 
@@ -121,26 +89,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$trend
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/02-orientation-examples_anomalies/unnamed-chunk-6-1.png)
 
 
 
@@ -150,26 +102,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$multiple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-7](fig/02-orientation-examples_anomalies/unnamed-chunk-7-1.png)
 
 
 
@@ -179,26 +115,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$sequence
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-8](fig/02-orientation-examples_anomalies/unnamed-chunk-8-1.png)
 
 
 
@@ -208,26 +128,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$tt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-9](fig/02-orientation-examples_anomalies/unnamed-chunk-9-1.png)
 
 
 
@@ -237,26 +141,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$tt_warped
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-10](fig/02-orientation-examples_anomalies/unnamed-chunk-10-1.png)
 
 
 
@@ -266,26 +154,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/02-orientation-examples_anomalies/unnamed-chunk-11-1.png)
 
 
 
@@ -295,26 +167,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$decreasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-12](fig/02-orientation-examples_anomalies/unnamed-chunk-12-1.png)
 
 
 
@@ -324,26 +180,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_anomalies$volatile
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-13](fig/02-orientation-examples_anomalies/unnamed-chunk-13-1.png)
 
 ## References
 

@@ -103,24 +103,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Compute smoothers with two different window sizes
 ma_5 <- mas(dataset$serie, order = 5)
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.8 Gb
-```
-
-``` r
 ma_15 <- mas(dataset$serie, order = 15)
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.8 Gb
 ```
 
 
@@ -136,8 +119,11 @@ head(ma_5)
 ```
 
 ```
-## Error:
-## ! object 'ma_5' not found
+## Time Series:
+## Start = 1 
+## End = 6 
+## Frequency = 1 
+## [1] 0.50 0.75 1.00 1.25 1.50 1.75
 ```
 
 ``` r
@@ -145,8 +131,11 @@ head(ma_15)
 ```
 
 ```
-## Error:
-## ! object 'ma_15' not found
+## Time Series:
+## Start = 1 
+## End = 6 
+## Frequency = 1 
+## [1] 1.75 2.00 2.25 2.50 2.75 3.00
 ```
 
 
@@ -169,10 +158,7 @@ har_plot(
 )
 ```
 
-```
-## Error:
-## ! object 'ma_5' not found
-```
+![plot of chunk unnamed-chunk-8](fig/01-smoothing-mas/unnamed-chunk-8-1.png)
 
 
 
@@ -186,10 +172,7 @@ har_plot(
 )
 ```
 
-```
-## Error:
-## ! object 'ma_15' not found
-```
+![plot of chunk unnamed-chunk-9](fig/01-smoothing-mas/unnamed-chunk-9-1.png)
 
 ## References
 

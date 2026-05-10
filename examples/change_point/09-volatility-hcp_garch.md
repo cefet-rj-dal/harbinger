@@ -103,26 +103,12 @@ The choices below turn the central modeling idea into concrete parameters. Each 
 model <- hcp_garch()
 ```
 
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
 
 
 
 ``` r
 # Fit the detector
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -141,11 +127,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
 
 
 
@@ -155,8 +136,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event        type
+## 1  50  TRUE changepoint
 ```
 
 
@@ -173,20 +154,14 @@ The evaluation asks whether the change-point candidates produced by `hcp_garch` 
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -205,10 +180,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/09-volatility-hcp_garch/unnamed-chunk-11-1.png)
 
 
 
@@ -218,10 +190,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-12](fig/09-volatility-hcp_garch/unnamed-chunk-12-1.png)
 
 ## References
 

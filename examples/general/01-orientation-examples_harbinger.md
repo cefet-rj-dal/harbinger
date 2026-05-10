@@ -63,21 +63,10 @@ model <- harbinger()
 dataset <- examples_harbinger$nonstationarity
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-4](fig/01-orientation-examples_harbinger/unnamed-chunk-4-1.png)
 
 
 
@@ -87,26 +76,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_harbinger$global_temperature_yearly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-5](fig/01-orientation-examples_harbinger/unnamed-chunk-5-1.png)
 
 
 
@@ -116,26 +89,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_harbinger$global_temperature_monthly
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/01-orientation-examples_harbinger/unnamed-chunk-6-1.png)
 
 
 
@@ -145,49 +102,18 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_harbinger$multidimensional
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-7](fig/01-orientation-examples_harbinger/unnamed-chunk-7-1.png)
 
 ``` r
 model <- fit(model, dataset$x)
 detection <- detect(model, dataset$x)
-```
-
-```
-## Warning in detect(model, dataset$x): restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$x, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-7](fig/01-orientation-examples_harbinger/unnamed-chunk-7-2.png)
 
 
 
@@ -197,26 +123,10 @@ har_plot(model, dataset$x, detection, dataset$event)
 dataset <- examples_harbinger$seattle_week
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-8](fig/01-orientation-examples_harbinger/unnamed-chunk-8-1.png)
 
 
 
@@ -226,26 +136,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_harbinger$seattle_daily
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-9](fig/01-orientation-examples_harbinger/unnamed-chunk-9-1.png)
 
 ## References
 

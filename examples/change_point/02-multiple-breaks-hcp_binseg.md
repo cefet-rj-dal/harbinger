@@ -108,26 +108,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hcp_binseg(Q = 10)
 ```
 
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
 
 
 
 ``` r
 # Fit the detector (keeps parameters on object)
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -146,11 +132,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
 
 
 
@@ -160,8 +141,14 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event        type
+## 1 101  TRUE changepoint
+## 2 200  TRUE changepoint
+## 3 312  TRUE changepoint
+## 4 327  TRUE changepoint
+## 5 349  TRUE changepoint
+## 6 368  TRUE changepoint
+## 7 389  TRUE changepoint
 ```
 
 
@@ -178,20 +165,14 @@ The evaluation asks whether the change-point candidates produced by `hcp_binseg`
 ``` r
 # Evaluate detections against labeled events
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     6    
+## FALSE     3     490
 ```
 
 
@@ -210,10 +191,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/02-multiple-breaks-hcp_binseg/unnamed-chunk-11-1.png)
 
 ## References
 

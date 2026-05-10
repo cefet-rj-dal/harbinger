@@ -28,88 +28,26 @@ Start with SAX, which uses a compact alphabet.
 
 ``` r
 sax_model <- trans_sax(alpha = 8)
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.5 Gb
-```
-
-``` r
 sax_model <- fit(sax_model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'sax_model' not found
-```
-
-``` r
 sax_series <- transform(sax_model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'sax_model' not found
-```
-
-``` r
 head(sax_series, 20)
 ```
 
 ```
-## Error:
-## ! object 'sax_series' not found
+##  [1] "D" "D" "D" "C" "C" "B" "B" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B"
 ```
 
 Then apply XSAX, which allows a richer alphabet.
 
 ``` r
 xsax_model <- trans_xsax(alpha = 16)
-```
-
-```
-## Warning: restarting interrupted promise evaluation
-```
-
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
-``` r
 xsax_model <- fit(xsax_model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'xsax_model' not found
-```
-
-``` r
 xsax_series <- transform(xsax_model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'xsax_model' not found
-```
-
-``` r
 head(xsax_series, 20)
 ```
 
 ```
-## Error:
-## ! object 'xsax_series' not found
+##  [1] "6" "6" "6" "5" "4" "3" "2" "2" "1" "0" "0" "0" "0" "0" "0" "0" "1" "1" "2" "3"
 ```
 
 Compare the numeric and symbolic representations side by side.
@@ -126,8 +64,27 @@ head(
 ```
 
 ```
-## Error:
-## ! object 'sax_series' not found
+##           value sax xsax
+## 1   1.000000000   D    6
+## 2   0.993912422   D    6
+## 3   0.927582562   D    6
+## 4   0.806688869   C    5
+## 5   0.640302306   C    4
+## 6   0.440322362   B    3
+## 7   0.220737202   B    2
+## 8  -0.003246056   B    2
+## 9  -0.216146837   A    1
+## 10 -0.403173623   A    0
+## 11 -0.551143616   A    0
+## 12 -0.649302379   A    0
+## 13 -0.689992497   A    0
+## 14 -0.669129676   A    0
+## 15 -0.586456687   A    0
+## 16 -0.445559357   A    0
+## 17 -0.253643621   A    1
+## 18 -0.021087490   A    1
+## 19  0.239204201   B    2
+## 20  0.512602153   B    3
 ```
 
 ## References

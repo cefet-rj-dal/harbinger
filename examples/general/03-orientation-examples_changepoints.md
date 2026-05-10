@@ -63,26 +63,10 @@ model <- harbinger()
 dataset <- examples_changepoints$simple
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-4](fig/03-orientation-examples_changepoints/unnamed-chunk-4-1.png)
 
 
 
@@ -92,26 +76,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$sinusoidal
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-5](fig/03-orientation-examples_changepoints/unnamed-chunk-5-1.png)
 
 
 
@@ -121,26 +89,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$incremental
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/03-orientation-examples_changepoints/unnamed-chunk-6-1.png)
 
 
 
@@ -150,26 +102,14 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$abrupt
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
 ```
+
+![plot of chunk unnamed-chunk-7](fig/03-orientation-examples_changepoints/unnamed-chunk-7-1.png)
 
 
 
@@ -179,26 +119,14 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$volatility
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+## Don't know how to automatically pick scale for object of type <ts>. Defaulting to continuous.
 ```
+
+![plot of chunk unnamed-chunk-8](fig/03-orientation-examples_changepoints/unnamed-chunk-8-1.png)
 
 
 
@@ -208,26 +136,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$increasing_amplitude
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-9](fig/03-orientation-examples_changepoints/unnamed-chunk-9-1.png)
 
 
 
@@ -237,26 +149,10 @@ har_plot(model, dataset$serie, detection, dataset$event)
 dataset <- examples_changepoints$complex
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-10](fig/03-orientation-examples_changepoints/unnamed-chunk-10-1.png)
 
 ## References
 

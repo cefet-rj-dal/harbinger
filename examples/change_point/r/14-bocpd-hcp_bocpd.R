@@ -1,6 +1,5 @@
 library(daltoolbox)
 library(harbinger)
-if (!exists("hcp_bocpd")) source("../../R/hcp_bocpd.R")
 
 if (requireNamespace("ocp", quietly = TRUE)) {
   data(examples_changepoints)

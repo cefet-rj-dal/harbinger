@@ -50,25 +50,17 @@ Run the analysis and inspect the returned structure.
 
 ``` r
 detection <- detect(model, dataset$serie)
-```
-
-```
-## Warning in detect(model, dataset$serie): restarting interrupted promise
-## evaluation
-```
-
-```
-## Error:
-## ! cannot allocate vector of size 3.4 Gb
-```
-
-``` r
 head(detection)
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event type
+## 1   1 FALSE     
+## 2   2 FALSE     
+## 3   3 FALSE     
+## 4   4 FALSE     
+## 5   5 FALSE     
+## 6   6 FALSE
 ```
 
 Finish by plotting the detections against the labeled events.
@@ -77,10 +69,7 @@ Finish by plotting the detections against the labeled events.
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-6](fig/01-first-steps/unnamed-chunk-6-1.png)
 
 ## References
 

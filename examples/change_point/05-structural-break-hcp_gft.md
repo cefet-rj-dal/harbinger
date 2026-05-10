@@ -107,26 +107,12 @@ The choices below turn the central modeling idea into concrete parameters. They 
 model <- hcp_gft()
 ```
 
-```
-## Warning: internal error 1 in R_decompress1 with libdeflate
-```
-
-```
-## Error:
-## ! lazy-load database 'C:/R/R-4.5.0/library/harbinger/R/harbinger.rdb' is corrupt
-```
-
 
 
 
 ``` r
 # Fit the detector (no training required)
 model <- fit(model, dataset$serie)
-```
-
-```
-## Error:
-## ! object 'model' not found
 ```
 
 
@@ -145,11 +131,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error:
-## ! object 'model' not found
-```
-
 
 
 
@@ -159,8 +140,9 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event        type
+## 1  49  TRUE changepoint
+## 2  64  TRUE changepoint
 ```
 
 
@@ -177,20 +159,14 @@ The evaluation asks whether the change-point candidates produced by `hcp_gft` ma
 ``` r
 # Evaluate detections against labels
 evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'model' not found
-```
-
-``` r
 print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     2    
+## FALSE     1     98
 ```
 
 
@@ -209,10 +185,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/05-structural-break-hcp_gft/unnamed-chunk-11-1.png)
 
 ## References
 

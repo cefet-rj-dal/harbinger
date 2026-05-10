@@ -38,7 +38,14 @@ This setup anchors the notebook in the specific series used to examine `hanr_ml 
 # Pin reticulate to the local Python runtime used by neural examples.
 Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
 reticulate::use_python("c:/python/python.exe", required = TRUE)
+```
 
+```
+## Error in `reticulate::use_python()`:
+## ! Specified version of python 'c:/python/python.exe' does not exist.
+```
+
+``` r
 # Load required packages
 library(daltoolbox)
 library(harbinger) 
@@ -118,6 +125,11 @@ model <- hanr_ml(ts_conv1d(ts_norm_gminmax(), input_size = 4, epochs = 100))
 model <- fit(model, dataset$serie)
 ```
 
+```
+## Error in `py_discover_config()`:
+## ! Python specified in RETICULATE_PYTHON (c:/python/python.exe) does not exist
+```
+
 
 
 
@@ -134,6 +146,11 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
+```
+## Error in `(ncol(data) - input_size + 1):ncol(data)`:
+## ! argument of length 0
+```
+
 
 
 
@@ -143,8 +160,8 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-##   idx event    type
-## 1  50  TRUE anomaly
+## Error:
+## ! object 'detection' not found
 ```
 
 
@@ -161,14 +178,20 @@ The evaluation asks whether the anomaly flags produced by `hanr_ml + ts_conv1d` 
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
+```
+
+```
+## Error:
+## ! object 'detection' not found
+```
+
+``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-##           event      
-## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## Error:
+## ! object 'evaluation' not found
 ```
 
 
@@ -187,7 +210,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/20-regression-ml-hanr_ml_conv1d/unnamed-chunk-11-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 
 
@@ -197,7 +223,10 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/20-regression-ml-hanr_ml_conv1d/unnamed-chunk-12-1.png)
+```
+## Error:
+## ! object 'detection' not found
+```
 
 ## References
 
