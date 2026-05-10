@@ -155,7 +155,7 @@ hcp_joinpoint <- function(
         prev_cps <- dp_cps[[k]][[i - 1]]
         prev_rss <- dp_rss[[k]][i - 1]
         if (!is.finite(prev_rss)) next
-        if (length(prev_cps) > 0 && (i - tail(prev_cps, 1)) < min_between) next
+        if (length(prev_cps) > 0 && (i - utils::tail(prev_cps, 1)) < min_between) next
 
         seg_rss <- .segment_rss(y[i:j], x[i:j])
         total_rss <- prev_rss + seg_rss
