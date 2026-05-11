@@ -26,6 +26,7 @@ hcp_kswin <- function(window_size = 100, stat_size = 30, alpha = 0.005, data = N
   obj$alpha <- alpha
   obj$p_value <- 0
   obj$n <- 0
+  obj$drift_active <- FALSE
 
   if (obj$alpha < 0 || obj$alpha > 1) stop("alpha must be between 0 and 1.", call. = FALSE)
   if (obj$window_size <= 0) stop("window_size must be greater than 0.", call. = FALSE)
@@ -83,14 +84,23 @@ detect.hcp_kswin <- function(obj, serie, ...) {
     ks_res <- stats::ks.test(sample(early, size = obj$stat_size), recent, exact = TRUE)
 
     obj$p_value <- ks_res$p.value
-    pred <- is.finite(obj$p_value) && obj$p_value < obj$alpha && ks_res$statistic > 0.1
+    drift_now <- is.finite(obj$p_value) && obj$p_value < obj$alpha && ks_res$statistic > 0.1
+    pred <- drift_now && !isTRUE(obj$drift_active)
+    obj$drift_active <- drift_now
+
+    if (pred) {
+      # After confirming drift, keep only the recent regime so the same
+      # transition is not retested on a mixed window.
+      obj$window <- recent
+    }
+
     list(obj = obj, pred = pred)
   }
 
   ph_result <- rep(FALSE, n)
-  output <- update(obj, serie[1])
   for (i in seq_len(n)) {
-    output <- update(output$obj, serie[i])
+    output <- update(obj, serie[i])
+    obj <- output$obj
     ph_result[i] <- output$pred
   }
 
