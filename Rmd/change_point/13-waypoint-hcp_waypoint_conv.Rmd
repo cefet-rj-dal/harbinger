@@ -1,26 +1,92 @@
----
-title: "13 - Waypoint with Convolutional Autoencoder"
-output: md_document
----
+## Objective
 
-This notebook shows the `hcp_waypoint()` detector with a convolutional
-autoencoder.
+Waypoint combines an autoencoder with a bilateral CUSUM supervisor to detect
+regime changes. This notebook keeps the same experimental line as the two
+previous Waypoint examples and changes only the encoder architecture to a
+convolutional autoencoder.
 
-The package itself does not depend on `daltoolboxdp`. The example only uses it
-at the notebook level.
+- Load and visualize the same simple change-point dataset used in the previous
+  Waypoint notebooks
+- Configure `hcp_waypoint()` with a convolutional autoencoder
+- Inspect detected change points, evaluate them, and study the reconstruction
+  error against the learned decision level
 
-```r
+## Method at a glance
+
+Waypoint: an autoencoder learns the current regime from sliding windows, the
+window reconstruction error is standardized on a recent buffer, and a bilateral
+CUSUM validates persistent deviations. After confirmation, the model is
+retrained on the new regime.
+
+## Experimental line
+
+This notebook closes the three-architecture comparison:
+
+- `11`: feed-forward autoencoder, generic baseline
+- `12`: LSTM autoencoder, sequential bias inside the window
+- `13`: convolutional autoencoder, local-pattern bias inside the window
+
+Again, only the encoder architecture changes. This keeps the interpretation of
+results tied to representation bias rather than to unrelated hyperparameter
+changes.
+
+## What you will do
+
+- reproduce the same Waypoint workflow with a convolutional encoder
+- inspect whether local-pattern bias helps on this regime-change example
+- read the evaluation outputs and diagnostic plots in the same way as the first
+  two notebooks
+- close the comparison line started by the feed-forward baseline
+
+### Prepare the Example
+
+The same dataset is reused because the goal is to compare architectures under a
+shared experimental protocol, not to change the underlying change-point task.
+
+```{r}
+# Install Harbinger and DALToolboxDP (if needed)
+# install.packages("harbinger")
+# install.packages("daltoolboxdp")
+```
+
+```{r}
+# Load required packages
 library(daltoolbox)
 library(daltoolboxdp)
 library(harbinger)
 ```
 
-```r
+```{r}
+# Load example change-point datasets
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
 ```
 
-```r
+```{r}
+# Select the simple dataset
+dataset <- examples_changepoints$simple
+head(dataset)
+```
+
+### Interpret the Result Visually
+
+The raw series is unchanged, but the representation bias is not. A
+convolutional encoder emphasizes local motifs inside the sliding window, so the
+main experimental question is whether that bias helps distinguish the regime
+transition from short-scale variation.
+
+```{r}
+# Plot the raw time series
+har_plot(harbinger(), dataset$serie)
+```
+
+### Configure the Method
+
+This is the same Waypoint configuration used in the previous two notebooks. The
+sole experimental change is `encoderclass = autoenc_conv_ed`, which emphasizes
+local patterns in the input window.
+
+```{r}
+# Configure Waypoint with a convolutional autoencoder
 model <- hcp_waypoint(
   input_size = 12,
   encode_size = 4,
@@ -35,17 +101,60 @@ model <- hcp_waypoint(
   epochs_retrain = 100,
   encoderclass = autoenc_conv_ed
 )
-
-model <- fit(model, dataset$serie)
-detection <- detect(model, dataset$serie)
-
-print(detection[detection$event, ])
 ```
 
-```r
+```{r}
+# Fit the detector
+model <- fit(model, dataset$serie)
+```
+
+### Run the Core Analysis
+
+This run asks whether a local-pattern representation leads to a more useful
+reconstruction-error profile for Waypoint's CUSUM supervisor. Since the
+decision logic is unchanged, differences relative to the previous notebooks
+should be interpreted as architectural effects.
+
+```{r}
+# Run detection
+detection <- detect(model, dataset$serie)
+```
+
+```{r}
+# Show detected change points
+print(detection |> dplyr::filter(event == TRUE))
+```
+
+### Evaluate What Was Found
+
+The scores below complete the experimental line. Read them relative to the
+feed-forward and LSTM variants to decide whether local-pattern bias is better
+or worse for this series and this change-point structure.
+
+```{r}
+# Evaluate detections against labels
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
+```
+
+### Interpret the Result Visually
+
+This final plot checks whether the convolutional representation makes the
+transition easier or harder to isolate. The interpretation should stay aligned
+with the first two notebooks: compare where the detector fires and how the
+reconstruction error separates the change regime from the stable segments.
+
+```{r}
+# Plot detections vs. ground truth
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-This version emphasizes local patterns inside the window. It is a useful third
-example because it often sits between the simplicity of a dense autoencoder and
-the stronger temporal bias of an LSTM.
+```{r}
+# Plot reconstruction error and the learned decision level
+har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "tau"))
+```
+
+## References
+
+- Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time
+  Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
