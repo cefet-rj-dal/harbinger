@@ -100,7 +100,8 @@ model <- fit(model, dataset$serie)
 ```
 
 ```
-## Warning in summary.lm(object, ...): essentially perfect fit: summary may be unreliable
+## Warning in summary.lm(object, ...): essentially perfect fit: summary may be
+## unreliable
 ```
 
 ``` r
