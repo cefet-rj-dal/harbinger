@@ -130,7 +130,75 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Finished in 0.03 secs
+## 
+PRE-SCRIMP [========>------------------]  32% at 77 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [========>------------------]  33% at 79 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [========>------------------]  34% at 81 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [========>------------------]  35% at 83 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [=========>-----------------]  36% at 85 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [=========>-----------------]  37% at 87 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [=========>-----------------]  38% at 89 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [==========>----------------]  39% at 92 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [==========>----------------]  40% at 94 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [==========>----------------]  41% at 96 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [==========>----------------]  42% at 98 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [==========>---------------]  43% at 100 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [===========>--------------]  44% at 102 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [===========>--------------]  45% at 104 it/s, elapsed:  0s, eta:  1s
+PRE-SCRIMP [===========>--------------]  46% at 106 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [===========>--------------]  47% at 108 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [============>-------------]  48% at 110 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [============>-------------]  49% at 112 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [============>-------------]  51% at 114 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [============>-------------]  52% at 116 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=============>------------]  53% at 118 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=============>------------]  54% at 120 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=============>------------]  55% at 122 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=============>------------]  56% at 124 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [==============>-----------]  57% at 126 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [==============>-----------]  58% at 128 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [==============>-----------]  59% at 130 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [===============>----------]  60% at 132 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [===============>----------]  61% at 134 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [===============>----------]  62% at 136 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [===============>----------]  63% at 137 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [================>---------]  64% at 139 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [================>---------]  65% at 141 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [================>---------]  66% at 143 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [================>---------]  67% at 145 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=================>--------]  68% at 147 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=================>--------]  69% at 148 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [=================>--------]  70% at 150 it/s, elapsed:  0s, eta:  0s
+PRE-SCRIMP [==================>--------]  71% at 87 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [==================>--------]  72% at 88 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [===================>-------]  73% at 89 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [===================>-------]  74% at 90 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [===================>-------]  75% at 92 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [====================>------]  76% at 93 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [====================>------]  77% at 94 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [====================>------]  78% at 95 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [====================>------]  79% at 96 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>-----]  80% at 97 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>-----]  81% at 98 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>-----]  82% at 99 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>----]  84% at 100 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>----]  85% at 101 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=====================>----]  86% at 102 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [======================>---]  87% at 104 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [======================>---]  88% at 105 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [======================>---]  89% at 106 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [======================>---]  90% at 107 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=======================>--]  91% at 108 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=======================>--]  92% at 109 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=======================>--]  93% at 110 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=======================>--]  94% at 111 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [========================>-]  95% at 112 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [========================>-]  96% at 113 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [========================>-]  97% at 114 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [========================>-]  98% at 115 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [=========================>]  99% at 116 it/s, elapsed:  1s, eta:  0s
+PRE-SCRIMP [==========================] 100% at 117 it/s, elapsed:  1s, eta:  0s
+## Finished in 0.84 secs
 ```
 
 

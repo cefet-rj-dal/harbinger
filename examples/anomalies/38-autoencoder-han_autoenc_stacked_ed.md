@@ -128,8 +128,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 
 ```
 ##   idx event    type
-## 1  62  TRUE anomaly
-## 2  86  TRUE anomaly
+## 1  50  TRUE anomaly
 ```
 
 
@@ -152,8 +151,8 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
