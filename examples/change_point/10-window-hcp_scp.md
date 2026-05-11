@@ -2,7 +2,7 @@
 
 Seminal Change Point (SCP) compares regression fits with and without the central observation in sliding windows to highlight break locations. In this tutorial we:
 
-- Load and visualize a simple change-point dataset
+- Load and visualize the same example change-point dataset used in the AMOC notebook
 - Configure the SCP detector (`hcp_scp`)
 - Inspect detections, evaluate, and plot residual magnitude with thresholds
 
@@ -58,19 +58,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 
@@ -141,7 +141,15 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event        type
-## 1  50  TRUE changepoint
+## 1 112  TRUE changepoint
+## 2 121  TRUE changepoint
+## 3 131  TRUE changepoint
+## 4 140  TRUE changepoint
+## 5 150  TRUE changepoint
+## 6 160  TRUE changepoint
+## 7 170  TRUE changepoint
+## 8 180  TRUE changepoint
+## 9 193  TRUE changepoint
 ```
 
 
@@ -164,8 +172,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     9    
+## FALSE     4     487
 ```
 
 

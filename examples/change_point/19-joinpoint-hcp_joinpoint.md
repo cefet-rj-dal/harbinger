@@ -22,7 +22,7 @@ This is a good fit for series where the main evidence of change is a shift in sl
 
 ``` r
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 ```
 
 ## Visualize the Raw Series
@@ -50,9 +50,9 @@ model$model$comparison
 ```
 
 ```
-##   k          RSS        BIC       BIC3       Weight       WBIC
-## 1 0 1.340223e+03   2.676859   2.676859 0.000000e+00   2.676859
-## 2 1 1.333493e-27 -66.314339 -66.268645 2.220446e-16 -66.314339
+##   k       RSS       BIC     BIC3    Weight      WBIC
+## 1 0 9010.6987 2.9164182 2.916418 0.0000000 2.9164182
+## 2 1  911.8359 0.6505688 0.662998 0.8837996 0.6615537
 ```
 
 ## Run Detection
@@ -64,8 +64,8 @@ print(detection[detection$event, ])
 ```
 
 ```
-##    idx event        type
-## 51  51  TRUE changepoint
+##     idx event        type
+## 201 201  TRUE changepoint
 ```
 
 ## Evaluate the Result
@@ -80,7 +80,7 @@ print(evaluation$confMatrix)
 ##           event      
 ## detection TRUE  FALSE
 ## TRUE      0     1    
-## FALSE     1     99
+## FALSE     4     495
 ```
 
 ## Plot the Detections

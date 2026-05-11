@@ -4,7 +4,7 @@ Bayesian Online Change Point Detection (BOCPD) tracks change evidence
 sequentially by updating a posterior distribution over run length. In this
 notebook we:
 
-- load and visualize a simple change-point dataset
+- load and visualize the same example change-point dataset used in the AMOC notebook
 - configure `hcp_bocpd()` with a Gaussian observation model
 - inspect detected change points, evaluate them, and plot changepoint evidence
 
@@ -50,19 +50,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 ### Interpret the Result Visually
@@ -121,19 +121,18 @@ if (requireNamespace("ocp", quietly = TRUE)) {
 
 ```
 ##    idx event        type
-## 1    9  TRUE changepoint
-## 2   14  TRUE changepoint
-## 3   19  TRUE changepoint
-## 4   24  TRUE changepoint
-## 5   29  TRUE changepoint
-## 6   34  TRUE changepoint
-## 7   39  TRUE changepoint
-## 8   60  TRUE changepoint
-## 9   70  TRUE changepoint
-## 10  75  TRUE changepoint
-## 11  80  TRUE changepoint
-## 12  85  TRUE changepoint
-## 13  90  TRUE changepoint
+## 1   10  TRUE changepoint
+## 2  102  TRUE changepoint
+## 3  108  TRUE changepoint
+## 4  201  TRUE changepoint
+## 5  312  TRUE changepoint
+## 6  330  TRUE changepoint
+## 7  352  TRUE changepoint
+## 8  367  TRUE changepoint
+## 9  373  TRUE changepoint
+## 10 386  TRUE changepoint
+## 11 391  TRUE changepoint
+## 12 411  TRUE changepoint
 ```
 
 ### Evaluate What Was Found
@@ -155,8 +154,8 @@ if (exists("detection")) {
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     13   
-## FALSE     1     87
+## TRUE      0     12   
+## FALSE     4     484
 ```
 
 ### Interpret the Result Visually

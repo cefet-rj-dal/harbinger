@@ -8,10 +8,10 @@ library(harbinger)
 # Load example change-point datasets
 data(examples_changepoints)
 
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 
-# Configure the same stronger ensemble used in the previous notebook
+# Configure the same ensemble used in the previous notebook
 model <- har_ensemble_fuzzy(
   hcp_scp(sw = 30),
   hcp_chow(),

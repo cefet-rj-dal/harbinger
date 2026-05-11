@@ -2,7 +2,7 @@
 
 Generalized Fluctuation Tests (GFT) assess structural changes by examining stability of regression fits across time. In this tutorial we:
 
-- Load and visualize a simple change-point dataset
+- Load and visualize the same example change-point dataset used in the AMOC notebook
 - Configure and run the GFT-based detector (`hcp_gft`)
 - Inspect detections, evaluate, and plot results
 
@@ -58,19 +58,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 
@@ -141,8 +141,9 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event        type
-## 1  49  TRUE changepoint
-## 2  64  TRUE changepoint
+## 1 200  TRUE changepoint
+## 2 307  TRUE changepoint
+## 3 391  TRUE changepoint
 ```
 
 
@@ -165,8 +166,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      1     2    
+## FALSE     3     494
 ```
 
 

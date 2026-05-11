@@ -2,7 +2,7 @@
 
 PELT (Pruned Exact Linear Time) finds multiple change points efficiently by pruning candidates under a penalized cost. In this tutorial we:
 
-- Load and visualize a simple change-point dataset
+- Load and visualize the same example change-point dataset used in the AMOC notebook
 - Configure and run the PELT detector (`hcp_pelt`)
 - Inspect detections, evaluate, and plot results
 
@@ -58,19 +58,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 
@@ -140,15 +140,18 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-##   idx event        type
-## 1   9  TRUE changepoint
-## 2  19  TRUE changepoint
-## 3  29  TRUE changepoint
-## 4  39  TRUE changepoint
-## 5  60  TRUE changepoint
-## 6  71  TRUE changepoint
-## 7  81  TRUE changepoint
-## 8  91  TRUE changepoint
+##    idx event        type
+## 1  101  TRUE changepoint
+## 2  200  TRUE changepoint
+## 3  312  TRUE changepoint
+## 4  326  TRUE changepoint
+## 5  332  TRUE changepoint
+## 6  346  TRUE changepoint
+## 7  352  TRUE changepoint
+## 8  365  TRUE changepoint
+## 9  372  TRUE changepoint
+## 10 385  TRUE changepoint
+## 11 390  TRUE changepoint
 ```
 
 
@@ -171,8 +174,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     8    
-## FALSE     1     92
+## TRUE      1     10   
+## FALSE     3     486
 ```
 
 

@@ -10,8 +10,8 @@ library(harbinger)
 # Load example change-point datasets
 data(examples_changepoints)
 
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 
 # Plot the raw time series

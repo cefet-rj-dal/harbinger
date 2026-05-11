@@ -2,7 +2,7 @@ library(daltoolbox)
 library(harbinger)
 
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 
 har_plot(harbinger(), dataset$serie)
 

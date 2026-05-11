@@ -1,6 +1,6 @@
 # Change-Point Examples
 
-This folder collects notebooks that focus on structural change rather than isolated anomaly points. The sequence goes from classical break detection to the new Bayesian and autoencoder-assisted variants.
+This folder collects notebooks that focus on structural change rather than isolated anomaly points. The sequence goes from classical break detection to structural tests, local-window methods, adaptive Waypoint models, Bayesian online monitoring, ensembles, and univariate drift detectors.
 
 ## Classical Breaks
 
@@ -21,11 +21,14 @@ This folder collects notebooks that focus on structural change rather than isola
 - [09-volatility-hcp_garch.md](/examples/change_point/09-volatility-hcp_garch.md) - volatility regime shifts.
 - [10-window-hcp_scp.md](/examples/change_point/10-window-hcp_scp.md) - local-window comparison around a candidate change.
 
-## Adaptive and Bayesian Variants
+## Adaptive Waypoint Models
 
 - [11-waypoint-hcp_waypoint_ed.md](/examples/change_point/11-waypoint-hcp_waypoint_ed.md) - `hcp_waypoint()` with a feed-forward autoencoder.
 - [12-waypoint-hcp_waypoint_lstm.md](/examples/change_point/12-waypoint-hcp_waypoint_lstm.md) - `hcp_waypoint()` with an LSTM autoencoder.
 - [13-waypoint-hcp_waypoint_conv.md](/examples/change_point/13-waypoint-hcp_waypoint_conv.md) - `hcp_waypoint()` with a convolutional autoencoder.
+
+## Bayesian Online Monitoring
+
 - [14-bocpd-hcp_bocpd.md](/examples/change_point/14-bocpd-hcp_bocpd.md) - `hcp_bocpd()`: Bayesian online changepoint detection.
 
 ## Ensemble Support

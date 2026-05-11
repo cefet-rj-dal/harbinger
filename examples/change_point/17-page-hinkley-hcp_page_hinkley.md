@@ -18,7 +18,7 @@ Page-Hinkley is a sequential test for persistent mean shifts. In Harbinger it is
 
 ``` r
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 ```
 
 ## Visualize the Raw Series
@@ -47,9 +47,17 @@ print(detection[detection$event, ])
 ```
 
 ```
-##    idx event        type
-## 28  28  TRUE changepoint
-## 57  57  TRUE changepoint
+##     idx event        type
+## 28   28  TRUE changepoint
+## 57   57  TRUE changepoint
+## 86   86  TRUE changepoint
+## 115 115  TRUE changepoint
+## 144 144  TRUE changepoint
+## 173 173  TRUE changepoint
+## 202 202  TRUE changepoint
+## 231 231  TRUE changepoint
+## 260 260  TRUE changepoint
+## 289 289  TRUE changepoint
 ```
 
 ## Evaluate the Result
@@ -63,8 +71,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      0     10   
+## FALSE     4     486
 ```
 
 ## Plot the Detections

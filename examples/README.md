@@ -18,8 +18,7 @@ If you are new to `harbinger`, start with the tutorials. If you already know the
 - [Dataset examples](/examples/datasets/README.md) - benchmark archives and domain datasets, organized to help the reader understand the collections before modeling.
 - [Transformation examples](/examples/transformations/README.md) - smoothing and symbolic encodings that prepare a series for later anomaly, change-point, or motif analysis.
 - [Anomaly examples](/examples/anomalies/README.md) - anomaly detection methods grouped from simple baselines to residual models, supervised learners, clustering, ensembles, autoencoders, and multivariate workflows.
-- [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, volatility-oriented, and univariate drift-oriented techniques.
-- [Waypoint examples](/examples/change_point/README.md) - adaptive autoencoder + CUSUM notebooks for change-point detection with different encoder architectures.
+- [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, adaptive Waypoint, Bayesian online, ensemble, and univariate drift-oriented techniques.
 - [Motif examples](/examples/motifs/README.md) - repeated-pattern and discord analysis grouped into Matrix Profile, symbolic, and discord-oriented studies.
 - [Custom examples](/examples/custom/README.md) - extension-oriented notebooks showing how to plug new transformations, detectors, motif methods, and evaluators into Harbinger.
 

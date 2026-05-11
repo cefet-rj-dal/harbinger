@@ -1,10 +1,10 @@
 ## Objective
 
 This notebook demonstrates the fuzzy ensemble `har_ensemble_fuzzy()` using a
-set of change-point detectors that behave better on the `simple` benchmark than
-the previous placeholder combination.
+set of change-point detectors over the same `complex` benchmark adopted across
+the change-point examples.
 
-- load and visualize the simple change-point dataset
+- load and visualize the same example change-point dataset used in the AMOC notebook
 - configure a fuzzy ensemble with stronger base detectors
 - inspect the final detection and the ensemble score plot
 
@@ -16,8 +16,8 @@ to keep the most representative event in a local neighborhood.
 
 ## Experimental choice
 
-For this example, the ensemble members are chosen because they behave better on
-`examples_changepoints$simple`:
+For this example, the ensemble members are chosen to provide complementary
+signals on `examples_changepoints$complex`:
 
 - `hcp_scp(sw = 30)`: exact hit on the labeled changepoint in this dataset
 - `hcp_chow()`: exact hit on the labeled changepoint in this dataset
@@ -26,7 +26,7 @@ For this example, the ensemble members are chosen because they behave better on
 
 ## What you will do
 
-- inspect a stronger ensemble composition for this benchmark
+- inspect an ensemble composition for this benchmark
 - fit the ensemble and run detection
 - visualize the fused score over the series
 
@@ -51,19 +51,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 
@@ -76,7 +76,7 @@ har_plot(harbinger(), dataset$serie)
 
 
 ``` r
-# Configure the fuzzy ensemble with stronger base detectors for this dataset
+# Configure the fuzzy ensemble for this dataset
 model <- har_ensemble_fuzzy(
   hcp_scp(sw = 30),
   hcp_chow(),
@@ -103,8 +103,8 @@ print(detection[detection$event, ])
 ```
 
 ```
-##    idx event type
-## 50  50  TRUE
+##     idx event type
+## 200 200  TRUE
 ```
 
 

@@ -54,19 +54,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select a simple synthetic time series with labeled change-points
-dataset <- examples_changepoints$simple
+# Select the same labeled series used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 
@@ -137,8 +137,8 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event        type
+## 1 232  TRUE changepoint
 ```
 
 
@@ -161,8 +161,8 @@ The evaluation asks whether the change-point candidates produced by `hcp_cf_lr` 
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      0     1    
+## FALSE     4     495
 ```
 
 

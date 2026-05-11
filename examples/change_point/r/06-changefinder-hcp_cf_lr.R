@@ -8,8 +8,8 @@ library(harbinger)
 # Load example datasets bundled with harbinger
 data(examples_changepoints)
 
-# Select a simple synthetic time series with labeled change-points
-dataset <- examples_changepoints$simple
+# Select the same labeled series used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 
 # Plot the time series

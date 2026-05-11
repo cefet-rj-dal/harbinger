@@ -5,7 +5,7 @@ regime changes. This notebook keeps the same experimental line as the two
 previous Waypoint examples and changes only the encoder architecture to a
 convolutional autoencoder.
 
-- Load and visualize the same simple change-point dataset used in the previous
+- Load and visualize the same example change-point dataset used in the previous
   Waypoint notebooks
 - Configure `hcp_waypoint()` with a convolutional autoencoder
 - Inspect detected change points, evaluate them, and study the reconstruction
@@ -66,19 +66,19 @@ data(examples_changepoints)
 
 
 ``` r
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
 ```
-##   serie event
-## 1  0.00 FALSE
-## 2  0.25 FALSE
-## 3  0.50 FALSE
-## 4  0.75 FALSE
-## 5  1.00 FALSE
-## 6  1.25 FALSE
+##       serie event
+## 1 0.3129618 FALSE
+## 2 0.5944808 FALSE
+## 3 0.8162731 FALSE
+## 4 0.9560557 FALSE
+## 5 0.9997847 FALSE
+## 6 0.9430667 FALSE
 ```
 
 ### Interpret the Result Visually
@@ -151,8 +151,12 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 
 ```
-## [1] idx   event type 
-## <0 rows> (or 0-length row.names)
+##   idx event        type
+## 1 114  TRUE changepoint
+## 2 201  TRUE changepoint
+## 3 303  TRUE changepoint
+## 4 356  TRUE changepoint
+## 5 412  TRUE changepoint
 ```
 
 ### Evaluate What Was Found
@@ -171,8 +175,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     0    
-## FALSE     1     100
+## TRUE      0     5    
+## FALSE     4     491
 ```
 
 ### Interpret the Result Visually
@@ -202,6 +206,10 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 ```
 ## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_line()`).
+```
+
+```
+## Warning: Removed 5 rows containing missing values or values outside the scale range (`geom_segment()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/13-waypoint-hcp_waypoint_conv/unnamed-chunk-12-1.png)
