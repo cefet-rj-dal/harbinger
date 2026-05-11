@@ -24,7 +24,7 @@ This is a good fit for series where the main evidence of change is a shift in sl
 
 ```{r}
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 ```
 
 ## Visualize the Raw Series

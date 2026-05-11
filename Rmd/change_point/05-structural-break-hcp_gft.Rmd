@@ -2,7 +2,7 @@
 
 Generalized Fluctuation Tests (GFT) assess structural changes by examining stability of regression fits across time. In this tutorial we:
 
-- Load and visualize a simple change-point dataset
+- Load and visualize the same example change-point dataset used in the AMOC notebook
 - Configure and run the GFT-based detector (`hcp_gft`)
 - Inspect detections, evaluate, and plot results
 
@@ -54,8 +54,8 @@ data(examples_changepoints)
 
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 

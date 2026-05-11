@@ -5,7 +5,7 @@ regime changes. This notebook keeps the same experimental line as the two
 previous Waypoint examples and changes only the encoder architecture to a
 convolutional autoencoder.
 
-- Load and visualize the same simple change-point dataset used in the previous
+- Load and visualize the same example change-point dataset used in the previous
   Waypoint notebooks
 - Configure `hcp_waypoint()` with a convolutional autoencoder
 - Inspect detected change points, evaluate them, and study the reconstruction
@@ -62,8 +62,8 @@ data(examples_changepoints)
 ```
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 

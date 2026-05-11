@@ -50,8 +50,8 @@ data(examples_changepoints)
 
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 

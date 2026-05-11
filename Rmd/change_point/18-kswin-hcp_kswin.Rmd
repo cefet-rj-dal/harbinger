@@ -20,7 +20,7 @@ KSWIN is a window-based sequential detector for distributional change. In Harbin
 
 ```{r}
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 ```
 
 ## Visualize the Raw Series

@@ -5,7 +5,7 @@ regime changes. This notebook keeps the same experimental line as the baseline
 Waypoint example and changes only the encoder architecture to an LSTM
 autoencoder.
 
-- Load and visualize the same simple change-point dataset used in the baseline
+- Load and visualize the same example change-point dataset used in the AMOC and baseline Waypoint notebooks
 - Configure `hcp_waypoint()` with an LSTM autoencoder
 - Inspect detected change points, evaluate them, and compare the diagnostic
   plots against the baseline logic
@@ -60,8 +60,8 @@ data(examples_changepoints)
 ```
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 

@@ -4,7 +4,7 @@ Bayesian Online Change Point Detection (BOCPD) tracks change evidence
 sequentially by updating a posterior distribution over run length. In this
 notebook we:
 
-- load and visualize a simple change-point dataset
+- load and visualize the same example change-point dataset used in the AMOC notebook
 - configure `hcp_bocpd()` with a Gaussian observation model
 - inspect detected change points, evaluate them, and plot changepoint evidence
 
@@ -46,8 +46,8 @@ data(examples_changepoints)
 ```
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 

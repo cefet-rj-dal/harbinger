@@ -20,7 +20,7 @@ Page-Hinkley is a sequential test for persistent mean shifts. In Harbinger it is
 
 ```{r}
 data(examples_changepoints)
-dataset <- examples_changepoints$simple
+dataset <- examples_changepoints$complex
 ```
 
 ## Visualize the Raw Series

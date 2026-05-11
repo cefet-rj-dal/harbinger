@@ -2,7 +2,7 @@
 
 The Chow-style structural break test estimates a linear model and finds breakpoints using F statistics. In this tutorial we:
 
-- Load and visualize a simple change-point dataset
+- Load and visualize the same example change-point dataset used in the AMOC notebook
 - Configure the Chow detector (`hcp_chow`)
 - Inspect detections and evaluate against labels
 
@@ -54,8 +54,8 @@ data(examples_changepoints)
 
 
 ```{r}
-# Select the simple dataset
-dataset <- examples_changepoints$simple
+# Select the same dataset used in the AMOC example
+dataset <- examples_changepoints$complex
 head(dataset)
 ```
 
