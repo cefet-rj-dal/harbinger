@@ -76,12 +76,16 @@ Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3</p></li>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">examples_changepoints</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">examples_changepoints</span><span class="op">$</span><span class="va">simple</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">har_ensemble_fuzzy</span><span class="op">(</span><span class="fu"><a href="hcp_amoc.html">hcp_amoc</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="hcp_pelt.html">hcp_pelt</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="hcp_cf_lr.html">hcp_cf_lr</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">har_ensemble_fuzzy</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hcp_scp.html">hcp_scp</a></span><span class="op">(</span>sw <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hcp_chow.html">hcp_chow</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hcp_cf_arima.html">hcp_cf_arima</a></span><span class="op">(</span>sw_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/daltoolbox/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect.html">detect</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">dataset</span><span class="op">$</span><span class="va">serie</span>, time_tolerance <span class="op">=</span> <span class="fl">8</span>, use_nms <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">detection</span><span class="op">[</span><span class="va">detection</span><span class="op">$</span><span class="va">event</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    idx event type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81  81  TRUE     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  50  TRUE     </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
