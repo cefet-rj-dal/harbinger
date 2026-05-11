@@ -141,8 +141,7 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a
-## multiple of replacement length
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
 ```
 
 
@@ -198,13 +197,11 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ```
-## Warning: Removed 71 rows containing missing values or values outside the scale range
-## (`geom_point()`).
+## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 71 rows containing missing values or values outside the scale range
-## (`geom_line()`).
+## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/13-waypoint-hcp_waypoint_conv/unnamed-chunk-12-1.png)

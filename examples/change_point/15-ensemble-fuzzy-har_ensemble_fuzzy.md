@@ -40,24 +40,6 @@ For this example, the ensemble members are chosen because they behave better on
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## Warning: package 'daltoolbox' was built under R version 4.5.3
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger)
 ```
 

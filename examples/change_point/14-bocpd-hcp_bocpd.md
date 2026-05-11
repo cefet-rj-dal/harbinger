@@ -39,24 +39,6 @@ structure.
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## Warning: package 'daltoolbox' was built under R version 4.5.3
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(harbinger)
 ```
 
@@ -138,7 +120,20 @@ if (requireNamespace("ocp", quietly = TRUE)) {
 ```
 
 ```
-## The 'ocp' package is not installed, so this example is skipped.
+##    idx event        type
+## 1    9  TRUE changepoint
+## 2   14  TRUE changepoint
+## 3   19  TRUE changepoint
+## 4   24  TRUE changepoint
+## 5   29  TRUE changepoint
+## 6   34  TRUE changepoint
+## 7   39  TRUE changepoint
+## 8   60  TRUE changepoint
+## 9   70  TRUE changepoint
+## 10  75  TRUE changepoint
+## 11  80  TRUE changepoint
+## 12  85  TRUE changepoint
+## 13  90  TRUE changepoint
 ```
 
 ### Evaluate What Was Found
@@ -157,6 +152,13 @@ if (exists("detection")) {
 }
 ```
 
+```
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     13   
+## FALSE     1     87
+```
+
 ### Interpret the Result Visually
 
 This visual check puts the model output back on top of the original signal.
@@ -171,6 +173,8 @@ if (exists("detection")) {
 }
 ```
 
+![plot of chunk unnamed-chunk-9](fig/14-bocpd-hcp_bocpd/unnamed-chunk-9-1.png)
+
 
 ``` r
 if (exists("detection")) {
@@ -178,6 +182,8 @@ if (exists("detection")) {
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = model$threshold)
 }
 ```
+
+![plot of chunk unnamed-chunk-10](fig/14-bocpd-hcp_bocpd/unnamed-chunk-10-1.png)
 
 ## References
 

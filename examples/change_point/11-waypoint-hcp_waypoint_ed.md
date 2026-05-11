@@ -55,24 +55,6 @@ the reconstruction model and the CUSUM supervisor are applied.
 ``` r
 # Load required packages
 library(daltoolbox)
-```
-
-```
-## Warning: package 'daltoolbox' was built under R version 4.5.3
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
-``` r
 library(daltoolboxdp)
 library(harbinger)
 ```
@@ -161,8 +143,7 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a
-## multiple of replacement length
+## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
 ```
 
 
@@ -218,24 +199,11 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the harbinger package.
-##   Please report the issue at
-##   <https://github.com/cefet-rj-dal/harbinger/issues>.
-## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
+## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 71 rows containing missing values or values outside the scale range
-## (`geom_point()`).
-```
-
-```
-## Warning: Removed 71 rows containing missing values or values outside the scale range
-## (`geom_line()`).
+## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/11-waypoint-hcp_waypoint_ed/unnamed-chunk-12-1.png)
