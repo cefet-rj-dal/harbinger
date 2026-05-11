@@ -130,32 +130,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## 
-PRE-SCRIMP [===================>------]  76% at 343 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [===================>------]  77% at 344 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [===================>------]  78% at 346 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [====================>-----]  79% at 348 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [====================>-----]  80% at 350 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [====================>-----]  81% at 352 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [====================>-----]  82% at 354 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=====================>----]  84% at 355 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=====================>----]  85% at 357 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=====================>----]  86% at 359 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [======================>---]  87% at 361 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [======================>---]  88% at 363 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [======================>---]  89% at 365 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [======================>---]  90% at 367 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=======================>--]  91% at 369 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=======================>--]  92% at 370 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=======================>--]  93% at 372 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=======================>--]  94% at 374 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [========================>-]  95% at 376 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [========================>-]  96% at 377 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [========================>-]  97% at 379 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [========================>-]  98% at 381 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [=========================>]  99% at 383 it/s, elapsed:  0s, eta:  0s
-PRE-SCRIMP [==========================] 100% at 385 it/s, elapsed:  0s, eta:  0s
-## Finished in 0.26 secs
+## Finished in 0.03 secs
 ```
 
 

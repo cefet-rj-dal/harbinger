@@ -114,28 +114,6 @@ model <- hanr_ml(ts_lstm(ts_norm_gminmax(), input_size = 4, epochs = 100))
 model <- fit(model, dataset$serie)
 ```
 
-```
-## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
-## running command
-## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
-## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
-```
-
-```
-## Error in python_config_impl(python) : 
-##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
-```
-
-```
-## Downloading uv...Done!
-```
-
-```
-## Error:
-## ! Installation of Python not found, Python bindings not loaded.
-## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
-```
-
 
 
 
@@ -152,11 +130,6 @@ This is the moment where the notebook tests its central assumption on actual dat
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Error in `(ncol(data) - input_size + 1):ncol(data)`:
-## ! argument of length 0
-```
-
 
 
 
@@ -166,8 +139,8 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Error:
-## ! object 'detection' not found
+##   idx event    type
+## 1  50  TRUE anomaly
 ```
 
 
@@ -184,20 +157,14 @@ The evaluation asks whether the anomaly flags produced by `hanr_ml + ts_lstm` ma
 ``` r
 # Evaluate detections against ground-truth labels
   evaluation <- evaluate(model, detection$event, dataset$event)
-```
-
-```
-## Error:
-## ! object 'detection' not found
-```
-
-``` r
   print(evaluation$confMatrix)
 ```
 
 ```
-## Error:
-## ! object 'evaluation' not found
+##           event      
+## detection TRUE  FALSE
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
@@ -216,10 +183,7 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-11](fig/19-regression-ml-hanr_ml_lstm/unnamed-chunk-11-1.png)
 
 
 
@@ -229,10 +193,7 @@ This visual check puts the model output back on top of the original signal. What
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-```
-## Error:
-## ! object 'detection' not found
-```
+![plot of chunk unnamed-chunk-12](fig/19-regression-ml-hanr_ml_lstm/unnamed-chunk-12-1.png)
 
 ## References
 

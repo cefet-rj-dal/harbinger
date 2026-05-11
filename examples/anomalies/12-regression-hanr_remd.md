@@ -142,8 +142,7 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event    type
-## 1  51  TRUE anomaly
-## 2  53  TRUE anomaly
+## 1  50  TRUE anomaly
 ```
 
 
@@ -166,8 +165,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     2    
-## FALSE     1     98
+## TRUE      1     0    
+## FALSE     0     100
 ```
 
 
