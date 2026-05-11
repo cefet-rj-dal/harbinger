@@ -34,9 +34,6 @@ behind model output.
     #install.packages("harbinger")
 
     # Pin reticulate to the local Python runtime used by neural examples.
-    Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
-    reticulate::use_python("c:/python/python.exe", required = TRUE)
-
     # Load required packages
     library(daltoolbox)
 

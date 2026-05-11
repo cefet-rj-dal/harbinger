@@ -132,7 +132,8 @@ detection <- detect(model, dataset$serie)
 ```
 
 ```
-## Warning in serie - ts_sma: longer object length is not a multiple of shorter object length
+## Warning in serie - ts_sma: longer object length is not a multiple of shorter
+## object length
 ```
 
 

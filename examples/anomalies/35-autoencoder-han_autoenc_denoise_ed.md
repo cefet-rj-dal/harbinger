@@ -35,17 +35,6 @@ This setup anchors the notebook in the specific series used to examine `han_auto
 
 
 ``` r
-# Pin reticulate to the local Python runtime used by neural examples.
-Sys.setenv(RETICULATE_PYTHON = "c:/python/python.exe")
-reticulate::use_python("c:/python/python.exe", required = TRUE)
-```
-
-```
-## Error in `reticulate::use_python()`:
-## ! Specified version of python 'c:/python/python.exe' does not exist.
-```
-
-``` r
 # Load required packages
 library(daltoolbox)
 library(daltoolboxdp)
@@ -124,8 +113,25 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ```
 
 ```
-## Error in `py_discover_config()`:
-## ! Python specified in RETICULATE_PYTHON (c:/python/python.exe) does not exist
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
 ```
 
 
@@ -145,8 +151,25 @@ This is the moment where the notebook tests its central assumption on actual dat
 ```
 
 ```
-## Error in `py_discover_config()`:
-## ! Python specified in RETICULATE_PYTHON (c:/python/python.exe) does not exist
+## Warning in system2(command = python, args = shQuote(script), stdout = TRUE, :
+## running command
+## '"C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe"
+## "C:/R/R-4.5.0/library/reticulate/config/config.py"' had status 103
+```
+
+```
+## Error in python_config_impl(python) : 
+##   Error 103 occurred running C:/Users/eduar/OneDrive/Documents/.virtualenvs/r-reticulate/Scripts/python.exe:
+```
+
+```
+## Downloading uv...Done!
+```
+
+```
+## Error:
+## ! Installation of Python not found, Python bindings not loaded.
+## See the Python "Order of Discovery" here: https://rstudio.github.io/reticulate/articles/versions.html#order-of-discovery.
 ```
 
 
