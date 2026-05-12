@@ -1,4 +1,4 @@
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 library(harbinger)
 
 dataset_summary <- function(x) {

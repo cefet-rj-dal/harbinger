@@ -27,20 +27,7 @@ This setup anchors the notebook in the specific series used to examine `hanr_his
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -53,6 +40,20 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/exampl
 ``` r
 # Load required packages
 library(daltoolbox)
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
+``` r
 library(harbinger)
 ```
 
@@ -126,14 +127,6 @@ model <- hanr_histogram(density_threshold = 0.05)
 ``` r
 # Fit is a no-op here, but keeping the same workflow is useful for comparison
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 ```
 

@@ -1,4 +1,4 @@
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger and DALToolboxDP (if needed)
 # install.packages("harbinger")
 # install.packages("daltoolboxdp")

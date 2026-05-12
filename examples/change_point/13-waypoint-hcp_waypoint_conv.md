@@ -45,20 +45,7 @@ shared experimental protocol, not to change the underlying change-point task.
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger and DALToolboxDP (if needed)
 # install.packages("harbinger")
 # install.packages("daltoolboxdp")
@@ -139,14 +126,6 @@ model <- hcp_waypoint(
 ``` r
 # Fit the detector
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 ```
 
@@ -177,10 +156,9 @@ print(detection |> dplyr::filter(event == TRUE))
 ##   idx event        type
 ## 1 114  TRUE changepoint
 ## 2 201  TRUE changepoint
-## 3 302  TRUE changepoint
+## 3 303  TRUE changepoint
 ## 4 356  TRUE changepoint
 ## 5 412  TRUE changepoint
-## 6 490  TRUE changepoint
 ```
 
 ### Evaluate What Was Found
@@ -199,8 +177,8 @@ print(evaluation$confMatrix)
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      0     6    
-## FALSE     4     490
+## TRUE      0     5    
+## FALSE     4     491
 ```
 
 ### Interpret the Result Visually
@@ -233,7 +211,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ```
-## Warning: Removed 6 rows containing missing values or values outside the scale range (`geom_segment()`).
+## Warning: Removed 5 rows containing missing values or values outside the scale range (`geom_segment()`).
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/13-waypoint-hcp_waypoint_conv/unnamed-chunk-12-1.png)

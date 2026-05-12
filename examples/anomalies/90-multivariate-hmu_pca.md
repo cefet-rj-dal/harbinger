@@ -29,20 +29,7 @@ This setup anchors the notebook in the specific series used to examine `90-multi
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -139,14 +126,6 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Fit the PCA detector on the first two columns and run detection
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(hmu_pca(), dataset[,1:2])
 detection <- detect(model, dataset[,1:2])
 ```

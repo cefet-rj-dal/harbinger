@@ -31,20 +31,7 @@ This setup anchors the notebook in a synthetic residual series used to examine `
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -76,14 +63,6 @@ hutils <- harutils()
 ``` r
 # Generate synthetic residuals
 set_example_seed(123L)
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 values <- rnorm(30, mean = 0, sd = 1)
 ```
 

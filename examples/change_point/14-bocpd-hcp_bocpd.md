@@ -30,20 +30,7 @@ structure.
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger and ocp (if needed)
 # install.packages("harbinger")
 # install.packages("ocp")
@@ -135,8 +122,19 @@ set_example_seed()
 ```
 
 ```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
+##    idx event        type
+## 1   10  TRUE changepoint
+## 2  102  TRUE changepoint
+## 3  108  TRUE changepoint
+## 4  201  TRUE changepoint
+## 5  312  TRUE changepoint
+## 6  330  TRUE changepoint
+## 7  352  TRUE changepoint
+## 8  367  TRUE changepoint
+## 9  373  TRUE changepoint
+## 10 386  TRUE changepoint
+## 11 391  TRUE changepoint
+## 12 411  TRUE changepoint
 ```
 
 ### Evaluate What Was Found
@@ -155,6 +153,13 @@ if (exists("detection")) {
 }
 ```
 
+```
+##           event      
+## detection TRUE  FALSE
+## TRUE      0     12   
+## FALSE     4     484
+```
+
 ### Interpret the Result Visually
 
 This visual check puts the model output back on top of the original signal.
@@ -169,6 +174,8 @@ if (exists("detection")) {
 }
 ```
 
+![plot of chunk unnamed-chunk-9](fig/14-bocpd-hcp_bocpd/unnamed-chunk-9-1.png)
+
 
 ``` r
 if (exists("detection")) {
@@ -176,6 +183,8 @@ if (exists("detection")) {
   har_plot(model, attr(detection, "res"), detection, dataset$event, yline = model$threshold)
 }
 ```
+
+![plot of chunk unnamed-chunk-10](fig/14-bocpd-hcp_bocpd/unnamed-chunk-10-1.png)
 
 ## References
 

@@ -1,7 +1,7 @@
 library(daltoolbox)
 library(harbinger)
 
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 

@@ -25,20 +25,7 @@ This setup anchors the notebook in the specific series used to examine `han_auto
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Load required packages
 library(daltoolbox)
 library(harbinger) 
@@ -114,14 +101,6 @@ The choices below turn the central modeling idea into concrete parameters. They 
 ``` r
 # Fit the model
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
   model <- fit(model, dataset$serie)
 ```
 
@@ -151,7 +130,7 @@ This is the moment where the notebook tests its central assumption on actual dat
 
 ```
 ##   idx event    type
-## 1  50  TRUE anomaly
+## 1  52  TRUE anomaly
 ```
 
 
@@ -174,8 +153,8 @@ The evaluation asks whether the reconstruction-based anomaly flags produced by `
 ```
 ##           event      
 ## detection TRUE  FALSE
-## TRUE      1     0    
-## FALSE     0     100
+## TRUE      0     1    
+## FALSE     1     99
 ```
 
 

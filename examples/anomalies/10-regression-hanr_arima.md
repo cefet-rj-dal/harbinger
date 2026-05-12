@@ -29,20 +29,7 @@ This setup anchors the notebook in the specific series used to examine `hanr_ari
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -127,14 +114,6 @@ model <- hanr_arima()
 ``` r
 # Fit the detector (estimates ARIMA order and caches parameters)
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 ```
 
@@ -215,6 +194,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Plot the residual magnitude and the decision thresholds
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
+```
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the harbinger package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/harbinger/issues>.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ![plot of chunk unnamed-chunk-12](fig/10-regression-hanr_arima/unnamed-chunk-12-1.png)

@@ -17,20 +17,7 @@ KSWIN is a window-based sequential detector for distributional change. In Harbin
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 ```
@@ -50,14 +37,6 @@ har_plot(harbinger(), dataset$serie)
 ``` r
 model <- hcp_kswin(window_size = 100, stat_size = 30, alpha = 0.005)
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 ```
 
@@ -73,7 +52,7 @@ print(detection[detection$event, ])
 ##     idx event        type
 ## 213 213  TRUE changepoint
 ## 318 318  TRUE changepoint
-## 454 454  TRUE changepoint
+## 453 453  TRUE changepoint
 ```
 
 ## Evaluate the Result

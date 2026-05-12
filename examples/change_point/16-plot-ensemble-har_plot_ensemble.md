@@ -16,20 +16,7 @@ score around the candidate change region.
 
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 # install.packages("harbinger")
 ```
@@ -67,14 +54,6 @@ model <- har_ensemble_fuzzy(
 ``` r
 # Fit the ensemble and run detection
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie, time_tolerance = 8, use_nms = TRUE)
 ```

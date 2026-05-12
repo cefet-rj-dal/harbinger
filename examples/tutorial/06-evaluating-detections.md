@@ -9,20 +9,7 @@ The method explained here is evaluation itself. Hard evaluation is exact-event m
 Load the packages, prepare a simple detector, and generate the detections once.
 
 ``` r
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
-```
-
-```
-## Warning in readLines(file, warn = FALSE): cannot open URL
-## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
-```
-
-```
-## Error in `readLines()`:
-## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
-```
-
-``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 library(daltoolbox)
 library(harbinger)
 
@@ -30,14 +17,6 @@ data(examples_anomalies)
 dataset <- examples_anomalies$simple
 model <- hanr_arima()
 set_example_seed()
-```
-
-```
-## Error in `set_example_seed()`:
-## ! could not find function "set_example_seed"
-```
-
-``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 ```
