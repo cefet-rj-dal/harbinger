@@ -25,7 +25,11 @@ library(daltoolbox)
 data(examples_changepoints)
 dataset <- examples_changepoints$simple
 
-model <- har_ensemble_fuzzy(hcp_amoc(), hcp_pelt(), hcp_cf_lr())
+model <- har_ensemble_fuzzy(
+  hcp_scp(sw = 30),
+  hcp_chow(),
+  hcp_cf_arima(sw_size = 10)
+)
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie, time_tolerance = 8, use_nms = TRUE)
 print(detection[detection$event, ])

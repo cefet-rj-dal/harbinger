@@ -143,7 +143,7 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2  54  TRUE anomaly
+## 2 101  TRUE anomaly
 ```
 
 
