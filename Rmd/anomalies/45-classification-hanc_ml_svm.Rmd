@@ -29,7 +29,7 @@ SVM classification anomaly detector: Supervised anomaly detection with an SVM cl
 This setup anchors the notebook in the specific series used to examine `45-classification-hanc_ml_svm`. The semantic point is the one stated above: sVM classification anomaly detector: Supervised anomaly detection with an SVM classifier trained on labeled events; positive-class probabilities above a threshold correspond to detected events, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

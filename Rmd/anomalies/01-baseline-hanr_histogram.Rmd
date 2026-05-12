@@ -26,7 +26,7 @@ This notebook demonstrates anomaly detection with `hanr_histogram()`. The goal i
 This setup anchors the notebook in the specific series used to examine `hanr_histogram()`. The semantic point is the one stated above: `hanr_histogram()` builds a histogram of the observed values and labels points as anomalies when they fall into low-density bins or outside the observed bin range, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

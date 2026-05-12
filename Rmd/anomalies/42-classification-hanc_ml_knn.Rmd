@@ -24,7 +24,7 @@ k-NN classification anomaly detector: Supervised anomaly detection using k-NN cl
 This setup anchors the notebook in the specific series used to examine `cla_knn`. The semantic point is the one stated above: k-NN classification anomaly detector: Supervised anomaly detection using k-NN classification on labeled data; positive-class probabilities above a threshold indicate events, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

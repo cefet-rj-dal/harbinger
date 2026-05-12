@@ -26,7 +26,7 @@ XSAX follows the same general idea as SAX: normalize the series and discretize i
 This setup anchors the notebook in the specific series used to examine `03-symbolic-trans_xsax`. The semantic point is the one stated above: xSAX follows the same general idea as SAX: normalize the series and discretize it into symbols, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

@@ -7,7 +7,7 @@ The main point is practical: a good method choice depends on the shape of the co
 The technique here is exploratory rather than predictive. Instead of fitting a model, the notebook studies dataset structure, because tasks such as anomaly detection, change-point detection, and motif discovery depend strongly on whether the signals are single-channel, multichannel, short, long, sparse, or densely labeled.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 library(harbinger)
 ```
 

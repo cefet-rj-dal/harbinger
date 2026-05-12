@@ -24,7 +24,7 @@ SVM regression anomaly detection: Model-deviation detection using ML regression:
 This setup anchors the notebook in the specific series used to examine `hanr_ml + ts_svm`. The semantic point is the one stated above: sVM regression anomaly detection: Model-deviation detection using ML regression: an SVM forecaster predicts the next value from a sliding window; large prediction errors are flagged as anomalies, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

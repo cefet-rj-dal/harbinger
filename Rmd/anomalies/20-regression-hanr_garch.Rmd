@@ -28,7 +28,7 @@ GARCH-based regression anomaly detection: This detector estimates a GARCH model 
 This setup anchors the notebook in the specific series used to examine `hanr_garch`. The semantic point is the one stated above: gARCH-based regression anomaly detection: This detector estimates a GARCH model to capture conditional heteroskedasticity and flags observations with large standardized residuals as anomalies, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

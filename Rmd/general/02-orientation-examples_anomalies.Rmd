@@ -24,7 +24,7 @@ This notebook tours common time-series anomaly patterns (point/isolated, context
 This setup anchors the notebook in the specific series used to examine `harbinger()`. The semantic point is the one stated above: this notebook tours common time-series anomaly patterns (point/isolated, contextual, collective/sequence, regime variance shifts) using Harbinger's base pipeline, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

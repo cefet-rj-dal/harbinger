@@ -24,7 +24,7 @@ SoftED provides soft evaluation by matching detections to ground truth within to
 This setup anchors the notebook in the specific series used to examine `har_eval_soft()`. The semantic point is the one stated above: softED provides soft evaluation by matching detections to ground truth within tolerance windows and assigning partial credit, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

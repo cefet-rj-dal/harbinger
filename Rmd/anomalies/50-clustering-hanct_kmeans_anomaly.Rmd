@@ -24,7 +24,7 @@ k-means clustering anomaly detection: This approach applies k-means clustering t
 This setup anchors the notebook in the specific series used to examine `hanct_kmeans(k)`. The semantic point is the one stated above: k-means clustering anomaly detection: This approach applies k-means clustering to either points (`seq = 1`) or sliding-window subsequences (`seq > 1`), so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

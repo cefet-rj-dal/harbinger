@@ -32,7 +32,7 @@ Joinpoint or segmented regression is a good custom extension example because it 
 This setup anchors the notebook in the specific series used to examine `04-change-point-custom_change_point`. The semantic point is the one stated above: the detector first fits a linear model and then refines it with `segmented::segmented()`, which estimates one or more joinpoints, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox", "segmented"))
 

@@ -24,7 +24,7 @@ This notebook provides quick end-to-end demonstrations of the default `harbinger
 This setup anchors the notebook in the specific series used to examine `harbinger()`. The semantic point is the one stated above: this notebook provides quick end-to-end demonstrations of the default `harbinger()` pipeline across diverse datasets (nonstationarity, global temperature monthly/yearly, multivariate, and weather), so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

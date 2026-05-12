@@ -24,7 +24,7 @@ Adversarial Autoencoder (encode-decode): An adversarial autoencoder (AAE) augmen
 This setup anchors the notebook in the specific series used to examine `han_autoencoder(..., autoenc_adv_ed, ...)`. The semantic point is the one stated above: adversarial Autoencoder (encode-decode): An adversarial autoencoder (AAE) augments a standard encoder-decoder with an adversarial objective on the latent code, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

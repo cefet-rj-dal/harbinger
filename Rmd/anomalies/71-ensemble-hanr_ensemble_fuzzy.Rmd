@@ -24,7 +24,7 @@ Ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification me
 This setup anchors the notebook in the specific series used to examine `71-ensemble-hanr_ensemble_fuzzy`. The semantic point is the one stated above: ensemble Fuzzy anomaly detection: Ensemble voting with temporal fuzzification merges detections within a tolerance window into a single event before voting, reducing duplicate triggers and aligning with ground-truth granularity, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```

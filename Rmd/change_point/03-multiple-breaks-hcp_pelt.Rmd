@@ -28,7 +28,7 @@ PELT: PELT performs optimal partitioning of the time series under a penalized co
 This setup anchors the notebook in the specific series used to examine `hcp_pelt`. The semantic point is the one stated above: pELT: PELT performs optimal partitioning of the time series under a penalized cost function while pruning candidate change locations to achieve near-linear time under suitable penalties, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```

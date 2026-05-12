@@ -39,7 +39,7 @@ This makes the example useful from two perspectives:
 This setup anchors the notebook in the specific series used to examine `05-motif-custom_motif`. The semantic point is the one stated above: the custom detector builds sliding windows, clusters them with `dtwclust::tsclust()` using DTW distance, and treats sufficiently populated clusters as motif families, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
-source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox", "dtwclust"))
 
