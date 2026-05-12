@@ -7,6 +7,7 @@ This notebook keeps the workflow short so the reader can focus on the meaning of
 The technique behind AMOC is single-break optimization: among all possible split positions, the method searches for the location that best separates two regimes with distinct statistical behavior. It is a strong entry point before studying multiple-break methods.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 library(harbinger)
 
 data(examples_changepoints)

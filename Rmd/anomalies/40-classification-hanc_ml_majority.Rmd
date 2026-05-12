@@ -24,6 +24,7 @@ Majority-class classification anomaly detector: Supervised anomaly detection usi
 This setup anchors the notebook in the specific series used to examine `cla_majority`. The semantic point is the one stated above: majority-class classification anomaly detector: Supervised anomaly detection using a majority-class baseline to illustrate the `hanc_ml` interface, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
@@ -89,6 +90,7 @@ train <- dataset[1:80,]
 test <- dataset[-(1:80),]
 
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, train)
 train_n <- transform(norm, train)
 summary(train_n)
@@ -105,6 +107,7 @@ model <- hanc_ml(cla_majority("event", c("FALSE", "TRUE")))
 
 ```{r}
 # Fit the model on training data
+set_example_seed()
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
 print(detection |> dplyr::filter(event==TRUE))

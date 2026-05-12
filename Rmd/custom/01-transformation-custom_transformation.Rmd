@@ -32,6 +32,7 @@ The transformation implemented here is a median filter. It is useful for reducin
 This setup anchors the notebook in the specific series used to examine `01-transformation-custom_transformation`. The semantic point is the one stated above: the transformation applies `stats::runmed()` to the numeric series and then feeds the filtered output into a regular Harbinger detector, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
 
@@ -110,6 +111,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ```{r}
 model <- hanr_arima()
+set_example_seed()
 model <- fit(model, as.numeric(serie_filtered))
 detection <- detect(model, as.numeric(serie_filtered))
 

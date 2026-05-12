@@ -24,6 +24,7 @@ The focus is on dataset inspection. NAB is often used as a benchmark family, so 
 
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 library(harbinger)
 
 dataset_summary <- function(x) {

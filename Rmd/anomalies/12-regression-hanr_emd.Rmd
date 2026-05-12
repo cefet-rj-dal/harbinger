@@ -28,6 +28,7 @@ EMD regression anomaly detection: This detector uses Empirical Mode Decompositio
 This setup anchors the notebook in the specific series used to examine `hanr_emd`. The semantic point is the one stated above: eMD regression anomaly detection: This detector uses Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions (IMFs) and isolates high-frequency components that capture abrupt deviations, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -93,6 +94,7 @@ model <- hanr_emd()
 
 ```{r}
 # Fit the detector
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

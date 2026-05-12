@@ -24,6 +24,7 @@ STAMP motif discovery: Matrix Profile methods compute, for each subsequence, the
 This setup anchors the notebook in the specific series used to examine `hmo_mp("stamp", ...)`. The semantic point is the one stated above: sTAMP motif discovery: Matrix Profile methods compute, for each subsequence, the distance to its nearest neighbor subsequence, enabling efficient discovery of repeated patterns (motifs), so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
@@ -92,6 +93,7 @@ The choices below turn the central modeling idea into concrete parameters. They 
 
 ```{r}
 # Fit the model
+set_example_seed()
   model <- fit(model, dataset$serie)
 ```
 

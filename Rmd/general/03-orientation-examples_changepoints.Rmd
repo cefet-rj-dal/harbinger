@@ -24,6 +24,7 @@ This notebook illustrates typical change-point scenarios (single break, multiple
 This setup anchors the notebook in the specific series used to examine `harbinger()`. The semantic point is the one stated above: this notebook illustrates typical change-point scenarios (single break, multiple breaks, variance/volatility shifts) and how Harbinger visualizes detected change locations, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -57,6 +58,7 @@ model <- harbinger()
 ```{r}
 # Simple change point
 dataset <- examples_changepoints$simple
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -68,6 +70,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Sinusoidal pattern with regime shift
 dataset <- examples_changepoints$sinusoidal
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -79,6 +82,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Incremental trend changes
 dataset <- examples_changepoints$incremental
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -90,6 +94,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Abrupt level shift
 dataset <- examples_changepoints$abrupt
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -101,6 +106,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Volatility (variance) change
 dataset <- examples_changepoints$volatility
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -112,6 +118,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Increasing amplitude
 dataset <- examples_changepoints$increasing_amplitude
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -123,6 +130,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ```{r}
 # Complex multi-regime series
 dataset <- examples_changepoints$complex
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)

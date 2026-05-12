@@ -42,6 +42,7 @@ about changing the series, but about changing the representation model inside
 Waypoint while holding the rest of the detector fixed.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger and DALToolboxDP (if needed)
 # install.packages("harbinger")
 # install.packages("daltoolboxdp")
@@ -103,6 +104,7 @@ model <- hcp_waypoint(
 
 ```{r}
 # Fit the detector
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

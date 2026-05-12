@@ -30,6 +30,7 @@ These aggregations feed subsequent filter criteria in the detection pipeline.
 This setup anchors the notebook in a synthetic residual series used to examine `harutils()`. The purpose is not to detect anomalies yet, but to understand how each deviation measure transforms the same underlying residuals before any filter criterion acts on them.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -57,7 +58,7 @@ hutils <- harutils()
 
 ```{r}
 # Generate synthetic residuals
-set.seed(123)
+set_example_seed(123L)
 values <- rnorm(30, mean = 0, sd = 1)
 ```
 

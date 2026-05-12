@@ -29,6 +29,7 @@ later changepoint evidence can be interpreted against the visible regime
 structure.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger and ocp (if needed)
 # install.packages("harbinger")
 # install.packages("ocp")
@@ -88,6 +89,7 @@ that optional dependency is unavailable.
 ```{r}
 if (requireNamespace("ocp", quietly = TRUE)) {
   # Fit the detector
+set_example_seed()
   model <- fit(model, dataset$serie)
 
   # Run detection

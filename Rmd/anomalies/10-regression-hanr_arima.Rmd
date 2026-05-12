@@ -28,6 +28,7 @@ ARIMA regression anomaly detection: This detector fits an ARIMA(p, d, q) model t
 This setup anchors the notebook in the specific series used to examine `hanr_arima`. The semantic point is the one stated above: aRIMA regression anomaly detection: This detector fits an ARIMA(p, d, q) model to the series and uses large standardized residuals as anomaly evidence, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -93,6 +94,7 @@ model <- hanr_arima()
 
 ```{r}
 # Fit the detector (estimates ARIMA order and caches parameters)
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

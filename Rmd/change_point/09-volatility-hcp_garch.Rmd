@@ -24,6 +24,7 @@ ChangeFinder with GARCH models conditional variance dynamics; residual-based sco
 This setup anchors the notebook in the specific series used to examine `hcp_garch`. The key idea is that the detector works on residual behavior, so the raw signal should be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -89,6 +90,7 @@ model <- hcp_garch()
 
 ```{r}
 # Fit the detector
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

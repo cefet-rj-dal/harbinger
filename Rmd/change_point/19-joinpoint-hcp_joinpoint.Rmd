@@ -23,6 +23,7 @@ This is a good fit for series where the main evidence of change is a shift in sl
 ## Prepare the Example
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 ```
@@ -43,6 +44,7 @@ model <- hcp_joinpoint(
   log_transform = FALSE
 )
 
+set_example_seed()
 model <- fit(model, dataset$serie)
 model$model$comparison
 ```

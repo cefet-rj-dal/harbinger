@@ -28,6 +28,7 @@ SAX motif discovery: SAX (Symbolic Aggregate approXimation) discretizes z-normal
 This setup anchors the notebook in the specific series used to examine `hmo_sax(a, w, qtd)`. The semantic point is the one stated above: sAX motif discovery: SAX (Symbolic Aggregate approXimation) discretizes z-normalized subsequences into symbolic words using breakpoints derived from a Gaussian distribution, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -93,6 +94,7 @@ model <- hmo_sax(26, 3, 3)
 
 ```{r}
 # Fit the detector (learns binning thresholds)
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

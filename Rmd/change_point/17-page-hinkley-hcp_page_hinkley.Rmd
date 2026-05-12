@@ -19,6 +19,7 @@ Page-Hinkley is a sequential test for persistent mean shifts. In Harbinger it is
 ## Prepare the Example
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 ```
@@ -33,6 +34,7 @@ har_plot(harbinger(), dataset$serie)
 
 ```{r}
 model <- hcp_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

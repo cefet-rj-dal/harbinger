@@ -28,6 +28,7 @@ SCP: Seminal Change Point compares linear regression fits with and without the c
 This setup anchors the notebook in the specific series used to examine `hcp_scp`. The semantic point is the one stated above: sCP: Seminal Change Point compares linear regression fits with and without the central observation in sliding windows; large deviations around a center indicate a change location, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -93,6 +94,7 @@ model <- hcp_scp(sw=30)
 
 ```{r}
 # Fit the detector
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

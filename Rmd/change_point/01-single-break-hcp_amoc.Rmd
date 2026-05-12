@@ -30,6 +30,7 @@ AMOC: AMOC targets a single most significant change point in a univariate series
 This setup anchors the notebook in the specific series used to examine `hcp_amoc`. The semantic point is the one stated above: aMOC: AMOC targets a single most significant change point in a univariate series by optimizing a cost function over all possible change locations, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -95,6 +96,7 @@ model <- hcp_amoc()
 
 ```{r}
 # Fit the detector (no training required, keeps parameters on object)
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 

@@ -8,6 +8,7 @@ The technique is residual-based anomaly detection. ARIMA tries to explain the no
 
 Load the packages and the example series.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 library(daltoolbox)
 library(harbinger)
 
@@ -18,6 +19,7 @@ dataset <- examples_anomalies$simple
 Configure the ARIMA-based detector and fit it to the series.
 ```{r}
 model <- hanr_arima()
+set_example_seed()
 model <- fit(model, dataset$serie)
 ```
 
