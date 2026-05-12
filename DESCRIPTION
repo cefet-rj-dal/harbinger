@@ -1,6 +1,6 @@
 Package: harbinger
 Title: A Unified Time Series Event Detection Framework
-Version: 2.0.737
+Version: 2.0.747
 Author: Eduardo Ogasawara [aut, ths, cre] (ORCID: <https://orcid.org/0000-0002-0466-0626>), Anthony Heimlich [aut], Antonio Castro [aut], Antonio Mello [aut], Diego Carvalho [ctb], Eduardo Bezerra [ctb], Ellen Paixão [aut], Fernando Fraga [aut], Gabriel Giuliano [aut], Heraldo Borges [aut], Igor Andrade [aut], Isabele Rocha [aut], Janio Lima [aut], Jessica Souza [aut], Lais Baroni [aut], Lucas Tavares [aut], Michel Reis [aut], Rebecca Salles [aut], CEFET/RJ [cph]
 Maintainer: Eduardo Ogasawara <eogasawara@ieee.org>
 Authors@R: 
