@@ -201,4 +201,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063
 
-

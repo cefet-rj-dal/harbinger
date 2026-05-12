@@ -196,4 +196,3 @@ This visual check puts the model output back on top of the original signal. What
 
 - Sobrinho, E. P., et al. Fine-Tuning Detection Criteria for Enhancing Anomaly Detection in Time Series. SBBD, 2025. doi:10.5753/sbbd.2025.247063
 
-

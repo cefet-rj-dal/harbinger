@@ -200,4 +200,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Mallat, S. (1989). A theory for multiresolution signal decomposition: The wavelet representation. IEEE TPAMI, 11(7), 674-693.
 
-

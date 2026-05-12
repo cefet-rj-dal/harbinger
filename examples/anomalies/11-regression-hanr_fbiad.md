@@ -200,4 +200,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Lima, J., et al. Forward and Backward Inertial Anomaly Detector: A Novel Time Series Event Detection Method. IJCNN, 2022. doi:10.1109/IJCNN55064.2022.9892088
 
-

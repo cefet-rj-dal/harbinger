@@ -200,4 +200,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Huang, N. E., et al. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. Proceedings of the Royal Society A.
 
-

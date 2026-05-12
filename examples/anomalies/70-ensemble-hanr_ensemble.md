@@ -198,4 +198,3 @@ This visual check puts the model output back on top of the original signal. What
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
 
-

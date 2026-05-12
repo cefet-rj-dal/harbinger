@@ -251,4 +251,3 @@ har_plot(model, attr(detection, "res"), detection, test_n$event, yline = attr(de
 
 - Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
 
-

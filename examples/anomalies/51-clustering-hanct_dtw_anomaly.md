@@ -117,19 +117,11 @@ model <- fit(model, dataset$serie)
 ```
 
 ```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
+## Found more than one class "dist" in cache; using the first, from namespace 'spam'
 ```
 
 ```
-## Also defined by 'spam'
-```
-
-```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
-```
-
-```
-## Also defined by 'spam'
+## Also defined by 'arules' 'dtwclust'
 ```
 
 
@@ -216,5 +208,4 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. 1st ed. Cham: Springer Nature Switzerland, 2025. doi:10.1007/978-3-031-75941-3
-
 

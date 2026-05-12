@@ -199,4 +199,3 @@ This visual check puts the model output back on top of the original signal. What
 
 - Hyndman, R. J., Athanasopoulos, G. (2021). Forecasting: Principles and Practice. OTexts.
 
-

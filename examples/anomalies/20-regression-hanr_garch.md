@@ -201,4 +201,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 - Engle, R. F. (1982). Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation. Econometrica, 50(4), 987-1007.
 - Bollerslev, T. (1986). Generalized Autoregressive Conditional Heteroskedasticity. Journal of Econometrics, 31(3), 307-327.
 
-

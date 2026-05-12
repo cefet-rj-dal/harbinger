@@ -168,4 +168,3 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 
 - Jolliffe, I. T. (2002). Principal Component Analysis. Springer.
 
-

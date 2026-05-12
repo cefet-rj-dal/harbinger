@@ -143,7 +143,7 @@ print(detection |> dplyr::filter(event == TRUE))
 ```
 ##   idx event    type
 ## 1  50  TRUE anomaly
-## 2 101  TRUE anomaly
+## 2  54  TRUE anomaly
 ```
 
 
@@ -201,5 +201,4 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ## References
 
 - Souza, J., et al. REMD: A Novel Hybrid Anomaly Detection Method Based on EMD and ARIMA. IJCNN, 2024. doi:10.1109/IJCNN60899.2024.10651192
-
 

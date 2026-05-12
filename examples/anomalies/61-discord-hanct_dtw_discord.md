@@ -90,7 +90,7 @@ This first visual pass establishes what the method should react to in the raw se
 har_plot(harbinger(), dataset$serie)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/61-clustering-hanct_dtw_discord/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/61-discord-hanct_dtw_discord/unnamed-chunk-5-1.png)
 
 
 
@@ -117,19 +117,11 @@ model <- fit(model, dataset$serie)
 ```
 
 ```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
+## Found more than one class "dist" in cache; using the first, from namespace 'spam'
 ```
 
 ```
-## Also defined by 'spam'
-```
-
-```
-## Found more than one class "dist" in cache; using the first, from namespace 'arules'
-```
-
-```
-## Also defined by 'spam'
+## Also defined by 'arules' 'dtwclust'
 ```
 
 
@@ -201,7 +193,7 @@ This visual check puts the model output back on top of the original signal. What
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
-![plot of chunk unnamed-chunk-11](fig/61-clustering-hanct_dtw_discord/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](fig/61-discord-hanct_dtw_discord/unnamed-chunk-11-1.png)
 
 
 
@@ -211,10 +203,9 @@ har_plot(model, dataset$serie, detection, dataset$event)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
 ```
 
-![plot of chunk unnamed-chunk-12](fig/61-clustering-hanct_dtw_discord/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](fig/61-discord-hanct_dtw_discord/unnamed-chunk-12-1.png)
 
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 

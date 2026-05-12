@@ -49,8 +49,8 @@ print(detection[detection$event, ])
 ```
 ##     idx event        type
 ## 213 213  TRUE changepoint
-## 317 317  TRUE changepoint
-## 464 464  TRUE changepoint
+## 318 318  TRUE changepoint
+## 454 454  TRUE changepoint
 ```
 
 ## Evaluate the Result

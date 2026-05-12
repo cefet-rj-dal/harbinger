@@ -39,6 +39,20 @@ This setup anchors the notebook in the specific series used to examine `hanr_his
 ``` r
 # Load required packages
 library(daltoolbox)
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
+``` r
 library(harbinger)
 ```
 
@@ -189,5 +203,4 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ## References
 
 - Ogasawara, E., Salles, R., Porto, F., Pacitti, E. Event Detection in Time Series. Springer, 2025. doi:10.1007/978-3-031-75941-3
-
 
