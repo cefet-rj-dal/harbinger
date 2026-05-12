@@ -25,6 +25,20 @@ This setup anchors the notebook in the specific series used to examine `harbinge
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -61,6 +75,15 @@ model <- harbinger()
 ``` r
 # Simple synthetic motif dataset
 dataset <- examples_motifs$simple
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -74,6 +97,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # ECG sample: MIT-BIH record 100
 dataset <- examples_motifs$mitdb100
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -87,6 +119,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # ECG sample: MIT-BIH record 102
 dataset <- examples_motifs$mitdb102
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)

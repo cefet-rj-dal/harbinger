@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 
@@ -19,6 +20,7 @@ har_plot(harbinger(), dataset$serie)
   model <- hanct_kmeans(1)
 
 # Fit the model
+set_example_seed()
   model <- fit(model, dataset$serie)
 
 # Detect anomalies using k-means distances

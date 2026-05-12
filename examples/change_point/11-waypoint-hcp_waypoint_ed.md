@@ -46,6 +46,20 @@ the reconstruction model and the CUSUM supervisor are applied.
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger and DALToolboxDP (if needed)
 # install.packages("harbinger")
 # install.packages("daltoolboxdp")
@@ -126,6 +140,15 @@ model <- hcp_waypoint(
 
 ``` r
 # Fit the detector
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 ```
 
@@ -154,11 +177,11 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event        type
-## 1 115  TRUE changepoint
-## 2 201  TRUE changepoint
-## 3 304  TRUE changepoint
-## 4 357  TRUE changepoint
-## 5 414  TRUE changepoint
+## 1 117  TRUE changepoint
+## 2 188  TRUE changepoint
+## 3 302  TRUE changepoint
+## 4 356  TRUE changepoint
+## 5 412  TRUE changepoint
 ```
 
 ### Evaluate What Was Found

@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 
@@ -21,6 +22,7 @@ har_plot(harbinger(), dataset$serie)
   model <- hanr_ml(ts_rf(ts_norm_gminmax(), input_size=4, nodesize=1, ntree=20))
 
 # Fit the model
+set_example_seed()
   model <- fit(model, dataset$serie)
 
 # Detect anomalies (compute residuals and events)

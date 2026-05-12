@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -9,7 +10,7 @@ library(harbinger)
 hutils <- harutils()
 
 # Generate synthetic residuals
-set.seed(123)
+set_example_seed(123L)
 values <- rnorm(30, mean = 0, sd = 1)
 
 # L1 deviation.

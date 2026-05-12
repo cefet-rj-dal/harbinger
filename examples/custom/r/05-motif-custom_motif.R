@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox", "dtwclust"))
 
@@ -23,7 +24,7 @@ fit.hmo_dtw_cluster_custom <- function(obj, data, ...) {
     k = obj$centers,
     distance = "dtw_basic",
     centroid = "dba",
-    seed = 1L,
+    
     trace = FALSE
   )
   obj
@@ -80,6 +81,7 @@ data(examples_motifs)
 dataset <- examples_motifs$simple
 
 model <- hmo_dtw_cluster_custom(w = 15, centers = 3, min_cluster_size = 3)
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 

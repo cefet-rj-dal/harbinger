@@ -1,0 +1,1736 @@
+Conversion run started at 2026-05-12 13:45:21
+Working directory: /home/gpca/harbinger
+
+================================================================================
+[2026-05-12 13:50:52] rmd->docx
+file: Rmd/anomalies/01-baseline-hanr_histogram.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:52] rmd->docx
+file: Rmd/anomalies/10-regression-hanr_arima.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:52] rmd->docx
+file: Rmd/anomalies/11-regression-hanr_fbiad.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:52] rmd->docx
+file: Rmd/anomalies/12-regression-hanr_emd.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/13-regression-hanr_fft.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/14-regression-hanr_fft_amoc.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/15-regression-hanr_fft_amoc_cusum.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/16-regression-hanr_fft_binseg.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/17-regression-hanr_fft_binseg_cusum.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/18-regression-hanr_fft_sma.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/20-regression-hanr_garch.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/21-regression-hanr_remd.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/22-regression-hanr_rtad.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:53] rmd->docx
+file: Rmd/anomalies/23-regression-hanr_wavelet.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/30-regression-ml-hanr_ml_elm.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/31-regression-ml-hanr_ml_mlp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/32-regression-ml-hanr_ml_rf.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/33-regression-ml-hanr_ml_svm.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/34-regression-ml-hanr_ml_lstm.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/35-regression-ml-hanr_ml_conv1d.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/40-classification-hanc_ml_majority.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/41-classification-hanc_ml_dtree.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/42-classification-hanc_ml_knn.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/43-classification-hanc_ml_nb.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/44-classification-hanc_ml_rf.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:54] rmd->docx
+file: Rmd/anomalies/45-classification-hanc_ml_svm.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/46-classification-hanc_ml_mlp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/50-clustering-hanct_kmeans_anomaly.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/51-clustering-hanct_dtw_anomaly.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/60-discord-hanct_kmeans_discord.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/61-discord-hanct_dtw_discord.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/70-ensemble-hanr_ensemble.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/71-ensemble-hanr_ensemble_fuzzy.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/80-autoencoder-han_autoenc_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/81-autoencoder-han_autoenc_denoise_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/82-autoencoder-han_autoenc_conv_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:55] rmd->docx
+file: Rmd/anomalies/83-autoencoder-han_autoenc_lstm_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/anomalies/84-autoencoder-han_autoenc_stacked_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/anomalies/85-autoencoder-han_autoenc_variational_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/anomalies/86-autoencoder-han_autoenc_adv_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/anomalies/90-multivariate-hmu_pca.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/01-single-break-hcp_amoc.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/02-multiple-breaks-hcp_binseg.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/03-multiple-breaks-hcp_pelt.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/04-structural-break-hcp_chow.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/05-structural-break-hcp_gft.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/06-changefinder-hcp_cf_lr.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:56] rmd->docx
+file: Rmd/change_point/07-changefinder-hcp_cf_arima.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/08-changefinder-hcp_cf_ets.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/09-volatility-hcp_garch.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/10-window-hcp_scp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/11-waypoint-hcp_waypoint_ed.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/12-waypoint-hcp_waypoint_lstm.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/13-waypoint-hcp_waypoint_conv.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:57] rmd->docx
+file: Rmd/change_point/14-bocpd-hcp_bocpd.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/change_point/15-ensemble-fuzzy-har_ensemble_fuzzy.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/change_point/16-plot-ensemble-har_plot_ensemble.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/change_point/17-page-hinkley-hcp_page_hinkley.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/change_point/18-kswin-hcp_kswin.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/change_point/19-joinpoint-hcp_joinpoint.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/custom/01-transformation-custom_transformation.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/custom/02-anomaly-custom_anomaly.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/custom/03-sequence-custom_sequence_anomaly.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/custom/04-change-point-custom_change_point.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:58] rmd->docx
+file: Rmd/custom/05-motif-custom_motif.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/custom/06-evaluation-custom_evaluation.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/01-benchmarks-yahoo_benchmarks.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/02-benchmarks-nab.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/03-benchmarks-ucr.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/04-domain-mit_bih.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/05-domain-oil_3w.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/datasets/06-domain-gecco.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:50:59] rmd->docx
+file: Rmd/general/01-orientation-examples_harbinger.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/02-orientation-examples_anomalies.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/03-orientation-examples_changepoints.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/04-orientation-examples_motifs.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/05-utilities-examples_deviation_measures.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/06-utilities-examples_filter_criteria_candidate_selection.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/07-evaluation-har_eval.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/general/08-evaluation-har_eval_soft.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/motifs/01-matrix-profile-hmo_mp_stamp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/motifs/02-matrix-profile-hmo_mp_stomp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/motifs/03-matrix-profile-hmo_mp_scrimp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:00] rmd->docx
+file: Rmd/motifs/04-matrix-profile-hmo_mp_pmp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/motifs/05-matrix-profile-hmo_mp_valmod.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/motifs/06-symbolic-hmo_sax.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/motifs/07-symbolic-hmo_xsax.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/motifs/08-discord-hdis_mp_stamp.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/motifs/09-discord-hdis_sax.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/transformations/01-smoothing-mas.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/transformations/02-symbolic-trans_sax.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/transformations/03-symbolic-trans_xsax.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:01] rmd->docx
+file: Rmd/tutorial/01-first-steps.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/02-knowing-your-data.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/03-plotting-series.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/04-first-anomaly-detector.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/05-model-based-anomaly-detection.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/06-evaluating-detections.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/07-first-change-point-detector.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/08-smoothing-with-mas.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:02] rmd->docx
+file: Rmd/tutorial/09-symbolic-representation.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)
+
+================================================================================
+[2026-05-12 13:51:03] rmd->docx
+file: Rmd/tutorial/10-motifs-and-discords.Rmd
+message: cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+call: readLines(file, warn = FALSE)
+stack:
+001: source("~/harbinger/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)

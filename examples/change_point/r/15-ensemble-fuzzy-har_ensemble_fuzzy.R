@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 # install.packages("harbinger")
 
@@ -23,6 +24,7 @@ model <- har_ensemble_fuzzy(
 )
 
 # Fit the ensemble
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 # Run detection with temporal fuzzification and non-maximum suppression

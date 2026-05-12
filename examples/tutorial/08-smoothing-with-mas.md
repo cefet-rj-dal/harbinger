@@ -8,6 +8,20 @@ The technique is moving-average smoothing. Each point in the transformed series 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 library(harbinger)
 
 data(examples_changepoints)

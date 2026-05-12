@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -19,6 +20,7 @@ har_plot(harbinger(), dataset$serie)
 # residual magnitudes, so it works as a strong baseline when the residual
 # scale is reasonably stable.
 model <- hanr_arima()
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -30,6 +32,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # influential extremes.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_boxplot
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -42,6 +45,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # residual distribution is heavy-tailed or visibly contaminated.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_mad
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -53,6 +57,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # proportionally to the observed residual range.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_ratio
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -65,6 +70,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # as the empirical boundary of the points that were actually retained.
 model <- hanr_arima()
 model$har_outliers <- hutils$har_filter_grubbs
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 threshold_grubbs <- attr(detection, "threshold")
@@ -77,6 +83,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = thresh
 # reduces the influence of very large residual peaks on the scale of the score.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -88,6 +95,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 # so it often acts as a compromise between L2 emphasis and L1 robustness.
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_huber
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -99,6 +107,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -111,6 +120,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_huber
 model$har_outliers <- hutils$har_filter_mad
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -123,6 +133,7 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_ratio
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -136,6 +147,7 @@ model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot
 model$har_outliers_check <- hutils$har_candidate_selection_highgroup
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))
@@ -151,6 +163,7 @@ model <- hanr_arima()
 model$har_distance <- hutils$har_deviation_l1
 model$har_outliers <- hutils$har_filter_boxplot
 model$har_outliers_check <- hutils$har_candidate_selection_referencedistribution
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(detection, "threshold"))

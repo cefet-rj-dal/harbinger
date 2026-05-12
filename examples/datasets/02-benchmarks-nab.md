@@ -25,6 +25,20 @@ The focus is on dataset inspection. NAB is often used as a benchmark family, so 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 library(harbinger)
 
 dataset_summary <- function(x) {

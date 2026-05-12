@@ -21,6 +21,20 @@ This is a good fit for series where the main evidence of change is a shift in sl
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 ```
@@ -45,6 +59,15 @@ model <- hcp_joinpoint(
   log_transform = FALSE
 )
 
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 model$model$comparison
 ```

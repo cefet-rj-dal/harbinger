@@ -25,6 +25,20 @@ This setup anchors the notebook in the specific series used to examine `harbinge
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
@@ -61,6 +75,15 @@ model <- harbinger()
 ``` r
 # Example: nonstationarity time series
 dataset <- examples_harbinger$nonstationarity
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -74,6 +97,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Example: global temperature (yearly)
 dataset <- examples_harbinger$global_temperature_yearly
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -87,6 +119,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Example: global temperature (monthly)
 dataset <- examples_harbinger$global_temperature_monthly
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -100,12 +141,30 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Example: multidimensional time series
 dataset <- examples_harbinger$multidimensional
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/01-orientation-examples_harbinger/unnamed-chunk-7-1.png)
+
+``` r
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
 
 ``` r
 model <- fit(model, dataset$x)
@@ -121,6 +180,15 @@ har_plot(model, dataset$x, detection, dataset$event)
 ``` r
 # Example: Seattle weekly temperature time series
 dataset <- examples_harbinger$seattle_week
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -134,6 +202,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Example: Seattle daily temperature time series
 dataset <- examples_harbinger$seattle_daily
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)

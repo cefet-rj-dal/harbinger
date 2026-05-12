@@ -30,6 +30,20 @@ This setup anchors the notebook in the specific series used to examine `hanct_dt
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -113,15 +127,32 @@ model <- hanct_dtw(1)
 
 ``` r
 # Fit the detector
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 ```
 
 ```
-## Found more than one class "dist" in cache; using the first, from namespace 'spam'
+## Found more than one class "dist" in cache; using the first, from namespace 'arules'
 ```
 
 ```
-## Also defined by 'arules' 'dtwclust'
+## Also defined by 'spam'
+```
+
+```
+## Found more than one class "dist" in cache; using the first, from namespace 'arules'
+```
+
+```
+## Also defined by 'spam'
 ```
 
 

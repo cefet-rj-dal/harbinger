@@ -40,6 +40,20 @@ This setup anchors the notebook in the specific series used to examine `05-motif
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # installation
 # install.packages(c("harbinger", "daltoolbox", "dtwclust"))
 
@@ -76,7 +90,7 @@ fit.hmo_dtw_cluster_custom <- function(obj, data, ...) {
     k = obj$centers,
     distance = "dtw_basic",
     centroid = "dba",
-    seed = 1L,
+    
     trace = FALSE
   )
   obj
@@ -146,6 +160,15 @@ data(examples_motifs)
 dataset <- examples_motifs$simple
 
 model <- hmo_dtw_cluster_custom(w = 15, centers = 3, min_cluster_size = 3)
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 ```
@@ -166,11 +189,11 @@ head(detection[detection$event, ])
 ```
 ##    idx event  type seq seqlen
 ## 1    1  TRUE motif   3     15
-## 6    6  TRUE motif   1     15
-## 20  20  TRUE motif   3     15
-## 32  32  TRUE motif   1     15
-## 41  41  TRUE motif   2     15
-## 47  47  TRUE motif   3     15
+## 16  16  TRUE motif   3     15
+## 19  19  TRUE motif   1     15
+## 31  31  TRUE motif   3     15
+## 42  42  TRUE motif   1     15
+## 55  55  TRUE motif   2     15
 ```
 
 

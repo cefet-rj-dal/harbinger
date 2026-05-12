@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
 

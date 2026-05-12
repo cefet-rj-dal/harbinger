@@ -9,6 +9,20 @@ The technique is residual-based anomaly detection. ARIMA tries to explain the no
 Load the packages and the example series.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 library(daltoolbox)
 library(harbinger)
 
@@ -20,6 +34,15 @@ Configure the ARIMA-based detector and fit it to the series.
 
 ``` r
 model <- hanr_arima()
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 ```
 

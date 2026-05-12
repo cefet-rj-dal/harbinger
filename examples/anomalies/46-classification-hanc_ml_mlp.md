@@ -25,6 +25,20 @@ This setup anchors the notebook in the specific series used to examine `cla_mlp`
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
@@ -107,6 +121,15 @@ train <- dataset[1:80,]
 test <- dataset[-(1:80),]
 
 norm <- minmax()
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 norm <- fit(norm, train)
 train_n <- transform(norm, train)
 summary(train_n)
@@ -135,6 +158,15 @@ model <- hanc_ml(cla_mlp("event", c("FALSE", "TRUE"), size=3, decay=0.03))
 
 ``` r
 # Fit the model on training data
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
 print(detection |> dplyr::filter(event==TRUE))

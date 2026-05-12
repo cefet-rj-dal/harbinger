@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -19,6 +20,7 @@ har_plot(harbinger(), dataset$serie)
 model <- hanr_fft()
 
 # Fit the detector (no training required, tracks parameters)
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 # Run detection to compute residual magnitudes and flags

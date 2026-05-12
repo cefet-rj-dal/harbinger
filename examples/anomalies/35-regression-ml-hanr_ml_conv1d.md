@@ -25,6 +25,20 @@ This setup anchors the notebook in the specific series used to examine `hanr_ml 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (only once, if needed)
 #install.packages("harbinger")
 ```
@@ -111,6 +125,15 @@ model <- hanr_ml(ts_conv1d(ts_norm_gminmax(), input_size = 4, epochs = 100))
 
 ``` r
 # Fit the model
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 ```
 

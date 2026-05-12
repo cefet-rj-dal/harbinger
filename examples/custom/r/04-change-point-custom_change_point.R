@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox", "segmented"))
 
@@ -37,6 +38,7 @@ data(examples_changepoints)
 dataset <- examples_changepoints$simple
 
 model <- hcp_joinpoint_custom(npsi = 1)
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 

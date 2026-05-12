@@ -1,12 +1,14 @@
 library(daltoolbox)
 library(harbinger)
 
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 
 har_plot(harbinger(), dataset$serie)
 
 model <- hcp_page_hinkley(min_instances = 30, delta = 0.005, threshold = 3, alpha = 0.999)
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 detection <- detect(model, dataset$serie)

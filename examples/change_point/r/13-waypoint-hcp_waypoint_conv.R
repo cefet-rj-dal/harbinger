@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger and DALToolboxDP (if needed)
 # install.packages("harbinger")
 # install.packages("daltoolboxdp")
@@ -34,6 +35,7 @@ model <- hcp_waypoint(
 )
 
 # Fit the detector
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 # Run detection

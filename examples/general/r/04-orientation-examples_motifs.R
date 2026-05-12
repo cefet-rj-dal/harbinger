@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -11,6 +12,7 @@ model <- harbinger()
 
 # Simple synthetic motif dataset
 dataset <- examples_motifs$simple
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -18,6 +20,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 # ECG sample: MIT-BIH record 100
 dataset <- examples_motifs$mitdb100
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -25,6 +28,7 @@ har_plot(model, dataset$serie, detection, dataset$event)
 
 # ECG sample: MIT-BIH record 102
 dataset <- examples_motifs$mitdb102
+set_example_seed()
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)

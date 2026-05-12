@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -19,6 +20,7 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 model <- trans_sax(alpha = 8)
 
 # Fit and transform the numeric series into symbols
+set_example_seed()
 model <- fit(model, dataset$serie)
 sax_series <- transform(model, dataset$serie)
 

@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Load required packages
 library(daltoolbox)
 library(harbinger) 
@@ -17,6 +18,7 @@ har_plot(harbinger(), dataset$serie)
   model <- han_autoencoder(3, 2, autoenc_stacked_ed, epochs = 100)
 
 # Fit the model
+set_example_seed()
   model <- fit(model, dataset$serie)
 
 # Detect anomalies (reconstruction error -> events)

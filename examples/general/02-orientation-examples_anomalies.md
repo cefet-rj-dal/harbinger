@@ -25,6 +25,20 @@ This setup anchors the notebook in the specific series used to examine `harbinge
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -61,6 +75,15 @@ model <- harbinger()
 ``` r
 # Simple anomalies: isolated spikes
 dataset <- examples_anomalies$simple
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -74,6 +97,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Contextual anomalies: depend on local context
 dataset <- examples_anomalies$contextual
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -87,6 +119,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Trend with anomalies
 dataset <- examples_anomalies$trend
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -100,6 +141,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Multiple anomalies
 dataset <- examples_anomalies$multiple
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -113,6 +163,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Anomalous repeating sequences
 dataset <- examples_anomalies$sequence
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -126,6 +185,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Train/Test split
 dataset <- examples_anomalies$tt
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -139,6 +207,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Train/Test warped
 dataset <- examples_anomalies$tt_warped
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -152,6 +229,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Increasing amplitude over time
 dataset <- examples_anomalies$increasing_amplitude
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -165,6 +251,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Decreasing amplitude over time
 dataset <- examples_anomalies$decreasing_amplitude
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)
@@ -178,6 +273,15 @@ har_plot(model, dataset$serie, detection, dataset$event)
 ``` r
 # Volatile variance
 dataset <- examples_anomalies$volatile
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
 har_plot(model, dataset$serie, detection, dataset$event)

@@ -1,6 +1,7 @@
 library(daltoolbox)
 library(harbinger)
 
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 data(examples_changepoints)
 dataset <- examples_changepoints$complex
 
@@ -13,6 +14,7 @@ model <- hcp_joinpoint(
   log_transform = FALSE
 )
 
+set_example_seed()
 model <- fit(model, dataset$serie)
 model$model$comparison
 

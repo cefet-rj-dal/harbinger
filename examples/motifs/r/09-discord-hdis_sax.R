@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -19,6 +20,7 @@ har_plot(harbinger(), dataset$serie)
 model <- hdis_sax(26, 25)
 
 # Fit the detector (learns binning thresholds)
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 # Run discord discovery

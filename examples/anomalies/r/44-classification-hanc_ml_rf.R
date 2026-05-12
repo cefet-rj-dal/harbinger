@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -21,6 +22,7 @@ train <- dataset[1:80,]
 test <- dataset[-(1:80),]
 
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, train)
 train_n <- transform(norm, train)
 summary(train_n)
@@ -29,6 +31,7 @@ summary(train_n)
 model <- hanc_ml(cla_rf("event", c("FALSE", "TRUE"), mtry = 1, ntree = 5))
 
 # Fit on training data and evaluate on train
+set_example_seed()
 model <- fit(model, train_n)
 detection <- detect(model, train_n)
 print(detection |> dplyr::filter(event == TRUE))

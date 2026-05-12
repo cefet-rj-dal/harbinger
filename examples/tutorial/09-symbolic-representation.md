@@ -9,6 +9,20 @@ The technique is symbolic discretization. Instead of preserving every numeric fl
 Load the packages and a motif-oriented example series.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 library(daltoolbox)
 library(harbinger)
 
@@ -28,6 +42,15 @@ Start with SAX, which uses a compact alphabet.
 
 ``` r
 sax_model <- trans_sax(alpha = 8)
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 sax_model <- fit(sax_model, dataset$serie)
 sax_series <- transform(sax_model, dataset$serie)
 head(sax_series, 20)
@@ -41,6 +64,15 @@ Then apply XSAX, which allows a richer alphabet.
 
 ``` r
 xsax_model <- trans_xsax(alpha = 16)
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 xsax_model <- fit(xsax_model, dataset$serie)
 xsax_series <- transform(xsax_model, dataset$serie)
 head(xsax_series, 20)

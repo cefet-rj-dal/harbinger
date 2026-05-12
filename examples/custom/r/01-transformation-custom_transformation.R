@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # installation
 # install.packages(c("harbinger", "daltoolbox"))
 
@@ -32,6 +33,7 @@ serie_filtered <- transform(filter_custom, dataset$serie)
 har_plot(harbinger(), serie_filtered, event = dataset$event)
 
 model <- hanr_arima()
+set_example_seed()
 model <- fit(model, as.numeric(serie_filtered))
 detection <- detect(model, as.numeric(serie_filtered))
 

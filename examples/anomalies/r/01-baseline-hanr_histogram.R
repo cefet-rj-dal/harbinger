@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 
@@ -20,6 +21,7 @@ har_plot(harbinger(), dataset$serie, event = dataset$event)
 model <- hanr_histogram(density_threshold = 0.05)
 
 # Fit is a no-op here, but keeping the same workflow is useful for comparison
+set_example_seed()
 model <- fit(model, dataset$serie)
 
 # Run detection

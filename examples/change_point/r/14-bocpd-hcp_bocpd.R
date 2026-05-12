@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
 # Install Harbinger and ocp (if needed)
 # install.packages("harbinger")
 # install.packages("ocp")
@@ -25,6 +26,7 @@ model <- hcp_bocpd(
 
 if (requireNamespace("ocp", quietly = TRUE)) {
   # Fit the detector
+set_example_seed()
   model <- fit(model, dataset$serie)
 
   # Run detection

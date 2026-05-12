@@ -30,6 +30,20 @@ This setup anchors the notebook in the specific series used to examine `hanr_rem
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R"))
+```
+
+```
+## Warning in readLines(file, warn = FALSE): cannot open URL
+## 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R': HTTP status was '404 Not Found'
+```
+
+```
+## Error in `readLines()`:
+## ! cannot open the connection to 'https://raw.githubusercontent.com/cefet-rj-dal/harbinger/main/examples/seed.R'
+```
+
+``` r
 # Install Harbinger (if needed)
 #install.packages("harbinger")
 ```
@@ -113,6 +127,15 @@ model <- hanr_remd()
 
 ``` r
 # Fit the detector
+set_example_seed()
+```
+
+```
+## Error in `set_example_seed()`:
+## ! could not find function "set_example_seed"
+```
+
+``` r
 model <- fit(model, dataset$serie)
 ```
 
@@ -142,8 +165,8 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event    type
-## 1  50  TRUE anomaly
-## 2  54  TRUE anomaly
+## 1  47  TRUE anomaly
+## 2  50  TRUE anomaly
 ```
 
 
