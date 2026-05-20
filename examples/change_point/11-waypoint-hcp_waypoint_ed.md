@@ -144,10 +144,6 @@ confirm the change.
 detection <- detect(model, dataset$serie)
 ```
 
-```
-## Warning in obj$res[obj$non_na] <- res: number of items to replace is not a multiple of replacement length
-```
-
 
 ``` r
 # Show detected change points
@@ -205,11 +201,11 @@ har_plot(model, attr(detection, "res"), detection, dataset$event, yline = attr(d
 ```
 
 ```
-## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_point()`).
+## Warning: Removed 60 rows containing missing values or values outside the scale range (`geom_point()`).
 ```
 
 ```
-## Warning: Removed 71 rows containing missing values or values outside the scale range (`geom_line()`).
+## Warning: Removed 60 rows containing missing values or values outside the scale range (`geom_line()`).
 ```
 
 ```
