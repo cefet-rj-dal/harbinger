@@ -147,8 +147,7 @@ detect.hcp_waypoint <- function(obj, serie, ...) {
 
   start_t <- max(initial_end, obj$input_size) + 1
   if (start_t > n) {
-    res <- c(rep(NA_real_, obj$input_size - 1), results_mse[seq_len(n)])
-    detection <- obj$har_restore_refs(obj, change_points = results_drift, res = res)
+    detection <- obj$har_restore_refs(obj, change_points = results_drift, res = results_mse)
     attr(detection, "tau") <- tau
     return(detection)
   }
@@ -206,12 +205,11 @@ detect.hcp_waypoint <- function(obj, serie, ...) {
     }
   }
 
-  res <- c(rep(NA_real_, obj$input_size - 1), results_mse[seq_len(n)])
   cp <- results_drift
   attr(cp, "threshold") <- tau
   attr(cp, "drift_indices") <- drift_indices
 
-  detection <- obj$har_restore_refs(obj, change_points = cp, res = res)
+  detection <- obj$har_restore_refs(obj, change_points = cp, res = results_mse)
   attr(detection, "tau") <- tau
   attr(detection, "drift_indices") <- drift_indices
   return(detection)
