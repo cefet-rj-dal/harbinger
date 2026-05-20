@@ -141,7 +141,6 @@ dataset <- examples_changepoints$simple
 model <- hcp_waypoint(input_size = 12, encode_size = 4)
 model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie)
-#> Warning: number of items to replace is not a multiple of replacement length
 print(detection[detection$event, ])
 #> [1] idx   event type 
 #> <0 rows> (or 0-length row.names)
