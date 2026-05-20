@@ -12,6 +12,9 @@ LSTM regression anomaly detection: Model-deviation detection using ML regression
 - follow the workflow from data loading to model fitting and detection
 - inspect the evaluation outputs and the diagnostic plots produced by Harbinger
 
+Contract note
+- `hanr_ml()` now coerces the wrapped regressor output with `as.vector()` before computing residuals, so `tspredit` models remain compatible even when `predict()` carries extra attributes.
+
 
 
 

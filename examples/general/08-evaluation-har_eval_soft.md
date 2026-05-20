@@ -12,6 +12,9 @@ SoftED provides soft evaluation by matching detections to ground truth within to
 - follow the workflow from data loading to model fitting and detection
 - inspect the evaluation outputs and the diagnostic plots produced by Harbinger
 
+Contract note
+- In this workflow, `hanr_ml()` already forces the wrapped `predict()` result to a plain vector before residual scoring.
+
 
 
 
