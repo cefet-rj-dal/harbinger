@@ -21,6 +21,11 @@ and flags large prediction errors as anomalies. Uses DALToolbox regressors.
 A set of preconfigured regression methods are described at
 \url{https://cefet-rj-dal.github.io/daltoolbox/} (e.g., \code{ts_elm}, \code{ts_conv1d},
 \code{ts_lstm}, \code{ts_mlp}, \code{ts_rf}, \code{ts_svm}).
+
+When the wrapped regressor comes from \code{tspredit}, its \code{predict()} method may
+carry auxiliary attributes in addition to the numeric forecast path. This
+wrapper always materializes that result as a plain vector before computing
+residuals.
 }
 \examples{
 library(daltoolbox)

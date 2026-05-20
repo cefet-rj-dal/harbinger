@@ -3,6 +3,9 @@
 #'The detector decomposes the series, selects components according to curvature,
 #'and flags large residual deviations as anomalies.
 #'Wraps the EMD-based model presented in the `forecast` package.
+#'The internal ARIMA adjustment is fitted on `ts_data(..., sw = 1)`, which is
+#'the aligned single-series representation expected by raw-series forecasters in
+#'`tspredit`.
 #'@param noise Noise amplitude for the decomposition.
 #'@param trials Number of trials used by the decomposition step.
 #'@return `hanr_remd` object
@@ -57,7 +60,6 @@ fc_roughness <- function(x) {
 }
 
 #'@importFrom tspredit ts_data
-#'@importFrom tspredit ts_projection
 #'@importFrom tspredit ts_arima
 #'@importFrom daltoolbox transform
 #'@importFrom daltoolbox fit_curvature_min
@@ -98,12 +100,14 @@ detect.hanr_remd <- function(obj, serie, ...) {
     }
   }
 
-  ts <- tspredit::ts_data(sum_high_freq, 0)
-  io <- tspredit::ts_projection(ts)
+  # ARIMA in tspredit consumes aligned raw-series data, so use the single-
+  # column ts_data contract instead of building a supervised projection.
+  ts <- tspredit::ts_data(sum_high_freq, 1)
   model <- tspredit::ts_arima()
-  model <- fit(model, x = io$input, y = io$output)
-  adjust <- predict(model, io$input)
-  adjust <- as.vector(adjust)
+  model <- fit(model, x = ts)
+  # Keep only the numeric fitted path in case future regressors attach
+  # forecasting metadata to the return object.
+  adjust <- as.vector(predict(model, x = ts))
 
   # Calculation of inverse probability
   res <- obj$har_distance(adjust - sum_high_freq)

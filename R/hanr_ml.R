@@ -7,6 +7,11 @@
 #' <https://cefet-rj-dal.github.io/daltoolbox/> (e.g., `ts_elm`, `ts_conv1d`,
 #' `ts_lstm`, `ts_mlp`, `ts_rf`, `ts_svm`).
 #'
+#' When the wrapped regressor comes from `tspredit`, its `predict()` method may
+#' carry auxiliary attributes in addition to the numeric forecast path. This
+#' wrapper always materializes that result as a plain vector before computing
+#' residuals.
+#'
 #' @param model A DALToolbox regression model.
 #' @param sw_size Integer. Sliding window size.
 #' @return `hanr_ml` object.
@@ -57,7 +62,8 @@ fit.hanr_ml <- function(obj, serie, ...) {
   ts <- tspredit::ts_data(serie, obj$sw_size)
   io <- tspredit::ts_projection(ts)
 
-  # Fit the underlying regressor on supervised (X, y)
+  # Fit the underlying regressor on supervised (X, y). tspredit backends
+  # already coerce y to a plain vector when they need that representation.
   obj$model <- fit(obj$model, x=io$input, y=io$output)
 
   return(obj)
@@ -77,7 +83,9 @@ detect.hanr_ml <- function(obj, serie, ...) {
   io <- tspredit::ts_projection(ts)
 
   # One-step-ahead prediction and residuals
-  adjust <- stats::predict(obj$model, io$input)
+  # tspredit predictors may attach auxiliary forecast metadata; keep only the
+  # numeric path expected by the residual computation.
+  adjust <- as.vector(stats::predict(obj$model, io$input))
   values <- io$output
 
   res <- io$output-adjust

@@ -7,6 +7,9 @@ In this tutorial we:
 - Configure and run the REMD detector (`hanr_remd`)
 - Inspect detections, evaluate, and plot residual magnitudes
 
+Contract note
+- Internally, `hanr_remd()` now fits the ARIMA adjustment on `ts_data(..., 1)`, the aligned single-series format expected by raw-series models in `tspredit`.
+
 ## Method at a glance
 
 REMD regression anomaly detection: REMD combines Empirical Mode Decomposition with ARIMA modeling: IMFs capture nonstationary structure and ARIMA models residual dynamics. Large residual magnitudes signal anomalies and are thresholded via `harutils()`.
