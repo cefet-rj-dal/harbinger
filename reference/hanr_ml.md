@@ -8,6 +8,12 @@ A set of preconfigured regression methods are described at
 <https://cefet-rj-dal.github.io/daltoolbox/> (e.g., `ts_elm`,
 `ts_conv1d`, `ts_lstm`, `ts_mlp`, `ts_rf`, `ts_svm`).
 
+When the wrapped regressor comes from `tspredit`, its
+[`predict()`](https://rdrr.io/r/stats/predict.html) method may carry
+auxiliary attributes in addition to the numeric forecast path. This
+wrapper always materializes that result as a plain vector before
+computing residuals.
+
 ## Usage
 
 ``` r

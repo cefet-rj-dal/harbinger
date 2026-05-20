@@ -3,7 +3,9 @@
 Anomaly detection using REMD with EMD-based decomposition. The detector
 decomposes the series, selects components according to curvature, and
 flags large residual deviations as anomalies. Wraps the EMD-based model
-presented in the `forecast` package.
+presented in the `forecast` package. The internal ARIMA adjustment is
+fitted on `ts_data(..., sw = 1)`, which is the aligned single-series
+representation expected by raw-series forecasters in `tspredit`.
 
 ## Usage
 
