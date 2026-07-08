@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.757</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.707</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,27 @@
 
         <dt>
 
+          <code><a href="collect_batch_log.html">collect_batch_log()</a></code>
+
+        </dt>
+        <dd>Collect batch execution log</dd>
+
+        <dt>
+
+          <code><a href="collect_detection.html">collect_detection()</a></code>
+
+        </dt>
+        <dd>Collect final detection output</dd>
+
+        <dt>
+
+          <code><a href="collect_trace.html">collect_trace()</a></code>
+
+        </dt>
+        <dd>Collect the online trace</dd>
+
+        <dt>
+
           <code><a href="detect.html">detect()</a></code>
 
         </dt>
@@ -81,6 +102,13 @@
 
         </dt>
         <dd>Detect events using Harbinger Fuzzy Ensemble</dd>
+
+        <dt>
+
+          <code><a href="evaluate.har_stream_eval.html">evaluate(<i>&lt;har_stream_eval&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Evaluate a streaming trace</dd>
 
         <dt>
 
@@ -109,6 +137,13 @@
 
         </dt>
         <dd>Time series for motif/discord discovery</dd>
+
+        <dt>
+
+          <code><a href="fit.har_online_session.html">fit(<i>&lt;har_online_session&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Fit an online session</dd>
 
         <dt>
 
@@ -294,10 +329,122 @@
 
         <dt>
 
+          <code><a href="har_memory_full.html">har_memory_full()</a></code>
+
+        </dt>
+        <dd>Full memory policy</dd>
+
+        <dt>
+
+          <code><a href="har_memory_last_observations.html">har_memory_last_observations()</a></code>
+
+        </dt>
+        <dd>Last-observation memory policy</dd>
+
+        <dt>
+
+          <code><a href="har_memory_sliding.html">har_memory_sliding()</a></code>
+
+        </dt>
+        <dd>Sliding batch memory policy</dd>
+
+        <dt>
+
+          <code><a href="har_online_detect_only.html">har_online_detect_only()</a></code>
+
+        </dt>
+        <dd>Detect-only execution strategy</dd>
+
+        <dt>
+
+          <code><a href="har_online_executor.html">har_online_executor</a></code>
+
+        </dt>
+        <dd>Online execution strategies</dd>
+
+        <dt>
+
+          <code><a href="har_online_incremental.html">har_online_incremental()</a></code>
+
+        </dt>
+        <dd>Incremental execution strategy</dd>
+
+        <dt>
+
+          <code><a href="har_online_memory.html">har_online_memory</a></code>
+
+        </dt>
+        <dd>Online memory policies</dd>
+
+        <dt>
+
+          <code><a href="har_online_refit_full.html">har_online_refit_full()</a></code>
+
+        </dt>
+        <dd>Full refit execution strategy</dd>
+
+        <dt>
+
+          <code><a href="har_online_session.html">har_online_session()</a></code>
+
+        </dt>
+        <dd>Harbinger online session</dd>
+
+        <dt>
+
+          <code><a href="har_online_sources.html">har_online_sources</a></code>
+
+        </dt>
+        <dd>Streaming data sources for Harbinger</dd>
+
+        <dt>
+
           <code><a href="har_plot.html">har_plot()</a></code>
 
         </dt>
         <dd>Plot event detection on a time series</dd>
+
+        <dt>
+
+          <code><a href="har_source_callback.html">har_source_callback()</a></code>
+
+        </dt>
+        <dd>Callback source</dd>
+
+        <dt>
+
+          <code><a href="har_source_dataframe.html">har_source_dataframe()</a></code>
+
+        </dt>
+        <dd>Data-frame source</dd>
+
+        <dt>
+
+          <code><a href="har_source_kafka.html">har_source_kafka()</a></code>
+
+        </dt>
+        <dd>Kafka source stub</dd>
+
+        <dt>
+
+          <code><a href="har_source_simulated.html">har_source_simulated()</a></code>
+
+        </dt>
+        <dd>Simulated source</dd>
+
+        <dt>
+
+          <code><a href="har_stream_eval.html">har_stream_eval()</a></code>
+
+        </dt>
+        <dd>Streaming evaluation for online detection</dd>
+
+        <dt>
+
+          <code><a href="har_stream_experiment.html">har_stream_experiment()</a></code>
+
+        </dt>
+        <dd>Streaming experiment runner</dd>
 
         <dt>
 
@@ -462,6 +609,20 @@
 
         <dt>
 
+          <code><a href="ingest.html">ingest()</a></code>
+
+        </dt>
+        <dd>Add observations to an online session</dd>
+
+        <dt>
+
+          <code><a href="is_finished.html">is_finished()</a></code>
+
+        </dt>
+        <dd>Test whether an online session has finished</dd>
+
+        <dt>
+
           <code><a href="loadfulldata.html">loadfulldata()</a></code>
 
         </dt>
@@ -546,6 +707,13 @@
 
         <dt>
 
+          <code><a href="next_observation.html">next_observation()</a></code>
+
+        </dt>
+        <dd>Get the next observation from a source</dd>
+
+        <dt>
+
           <code><a href="oil_3w_Type_1.html">oil_3w_Type_1</a></code>
 
         </dt>
@@ -592,6 +760,27 @@
 
         </dt>
         <dd>Oil Wells Dataset – Type 8</dd>
+
+        <dt>
+
+          <code><a href="run_online.html">run_online()</a></code>
+
+        </dt>
+        <dd>Run an online session</dd>
+
+        <dt>
+
+          <code><a href="source_info.html">source_info()</a></code>
+
+        </dt>
+        <dd>Retrieve source metadata</dd>
+
+        <dt>
+
+          <code><a href="step_online.html">step_online()</a></code>
+
+        </dt>
+        <dd>Step an online session once</dd>
 
         <dt>
 

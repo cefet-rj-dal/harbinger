@@ -10,10 +10,18 @@
   : Yahoo Webscope S5 – A3 Benchmark (Synthetic with Outliers)
 - [`A4Benchmark`](https://cefet-rj-dal.github.io/harbinger/reference/A4Benchmark.md)
   : Yahoo Webscope S5 – A4 Benchmark (Synthetic with Anomalies and CPs)
+- [`collect_batch_log()`](https://cefet-rj-dal.github.io/harbinger/reference/collect_batch_log.md)
+  : Collect batch execution log
+- [`collect_detection()`](https://cefet-rj-dal.github.io/harbinger/reference/collect_detection.md)
+  : Collect final detection output
+- [`collect_trace()`](https://cefet-rj-dal.github.io/harbinger/reference/collect_trace.md)
+  : Collect the online trace
 - [`detect()`](https://cefet-rj-dal.github.io/harbinger/reference/detect.md)
   : Detect events in time series
 - [`detect(`*`<har_ensemble_fuzzy>`*`)`](https://cefet-rj-dal.github.io/harbinger/reference/detect.har_ensemble_fuzzy.md)
   : Detect events using Harbinger Fuzzy Ensemble
+- [`evaluate(`*`<har_stream_eval>`*`)`](https://cefet-rj-dal.github.io/harbinger/reference/evaluate.har_stream_eval.md)
+  : Evaluate a streaming trace
 - [`examples_anomalies`](https://cefet-rj-dal.github.io/harbinger/reference/examples_anomalies.md)
   : Time series for anomaly detection
 - [`examples_changepoints`](https://cefet-rj-dal.github.io/harbinger/reference/examples_changepoints.md)
@@ -22,6 +30,8 @@
   : Time series for event detection
 - [`examples_motifs`](https://cefet-rj-dal.github.io/harbinger/reference/examples_motifs.md)
   : Time series for motif/discord discovery
+- [`fit(`*`<har_online_session>`*`)`](https://cefet-rj-dal.github.io/harbinger/reference/fit.har_online_session.md)
+  : Fit an online session
 - [`gecco`](https://cefet-rj-dal.github.io/harbinger/reference/gecco.md)
   : GECCO Challenge 2018 – Water Quality Time Series
 - [`han_autoencoder()`](https://cefet-rj-dal.github.io/harbinger/reference/han_autoencoder.md)
@@ -74,8 +84,40 @@
   : Evaluation of event detection
 - [`har_eval_soft()`](https://cefet-rj-dal.github.io/harbinger/reference/har_eval_soft.md)
   : Evaluation of event detection (SoftED)
+- [`har_memory_full()`](https://cefet-rj-dal.github.io/harbinger/reference/har_memory_full.md)
+  : Full memory policy
+- [`har_memory_last_observations()`](https://cefet-rj-dal.github.io/harbinger/reference/har_memory_last_observations.md)
+  : Last-observation memory policy
+- [`har_memory_sliding()`](https://cefet-rj-dal.github.io/harbinger/reference/har_memory_sliding.md)
+  : Sliding batch memory policy
+- [`har_online_detect_only()`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_detect_only.md)
+  : Detect-only execution strategy
+- [`har_online_executor`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_executor.md)
+  : Online execution strategies
+- [`har_online_incremental()`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_incremental.md)
+  : Incremental execution strategy
+- [`har_online_memory`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_memory.md)
+  : Online memory policies
+- [`har_online_refit_full()`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_refit_full.md)
+  : Full refit execution strategy
+- [`har_online_session()`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_session.md)
+  : Harbinger online session
+- [`har_online_sources`](https://cefet-rj-dal.github.io/harbinger/reference/har_online_sources.md)
+  : Streaming data sources for Harbinger
 - [`har_plot()`](https://cefet-rj-dal.github.io/harbinger/reference/har_plot.md)
   : Plot event detection on a time series
+- [`har_source_callback()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_callback.md)
+  : Callback source
+- [`har_source_dataframe()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_dataframe.md)
+  : Data-frame source
+- [`har_source_kafka()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_kafka.md)
+  : Kafka source stub
+- [`har_source_simulated()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_simulated.md)
+  : Simulated source
+- [`har_stream_eval()`](https://cefet-rj-dal.github.io/harbinger/reference/har_stream_eval.md)
+  : Streaming evaluation for online detection
+- [`har_stream_experiment()`](https://cefet-rj-dal.github.io/harbinger/reference/har_stream_experiment.md)
+  : Streaming experiment runner
 - [`harbinger()`](https://cefet-rj-dal.github.io/harbinger/reference/harbinger.md)
   : Harbinger
 - [`harutils()`](https://cefet-rj-dal.github.io/harbinger/reference/harutils.md)
@@ -122,6 +164,10 @@
   : Motif discovery using XSAX
 - [`hmu_pca()`](https://cefet-rj-dal.github.io/harbinger/reference/hmu_pca.md)
   : Multivariate anomaly detector using PCA
+- [`ingest()`](https://cefet-rj-dal.github.io/harbinger/reference/ingest.md)
+  : Add observations to an online session
+- [`is_finished()`](https://cefet-rj-dal.github.io/harbinger/reference/is_finished.md)
+  : Test whether an online session has finished
 - [`loadfulldata()`](https://cefet-rj-dal.github.io/harbinger/reference/loadfulldata.md)
   : Load full dataset from mini data object
 - [`mas()`](https://cefet-rj-dal.github.io/harbinger/reference/mas.md) :
@@ -146,6 +192,8 @@
   : Numenta Anomaly Benchmark (NAB) realTraffic
 - [`nab_realTweets`](https://cefet-rj-dal.github.io/harbinger/reference/nab_realTweets.md)
   : Numenta Anomaly Benchmark (NAB) realTweets
+- [`next_observation()`](https://cefet-rj-dal.github.io/harbinger/reference/next_observation.md)
+  : Get the next observation from a source
 - [`oil_3w_Type_1`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_1.md)
   : Oil Wells Dataset – Type 1
 - [`oil_3w_Type_2`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_2.md)
@@ -160,6 +208,12 @@
   : Oil Wells Dataset – Type 7
 - [`oil_3w_Type_8`](https://cefet-rj-dal.github.io/harbinger/reference/oil_3w_Type_8.md)
   : Oil Wells Dataset – Type 8
+- [`run_online()`](https://cefet-rj-dal.github.io/harbinger/reference/run_online.md)
+  : Run an online session
+- [`source_info()`](https://cefet-rj-dal.github.io/harbinger/reference/source_info.md)
+  : Retrieve source metadata
+- [`step_online()`](https://cefet-rj-dal.github.io/harbinger/reference/step_online.md)
+  : Step an online session once
 - [`trans_sax()`](https://cefet-rj-dal.github.io/harbinger/reference/trans_sax.md)
   : SAX transformation
 - [`trans_xsax()`](https://cefet-rj-dal.github.io/harbinger/reference/trans_xsax.md)

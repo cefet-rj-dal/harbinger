@@ -68,6 +68,10 @@ are grouped by subject in a more didactic order.
   examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/) -
   repeated-pattern and discord analysis grouped into Matrix Profile,
   symbolic, and discord-oriented studies.
+- [Online
+  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/online/) -
+  online execution with sources, sessions, memory policies, batch
+  traces, experiment grids, and the Kafka stub integration boundary.
 - [Custom
   examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/) -
   extension-oriented notebooks showing how to plug new transformations,
