@@ -131,8 +131,7 @@ print(next_observation(df_source))
 ## [1] "value" "other"
 ## 
 ## attr(,"class")
-## [1] "har_source_dataframe" "har_source_simulated" "har_source"          
-## [4] "dal_base"            
+## [1] "har_source_dataframe" "har_source_simulated" "har_source"           "dal_base"            
 ## 
 ## $observation
 ## $observation$idx
@@ -197,7 +196,7 @@ print(next_observation(cb_source))
 ##     cursor <<- cursor + 1
 ##     callback_values[[cursor]]
 ## }
-## <environment: 0x0000013406640af8>
+## <environment: 0x615ba4c74d90>
 ## 
 ## $cursor
 ## [1] 1
@@ -238,7 +237,7 @@ print(next_observation(cb_source))
 ##     cursor <<- cursor + 1
 ##     callback_values[[cursor]]
 ## }
-## <environment: 0x0000013406640af8>
+## <environment: 0x615ba4c74d90>
 ## 
 ## $cursor
 ## [1] 1
@@ -279,7 +278,7 @@ print(next_observation(cb_source))
 ##     cursor <<- cursor + 1
 ##     callback_values[[cursor]]
 ## }
-## <environment: 0x0000013406640af8>
+## <environment: 0x615ba4c74d90>
 ## 
 ## $cursor
 ## [1] 0

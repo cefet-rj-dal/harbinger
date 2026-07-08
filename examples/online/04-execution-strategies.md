@@ -34,30 +34,18 @@ print(collect_detection(session_refit))
 ```
 
 ```
-##    idx event        type detection_probability detection_lag_batches
-## 1    1 FALSE                                 0                    NA
-## 2    2 FALSE                                 0                    NA
-## 3    3 FALSE                                 0                    NA
-## 4    4 FALSE                                 0                    NA
-## 5    5  TRUE changepoint                     1                     0
-## 6    6 FALSE                                 0                    NA
-## 7    7 FALSE                                 0                    NA
-## 8    8  TRUE changepoint                     1                     0
-## 9    9 FALSE                                 0                    NA
-## 10  10 FALSE                                 0                    NA
-## 11  11  TRUE changepoint                     1                     0
-##    detection_lag_observations
-## 1                          NA
-## 2                          NA
-## 3                          NA
-## 4                          NA
-## 5                           2
-## 6                          NA
-## 7                          NA
-## 8                           2
-## 9                          NA
-## 10                         NA
-## 11                          2
+##    idx event        type detection_probability detection_lag_batches detection_lag_observations
+## 1    1 FALSE                                 0                    NA                         NA
+## 2    2 FALSE                                 0                    NA                         NA
+## 3    3 FALSE                                 0                    NA                         NA
+## 4    4 FALSE                                 0                    NA                         NA
+## 5    5  TRUE changepoint                     1                     0                          2
+## 6    6 FALSE                                 0                    NA                         NA
+## 7    7 FALSE                                 0                    NA                         NA
+## 8    8  TRUE changepoint                     1                     0                          2
+## 9    9 FALSE                                 0                    NA                         NA
+## 10  10 FALSE                                 0                    NA                         NA
+## 11  11  TRUE changepoint                     1                     0                          2
 ```
 
 ## Detect-only Strategy
@@ -77,30 +65,18 @@ print(collect_detection(session_detect_only))
 ```
 
 ```
-##    idx event        type detection_probability detection_lag_batches
-## 1    1 FALSE                                 0                    NA
-## 2    2 FALSE                                 0                    NA
-## 3    3 FALSE                                 0                    NA
-## 4    4 FALSE                                 0                    NA
-## 5    5  TRUE changepoint                     1                     0
-## 6    6 FALSE                                 0                    NA
-## 7    7 FALSE                                 0                    NA
-## 8    8  TRUE changepoint                     1                     0
-## 9    9 FALSE                                 0                    NA
-## 10  10 FALSE                                 0                    NA
-## 11  11  TRUE changepoint                     1                     0
-##    detection_lag_observations
-## 1                          NA
-## 2                          NA
-## 3                          NA
-## 4                          NA
-## 5                           2
-## 6                          NA
-## 7                          NA
-## 8                           2
-## 9                          NA
-## 10                         NA
-## 11                          2
+##    idx event        type detection_probability detection_lag_batches detection_lag_observations
+## 1    1 FALSE                                 0                    NA                         NA
+## 2    2 FALSE                                 0                    NA                         NA
+## 3    3 FALSE                                 0                    NA                         NA
+## 4    4 FALSE                                 0                    NA                         NA
+## 5    5  TRUE changepoint                     1                     0                          2
+## 6    6 FALSE                                 0                    NA                         NA
+## 7    7 FALSE                                 0                    NA                         NA
+## 8    8  TRUE changepoint                     1                     0                          2
+## 9    9 FALSE                                 0                    NA                         NA
+## 10  10 FALSE                                 0                    NA                         NA
+## 11  11  TRUE changepoint                     1                     0                          2
 ```
 
 ## Incremental Strategy
@@ -120,29 +96,17 @@ print(collect_detection(session_incremental))
 ```
 
 ```
-##    idx event        type detection_probability detection_lag_batches
-## 1    1 FALSE                                 0                    NA
-## 2    2 FALSE                                 0                    NA
-## 3    3 FALSE                                 0                    NA
-## 4    4 FALSE                                 0                    NA
-## 5    5  TRUE changepoint                     1                     0
-## 6    6 FALSE                                 0                    NA
-## 7    7 FALSE                                 0                    NA
-## 8    8  TRUE changepoint                     1                     0
-## 9    9 FALSE                                 0                    NA
-## 10  10 FALSE                                 0                    NA
-## 11  11  TRUE changepoint                     1                     0
-##    detection_lag_observations
-## 1                          NA
-## 2                          NA
-## 3                          NA
-## 4                          NA
-## 5                           2
-## 6                          NA
-## 7                          NA
-## 8                           2
-## 9                          NA
-## 10                         NA
-## 11                          2
+##    idx event        type detection_probability detection_lag_batches detection_lag_observations
+## 1    1 FALSE                                 0                    NA                         NA
+## 2    2 FALSE                                 0                    NA                         NA
+## 3    3 FALSE                                 0                    NA                         NA
+## 4    4 FALSE                                 0                    NA                         NA
+## 5    5  TRUE changepoint                     1                     0                          2
+## 6    6 FALSE                                 0                    NA                         NA
+## 7    7 FALSE                                 0                    NA                         NA
+## 8    8  TRUE changepoint                     1                     0                          2
+## 9    9 FALSE                                 0                    NA                         NA
+## 10  10 FALSE                                 0                    NA                         NA
+## 11  11  TRUE changepoint                     1                     0                          2
 ```
 

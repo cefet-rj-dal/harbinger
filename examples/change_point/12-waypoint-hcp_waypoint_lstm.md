@@ -148,7 +148,7 @@ print(detection |> dplyr::filter(event == TRUE))
 
 ```
 ##   idx event        type
-## 1 114  TRUE changepoint
+## 1 113  TRUE changepoint
 ## 2 201  TRUE changepoint
 ## 3 303  TRUE changepoint
 ## 4 356  TRUE changepoint

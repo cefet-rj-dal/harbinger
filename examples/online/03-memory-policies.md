@@ -35,10 +35,10 @@ print(collect_batch_log(session_full))
 
 ```
 ##   batch_id memory_size fit_time_sec detect_time_sec total_time_sec
-## 1        1           5            0               0              0
-## 2        2           7            0               0              0
-## 3        3           9            0               0              0
-## 4        4          11            0               0              0
+## 1        1           5            0           0.001          0.001
+## 2        2           7            0           0.001          0.001
+## 3        3           9            0           0.000          0.000
+## 4        4          11            0           0.001          0.001
 ```
 
 ## Sliding Batch Memory
@@ -59,10 +59,10 @@ print(collect_batch_log(session_sliding))
 
 ```
 ##   batch_id memory_size fit_time_sec detect_time_sec total_time_sec
-## 1        1           5            0            0.00           0.00
-## 2        2           7            0            0.01           0.01
-## 3        3           9            0            0.02           0.02
-## 4        4           6            0            0.00           0.00
+## 1        1           5            0           0.000          0.000
+## 2        2           7            0           0.001          0.001
+## 3        3           9            0           0.000          0.000
+## 4        4           6            0           0.000          0.000
 ```
 
 ## Last-observation Memory
@@ -83,9 +83,9 @@ print(collect_batch_log(session_last))
 
 ```
 ##   batch_id memory_size fit_time_sec detect_time_sec total_time_sec
-## 1        1           5            0               0              0
-## 2        2           7            0               0              0
-## 3        3           7            0               0              0
-## 4        4           7            0               0              0
+## 1        1           5            0           0.001          0.001
+## 2        2           7            0           0.000          0.000
+## 3        3           7            0           0.000          0.000
+## 4        4           7            0           0.001          0.001
 ```
 

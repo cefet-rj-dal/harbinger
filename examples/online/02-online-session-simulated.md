@@ -62,30 +62,18 @@ print(detection)
 ```
 
 ```
-##    idx event        type detection_probability detection_lag_batches
-## 1    1 FALSE                                 0                    NA
-## 2    2 FALSE                                 0                    NA
-## 3    3 FALSE                                 0                    NA
-## 4    4 FALSE                                 0                    NA
-## 5    5  TRUE changepoint                     1                     0
-## 6    6 FALSE                                 0                    NA
-## 7    7 FALSE                                 0                    NA
-## 8    8  TRUE changepoint                     1                     0
-## 9    9 FALSE                                 0                    NA
-## 10  10 FALSE                                 0                    NA
-## 11  11  TRUE changepoint                     1                     0
-##    detection_lag_observations
-## 1                          NA
-## 2                          NA
-## 3                          NA
-## 4                          NA
-## 5                           2
-## 6                          NA
-## 7                          NA
-## 8                           2
-## 9                          NA
-## 10                         NA
-## 11                          2
+##    idx event        type detection_probability detection_lag_batches detection_lag_observations
+## 1    1 FALSE                                 0                    NA                         NA
+## 2    2 FALSE                                 0                    NA                         NA
+## 3    3 FALSE                                 0                    NA                         NA
+## 4    4 FALSE                                 0                    NA                         NA
+## 5    5  TRUE changepoint                     1                     0                          2
+## 6    6 FALSE                                 0                    NA                         NA
+## 7    7 FALSE                                 0                    NA                         NA
+## 8    8  TRUE changepoint                     1                     0                          2
+## 9    9 FALSE                                 0                    NA                         NA
+## 10  10 FALSE                                 0                    NA                         NA
+## 11  11  TRUE changepoint                     1                     0                          2
 ```
 
 ## Inspect the Trace
@@ -97,42 +85,30 @@ print(trace)
 ```
 
 ```
-##    idx timestamp batch_id_first_seen batch_frequency detection_frequency
-## 1    1        NA                   1               4                   0
-## 2    2        NA                   1               4                   0
-## 3    3        NA                   1               4                   0
-## 4    4        NA                   1               4                   0
-## 5    5        NA                   1               4                   4
-## 6    6        NA                   2               3                   0
-## 7    7        NA                   2               3                   0
-## 8    8        NA                   3               2                   2
-## 9    9        NA                   3               2                   0
-## 10  10        NA                   4               1                   0
-## 11  11        NA                   4               1                   1
-##    first_detected_batch last_detected_batch detection_probability
-## 1                    NA                  NA                     0
-## 2                    NA                  NA                     0
-## 3                    NA                  NA                     0
-## 4                    NA                  NA                     0
-## 5                     1                   4                     1
-## 6                    NA                  NA                     0
-## 7                    NA                  NA                     0
-## 8                     3                   4                     1
-## 9                    NA                  NA                     0
-## 10                   NA                  NA                     0
-## 11                    4                   4                     1
-##    detection_lag_batches detection_lag_observations  event_type
-## 1                     NA                         NA       event
-## 2                     NA                         NA       event
-## 3                     NA                         NA       event
-## 4                     NA                         NA       event
-## 5                      0                          2 changepoint
-## 6                     NA                         NA       event
-## 7                     NA                         NA       event
-## 8                      0                          2 changepoint
-## 9                     NA                         NA       event
-## 10                    NA                         NA       event
-## 11                     0                          2 changepoint
+##    idx timestamp batch_id_first_seen batch_frequency detection_frequency first_detected_batch last_detected_batch detection_probability detection_lag_batches
+## 1    1        NA                   1               4                   0                   NA                  NA                     0                    NA
+## 2    2        NA                   1               4                   0                   NA                  NA                     0                    NA
+## 3    3        NA                   1               4                   0                   NA                  NA                     0                    NA
+## 4    4        NA                   1               4                   0                   NA                  NA                     0                    NA
+## 5    5        NA                   1               4                   4                    1                   4                     1                     0
+## 6    6        NA                   2               3                   0                   NA                  NA                     0                    NA
+## 7    7        NA                   2               3                   0                   NA                  NA                     0                    NA
+## 8    8        NA                   3               2                   2                    3                   4                     1                     0
+## 9    9        NA                   3               2                   0                   NA                  NA                     0                    NA
+## 10  10        NA                   4               1                   0                   NA                  NA                     0                    NA
+## 11  11        NA                   4               1                   1                    4                   4                     1                     0
+##    detection_lag_observations  event_type
+## 1                          NA       event
+## 2                          NA       event
+## 3                          NA       event
+## 4                          NA       event
+## 5                           2 changepoint
+## 6                          NA       event
+## 7                          NA       event
+## 8                           2 changepoint
+## 9                          NA       event
+## 10                         NA       event
+## 11                          2 changepoint
 ```
 
 ## Inspect the Batch Log
@@ -145,10 +121,10 @@ print(batch_log)
 
 ```
 ##   batch_id memory_size fit_time_sec detect_time_sec total_time_sec
-## 1        1           5            0               0              0
-## 2        2           7            0               0              0
-## 3        3           9            0               0              0
-## 4        4          11            0               0              0
+## 1        1           5            0           0.000          0.000
+## 2        2           7            0           0.001          0.001
+## 3        3           9            0           0.000          0.000
+## 4        4          11            0           0.001          0.001
 ```
 
 ## Evaluate the Stream Behavior
