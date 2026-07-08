@@ -1,0 +1,67 @@
+---
+title: "Kafka Source Stub"
+output: rmarkdown::html_document
+---
+
+
+
+## Objective
+
+This notebook validates the Kafka integration boundary without implementing
+native Kafka consumption inside the package.
+
+## Method at a glance
+
+`har_source_kafka()` is a stub source. It documents the source interface and
+expects effective data collection to be delegated to Python through
+`reticulate`.
+
+## Configure the Stub
+
+
+``` r
+source_obj <- har_source_kafka(
+  topic = "sensor-events",
+  bootstrap_servers = c("broker1:9092", "broker2:9092"),
+  group_id = "harbinger-consumer"
+)
+```
+
+## Inspect Source Metadata
+
+
+``` r
+print(source_info(source_obj))
+```
+
+```
+## $name
+## [1] "kafka"
+## 
+## $type
+## [1] "kafka_stub"
+## 
+## $topic
+## [1] "sensor-events"
+## 
+## $bootstrap_servers
+## [1] "broker1:9092" "broker2:9092"
+## 
+## $group_id
+## [1] "harbinger-consumer"
+## 
+## $initialized
+## [1] FALSE
+```
+
+## Validate Stub Behavior
+
+
+``` r
+try(next_observation(source_obj))
+```
+
+```
+## Error : Kafka source is configured only as a stub. Attach a Python collector via reticulate.
+```
+

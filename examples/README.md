@@ -20,6 +20,7 @@ If you are new to `harbinger`, start with the tutorials. If you already know the
 - [Anomaly examples](/examples/anomalies/README.md) - anomaly detection methods grouped from simple baselines to residual models, supervised learners, clustering, ensembles, autoencoders, and multivariate workflows.
 - [Change-point examples](/examples/change_point/README.md) - change-point methods ordered from a first single-break intuition to multiple-break, structural-break, adaptive Waypoint, Bayesian online, ensemble, and univariate drift-oriented techniques.
 - [Motif examples](/examples/motifs/README.md) - repeated-pattern and discord analysis grouped into Matrix Profile, symbolic, and discord-oriented studies.
+- [Online examples](/examples/online/README.md) - online sessions, sources, batch-memory execution policies, streaming traces, experiment grids, and the Kafka stub integration boundary.
 - [Custom examples](/examples/custom/README.md) - extension-oriented notebooks showing how to plug new transformations, detectors, motif methods, and evaluators into Harbinger.
 
 ## Documentation design

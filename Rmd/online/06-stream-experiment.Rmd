@@ -1,0 +1,49 @@
+---
+title: "Streaming Experiment Grid"
+output: rmarkdown::html_document
+---
+
+```{r setup, include=FALSE}
+library(daltoolbox)
+library(harbinger)
+```
+
+## Objective
+
+This notebook validates the experiment-line abstraction for online runs.
+
+## Method at a glance
+
+The experiment runner compares streaming configurations while reusing the same
+installed detectors and evaluation objects already exposed by `harbinger`.
+
+## Prepare the Example
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
+
+serie <- c(1, 1, 1, 1, 5, 6, 7, 8, 20, 21, 22)
+reference <- c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)
+
+factory <- function() har_source_simulated(serie)
+```
+
+## Configure the Experiment Grid
+
+```{r}
+experiment <- har_stream_experiment(
+  detectors = list(page = hcp_page_hinkley(min_instances = 3, threshold = 1)),
+  source_factory = factory,
+  warmup_grid = c(3, 5),
+  batch_grid = c(1, 2),
+  memory_grid = list(har_memory_full(), har_memory_sliding(2)),
+  reference = reference
+)
+```
+
+## Inspect the Summary
+
+```{r}
+print(experiment$summary)
+```
+

@@ -1,0 +1,84 @@
+---
+title: "Online Session with Simulated Source"
+output: rmarkdown::html_document
+---
+
+```{r setup, include=FALSE}
+library(daltoolbox)
+library(harbinger)
+```
+
+## Objective
+
+This notebook validates the minimum end-to-end online workflow in `harbinger`
+using the installed package interface.
+
+## Method at a glance
+
+The workflow combines:
+
+- a simulated source
+- an online session
+- a batch execution strategy
+- a memory policy
+- trace-based evaluation with Detection Probability and Detection Lag
+
+## Prepare the Example
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
+
+serie <- c(1, 1, 1, 1, 5, 6, 7, 8, 20, 21, 22)
+reference <- c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)
+source_obj <- har_source_simulated(serie)
+```
+
+## Configure the Online Session
+
+```{r}
+session <- har_online_session(
+  source = source_obj,
+  detector = hcp_page_hinkley(min_instances = 3, threshold = 1),
+  executor = har_online_refit_full(),
+  warmup_size = 3,
+  batch_size = 2,
+  memory = har_memory_full()
+)
+```
+
+## Run the Online Workflow
+
+```{r}
+session <- fit(session)
+session <- run_online(session)
+```
+
+## Inspect Final Detection
+
+```{r}
+detection <- collect_detection(session)
+print(detection)
+```
+
+## Inspect the Trace
+
+```{r}
+trace <- collect_trace(session)
+print(trace)
+```
+
+## Inspect the Batch Log
+
+```{r}
+batch_log <- collect_batch_log(session)
+print(batch_log)
+```
+
+## Evaluate the Stream Behavior
+
+```{r}
+stream_metrics <- evaluate(har_stream_eval(), trace, reference = reference)
+print(stream_metrics$summary)
+print(stream_metrics$hard_metrics$confMatrix)
+```
+
