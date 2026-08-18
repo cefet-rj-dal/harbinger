@@ -229,11 +229,10 @@ Harbinger and demonstrates the main package workflows:
 
 ## Playlist
 
-[Harbinger
-videos](https://www.youtube.com/playlist?list=PLJb2qK1RWkbELhltwEV0ct3pkssi7k8sj)
+[Harbinger videos](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
 
 [![Watch the playlist on
-YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLJb2qK1RWkbELhltwEV0ct3pkssi7k8sj)
+YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
 
 ------------------------------------------------------------------------
 
