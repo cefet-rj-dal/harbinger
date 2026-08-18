@@ -161,9 +161,9 @@ The public course page includes a compact slide sequence that introduces Harbing
 
 ## Playlist
 
-[Harbinger videos](https://www.youtube.com/playlist?list=PLJb2qK1RWkbELhltwEV0ct3pkssi7k8sj)
+[Harbinger videos](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
 
-[![Watch the playlist on YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLJb2qK1RWkbELhltwEV0ct3pkssi7k8sj)
+[![Watch the playlist on YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
 
 ---
 
