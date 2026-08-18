@@ -1,0 +1,42 @@
+name: Sync README to Wiki
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - README.md
+      - README.Rmd
+      - .github/workflows/sync-readme-to-wiki.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone wiki
+        env:
+          SYNC_TOKEN: ${{ secrets.WIKI_TOKEN || github.token }}
+        run: |
+          git clone "https://x-access-token:${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" wiki
+
+      - name: Update Home page
+        run: |
+          cp README.md wiki/Home.md
+
+      - name: Commit and push wiki changes
+        working-directory: wiki
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Home.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Update Home from README"
+          git push
