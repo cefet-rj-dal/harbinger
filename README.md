@@ -54,11 +54,8 @@ Documentation and examples are available in the package site and in the
 repository:
 
 - [Package website](https://cefet-rj-dal.github.io/harbinger/)
-- [Function
-  reference](https://cefet-rj-dal.github.io/harbinger/reference/)
-- [Articles](https://cefet-rj-dal.github.io/harbinger/articles/)
 - [GitHub repository](https://github.com/cefet-rj-dal/harbinger)
-- [Examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples)
+- [Examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/)
 
 The documentation is organized around two complementary entry points:
 
@@ -75,11 +72,12 @@ examples by event type, data source, transformation, and execution mode.
 
 ## Guided Tutorial Track
 
-- [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/) -
-  a 10-part learning sequence covering first contact with the package,
-  data inspection, plotting, baseline anomaly detection, residual-based
-  detection, evaluation, change points, smoothing, symbolic
-  transformations, and motif analysis.
+The tutorials are part of the
+[examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/)
+collection. They form a 10-part learning sequence covering first contact
+with the package, data inspection, plotting, baseline anomaly detection,
+residual-based detection, evaluation, change points, smoothing, symbolic
+transformations, and motif analysis.
 
 The sequence is cumulative. It introduces event detection through small
 workflows before moving to richer event families and representations.
@@ -88,40 +86,32 @@ workflows before moving to richer event families and representations.
 
 ## Thematic Example Collections
 
-- [General
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/) -
-  package orientation, utility helpers, candidate selection, deviation
-  measures, filtering criteria, and evaluation objects.
-- [Dataset
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/) -
-  benchmark archives and domain datasets, including Yahoo, NAB, UCR,
-  MIT-BIH, 3W oil well, and GECCO-style datasets.
-- [Transformation
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/) -
-  smoothing and symbolic encodings that prepare a series for later
-  anomaly, change-point, motif, or discord analysis.
-- [Anomaly
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/) -
-  anomaly detection methods grouped from simple baselines to residual
-  models, machine-learning detectors, clustering, ensembles,
-  autoencoders, and multivariate workflows.
-- [Change-point
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/) -
-  change-point methods ordered from single-break intuition to
-  multiple-break, structural-break, probabilistic, volatility-oriented,
-  streaming, ensemble, and online detectors.
-- [Motif
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/) -
-  repeated-pattern and discord analysis grouped into Matrix Profile,
-  symbolic, and discord-oriented studies.
-- [Online
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/online/) -
-  online execution with sources, sessions, memory policies, batch
-  traces, experiment grids, and the Kafka integration boundary.
-- [Custom
-  examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/) -
-  extension-oriented notebooks showing how to plug new transformations,
-  detectors, motif methods, and evaluators into Harbinger.
+The
+[examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/)
+collection includes thematic subcollections:
+
+- General examples - package orientation, utility helpers, candidate
+  selection, deviation measures, filtering criteria, and evaluation
+  objects.
+- Dataset examples - benchmark archives and domain datasets, including
+  Yahoo, NAB, UCR, MIT-BIH, 3W oil well, and GECCO-style datasets.
+- Transformation examples - smoothing and symbolic encodings that
+  prepare a series for later anomaly, change-point, motif, or discord
+  analysis.
+- Anomaly examples - anomaly detection methods grouped from simple
+  baselines to residual models, machine-learning detectors, clustering,
+  ensembles, autoencoders, and multivariate workflows.
+- Change-point examples - change-point methods ordered from single-break
+  intuition to multiple-break, structural-break, probabilistic,
+  volatility-oriented, streaming, ensemble, and online detectors.
+- Motif examples - repeated-pattern and discord analysis grouped into
+  Matrix Profile, symbolic, and discord-oriented studies.
+- Online examples - online execution with sources, sessions, memory
+  policies, batch traces, experiment grids, and the Kafka integration
+  boundary.
+- Custom examples - extension-oriented notebooks showing how to plug new
+  transformations, detectors, motif methods, and evaluators into
+  Harbinger.
 
 ------------------------------------------------------------------------
 
@@ -171,53 +161,33 @@ subset(detection, event == TRUE)
 
 ## Suggested Learning Order
 
-1.  Start with
-    [Tutorials](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/tutorial/)
-    to understand the basic workflow.
-2.  Continue with [General
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/general/)
-    for package scope, utilities, and evaluation.
-3.  Visit [Dataset
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/datasets/)
-    before choosing a method.
-4.  Visit [Transformation
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/transformations/)
-    to see how smoothing and symbolic encodings change the signal.
-5.  Move to one modeling family, usually [Anomaly
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/anomalies/)
-    or [Change-point
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/change_point/).
-6.  Study [Motif
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/motifs/)
-    after you are comfortable with subsequences, windows, and symbolic
-    representations.
-7.  Explore [Online
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/online/)
-    when moving from offline analysis to stream-oriented detection.
-8.  Finish with [Custom
-    examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/custom/)
-    when you want to integrate your own components into the framework.
+1.  Start with the tutorials in the
+    [examples](https://github.com/cefet-rj-dal/harbinger/tree/master/examples/)
+    collection to understand the basic workflow.
+2.  Continue with the general examples for package scope, utilities, and
+    evaluation.
+3.  Visit the dataset examples before choosing a method.
+4.  Visit the transformation examples to see how smoothing and symbolic
+    encodings change the signal.
+5.  Move to one modeling family, usually anomaly examples or
+    change-point examples.
+6.  Study motif examples after you are comfortable with subsequences,
+    windows, and symbolic representations.
+7.  Explore online examples when moving from offline analysis to
+    stream-oriented detection.
+8.  Finish with custom examples when you want to integrate your own
+    components into the framework.
 
 ------------------------------------------------------------------------
 
 ## Course Material
 
-The public course page includes a compact slide sequence that introduces
-Harbinger and demonstrates the main package workflows:
-
-1.  [Harbinger
-    overview](https://github.com/eogasawara/series-temporais/blob/main/h01-harbinger.pdf)
-2.  [Tutorial](https://github.com/eogasawara/series-temporais/blob/main/h02-tutorial.pdf)
-3.  [General
-    workflow](https://github.com/eogasawara/series-temporais/blob/main/h03-general.pdf)
-4.  [Datasets](https://github.com/eogasawara/series-temporais/blob/main/h04-datasets.pdf)
-5.  [Transformations](https://github.com/eogasawara/series-temporais/blob/main/h05-transformations.pdf)
-6.  [Anomalies](https://github.com/eogasawara/series-temporais/blob/main/h06-anomalies.pdf)
-7.  [Change
-    points](https://github.com/eogasawara/series-temporais/blob/main/h07-changepoint.pdf)
-8.  [Motifs](https://github.com/eogasawara/series-temporais/blob/main/h08-motifs.pdf)
-9.  [Custom
-    extensions](https://github.com/eogasawara/series-temporais/blob/main/h09-custom.pdf)
+The [public course
+material](https://github.com/eogasawara/series-temporais/) includes a
+compact slide sequence that introduces Harbinger and demonstrates the
+main package workflows: overview, tutorial, general workflow, datasets,
+transformations, anomalies, change points, motifs, and custom
+extensions.
 
 ------------------------------------------------------------------------
 
@@ -225,7 +195,7 @@ Harbinger and demonstrates the main package workflows:
 
 - [DAL Toolbox](https://cefet-rj-dal.github.io/daltoolbox/)
 - [TSPredIT](https://cefet-rj-dal.github.io/tspredit/)
-- [Data Analytics Lab](https://eic.cefet-rj.br/~dal)
+- [Data Analytics Lab](https://eic.cefet-rj.br/~dal/)
 
 ------------------------------------------------------------------------
 
