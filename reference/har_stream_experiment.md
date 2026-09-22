@@ -93,6 +93,6 @@ experiment$summary
 #> 1                            0                          0
 #> 2                            0                          0
 #>   median_detection_lag_batches mean_batch_time_sec accuracy precision recall F1
-#> 1                            0                   0       NA        NA     NA NA
-#> 2                            0                   0       NA        NA     NA NA
+#> 1                            0        0.0006666667       NA        NA     NA NA
+#> 2                            0        0.0010000000       NA        NA     NA NA
 ```
