@@ -151,9 +151,16 @@ The [public course material](https://github.com/eogasawara/series-temporais/) in
 
 ## Playlist
 
-[Harbinger videos](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
+[Harbinger videos](https://www.youtube.com/playlist?list=PLLXCJ2dysFtw)
 
-[![Watch the playlist on YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLGYA3IN4bocY)
+[![Watch the playlist on YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLLXCJ2dysFtw)
+
+---
+
+## Slides and Videos
+
+- [Slide decks](https://github.com/cefet-rj-dal/harbinger/tree/main/examples/slides/) - one presentation per topic, indexed in `examples/slides/README.md`.
+- [Video index](https://github.com/cefet-rj-dal/harbinger/tree/main/examples/videos/) - one entry per published video, indexed in `examples/videos/README.md`.
 
 ---
 
