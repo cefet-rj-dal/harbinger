@@ -26,9 +26,15 @@ har_filter_mad <- function(res, k = 3, constant = 1.4826) {
   center <- stats::median(res, na.rm = TRUE)
   scale <- stats::mad(res, center = center, constant = constant, na.rm = TRUE)
 
-  if (!is.finite(center) || !is.finite(scale) || scale <= 0) {
+  if (!is.finite(center) || !is.finite(scale)) {
     index <- integer(0)
     attr(index, "threshold") <- c(NA_real_, NA_real_)
+    return(index)
+  }
+
+  if (scale <= 0) {
+    index <- which(is.finite(res) & res != center)
+    attr(index, "threshold") <- c(center, center)
     return(index)
   }
 

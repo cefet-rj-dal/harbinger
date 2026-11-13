@@ -55,23 +55,21 @@ detect.hanr_histogram <- function(obj, serie, ...) {
   # Estimate histogram structure (bins and densities)
   hist_data <- graphics::hist(obj$serie, plot = FALSE)
 
-  # Calculate bin edges and midpoints
+  # Calculate bin edges
   bin_edges <- hist_data$breaks
+  n_bins <- length(hist_data$density)
 
   # Detect anomalies based on bin membership and density threshold
   anomalies <- rep(FALSE, length(obj$serie))
-  for (i in 1:length(obj$serie)) {
-    # Find the bin to which the data point belongs
-    bin_index <- findInterval(obj$serie[i], bin_edges)
+  for (i in seq_along(obj$serie)) {
+    # Keep observations on the outer breaks inside the first/last density bin.
+    # findInterval() otherwise maps the maximum break to length(bin_edges),
+    # which is one position beyond hist_data$density.
+    bin_index <- findInterval(obj$serie[i], bin_edges, all.inside = TRUE)
+    bin_index <- min(max(bin_index, 1L), n_bins)
 
-    # Calculate the expected range (bin boundaries)
-    if (bin_index < 1)
-      bin_index <- 1
     lower_bound <- bin_edges[bin_index]
-    if (bin_index < length(bin_edges))
-      upper_bound <- bin_edges[bin_index+1]
-    else
-      upper_bound <- bin_edges[bin_index]
+    upper_bound <- bin_edges[bin_index + 1L]
 
     # Outside any bin or underdensity => anomaly
     if (obj$serie[i] < lower_bound || obj$serie[i] > upper_bound || hist_data$density[bin_index] < obj$density_threshold) {

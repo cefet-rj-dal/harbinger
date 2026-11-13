@@ -43,6 +43,8 @@ median and the scale by the median absolute deviation (MAD), rescaled by
 \code{1.4826} by default so that it is consistent with the standard deviation
 under Gaussian data. This makes the rule robust when the residual
 distribution is skewed or already contains a few extreme points.
+If the MAD is zero, finite observations different from the median are
+selected against the degenerate interval \verb{[median, median]}.
 
 For \code{har_filter_grubbs()}, the returned \code{threshold} attribute is an
 empirical detection boundary intended for interpretability in residual plots:
