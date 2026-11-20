@@ -4,9 +4,23 @@
 #' large reconstruction errors as anomalies. Based on classical PCA.
 #'
 #' @details
-#' The series is standardized, PCA is computed, and data are reconstructed from
-#' principal components. The reconstruction error is summarized and thresholded.
+#' The series is standardized, PCA is computed, and the data are reconstructed
+#' from a **reduced** set of principal components. The reconstruction error
+#' (the part of the signal not captured by the retained components) is summarized
+#' and thresholded as the anomaly score.
 #'
+#' Keeping *all* components would reconstruct the data exactly, leaving only
+#' floating-point round-off as the residual (a degenerate detector). By default
+#' `hmu_pca` therefore keeps the leading components that explain `variance` of the
+#' total variance, capped at `ncol - 1` so at least one component is always
+#' dropped. Pass `num_components` to fix the number of retained components
+#' explicitly.
+#'
+#' @param num_components Integer or `NULL`. Number of principal components to
+#'   retain for reconstruction. When `NULL` (default) the number is chosen
+#'   automatically from `variance`.
+#' @param variance Numeric in (0, 1]. Target cumulative proportion of variance
+#'   used to pick `num_components` automatically when it is `NULL`.
 #' @return `hmu_pca` object.
 #'
 #' @examples
@@ -39,8 +53,10 @@
 #' - Jolliffe IT (2002). Principal Component Analysis. Springer.
 #'
 #'@export
-hmu_pca <- function() {
+hmu_pca <- function(num_components = NULL, variance = 0.9) {
   obj <- harbinger()
+  obj$num_components <- num_components
+  obj$variance <- variance
   class(obj) <- append("hmu_pca", class(obj))
   return(obj)
 }
@@ -61,11 +77,22 @@ detect.hmu_pca <- function(obj, serie, ...) {
   # Perform PCA
   pca_result <- stats::princomp(scaled_data)
 
-  # Get the principal components and their loadings
-  pcs <- pca_result$scores
-  loadings <- pca_result$loadings
+  # Choose how many leading components to retain for reconstruction.
+  p <- ncol(scaled_data)
+  k <- obj$num_components
+  if (is.null(k)) {
+    var_explained <- pca_result$sdev^2 / sum(pca_result$sdev^2)
+    k <- which(cumsum(var_explained) >= obj$variance)[1]
+    if (is.na(k)) k <- p
+  }
+  # Always drop at least one component so the residual is meaningful
+  # (keeping all components reconstructs the data exactly -> degenerate).
+  k <- max(1, min(k, p - 1))
 
-  # Calculate the residuals
+  # Reconstruct from the retained components only; the discarded components
+  # form the reconstruction error used as the anomaly score.
+  pcs <- pca_result$scores[, 1:k, drop = FALSE]
+  loadings <- pca_result$loadings[, 1:k, drop = FALSE]
   reconstructed_data <- pcs %*% t(loadings)
 
   # Distance and outlier detection on reconstruction error
