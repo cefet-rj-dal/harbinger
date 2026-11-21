@@ -48,7 +48,9 @@ For `har_filter_mad()`, the residual center is estimated by the sample
 median and the scale by the median absolute deviation (MAD), rescaled by
 `1.4826` by default so that it is consistent with the standard deviation
 under Gaussian data. This makes the rule robust when the residual
-distribution is skewed or already contains a few extreme points.
+distribution is skewed or already contains a few extreme points. If the
+MAD is zero, finite observations different from the median are selected
+against the degenerate interval `[median, median]`.
 
 For `har_filter_grubbs()`, the returned `threshold` attribute is an
 empirical detection boundary intended for interpretability in residual

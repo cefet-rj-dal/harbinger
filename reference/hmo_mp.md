@@ -63,7 +63,9 @@ model <- fit(model, dataset$serie)
 
 # Run detection
 detection <- detect(model, dataset$serie)
-#> Finished in 0.02 secs
+#> 
+Computing: [========================================] 100% (done)                         
+#> Finished in 0.00 secs
 
 # Show detected motifs
 print(detection[(detection$event),])
@@ -73,6 +75,7 @@ print(detection[(detection$event),])
 #> 25  25  TRUE motif   1      4
 #> 31  31  TRUE motif   3      4
 #> 44  44  TRUE motif   2      4
+#> 50  50  TRUE motif   1      4
 #> 56  56  TRUE motif   3      4
 #> 69  69  TRUE motif   2      4
 #> 75  75  TRUE motif   1      4

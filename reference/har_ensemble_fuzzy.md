@@ -47,5 +47,5 @@ model <- fit(model, dataset$serie)
 detection <- detect(model, dataset$serie, time_tolerance = 8, use_nms = TRUE)
 print(detection[detection$event, ])
 #>    idx event type
-#> 50  50  TRUE     
+#> 49  49  TRUE     
 ```

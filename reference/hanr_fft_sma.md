@@ -53,7 +53,6 @@ model <- fit(model, dataset$serie)
 
 # Run detection
 detection <- detect(model, dataset$serie)
-#> Warning: longer object length is not a multiple of shorter object length
 
 # filtering detected events
 print(detection[(detection$event),])

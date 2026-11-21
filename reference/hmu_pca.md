@@ -6,8 +6,21 @@ large reconstruction errors as anomalies. Based on classical PCA.
 ## Usage
 
 ``` r
-hmu_pca()
+hmu_pca(num_components = NULL, variance = 0.9)
 ```
+
+## Arguments
+
+- num_components:
+
+  Integer or `NULL`. Number of principal components to retain for
+  reconstruction. When `NULL` (default) the number is chosen
+  automatically from `variance`.
+
+- variance:
+
+  Numeric in (0, 1\]. Target cumulative proportion of variance used to
+  pick `num_components` automatically when it is `NULL`.
 
 ## Value
 
@@ -15,9 +28,17 @@ hmu_pca()
 
 ## Details
 
-The series is standardized, PCA is computed, and data are reconstructed
-from principal components. The reconstruction error is summarized and
-thresholded.
+The series is standardized, PCA is computed, and the data are
+reconstructed from a **reduced** set of principal components. The
+reconstruction error (the part of the signal not captured by the
+retained components) is summarized and thresholded as the anomaly score.
+
+Keeping *all* components would reconstruct the data exactly, leaving
+only floating-point round-off as the residual (a degenerate detector).
+By default `hmu_pca` therefore keeps the leading components that explain
+`variance` of the total variance, capped at `ncol - 1` so at least one
+component is always dropped. Pass `num_components` to fix the number of
+retained components explicitly.
 
 ## References
 
@@ -54,16 +75,18 @@ detection <- detect(model, dataset[,1:2])
 # Show detected anomalies
 print(detection[(detection$event),])
 #>     idx event    type
-#> 17   17  TRUE anomaly
-#> 94   94  TRUE anomaly
-#> 101 101  TRUE anomaly
-#> 190 190  TRUE anomaly
+#> 113 113  TRUE anomaly
+#> 138 138  TRUE anomaly
+#> 154 154  TRUE anomaly
+#> 158 158  TRUE anomaly
+#> 175 175  TRUE anomaly
+#> 181 181  TRUE anomaly
 
 # Evaluate detections
 evaluation <- evaluate(model, detection$event, dataset$event)
 print(evaluation$confMatrix)
 #>           event      
 #> detection TRUE  FALSE
-#> TRUE      0     4    
-#> FALSE     1     195  
+#> TRUE      0     6    
+#> FALSE     1     193  
 ```

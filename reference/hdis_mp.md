@@ -63,7 +63,9 @@ model <- fit(model, dataset$serie)
 
 # Run detection
 detection <- detect(model, dataset$serie)
-#> Finished in 0.04 secs
+#> 
+Computing: [========================================] 100% (done)                         
+#> Finished in 0.01 secs
 
 # Show detected discords
 print(detection[(detection$event),])
