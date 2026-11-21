@@ -71,18 +71,26 @@ detect.hanr_fft_sma <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  # Dynamically apply the best moving average
-  optimal_window <- find_best_moving_average(serie)
+  # Dynamically apply the best moving average (on the NA-omitted series)
+  optimal_window <- find_best_moving_average(obj$serie)
+  n <- length(obj$serie)
 
-  sx <- tspredit::ts_data(serie, optimal_window)
+  sx <- tspredit::ts_data(obj$serie, optimal_window)
   ts_sma <- apply(sx, 1, mean)
 
-  filtered_series <- serie - ts_sma
+  # Align the moving average to each observation: ts_sma[i] is the mean of the
+  # window ending at position i + optimal_window - 1, so it lines up with
+  # obj$serie[optimal_window:n]. The first (optimal_window - 1) points are a
+  # warm-up. (Previously `serie - ts_sma` recycled the shorter vector and
+  # misaligned the residual.)
+  filtered_series <- rep(0, n)
+  filtered_series[optimal_window:n] <- obj$serie[optimal_window:n] - ts_sma
 
   res <- obj$har_distance(filtered_series)
 
   anomalies <- obj$har_outliers(res)
   anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
+  anomalies[1:(optimal_window - 1)] <- FALSE
 
   detection <- obj$har_restore_refs(obj, anomalies = anomalies, res = res)
 
