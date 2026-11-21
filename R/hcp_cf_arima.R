@@ -1,10 +1,22 @@
-#' @title Change Finder using ARIMA
+#' @title Change Finder (robust), autoregressive SDAR -- "++" re-implementation
 #' @description
-#' Change-point detection by modeling residual deviations with ARIMA and applying
-#' a second-stage smoothing and thresholding, inspired by ChangeFinder
-#' <doi:10.1109/TKDE.2006.1599387>. Wraps ARIMA from the `forecast` package.
+#' Change-point detection with a native, self-contained robust ChangeFinder (no
+#' `forecast` dependency). This is an \strong{adaptation} of the original
+#' ChangeFinder-ARIMA with documented innovations: instead of scoring
+#' `forecast::auto.arima` residuals, it implements the \emph{canonical} two-stage
+#' online SDAR (Sequentially Discounting AutoRegressive) ChangeFinder of Takeuchi
+#' & Yamanishi (2006) -- strong on abrupt/variance/multi-change regimes -- and
+#' takes the \strong{union} with a Gaussian mean+variance structural break
+#' (shared with `hcp_chow`/`hcp_gft`), which recovers the smooth trend/slope
+#' changes the AR-surprise score is blind to.
 #'
-#' @param sw_size Integer. Sliding window size for smoothing/statistics.
+#' This mirrors the canonical implementation in the `pyharbinger` package (class
+#' `HcpCfArima`); the two implementations produce identical detections.
+#'
+#' @param sw_size Integer. Smoothing window for the two-stage scores / warm-up.
+#' @param r SDAR forgetting (discounting) factor.
+#' @param order Autoregressive order of the SDAR model.
+#' @param h Minimal segment fraction for the mean+variance structural break.
 #' @return `hcp_cf_arima` object.
 #'
 #' @examples
@@ -20,7 +32,7 @@
 #' # Configure ChangeFinder-ARIMA detector
 #' model <- hcp_cf_arima()
 #'
-#' # Fit the model
+#' # Fit the model (no-op; detection is self-contained)
 #' model <- fit(model, dataset$serie)
 #'
 #' # Run detection
@@ -31,92 +43,35 @@
 #'
 #' @references
 #' - Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers and
-#'   change points from time series. IEEE Transactions on Knowledge and Data Engineering.
+#'   change points from time series. IEEE Transactions on Knowledge and Data
+#'   Engineering, 18(4):482-492.
+#' - Chen J, Gupta AK (2000). Parametric Statistical Change Point Analysis.
+#'   Birkhauser. (mean+variance structural break)
 #'
 #' @export
-hcp_cf_arima <- function(sw_size = NULL) {
+hcp_cf_arima <- function(sw_size = 5, r = 0.07, order = 1, h = 0.15) {
   obj <- harbinger()
   obj$sw_size <- sw_size
-
+  obj$r <- r
+  obj$order <- order
+  obj$h <- h
   class(obj) <- append("hcp_cf_arima", class(obj))
   return(obj)
 }
 
-#'@importFrom forecast auto.arima
-#'@importFrom stats residuals
-#'@importFrom stats na.omit
-#'@exportS3Method fit hcp_cf_arima
-fit.hcp_cf_arima <- function(obj, serie, ...) {
-  # Validate input
-  if(is.null(serie)) stop("No data was provided for computation",call. = FALSE)
-
-  # Omit missing values before model selection
-  serie <- stats::na.omit(serie)
-
-  obj$model <- forecast::auto.arima(serie, allowdrift = TRUE, allowmean = TRUE)
-  order <- obj$model$arma[c(1, 6, 2, 3, 7, 4, 5)]
-  obj$p <- order[1]
-  obj$d <- order[2]
-  obj$q <- order[3]
-  obj$drift <- (NCOL(obj$model$xreg) == 1) && is.element("drift", names(obj$model$coef))
-  params <- list(p = obj$p, d = obj$d, q = obj$q, drift = obj$drift)
-  attr(obj, "params") <- params
-
-  if (is.null(obj$sw_size))
-    obj$sw_size <- max(obj$p, obj$d+1, obj$q)
-
-  return(obj)
-}
-
-
-#'@importFrom stats na.omit
-#'@importFrom stats residuals
-#'@importFrom forecast auto.arima
 #'@exportS3Method detect hcp_cf_arima
 detect.hcp_cf_arima <- function(obj, serie, ...) {
+  if (is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+
   # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
+  x <- obj$serie
 
-  #Adjusting a model to the entire series
-  model <- tryCatch(
-    {
-      forecast::Arima(obj$serie, order=c(obj$p, obj$d, obj$q), include.drift = obj$drift)
-    },
-    error = function(cond) {
-      forecast::auto.arima(obj$serie, allowdrift = TRUE, allowmean = TRUE)
-    }
+  score_fn <- function(z) .har_sdar_ar_scores(z, obj$r, obj$order)
+  out <- .har_robust_changefinder(obj, x, obj$sw_size, obj$h, score_fn)
+
+  detection <- obj$har_restore_refs(
+    obj, anomalies = out$anomalies, change_points = out$cp, res = out$cp_score
   )
-
-  #Adjustment error on the entire series
-  res <- stats::residuals(model)
-
-  # Distance and outlier detection on residuals
-  res <- obj$har_distance(res)
-  anomalies <- obj$har_outliers(res)
-
-  anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
-
-  # Ignore initial positions where the model is warming up
-  anomalies[1:obj$sw_size] <- FALSE
-
-  y <- mas(res, obj$sw_size)
-
-  #Adjusting to the entire series
-  M2 <- forecast::auto.arima(y)
-
-  #Adjustment error on the whole window
-  u <- obj$har_distance(stats::residuals(M2))
-
-  u <- mas(u, obj$sw_size)
-  cp <- obj$har_outliers(u)
-  cp <- obj$har_outliers_check(cp, u, u)
-  cp[1:obj$sw_size] <- FALSE
-  cp <- c(rep(FALSE, length(res)-length(u)), cp)
-
-  # Restore anomalies and change points to original indexing
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp, res = res)
-
   return(detection)
 }
-
-

@@ -6,9 +6,12 @@ and flags structural changes when those scores persist.
 
 ## Method at a glance
 
-ChangeFinder with ETS models residual deviations, smooths the score over time,
-and applies a threshold to highlight structural changes. The ETS component is
-provided by `forecast`, and thresholds are handled by `harutils()`.
+ChangeFinder scores how surprising each point is, smooths the score over time,
+and highlights structural changes. Harbinger now uses a native, self-contained
+robust ChangeFinder (no `forecast` dependency): the canonical two-stage online
+ChangeFinder (Takeuchi & Yamanishi 2006) with a discounted Holt (level+trend)
+predictor, unioned with a Gaussian mean+variance structural break so smooth trend
+changes are also caught.
 
 ## What you will do
 

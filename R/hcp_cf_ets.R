@@ -1,10 +1,23 @@
-#' @title Change Finder using ETS
+#' @title Change Finder (robust), discounted Holt -- "++" re-implementation
 #' @description
-#' Change-point detection by modeling residual deviations with ETS and applying
-#' a second-stage smoothing and thresholding, inspired by ChangeFinder
-#' <doi:10.1109/TKDE.2006.1599387>. Wraps ETS from the `forecast` package.
+#' Change-point detection with a native, self-contained robust ChangeFinder (no
+#' `forecast` dependency). This is an \strong{adaptation} of the original
+#' ChangeFinder-ETS with documented innovations: instead of scoring
+#' `forecast::ets` residuals, it implements the canonical two-stage online
+#' ChangeFinder of Takeuchi & Yamanishi (2006) with a \emph{discounted Holt}
+#' (level+trend, the exponential-smoothing analogue of SDAR) predictor, and takes
+#' the \strong{union} with a Gaussian mean+variance structural break (shared with
+#' `hcp_chow`/`hcp_gft`), which recovers smooth trend/slope changes the surprise
+#' score is blind to.
 #'
-#' @param sw_size Integer. Sliding window size for smoothing/statistics.
+#' This mirrors the canonical implementation in the `pyharbinger` package (class
+#' `HcpCfEts`); the two implementations produce identical detections.
+#'
+#' @param sw_size Integer. Smoothing window for the two-stage scores / warm-up.
+#' @param alpha Holt level smoothing factor.
+#' @param beta Holt trend smoothing factor.
+#' @param r Forgetting (discounting) factor for the residual variance.
+#' @param h Minimal segment fraction for the mean+variance structural break.
 #' @return `hcp_cf_ets` object.
 #'
 #' @examples
@@ -20,7 +33,7 @@
 #' # Configure ChangeFinder-ETS detector
 #' model <- hcp_cf_ets()
 #'
-#' # Fit the model
+#' # Fit the model (no-op; detection is self-contained)
 #' model <- fit(model, dataset$serie)
 #'
 #' # Run detection
@@ -29,54 +42,39 @@
 #' # Show detected change points
 #' print(detection[(detection$event),])
 #'
-#'@export
-hcp_cf_ets <- function(sw_size = 7) {
+#' @references
+#' - Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers and
+#'   change points from time series. IEEE Transactions on Knowledge and Data
+#'   Engineering, 18(4):482-492.
+#' - Holt CC (1957/2004). Forecasting seasonals and trends by exponentially weighted
+#'   moving averages. International Journal of Forecasting, 20(1):5-10.
+#' - Chen J, Gupta AK (2000). Parametric Statistical Change Point Analysis. Birkhauser.
+#'
+#' @export
+hcp_cf_ets <- function(sw_size = 5, alpha = 0.8, beta = 0.1, r = 0.05, h = 0.15) {
   obj <- harbinger()
-
   obj$sw_size <- sw_size
+  obj$alpha <- alpha
+  obj$beta <- beta
+  obj$r <- r
+  obj$h <- h
   class(obj) <- append("hcp_cf_ets", class(obj))
   return(obj)
 }
 
-#'@importFrom stats na.omit
-#'@importFrom stats ts
-#'@importFrom stats residuals
-#'@importFrom forecast ets
 #'@exportS3Method detect hcp_cf_ets
 detect.hcp_cf_ets <- function(obj, serie, ...) {
+  if (is.null(serie)) stop("No data was provided for computation", call. = FALSE)
+
   # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
+  x <- obj$serie
 
-  # Adjust ETS to the entire series
-  model <- forecast::ets(stats::ts(obj$serie))
+  score_fn <- function(z) .har_sdar_holt_scores(z, obj$alpha, obj$beta, obj$r)
+  out <- .har_robust_changefinder(obj, x, obj$sw_size, obj$h, score_fn)
 
-  res <- stats::residuals(model)
-
-  # Distance and outlier detection on residuals
-  res <- obj$har_distance(res)
-  anomalies <- obj$har_outliers(res)
-
-  anomalies <- obj$har_outliers_check(anomalies, res, obj$serie)
-
-  anomalies[1:obj$sw_size] <- FALSE
-
-  y <- mas(res, obj$sw_size)
-
-  # Adjust ETS to the smoothed residual signal
-  M2 <- forecast::ets(ts(y))
-
-  #Adjustment error on the whole window
-  u <- obj$har_distance(stats::residuals(M2))
-
-  u <- mas(u, obj$sw_size)
-  cp <- obj$har_outliers(u)
-  cp <- obj$har_outliers_check(cp, u, u)
-  cp[1:obj$sw_size] <- FALSE
-  cp <- c(rep(FALSE, length(res)-length(u)), cp)
-
-  # Restore anomalies and change points to original indexing
-  detection <- obj$har_restore_refs(obj, anomalies = anomalies, change_points = cp, res = res)
-
+  detection <- obj$har_restore_refs(
+    obj, anomalies = out$anomalies, change_points = out$cp, res = out$cp_score
+  )
   return(detection)
 }
-

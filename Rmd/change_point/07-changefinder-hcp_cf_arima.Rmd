@@ -6,9 +6,11 @@ residuals and flags structural changes when those scores persist.
 
 ## Method at a glance
 
-ChangeFinder with ARIMA models residual deviations, smooths the score over time,
-and applies a threshold to highlight structural changes. The ARIMA component is
-provided by `forecast`, and thresholds are handled by `harutils()`.
+ChangeFinder scores how surprising each point is, smooths the score over time,
+and highlights structural changes. Harbinger now uses a native, self-contained
+robust ChangeFinder (no `forecast` dependency): the canonical two-stage online
+SDAR autoregressive surprise score (Takeuchi & Yamanishi 2006), unioned with a
+Gaussian mean+variance structural break so smooth trend changes are also caught.
 
 ## What you will do
 

@@ -2,20 +2,35 @@
 % Please edit documentation in R/hcp_cf_arima.R
 \name{hcp_cf_arima}
 \alias{hcp_cf_arima}
-\title{Change Finder using ARIMA}
+\title{Change Finder (robust), autoregressive SDAR -- "++" re-implementation}
 \usage{
-hcp_cf_arima(sw_size = NULL)
+hcp_cf_arima(sw_size = 5, r = 0.07, order = 1, h = 0.15)
 }
 \arguments{
-\item{sw_size}{Integer. Sliding window size for smoothing/statistics.}
+\item{sw_size}{Integer. Smoothing window for the two-stage scores / warm-up.}
+
+\item{r}{SDAR forgetting (discounting) factor.}
+
+\item{order}{Autoregressive order of the SDAR model.}
+
+\item{h}{Minimal segment fraction for the mean+variance structural break.}
 }
 \value{
 \code{hcp_cf_arima} object.
 }
 \description{
-Change-point detection by modeling residual deviations with ARIMA and applying
-a second-stage smoothing and thresholding, inspired by ChangeFinder
-\url{doi:10.1109/TKDE.2006.1599387}. Wraps ARIMA from the \code{forecast} package.
+Change-point detection with a native, self-contained robust ChangeFinder (no
+\code{forecast} dependency). This is an \strong{adaptation} of the original
+ChangeFinder-ARIMA with documented innovations: instead of scoring
+\code{forecast::auto.arima} residuals, it implements the \emph{canonical} two-stage
+online SDAR (Sequentially Discounting AutoRegressive) ChangeFinder of Takeuchi
+& Yamanishi (2006) -- strong on abrupt/variance/multi-change regimes -- and
+takes the \strong{union} with a Gaussian mean+variance structural break
+(shared with \code{hcp_chow}/\code{hcp_gft}), which recovers the smooth trend/slope
+changes the AR-surprise score is blind to.
+
+This mirrors the canonical implementation in the \code{pyharbinger} package (class
+\code{HcpCfArima}); the two implementations produce identical detections.
 }
 \examples{
 library(daltoolbox)
@@ -30,7 +45,7 @@ head(dataset)
 # Configure ChangeFinder-ARIMA detector
 model <- hcp_cf_arima()
 
-# Fit the model
+# Fit the model (no-op; detection is self-contained)
 model <- fit(model, dataset$serie)
 
 # Run detection
@@ -43,6 +58,9 @@ print(detection[(detection$event),])
 \references{
 \itemize{
 \item Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers and
-change points from time series. IEEE Transactions on Knowledge and Data Engineering.
+change points from time series. IEEE Transactions on Knowledge and Data
+Engineering, 18(4):482-492.
+\item Chen J, Gupta AK (2000). Parametric Statistical Change Point Analysis.
+Birkhauser. (mean+variance structural break)
 }
 }
