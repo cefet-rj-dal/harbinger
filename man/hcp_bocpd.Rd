@@ -2,39 +2,98 @@
 % Please edit documentation in R/hcp_bocpd.R
 \name{hcp_bocpd}
 \alias{hcp_bocpd}
-\title{Bayesian Online Change Point Detection}
+\title{Bayesian Online Change Point Detection -- "++" re-implementation}
 \usage{
 hcp_bocpd(
-  hazard = 100,
-  dist = c("gaussian", "poisson"),
-  threshold = NULL,
-  min_distance = 5,
-  burn_in = 5
+  hazard = 250,
+  threshold = 6,
+  min_distance = 15,
+  burn_in = 5,
+  order = 1,
+  local_window = 20,
+  prune_eps = 1e-06
 )
 }
 \arguments{
-\item{hazard}{Positive scalar controlling the constant hazard function.}
+\item{hazard}{Positive scalar; the prior change probability per step is
+\code{1 / hazard}.}
 
-\item{dist}{Probability model used by \code{ocp}; one of \code{"gaussian"} or \code{"poisson"}.}
+\item{threshold}{Local z-score a surprise peak must reach to be flagged.}
 
-\item{threshold}{Numeric threshold for changepoint evidence.}
-
-\item{min_distance}{Minimum distance between selected changepoints.}
+\item{min_distance}{Minimum distance between selected change points.}
 
 \item{burn_in}{Number of initial observations to ignore.}
+
+\item{order}{Autoregressive order of the UPM (regressors \verb{[1, x_\{t-1\}, ...]}).}
+
+\item{local_window}{Trailing window of the robust local z-score baseline.}
+
+\item{prune_eps}{Run lengths below \code{prune_eps} times the peak mass are pruned.}
 }
 \value{
 An \code{hcp_bocpd} object.
 }
 \description{
-Online Bayesian change-point detection using the \code{ocp} package.
+Change-point detection with a native, self-contained Bayesian Online Change
+Point Detector (no \code{ocp} dependency). This is an \strong{adaptation} of BOCPD
+(Adams & MacKay 2007) with documented innovations over the \code{ocp} backend:
 
-This implementation follows the Adams & MacKay formulation and uses the
-\code{ocp} backend to infer changepoint evidence over the full series.
+\enumerate{
+\item \strong{Autoregressive UPM.} \code{ocp} uses an i.i.d. Gaussian underlying
+predictive model, which only sees shifts in level and variance. Here the
+per-run-length model is a conjugate \emph{Bayesian linear autoregression}
+(a regression of x_t on \verb{[1, x_\{t-1\}, ...]}, Normal-Inverse-Gamma prior,
+Student-t predictive), so it also detects changes in dynamics (slope,
+trend, autocorrelation).
+\item \strong{Log-space + eps-pruning.} The run-length recursion runs in
+log-space and the run-length distribution is pruned to the entries holding
+all but a fraction \code{prune_eps} of the peak mass -- a bounded-state,
+streaming recursion.
+\item \strong{Surprise-based extraction.} Change points are read from the
+Bayesian predictive surprise \verb{-log p(x_t | x_\{1:t-1\})} via a causal robust
+local z-score, replacing \code{ocp}'s noisy three-list voting.
+}
+
+This mirrors the canonical implementation in the \code{pyharbinger} package (class
+\code{HcpBocpd}); the two implementations produce identical detections.
+}
+\examples{
+library(daltoolbox)
+
+# Load change-point example data
+data(examples_changepoints)
+
+# Use a simple example
+dataset <- examples_changepoints$simple
+head(dataset)
+
+# Configure BOCPD detector
+model <- hcp_bocpd()
+
+# Fit the model (no-op; detection is self-contained)
+model <- fit(model, dataset$serie)
+
+# Run detection
+detection <- detect(model, dataset$serie)
+
+# Show detected change points
+print(detection[(detection$event),])
+
 }
 \references{
 \itemize{
-\item Adams RP, MacKay DJC (2007). Bayesian Online Changepoint Detection. arXiv:0710.3742
-\item Pagotto A (2019). ocp: Bayesian Online Changepoint Detection. R package.
+\item Adams RP, MacKay DJC (2007). Bayesian Online Changepoint Detection.
+arXiv:0710.3742.
+\item Fearnhead P, Liu Z (2007). On-line inference for multiple changepoint
+problems. J. R. Stat. Soc. B, 69(4):589-605. (online inference with
+resampling/pruning of the run-length distribution; segment regression models)
+\item Fearnhead P (2006). Exact and efficient Bayesian inference for multiple
+changepoint problems. Statistics and Computing, 16(2):203-213. (Bayesian
+linear-regression segment models)
+\item Saatci Y, Turner R, Rasmussen CE (2010). Gaussian Process Change Point
+Models. ICML. (BOCPD with richer predictive models and run-length pruning)
+\item Takeuchi J, Yamanishi K (2006). A unifying framework for detecting outliers
+and change points from time series. IEEE TKDE, 18(4):482-492.
+(autoregressive change-point surprise)
 }
 }
