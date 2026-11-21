@@ -2,16 +2,32 @@
 % Please edit documentation in R/hcp_gft.R
 \name{hcp_gft}
 \alias{hcp_gft}
-\title{Generalized Fluctuation Test (GFT)}
+\title{Generalized Fluctuation Test (GFT), scale-aware re-implementation}
 \usage{
-hcp_gft()
+hcp_gft(penalty = "lwz")
+}
+\arguments{
+\item{penalty}{break-count information criterion: \code{"lwz"} (default,
+conservative) or \code{"bic"}.}
 }
 \value{
 \code{hcp_gft} object
 }
 \description{
-Structural change detection using generalized fluctuation tests via
-\code{strucchange::breakpoints()} \url{doi:10.18637/jss.v007.i02}.
+Structural change detection by multiple breaks in a linear model. This is a
+native re-implementation (no \code{strucchange} dependency) and an
+\strong{adaptation} of the original \code{strucchange::breakpoints} approach
+with documented innovations: (1) the least-squares (mean-only) Bai & Perron
+breakpoints are generalised to a Gaussian \emph{mean + variance} segmentation
+cost (each segment pays the ML deviance \code{m * log(RSS/m)} with a
+per-segment variance), so breaks in scale/variance regimes are detected, not
+only breaks in the mean/trend; (2) the number of breaks is chosen by the
+conservative LWZ information criterion (Liu, Wu & Zidek 1997) instead of the
+Gaussian BIC, which curbs over-segmentation; (3) the Bai-Perron dynamic
+program is vectorised.
+
+This mirrors the canonical implementation in the \code{pyharbinger} package
+(class \code{HcpGft}); the two implementations produce identical detections.
 }
 \examples{
 library(daltoolbox)
@@ -38,9 +54,18 @@ print(detection[(detection$event),])
 }
 \references{
 \itemize{
-\item Zeileis A, Leisch F, Kleiber C, Hornik K (2002). strucchange: An R package for testing
-for structural change in linear regression models. Journal of Statistical Software, 7(2). doi:10.18637/jss.v007.i02
-\item Zeileis A, Kleiber C, Krämer W, Hornik K (2003). Testing and dating of structural
-changes in practice. Computational Statistics & Data Analysis, 44(1):109–123.
+\item Bai J, Perron P (1998). Estimating and testing linear models with multiple
+structural changes. Econometrica, 66(1):47-78.
+\item Bai J, Perron P (2003). Computation and analysis of multiple structural
+change models. Journal of Applied Econometrics, 18(1):1-22.
+\item Liu J, Wu S, Zidek JV (1997). On segmented multivariate regression.
+Statistica Sinica, 7:497-525. (LWZ information criterion)
+\item Chen J, Gupta AK (2000). Parametric Statistical Change Point Analysis.
+Birkhauser. (Gaussian mean+variance change points)
+\item Killick R, Fearnhead P, Eckley IA (2012). Optimal detection of changepoints
+with a linear computational cost. JASA, 107(500):1590-1598.
+\item Zeileis A, Leisch F, Kleiber C, Hornik K (2002). strucchange: An R package
+for testing for structural change in linear regression models. Journal of
+Statistical Software, 7(2). doi:10.18637/jss.v007.i02 (original approach)
 }
 }

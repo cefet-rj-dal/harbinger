@@ -2,7 +2,7 @@
 % Please edit documentation in R/hcp_chow.R
 \name{hcp_chow}
 \alias{hcp_chow}
-\title{Chow Test (structural break)}
+\title{Chow Test (structural break), scale-aware re-implementation}
 \usage{
 hcp_chow()
 }
@@ -10,9 +10,19 @@ hcp_chow()
 \code{hcp_chow} object
 }
 \description{
-Change-point detection for linear models using F-based structural
-break tests from the \code{strucchange} package \url{doi:10.18637/jss.v007.i02}.
-Wraps the \code{Fstats} and \code{breakpoints} implementations from the \code{strucchange} package.
+Change-point detection by structural break in a linear model. This is a native
+re-implementation (no \code{strucchange} dependency) and an \strong{adaptation}
+of the original Chow/\code{strucchange} approach with a documented innovation:
+where the classical Chow test only compares the \emph{mean} regression
+coefficients of the two sub-samples (homoskedastic errors), this version reports
+the single break that maximises the Gaussian \emph{mean + variance}
+log-likelihood ratio over an unknown break date. It is therefore scale-aware --
+it also detects variance/scale regime changes the mean-only Chow test is blind
+to. The break is scanned over the trimmed range following the sup-type
+construction of Andrews (1993).
+
+This mirrors the canonical implementation in the \code{pyharbinger} package
+(class \code{HcpChow}); the two implementations produce identical detections.
 }
 \examples{
 library(daltoolbox)
@@ -36,4 +46,17 @@ detection <- detect(model, dataset$serie)
 # Show detected change points
 print(detection[(detection$event),])
 
+}
+\references{
+\itemize{
+\item Chow GC (1960). Tests of equality between sets of coefficients in two linear
+regressions. Econometrica, 28(3):591-605.
+\item Andrews DWK (1993). Tests for parameter instability and structural change
+with unknown change point. Econometrica, 61(4):821-856.
+\item Chen J, Gupta AK (2000). Parametric Statistical Change Point Analysis.
+Birkhauser. (Gaussian mean+variance change points)
+\item Zeileis A, Leisch F, Hornik K, Kleiber C (2002). strucchange: An R package
+for testing for structural change in linear regression models. Journal of
+Statistical Software, 7(2). doi:10.18637/jss.v007.i02 (original approach)
+}
 }

@@ -4,7 +4,15 @@
 \alias{hmu_pca}
 \title{Multivariate anomaly detector using PCA}
 \usage{
-hmu_pca()
+hmu_pca(num_components = NULL, variance = 0.9)
+}
+\arguments{
+\item{num_components}{Integer or \code{NULL}. Number of principal components to
+retain for reconstruction. When \code{NULL} (default) the number is chosen
+automatically from \code{variance}.}
+
+\item{variance}{Numeric in (0, 1]. Target cumulative proportion of variance
+used to pick \code{num_components} automatically when it is \code{NULL}.}
 }
 \value{
 \code{hmu_pca} object.
@@ -14,8 +22,17 @@ Projects multivariate observations onto principal components and flags
 large reconstruction errors as anomalies. Based on classical PCA.
 }
 \details{
-The series is standardized, PCA is computed, and data are reconstructed from
-principal components. The reconstruction error is summarized and thresholded.
+The series is standardized, PCA is computed, and the data are reconstructed
+from a \strong{reduced} set of principal components. The reconstruction error
+(the part of the signal not captured by the retained components) is summarized
+and thresholded as the anomaly score.
+
+Keeping \emph{all} components would reconstruct the data exactly, leaving only
+floating-point round-off as the residual (a degenerate detector). By default
+\code{hmu_pca} therefore keeps the leading components that explain \code{variance} of the
+total variance, capped at \code{ncol - 1} so at least one component is always
+dropped. Pass \code{num_components} to fix the number of retained components
+explicitly.
 }
 \examples{
 library(daltoolbox)

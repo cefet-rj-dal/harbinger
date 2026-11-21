@@ -8,7 +8,7 @@ The Chow-style structural break test estimates a linear model and finds breakpoi
 
 ## Method at a glance
 
-Chow tests: Chow tests for structural breaks in linear models using F-statistics over candidate breakpoints and returns estimated break locations. Harbinger wraps `strucchange` F-stats/breakpoints.
+Chow tests: detection of a structural break in a linear model. Harbinger now uses a native, scale-aware re-implementation (no `strucchange` dependency): it reports the single break that maximises the Gaussian *mean + variance* log-likelihood ratio over an unknown break date (Andrews 1993), an adaptation of the classical mean-only Chow test that also detects variance/scale regime changes.
 
 ## What you will do
 

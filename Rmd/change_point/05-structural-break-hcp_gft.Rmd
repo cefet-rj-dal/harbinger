@@ -8,7 +8,7 @@ Generalized Fluctuation Tests (GFT) assess structural changes by examining stabi
 
 ## Method at a glance
 
-GFT: Generalized fluctuation tests assess stability of regression parameters over time using `strucchange::breakpoints()`, returning estimated break dates under information criteria.
+GFT: detection of multiple structural breaks. Harbinger now uses a native re-implementation (no `strucchange` dependency): a Bai & Perron dynamic program under a Gaussian *mean + variance* segmentation cost, with the number of breaks chosen by the conservative LWZ criterion (Liu, Wu & Zidek 1997). This adapts the original mean-only breakpoints so variance/scale regime changes are also detected.
 
 ## What you will do
 
@@ -25,7 +25,7 @@ GFT: Generalized fluctuation tests assess stability of regression parameters ove
 
 ### Prepare the Example
 
-This setup anchors the notebook in the specific series used to examine `hcp_gft`. The semantic point is the one stated above: gFT: Generalized fluctuation tests assess stability of regression parameters over time using `strucchange::breakpoints()`, returning estimated break dates under information criteria, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
+This setup anchors the notebook in the specific series used to examine `hcp_gft`. The semantic point is the one stated above: gFT: GFT detects multiple structural breaks via a native Bai & Perron dynamic program under a Gaussian mean + variance segmentation cost, with the break count chosen by the conservative LWZ criterion, so the raw signal needs to be visible before any fitting step hides that structure behind model output.
 
 ```{r}
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/harbinger/master/examples/seed.R"))
@@ -68,7 +68,7 @@ head(dataset)
 
 ### Interpret the Result Visually
 
-This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because gFT: Generalized fluctuation tests assess stability of regression parameters over time using `strucchange::breakpoints()`, returning estimated break dates under information criteria and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
+This first visual pass establishes what the method should react to in the raw series. Keep the method summary in mind here, because gFT: GFT detects multiple structural breaks via a native Bai & Perron dynamic program under a Gaussian mean + variance segmentation cost, with the break count chosen by the conservative LWZ criterion and the plot tells you whether that structure is clean, weak, local, repeated, or mixed with other effects.
 
 ```{r}
 # Plot the raw time series
@@ -83,7 +83,7 @@ har_plot(harbinger(), dataset$serie)
 
 ### Configure the Method
 
-The choices below turn the central modeling idea into concrete parameters. They matter because gFT: Generalized fluctuation tests assess stability of regression parameters over time using `strucchange::breakpoints()`, returning estimated break dates under information criteria, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
+The choices below turn the central modeling idea into concrete parameters. They matter because gFT: GFT detects multiple structural breaks via a native Bai & Perron dynamic program under a Gaussian mean + variance segmentation cost, with the break count chosen by the conservative LWZ criterion, so each argument controls how strongly the method will emphasize that pattern when it later produces change-point candidates.
 
 ```{r}
 # Configure the GFT detector
