@@ -48,6 +48,7 @@ har_ensemble_fuzzy <- function(...) {
   obj$detection <- list(
     threshold = 0.5,
     threshold_type = "fixed",
+    min_consensus = 0.5,
     time_tolerance = 0,
     use_nms = FALSE
   )
@@ -73,6 +74,9 @@ fit.har_ensemble_fuzzy <- function(obj, serie, ...) {
 #' @param serie Input time series.
 #' @param threshold Numeric detection threshold.
 #' @param threshold_type Either `"fixed"` or `"percentile"`.
+#' @param min_consensus Minimum absolute consensus in `[0,1]` used with
+#'   percentile thresholding. The effective threshold is the larger of the
+#'   positive-score percentile and this value.
 #' @param time_tolerance Integer window for temporal fuzzification and NMS.
 #' @param use_nms Logical; whether to apply non-maximum suppression.
 #' @param outliers_check Optional refinement function.
@@ -86,6 +90,7 @@ detect.har_ensemble_fuzzy <- function(
     serie,
     threshold = NULL,
     threshold_type = NULL,
+    min_consensus = NULL,
     time_tolerance = NULL,
     use_nms = NULL,
     outliers_check = NULL,
@@ -96,6 +101,14 @@ detect.har_ensemble_fuzzy <- function(
   if (is.null(threshold)) threshold <- obj$detection$threshold
   if (is.null(threshold_type)) threshold_type <- obj$detection$threshold_type
   threshold_type <- match.arg(threshold_type, c("fixed", "percentile"))
+  if (is.null(min_consensus)) min_consensus <- obj$detection$min_consensus
+  if (is.null(min_consensus)) min_consensus <- 0.5
+  if (!is.numeric(threshold) || length(threshold) != 1 || is.na(threshold) || threshold < 0 || threshold > 1) {
+    stop("threshold must be a single number in [0, 1]", call. = FALSE)
+  }
+  if (!is.numeric(min_consensus) || length(min_consensus) != 1 || is.na(min_consensus) || min_consensus < 0 || min_consensus > 1) {
+    stop("min_consensus must be a single number in [0, 1]", call. = FALSE)
+  }
   if (is.null(time_tolerance)) time_tolerance <- obj$detection$time_tolerance
   if (is.null(use_nms)) use_nms <- obj$detection$use_nms
   if (is.null(outlier_filter)) outlier_filter <- obj$har_outliers
@@ -142,7 +155,11 @@ detect.har_ensemble_fuzzy <- function(
 
   if (threshold_type == "percentile") {
     valid <- score[score > 0]
-    threshold_value <- if (length(valid) == 0) Inf else stats::quantile(valid, probs = threshold, na.rm = TRUE)
+    threshold_value <- if (length(valid) == 0) {
+      Inf
+    } else {
+      max(as.numeric(stats::quantile(valid, probs = threshold, na.rm = TRUE)), min_consensus)
+    }
   } else {
     threshold_value <- threshold
   }

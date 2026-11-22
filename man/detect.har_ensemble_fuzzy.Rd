@@ -9,6 +9,7 @@
   serie,
   threshold = NULL,
   threshold_type = NULL,
+  min_consensus = NULL,
   time_tolerance = NULL,
   use_nms = NULL,
   outliers_check = NULL,
@@ -24,6 +25,10 @@
 \item{threshold}{Numeric detection threshold.}
 
 \item{threshold_type}{Either \code{"fixed"} or \code{"percentile"}.}
+
+\item{min_consensus}{Minimum absolute consensus in \verb{[0,1]} used with
+percentile thresholding. The effective threshold is the larger of the
+positive-score percentile and this value.}
 
 \item{time_tolerance}{Integer window for temporal fuzzification and NMS.}
 
