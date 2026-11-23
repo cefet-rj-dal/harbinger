@@ -11,6 +11,7 @@ detect(
   serie,
   threshold = NULL,
   threshold_type = NULL,
+  min_consensus = NULL,
   time_tolerance = NULL,
   use_nms = NULL,
   outliers_check = NULL,
@@ -36,6 +37,12 @@ detect(
 - threshold_type:
 
   Either `"fixed"` or `"percentile"`.
+
+- min_consensus:
+
+  Minimum absolute consensus in `[0,1]` used with percentile
+  thresholding. The effective threshold is the larger of the
+  positive-score percentile and this value.
 
 - time_tolerance:
 

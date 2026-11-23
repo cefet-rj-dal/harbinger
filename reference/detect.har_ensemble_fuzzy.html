@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">harbinger</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.757</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.767</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,7 @@
 <span>  <span class="va">serie</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threshold_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  min_consensus <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  time_tolerance <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  use_nms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  outliers_check <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -70,6 +71,12 @@
 
 <dt id="arg-threshold-type">threshold_type<a class="anchor" aria-label="anchor" href="#arg-threshold-type"></a></dt>
 <dd><p>Either <code>"fixed"</code> or <code>"percentile"</code>.</p></dd>
+
+
+<dt id="arg-min-consensus">min_consensus<a class="anchor" aria-label="anchor" href="#arg-min-consensus"></a></dt>
+<dd><p>Minimum absolute consensus in <code>[0,1]</code> used with
+percentile thresholding. The effective threshold is the larger of the
+positive-score percentile and this value.</p></dd>
 
 
 <dt id="arg-time-tolerance">time_tolerance<a class="anchor" aria-label="anchor" href="#arg-time-tolerance"></a></dt>
