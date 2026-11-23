@@ -193,6 +193,8 @@ extensions.
 
 ## Related DAL Projects
 
+- [pyharbinger — Python sibling
+  implementation](https://github.com/cefet-rj-dal/pyharbinger)
 - [DAL Toolbox](https://cefet-rj-dal.github.io/daltoolbox/)
 - [TSPredIT](https://cefet-rj-dal.github.io/tspredit/)
 - [Data Analytics Lab](https://eic.cefet-rj.br/~dal/)

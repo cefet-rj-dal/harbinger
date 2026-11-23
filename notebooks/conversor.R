@@ -3,16 +3,14 @@
 # - convert_ipynb_to_rmarkdown: converts .ipynb to .Rmd using rmarkdown
 # - delete_ipynb: removes a .ipynb file
 # - convert_rmd_md: knits .Rmd to .md and relocates figures to a per-doc folder
+# - convert_rmd_r: extracts a pure .R script from the .Rmd
 #
-#
-# Notes:
-# - Adds comments for clarity and light refactor for readability.
-# - Ensures destination figure folder exists before moving figures to avoid
-#   copy/move failures.
+# Sources live under 'notebooks/'; rendered outputs go under 'examples/'.
+# Only Markdown (.md) and pure R (.R) are generated (no Word/.docx).
 ################################################################################
 
 # Root directory containing source Rmd files
-dir <- "Rmd"
+dir <- "notebooks"
 log_dir <- file.path("examples", "logs")
 if (!dir.exists(log_dir)) {
   dir.create(log_dir, recursive = TRUE, showWarnings = FALSE)
@@ -137,12 +135,12 @@ delete_ipynb <- function(input) {
   file.remove(input)
 }
 
-# Normalize the relative path under 'Rmd/' so that:
+# Normalize the relative path under 'notebooks/' so that:
 # - every regular subfolder becomes a subfolder under 'examples/'
 # - the special leading folder 'examples/' is dropped to avoid
 #   creating 'examples/examples/...'
 normalize_examples_rel <- function(path) {
-  rel <- gsub("^Rmd/", "", path)
+  rel <- gsub("^notebooks/", "", path)
   rel <- gsub("^examples/", "", rel)
   rel
 }
@@ -155,13 +153,11 @@ build_output_paths <- function(input) {
   base_filename  <- xfun::sans_ext(basename(rel_md))
   mdfile         <- file.path("examples", rel_md)
   base_out_dir   <- if (rel_dir == ".") "examples" else file.path("examples", rel_dir)
-  docxfile       <- file.path(base_out_dir, "doc", paste0(base_filename, ".docx"))
   rfile          <- file.path(base_out_dir, "r", paste0(base_filename, ".R"))
   figdir         <- file.path(dirname(mdfile), "fig", base_filename)
 
   list(
     mdfile = mdfile,
-    docxfile = docxfile,
     rfile = rfile,
     figdir = figdir
   )
@@ -193,7 +189,7 @@ convert_rmd_md <- function(input) {
   # Clean any previous temporary and destination figure folders
   unlink("figure", recursive = TRUE)   # knitr default temporary figure dir
   unlink(figdir, recursive = TRUE)     # destination for this document's figures
-  
+
   # Ensure destination 'fig' base folder exists before moving
   fig_base <- dirname(figdir) # '<md-dir>/fig'
   if (!dir.exists(fig_base)) {
@@ -229,29 +225,6 @@ convert_rmd_md <- function(input) {
   con_out <- file(mdfile, encoding = "UTF-8")
   on.exit(close(con_out), add = TRUE)
   writeLines(data, con_out)
-}
-
-# Render an .Rmd to .docx under 'examples/<subdir>/doc/'.
-convert_rmd_docx <- function(input) {
-  if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
-
-  if (tolower(xfun::file_ext(input)) != "rmd") {
-    return("Error: Invalid file format")
-  }
-
-  paths <- build_output_paths(input)
-  docxfile <- paths$docxfile
-  docx_dir <- dirname(docxfile)
-  if (!dir.exists(docx_dir)) {
-    dir.create(docx_dir, recursive = TRUE, showWarnings = FALSE)
-  }
-
-  rmarkdown::render(
-    input,
-    output_format = "word_document",
-    output_file   = basename(docxfile),
-    output_dir    = dirname(docxfile)
-  )
 }
 
 # Extract a pure .R script under 'examples/<subdir>/r/'.
@@ -293,25 +266,22 @@ if (FALSE) {
   }
 }
 
-# Convert all .Rmd under 'Rmd/' in phases:
+# Convert all .Rmd under 'notebooks/' in phases:
 # 1. generate all Markdown files
-# 2. generate all Word files
-# 3. generate all extracted R scripts
+# 2. generate all extracted R scripts
 texs <- list.files(path = dir, pattern = ".Rmd$", full.names = TRUE, recursive = TRUE)
 if (TRUE) {
   append_log(sprintf("Conversion run started at %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S")))
   append_log(sprintf("Working directory: %s\n", normalizePath(getwd(), winslash = "/")))
 
   md_results <- run_phase(texs, "rmd->md", convert_rmd_md)
-  docx_results <- run_phase(texs, "rmd->docx", convert_rmd_docx)
   r_results <- run_phase(texs, "rmd->r", convert_rmd_r)
 
   md_summary <- summarize_phase(md_results, "rmd->md")
-  docx_summary <- summarize_phase(docx_results, "rmd->docx")
   r_summary <- summarize_phase(r_results, "rmd->r")
 
-  total_fail <- md_summary$fail + docx_summary$fail + r_summary$fail
-  total_duration <- sum(vapply(c(md_results, docx_results, r_results), function(x) x$elapsed_seconds, numeric(1)))
+  total_fail <- md_summary$fail + r_summary$fail
+  total_duration <- sum(vapply(c(md_results, r_results), function(x) x$elapsed_seconds, numeric(1)))
   append_log(sprintf("Total measured duration: %s\n", format_duration(total_duration)))
   if (total_fail > 0) {
     cat(sprintf("Conversion finished with failures. Log: %s\n", log_file))

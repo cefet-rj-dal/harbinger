@@ -14,7 +14,7 @@
 ^develop$
 ^motifs$
 ^multivariate$
-^Rmd$
+^notebooks$
 ^examples$
 ^examples-r$
 ^examples-word$

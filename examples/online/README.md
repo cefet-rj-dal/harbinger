@@ -44,10 +44,10 @@ The architecture can be read as the following pipeline:
 
 ## Suggested reading order
 
-- [01-source-family.Rmd](/Rmd/online/01-source-family.Rmd) - source constructors and the normalized observation contract.
-- [02-online-session-simulated.Rmd](/Rmd/online/02-online-session-simulated.Rmd) - minimum integrated online session using an existing detector.
-- [03-memory-policies.Rmd](/Rmd/online/03-memory-policies.Rmd) - how memory policies change the execution context.
-- [04-execution-strategies.Rmd](/Rmd/online/04-execution-strategies.Rmd) - how the online layer invokes the detector at each batch.
-- [05-stream-evaluator.Rmd](/Rmd/online/05-stream-evaluator.Rmd) - independent validation of Detection Probability and Detection Lag summaries.
-- [06-stream-experiment.Rmd](/Rmd/online/06-stream-experiment.Rmd) - compact experiment line over warm-up, batch size, and memory settings.
-- [07-kafka-stub.Rmd](/Rmd/online/07-kafka-stub.Rmd) - Kafka stub and the integration boundary for Python collectors via `reticulate`.
+- [01-source-family.Rmd](/notebooks/online/01-source-family.Rmd) - source constructors and the normalized observation contract.
+- [02-online-session-simulated.Rmd](/notebooks/online/02-online-session-simulated.Rmd) - minimum integrated online session using an existing detector.
+- [03-memory-policies.Rmd](/notebooks/online/03-memory-policies.Rmd) - how memory policies change the execution context.
+- [04-execution-strategies.Rmd](/notebooks/online/04-execution-strategies.Rmd) - how the online layer invokes the detector at each batch.
+- [05-stream-evaluator.Rmd](/notebooks/online/05-stream-evaluator.Rmd) - independent validation of Detection Probability and Detection Lag summaries.
+- [06-stream-experiment.Rmd](/notebooks/online/06-stream-experiment.Rmd) - compact experiment line over warm-up, batch size, and memory settings.
+- [07-kafka-stub.Rmd](/notebooks/online/07-kafka-stub.Rmd) - Kafka stub and the integration boundary for Python collectors via `reticulate`.
