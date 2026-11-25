@@ -78,6 +78,25 @@ hcp_joinpoint <- function(
   min(as.integer(k_max), max_possible)
 }
 
+# Relative tolerance for the dynamic-program tie-break. On (near-)symmetric
+# series several break sets share the same total RSS to within round-off; a
+# strict `<` would then let the linear-algebra backend decide the tie, so R's
+# `stats::lm` and Python's `numpy.linalg.lstsq` could pick different (co-optimal)
+# breaks. Comparing with this tolerance keeps the *earliest* co-optimal break
+# set, which is deterministic and identical across backends (kept in sync with
+# `_JOINPOINT_TOL` in the Python releitura, pyharbinger::changepoint).
+.har_joinpoint_tol <- 1e-9
+
+# Relative floor on a model's residual sum of squares (as a fraction of the total
+# sum of squares), used only for model selection. On (near-)perfectly piecewise
+# linear series the segment RSS collapses to round-off, and `log(RSS)` would then
+# reward adding spurious joinpoints that shave an already-zero residual further --
+# differently under `stats::lm` and Python's `numpy.linalg.lstsq`. Flooring the
+# RSS makes every "perfect" fit score the same log term, so the BIC penalty picks
+# the smallest number of joinpoints, deterministically and identically across
+# backends (kept in sync with `_JOINPOINT_RSS_FLOOR` in pyharbinger::changepoint).
+.har_joinpoint_rss_floor <- 1e-12
+
 .segment_rss <- function(y, x) {
   if (length(y) < 2) return(Inf)
   fit <- stats::lm(y ~ x)
@@ -160,7 +179,12 @@ hcp_joinpoint <- function(
         seg_rss <- .segment_rss(y[i:j], x[i:j])
         total_rss <- prev_rss + seg_rss
 
-        if (total_rss < best_rss) {
+        thr <- if (is.finite(best_rss)) {
+          best_rss - .har_joinpoint_tol * (1 + abs(best_rss))
+        } else {
+          Inf
+        }
+        if (total_rss < thr) {
           best_rss <- total_rss
           best_cps <- c(prev_cps, i)
         }
@@ -216,9 +240,13 @@ fit.hcp_joinpoint <- function(obj, serie, ...) {
   )
   best_models <- vector("list", max_jp + 1)
 
+  tss <- sum((y - mean(y))^2)
+  rss_floor <- .har_joinpoint_rss_floor * tss
+
   for (k in 0:max_jp) {
     cps <- dp$cps[[k + 1]][[length(y)]]
     rss <- dp$rss[[k + 1]][length(y)]
+    if (is.finite(rss)) rss <- max(rss, rss_floor)
 
     bic <- .bic(rss, length(y), k)
     bic3 <- .bic3(rss, length(y), k)
