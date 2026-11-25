@@ -48,6 +48,9 @@ library(daltoolbox)
 library(tspredit)
 #> 
 #> Attaching package: ‘tspredit’
+#> The following objects are masked from ‘package:daltoolbox’:
+#> 
+#>     plot_series, plot_ts, plot_ts_pred
 #> The following object is masked from ‘package:harbinger’:
 #> 
 #>     loadfulldata

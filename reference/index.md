@@ -43,7 +43,7 @@
 - [`hanct_kmeans()`](https://cefet-rj-dal.github.io/harbinger/reference/hanct_kmeans.md)
   : Anomaly detector using k-means
 - [`hanr_arima()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_arima.md)
-  : Anomaly detector using ARIMA
+  : Anomaly detector using ARIMA (ARIMA++)
 - [`hanr_emd()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_emd.md)
   : Anomaly detector using EMD
 - [`hanr_fbiad()`](https://cefet-rj-dal.github.io/harbinger/reference/hanr_fbiad.md)
