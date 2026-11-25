@@ -2,21 +2,41 @@
 % Please edit documentation in R/hanr_arima.R
 \name{hanr_arima}
 \alias{hanr_arima}
-\title{Anomaly detector using ARIMA}
+\title{Anomaly detector using ARIMA (ARIMA++)}
 \usage{
-hanr_arima()
+hanr_arima(auto = "aicc", max_order = 12, cv_folds = 2, horizon = NULL)
+}
+\arguments{
+\item{auto}{Order selector forwarded to \code{\link[tspredit:fit_arima]{tspredit::fit_arima()}}: \code{"aicc"}
+(default, compact AICc search) or \code{"cv"} (the heavier ARIMA++ rolling-origin
+cross-validated selector, tuned for forecasting).}
+
+\item{max_order}{Cap for the ACF/PACF-driven candidate lags (ARIMA++ \code{"cv"}).}
+
+\item{cv_folds}{Number of rolling origins for the CV selection (ARIMA++ \code{"cv"}).}
+
+\item{horizon}{CV horizon (ARIMA++ \code{"cv"}); \code{NULL} -> the detected seasonal period.}
 }
 \value{
 \code{hanr_arima} object.
 }
 \description{
-Fits an ARIMA model to the series and flags observations with large
-model residuals as anomalies. Wraps ARIMA from the \code{forecast} package.
+Fits an ARIMA model to the series and flags observations with large model
+residuals as anomalies.
 }
 \details{
-The detector estimates ARIMA(p,d,q) and computes standardized residuals.
-Residual magnitudes are summarized via a distance function and thresholded
-with outlier heuristics from \code{harutils()}.
+This is the backport of the Python \code{pyharbinger::HanrArima} releitura. Instead
+of \code{forecast::auto.arima}, the ARIMA order is selected by the DAL ARIMA
+auto-selector \code{\link[tspredit:fit_arima]{tspredit::fit_arima()}} -- the native (base \code{stats::arima})
+replacement for \code{auto.arima} -- so \code{harbinger} no longer depends on the
+\code{forecast} package. \code{auto = "aicc"} (default) is a compact AICc search; the
+detector flags points whose in-sample ARIMA residual is unusually large.
+
+The first \code{sw_size = max(p, d + 1, q)} residuals are a warm-up window: they are
+neutralised \strong{before} the outlier statistics (not only masked afterwards), so a
+large initialisation transient cannot inflate the threshold and hide the real
+anomalies. Residual magnitudes are summarised via a distance function and
+thresholded with the outlier heuristics from \code{harutils()}.
 }
 \examples{
 library(daltoolbox)
@@ -45,5 +65,7 @@ print(detection[(detection$event),])
 \itemize{
 \item Box GEP, Jenkins GM, Reinsel GC, Ljung GM (2015). Time Series Analysis: Forecasting
 and Control. Wiley.
+\item Hyndman RJ, Khandakar Y (2008). Automatic time series forecasting: the forecast
+package for R. Journal of Statistical Software, 27(3). doi:10.18637/jss.v027.i03
 }
 }
