@@ -2,14 +2,14 @@
 % Please edit documentation in R/har_online_sources.R
 \name{har_source_kafka}
 \alias{har_source_kafka}
-\title{Kafka source stub}
+\title{Kafka source (dependency-free streaming abstraction)}
 \usage{
 har_source_kafka(
   topic,
   bootstrap_servers,
   group_id,
+  collector = NULL,
   value_schema = NULL,
-  python_collector = NULL,
   name = "kafka"
 )
 }
@@ -20,11 +20,10 @@ har_source_kafka(
 
 \item{group_id}{Consumer group identifier.}
 
-\item{value_schema}{Optional schema description for the payload.}
+\item{collector}{Optional collector object exposing \code{get_next()} (and an
+optional \code{close()}). Without one the source raises on \code{next_observation()}.}
 
-\item{python_collector}{Optional Python collector object integrated through
-\code{reticulate}. It is expected to expose \code{get_next()} and optionally
-\code{close()}.}
+\item{value_schema}{Optional schema description for the payload.}
 
 \item{name}{Source name.}
 }
@@ -32,20 +31,38 @@ har_source_kafka(
 A \code{har_source_kafka} object.
 }
 \description{
-Creates a Kafka source placeholder that documents the expected collection
-interface while keeping the actual broker integration outside the Harbinger
-core. This object does not implement native Kafka consumption in R.
-
-A \code{python_collector}, typically created with \code{reticulate}, may be attached to
-the source. Harbinger expects this collector to expose a \code{get_next()} method
-returning one observation at a time according to the same observation
-contract used by callback sources, and an optional \code{close()} method.
+Kafka-shaped source that holds the broker configuration but delegates the
+actual consumption to a pluggable \code{collector} exposing \code{get_next()}. Harbinger
+declares \strong{no} Kafka dependency: attach a \code{har_simulated_collector()} to test
+end-to-end, or your own collector backed by a real Kafka client (e.g. a
+\code{reticulate} Python consumer) to read a live topic. The collector is pulled
+one observation at a time, modelling true streaming.
 }
 \examples{
+# Stub example: a simulated collector, no broker required.
 source <- har_source_kafka(
   topic = "sensor-events",
-  bootstrap_servers = c("broker1:9092"),
-  group_id = "harbinger-consumer"
+  bootstrap_servers = c("broker:9092"),
+  group_id = "harbinger",
+  collector = har_simulated_collector(c(10, 11, 12, 20, 12))
 )
-try(next_observation(source))
+next_observation(source)$observation$value
+
+# Real example: a collector backed by a live Kafka client (user code).
+\dontrun{
+kafka_collector <- function(consumer) {
+  obj <- list(
+    get_next = function() {
+      msg <- reticulate::iter_next(consumer, completed = NULL)
+      if (is.null(msg)) NULL else as.numeric(msg$value)
+    },
+    close = function() consumer$close()
+  )
+  class(obj) <- append("kafka_collector", "har_stream_collector")
+  obj
+}
+# consumer <- reticulate::import("kafka")$KafkaConsumer("sensor-events", ...)
+# source <- har_source_kafka("sensor-events", c("broker:9092"), "harbinger",
+#                            collector = kafka_collector(consumer))
+}
 }

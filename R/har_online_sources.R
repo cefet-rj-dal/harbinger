@@ -238,52 +238,124 @@ source_info.har_source_callback <- function(obj, ...) {
   )
 }
 
-#' @title Kafka source stub
+#' @title Stream collector (extension seam for live brokers)
 #' @description
-#' Creates a Kafka source placeholder that documents the expected collection
-#' interface while keeping the actual broker integration outside the Harbinger
-#' core. This object does not implement native Kafka consumption in R.
-#'
-#' A `python_collector`, typically created with `reticulate`, may be attached to
-#' the source. Harbinger expects this collector to expose a `get_next()` method
-#' returning one observation at a time according to the same observation
-#' contract used by callback sources, and an optional `close()` method.
+#' Abstract pull collector that yields one observation at a time. This is the
+#' extension point for live streams: provide a collector whose `get_next()`
+#' returns a single observation (scalar, one-row data.frame, or a list with at
+#' least a `value` field) or `NULL` when the stream is exhausted, and an optional
+#' `close()`. Harbinger ships *no* broker dependency; a real Kafka collector is
+#' user-supplied code backed by the user's own client (e.g. via `reticulate`).
+#' @return A `har_stream_collector` object whose `get_next()` must be overridden.
+#' @examples
+#' collector <- har_stream_collector()
+#' try(collector$get_next())
+#' @export
+har_stream_collector <- function() {
+  obj <- list(
+    get_next = function() stop("get_next() must be implemented by the collector.", call. = FALSE),
+    close = function() invisible(NULL)
+  )
+  class(obj) <- "har_stream_collector"
+  obj
+}
+
+#' @title Simulated stream collector
+#' @description
+#' Reference collector that replays an in-memory vector, matrix, or data frame
+#' one observation at a time. It lets a `har_source_kafka()` run end-to-end
+#' without a broker, and is the template for a real-broker collector.
+#' @param data Numeric vector, matrix, or data frame in time order.
+#' @return A `har_simulated_collector` object exposing `get_next()`/`close()`.
+#' @examples
+#' collector <- har_simulated_collector(c(10, 11, 12))
+#' collector$get_next()
+#' collector$get_next()
+#' @export
+har_simulated_collector <- function(data) {
+  if (is.null(data)) stop("data must be provided.", call. = FALSE)
+  n <- if (is.data.frame(data) || is.matrix(data)) nrow(data) else length(data)
+  state <- new.env(parent = emptyenv())
+  state$cursor <- 0L
+  obj <- list(
+    get_next = function() {
+      if (state$cursor >= n) return(NULL)
+      state$cursor <- state$cursor + 1L
+      i <- state$cursor
+      if (is.data.frame(data) || is.matrix(data)) data[i, , drop = FALSE] else data[i]
+    },
+    close = function() invisible(NULL)
+  )
+  class(obj) <- append("har_simulated_collector", "har_stream_collector")
+  obj
+}
+
+#' @title Kafka source (dependency-free streaming abstraction)
+#' @description
+#' Kafka-shaped source that holds the broker configuration but delegates the
+#' actual consumption to a pluggable `collector` exposing `get_next()`. Harbinger
+#' declares **no** Kafka dependency: attach a `har_simulated_collector()` to test
+#' end-to-end, or your own collector backed by a real Kafka client (e.g. a
+#' `reticulate` Python consumer) to read a live topic. The collector is pulled
+#' one observation at a time, modelling true streaming.
 #' @param topic Kafka topic name.
 #' @param bootstrap_servers Character vector with broker addresses.
 #' @param group_id Consumer group identifier.
+#' @param collector Optional collector object exposing `get_next()` (and an
+#'   optional `close()`). Without one the source raises on `next_observation()`.
 #' @param value_schema Optional schema description for the payload.
-#' @param python_collector Optional Python collector object integrated through
-#'   `reticulate`. It is expected to expose `get_next()` and optionally
-#'   `close()`.
 #' @param name Source name.
 #' @return A `har_source_kafka` object.
 #' @examples
+#' # Stub example: a simulated collector, no broker required.
 #' source <- har_source_kafka(
 #'   topic = "sensor-events",
-#'   bootstrap_servers = c("broker1:9092"),
-#'   group_id = "harbinger-consumer"
+#'   bootstrap_servers = c("broker:9092"),
+#'   group_id = "harbinger",
+#'   collector = har_simulated_collector(c(10, 11, 12, 20, 12))
 #' )
-#' try(next_observation(source))
+#' next_observation(source)$observation$value
+#'
+#' # Real example: a collector backed by a live Kafka client (user code).
+#' \dontrun{
+#' kafka_collector <- function(consumer) {
+#'   obj <- list(
+#'     get_next = function() {
+#'       msg <- reticulate::iter_next(consumer, completed = NULL)
+#'       if (is.null(msg)) NULL else as.numeric(msg$value)
+#'     },
+#'     close = function() consumer$close()
+#'   )
+#'   class(obj) <- append("kafka_collector", "har_stream_collector")
+#'   obj
+#' }
+#' # consumer <- reticulate::import("kafka")$KafkaConsumer("sensor-events", ...)
+#' # source <- har_source_kafka("sensor-events", c("broker:9092"), "harbinger",
+#' #                            collector = kafka_collector(consumer))
+#' }
 #' @export
 har_source_kafka <- function(topic,
                              bootstrap_servers,
                              group_id,
+                             collector = NULL,
                              value_schema = NULL,
-                             python_collector = NULL,
                              name = "kafka") {
   if (missing(topic) || !nzchar(topic)) stop("topic must be provided.", call. = FALSE)
   if (missing(bootstrap_servers) || length(bootstrap_servers) == 0L) {
     stop("bootstrap_servers must be provided.", call. = FALSE)
   }
   if (missing(group_id) || !nzchar(group_id)) stop("group_id must be provided.", call. = FALSE)
+  if (!is.null(collector) && !is.function(collector$get_next)) {
+    stop("collector must expose a get_next() function.", call. = FALSE)
+  }
 
   obj <- har_source(name)
   obj$topic <- topic
   obj$bootstrap_servers <- bootstrap_servers
   obj$group_id <- group_id
   obj$value_schema <- value_schema
-  obj$python_collector <- python_collector
-  obj$initialized <- !is.null(python_collector)
+  obj$collector <- collector
+  obj$initialized <- !is.null(collector)
   obj$cursor <- 0L
   class(obj) <- append("har_source_kafka", class(obj))
   obj
@@ -291,18 +363,15 @@ har_source_kafka <- function(topic,
 
 #' @export
 next_observation.har_source_kafka <- function(obj, ...) {
-  if (is.null(obj$python_collector)) {
+  if (is.null(obj$collector)) {
     stop(
-      "Kafka source is configured only as a stub. Attach a Python collector via reticulate.",
+      paste0("No collector attached to the Kafka source. Attach a ",
+             "har_simulated_collector() to test, or your own collector exposing get_next()."),
       call. = FALSE
     )
   }
 
-  if (is.null(obj$python_collector$get_next)) {
-    stop("python_collector must expose a get_next() method.", call. = FALSE)
-  }
-
-  observation <- obj$python_collector$get_next()
+  observation <- obj$collector$get_next()
   if (is.null(observation)) {
     return(list(source = obj, observation = NULL, available = FALSE))
   }
@@ -316,11 +385,12 @@ next_observation.har_source_kafka <- function(obj, ...) {
 source_info.har_source_kafka <- function(obj, ...) {
   list(
     name = obj$name,
-    type = "kafka_stub",
+    type = "kafka",
     topic = obj$topic,
     bootstrap_servers = obj$bootstrap_servers,
     group_id = obj$group_id,
-    initialized = obj$initialized
+    initialized = obj$initialized,
+    cursor = obj$cursor
   )
 }
 
