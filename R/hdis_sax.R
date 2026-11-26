@@ -126,7 +126,7 @@ detect.hdis_sax <- function(obj, serie, ...) {
   detection <- obj$har_restore_refs(obj, anomalies = mots)
   detection$seq <- NA
   detection$seqlen <- NA
-  detection$type[detection$type=="anomaly"] <- "motif"
+  detection$type[detection$type=="anomaly"] <- "discord"
   detection$seq[obj$non_na] <- seqs
   detection$seqlen[obj$non_na] <- obj$w
 
