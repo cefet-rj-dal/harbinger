@@ -56,11 +56,13 @@
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_online_session.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_online_sources.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_plot.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_simulated_collector.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_source.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_source_callback.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_source_dataframe.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_source_kafka.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_source_simulated.html</loc></url>
+<url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_stream_collector.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_stream_eval.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/har_stream_experiment.html</loc></url>
 <url><loc>https://cefet-rj-dal.github.io/harbinger/reference/harbinger.html</loc></url>

@@ -333,14 +333,18 @@ Please report bugs, questions, and feature requests at:
   : Streaming data sources for Harbinger
 - [`har_plot()`](https://cefet-rj-dal.github.io/harbinger/reference/har_plot.md)
   : Plot event detection on a time series
+- [`har_simulated_collector()`](https://cefet-rj-dal.github.io/harbinger/reference/har_simulated_collector.md)
+  : Simulated stream collector
 - [`har_source_callback()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_callback.md)
   : Callback source
 - [`har_source_dataframe()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_dataframe.md)
   : Data-frame source
 - [`har_source_kafka()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_kafka.md)
-  : Kafka source stub
+  : Kafka source (dependency-free streaming abstraction)
 - [`har_source_simulated()`](https://cefet-rj-dal.github.io/harbinger/reference/har_source_simulated.md)
   : Simulated source
+- [`har_stream_collector()`](https://cefet-rj-dal.github.io/harbinger/reference/har_stream_collector.md)
+  : Stream collector (extension seam for live brokers)
 - [`har_stream_eval()`](https://cefet-rj-dal.github.io/harbinger/reference/har_stream_eval.md)
   : Streaming evaluation for online detection
 - [`har_stream_experiment()`](https://cefet-rj-dal.github.io/harbinger/reference/har_stream_experiment.md)
