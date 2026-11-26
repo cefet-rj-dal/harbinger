@@ -62,14 +62,14 @@ detection <- detect(model, dataset$serie)
 
 # Show detected discords
 print(detection[(detection$event),])
-#>    idx event  type seq seqlen
-#> 17  17  TRUE motif BCE      3
-#> 21  21  TRUE motif IKM      3
-#> 39  39  TRUE motif CDE      3
-#> 43  43  TRUE motif GJL      3
-#> 64  64  TRUE motif GHI      3
-#> 68  68  TRUE motif LOS      3
-#> 86  86  TRUE motif ONM      3
-#> 90  90  TRUE motif MOP      3
-#> 94  94  TRUE motif VXX      3
+#>    idx event    type seq seqlen
+#> 17  17  TRUE discord BCE      3
+#> 21  21  TRUE discord IKM      3
+#> 39  39  TRUE discord CDE      3
+#> 43  43  TRUE discord GJL      3
+#> 64  64  TRUE discord GHI      3
+#> 68  68  TRUE discord LOS      3
+#> 86  86  TRUE discord ONM      3
+#> 90  90  TRUE discord MOP      3
+#> 94  94  TRUE discord VXX      3
 ```
