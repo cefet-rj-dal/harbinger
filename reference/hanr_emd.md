@@ -60,6 +60,6 @@ detection <- detect(model, dataset$serie)
 
 # Show detected anomalies
 print(detection[(detection$event),])
-#>    idx event    type
-#> 50  50  TRUE anomaly
+#> [1] idx   event type 
+#> <0 rows> (or 0-length row.names)
 ```
