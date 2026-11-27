@@ -1,7 +1,8 @@
 #' @title Anomaly detector using EMD
 #' @description
-#' Empirical Mode Decomposition (CEEMD) to extract intrinsic mode functions and
-#' flag anomalies from high-frequency components. Wraps `hht::CEEMD`.
+#' Empirical Mode Decomposition to extract intrinsic mode functions and flag
+#' anomalies from high-frequency components. Uses the native deterministic EMD
+#' shared across the DAL stack (no `hht` dependency).
 #'
 #' @param noise Numeric. Noise amplitude for CEEMD.
 #' @param trials Integer. Number of CEEMD trials.
@@ -48,7 +49,6 @@ hanr_emd <- function(noise = 0.1, trials = 5) {
 
 #'@importFrom stats median
 #'@importFrom stats sd
-#'@importFrom hht CEEMD
 #'@exportS3Method detect hanr_emd
 detect.hanr_emd <- function(obj, serie, ...) {
   # Validate input
@@ -57,10 +57,8 @@ detect.hanr_emd <- function(obj, serie, ...) {
   # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
-  id <- 1:length(obj$serie)
-
-  # CEEMD decomposition
-  suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
+  # Native deterministic EMD decomposition (drop-in for hht::CEEMD)
+  ceemd.result <- .har_ceemd(obj$serie)
 
   obj$model <- ceemd.result
 

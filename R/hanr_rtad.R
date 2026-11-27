@@ -72,7 +72,6 @@ fc_somaIMF <- function(ceemd.result, inicio, fim){
 
 #'@importFrom stats median
 #'@importFrom stats sd
-#'@importFrom hht CEEMD
 #'@importFrom zoo rollapply
 #'@importFrom daltoolbox transform
 #'@importFrom daltoolbox fit_curvature_max
@@ -83,11 +82,10 @@ detect.hanr_rtad <- function(obj, serie, ...) {
 
   obj <- obj$har_store_refs(obj, serie)
 
-  id <- 1:length(obj$serie)
   san_size <-  length(obj$serie)
 
-  # CEEMD decomposition of the observed series.
-  suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
+  # Native deterministic EMD decomposition (drop-in for hht::CEEMD)
+  ceemd.result <- .har_ceemd(obj$serie)
 
   model_an <- ceemd.result
 
