@@ -36,8 +36,6 @@ Read this group when the dataset includes labels and the goal is no longer only 
 - [31-regression-ml-hanr_ml_mlp.md](/examples/anomalies/31-regression-ml-hanr_ml_mlp.md) - regression-based anomaly detection with MLP.
 - [32-regression-ml-hanr_ml_rf.md](/examples/anomalies/32-regression-ml-hanr_ml_rf.md) - regression-based anomaly detection with Random Forest.
 - [33-regression-ml-hanr_ml_svm.md](/examples/anomalies/33-regression-ml-hanr_ml_svm.md) - regression-based anomaly detection with SVM.
-- [34-regression-ml-hanr_ml_lstm.md](/examples/anomalies/34-regression-ml-hanr_ml_lstm.md) - regression-based anomaly detection with LSTM.
-- [35-regression-ml-hanr_ml_conv1d.md](/examples/anomalies/35-regression-ml-hanr_ml_conv1d.md) - regression-based anomaly detection with Conv1D.
 
 ## Supervised Classifiers
 
@@ -71,18 +69,6 @@ Leave this group for later. It is easier to understand score-combination noteboo
 
 - [70-ensemble-hanr_ensemble.md](/examples/anomalies/70-ensemble-hanr_ensemble.md) - ensemble detector that combines multiple anomaly scores.
 - [71-ensemble-hanr_ensemble_fuzzy.md](/examples/anomalies/71-ensemble-hanr_ensemble_fuzzy.md) - ensemble detector with temporal fuzzification.
-
-## Autoencoders
-
-This group focuses on reconstruction-based anomaly detection with neural architectures. Keep it separate from ensembles because the modeling idea is entirely different.
-
-- [80-autoencoder-han_autoenc_ed.md](/examples/anomalies/80-autoencoder-han_autoenc_ed.md) - basic autoencoder for reconstruction-based anomaly detection.
-- [81-autoencoder-han_autoenc_denoise_ed.md](/examples/anomalies/81-autoencoder-han_autoenc_denoise_ed.md) - denoising autoencoder.
-- [82-autoencoder-han_autoenc_conv_ed.md](/examples/anomalies/82-autoencoder-han_autoenc_conv_ed.md) - convolutional autoencoder.
-- [83-autoencoder-han_autoenc_lstm_ed.md](/examples/anomalies/83-autoencoder-han_autoenc_lstm_ed.md) - LSTM autoencoder.
-- [84-autoencoder-han_autoenc_stacked_ed.md](/examples/anomalies/84-autoencoder-han_autoenc_stacked_ed.md) - stacked autoencoder.
-- [85-autoencoder-han_autoenc_variational_ed.md](/examples/anomalies/85-autoencoder-han_autoenc_variational_ed.md) - variational autoencoder.
-- [86-autoencoder-han_autoenc_adv_ed.md](/examples/anomalies/86-autoencoder-han_autoenc_adv_ed.md) - adversarial autoencoder.
 
 ## Multivariate Analysis
 
