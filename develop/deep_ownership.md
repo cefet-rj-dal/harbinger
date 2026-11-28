@@ -18,3 +18,9 @@ Python executáveis vivem em pydaltoolboxdp. Os índices do harbinger deixaram d
 O gate R↔Python usou o mesmo backend PyTorch e confirmou resíduos a `1e-7`, eventos
 idênticos e o mesmo `tau` no Waypoint. Esta migração não altera a matemática nem remove os
 construtores públicos do harbinger.
+
+Auditoria 0.6.0 do pydaltoolboxdp (2026-11-28): restavam em `examples/anomalies/doc` nove
+renderizações `.docx` legadas dos exemplos Deep (`hanr_ml` LSTM/Conv1D e os sete
+`han_autoenc_*`). Elas foram removidas; os exemplos vivos estão em daltoolboxdp. A
+documentação de `hanr_ml()` agora separa os regressores do tspredit dos modelos Deep ++
+documentados no daltoolboxdp.

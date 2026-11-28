@@ -18,9 +18,10 @@ hanr_ml(model, sw_size = 15)
 Trains a regression model to forecast the next value from a sliding window
 and flags large prediction errors as anomalies. Uses DALToolbox regressors.
 
-A set of preconfigured regression methods are described at
-\url{https://cefet-rj-dal.github.io/daltoolbox/} (e.g., \code{ts_elm}, \code{ts_conv1d},
-\code{ts_lstm}, \code{ts_mlp}, \code{ts_rf}, \code{ts_svm}).
+Preconfigured statistical and machine-learning regressors are described at
+\url{https://cefet-rj-dal.github.io/tspredit/} (e.g., \code{ts_elm}, \code{ts_mlp}, \code{ts_rf},
+\code{ts_svm}). Deep ++ regressors such as \code{ts_conv1d} and \code{ts_lstm} are described
+at \url{https://cefet-rj-dal.github.io/daltoolboxdp/}.
 
 When the wrapped regressor comes from \code{tspredit}, its \code{predict()} method may
 carry auxiliary attributes in addition to the numeric forecast path. This
