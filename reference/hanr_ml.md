@@ -4,9 +4,10 @@ Trains a regression model to forecast the next value from a sliding
 window and flags large prediction errors as anomalies. Uses DALToolbox
 regressors.
 
-A set of preconfigured regression methods are described at
-<https://cefet-rj-dal.github.io/daltoolbox/> (e.g., `ts_elm`,
-`ts_conv1d`, `ts_lstm`, `ts_mlp`, `ts_rf`, `ts_svm`).
+Preconfigured statistical and machine-learning regressors are described
+at <https://cefet-rj-dal.github.io/tspredit/> (e.g., `ts_elm`, `ts_mlp`,
+`ts_rf`, `ts_svm`). Deep ++ regressors such as `ts_conv1d` and `ts_lstm`
+are described at <https://cefet-rj-dal.github.io/daltoolboxdp/>.
 
 When the wrapped regressor comes from `tspredit`, its
 [`predict()`](https://rdrr.io/r/stats/predict.html) method may carry
