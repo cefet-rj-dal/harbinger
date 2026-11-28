@@ -53,9 +53,11 @@ hanr_remd <- function(noise = 0.1, trials = 5) {
 #'@importFrom stats median
 #'@importFrom stats sd
 fc_roughness <- function(x) {
-  firstD = diff(x)
-  normFirstD = (firstD - mean(firstD)) / sd(firstD)
-  roughness = (diff(normFirstD) ** 2) / 4
+  firstD <- diff(x)
+  sd_fd <- sd(firstD)
+  if (is.na(sd_fd) || sd_fd == 0) return(0)
+  normFirstD <- (firstD - mean(firstD)) / sd_fd
+  roughness <- (diff(normFirstD) ** 2) / 4
   return(mean(roughness))
 }
 
@@ -65,7 +67,6 @@ fc_roughness <- function(x) {
 #'@importFrom daltoolbox fit_curvature_min
 #'@importFrom stats median
 #'@importFrom stats sd
-#'@importFrom hht CEEMD
 #'@exportS3Method detect hanr_remd
 detect.hanr_remd <- function(obj, serie, ...) {
   if (is.null(serie))
@@ -74,11 +75,10 @@ detect.hanr_remd <- function(obj, serie, ...) {
   # Normalize indexing and omit NAs
   obj <- obj$har_store_refs(obj, serie)
 
-  id <- 1:length(obj$serie)
-  obj$sw_size <-  length(obj$serie)
+  obj$sw_size <- length(obj$serie)
 
-  # CEEMD decomposition
-  suppressWarnings(ceemd.result <- hht::CEEMD(obj$serie, id, verbose = FALSE, obj$noise, obj$trials))
+  # Native deterministic EMD decomposition (drop-in for hht::CEEMD)
+  ceemd.result <- .har_ceemd(obj$serie)
 
   obj$model <- ceemd.result
   #  calculate roughness for each imf
@@ -90,8 +90,12 @@ detect.hanr_remd <- function(obj, serie, ...) {
   vec <- cumsum(vec)
 
   #  Minimum curvature to choose split index of roughness trend
-  res <- daltoolbox::transform(daltoolbox::fit_curvature_min(), vec)
-  div <- res$x
+  if (obj$model$nimf < 4) {
+    div <- 1L
+  } else {
+    res <- daltoolbox::transform(daltoolbox::fit_curvature_min(), vec)
+    div <- res$x
+  }
   sum_high_freq <- obj$model[["imf"]][, 1]
 
   if (div > 1) {
